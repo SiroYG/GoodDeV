@@ -24,16 +24,24 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+	
+		return "index";
 	}
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String index(Locale locale, Model model) {
+	
+		return "index";
+	}
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String gologin(Locale locale, Model model) {
+	
+		return "login";
+	}
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String goljoijn(Locale locale, Model model) {
+	
+		return "join";
+	}
+	
 	
 }
