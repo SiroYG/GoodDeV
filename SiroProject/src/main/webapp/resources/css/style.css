@@ -1,0 +1,228 @@
+@charset "utf-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+
+/* Reset */
+html,body{width:100%;height:100%}
+html{overflow-y:scroll;font-size:12px}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,form,fieldset,p,button{margin:0;padding:0}
+body,h1,h2,h3,h4,input,button{font-family:malgun gothic,'맑은고딕',Helvetica,AppleSDGothicNeo,sans-serif;font-size:12px;color:#383d41}
+body{background-color:#fff;text-align:center;*word-break:break-all;-ms-word-break:break-all}
+img,fieldset,iframe{border:0 none}
+ul,li{list-style:none; padding:0; margin:0;}
+input,select,button{vertical-align:middle}
+img{vertical-align:top}
+i,em,address{font-style:normal}
+label,button{cursor:pointer}
+button{margin:0;padding:0}
+a{color:#222;text-decoration:none}
+a:hover{text-decoration:none;}
+button *{position:relative}
+button img{left:-3px;*left:auto}
+html:first-child select{height:20px;padding-right:6px}
+option{padding-right:6px}
+hr{display:none}
+legend{*width:0}
+table{border-collapse:collapse;border-spacing:0}
+input::-ms-clear{display:none}
+
+
+/*sesbank*/
+body{font-family:'Nanum Gothic'}
+#wrap {width:1000px; margin:0 auto;}
+
+
+/*상단*/
+#header {width:100%; }
+#top {width:100%; height:20px; text-align:right; padding-top:5px; background:#eee; border-radius:0 0 20px 20px;}
+#top a {padding-right:10px; font-size:11px;}
+
+#navi {position:relative; width:100%; height:80px; padding-top:20px; text-align:left; border-bottom:2px solid #e7121c;}
+
+
+
+/* 메인메뉴 영역 */
+#navi .gnb	{position:absolute; bottom:20px; right:0; }
+.gnb>ul{width:700px; height:30px;padding:20px 0 0 20px;}
+.gnb>ul>li{ float:left; width:220px; height:30px; margin:0 5px;  position:relative;}
+.gnb>ul>li>a{display:block; width:100%; height:100%; padding-top:20px; text-align:center; color:#fff; background:#e7121c; border-radius:20px 20px 0 0; }
+.gnb ul li a:hover,.gnb ul li a.select{color:#000; background:#fff;border:2px solid #e7121c; border-bottom:#fff; border-radius:20px 20px 0 0;}
+
+
+
+ 
+/* 서브메뉴 영역*/
+.gnb ul ul{display:none}
+.gnb>ul>li:hover ul {display:block; width:300px; height:50px;position:absolute; left:-58px; top:50px;}
+.gnb>ul>li:hover ul li {width:100px;float:left; height:60px;}
+.gnb li li{ height:25px;text-align:center; }
+.gnb li li a{display:block; width:100%; height:100%;  padding:20px;}
+.gnb li li a:hover{color:#111; background:none; border:none;}
+
+
+
+
+
+/*본문*/
+#contents {width:100%; padding:30px 0 100px 0;}
+#contents h1 {font-size:35px; letter-spacing:-0.1em; color:#e7121c; text-align:left; padding-bottom:20px;}
+#contents h1 > span {font-size:14px; color:#999; padding-left:10px; letter-spacing:-0.08em;}
+
+
+
+/*게시판공통*/
+table {width:100%;}
+#contents table tr:hover,#adm_contents table tr:hover {background:#eee;}
+#contents table th, #contents table td,#adm_contents table th, #adm_contents table td {padding:10px;}
+#contents table th, #adm_contents table th {background:#666; color:#fff;}
+#contents table td, #adm_contents table td {border-bottom:1px solid #eee;}
+#contents p.list_btn, #adm_contents p.list_btn {padding-top:50px; padding-bottom:40px;}
+#contents p.list_btn a, #adm_contents p.list_btn a {padding:10px 20px; margin:0 3px; border:2px solid #eee; border-radius:20px;}
+#contents p.list_btn a:hover, #contents p.list_btn a.select {border:2px solid #e7121c; background:#e7121c; color:#fff; font-weight:700;}
+#adm_contents p.list_btn a:hover, #adm_contents p.list_btn a.select {border:2px solid #1759c6; background:#1759c6; color:#fff; font-weight:700;}
+
+
+
+p.paging {position:relative; padding:30px 0; text-align:center;}
+p.paging a {padding:10px; margin:0 3px; border:2px solid #eee; border-radius:20px;}
+p.paging a:hover, p.paging a.select {border:2px solid #e7121c; background:#e7121c; color:#fff; font-weight:700;}
+p.paging a.btn_write {position:absolute; top:17px; right:5px; padding:10px 20px;}
+
+
+.board_title {width:600px; text-align:left;}
+
+table.wr_board {border-top:1px solid #999;}
+table.wr_board th {width:180px; background:#999; border-bottom:1px solid #ddd !important;}
+table.wr_board td {text-align:left;}
+table.wr_board td input {width:100%; height:20px; border:1px solid #eee; }
+table.wr_board td textarea {width:100%; height:400px; border:1px solid #eee; resize:none;}
+
+table.vw_board {border-top:1px solid #999;}
+table.vw_board th {width:180px; background:#eee !important; color:#111 !important; border-bottom:1px solid #ddd !important;}
+table.vw_board td {text-align:left;}
+table.vw_board td input {width:100%; height:20px; border:1px solid #eee; }
+table.vw_board td.table_contents {height:400px; vertical-align:top; padding:20px !important;}
+table.vw_board tr:hover {background:none !important;}
+
+
+
+
+
+/*로그인 및 회원가입*/
+.login_area {position:relative; width:300px; margin:20px auto; padding:20px; text-align:left; border:1px solid #e7121c; border-radius:20px;}
+.login_area .login_icon {position:absolute; top:-25px; left:145px; width:50px;}
+.login_area span {font-size:20px; font-weight:700;}
+
+.login_area ul { top:40px;}
+.login_area ul > li {padding:3px 0;}
+
+.login_write {width:95%;  padding:10px 0 10px 10px; font-size:13px; border:1px solid #eee;}
+.join_write {width:60%;  padding:10px 0 10px 10px; font-size:13px; border:1px solid #eee;}
+.id_check {display:inline-block; width:34%; height:18px; padding:9px 0 10px 0; font-size:13px; border:1px solid #d94343; background:#e7121c; text-align:center; color:#fff;}
+.id_check:hover {background:#c03232;}
+
+.btn_login {display:block; width:99%; padding-top:15px; height:30px; background:#d94343; text-align:center; color:#fff; font-weight:700;}
+.btn_login:hover {background:#c03232;}
+
+.btn_join {display:block; width:99%; padding-top:15px; height:30px; background:#4451a0; text-align:center; color:#fff; font-weight:700;}
+.btn_join:hover {background:#2a357d;}
+
+.btn_findid {color:#2a357d;}
+.btn_findid:hover {text-decoration:underline;}
+
+.btn_idfind {display:block; width:99%; padding-top:15px; height:30px; background:#52d148; text-align:center; color:#fff; font-weight:700;}
+
+.findtitle_btn {display:inline-block; width:48.2%; height:30px; border:1px solid #eee; padding-top:13px; border-radius:15px 15px 0 0; text-align:center; background:#eee;}
+.findtitle_btn:hover , a.tab {background:#52d148; color:#fff; font-weight:700; border:1px solid #52d148;}
+
+.grp_area {height:25px; margin-top:10px; text-align:left;}
+.grp_area label {padding:10px;font-size:13px;}
+
+/*회원정보수정*/
+
+.member_info {border:1px dotted red; border-radius:15px; padding:10px;}
+.member_info li { margin-bottom:5px; text-align:left; padding:5px;}
+.member_info li:hover {background:#eee;border-radius:15px; }
+.member_info label {display:inline-block; width:100px; text-align:left; margin-right:20px;}
+.member_info li input.login_write { width:300px; height:20px; padding:3px;}
+
+
+
+/*신규계좌개설*/
+.basic_list {border:1px dotted red; border-radius:15px; padding:10px;}
+.basic_list li {text-align:left; padding:10px;}
+.basic_list li:hover {background:#eee;border-radius:15px; }
+.basic_list li span {display:inline-block; width:100px;}
+.basic_list li .wr_account {width:250px; border:1px solid #ddd; padding-left:10px;}
+.basic_list li a {display:inline-block; padding:4px 20px; margin:0 3px; border:1px solid #52d148; border-radius:10px; background:#52d148; color:#fff;}
+.extext {padding-top:30px;}
+
+
+.basic_list li .wr_date {width:100px; border:1px solid #ddd; padding-left:10px;}
+.board_search select {width:80px; border:1px solid #ddd; font-size:12px; padding:3px 0;}
+.board_search input {width:150px; border:1px solid #ddd; padding-left:10px; height:19px;}
+.board_search a {display:inline-block; width:50px; border:1px solid #ddd; padding:3px 0 4px 0;}
+
+
+
+
+/*관리자*/
+
+#adm_contents {width:100%; padding:30px 0 100px 0;}
+#adm_contents h1 {font-size:35px; letter-spacing:-0.1em; color:#1759c6; text-align:left; padding-bottom:20px;}
+#adm_contents h1 > span {font-size:14px; color:#999; padding-left:10px; letter-spacing:-0.08em;}
+
+#adm_navi {position:relative; width:100%; height:80px; padding-top:20px; text-align:left; border-bottom:2px solid #1759c6;}
+#adm_navi ul {position:absolute; bottom:-2px; right:0; }
+#adm_navi ul li {float:left; width:200px; padding:14px; background:#1759c6; text-align:center; border:2px solid #1759c6;  border-radius:20px 20px 0 0; margin:0 3px;}
+#adm_navi ul li:hover, #adm_navi ul li.select {background:#fff; border-top:2px solid #1759c6;  border-right:2px solid #1759c6; border-left:2px solid #1759c6; border-bottom:2px solid #fff;}
+#adm_navi ul li a{color:#fff;}
+#adm_navi ul li:hover a, #adm_navi ul li.select a {color:#111; font-weight:700;}
+
+
+table.adm_board {border-top:1px solid #1759c6; margin-top:30px;}
+table.adm_board th {width:180px; background:#1759c6 !important; border-bottom:1px solid #fff;}
+table.adm_board td {text-align:left; vertical-align:top; line-height:160%;}
+table.adm_board span {font-size:10px;}
+table.adm_board td textarea {width:630px; height:120px; border:1px solid #eee; resize:none;}
+table.adm_board td .btn_reply {display:inline-block; width:120px; height:76px; text-align:center; font-weight:700; vertical-align:middle; border-radius:10px; background:#1759c6; color:#fff; padding-top:52px;}
+
+
+
+
+p.adm_paging {padding:30px 0; text-align:center;}
+p.adm_paging a {padding:10px; margin:0 3px; border:2px solid #eee; border-radius:20px;}
+p.adm_paging a:hover, p.adm_paging a.select {border:2px solid #1759c6; background:#1759c6; color:#fff; font-weight:700;}
+p.adm_paging a.btn_write {position:absolute; top:17px; right:5px; padding:10px 20px;}
+
+
+
+
+/*하단*/
+#footer {width:100%; padding:20px 0; background:#ddd; color:#111; line-height:160%;}
+
+
+
+
+
+
+/*팝업*/
+
+
+
+
+.popwrap h2 {  width:100%; height:40px; background:#e7121c; margin-bottom:25px; padding-top:20px; color:#fff;}
+.popwrap span {font-weight:700; font-size:15px; color:#e7121c;}
+.popwrap p.list_btn {margin-top:20px;}
+.popwrap p.list_btn a {padding:10px 20px; margin:0 3px; border:2px solid #eee; border-radius:20px;}
+.popwrap p.list_btn a:hover, .popwrap p.list_btn a.select {border:2px solid #e7121c; background:#e7121c; color:#fff; font-weight:700;}
+
+.wr_idcheck {border:2px solid #eee; height:30px; width:120px; border-radius:20px; padding-left:10px;}
+
+
+.popwrap table {width:90%; margin:0 auto; border:1px solid #eee;}
+.popwrap table th, .popwrap table td {padding:10px; border-bottom:1px solid #eee;}
+.popwrap table th {background:#eee;}
+
+
+
