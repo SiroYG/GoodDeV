@@ -1,3 +1,6 @@
+--2019.08.20
+--Bank 조용경
+
 
 --고객 정보 Table
 Create table Customer(

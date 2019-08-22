@@ -4,17 +4,39 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="global.seshool.bank.dao.CustomerDAO">
 
-<insert id="insertCustomer" parameterType="Customer">
+<insert id="insertCustomer" parameterType="Customer" >
 INSERT INTO Customer
 VALUES
-(	 #{CUSTID} 
-	, #{PASSWORD}
-	, #{EMAIL}
-	, #{DIVISION}
-	, #{NAME}
-	, #{IDNO}
-	, #{ADDRESS}
+(	
+	 #{custid} 
+	, #{password}
+	, #{email}
+	, #{division}
+	, #{name}
+	, #{idno}
+	, #{address}
 )
 </insert>
+
+<select id="selectOne" parameterType="Customer" resultType="Customer">
+Select * From Customer
+where custid = #{custid}
+or idno = #{idno}
+</select>
+
+<select id="searchCustomer" parameterType="Customer" resultType="Customer">
+Select * From Customer
+where custid = #{custid}
+</select>
+
+
+<select id="loginCustomer" parameterType="Customer" resultType="Customer">
+Select * From Customer
+where custid =#{custid}
+and
+password = #{password}
+</select>
+
+
 
 </mapper>

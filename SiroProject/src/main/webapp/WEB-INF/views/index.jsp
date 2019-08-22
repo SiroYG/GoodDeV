@@ -16,29 +16,37 @@
 	<!-- 계좌현황서브 -->
 	<div id="wrap">
 		<!-- wrap -->
-		<div id="header">
+			<div id="header">
+		
 			<!-- 상단 -->
 			<div id="top">
-				<!-- 멤버 -->
-				<a href="login">로그인</a><a href="join">회원가입</a>&nbsp;&nbsp;&nbsp;
+				<!-- 멤버 -->			
+			<c:if test="${sessionScope.loginId == null }">
+				<a href="gologin">로그인</a>
+			</c:if>	
+			<c:if test="${sessionScope.loginId != null }"> 
+				<a href="logout">로그아웃</a>
+			</c:if>
+				<a href="gojoin">회원가입</a>&nbsp;&nbsp;&nbsp;
+				${sessionScope.loginId}
 			</div>
 			<div id="navi">
 				<a href="home"><img src="resources/images/logo.png" width="150" /></a>
 				<div class="gnb">
 					<!-- 네비게이션 -->
 					<ul>
-						<li><a href="haveaccount.html">보유계좌현황</a> <!-- <ul>
+						<li><a href="accountmain">보유계좌현황</a> <!-- <ul>
 						   <li><a href="#">서브메뉴1</a></li>
 						   <li><a href="#">서브메뉴2</a></li>
 						   <li><a href="#">서브메뉴3</a></li>
 						</ul> --></li>
-						<li><a href="addaccount_1.html">신규계좌개설</a>
+						<li><a href="addaccount1">신규계좌개설</a>
 							<ul>
-								<li><a href="addaccount_1.html">예금계좌</a></li>
-								<li><a href="addaccount_2.html">적금계좌</a></li>
-								<li><a href="addaccount_3.html">대출계좌</a></li>
+								<li><a href="addaccount1">예금계좌</a></li>
+								<li><a href="addaccount2">적금계좌</a></li>
+								<li><a href="addaccount3">대출계좌</a></li>
 							</ul></li>
-						<li><a href="board_list.html">고객문의게시판</a> <!-- <ul>
+						<li><a href="goboard">고객문의게시판</a> <!-- <ul>
 						   <li><a href="#">서브메뉴1</a></li>
 						   <li><a href="#">서브메뉴2</a></li>
 						   <li><a href="#">서브메뉴3</a></li>
