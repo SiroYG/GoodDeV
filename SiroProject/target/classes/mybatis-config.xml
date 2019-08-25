@@ -9,9 +9,12 @@
 
 	<typeAliases>
 		<typeAlias type="global.seshool.bank.vo.Customer" alias="Customer" />
+		<typeAlias type="global.seshool.bank.vo.Board" alias="Board" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/customerMapper.xml" />
+		<mapper resource="mappers/boardMapper.xml" />
+		<mapper resource="mappers/adminMapper.xml" />
 	</mappers>
 </configuration>
 

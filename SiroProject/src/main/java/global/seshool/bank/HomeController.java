@@ -1,11 +1,16 @@
 package global.seshool.bank;
 
+import java.util.Date;
 import java.util.Locale;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import global.seshool.bank.vo.Customer;
 
 /**
  * Handles requests for the application home page.
@@ -33,6 +38,12 @@ public class HomeController {
 	
 		return "/member/join";
 	}
+	@RequestMapping(value = "/gofindidpw", method = RequestMethod.GET)
+	public String gofindidpw(Customer customer, Model model, HttpSession session) {
+	
+		return "/member/find_idpw";
+	}
+	
 	@RequestMapping(value = "/goinfo", method = RequestMethod.GET)
 	public String goinfo(Locale locale, Model model) {
 	
@@ -43,17 +54,17 @@ public class HomeController {
 	
 		return "/account/haveaccount";
 	}
-	@RequestMapping(value = "/addcount1", method = RequestMethod.GET)
+	@RequestMapping(value = "/addaccount1", method = RequestMethod.GET)
 	public String addcount1(Locale locale, Model model) {
 	
 		return "/account/addaccount_1";
 	}
-	@RequestMapping(value = "/addcount2", method = RequestMethod.GET)
+	@RequestMapping(value = "/addaccount2", method = RequestMethod.GET)
 	public String addcount2(Locale locale, Model model) {
 	
 		return "/account/addaccount_2";
 	}
-	@RequestMapping(value = "/addcount3", method = RequestMethod.GET)
+	@RequestMapping(value = "/addaccount3", method = RequestMethod.GET)
 	public String addcount3(Locale locale, Model model) {
 	
 		return "/account/addaccount_3";
@@ -61,8 +72,10 @@ public class HomeController {
 	@RequestMapping(value = "/goboard", method = RequestMethod.GET)
 	public String goboard(Locale locale, Model model) {
 	
-		return "/board/board_list";
+//		return "/board/board_list";
+		return "redirect:/Board/boardList";
 	}
+	
 	@RequestMapping(value = "/goboardview", method = RequestMethod.GET)
 	public String goboardView(Locale locale, Model model) {
 	
@@ -70,7 +83,8 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/goboardwrite", method = RequestMethod.GET)
 	public String goboardWrite(Locale locale, Model model) {
-	
+		Date today = new Date();	
+		model.addAttribute("today", today);
 		return "/board/board_write";
 	}
 }

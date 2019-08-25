@@ -8,5 +8,7 @@ public interface CustomerDAO {
 	public Customer loginCustomer(Customer customer);
 	public int updateCustomer (Customer customer);
 	public Customer searchCustomer(String checkId);
-	
+	void customerupdate(Customer customer);
+	Customer find_id(Customer customer);
+	Customer find_pw(Customer customer);
 }

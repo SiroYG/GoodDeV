@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,6 +8,13 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 
 	<script src="/bank/resources/script/jquery-3.3.1.min.js"></script>
+	<script>
+			
+	
+	
+	
+	</script>
+	
 	
 </head>
 <body><!-- 계좌현황서브 -->
@@ -29,11 +36,11 @@
 						</ul> -->
 					</li>
 
-					<li><a href="addcount1">신규계좌개설</a>
+					<li><a href="addaccount1">신규계좌개설</a>
 						<ul>
-						   <li><a href="addcount1">예금계좌</a></li>
-						   <li><a href="addcount2">적금계좌</a></li>
-						   <li><a href="addcount3">대출계좌</a></li>
+						   <li><a href="addaccount1">예금계좌</a></li>
+						   <li><a href="addaccount2">적금계좌</a></li>
+						   <li><a href="addaccount3">대출계좌</a></li>
 						</ul>
 					</li>
 					<li><a href="goboard">고객문의게시판</a>

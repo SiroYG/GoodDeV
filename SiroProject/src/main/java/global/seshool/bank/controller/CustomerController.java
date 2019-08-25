@@ -48,9 +48,18 @@ public class CustomerController {
 	public int loginCustomer(Customer customer,Model model, HttpSession session ) {
 		System.out.println("로그인 : " + customer.getCustid()+customer.getPassword());
 		int result=0;
+		
+		//admin 진입 가로채기		
+		if (customer.getCustid().equals("admin") && customer.getPassword().equals("admin")) {
+			//admin 계정 등록한채로 진입
+			return 100;
+		}	//admin 진입 
+
 		result =rep.loginCustomer(customer);
-		session.setAttribute("loginName", customer.getCustid());
-		session.setAttribute("loginId", customer.getName());
+		session.setAttribute("loginName", customer.getName());
+		session.setAttribute("loginId", customer.getCustid());
+
+		
 		if (result>0) {
 			System.out.println("성공");
 			return result;
@@ -64,12 +73,32 @@ public class CustomerController {
 	
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
+	public String logout(Customer customer , Model model, HttpSession session) {
 			session.invalidate();
 		return "index";
 	}
 	
-	
+	@RequestMapping(value = "/searchinfo", method = RequestMethod.GET)
+	@ResponseBody
+	public String searchinfo(Customer customer) {
+
+		if (customer.getCustid() == null) {
+			Customer cus = rep.find_id(customer);
+			if (cus != null) {
+				System.out.println(cus);
+				String aa = cus.getCustid();
+				return aa;
+			} else {
+
+				return "fail";
+			}
+		} else {
+			System.out.println(customer);
+			Customer cus = rep.find_pw(customer);
+			return cus.getPassword();
+		}
+
+	}
 	@RequestMapping(value="/idcheck", method=RequestMethod.GET)
 	public boolean searchCustomer(String checkId) {
 		boolean result =false;

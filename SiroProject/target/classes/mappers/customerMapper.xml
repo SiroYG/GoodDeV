@@ -4,39 +4,68 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="global.seshool.bank.dao.CustomerDAO">
 
-<insert id="insertCustomer" parameterType="Customer" >
-INSERT INTO Customer
-VALUES
-(	
-	 #{custid} 
-	, #{password}
-	, #{email}
-	, #{division}
-	, #{name}
-	, #{idno}
-	, #{address}
-)
-</insert>
+	<insert id="insertCustomer" parameterType="Customer">
+		INSERT INTO Customer
+		VALUES
+		(
+		#{custid}
+		, #{password}
+		, #{email}
+		, #{division}
+		, #{name}
+		, #{idno}
+		, #{address}
+		)
+	</insert>
 
-<select id="selectOne" parameterType="Customer" resultType="Customer">
-Select * From Customer
-where custid = #{custid}
-or idno = #{idno}
-</select>
+	<select id="selectOne" parameterType="Customer"
+		resultType="Customer">
+		Select * From Customer
+		where custid = #{custid}
+		or idno =
+		#{idno}
+	</select>
 
-<select id="searchCustomer" parameterType="Customer" resultType="Customer">
-Select * From Customer
-where custid = #{custid}
-</select>
+	<select id="searchCustomer" parameterType="Customer"
+		resultType="Customer">
+		Select * From Customer
+		where custid = #{custid}
+	</select>
 
+	<select id="loginCustomer" parameterType="Customer"
+		resultType="Customer">
+		Select * From Customer
+		where custid =#{custid}
+		and
+		password =
+		#{password}
+	</select>
 
-<select id="loginCustomer" parameterType="Customer" resultType="Customer">
-Select * From Customer
-where custid =#{custid}
-and
-password = #{password}
-</select>
+	<select id="find_id" parameterType="Customer"
+		resultType="Customer">
+		select
+		* from customer where
+		name=#{name}
+		and email=#{email}
 
+	</select>
+	
+	<select id="find_pw" parameterType="Customer"
+		resultType="Customer">
+		select
+		* from customer where
+		name=#{name}
+		and email=#{email}
+		and
+		custid=#{custid}
 
+	</select>
+	
+	<update id="customerupdate" parameterType="Customer">
+		update customer set
+		password=#{password},email=#{email},name=#{name},address=#{address}
+		where custid=#{custid}
+	</update>
+	
 
 </mapper>

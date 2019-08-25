@@ -7,9 +7,9 @@
 <head>
 <meta charset="utf-8">
 <title>SESbank</title>
-<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
-<script src="resources/script/jquery-1.12.3.js"></script>
-<script src="resources/script/common.js"></script>
+<link rel="stylesheet" type="text/css" href="/bank/resources/css/style.css" />
+<script src="/bank/resources/script/jquery-1.12.3.js"></script>
+<script src="/bank/resources/script/common.js"></script>
 </head>
 
 <body>
@@ -22,16 +22,16 @@
 			<div id="top">
 				<!-- 멤버 -->			
 			<c:if test="${sessionScope.loginId == null }">
-				<a href="gologin">로그인</a>
+				<a href="/bank/gologin">로그인</a>
 			</c:if>	
 			<c:if test="${sessionScope.loginId != null }"> 
-				<a href="logout">로그아웃</a>
+				<a href="/bank/Customer/logout">로그아웃</a>
 			</c:if>
 				<a href="gojoin">회원가입</a>&nbsp;&nbsp;&nbsp;
 				${sessionScope.loginId}
 			</div>
 			<div id="navi">
-				<a href="home"><img src="resources/images/logo.png" width="150" /></a>
+				<a href="home"><img src="/bank/resources/images/logo.png" width="150" /></a>
 				<div class="gnb">
 					<!-- 네비게이션 -->
 					<ul>
@@ -60,11 +60,11 @@
 			<!--내용-->
 			<section id="slide">
 				<ul>
-					<li><img src="resources/images/slide01.jpeg"
+					<li><img src="/bank/resources/images/slide01.jpeg"
 						alt="main image slide 1"></li>
-					<li><img src="resources/images/slide02.jpeg"
+					<li><img src="/bank/resources/images/slide02.jpeg"
 						alt="main image slide 2"></li>
-					<li><img src="resources/images/slide03.jpg"
+					<li><img src="/bank/resources/images/slide03.jpg"
 						alt="main image slide 3"></li>
 				</ul>
 				<div class="slogan">
@@ -90,9 +90,9 @@
 					<h3>Siro 은행 행사 이미지</h3>
 					<div>
 						<a href="#" class="openPopup">
-						<img src="resources/images/poster1.jpg" alt="이달의 전시 영역"></a> 
+						<img src="/bank/resources/images/poster1.jpg" alt="이달의 전시 영역"></a> 
 						<a href="#"class="openPopup">
-						<img src="resources/images/poster2.jpg"alt="이달의 전시 영역"></a>
+						<img src="/bank/resources/images/poster2.jpg"alt="이달의 전시 영역"></a>
 					</div>
 				</section>
 				<section>

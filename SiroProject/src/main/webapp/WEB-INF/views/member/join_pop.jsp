@@ -41,18 +41,11 @@
 						alert("ajax 통신 실패");
 					}	
 				});
-		
 		 }
-	
 	</script>
-
-
 </head>
-
 <body>
-
 <div class="popwrap">
-
 <h2>ID중복확인</h2>
 	<div style="display:none;" id="IDDO">
 		[<span id="testSpan1">${checkId}</span>] 아이디는 사용가능합니다.

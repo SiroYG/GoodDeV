@@ -1,33 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 	<meta charset="utf-8">
 	<title>SESbank</title>
-	<link rel="stylesheet" type="text/css" href="../css/style.css" />
-
+	<link rel="stylesheet" type="text/css" href="/bank/resources/css/style.css" />
+	<script src="/bank/resources/script/jquery-3.3.1.min.js"></script>
 </head>
-
 <body><!-- 계좌현황서브 -->
-	
-	
 	<div id="wrap"><!-- wrap -->
-		
 		<div id="header"><!-- 상단 -->
 			<div id="top"><!-- 멤버 -->
-				<a href="info.html">회원정보수정</a><a href="login.html">로그아웃</a>&nbsp;&nbsp;&nbsp;
+				<a href="/bank/Customer/info">회원정보수정</a><a href="/bank/Customer/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;
 			</div>
 			<div id="adm_navi"><!-- 네비게이션 -->
-			<a href=""><img src="../images/logo.png" width="150" /></a>
+			<a href="/bank/Admin/adminmain"><img src="/bank/resources/images/logo.png" width="150" /></a>
 			<ul>
-				<li class="select"><a href="adm_loan.html">대출승인</a></li>
-				<li><a href="adm_answerview.html">문의답변</a></li>
+				<li class="select"><a href="/bank/Admin/adminloan">대출승인</a></li>
+				<li><a href="/bank/Admin/adminmain">문의답변</a></li>
 			</ul>
 			</div>
-			
 		</div>
-
-
-
 		<div id="adm_contents"><!--내용-->
 			<h1>관리자 / 대출승인<span></span></h1><!-- 내용제목 -->
 			
@@ -60,26 +55,11 @@
 			<p class="adm_paging">
 				<a href="#" class="select">승인</a><a href="#">거절</a>
 			</p>
-
-
 		</div>
-
-
-
 		<div id="footer"><!-- 하단 -->
 			서울시 강남구 삼성동 59-1 COEX 4F, 개인정보관리책임자: 홍길동<br />
 			Copyright©2016 KITA-SESchool ICT Educational Center All rights reserved.			
 		</div>
-
-
-
 		</div>
-
-	</div>
-
-
-
-
 </body>
-
 </html>

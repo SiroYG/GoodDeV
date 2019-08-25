@@ -61,7 +61,24 @@ public class CustomerRepository {
 		}
 	}
 	
-	
+	public void customerupdate(Customer customer) {
+		CustomerDAO mapper = session.getMapper(CustomerDAO.class);
+		mapper.customerupdate(customer);
+		
+	}
+
+	public Customer find_id(Customer customer) {
+		CustomerDAO mapper = session.getMapper(CustomerDAO.class);
+		Customer cus=mapper.find_id(customer);
+		return cus;
+	}
+
+	public Customer find_pw(Customer customer) {
+		CustomerDAO mapper = session.getMapper(CustomerDAO.class);
+		Customer cus=mapper.find_pw(customer);
+		return cus;
+	}
+
 
 	public boolean searchCustomer(String checkId) {
 		CustomerDAO mapper = session.getMapper(CustomerDAO.class);

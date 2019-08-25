@@ -63,4 +63,17 @@ public class BoardRepository {
 		return result;
 
 	}
+	
+	
+	public int getBoardCount(String searchItem, String searchWord) {
+		BoardDAO mapper = session.getMapper(BoardDAO.class);
+		Map<String, Object> map = new HashMap<>();
+		map.put("searchItem", searchItem);
+		map.put("searchWord", searchWord);
+		
+		int total = mapper.getBoardCount(map);
+		
+		return total;
+	}
+	
 }

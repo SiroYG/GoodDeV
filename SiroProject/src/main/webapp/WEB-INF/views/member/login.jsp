@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>SESbank</title>
-	<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/bank/resources/css/style.css" />
 <script src="/bank/resources/script/jquery-3.3.1.min.js"></script>
 	<script > 
 		 function login(){
@@ -15,6 +15,7 @@
 				var pw = document.getElementById("pw");
 				
 				console.log("Test value : " + id.value +" "+pw.value);
+				
 				$.ajax({
 					"url" :	"/bank/Customer/login",
 					"type": "post",
@@ -24,7 +25,11 @@
 					},
 					"success": function(result){
 						console.log(result);
-						if (result !== 0){
+						if (result == 100) { 	//admin
+							alert("관리자님 환영합니다.");
+							window.location.href = "/bank/Admin/adminmain";
+						}
+						else if(result== 1){
 							alert("로그인 성공");
 							window.location.href = "/bank/accountmain";
 						}
@@ -54,7 +59,7 @@
 				<a href="gojoin">회원가입</a>&nbsp;&nbsp;&nbsp;
 			</div>
 			<div id="navi">
-			<a href="home"><img src="resources/images/logo.png" width="150" /></a>
+			<a href="home"><img src="/bank/resources/images/logo.png" width="150" /></a>
 			 <div class="gnb"><!-- 네비게이션 -->
 				 <ul>
 					<li><a href="accountmain">보유계좌현황</a>
@@ -65,14 +70,14 @@
 						</ul> -->
 					</li>
 
-					<li><a href="addaccount_1.html">신규계좌개설</a>
+					<li><a href="addaccount1">신규계좌개설</a>
 						<ul>
-						   <li><a href="addaccount_1.html">예금계좌</a></li>
-						   <li><a href="addaccount_2.html">적금계좌</a></li>
-						   <li><a href="addaccount_3.html">대출계좌</a></li>
+						   <li><a href="addaccount1">예금계좌</a></li>
+						   <li><a href="addaccount2">적금계좌</a></li>
+						   <li><a href="addaccount3">대출계좌</a></li>
 						</ul>
 					</li>
-					<li><a href="board_list.html">고객문의게시판</a>
+					<li><a href="goboard">고객문의게시판</a>
 						<!-- <ul>
 						   <li><a href="#">서브메뉴1</a></li>
 						   <li><a href="#">서브메뉴2</a></li>
@@ -86,15 +91,15 @@
 		<div id="contents"><!--내용-->
 			<h1>로그인</h1><!-- 내용제목 -->
 			<div class="login_area">
-				<img src="resources/images/login_icon.png" class="login_icon" />
+				<img src="/bank/resources/images/login_icon.png" class="login_icon" />
 				<form>
 					<ul>
 						<li class=""><img src="resources/images/ico_login.png" width="14" /> SE Bank Login</li>
 						<li><input type="text" placeholder="아이디" class="login_write" id="id" /></li>
 						<li><input type="password" placeholder="비밀번호" class="login_write" id="pw"/></li>
-						<li><a class="btn_login" onclick="login()">로그인</a></li>
+						<li><a class="btn_login" onclick="login()" style="cursor: pointer;">로그인</a></li>
 						<li><a href="gojoin" class="btn_join">회원가입</a></li>
-						<li><a href="find_idpw.html" class="btn_findid">아이디 / 비밀번호 찾기</a></li>
+						<li><a href="gofindidpw" class="btn_findid" style="cursor: pointer;">아이디 / 비밀번호 찾기</a></li>
 					</ul>
 				</form>
 			</div>
