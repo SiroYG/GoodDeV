@@ -1,25 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 	<meta charset="utf-8">
 	<title>SESbank</title>
 	<link rel="stylesheet" type="text/css" href="/bank/resources/css/style.css" />
 	<script src="/bank/resources/script/jquery-3.3.1.min.js"></script>
 </head>
-<body><!-- 계좌현황서브 -->
-	<div id="wrap"><!-- wrap -->
+<body>
+<div id="wrap"><!-- wrap -->
 		<div id="header"><!-- 상단 -->
 			<div id="top"><!-- 멤버 -->
-				<a href="/bank/Customer/info">회원정보수정</a><a href="/bank/Customer/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;
+				<a href="/bank/logout">관리자로그아웃</a>&nbsp;&nbsp;&nbsp;
 			</div>
 			<div id="adm_navi"><!-- 네비게이션 -->
-			<a href="/bank/Admin/adminmain"><img src="/bank/resources/images/logo.png" width="150" /></a>
+			<a href="/bank/admin/adminmain"><img src="/bank/resources/images/logo.png" width="150" /></a>
 			<ul>
-				<li class="select"><a href="/bank/Admin/adminloan">대출승인</a></li>
-				<li><a href="/bank/Admin/adminmain">문의답변</a></li>
+				<li class="select"><a href="/bank/admin/adminloan">대출승인</a></li>
+				<li><a href="/bank/admin/adminmain">문의답변</a></li>
 			</ul>
 			</div>
 		</div>
@@ -35,25 +35,31 @@
 					<th>대출기간</th>
 					<th>(대출)이율</th>
 				</tr>
+				
+				<!-- 게시글이 없는 경우 -->
+			<c:if test="${empty list}">
 				<tr>
-					<td><input type="radio" name="loan_v" checked /></td>
-					<td>홍길동<br />(honggildong)</td>
-					<td>123-35-2154</td>
-					<td>1,200,000</td>
-					<td>2016.1.1 ~ 2016.12.31</td>
-					<td>2.2%</td>
+					<td colspan="6" align="center"> 대출업무가 없습니다. </td>
 				</tr>
-				<tr>
-					<td><input type="radio" name="loan_v" /></td>
-					<td>김철수<br />(cskim0001)</td>
-					<td>25465-5897</td>
-					<td>12,000,000</td>
-					<td>2016.1.1 ~ 2016.12.31</td>
-					<td>2.2%</td>
-				</tr>
+			</c:if>
+			<!-- 게시글이 있는 경우 -->
+			<c:if test="${not empty list }">
+				<c:forEach var="account" items="${list}" varStatus="stat">
+					<tr> 
+						<td><input type="radio" name="loan_v" checked /></td>
+						<td>${account.id}<br />( )</td>
+						<td>${account.accountno}</td>
+						<td>${account.balance}</td>
+						<td>${account.startdeposit} ~ ${account.enddeposit}</td>
+						<td>${account.interest}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
+			
 			</table>
 			<p class="adm_paging">
-				<a href="#" class="select">승인</a><a href="#">거절</a>
+				<a href="#" class="select">승인</a>
+				<a href="#">거절</a>
 			</p>
 		</div>
 		<div id="footer"><!-- 하단 -->

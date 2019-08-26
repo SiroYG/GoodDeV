@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seschool.bank.dao.AdminMapper">
+
+	<select id="selectOne" parameterType="Board" resultType="Board">
+		Select *
+		From QNABOARD
+		where boardno = #{boardno}
+	</select>
+
+	<!-- RowBounds를 사용하는 Case -->
+	<select id="selectAll" resultType="Board" parameterType="map">
+		SELECT
+		BOARDNO,
+		CUSTID,
+		TITLE,
+		CONTENT,
+		to_char(regdate, 'YYYY-MM-DD') as
+		regdate,
+		ORIGINALFILE,
+		SAVEDFILE,
+		HITCOUNT,
+		REPLYTEXT,
+		REPDATE
+		FROM QNABOARD
+		<if test="searchItem != null">
+			WHERE ${searchItem} LIKE '%'||#{searchWord}||'%'
+		</if>
+		ORDER BY BOARDNO DESC
+	</select>
+
+	<select id="getBoardCount" parameterType="map" resultType="int">
+		SELECT count(*)
+		FROM QNABOARD
+		<if test="searchItem != null">
+			WHERE ${searchItem} LIKE '%'||#{searchWord} || '%'
+		</if>
+	</select>
+
+</mapper>

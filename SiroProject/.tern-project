@@ -4,5 +4,9 @@
     "outline": {
       
     }
-  }
+  },
+  "libs": [
+    "browser",
+    "jquery"
+  ]
 }

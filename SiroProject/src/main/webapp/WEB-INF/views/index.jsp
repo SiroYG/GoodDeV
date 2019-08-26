@@ -9,6 +9,7 @@
 <title>SESbank</title>
 <link rel="stylesheet" type="text/css" href="/bank/resources/css/style.css" />
 <script src="/bank/resources/script/jquery-1.12.3.js"></script>
+<script src="/bank/resources/js/jquery-3.4.1.min.js"></script>
 <script src="/bank/resources/script/common.js"></script>
 </head>
 
@@ -22,35 +23,29 @@
 			<div id="top">
 				<!-- 멤버 -->			
 			<c:if test="${sessionScope.loginId == null }">
-				<a href="/bank/gologin">로그인</a>
+				<a href="/bank/loginForm">로그인</a>
 			</c:if>	
 			<c:if test="${sessionScope.loginId != null }"> 
-				<a href="/bank/Customer/logout">로그아웃</a>
+				<a href="/bank/logout">로그아웃</a>
 			</c:if>
-				<a href="gojoin">회원가입</a>&nbsp;&nbsp;&nbsp;
-				${sessionScope.loginId}
+				<a href="/bank/joinForm">회원가입</a>&nbsp;&nbsp;&nbsp;
 			</div>
 			<div id="navi">
-				<a href="home"><img src="/bank/resources/images/logo.png" width="150" /></a>
-				<div class="gnb">
-					<!-- 네비게이션 -->
-					<ul>
-						<li><a href="accountmain">보유계좌현황</a> <!-- <ul>
-						   <li><a href="#">서브메뉴1</a></li>
-						   <li><a href="#">서브메뉴2</a></li>
-						   <li><a href="#">서브메뉴3</a></li>
-						</ul> --></li>
-						<li><a href="addaccount1">신규계좌개설</a>
-							<ul>
-								<li><a href="addaccount1">예금계좌</a></li>
-								<li><a href="addaccount2">적금계좌</a></li>
-								<li><a href="addaccount3">대출계좌</a></li>
-							</ul></li>
-						<li><a href="goboard">고객문의게시판</a> <!-- <ul>
-						   <li><a href="#">서브메뉴1</a></li>
-						   <li><a href="#">서브메뉴2</a></li>
-						   <li><a href="#">서브메뉴3</a></li>
-						</ul> --></li>
+				<a href="/bank/home"><img src="/bank/resources/images/logo.png" width="150" /></a>
+					<div class="gnb"><!-- 네비게이션 -->
+						 <ul>
+							<li><a  href="/bank/account/haveaccountForm">보유계좌현황</a>
+							</li>
+		
+							<li><a class="select" href="/bank/account/addaccount1Form">신규계좌개설</a>
+								<ul>
+								   <li><a href="/bank/account/addaccount1Form">예금계좌</a></li>
+								   <li><a href="/bank/account/addaccount2Form">적금계좌</a></li>
+								   <li><a href="/bank/account/addaccount3Form">대출계좌</a></li>
+								</ul>
+							</li>
+							<li><a href="/bank/board/boardListForm">고객문의게시판</a>
+						</li>
 					</ul>
 				</div>
 			</div>

@@ -4,17 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<settings>
-		<setting name="logImpl" value="LOG4J" />
+		<setting name="logImpl" value="LOG4J"/>
+		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 
 	<typeAliases>
-		<typeAlias type="global.seshool.bank.vo.Customer" alias="Customer" />
-		<typeAlias type="global.seshool.bank.vo.Board" alias="Board" />
+		<typeAlias type="com.seschool.bank.vo.Customer" alias="Customer" />
+		<typeAlias type="com.seschool.bank.vo.Board" alias="Board" />
+		<typeAlias type="com.seschool.bank.vo.Account" alias="Account" />
+		<typeAlias type="com.seschool.bank.vo.AccountLog" alias="AccountLog" />
 	</typeAliases>
+	
 	<mappers>
-		<mapper resource="mappers/customerMapper.xml" />
-		<mapper resource="mappers/boardMapper.xml" />
-		<mapper resource="mappers/adminMapper.xml" />
-	</mappers>
+		<mapper resource="mapper/customerMapper.xml" />
+		<mapper resource="mapper/boardMapper.xml" />
+		<mapper resource="mapper/accountMapper.xml" />
+		<mapper resource="mapper/adminMapper.xml" />		
+	</mappers> 
 </configuration>
-

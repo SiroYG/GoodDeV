@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="global.seshool.bank">
+	<logger name="com.seschool.bank">
 		<level value="info" />
 	</logger>
 	

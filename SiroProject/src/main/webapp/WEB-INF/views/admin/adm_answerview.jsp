@@ -1,25 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 	<meta charset="utf-8">
 	<title>SESbank</title>
 	<link rel="stylesheet" type="text/css" href="/bank/resources/css/style.css" />
 	<script src="/bank/resources/script/jquery-3.3.1.min.js"></script>
 </head>
-<body><!-- 계좌현황서브 -->
-	<div id="wrap"><!-- wrap -->
+<body>
+<div id="wrap"><!-- wrap -->
 		<div id="header"><!-- 상단 -->
 			<div id="top"><!-- 멤버 -->
-				<a href="/bank/Customer/info">회원정보수정</a><a href="/bank/Customer/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;
+			<a href="/bank/logout">관리자로그아웃</a>&nbsp;&nbsp;&nbsp;
 			</div>
 			<div id="adm_navi"><!-- 네비게이션 -->
-			<a href="/bank/Admin/adminmain"><img src="/bank/resources/images/logo.png" width="150" /></a>
+			<a href="/bank/admin/adminmain"><img src="/bank/resources/images/logo.png" width="150" /></a>
 			<ul>
-				<li><a href="/bank/Admin/adminloan">대출승인</a></li>
-				<li class="select"><a href="/bank/Admin/adminmain">문의답변</a></li>
+				<li><a href="/bank/admin/adminloan">대출승인</a></li>
+				<li class="select"><a href="/bank/admin/adminmain">문의답변</a></li>
 			</ul>
 			</div>
 		</div>
@@ -53,7 +53,7 @@
 					<th>첨부파일</th>
 					<td>
 					<c:if test="${board.originalfile != null}">
-						<a href="download?boardseq=${board.boardseq}">${board.originalfile}		</a>
+						<a href="download?boardno=${board.boardno}">${board.originalfile}		</a>
 					</c:if>
 						<c:if test="${board.originalfile == null}">
 							첨부된 파일이 없습니다.
