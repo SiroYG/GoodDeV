@@ -18,7 +18,7 @@
 		
 		<div id="header"><!-- 상단 -->
 			<div id="top"><!-- 멤버 -->
-<a href="/bank/goinfo">회원정보수정</a><a href="/bank/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;			</div>
+			<a href="/bank/goinfo">회원정보수정</a><a href="/bank/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;			</div>
 			<div id="navi">
 			<a href="/bank/home"><img width="150" src="/bank/resources/images/logo.png"></a>
 			<div class="gnb"><!-- 네비게이션 -->
@@ -38,12 +38,8 @@
 					</li>
 				</ul>
 			</div>
-			</div>
-			
+			</div>	
 		</div>
-
-
-
 		<div id="contents"><!--내용-->
 			<h1>대출상환<span>상환정보를 입력해 주세요</span></h1><!-- 내용제목 -->
 			<ul class="basic_list">
@@ -56,28 +52,11 @@
 			<p class="list_btn">
 				<a href="/bank/account/haveaccountForm">이전</a><a class="select" href="#">대출상환</a>
 			</p>
-		
-
-
 		</div>
-
-
-
 		<div id="footer"><!-- 하단 -->
 			서울시 강남구 삼성동 59-1 COEX 4F, 개인정보관리책임자: 홍길동<br>
 			Copyright©2016 KITA-SESchool ICT Educational Center All rights reserved.			
 		</div>
-
-
-
 		</div>
-
-	
-
-
-
-
-
-
 </body>
 </html>

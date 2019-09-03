@@ -7,12 +7,7 @@
 	<select id="listAccount" parameterType="Account" resultType="Account">
       SELECT accountno, custid, accounttype, balance, payment, interest, to_char(startdeposit,'YYYY-MM-DD') as startdeposit, to_char(ENDDEPOSIT,'YYYY-MM-DD') as ENDDEPOSIT,APPROVAL
       FROM account
-      WHERE custid = 'test1'
-      AND accountno NOT IN (select accountno 
-                                        from account
-                                      where custid = 'test1'
-                                          and accounttype = 'loan'
-                                          and approval = 'N')
+      WHERE custid = #{custid}
       ORDER BY accounttype, accountno
 	</select>
 	

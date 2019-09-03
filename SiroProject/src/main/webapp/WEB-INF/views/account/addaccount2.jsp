@@ -36,7 +36,7 @@ function insertAccount() {
 		
 		<div id="header"><!-- 상단 -->
 			<div id="top"><!-- 멤버 -->
-<a href="/bank/goinfo">회원정보수정</a><a href="/bank/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;			</div>
+		<a href="/bank/goinfo">회원정보수정</a><a href="/bank/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;			</div>
 			<div id="navi">
 			<a href="/bank/home"><img width="150" src="/bank/resources/images/logo.png"></a>
 			<div class="gnb"><!-- 네비게이션 -->

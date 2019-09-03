@@ -65,7 +65,7 @@ public class BoardAction {
 		
 		System.out.println("boardno => " + boardno);
 		Board board = dao.selectOne(boardno);
-		
+		dao.updateBoard(boardno);
 		model.addAttribute("board", board);
 		System.out.println(board);
 		return "/board/boardview";
@@ -75,8 +75,13 @@ public class BoardAction {
 	public String boardDelete(int boardno, Model model) {
 		System.out.println("게시글 삭제 "+boardno);
 		int result = dao.deleteBoard(boardno);
-		
-		return "redirect:boardlist"; 
+		if (result>0) {
+
+			return "redirect:/board/boardListForm"; 
+		}
+		else {
+			return "redirect:/";
+		}
 	}
 	
 	@RequestMapping(value = "goboardwrite", method = RequestMethod.GET)

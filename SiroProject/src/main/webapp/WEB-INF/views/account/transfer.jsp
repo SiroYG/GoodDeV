@@ -16,7 +16,7 @@
 
 		$("#transferForm").submit();
 		
-/* 		$.ajax({
+		/* 	$.ajax({
 			url : "transfer",
 			type : "post",
 			data : {"withdrawAccNo" : withdrawAccNo, "depositAccNo" : depositAccNo, "balance" : balance},

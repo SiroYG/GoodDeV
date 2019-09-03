@@ -1,6 +1,5 @@
 package com.seschool.bank.action;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -204,7 +203,7 @@ public class AccountAction {
 	@RequestMapping(value="/makeno1", method=RequestMethod.GET, produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String random1(){
-		//계좌 번호 랜덤 돌리기+중복체크(???)
+		//계좌 번호 랜덤
 		Random random = new Random();
 		String num = "1234-001-";
 		int min = 1; //5자리 지정
@@ -226,7 +225,7 @@ public class AccountAction {
 	@RequestMapping(value="/makeno2", method=RequestMethod.GET, produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String random2(){
-		//계좌 번호 랜덤 돌리기+중복체크(???)
+		//계좌 번호 랜덤
 		Random random = new Random();
 		String num = "1234-002-";
 		int min = 1; //5자리 지정
@@ -234,7 +233,7 @@ public class AccountAction {
 		int plus = (int) (Math.random() * (max - min + 1)) + min;
 		String suffix = String.format("%05d", plus); 
 		num+=suffix;
-
+		
 		Account acc = dao.searchAccount(num);
 		if(acc == null) {
 			System.out.println("사용 가능 번호 : "+num);
@@ -248,7 +247,7 @@ public class AccountAction {
 	@RequestMapping(value="/makeno3", method=RequestMethod.GET, produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String random3(){
-		//계좌 번호 랜덤 돌리기+중복체크(???)
+		//계좌 번호 랜덤
 		Random random = new Random();
 		String num = "1234-003-";
 		int min = 1; //5자리 지정

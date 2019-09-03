@@ -208,30 +208,14 @@
 					<th>납입(상환)기간</th>
 					<th>대출(이율)</th>
 				</tr>
-				<tr>
-					<td><input name="backingname" type="radio" checked=""></td>
-					<td>예금계좌</td>
-					<td>250</td>
-					<td>-</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td><input name="backingname" type="radio"></td>
-					<td>적금계좌</td>
-					<td>254-65-5897</td>
-					<td>12,000,000</td>
-					<td>2016.1.1 ~ 2016.12.31</td>
-					<td>2.2%</td>
-				</tr>
-				<tr>
-					<td><input name="backingname" type="radio"></td>
-					<td>대출계좌</td>
-					<td>665-85-4587</td>
-					<td>100,000,000</td>
-					<td>2016.1.1 ~ 2016.12.31</td>
-					<td>2.7%</td>
-				</tr>
+<!-- 				<tr> -->
+<!-- 					<td><input name="backingname" type="radio" checked=""></td> -->
+<!-- 					<td>----</td> -->
+<!-- 					<td></td> -->
+<!-- 					<td>로드중입니다.</td> -->
+<!-- 					<td></td> -->
+<!-- 					<td>----</td> -->
+<!-- 				</tr> -->
 			</tbody></table>
 
 			<p class="list_btn">

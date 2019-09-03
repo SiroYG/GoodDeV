@@ -1,10 +1,12 @@
 package com.seschool.bank.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 
+import com.seschool.bank.vo.Account;
 import com.seschool.bank.vo.Board;
 
 public interface AdminMapper {
@@ -23,4 +25,16 @@ public interface AdminMapper {
 	
 // 게시글 인덱싱
 	public int getBoardCount(Map<String, Object> map);
+	
+// loan 리스트
+	public ArrayList<Account> listLoan(Account account);
+	
+// 대출 승인 승인
+	public int loanOK(Account account);
+
+// 대출 승인 거절
+	public int loanX(Account account);
+// 게시판 삭제
+	int qnadelete(int boardno);
+	
 }

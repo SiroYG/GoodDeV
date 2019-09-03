@@ -12,18 +12,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.seschool.bank.dao.CustomerDAO;
 import com.seschool.bank.vo.Customer;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class CustomerAction {
 	
 	@Autowired
 	private CustomerDAO dao;
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String gomain() {
 		return "/index";

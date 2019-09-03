@@ -57,6 +57,9 @@ public class BoardDAO {
 		// TODO Auto-generated method stub
 		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
 		int result = mapper.deleteBoard(boardno);
+		if (result ==1 ) {
+			System.out.println("삭제완료");
+		}
 		return result;
 	}
 
@@ -68,5 +71,10 @@ public class BoardDAO {
 		int result = mapper.insertBoard(board);
 		return result;
 	}
-	
+	public int updateBoard(int boardno) {
+		System.out.println("board repo=>" + boardno+"번보드");
+		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+		int result = mapper.updateBoard(boardno);
+		return result;
+	}
 }

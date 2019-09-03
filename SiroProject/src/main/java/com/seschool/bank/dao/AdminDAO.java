@@ -1,5 +1,6 @@
 package com.seschool.bank.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.seschool.bank.vo.Account;
 import com.seschool.bank.vo.Board;
 
 @Repository
@@ -46,5 +48,23 @@ public class AdminDAO {
 		map.put("searchWord", searchWord);
 		int total = mapper.getBoardCount(map);
 		return total;
+	}
+	
+	public ArrayList<Account> listLoan(Account account) {
+		AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
+		return mapper.listLoan(account);
+	}
+	public int loanOK(Account account) {
+		AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
+		return (int) mapper.loanOK(account);
+	}
+	public int loanX(Account account) {
+		AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
+		return (int) mapper.loanX(account);
+	}
+	
+	public int qnadelete(int boardno) {
+		AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
+		return mapper.qnadelete(boardno);
 	}
 }

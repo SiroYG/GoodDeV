@@ -1,7 +1,10 @@
 package com.seschool.bank.action;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.seschool.bank.dao.AdminDAO;
 import com.seschool.bank.util.PageNavigator;
+import com.seschool.bank.vo.Account;
 import com.seschool.bank.vo.Board;
 
 /**
@@ -75,5 +80,46 @@ public class AdminAction {
 		System.out.println(board);
 		return "admin/adm_answerview";
 	}
+	
+	@RequestMapping(value = "loanlist", method = {RequestMethod.POST, RequestMethod.GET})
+	@ResponseBody
+	public ArrayList<Account> listLoan(Account account, HttpSession session) {
+		ArrayList<Account> list = new ArrayList<>();
+		
+		list = repo.listLoan(account);
+		
+		return list;
+	}
+	
+	@RequestMapping(value="/loanOK", method=RequestMethod.GET)
+	public String loanOK(Account account, Model model) {
+		System.out.println("account => " + account);
+		repo.loanOK(account);
+		return "admin/adm_loan";
+	}
+	@RequestMapping(value="/loanX", method=RequestMethod.GET)
+	public String loanX(Account account, Model model) {
+		System.out.println("account => " + account);
+		repo.loanX(account);
+		return "admin/adm_loan";
+	}
+	
+	@RequestMapping(value = "/qnadelete", method = RequestMethod.GET)
+	public String qnadelete(int boardno, Model model) {
+		System.out.println("게시글 삭제 "+boardno);
+		int result = repo.qnadelete(boardno);
+		if (result==1) {
+			System.out.println("성공");
+			return "redirect:/admin/ad_boardList"; 
+		}
+	else {
+		System.out.println("faile");
+		return "redirect:/admin/ad_boardList"; 
+	}
+	
+	
+		
+	}
+	
 	
 }

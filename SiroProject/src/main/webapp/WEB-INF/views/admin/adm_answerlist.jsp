@@ -19,7 +19,7 @@
 			<a href="/bank/admin/adminmain"><img src="/bank/resources/images/logo.png" width="150" /></a>
 			<ul>
 				<li><a href="/bank/admin/adminloan">대출승인</a></li>
-				<li><a href="/bank/admin/adminmain">문의답변</a></li>
+				<li class="select"><a href="/bank/admin/adminmain">문의답변</a></li>
 			</ul>
 			</div>
 		</div>
@@ -53,7 +53,7 @@
 			</c:if>
 			</table>
 			<p class="adm_paging">
-						<a href="ad_boardList?currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">&lt</a>
+			<a href="ad_boardList?currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">&lt</a>
 				<c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup }">
 			<a href="ad_boardList?currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}"class="select">${page}</a>
 			</c:forEach>

@@ -39,4 +39,32 @@
 		</if>
 	</select>
 
+	<select id="listLoan" parameterType="Account"
+		resultType="Account">
+		SELECT accountno, custid, accounttype, balance, payment, interest,
+		to_char(startdeposit,'YYYY-MM-DD') as startdeposit,
+		to_char(ENDDEPOSIT,'YYYY-MM-DD') as ENDDEPOSIT,APPROVAL
+		FROM account
+		WHERE accounttype = 'loan'
+		And
+		APPROVAL = 'N'
+		ORDER BY accountno
+	</select>
+
+	<update id="loanOK" parameterType="Account">
+		update ACCOUNT set
+		APPROVAL = 'Y'
+		where accountno = #{accountno}
+	</update>
+
+
+	<update id="loanX" parameterType="Account">
+		Delete From ACCOUNT
+		where accountno = #{accountno}
+	</update>
+	
+	<delete id="qnadelete" parameterType="int">
+		Delete From QNABOARD
+		where boardno = #{boardno}
+	</delete>
 </mapper>

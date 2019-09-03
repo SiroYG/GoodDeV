@@ -43,6 +43,12 @@
 		where boardno = #{boardno}
 	</select>
 	
+	<update id="updateBoard" parameterType="int" >
+		update QNABOARD set
+		HITCOUNT = HITCOUNT + 1
+		where boardno = #{boardno}
+	</update>
+	
 	<delete id="deleteBoard" parameterType="int">
 		Delete From QNABOARD
 		where boardno = #{boardno}

@@ -100,8 +100,8 @@
 				</tr>
 			</table>
 			<p class="list_btn">
-				<a href="#">삭제</a>
-				<a href=""${pageContext.request.contextPath}/ad_boardList" class="select">목록</a>	
+				<a href="/bank/admin/qnadelete?boardno=${board.boardno}">삭제</a>
+				<a href="/bank/admin/adminmain" class="select">목록</a>	
 			</p>
 		</div>
 		<div id="footer"><!-- 하단 -->

@@ -8,9 +8,9 @@
 <meta charset="utf-8">
 <title>SESbank</title>
 <link rel="stylesheet" type="text/css" href="/bank/resources/css/style.css" />
-<script src="/bank/resources/script/jquery-1.12.3.js"></script>
+<script src="/bank/resources/js/jquery-1.12.3.js"></script>
 <script src="/bank/resources/js/jquery-3.4.1.min.js"></script>
-<script src="/bank/resources/script/common.js"></script>
+<script src="/bank/resources/js/common.js"></script>
 </head>
 
 <body>
@@ -57,7 +57,7 @@
 				<ul>
 					<li><img src="/bank/resources/images/slide01.jpeg"
 						alt="main image slide 1"></li>
-					<li><img src="/bank/resources/images/slide02.jpeg"
+					<li><img src="/bank/resources/images/slide02.jpg"
 						alt="main image slide 2"></li>
 					<li><img src="/bank/resources/images/slide03.jpg"
 						alt="main image slide 3"></li>
@@ -94,13 +94,13 @@
 					<h3>은행 업무 안내</h3>
 					<div>
 						<ul class="icon_list">
-							<li><a href="#"> <span class="icon">아이콘</span> <span
+							<li><a href="#"> <span class="icon">예금</span> <span
 									class="subject">예금안내</span>
 							</a></li>
-							<li><a href="#"> <span class="icon">아이콘</span> <span
+							<li><a href="#"> <span class="icon">주식</span> <span
 									class="subject">주식정보</span>
 							</a></li>
-							<li><a href="#"> <span class="icon">아이콘</span> <span
+							<li><a href="#"> <span class="icon">이벤트</span> <span
 									class="subject">이벤트</span>
 							</a></li>
 						</ul>

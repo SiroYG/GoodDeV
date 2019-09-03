@@ -238,17 +238,13 @@ p.adm_paging a.btn_write {position:absolute; top:17px; right:5px; padding:10px 2
 
 
 /*팝업*/
-
-
-
-
 .popwrap h2 {  width:100%; height:40px; background:#e7121c; margin-bottom:25px; padding-top:20px; color:#fff;}
 .popwrap span {font-weight:700; font-size:15px; color:#e7121c;}
 .popwrap p.list_btn {margin-top:20px;}
 .popwrap p.list_btn a {padding:10px 20px; margin:0 3px; border:2px solid #eee; border-radius:20px;}
 .popwrap p.list_btn a:hover, .popwrap p.list_btn a.select {border:2px solid #e7121c; background:#e7121c; color:#fff; font-weight:700;}
 
-.wr_idcheck {border:2px solid #eee; height:30px; width:120px; border-radius:20px; padding-left:10px;}
+.wr_idcheck {border:2px solid #eee; height:40px; width:140px; border-radius:20px; padding-left:10px;}
 
 
 .popwrap table {width:90%; margin:0 auto; border:1px solid #eee;}

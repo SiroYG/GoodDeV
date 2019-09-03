@@ -31,14 +31,14 @@
 					<li><a  href="/bank/account/haveaccountForm">보유계좌현황</a>
 					</li>
 
-					<li><a class="select" href="/bank/account/addaccount1Form">신규계좌개설</a>
+					<li><a href="/bank/account/addaccount1Form">신규계좌개설</a>
 						<ul>
 						   <li><a href="/bank/account/addaccount1Form">예금계좌</a></li>
 						   <li><a href="/bank/account/addaccount2Form">적금계좌</a></li>
 						   <li><a href="/bank/account/addaccount3Form">대출계좌</a></li>
 						</ul>
 					</li>
-					<li><a href="/bank/board/boardListForm">고객문의게시판</a>
+					<li><a class="select" href="/bank/board/boardListForm">고객문의게시판</a>
 					</li>
 				</ul>
 			</div>
