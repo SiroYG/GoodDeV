@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.seschool.bank.dao.BoardMapper">
+	<select id="getBoardCount" parameterType="map" resultType="int">
+	SELECT count(*)
+	FROM QNABOARD
+	<if test="searchItem != null">
+	WHERE ${searchItem} LIKE '%'||#{searchWord} || '%'
+	</if>
+	</select>
+	
+	<select id="selectAll" resultType="Board" parameterType="map">
+		SELECT
+			BOARDNO,
+			CUSTID,
+			TITLE,
+			CONTENT,
+			to_char(regdate, 'YYYY-MM-DD') as regdate,
+			ORIGINALFILE,
+			SAVEDFILE,
+			HITCOUNT,
+			REPLYTEXT,
+			REPDATE
+		FROM QNABOARD
+			<if test="searchItem != null or searchItem != ''">
+				<if test="searchItem.equalsIgnoreCase('All')">
+					WHERE CUSTID LIKE '%'||#{searchWord}||'%'
+					OR TITLE LIKE '%'||#{searchWord}||'%'
+					OR CONTENT LIKE '%'||#{searchWord}||'%'
+				</if>
+				<if test="!searchItem.equalsIgnoreCase('All')">
+					WHERE ${searchItem} LIKE '%'||#{searchWord}||'%'
+				</if>
+			</if>
+		ORDER BY BOARDNO DESC
+	</select>
+	
+	<select id="selectOne" parameterType="Board" resultType="Board">
+		Select * From QNABOARD
+		where boardno = #{boardno}
+	</select>
+	
+	<update id="updateBoard" parameterType="int" >
+		update QNABOARD set
+		HITCOUNT = HITCOUNT + 1
+		where boardno = #{boardno}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+		Delete From QNABOARD
+		where boardno = #{boardno}
+	</delete>
+	
+	<insert id="insertBoard" parameterType="Board" >
+		INSERT INTO QNABOARD
+		(	
+			BOARDNO,
+			CUSTID,
+			TITLE,
+			CONTENT,
+			REGDATE,
+			<if test="originalfile != null">
+			ORIGINALFILE,
+			SAVEDFILE,
+			</if>
+			HITCOUNT
+			<if test ='replytext !=null and replytext != ""'>
+			,REPLYTEXT,
+			REPDATE
+			</if>
+		)
+		VALUES
+		(
+		QNABOARD_SEQ.nextval
+			, #{custid}
+			, #{title}
+			, #{content}
+			, sysdate
+			<if test="originalfile != null">
+			, #{originalfile}
+			, #{savedfile}
+			</if>
+			, #{hitcount}
+			<if test ='replytext !=null and replytext != ""'>
+			, #{replytext}
+			, #{replydate}
+			</if>
+		)
+		</insert>
+	
+</mapper>

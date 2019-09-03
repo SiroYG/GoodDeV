@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+
+	<typeAliases>
+		<typeAlias type="com.seschool.bank.vo.Customer" alias="Customer" />
+		<typeAlias type="com.seschool.bank.vo.Board" alias="Board" />
+		<typeAlias type="com.seschool.bank.vo.Account" alias="Account" />
+		<typeAlias type="com.seschool.bank.vo.AccountLog" alias="AccountLog" />
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mapper/customerMapper.xml" />
+		<mapper resource="mapper/boardMapper.xml" />
+		<mapper resource="mapper/accountMapper.xml" />
+		<mapper resource="mapper/adminMapper.xml" />		
+	</mappers> 
+</configuration>

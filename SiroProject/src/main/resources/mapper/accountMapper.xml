@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.seschool.bank.dao.AccountMapper">
+	<select id="listAccount" parameterType="Account" resultType="Account">
+      SELECT accountno, custid, accounttype, balance, payment, interest, to_char(startdeposit,'YYYY-MM-DD') as startdeposit, to_char(ENDDEPOSIT,'YYYY-MM-DD') as ENDDEPOSIT,APPROVAL
+      FROM account
+      WHERE custid = #{custid}
+      ORDER BY accounttype, accountno
+	</select>
+	
+	<insert id="insertAccount" parameterType="Account">
+		INSERT INTO
+			account
+		VALUES(
+			#{accountno},
+			#{custid},
+			#{accounttype},
+			#{balance},
+		<choose>
+	    	<when test="accounttype.equalsIgnoreCase('checking')">
+	    		0,
+	    		0,
+	    		null,
+	    		null,
+	    		'N'
+	    	</when>
+	    	<when test="accounttype.equalsIgnoreCase('saving')">
+	    		#{payment},
+	    		cast(#{interest} as number(3,2)),
+	    		sysdate,
+	    		ADD_MONTHS(sysdate,12*#{years}),
+	    		'N'
+	    	</when>
+	    	<when test="accounttype.equalsIgnoreCase('loan')">
+	    		#{payment},
+	    		cast(#{interest} as number(3,2)),
+	    		sysdate,
+	    		ADD_MONTHS(sysdate,12*#{years}),
+	    		'N'
+	    	</when>
+	    	<otherwise>
+	    		0,
+	    		0,
+	    		null,
+	    		null,
+	    		'N'
+	    	</otherwise>
+	    </choose>
+		)
+	</insert>
+	
+	<update id="deposit" parameterType="Account">
+		UPDATE account
+		SET balance = balance + #{balance} 
+		WHERE accountno = #{accountno}
+	</update>
+	
+	<update id="withdraw" parameterType="Account">
+		UPDATE account
+		SET balance = balance - #{balance} 
+		WHERE accountno = #{accountno}
+	</update>
+	
+	<select id="transferList" parameterType="Account" resultType="Account">
+		SELECT *
+		FROM account
+		WHERE accountno NOT IN (#{accountno})
+		AND custid = #{custid}
+		AND accounttype NOT IN ('loan')
+	</select>
+	
+	<select id="accCheck" parameterType="Account" resultType="Account">
+		SELECT *
+		FROM account
+		WHERE custid NOT IN (#{custid})
+		AND accounttype NOT IN ('loan')
+		and accountno = #{accountno}
+	</select>
+	
+	<select id="searchAccount" parameterType="Account" resultType="Account">
+		select accountno, custid, 
+		accounttype,
+		balance,
+		payment, interest, 
+		to_char(startdeposit, 'YYYY-MM-DD') as startdeposit,  
+		to_char(enddeposit, 'YYYY-MM-DD') as enddeposit,
+		approval 
+		from account where accountno = #{accountno}
+	</select>
+</mapper>
