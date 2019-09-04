@@ -1,2 +1,2 @@
 --0903
-NG
+UI - MAIN, Login/Register, Other Page(Header, Footer, BoardList(Table))
