@@ -2,3 +2,5 @@
 -- Today's Table
 -- 190903
 -- 공공데이터 API Parshing 하기
+-- 190904
+-- 공공데이터 API 정제후 datadase에 insert하기
