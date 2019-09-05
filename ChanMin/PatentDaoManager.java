@@ -20,11 +20,13 @@ public class PatentDaoManager{
 	
 	
 	public boolean insertPatent(Patent patent) throws SQLException {
+	
 		Connection conn = cm.getConnection();
 		StringBuffer sb = new StringBuffer();
+		
 		sb.append("INSERT INTO PATENT(");
-		sb.append("patentNum, patentName, patentHolderName, patentContent, patenttype, patentAppDate, patentRegdate)");
-		sb.append("  VALUES(?,?,?,?,?,?,?) ");
+		sb.append("patentNum, patentName, patentHolderName, patentContent, patenttype, patentAppDate, patentRegdate, patentCountry)");
+		sb.append("  VALUES(?,?,?,?,?,?,?,?) ");
 		PreparedStatement pstmt = conn.prepareStatement(sb.toString());
 		pstmt.setString(1, patent.getPatentNum());
 		pstmt.setString(2, patent.getPatentName());
@@ -33,9 +35,15 @@ public class PatentDaoManager{
 		pstmt.setString(5, patent.getPatenttype());
 		pstmt.setString(6, patent.getPatentAppDate());
 		pstmt.setString(7, patent.getPatentRegdate());
-		int row = pstmt.executeUpdate();
+		pstmt.setString(8, patent.getPatentCountry());
+		int row = 0;
+		try {
+		 row = pstmt.executeUpdate();
+		}catch (Exception e) {
+		
+		}
 		boolean flag = false;
-		if (row == 1) {
+		if (row >0) {
 			flag = true;
 		}
 		if (pstmt != null)
@@ -45,5 +53,5 @@ public class PatentDaoManager{
 	}
 
 	
-
+	
 }

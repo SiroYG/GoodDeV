@@ -38,6 +38,7 @@ public class Lcm {
 		String patenttype;
 		String patentAppDate;
 		String patentRegdate;
+		String patentCountry;
 		for(int i=0;i<item.size();i++) {
 			JSONObject tmp = (JSONObject)item.get(i);
 			JSONObject tmp1 = (JSONObject)item1.get(i);
@@ -48,24 +49,22 @@ public class Lcm {
 			  patenttype = (String)tmp.get("INDUSTRYTITLE");
 			  patentAppDate = (String)tmp.get("APPDATE");
 			  patentRegdate = (String)tmp.get("REGDATE");
-			  Patent patent = new Patent(patentNum,patentName,patentHolderName,patentContent,patenttype,patentAppDate,patentRegdate);
-			  if(patent.getPatentAppDate()!=null) {
-				  aList.add(patent);
-				  //manager.insertMemo(patent);
+			  patentCountry = (String)tmp.get("APPCOUNTRYTITLE");
+			  Patent patent = new Patent(patentNum,patentName,patentHolderName,patentContent,patenttype,patentAppDate,patentRegdate,patentCountry);
+			  if(patent.getPatentAppDate()!=null&&patent.getPatenttype()!=null&&patent.getPatentHolderName()!=null&&patent.getPatentCountry().equals("대한민국")) {
+				  //aList.add(patent);
+				  manager.insertPatent(patent);
 			  }
 		}
-		for(int i=0;i<aList.size();i++) {
-			System.out.println("===="+(i+1)+"번째 결과");
-			System.out.println(aList.get(i));
-		}
+		
 	} 
 }
 class WebConnections{
 	String json;
 	String json1;
 	WebConnections() throws Exception{
-		String address = "http://apis.data.go.kr/1430000/StdPatInfoService/getStdNoDeclareRecordPatInfo?resultType=JSON&pageNo=1&numOfRows=50&serviceKey=TK4%2FNvGshDu8%2BoygLWq7rf43XxICipR0kPR2C3Cn1cd%2Fn7ZKy45slOVg0uW7uOv4tZROnMDU749JuL2X%2FkhlEQ%3D%3D";
-		String address1 = "http://apis.data.go.kr/1430000/StdPatInfoService/getDeclareRecordPatDetailInfo?resultType=JSON&pageNo=1&numOfRows=50&serviceKey=TK4%2FNvGshDu8%2BoygLWq7rf43XxICipR0kPR2C3Cn1cd%2Fn7ZKy45slOVg0uW7uOv4tZROnMDU749JuL2X%2FkhlEQ%3D%3D";
+		String address = "http://apis.data.go.kr/1430000/StdPatInfoService/getStdNoDeclareRecordPatInfo?resultType=JSON&pageNo=1&numOfRows=1000&serviceKey=TK4%2FNvGshDu8%2BoygLWq7rf43XxICipR0kPR2C3Cn1cd%2Fn7ZKy45slOVg0uW7uOv4tZROnMDU749JuL2X%2FkhlEQ%3D%3D";
+		String address1 = "http://apis.data.go.kr/1430000/StdPatInfoService/getDeclareRecordPatDetailInfo?resultType=JSON&pageNo=1&numOfRows=1000&serviceKey=TK4%2FNvGshDu8%2BoygLWq7rf43XxICipR0kPR2C3Cn1cd%2Fn7ZKy45slOVg0uW7uOv4tZROnMDU749JuL2X%2FkhlEQ%3D%3D";
 		BufferedReader br;
 		BufferedReader br1;
 		URL url;
