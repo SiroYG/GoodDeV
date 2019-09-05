@@ -1,2 +1,12 @@
---0903
+--0903, 0904
 UI - MAIN, Login/Register, Other Page(Header, BoardList(Table)) 
+
+--0905
+UI - Other Page()
+
+* 앞으로 해야할거
+- 관리자 홈페이지
+- 게시글 쓰기/수정(자세히보기)
+- 평가 테이블
+- 크라우드 펀딩 상세페이지
+- 특허 검색 페이지)
