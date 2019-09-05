@@ -35,6 +35,8 @@ CREATE SEQUENCE PTI_seq;
 CREATE SEQUENCE reply_seq;
 
 
+/*
+시퀀스값, 디폴트로 생성
 board_seq.NEXTVAL
 
 CLOUDFUNDING_seq.NEXTVAL
@@ -51,7 +53,15 @@ PATENTSUB_seq.NEXTVAL
 
 PTI_seq.NEXTVAL
 
-reply_seq.NEXTVAL
+reply_seq.NEXTVAL*/
+
+
+
+
+
+
+    
+
 
 
 
@@ -60,11 +70,12 @@ reply_seq.NEXTVAL
 
 CREATE TABLE board
 (
-	boardNum number NOT NULL,
+	boardNum number DEFAULT board_seq.NEXTVAL NOT NULL,
 	id varchar2(20) NOT NULL,
 	title varchar2(30) NOT NULL,
 	content varchar2(1000) NOT NULL,
 	qType varchar2(20) NOT NULL,
+	qCategory varchar2(20) NOT NULL,
 	originalFilename varchar2(20) UNIQUE,
 	saveFilename varchar2(20) UNIQUE,
 	boardDate date DEFAULT SYSDATE NOT NULL,
@@ -74,7 +85,7 @@ CREATE TABLE board
 
 CREATE TABLE CLOUDFUNDING
 (
-	CouldfundingNum number NOT NULL,
+	CouldfundingNum number DEFAULT CLOUDFUNDING_seq.NEXTVAL NOT NULL,
 	itemNum number NOT NULL,
 	itemGoalPrice number,
 	itemCurrecyPrice number,
@@ -85,7 +96,7 @@ CREATE TABLE CLOUDFUNDING
 
 CREATE TABLE HISTORY
 (
-	historyNum number NOT NULL,
+    historyNum number DEFAULT HISTORY_seq.NEXTVAL NOT NULL,
 	itemNum number DEFAULT item_seq NOT NULL,
 	comment varchar2(300),
 	version varchar2(20) NOT NULL,
@@ -97,7 +108,7 @@ CREATE TABLE HISTORY
 
 CREATE TABLE ITEM
 (
-	itemNum number NOT NULL,
+	itemNum number DEFAULT ITEM_seq.NEXTVAL NOT NULL,
 	ideaDate date DEFAULT SYSDATE NOT NULL,
 	itemName varchar2(30) NOT NULL,
 	price number,
@@ -117,13 +128,14 @@ CREATE TABLE ITEM
 
 CREATE TABLE ITEM_SURVEY
 (
-	surveyNum number DEFAULT ITEM_SURVEY_seq NOT NULL,
+	surveyNum number DEFAULT ITEM_SURVEY_seq.NEXTVAL NOT NULL,
 	itemNum number NOT NULL,
 	id varchar2(20) NOT NULL,
 	valuable number(2,0) DEFAULT 0 NOT NULL,
 	commerciality number(2,0) NOT NULL,
 	productivity number(2,0) NOT NULL,
 	etc varchar2(1000),
+	item_survey_date date DEFAULT SYSDATE NOT NULL,
 	PRIMARY KEY (surveyNum)
 );
 
@@ -143,7 +155,7 @@ CREATE TABLE member
 
 CREATE TABLE MTI
 (
-	MTP_seq number NOT NULL,
+	MTP_seq number DEFAULT MTI_seq.NEXTVAL NOT NULL,
 	id varchar2(20) NOT NULL,
 	itemNum number NOT NULL,
 	PRIMARY KEY (MTP_seq)
@@ -166,7 +178,7 @@ CREATE TABLE PATENT
 
 CREATE TABLE PATENTSUB
 (
-	PatentsubNum number NOT NULL,
+    PatentsubNum number DEFAULT PATENTSUB_seq.NEXTVAL NOT NULL,
 	patentNum varchar2(20) NOT NULL,
 	documentFilename varchar2(20),
 	saveDocumentFilename varchar2(20),
@@ -178,7 +190,7 @@ CREATE TABLE PATENTSUB
 
 CREATE TABLE PTI
 (
-	PTI_seq number NOT NULL,
+	PTI_seq number DEFAULT PTI_seq.NEXTVAL NOT NULL,
 	itemNum number NOT NULL,
 	patentNum varchar2(20) NOT NULL,
 	PRIMARY KEY (PTI_seq)
@@ -187,11 +199,11 @@ CREATE TABLE PTI
 
 CREATE TABLE reply
 (
-	replyNum number NOT NULL,
+	replyNum number DEFAULT reply_seq.NEXTVAL NOT NULL,
 	boardNum number NOT NULL,
-	id varchar2(20) NOT NULL,
 	reply varchar2(300) NOT NULL,
 	replyDate date DEFAULT SYSDATE NOT NULL,
+	id varchar2(20) NOT NULL,
 	PRIMARY KEY (replyNum)
 );
 
@@ -253,12 +265,6 @@ ALTER TABLE MTI
 ;
 
 
-ALTER TABLE reply
-	ADD FOREIGN KEY (id)
-	REFERENCES member (id)
-;
-
-
 ALTER TABLE PATENTSUB
 	ADD FOREIGN KEY (patentNum)
 	REFERENCES PATENT (patentNum)
@@ -269,5 +275,6 @@ ALTER TABLE PTI
 	ADD FOREIGN KEY (patentNum)
 	REFERENCES PATENT (patentNum)
 ;
+
 
 
