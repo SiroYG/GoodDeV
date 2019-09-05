@@ -4,3 +4,5 @@
 -- 공공데이터 API Parshing 하기
 -- 190904
 -- 공공데이터 API 정제후 datadase에 insert하기
+-- 190905
+-- AWS Server 보조 및 AWS Server API data DB에 저장
