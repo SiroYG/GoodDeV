@@ -1,9 +1,9 @@
 
 /* Drop Tables */
 
-DROP TABLE reply CASCADE CONSTRAINTS;
-DROP TABLE board CASCADE CONSTRAINTS;
-DROP TABLE CLOUDFUNDING CASCADE CONSTRAINTS;
+DROP TABLE REPLY CASCADE CONSTRAINTS;
+DROP TABLE BOARD CASCADE CONSTRAINTS;
+DROP TABLE CROWDFUNDING CASCADE CONSTRAINTS;
 DROP TABLE HISTORY CASCADE CONSTRAINTS;
 DROP TABLE ITEM_SURVEY CASCADE CONSTRAINTS;
 DROP TABLE MTI CASCADE CONSTRAINTS;
@@ -15,10 +15,9 @@ DROP TABLE PATENT CASCADE CONSTRAINTS;
 
 
 
+CREATE SEQUENCE BOARD_seq;
 
-CREATE SEQUENCE board_seq;
-
-CREATE SEQUENCE CLOUDFUNDING_seq;
+CREATE SEQUENCE CROWDFUNDING_seq;
 
 CREATE SEQUENCE HISTORY_seq;
 
@@ -32,39 +31,22 @@ CREATE SEQUENCE PATENTSUB_seq;
 
 CREATE SEQUENCE PTI_seq;
 
-CREATE SEQUENCE reply_seq;
+CREATE SEQUENCE REPLY_seq;
 
-
-board_seq.NEXTVAL
-
-CLOUDFUNDING_seq.NEXTVAL
-
-HISTORY_seq.NEXTVAL
-
-ITEM_seq.NEXTVAL
-
-ITEM_SURVEY_seq.NEXTVAL
-
-MTI_seq.NEXTVAL
-
-PATENTSUB_seq.NEXTVAL
-
-PTI_seq.NEXTVAL
-
-reply_seq.NEXTVAL
 
 
 
 
 /* Create Tables */
 
-CREATE TABLE board
+CREATE TABLE BOARD
 (
 	boardNum number NOT NULL,
 	id varchar2(20) NOT NULL,
 	title varchar2(30) NOT NULL,
 	content varchar2(1000) NOT NULL,
 	qType varchar2(20) NOT NULL,
+	qCategory varchar2(20) NOT NULL,
 	originalFilename varchar2(20) UNIQUE,
 	saveFilename varchar2(20) UNIQUE,
 	boardDate date DEFAULT SYSDATE NOT NULL,
@@ -72,23 +54,23 @@ CREATE TABLE board
 );
 
 
-CREATE TABLE CLOUDFUNDING
+CREATE TABLE CROWDFUNDING
 (
-	CouldfundingNum number NOT NULL,
+	crowdfundingNum number NOT NULL,
 	itemNum number NOT NULL,
 	itemGoalPrice number,
 	itemCurrecyPrice number,
 	fundingDueDate date,
-	PRIMARY KEY (CouldfundingNum)
+	PRIMARY KEY (crowdfundingNum)
 );
 
 
 CREATE TABLE HISTORY
 (
 	historyNum number NOT NULL,
-	itemNum number DEFAULT item_seq NOT NULL,
-	comment varchar2(300),
-	version varchar2(20) NOT NULL,
+	itemNum number NOT NULL,
+	comments varchar2(300),
+	itemVersion varchar2(20) NOT NULL,
 	startdate date NOT NULL,
 	enddate date NOT NULL,
 	PRIMARY KEY (historyNum)
@@ -117,13 +99,14 @@ CREATE TABLE ITEM
 
 CREATE TABLE ITEM_SURVEY
 (
-	surveyNum number DEFAULT ITEM_SURVEY_seq NOT NULL,
+	surveyNum number NOT NULL,
 	itemNum number NOT NULL,
 	id varchar2(20) NOT NULL,
 	valuable number(2,0) DEFAULT 0 NOT NULL,
 	commerciality number(2,0) NOT NULL,
 	productivity number(2,0) NOT NULL,
 	etc varchar2(1000),
+	item_survey_date date DEFAULT SYSDATE NOT NULL,
 	PRIMARY KEY (surveyNum)
 );
 
@@ -143,23 +126,23 @@ CREATE TABLE member
 
 CREATE TABLE MTI
 (
-	MTP_seq number NOT NULL,
+	MTI_seq number NOT NULL,
 	id varchar2(20) NOT NULL,
 	itemNum number NOT NULL,
-	PRIMARY KEY (MTP_seq)
+	PRIMARY KEY (MTI_seq)
 );
 
 
 CREATE TABLE PATENT
 (
-	patentNum varchar2(20) NOT NULL,
-	patentName varchar2(100) NOT NULL,
-	patentHolderName varchar2(20) NOT NULL,
+	patentNum varchar2(100) NOT NULL,
+	patentName varchar2(500) NOT NULL,
+	patentHolderName varchar2(500) NOT NULL,
 	patentContent varchar2(2000) NOT NULL,
 	patentAppDate date NOT NULL,
 	-- 등록날짜
 	patentRegDate date DEFAULT SYSDATE,
-	patenttype varchar2(20) NOT NULL,
+	patenttype varchar2(100) NOT NULL,
 	PRIMARY KEY (patentNum)
 );
 
@@ -167,7 +150,7 @@ CREATE TABLE PATENT
 CREATE TABLE PATENTSUB
 (
 	PatentsubNum number NOT NULL,
-	patentNum varchar2(20) NOT NULL,
+	patentNum varchar2(100) NOT NULL,
 	documentFilename varchar2(20),
 	saveDocumentFilename varchar2(20),
 	referenceFilename varchar2(20),
@@ -180,18 +163,18 @@ CREATE TABLE PTI
 (
 	PTI_seq number NOT NULL,
 	itemNum number NOT NULL,
-	patentNum varchar2(20) NOT NULL,
+	patentNum varchar2(100) NOT NULL,
 	PRIMARY KEY (PTI_seq)
 );
 
 
-CREATE TABLE reply
+CREATE TABLE REPLY
 (
 	replyNum number NOT NULL,
 	boardNum number NOT NULL,
-	id varchar2(20) NOT NULL,
 	reply varchar2(300) NOT NULL,
 	replyDate date DEFAULT SYSDATE NOT NULL,
+	id varchar2(20) NOT NULL,
 	PRIMARY KEY (replyNum)
 );
 
@@ -199,13 +182,13 @@ CREATE TABLE reply
 
 /* Create Foreign Keys */
 
-ALTER TABLE reply
+ALTER TABLE REPLY
 	ADD FOREIGN KEY (boardNum)
-	REFERENCES board (boardNum)
+	REFERENCES BOARD (boardNum)
 ;
 
 
-ALTER TABLE CLOUDFUNDING
+ALTER TABLE CROWDFUNDING
 	ADD FOREIGN KEY (itemNum)
 	REFERENCES ITEM (itemNum)
 ;
@@ -235,7 +218,7 @@ ALTER TABLE PTI
 ;
 
 
-ALTER TABLE board
+ALTER TABLE BOARD
 	ADD FOREIGN KEY (id)
 	REFERENCES member (id)
 ;
@@ -253,12 +236,6 @@ ALTER TABLE MTI
 ;
 
 
-ALTER TABLE reply
-	ADD FOREIGN KEY (id)
-	REFERENCES member (id)
-;
-
-
 ALTER TABLE PATENTSUB
 	ADD FOREIGN KEY (patentNum)
 	REFERENCES PATENT (patentNum)
@@ -269,5 +246,6 @@ ALTER TABLE PTI
 	ADD FOREIGN KEY (patentNum)
 	REFERENCES PATENT (patentNum)
 ;
+
 
 
