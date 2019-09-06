@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<typeAliases>
+<typeAlias alias="Board" type="com.dev.cloud.vo.Board"/>
+<typeAlias alias="Cloudfunding" type="com.dev.cloud.vo.Cloudfunding"/>
+<typeAlias alias="History" type="com.dev.cloud.vo.History"/>
+<typeAlias alias="Item_Survey" type="com.dev.cloud.vo.Item_Survey"/>
+<typeAlias alias="Item" type="com.dev.cloud.vo.Item"/>
+<typeAlias alias="Member" type="com.dev.cloud.vo.Member"/>
+<typeAlias alias="MTI" type="com.dev.cloud.vo.MTI"/>
+<typeAlias alias="Patent" type="com.dev.cloud.vo.Patent"/>
+<typeAlias alias="Patentsub" type="com.dev.cloud.vo.Patentsub"/>
+<typeAlias alias="PTI" type="com.dev.cloud.vo.PTI"/>
+<typeAlias alias="Reply" type="com.dev.cloud.vo.Reply"/>
+</typeAliases>
+<mappers>
+<mapper resource="mapper/memberMapper.xml"/>
+<mapper resource="mapper/boardMapper.xml"/>
+<mapper resource="mapper/crowdfundingMapper.xml"/>
+<mapper resource="mapper/item_SurveyMapper.xml"/>
+<mapper resource="mapper/itemMapper.xml"/>
+<mapper resource="mapper/MTIMapper.xml"/>
+<mapper resource="mapper/patentMapper.xml"/>
+<mapper resource="mapper/patentsubMapper.xml"/>
+<mapper resource="mapper/PTIMapper.xml"/>
+<mapper resource="mapper/replyMapper.xml"/>
+<mapper resource="mapper/historyMapper.xml"/>
+
+</mappers>
+
+</configuration>
