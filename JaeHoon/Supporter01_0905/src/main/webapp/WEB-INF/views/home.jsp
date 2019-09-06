@@ -11,7 +11,7 @@
 <h1>
 	Hello world!  
 </h1>
-
+<a href="home">매퍼점검(누르시면 콘솔에서 매퍼의 작동을 확인 할 수 있습니다.)</a>
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>

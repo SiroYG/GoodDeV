@@ -12,4 +12,4 @@
 --190905
 - AWS Server구축 / Database 만듬.
 - 재원 : AWS windows Server 2019 + Server(Database Oracle 11g)
-- 데이터 넣을량 결정 , 들어오는 데이터 정비, 
+- 데이터 넣을량 결정 , 들어오는 데이터 정비
