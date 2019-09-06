@@ -9,3 +9,13 @@ inventor
 client
 창업자 : 
 enp
+
+qCategory
+블라인드테스트 :
+survey
+펀딩 :
+funding
+특허 : 
+patent
+기타 :
+etc
