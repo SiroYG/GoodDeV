@@ -1,0 +1,11 @@
+﻿memberType 
+삭제계정 : 
+none
+관리자 : 
+admin
+기업또는개인(특허보유자) : 
+inventor
+소비자 : 
+client
+창업자 : 
+enp
