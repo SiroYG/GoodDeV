@@ -11,10 +11,9 @@ public class Item_Survey {
 	
 	private int surveyNum ;
 	private int itemNum;
-	private String id ;
-	private int valuable;
-	private int commerciality ;
-	private int productivity ;
+	private int qScore;
+	private String question ;
+	private int surveyType ;
 	private String etc ;
 	private String item_survey_date ;
 }

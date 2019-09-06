@@ -92,10 +92,13 @@ CREATE TABLE ITEM_SURVEY
 (
 	surveyNum number NOT NULL,
 	itemNum number NOT NULL,
-	id varchar2(20) NOT NULL,
-	valuable number(2,0) DEFAULT 0 NOT NULL,
-	commerciality number(2,0) NOT NULL,
-	productivity number(2,0) NOT NULL,
+	-- 소비자가 입력한 질문지의 점수
+	qScore number(2,0) DEFAULT 0 NOT NULL,
+	-- 창업자가 질문한 값
+	question varchar2(500) NOT NULL,
+	-- 질문타입을 지정해서 질문에 따른 점수를 구분하기 위함.
+	-- 
+	surveyType number(2,0) NOT NULL,
 	etc varchar2(1000),
 	item_survey_date date DEFAULT SYSDATE NOT NULL,
 	PRIMARY KEY (surveyNum)
@@ -210,12 +213,6 @@ ALTER TABLE PTI
 
 
 ALTER TABLE BOARD
-	ADD FOREIGN KEY (id)
-	REFERENCES member (id)
-;
-
-
-ALTER TABLE ITEM_SURVEY
 	ADD FOREIGN KEY (id)
 	REFERENCES member (id)
 ;
