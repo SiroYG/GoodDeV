@@ -6,12 +6,12 @@ Member - Login/Register(fix), Find ID/PW, Update, Drop out
 Q&A - List, Write, Admin Board List
 
 --0906 -ing
-Member - name/value mapping
-Survey - Make write/detail form
-Q&A - Plus search, paging form
+Member - name/value mapping (o)
+Survey - Make write/detail form ()
+Q&A - Plus search, paging form ()
 
 * 앞으로 해야할 것들
 - 게시글 수정(자세히보기)
-- 블라인드 테스트 설문(상세) 및 작성 페이지
+- 블라인드 테스트 설문(상세) 페이지
 - 크라우드 펀딩 상세페이지
 - 특허/벤치마킹 검색 페이지
