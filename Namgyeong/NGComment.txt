@@ -5,13 +5,19 @@ UI - MAIN, Login/Register, Other Page(Header, BoardList(Table))
 Member - Login/Register(fix), Find ID/PW, Update, Drop out
 Q&A - List, Write, Admin Board List
 
---0906 -ing
+--0906 UI
 Member - name/value mapping (o)
 Survey - Make write/detail form ()
-Q&A - Plus search, paging form ()
+Q&A - + search, paging form ()
+
+--0907 
+Member - img, background modify (o)
+Q&A - + search, paging form (o)
+Survey - Make write/detail form (△)
+
+--0908
 
 * 앞으로 해야할 것들
-- 게시글 수정(자세히보기)
-- 블라인드 테스트 설문(상세) 페이지
+- 마이페이지 생성+테이블 2~4개
 - 크라우드 펀딩 상세페이지
 - 특허/벤치마킹 검색 페이지
