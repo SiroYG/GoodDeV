@@ -31,9 +31,20 @@
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     <script>
-  /*  $(function(){
-	   alert("login_connected");
-   }) */
+ 		function login(){
+ 			var id =document.getElementById("id");
+ 			var pw =document.getElementById("pw");
+ 			console.log(id + "" + pw);
+ 			if (id.value.length==0 || id.value =="") {
+				alert("ID를 입력해주세요.");
+				return;
+			}
+ 			if (id.value.length==0 || id.value =="") {
+				alert("PW를 입력해주세요.");
+				return;
+			}
+ 			$('#loginform').submit();
+ 		}
     </script>
 </head>
 
@@ -44,16 +55,16 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">로그인</h2>
-                    <form action="login_member" method="POST" id="login-form">
+                    <form action="loginform" method="POST" id="loginform">
                         <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="아이디" name="id">
+                            <input class="input--style-2" type="text" placeholder="아이디" name="id" id="id">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-2" type="password" placeholder="비밀번호" name="pw">
+                            <input class="input--style-2" type="password" placeholder="비밀번호" name="pw" id="pw">
                         </div>
                         
                         <div class="p-t-30">
-                            <a class="btn btn--radius btn--green" href="#" id="">로그인</a> &nbsp;
+                            <a class="btn btn--radius btn--green" onclick="login()">로그인</a> &nbsp;
                             <!-- <button class="btn btn--radius btn--green" type="submit">로그인</button> &nbsp; -->
                             <a class="btn btn--radius btn--green" href="/cloud/member/home">취소</a><br><br>
                             <a href="/cloud/member/gosign" class="grey">회원가입</a>
