@@ -8,3 +8,5 @@
 -- AWS Server 보조 및 AWS Server API data DB에 저장
 -- 190906
 -- 파이썬 및 크롤링 공부
+-- 190908
+-- 파이썬 및 크롤링 공부2

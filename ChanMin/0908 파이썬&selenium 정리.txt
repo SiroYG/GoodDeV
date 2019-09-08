@@ -1,0 +1,43 @@
+0908 파이썬 & 셀레님움 공부 정리
+from selenium import webdriver as wb <== selenium으로부터 webdriver을 import 하고 as wb 이름 지정
+  
+driver = wb.Chrome('C:\Program Files\chromedriver.exe') <== chromedriver을 실행
+
+driver.get(url)  <== url에 해당하는 주소를 입력을 하고 driver.get(url) 을하면 해당주소로 이동한다.
+
+driver.back() <== 뒤로가기 
+
+driver.close() <== 창 닫기
+
+driver.find_element_by_id('')
+
+driver.find_element_by_class('')      <==이런식으로 태그를 끌어올수있다.
+
+driver.find_element_by_name('')
+
+searchWord= driver.find_element_by_id('query')
+
+searchWord.send_keys('레드벨벳') 를 하면 검색창에 레드벨벳이 들어간다.
+
+html = driver.page_source <== 현재페이지의 html 소스를 전부 다운받는다.
+
+import bs4 <== bs4 를 import 하여 준비 
+
+soup = bs4.BeautifulSoup(html, 'html.parser')
+
+parser란 compiler의 일부로 컴파일러나 인터프리터에서 원시 프로그램을 읽어 들여 그 문장의 구조를 알아내는 parsing(구문 분석)을 행하는 프로그램  <== 좀더 쉬운의미 : 이 문자열은 단순한 텍스트가 아니라 html 구조에 맞게 작성되어 있어. 그러니 너도 html의 관점에서 이 문자열을 이해해 주셈
+
+notices = soup.find_all("a", {"class" : "goods"})
+
+for n in noices :
+	print(n.text,strip())
+
+==================================================================
+
+driver.execute_script("document.getElementByName('id')[0].value=' "+id+" ' ")
+
+
+
+
+
+
