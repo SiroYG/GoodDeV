@@ -32,7 +32,6 @@
 			var memberName =document.getElementById("memberName");
 			var email =document.getElementById("email");
 			var phoneNum =document.getElementById("phoneNum");
-			var memberType =document.getElementById("memberType");
 			
 			console.log(id + "" + pw+ "" + memberName+ "" + email+ "" + phoneNum+ "" + memberType);
 			if (id.value.length==0 || id.value =="") {
@@ -68,9 +67,9 @@
                         </div>
                         <div class="input-group"><div class="rs-select2 js-select-simple select--no-search">
                                 <select name="class" name="memberType" id="memberType">
-                                    <option selected>일반회원</option>
-                                    <option>창업자 / 창업희망자</option>
-                                    <option>특허 보유자(개인 / 기업)</option>
+                                    <option value="client" selected>일반회원</option>
+                                    <option value="inventor">창업자 / 창업희망자</option>
+                                    <option	value="enp">특허 보유자(개인 / 기업)</option>
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div>

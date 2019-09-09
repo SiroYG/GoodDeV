@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 public class Member {
 
 	
-	private String id;
-	private String pw ;
-	private String memberType ;
-	private String email ;
-	private int fundPrice ;
-	private String memberName ;
-	private String phoneNum ;
+	public String id;
+	public String pw ;
+	public String memberType ;
+	public String email ;
+	public int fundPrice ;
+	public String memberName ;
+	public String phoneNum ;
 
 }

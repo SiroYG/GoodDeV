@@ -118,7 +118,7 @@ CREATE TABLE member
 (
 	id varchar2(20) NOT NULL,
 	pw varchar2(20) NOT NULL,
-	memberType varchar2(20) NOT NULL,
+	memberType varchar2(20)  DEFAULT 'client' NOT NULL,
 	email varchar2(20) NOT NULL,
 	fundPrice number,
 	memberName varchar2(20) NOT NULL,
