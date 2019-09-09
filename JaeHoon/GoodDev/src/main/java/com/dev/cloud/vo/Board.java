@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Board {
 
 private int boardNum ;
-private String 	id ;
+private String 	memberId ;
 private String 	title;
 private String 	content;
 private String 	qType ;

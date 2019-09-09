@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dev.cloud.dao.memberRepository;
-import com.dev.cloud.vo.Member;
+import com.dev.cloud.vo.devMember;
 
 /**
  * Handles requests for the application home page.
@@ -28,9 +28,9 @@ public class checkController_mapperOperator {
 	public String home(Locale locale, Model model) {
 		String sysout;
 
-		Member temp=new Member();
-		temp.setId("temp");
-		temp.setPw("temp");
+		devMember temp=new devMember();
+		temp.setMemberId("temp");
+		temp.setMemberPw("temp");
 		temp.setMemberType("temp");
 		temp.setEmail("temp");
 		temp.setPhoneNum("010-1111-1111");
@@ -38,14 +38,14 @@ public class checkController_mapperOperator {
 		
 		System.out.println(temp);
 
-		Member copiedTemp=new Member();
+		devMember copiedTemp=new devMember();
 		copiedTemp=temp;
 		int resultInt =repo.signup_member(temp);
 		sysout=checkInt(resultInt, "signup_member");
 		System.out.println(sysout);
 		//회원가입확인
 		
-		Member resultObject=repo.login_member(temp);
+		devMember resultObject=repo.login_member(temp);
 		sysout=checkObject(resultObject, "login_member");
 		System.out.println(sysout);
 		//로그인확인

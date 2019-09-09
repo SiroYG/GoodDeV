@@ -1,23 +1,23 @@
 package com.dev.cloud.dao;
 
-import com.dev.cloud.vo.Member;
+import com.dev.cloud.vo.devMember;
 
 public interface memberMapper {
 
 	//회원가입
-	public int signup_member(Member member);
+	public int signup_member(devMember member);
 	
 	//로그인
-	public Member login_member(Member member);
+	public devMember login_member(devMember member);
 
 	//아이디/비번찾기
-	public Member searchId_pw_member(Member member);
+	public devMember searchId_pw_member(devMember member);
 
 	//회원수정
-	public int update_member(Member member);
+	public int update_member(devMember member);
 
 	//회원탈퇴
-	public int delete_member(Member member);
+	public int delete_member(devMember member);
 
 	
 	

@@ -4,12 +4,13 @@
 DROP TABLE REPLY CASCADE CONSTRAINTS;
 DROP TABLE BOARD CASCADE CONSTRAINTS;
 DROP TABLE CROWDFUNDING CASCADE CONSTRAINTS;
+DROP TABLE MTI CASCADE CONSTRAINTS;
+DROP TABLE devMember CASCADE CONSTRAINTS;
 DROP TABLE HISTORY CASCADE CONSTRAINTS;
 DROP TABLE ITEM_SURVEY CASCADE CONSTRAINTS;
-DROP TABLE MTI CASCADE CONSTRAINTS;
+DROP TABLE ITEM_QUESTION CASCADE CONSTRAINTS;
 DROP TABLE PTI CASCADE CONSTRAINTS;
 DROP TABLE ITEM CASCADE CONSTRAINTS;
-DROP TABLE member CASCADE CONSTRAINTS;
 DROP TABLE PATENTSUB CASCADE CONSTRAINTS;
 DROP TABLE PATENT CASCADE CONSTRAINTS;
 
@@ -33,7 +34,7 @@ CREATE SEQUENCE SEQ_deapartment_departno INCREMENT BY 1 START WITH 1;
 CREATE TABLE BOARD
 (
 	boardNum number NOT NULL,
-	id varchar2(20) NOT NULL,
+	memberId varchar2(20) NOT NULL,
 	title varchar2(30) NOT NULL,
 	content varchar2(1000) NOT NULL,
 	qType varchar2(20) NOT NULL,
@@ -53,6 +54,19 @@ CREATE TABLE CROWDFUNDING
 	itemCurrecyPrice number,
 	fundingDueDate date,
 	PRIMARY KEY (crowdfundingNum)
+);
+
+
+CREATE TABLE devMember
+(
+	memberId varchar2(20) NOT NULL,
+	memberPw varchar2(20) NOT NULL,
+	memberType varchar2(20) NOT NULL,
+	email varchar2(20) NOT NULL,
+	fundPrice number,
+	memberName varchar2(20) NOT NULL,
+	phoneNum varchar2(20) NOT NULL,
+	PRIMARY KEY (memberId)
 );
 
 
@@ -77,51 +91,42 @@ CREATE TABLE ITEM
 	-- 계약 체결유무를 판단하기 위한 칼럼
 	contract varchar2(20) DEFAULT 'N' NOT NULL,
 	itemContent varchar2(300) NOT NULL,
-	itemOption varchar2(30) NOT NULL,
 	itemRegDate date,
 	itemImagename varchar2(20),
 	saveItemImage varchar2(20),
-	avgValuable number(2,0),
-	avgCommerciality number(2,0),
-	avgProductivity number(2,0),
+	documentFilename varchar2(20) NOT NULL,
+	saveDocumentFilename varchar2(20) NOT NULL,
 	PRIMARY KEY (itemNum)
+);
+
+
+CREATE TABLE ITEM_QUESTION
+(
+	questionNum number NOT NULL,
+	itemNum number NOT NULL,
+	-- 창업자가 질문한 값
+	question varchar2(500) NOT NULL,
+	dueDate date DEFAULT SYSDATE NOT NULL,
+	PRIMARY KEY (questionNum)
 );
 
 
 CREATE TABLE ITEM_SURVEY
 (
 	surveyNum number NOT NULL,
-	itemNum number NOT NULL,
+	questionNum number NOT NULL,
 	-- 소비자가 입력한 질문지의 점수
-	qScore number(2,0) DEFAULT 0 NOT NULL,
-	-- 창업자가 질문한 값
-	question varchar2(500) NOT NULL,
-	-- 질문타입을 지정해서 질문에 따른 점수를 구분하기 위함.
-	-- 
-	surveyType number(2,0) NOT NULL,
+	qValuable number(2,0) DEFAULT 0 NOT NULL,
 	etc varchar2(1000),
-	item_survey_date date DEFAULT SYSDATE NOT NULL,
+	writtenDate date DEFAULT SYSDATE NOT NULL,
 	PRIMARY KEY (surveyNum)
-);
-
-
-CREATE TABLE member
-(
-	id varchar2(20) NOT NULL,
-	pw varchar2(20) NOT NULL,
-	memberType varchar2(20) NOT NULL,
-	email varchar2(20) NOT NULL,
-	fundPrice number,
-	memberName varchar2(20) NOT NULL,
-	phoneNum varchar2(20) NOT NULL,
-	PRIMARY KEY (id)
 );
 
 
 CREATE TABLE MTI
 (
 	MTI_seq number NOT NULL,
-	id varchar2(20) NOT NULL,
+	memberId varchar2(20) NOT NULL,
 	itemNum number NOT NULL,
 	PRIMARY KEY (MTI_seq)
 );
@@ -168,7 +173,7 @@ CREATE TABLE REPLY
 	boardNum number NOT NULL,
 	reply varchar2(300) NOT NULL,
 	replyDate date DEFAULT SYSDATE NOT NULL,
-	id varchar2(20) NOT NULL,
+	memberId varchar2(20) NOT NULL,
 	PRIMARY KEY (replyNum)
 );
 
@@ -179,6 +184,18 @@ CREATE TABLE REPLY
 ALTER TABLE REPLY
 	ADD FOREIGN KEY (boardNum)
 	REFERENCES BOARD (boardNum)
+;
+
+
+ALTER TABLE BOARD
+	ADD FOREIGN KEY (memberId)
+	REFERENCES devMember (memberId)
+;
+
+
+ALTER TABLE MTI
+	ADD FOREIGN KEY (memberId)
+	REFERENCES devMember (memberId)
 ;
 
 
@@ -194,7 +211,7 @@ ALTER TABLE HISTORY
 ;
 
 
-ALTER TABLE ITEM_SURVEY
+ALTER TABLE ITEM_QUESTION
 	ADD FOREIGN KEY (itemNum)
 	REFERENCES ITEM (itemNum)
 ;
@@ -212,15 +229,9 @@ ALTER TABLE PTI
 ;
 
 
-ALTER TABLE BOARD
-	ADD FOREIGN KEY (id)
-	REFERENCES member (id)
-;
-
-
-ALTER TABLE MTI
-	ADD FOREIGN KEY (id)
-	REFERENCES member (id)
+ALTER TABLE ITEM_SURVEY
+	ADD FOREIGN KEY (questionNum)
+	REFERENCES ITEM_QUESTION (questionNum)
 ;
 
 

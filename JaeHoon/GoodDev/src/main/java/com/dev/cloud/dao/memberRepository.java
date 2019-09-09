@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.dev.cloud.vo.Member;
+import com.dev.cloud.vo.devMember;
 
 @Repository
 public class memberRepository implements memberMapper {
@@ -13,7 +13,7 @@ public class memberRepository implements memberMapper {
 	private SqlSession sqlSession; 
 	
 	@Override
-	public int signup_member(Member member) {
+	public int signup_member(devMember member) {
 		System.out.println("15"+member);
 		 memberMapper mapper=sqlSession.getMapper(memberMapper.class);
 		int result=0;
@@ -27,9 +27,9 @@ public class memberRepository implements memberMapper {
 	}
 
 	@Override
-	public Member login_member(Member member) {
+	public devMember login_member(devMember member) {
 		memberMapper mapper=sqlSession.getMapper(memberMapper.class);
-		Member result=null;
+		devMember result=null;
 		try {
 			result= mapper.login_member(member);
 
@@ -40,9 +40,9 @@ public class memberRepository implements memberMapper {
 	}
 
 	@Override
-	public Member searchId_pw_member(Member member) {
+	public devMember searchId_pw_member(devMember member) {
 		memberMapper mapper=sqlSession.getMapper(memberMapper.class);
-		Member result=null;
+		devMember result=null;
 		try {
 			result= mapper.searchId_pw_member(member);
 
@@ -53,7 +53,7 @@ public class memberRepository implements memberMapper {
 	}
 
 	@Override
-	public int update_member(Member member) {
+	public int update_member(devMember member) {
 		memberMapper mapper=sqlSession.getMapper(memberMapper.class);
 		int result=0;
 		try {
@@ -66,7 +66,7 @@ public class memberRepository implements memberMapper {
 	}
 
 	@Override
-	public int delete_member(Member member) {
+	public int delete_member(devMember member) {
 		memberMapper mapper=sqlSession.getMapper(memberMapper.class);
 		int result=0;
 		try {

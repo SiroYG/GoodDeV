@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MTI {
 
-	private int MTP_seq ;
-	private String id ;
-	private int itemNum ;
+	private int MTI_seq ;
+	private String memberId;
+	private int itemNum;
 	
 }

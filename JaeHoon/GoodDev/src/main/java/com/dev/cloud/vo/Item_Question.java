@@ -7,11 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item_Survey {
+public class Item_Question {
 	
-	private int surveyNum ;
+	private int itemNum ;
 	private int questionNum;
-	private int qValuable;
-	private String etc ;
-	private String writtenDate ;
+	private String question;
+	private String dueDate ;
 }
