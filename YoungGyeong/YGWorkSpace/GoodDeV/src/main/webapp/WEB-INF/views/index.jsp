@@ -6,27 +6,17 @@
 <head>
 <title>Main</title>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900"
-	rel="stylesheet">
-
-<link rel="stylesheet"
-	href="/cloud/resources/css/open-iconic-bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
+<link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-
 <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
 <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
 <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
 <link rel="stylesheet" href="/cloud/resources/css/aos.css">
 <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
 <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css">
-
 <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
 <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
 <link rel="stylesheet" href="/cloud/resources/css/style.css">
@@ -34,11 +24,6 @@
 <!-- script -->
 <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-<script>
-	/* $(function(){
-	   alert("Main_connected");
-	}) */
-</script>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -69,7 +54,7 @@
 				</c:if>
 				<c:if test="${sessionScope.loginId!=null}">
 					<li style="margin-left: 20px;" class="nav-item cta"><a
-							 class="nav-link">${sessionScope.loginName}${sessionScope.loginType}님 </a></li>
+							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님 </a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
 				</c:if>

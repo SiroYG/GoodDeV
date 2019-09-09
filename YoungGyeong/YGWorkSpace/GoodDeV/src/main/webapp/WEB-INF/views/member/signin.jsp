@@ -10,30 +10,40 @@
     <meta name="description" content="Colorlib Templates">
     <meta name="author" content="Colorlib">
     <meta name="keywords" content="Colorlib Templates">
-
     <!-- Title Page-->
     <title>Sign In :: </title>
-
     <!-- Icons font CSS-->
     <link href="/cloud/resources/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="/cloud/resources/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-
     <!-- Vendor CSS-->
     <link href="/cloud/resources/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="/cloud/resources/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-
     <!-- Main CSS-->
     <link href="/cloud/resources/css/Member.css" rel="stylesheet" media="all">
-    
     <!-- script -->
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     <script>
-   /* $(function(){
-	   alert("signin_connected");
-   }) */
+	function signupbtn(){
+			var id =document.getElementById("id");
+			var pw =document.getElementById("pw");
+			var memberName =document.getElementById("memberName");
+			var email =document.getElementById("email");
+			var phoneNum =document.getElementById("phoneNum");
+			
+			console.log(id + "" + pw+ "" + memberName+ "" + email+ "" + phoneNum+ "" + memberType);
+			if (id.value.length==0 || id.value =="") {
+			alert("ID를 입력해주세요.");
+			return;
+		}
+			if (id.value.length==0 || id.value =="") {
+			alert("PW를 입력해주세요.");
+			return;
+		}
+			$('#"signupform"').submit();
+		}
     </script>
 </head>
 
@@ -44,62 +54,28 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">회원가입</h2>
-                    <form action="signup_member" method="POST" id="signin-form">
-                        <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="아이디" name="id">
+                    <form action="signupform" method="POST" id="signin-form">
+                        <div class="input-group">  <input class="input--style-2" type="text" placeholder="아이디" name="id" id="id">
                         </div>
-                        <div class="input-group">
-                            <input class="input--style-2" type="password" placeholder="비밀번호" name="pw">
+                        <div class="input-group"> <input class="input--style-2" type="password" placeholder="비밀번호" name="pw" id="pw">
                         </div>
-                         <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="이름" name="memberName">
+                         <div class="input-group"><input class="input--style-2" type="text" placeholder="이름" name="memberName" id="memberName">
                         </div>
-                        <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="이메일(abc123@def.com)" name="email">
+                        <div class="input-group"><input class="input--style-2" type="text" placeholder="이메일(abc123@def.com)" name="email" id="email">
                         </div>
-                        <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="연락처(010-1234-5678)" name="phoneNum">
+                        <div class="input-group"> <input class="input--style-2" type="text" placeholder="연락처(010-1234-5678)" name="phoneNum" id="phoneNum">
                         </div>
-                        <!--<div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <input class="input--style-2 js-datepicker" type="text" placeholder="생년월일" name="birthday">
-                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="gender">
-                                            <option disabled="disabled" selected="selected">성별</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                            
-                                        </select>
-                                        <div class="select-dropdown"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
-                        <div class="input-group">
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="class" name="memberType">
-                                    <option selected>일반회원</option>
-                                    <option>창업자 / 창업희망자</option>
-                                    <option>특허 보유자(개인 / 기업)</option>
+                        <div class="input-group"><div class="rs-select2 js-select-simple select--no-search">
+                                <select name="class" name="memberType" id="memberType">
+                                    <option value="client" selected>일반회원</option>
+                                    <option value="inventor">창업자 / 창업희망자</option>
+                                    <option	value="enp">특허 보유자(개인 / 기업)</option>
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div>
                         </div>
-                       <!-- <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <input class="input--style-2" type="text" placeholder="Registration Code" name="res_code">
-                                </div>
-                            </div>
-                        </div>-->
                         <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="submit">가입하기</button> &nbsp;
+                            <button class="btn btn--radius btn--green" type="submit" onclick="signupbtn()">가입하기</button> &nbsp;
                             <a class="btn btn--radius btn--green" href="/cloud/member/home">취소</a>
                         </div>
                     </form>
@@ -107,17 +83,13 @@
             </div>
         </div>
     </div>
-
     <!-- Jquery JS-->
     <script src="/cloud/resources/vendor/jquery/jquery.min.js"></script>
     <!-- Vendor JS-->
     <script src="/cloud/resources/vendor/select2/select2.min.js"></script>
     <script src="/cloud/resources/vendor/datepicker/moment.min.js"></script>
     <script src="/cloud/resources/vendor/datepicker/daterangepicker.js"></script>
-
     <!-- Main JS-->
     <script src="/cloud/resources/js/global.js"></script>
-
 </body>
-
 </html>
