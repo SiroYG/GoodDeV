@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,27 +29,27 @@ public class MemberController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "gologin", method = RequestMethod.GET)
+	@RequestMapping(value = "/gologin", method = RequestMethod.GET)
 	public String gologin() { // 로그인창 이동
 		return "/member/login";
 	}
 
-	@RequestMapping(value = "gosign", method = RequestMethod.GET)
+	@RequestMapping(value = "/gosign", method = RequestMethod.GET)
 	public String gosign() { // 회원가입창 이동
 		return "/member/signin";
 	}
 
-	@RequestMapping(value = "gofindid", method = RequestMethod.GET)
+	@RequestMapping(value = "/gofindid", method = RequestMethod.GET)
 	public String gofindid() {
 		return "/member/findid";
 	}
 
-	@RequestMapping(value = "gofindpw", method = RequestMethod.GET)
+	@RequestMapping(value = "/gofindpw", method = RequestMethod.GET)
 	public String gofindpw() {
 		return "/member/findpw";
 	}
 
-	@RequestMapping(value = "goupdate", method = RequestMethod.GET)
+	@RequestMapping(value = "/goupdate", method = RequestMethod.GET)
 	public String goupdate() {
 		return "/member/update";
 	}
@@ -58,12 +59,12 @@ public class MemberController {
 		return "/member/udropout";
 	}
 
-	@RequestMapping(value = "loginform")
+	@RequestMapping(value = "loginform" ,method=RequestMethod.POST)
 	public String login(Member member, HttpSession session) { // 로그인 폼 request
 		System.out.println(member);
 		Member mem = dao.login_member(member);
 		if (mem != null) {
-			session.setAttribute("loginId", mem.getId());
+			session.setAttribute("loginId", mem.getMemberId());
 			session.setAttribute("loginName", mem.getMemberName());
 			session.setAttribute("loginType", mem.getMemberType());
 			System.out.println("로그인 성공 : " + member);
@@ -74,7 +75,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "signupform")
+	@RequestMapping(value = "signupform", method=RequestMethod.POST)
 	public String signup_member(Member member, HttpSession session) {	// 회원가입 폼 request
 		System.out.println(member);
 		try {
