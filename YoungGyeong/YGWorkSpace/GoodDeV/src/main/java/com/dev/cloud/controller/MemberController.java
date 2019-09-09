@@ -54,17 +54,24 @@ public class MemberController {
 	public String godropout() {
 		return "/member/udropout";
 	}
-	
-	
-	
-	
+	@RequestMapping(value = "loginform")
+	public String login(Member member , HttpSession session) {
+		System.out.println(member);
+		if (dao.login_member(member)!=null) {
+			session.setAttribute("loginId", member.getId());
+			session.setAttribute("loginName", member.getMemberName());
+			session.setAttribute("loginType", member.getMemberType());
+			System.out.println("로그인 성공 : " + member);
+			return "redirect:/";
+		} else {
+			System.out.println("로그인 실패");
+		}
+		return "redirect:/";
+	}
 	
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.invalidate();
-		
 		return "redirect:/";
 	}
-	
-	
 }
