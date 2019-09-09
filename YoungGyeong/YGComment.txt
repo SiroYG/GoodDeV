@@ -17,3 +17,7 @@
 --190906
 -Middle Side 구축 / 
 Front/Back연결작업, Spring구축 작업 Member단_
+
+--190909
+-Middle Side 작업/
+Cloud Server Domain Work
