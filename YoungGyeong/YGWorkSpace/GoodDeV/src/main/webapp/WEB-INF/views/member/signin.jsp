@@ -27,7 +27,7 @@
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     <script>
     $(function(){
-    	
+    	alert('');
     	
     	
     	
