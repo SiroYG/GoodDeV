@@ -32,8 +32,8 @@
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
-    <link rel="stylesheet" href="/cloud/resources/Header.css">
-    <link rel="stylesheet" href="/cloud/resources/Board.css">
+    <link rel="stylesheet" href="/cloud/resources/css/Header.css">
+    <link rel="stylesheet" href="/cloud/resources/css/Board.css">
     
     
   </head>
