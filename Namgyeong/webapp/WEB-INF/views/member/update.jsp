@@ -58,7 +58,7 @@
     <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
         <div class="wrapper wrapper--w960">
             <div class="card card-2">
-                <div class="card-heading"></div>
+                <div class="card-heading-update"></div>
                 <div class="card-body">
                     <h2 class="title">회원정보수정</h2>
                     <form action="updateform" method="post" id="update_form">

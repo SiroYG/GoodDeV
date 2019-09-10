@@ -483,19 +483,19 @@ input {
 /*회원 기능별 사진 적용*/
 
 .card-2 .card-heading-register {
-   background: url("../images/flash_3.jpg") top left/cover no-repeat;
+   background: url("/cloud/resources/images/flash_3.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
 
 .card-2 .card-heading-find {
-   background: url("../images/flash_2.jpg") top left/cover no-repeat;
+   background: url("/cloud/resources/images/flash_2.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
 
 .card-2 .card-heading-login {
-   background: url("../images/flash_3.jpg") top left/cover no-repeat;
+   background: url("/cloud/resources/images/flash_3.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
@@ -507,13 +507,13 @@ input {
 }
 
 .card-2 .card-heading-dropout {
-   background: url("../images/flash_2.jpg") top left/cover no-repeat;
+   background: url("/cloud/resources/images/flash_2.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
 
 .card-2 .card-heading-update {
-   background: url("../images/flash_3.jpg") top left/cover no-repeat;
+   background: url("/cloud/resources/images/flash_3.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }

@@ -73,7 +73,7 @@
     <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
         <div class="wrapper wrapper--w960">
             <div class="card card-2">
-                <div class="card-heading"></div>
+                <div class="card-heading-find"></div>
                 <div class="card-body">
                     <h2 class="title">아이디 찾기</h2>
                     <form>
