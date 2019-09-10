@@ -28,7 +28,7 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	<div class="container">
-		<a class="navbar-brand" href="index">MainLogo</a>
+		<a class="navbar-brand" href="home">MainLogo</a>
 		<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle"
 			type="button" data-toggle="collapse" data-target="#ftco-nav"
 			aria-controls="ftco-nav" aria-expanded="false"
@@ -38,21 +38,25 @@
 
 		<div class="collapse navbar-collapse" id="ftco-nav">
 			<ul class="navbar-nav nav ml-auto">
-				<li class="nav-item" ><a href="index" class="nav-link"><span>Home</span></a></li>
+				<li class="nav-item" ><a href="home" class="nav-link"><span>Home</span></a></li>
 				<li class="nav-item"><a href="#about-section" class="nav-link"><span>소개글</span></a></li>
 				<li class="nav-item"><a href="#practice-section"
 					class="nav-link"><span>특허 FAQ</span></a></li>
 				<li class="nav-item"><a href="#blog-section" class="nav-link"><span>크라우드
 							펀딩</span></a></li>
+				<!-- <li class="nav-item"><a href="#contact-section"
+					class="nav-link"><span>공식 연락처</span></a></li> -->
+				<c:if test="${sessionScope.loginId==null}">
 				<li class="nav-item"><a href="#contact-section"
 					class="nav-link"><span>공식 연락처</span></a></li>
-				<c:if test="${sessionScope.loginId==null}">
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
 				</c:if>
 				<c:if test="${sessionScope.loginId!=null}">
+				<li class="nav-item"><a href="goMypage"
+					class="nav-link"><span>마이페이지</span></a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님 </a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a

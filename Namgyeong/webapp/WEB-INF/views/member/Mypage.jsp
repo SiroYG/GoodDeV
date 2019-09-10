@@ -30,14 +30,14 @@
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/Header.css">
     <link rel="stylesheet" href="/cloud/resources/css/Board.css">
-    <link rel="stylesheet" href="../css/demo.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/ef-tabs.css">
-    <link rel="stylesheet" href="../css/ef-tabs-light-blue.css">
+    <link rel="stylesheet" href="/cloud/resources/css/demo.css">
+<!--     <link rel="stylesheet" href="/cloud/resources/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="/cloud/resources/css/ef-tabs.css">
+    <link rel="stylesheet" href="/cloud/resources/css/ef-tabs-light-blue.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-    <script src="../js/jquery.transit.js"></script>
-    <script src="../js/ef-tabs.js"></script>
+    <script src="/cloud/resources/js/jquery.transit.js"></script>
+    <script src="/cloud/resources/js/ef-tabs.js"></script>
     
     <script>
         function myFunction() {
@@ -53,14 +53,14 @@
 <header class="header">
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.html" style="text-decoration: none;">MainLogo</a>
+            <a class="navbar-brand" href="home" style="text-decoration: none;">MainLogo</a>
             <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav nav ml-auto">
                     <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-                    <li class="nav-item"><a href="list.html" class="nav-link"><span>Q & A게시판</span></a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><span>Q & A게시판</span></a></li>
                     <li class="nav-item"><a href="#" class="nav-link"><span>블라인드 테스트</span></a></li>
                     <li class="nav-item"><a href="index.html#blog-section" class="nav-link"><span>크라우드 펀딩</span></a></li>
                     <li class="nav-item"><a href="#" class="nav-link"><span>마이페이지</span></a></li>
@@ -139,7 +139,7 @@
                         <h2><b>회원 마이 페이지</b></h2>
 
                         <h3>회원 정보 수정</h3><br>
-                        <a href="Member/update_form.html" class="btn btn--radius btn--green">바로가기</a>
+                        <a href="goupdate" class="btn btn--radius btn--green">바로가기</a>
 
 						<!-- 0909 창업자/일반회원 구분 >> 회원유형에 따라 메뉴 구성 다르게 할 것 -->
                         <p><!--${sessionScope.loginId}-->@@@님은 현재 '창업자/창업희망자'입니다. 
@@ -414,7 +414,7 @@
 
  <!--<script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>-->
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="/cloud/resources/js/popper.min.js"></script>
+  <script src="/cloud/resources/js/bootstrap.min.js"></script>
 
 </html>
