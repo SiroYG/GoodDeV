@@ -20,10 +20,8 @@ public class memberRepository implements memberMapper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
-
 	@Override
 	public Member login_member(Member member) {
 		memberMapper mapper=session.getMapper(memberMapper.class);
