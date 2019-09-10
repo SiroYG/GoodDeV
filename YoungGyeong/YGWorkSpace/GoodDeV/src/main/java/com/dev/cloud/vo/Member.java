@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class devMember {
+public class Member {
 
 	
-	public String memberId;
-	public String memberPw ;
+	public String id;
+	public String pw ;
 	public String memberType ;
 	public String email ;
 	public int fundPrice ;
