@@ -26,6 +26,47 @@
 
     <!-- Main CSS-->
     <link href="/cloud/resources/css/Member.css" rel="stylesheet" media="all">
+    <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
+    <script>
+  	$(function(){
+  		
+  		$("#searchId").on('click',function(){
+  			var memberName = $('#memberName').val();
+  			var email = $('#email').val();
+  			
+  			if (memberName.length==0 || memberName =="") {
+  				alert("유저이름을 입력해주세요.");
+  				return false;
+  				}
+  			if (email.length==0 || email =="") {
+  				alert("이메일를 입력해주세요.");
+  				return false;
+  				}
+  			var total = {
+  				'memberName' : memberName,
+  				'email'	: email
+  				}
+  			$.ajax({
+  				url : 'searchId',
+  				type : 'post',
+  				data : total,
+  				success : function(res){
+  					if(res==''){
+  						alert('정보를 잘못입력하셨습니다.');
+  					}else{
+  						alert(res);
+  						$('#memberName').val("");
+  						$('#email').val("");
+  						
+  					}
+  				}
+  				
+  			})
+  		})
+    
+  	});
+    </script>
+    
 </head>
 
 <body>
@@ -35,16 +76,16 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">아이디 찾기</h2>
-                    <form action="" method="POST" id="">
+                    <form>
                        <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="이름" name="id">
+                            <input class="input--style-2" type="text" placeholder="이름" name="memberName" id="memberName">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="이메일(abc123@def.com)" name="email">
+                            <input class="input--style-2" type="text" placeholder="이메일(abc123@def.com)" name="email" id="email">
                         </div>
                         
                         <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="submit">아이디 찾기</button> &nbsp;
+                            <button class="btn btn--radius btn--green" type="button" id="searchId">아이디 찾기</button> &nbsp;
                             <a class="btn btn--radius btn--green" href="/cloud/member/home">취소</a><br><br>
                             
                         </div>

@@ -26,6 +26,32 @@
 
     <!-- Main CSS-->
     <link href="resources/css/Member.css" rel="stylesheet" media="all">
+    <script>
+    function update(){
+    	var id =document.getElementById("id");
+		var pw =document.getElementById("pw");
+		var repw =document.getElementById("repw");
+		var email =document.getElementById("email");
+		var phoneNum =document.getElementById("phoneNum");
+		if (id.value.length==0 || id.value =="") {
+			alert("id를 입력해주세요.");
+			return false;
+		}
+		if (pw.value.length==0 || pw.value =="") {
+			alert("pw를 입력해주세요.");
+			return false;
+		}
+		if (repw.value.length==0 || repw.value =="") {
+			alert("pw 재입력를 입력해주세요.");
+			return false;
+		}
+		if(pw!=repw){
+			alert("비밀번호가 일치하지 않습니다.");
+			return false;
+		}
+    
+    }
+    </script>
 </head>
 
 <body>
@@ -35,25 +61,25 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">회원정보수정</h2>
-                    <form method="POST">
+                    <form action="updateform" method="post" id="update_form">
                        <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="${sessionScope.loginId}" name="id" readonly="readonly">
+                            <input class="input--style-2" type="text" placeholder="${sessionScope.loginId}" name="memberId" id="id" readonly="readonly">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-2" type="password" placeholder="비밀번호" name="pw" id="pw">
+                            <input class="input--style-2" type="password" placeholder="비밀번호" name="memberPw" id="pw">
                         </div>
                         <div class="input-group">
                             <input class="input--style-2" type="password" placeholder="비밀번호 재입력" id="repw">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="이메일(abc123@def.com)" name="email">
+                            <input class="input--style-2" type="text" placeholder="이메일(abc123@def.com)" id="email"  name="email">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="연락처(010-1234-5678)" name="phoneNum">
+                            <input class="input--style-2" type="text" placeholder="연락처(010-1234-5678)" id="phoneNum" name="phoneNum">
                         </div>
                         
                         <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="submit">수정</button> &nbsp;
+                            <button class="btn btn--radius btn--green" onclick="update()" type="submit">수정</button> &nbsp;
                             <a class="btn btn--radius btn--green" href="index">취소</a><br><br>
                              <a href="godropout" class="grey">회원탈퇴</a>
                         </div>

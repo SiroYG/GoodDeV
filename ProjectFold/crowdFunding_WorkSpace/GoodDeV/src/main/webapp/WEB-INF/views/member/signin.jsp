@@ -26,23 +26,59 @@
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     <script>
+    $(function(){
+    	alert('');
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    });
 	function signupbtn(){
 			var id =document.getElementById("id");
 			var pw =document.getElementById("pw");
 			var memberName =document.getElementById("memberName");
 			var email =document.getElementById("email");
 			var phoneNum =document.getElementById("phoneNum");
+			var memberType =document.getElementById("memberType");
 			
-			console.log(id + "" + pw+ "" + memberName+ "" + email+ "" + phoneNum+ "" + memberType);
 			if (id.value.length==0 || id.value =="") {
-			alert("ID를 입력해주세요.");
-			return;
-		}
-			if (id.value.length==0 || id.value =="") {
-			alert("PW를 입력해주세요.");
-			return;
-		}
-			$('#"signupform"').submit();
+				alert("ID를 입력해주세요.");
+				return false;
+			}
+			
+			if (pw.value.length==0 || pw.value =="") {
+					alert("PW를 입력해주세요.");
+					return false;
+			}
+			if (memberName.value.length==0 || memberName.value =="") {
+				alert("유저이름을 입력해주세요.");
+				return false;
+				}
+			if (email.value.length==0 || email.value =="") {
+				alert("이메일를 입력해주세요.");
+				return false;
+				}
+			
+			if (phoneNum.value.length==0 || phoneNum.value =="") {
+				alert("핸드폰 번호를 입력해주세요.");
+				return false;
+				}
+			
+			$.ajax({
+				url : 'searchId',
+				type : 'post',
+				data : 'searchId='+id.value,
+				success : function(res){
+					
+				}
+			})
+			
+			
+			$("#signin-form").submit();
 		}
     </script>
 </head>
@@ -55,9 +91,10 @@
                 <div class="card-body">
                     <h2 class="title">회원가입</h2>
                     <form action="signupform" method="POST" id="signin-form">
-                        <div class="input-group">  <input class="input--style-2" type="text" placeholder="아이디" name="id" id="id">
+                        <div class="input-group">  <input class="input--style-2" type="text" placeholder="아이디" name="memberId" id="id">
+                        							<span id="overlap" ></span>
                         </div>
-                        <div class="input-group"> <input class="input--style-2" type="password" placeholder="비밀번호" name="pw" id="pw">
+                        <div class="input-group"> <input class="input--style-2" type="password" placeholder="비밀번호" name="memberPw" id="pw">
                         </div>
                          <div class="input-group"><input class="input--style-2" type="text" placeholder="이름" name="memberName" id="memberName">
                         </div>
@@ -66,7 +103,7 @@
                         <div class="input-group"> <input class="input--style-2" type="text" placeholder="연락처(010-1234-5678)" name="phoneNum" id="phoneNum">
                         </div>
                         <div class="input-group"><div class="rs-select2 js-select-simple select--no-search">
-                                <select name="class" name="memberType" id="memberType">
+                                <select name="memberType" id="memberType">
                                     <option value="client" selected>일반회원</option>
                                     <option value="inventor">창업자 / 창업희망자</option>
                                     <option	value="enp">특허 보유자(개인 / 기업)</option>
