@@ -3,7 +3,7 @@ package com.dev.cloud.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.dev.cloud.vo.devMember;
+import com.dev.cloud.vo.Member;
 
 @Repository
 public class memberRepository implements memberMapper {
@@ -12,7 +12,7 @@ public class memberRepository implements memberMapper {
 	SqlSession session;
 	
 	@Override
-	public int signup_member(devMember member) {
+	public int signup_member(Member member) {
 		memberMapper mapper=session.getMapper(memberMapper.class);
 		int result=0;
 		try {
@@ -25,9 +25,9 @@ public class memberRepository implements memberMapper {
 	}
 
 	@Override
-	public devMember login_member(devMember member) {
+	public Member login_member(Member member) {
 		memberMapper mapper=session.getMapper(memberMapper.class);
-		devMember result=null;
+		Member result=null;
 		try {
 			result= mapper.login_member(member);
 
@@ -38,9 +38,9 @@ public class memberRepository implements memberMapper {
 	}
 
 	@Override
-	public devMember searchId_pw_member(devMember member) {
+	public Member searchId_pw_member(Member member) {
 		memberMapper mapper=session.getMapper(memberMapper.class);
-		devMember result=null;
+		Member result=null;
 		try {
 			result= mapper.searchId_pw_member(member);
 
@@ -51,7 +51,7 @@ public class memberRepository implements memberMapper {
 	}
 
 	@Override
-	public int update_member(devMember member) {
+	public int update_member(Member member) {
 		memberMapper mapper=session.getMapper(memberMapper.class);
 		int result=0;
 		try {
@@ -64,7 +64,7 @@ public class memberRepository implements memberMapper {
 	}
 
 	@Override
-	public int delete_member(devMember member) {
+	public int delete_member(Member member) {
 		memberMapper mapper=session.getMapper(memberMapper.class);
 		int result=0;
 		try {

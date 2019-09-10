@@ -26,6 +26,7 @@
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     <script>
+<<<<<<< HEAD
     $(function(){
     	alert('');
     	
@@ -37,6 +38,8 @@
     	
     	
     });
+=======
+>>>>>>> 4781239e74e7b509c3dcb0313fe3edcbe4910c30
 	function signupbtn(){
 			var id =document.getElementById("id");
 			var pw =document.getElementById("pw");
@@ -44,40 +47,15 @@
 			var email =document.getElementById("email");
 			var phoneNum =document.getElementById("phoneNum");
 			var memberType =document.getElementById("memberType");
-			
+			console.log(id + "" + pw+ "" + memberName+ "" + email+ "" + phoneNum+ "" + memberType);
 			if (id.value.length==0 || id.value =="") {
-				alert("ID를 입력해주세요.");
-				return false;
-			}
-			
-			if (pw.value.length==0 || pw.value =="") {
-					alert("PW를 입력해주세요.");
-					return false;
-			}
-			if (memberName.value.length==0 || memberName.value =="") {
-				alert("유저이름을 입력해주세요.");
-				return false;
-				}
-			if (email.value.length==0 || email.value =="") {
-				alert("이메일를 입력해주세요.");
-				return false;
-				}
-			
-			if (phoneNum.value.length==0 || phoneNum.value =="") {
-				alert("핸드폰 번호를 입력해주세요.");
-				return false;
-				}
-			
-			$.ajax({
-				url : 'searchId',
-				type : 'post',
-				data : 'searchId='+id.value,
-				success : function(res){
-					
-				}
-			})
-			
-			
+			alert("ID를 입력해주세요.");
+			return;
+		}
+			if (id.value.length==0 || id.value =="") {
+			alert("PW를 입력해주세요.");
+			return;
+		}
 			$("#signin-form").submit();
 		}
     </script>
@@ -91,10 +69,9 @@
                 <div class="card-body">
                     <h2 class="title">회원가입</h2>
                     <form action="signupform" method="POST" id="signin-form">
-                        <div class="input-group">  <input class="input--style-2" type="text" placeholder="아이디" name="memberId" id="id">
-                        							<span id="overlap" ></span>
+                        <div class="input-group">  <input class="input--style-2" type="text" placeholder="아이디" name="id" id="id">
                         </div>
-                        <div class="input-group"> <input class="input--style-2" type="password" placeholder="비밀번호" name="memberPw" id="pw">
+                        <div class="input-group"> <input class="input--style-2" type="password" placeholder="비밀번호" name="pw" id="pw">
                         </div>
                          <div class="input-group"><input class="input--style-2" type="text" placeholder="이름" name="memberName" id="memberName">
                         </div>
