@@ -1,4 +1,3 @@
-
 /* Drop Tables */
 
 DROP TABLE REPLY CASCADE CONSTRAINTS;
@@ -13,7 +12,6 @@ DROP TABLE PTI CASCADE CONSTRAINTS;
 DROP TABLE ITEM CASCADE CONSTRAINTS;
 DROP TABLE PATENTSUB CASCADE CONSTRAINTS;
 DROP TABLE PATENT CASCADE CONSTRAINTS;
-
 
 
 /* Drop Sequences */
@@ -39,9 +37,9 @@ DROP SEQUENCE PTI_seq;
 DROP SEQUENCE REPLY_seq;
 
 
-/* Create Sequences */
-CREATE SEQUENCE BOARD_seq;//
 
+CREATE SEQUENCE BOARD_seq;//
+//
 CREATE SEQUENCE CROWDFUNDING_seq;//
 
 CREATE SEQUENCE HISTORY_seq;//
@@ -62,7 +60,6 @@ CREATE SEQUENCE REPLY_seq;//
 
 
 
-
 /* Create Tables */
 
 CREATE TABLE BOARD
@@ -73,8 +70,8 @@ CREATE TABLE BOARD
 	content varchar2(1000) NOT NULL,
 	qType varchar2(20) NOT NULL,
 	qCategory varchar2(20) NOT NULL,
-	originalFilename varchar2(20),
-	saveFilename varchar2(20) UNIQUE,
+	originalFilename varchar2(20) ,
+	saveFilename varchar2(20) ,
 	boardDate date DEFAULT SYSDATE NOT NULL,
 	PRIMARY KEY (boardNum)
 );
@@ -120,14 +117,14 @@ CREATE TABLE ITEM
 (
 	itemNum number NOT NULL,
 	ideaDate date DEFAULT SYSDATE NOT NULL,
-	itemName varchar2(30) NOT NULL UNIQUE,
+	itemName varchar2(30) NOT NULL,
 	price number,
 	-- 계약 체결유무를 판단하기 위한 칼럼
 	contract varchar2(20) DEFAULT 'N' NOT NULL,
 	itemContent varchar2(300) NOT NULL,
 	itemRegDate date,
 	itemImagename varchar2(20),
-	saveItemImage varchar2(20) UNIQUE,
+	saveItemImage varchar2(20),
 	documentFilename varchar2(20) NOT NULL,
 	saveDocumentFilename varchar2(20) NOT NULL,
 	PRIMARY KEY (itemNum)
@@ -187,7 +184,7 @@ CREATE TABLE PATENTSUB
 	documentFilename varchar2(20),
 	saveDocumentFilename varchar2(20),
 	referenceFilename varchar2(20),
-	saveReferenceFilename varchar2(20) UNIQUE,
+	saveReferenceFilename varchar2(20),
 	PRIMARY KEY (PatentsubNum)
 );
 
@@ -279,6 +276,5 @@ ALTER TABLE PTI
 	ADD FOREIGN KEY (patentNum)
 	REFERENCES PATENT (patentNum)
 ;
-
 
 

@@ -3,8 +3,108 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="good.dev.support01.dao.boardMapper">
-	
+<mapper namespace="com.dev.cloud.dao.boardMapper">
+
+	<insert id="insertBoard" parameterType="Board">
+
+		insert into Board (
+		boardNum
+		,memberId
+		,title
+		,content
+		,qType
+		,qCategory
+		<choose>
+			<when test="originalFilename == ''">
+			</when>
+			<when test="originalFilename == 'null'">
+			</when>
+			<otherwise>
+				,originalFilename
+				,saveFilename
+			</otherwise>
+		</choose>
+		,boardDate
+		)
+		VALUES (
+		BOARD_seq.NEXTVAL
+		,#{memberId}
+		,#{title}
+		,#{content}
+		,#{qType}
+		,#{qCategory}
+		<choose>
+			<when test="originalFilename == ''">
+			</when>
+			<when test="originalFilename == 'null'">
+			</when>
+			<otherwise>
+				,#{originalFilename}
+				,#{saveFilename}
+			</otherwise>
+		</choose>
+
+		,SYSDATE
+		)
+
+	</insert>
+
+
+
+	<update id="updateBoard" parameterType="Board">
+
+		UPDATE Board
+		SET
+		title = #{title}
+		,content = #{content}
+		,qType = #{qType}
+		,qCategory = #{qCategory}
+		<choose>
+			<when test="originalFilename == ''">
+			</when>
+			<when test="originalFilename == 'null'">
+			</when>
+			<otherwise>
+				,originalFilename = #{originalFilename}
+				,saveFilename =	#{saveFilename}
+			</otherwise>
+		</choose>
+		WHERE boardNum = #{boardNum}
+		and memberId = #{memberId}
+
+	</update>
+
+	<update id="deleteBoard" parameterType="Board">
+
+		UPDATE Board
+		SET
+		qType =
+		'none'
+		WHERE boardNum = #{boardNum}
+		and memberId =
+		#{memberId}
+
+	</update>
+
+	<select id="selectAllBoard" resultType="Board">
+
+		select *
+		from Board
+		where
+		qType != 'none'
+
+
+	</select>
+
+	<select id="selectBoardByboardNum" parameterType="Board"
+		resultType="Board">
+
+		select *
+		from Board
+		WHERE boardNum = #{boardNum}
+
+	</select>
+
 </mapper>
 
 

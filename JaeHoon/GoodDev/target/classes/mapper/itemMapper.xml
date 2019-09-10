@@ -5,98 +5,98 @@
 
 <mapper namespace="com.dev.cloud.dao.itemMapper">
 	<insert id="insertItem" parameterType="Item">
-	
-	insert into ITEM (
-	itemNum
-	,ideaDate
-	,itemName
-	,contract
-	
-	) 
-	VALUES (
-	item_seq.NEXTVAL
-	,SYSDATE
-	,#{itemName}
-	,'waiting'
-	)
-	
+
+		insert into ITEM (
+		itemNum
+		,ideaDate
+		,itemName
+		,contract
+		,itemContent
+		,documentFilename
+		,saveDocumentFilename
+		)
+		VALUES (
+		item_seq.NEXTVAL
+		,SYSDATE
+		,#{itemName}
+		,'waiting'
+		,#{itemContent}
+		,#{documentFilename}
+		,#{saveDocumentFilename}
+		)
+
 	</insert>
-	
+
 	<insert id="insertMTI" parameterType="MTI">
-	
-	insert into MTI (
-	MTI_seq
-	,id
-	,itemNum
-	)
-	VALUES (
-	MTI_seq.NEXTVAL
-	,#{id}
-	,#{itemNum}
-	)
+
+		insert into MTI (
+		MTI_seq
+		,memberId
+		,itemNum
+		)
+		VALUES (
+		MTI_seq.NEXTVAL
+		,#{memberId}
+		,#{itemNum}
+		)
 	</insert>
-	
-	<select id="selectItemById" parameterMap="MTI">
-	
-	select * 
-	from item
-	where item_seq=(
-        SELECT item_seq
-        FROM MTI
-        WHERE id = #{id}
-    )
-	
+
+
+	<select id="getItemNumByItemName" parameterType="Item"
+		resultType="Item">
+		select itemNum
+		from Item
+		where itemName=#{itemName}
 	</select>
-	
-	<update id="updateItem">
-	
-	UPDATE ITEM
-	SET 
-	itemName = itemName
-	,price = price
-	,contract = contract
-	,column2 = value2
-	,column2 = value2
-	,column2 = value2
-	,column2 = value2
-	WHERE condition;
 
 
-	insert into ITEM (
-	itemNum
-	,ideaDate
-	,itemName
-	,price
-	,contract
-	,itemContent
-	,itemOption
-	,itemRegDate
-	
-	<if test="itemImagename != ''">
-	,itemImagename
-	,saveItemImage
-	</if> 
-	
-	) 
-	VALUES (
-	item_seq.NEXTVAL
-	,#{ideaDate}
-	,#{itemName}
-	,#{price}
-	,#{contract}
-	,#{itemContent}
-	,#{itemOption}
-	,SYSDATE
-	
-	<if test="itemImagename != ''">
-	,#{itemImagename}
-	,#{saveItemImage}
-	</if> 
-	
-	)
-	
+
+
+
+	<select id="selectItemByItemNum" parameterType="MTI" resultType="Item">
+
+		select *
+		from item
+		where itemNum=#{itemNum}
+
+	</select>
+
+	<select id="getItemNumById" parameterType="MTI" resultType="Item">
+
+		SELECT itemNum
+		FROM MTI
+		WHERE memberId = #{memberId}
+
+	</select>
+
+
+	<update id="updateItem" parameterType="Item">
+
+		UPDATE ITEM
+		SET
+		itemName = #{itemName}
+		,price = #{price}
+		,contract =
+		#{contract}
+		,itemContent = #{itemContent}
+		,itemRegDate = SYSDATE
+		<choose>
+			<when test="itemImagename != '' ">
+				,itemImagename = #{itemImagename}
+				,saveItemImage = #{saveItemImage}
+			</when>
+			<when test="itemImagename != 'null'">
+				,itemImagename = #{itemImagename}
+				,saveItemImage = #{saveItemImage}
+
+			</when>
+			<otherwise></otherwise>
+		</choose>
+
+		WHERE itemNum=#{itemNum}
+
 	</update>
-	
+
 </mapper>
 
 

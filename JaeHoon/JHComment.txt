@@ -11,3 +11,9 @@ Mapper 생성 (memberMapper완료),
 mybatis 설정,
 web.xml 한글 필터 설정,
 pom설정
+
+4, 5일차(0909, 0910)
+item, board쿼리문 생성
+아이템명 유니크키 설정
+원본파일명 유니크키 해제
+저장파일명 유니크기 설정

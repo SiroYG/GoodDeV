@@ -43,7 +43,7 @@
 	from devMember
 	where memberName=#{memberName}
 	and email=#{email}
-	<if test="id != ''">
+	<if test="memberId != ''">
 	and memberId=#{memberId}
 	</if> 
 	</select>
