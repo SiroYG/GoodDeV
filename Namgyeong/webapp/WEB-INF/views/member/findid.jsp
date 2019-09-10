@@ -87,6 +87,7 @@
                         <div class="p-t-30">
                             <button class="btn btn--radius btn--green" type="button" id="searchId">아이디 찾기</button> &nbsp;
                             <a class="btn btn--radius btn--green" href="/cloud/member/home">취소</a><br><br>
+                             <a href="gofindpw" class="grey">&nbsp;비밀번호 찾기</a>&nbsp;&nbsp;<a href="gologin" class="grey">/ 로그인</a>
                             
                         </div>
                     </form>
