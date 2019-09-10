@@ -102,16 +102,16 @@ CREATE TABLE ITEM_SURVEY
 );
 
 
-CREATE TABLE member
+CREATE TABLE devMember
 (
-	id varchar2(20) NOT NULL,
-	pw varchar2(20) NOT NULL,
+	memberId varchar2(20) NOT NULL,
+	memberPw varchar2(20) NOT NULL,
 	memberType varchar2(20) NOT NULL,
 	email varchar2(20) NOT NULL,
 	fundPrice number,
 	memberName varchar2(20) NOT NULL,
 	phoneNum varchar2(20) NOT NULL,
-	PRIMARY KEY (id)
+	PRIMARY KEY (memberId)
 );
 
 
