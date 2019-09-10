@@ -26,6 +26,30 @@
 
     <!-- Main CSS-->
     <link href="/cloud/resources/css/Member.css" rel="stylesheet" media="all">
+    <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
+    <script>
+   	function dropout(){
+    	
+   		var id =document.getElementById("id");
+		var pw =document.getElementById("pw");
+		var repw =document.getElementById("repw");
+    	
+		if (pw.value.length==0 || pw.value =="") {
+			alert("pw를 입력해주세요.");
+			return false;
+		}
+		if (repw.value.length==0 || repw.value =="") {
+			alert("pw 재입력를 입력해주세요.");
+			return false;
+		}
+		if(pw!=repw){
+			alert("비밀번호가 일치하지 않습니다.");
+			return false;
+		}
+    	
+    	$('#dropout-form').submit();
+   	}
+    </script>
 </head>
 
 <body>
@@ -35,19 +59,19 @@
                 <div class="card-heading-dropout"></div>
                 <div class="card-body">
                     <h2 class="title">회원탈퇴</h2>
-                    <form method="POST">
+                    <form method="post" action="dropoutform" id="dropout-form" >
                        <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="${sessionScope.loginId}" name="id" readonly="readonly">
+                            <input class="input--style-2" type="text" placeholder="${sessionScope.loginId}" name="memberId" readonly="readonly" id="id" >
                         </div>
                         <div class="input-group">
-                            <input class="input--style-2" type="password" placeholder="비밀번호" name="pw" id="pw">
+                            <input class="input--style-2" type="password" placeholder="비밀번호" name="memberPw" id="pw">
                         </div>
                         <div class="input-group">
                             <input class="input--style-2" type="password" placeholder="비밀번호 재입력" id="repw">
                         </div>
                         
                         <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="submit">탈퇴</button> &nbsp;
+                            <button class="btn btn--radius btn--green" type="submit" onclick="dropout()" >탈퇴</button> &nbsp;
                             <a class="btn btn--radius btn--green" href="/cloud/member/home">취소</a><br><br>
                             
                         </div>

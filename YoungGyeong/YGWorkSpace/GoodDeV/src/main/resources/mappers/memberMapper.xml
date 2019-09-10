@@ -5,18 +5,18 @@
 
 <mapper namespace="com.dev.cloud.dao.memberMapper">
 	<!-- 	회원가입 -->
-	<insert id="signup_member" parameterType="Member">
-	insert into Member (
-	id
-	,pw
+	<insert id="signup_member" parameterType="devMember">
+	insert into devMember (
+	memberId
+	,memberPw
 	,memberType
 	,email
 	,memberName
 	,phoneNum
 	) 
 	VALUES (
-	#{id}
-	,#{pw}
+	#{memberId}
+	,#{memberPw}
 	,#{memberType}
 	,#{email}
 	,#{memberName}
@@ -26,49 +26,49 @@
 	</insert>
 	
 	<!-- 로그인 -->
-	<select id="login_member" parameterType="Member" resultType="Member">
+	<select id="login_member" parameterType="devMember" resultType="devMember">
 	select 
 	*
-	from Member
-	where id=#{id} 
-	and pw=#{pw}
+	from devMember
+	where memberId=#{memberId} 
+	and memberPw=#{memberPw}
 	
 	</select>
 	
 		
 	<!-- 아이디/비번찾기 -->
-	<select id="searchId_pw_member" parameterType="Member" resultType="Member">
+	<select id="searchId_pw_member" parameterType="devMember" resultType="devMember">
 	select  
-	id
-	from Member
+	memberId
+	,memberPw
+	from devMember
 	where memberName=#{memberName}
 	and email=#{email}
-	<if test="id != ''">
-	and id=#{id}
+	<if test="memberId !=null">
+	and memberId=#{memberId}
 	</if> 
 	</select>
 	
 	<!-- 회원수정 -->
-	<update id="update_member" parameterType="Member">
-	UPDATE Member 
+	<update id="update_member" parameterType="devMember">
+	UPDATE devMember 
 	SET 
-	pw = #{pw}
+	memberPw = #{memberPw}
 	,email = #{email}
 	,phoneNum=#{phoneNum}
 	where 
-	id=#{id} 
+	memberId=#{memberId} 
 	</update>
 	
 	<!-- 회원탈퇴 -->
 	<!-- 회원탈퇴시 타입을 none으로 변경하고 자바에서 none의 회원은 로그인이 안되도록 잡아준다. -->
-	<update id="delete_member" parameterType="Member">
-	UPDATE Member 
+	<update id="delete_member" parameterType="devMember">
+	UPDATE devMember 
 	SET 
 	memberType = 'none'
 	where 
-	id=#{id}
-	and pw=#{pw} 
+	memberId=#{memberId}
+	and memberPw=#{memberPw} 
 	</update>
 	
 </mapper>
-

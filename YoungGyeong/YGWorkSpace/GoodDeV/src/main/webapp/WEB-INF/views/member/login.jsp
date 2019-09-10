@@ -34,14 +34,14 @@
  		function login(){
  			var id =document.getElementById("id");
  			var pw =document.getElementById("pw");
- 			console.log(id + "" + pw);
+ 		
  			if (id.value.length==0 || id.value =="") {
 				alert("ID를 입력해주세요.");
-				return;
+				return false;
 			}
- 			if (id.value.length==0 || id.value =="") {
+ 			if (pw.value.length==0 || pw.value =="") {
 				alert("PW를 입력해주세요.");
-				return;
+				return false;
 			}
  			$('#loginform').submit();
  		}
@@ -57,10 +57,10 @@
                     <h2 class="title">로그인</h2>
                     <form action="loginform" method="POST" id="loginform">
                         <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="아이디" name="id" id="id">
+                            <input class="input--style-2" type="text" placeholder="아이디" name="memberId" id="id">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-2" type="password" placeholder="비밀번호" name="pw" id="pw">
+                            <input class="input--style-2" type="password" placeholder="비밀번호" name="memberPw" id="pw">
                         </div>
                         
                         <div class="p-t-30">
