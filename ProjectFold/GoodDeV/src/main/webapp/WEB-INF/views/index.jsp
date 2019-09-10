@@ -24,6 +24,12 @@
 <!-- script -->
 <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 <script src="/cloud/resources/js/jquery-ui.min.js"></script>
+<script>
+	function board(){
+		window.location.href="/board/Board_list";
+	}
+
+</script>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -38,7 +44,7 @@
 
 		<div class="collapse navbar-collapse" id="ftco-nav">
 			<ul class="navbar-nav nav ml-auto">
-				<li class="nav-item" ><a href="index" class="nav-link"><span>Home</span></a></li>
+				<li class="nav-item" ><a href="home" class="nav-link"><span>Home</span></a></li>
 				<li class="nav-item"><a href="#about-section" class="nav-link"><span>소개글</span></a></li>
 				<li class="nav-item"><a href="#practice-section"
 					class="nav-link"><span>특허 FAQ</span></a></li>
@@ -326,8 +332,8 @@
 						aria-selected="false"><span class="mr-3 flaticon-idea"></span>
 						필요 서류 관련</a> <a class="nav-link px-4 py-1" id="v-pills-10-tab"
 						data-toggle="pill" href="#v-pills-10" role="tab"
-						aria-controls="v-pills-10" aria-selected="false"><span
-						class="mr-3 flaticon-ux-design"></span> 기타 FAQ</a>
+						aria-controls="v-pills-10" aria-selected="false">
+						<span class="mr-3 flaticon-ux-design" onclick="board()"></span> 기타 FAQ</a>
 				</div>
 			</div>
 			<div
@@ -787,8 +793,7 @@
 				<div class="ftco-footer-widget mb-4 ml-md-4">
 					<h2 class="ftco-heading-2">바로가기</h2>
 					<ul class="list-unstyled">
-						<li><a href="#home-section"><span
-								class="icon-long-arrow-right mr-2"></span>Home</a></li>
+						<li><a href="#home-section"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
 						<li><a href="#about-section"><span
 								class="icon-long-arrow-right mr-2"></span>소개글</a></li>
 						<li><a href="#practice-section"><span
