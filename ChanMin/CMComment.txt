@@ -1,1 +1,16 @@
-1
+-- GoodDev Project
+-- Today's Table
+-- 190903
+-- 공공데이터 API Parshing 하기
+-- 190904
+-- 공공데이터 API 정제후 datadase에 insert하기
+-- 190905
+-- AWS Server 보조 및 AWS Server API data DB에 저장
+-- 190906
+-- 파이썬 및 크롤링 공부
+-- 190908
+-- 파이썬 및 크롤링 공부2
+-- 190909
+-- Middle Side 작업, Cloud Server Domain Work
+-- 190910
+-- github updating

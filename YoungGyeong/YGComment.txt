@@ -1,1 +1,23 @@
-1
+-- GoodDev Project
+-- Today's Table
+
+--190903
+- 데이터베이스 조력/ 창민이와 API 파싱 성공
+- 데이터베이스 구조를 다같이 만들었다.
+
+--190904
+- Json 방식으로 받아서 제이슨 파서로 ArrayList화 해서 받아내었다.
+- 데이터베이스 구조 컨펌 받았다. 수정사항이 있다.
+
+--190905
+- AWS Server구축 / Database 만듬.
+- 재원 : AWS windows Server 2019 + Server(Database Oracle 11g)
+- 데이터 넣을량 결정 , 들어오는 데이터 정비
+
+--190906
+-Middle Side 구축 / 
+Front/Back연결작업, Spring구축 작업 Member단_
+
+--190909
+-Middle Side 작업/
+Cloud Server Domain Work

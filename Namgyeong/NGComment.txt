@@ -1,1 +1,30 @@
-1
+--0903, 0904
+UI - MAIN, Login/Register, Other Page(Header, BoardList(Table)) 
+
+--0905 UI
+Member - Login/Register(fix), Find ID/PW, Update, Drop out
+Q&A - List, Write, Admin Board List
+
+--0906 UI
+Member - name/value mapping (o)
+Survey - Make write/detail form ()
+Q&A - + search, paging form ()
+
+--0907 
+Member - img, background modify (o)
+Q&A - + search, paging form (o)
+Survey - Make write/detail form (△)
+
+--0909
+Member - vo, mapper(interface) modify (o)
+Q&A - mapping (o)
+
+--0910
+Member - css modify(o)
+Member - update & dropout (o)
+Mypage - create new part & tables (o)
+
+* 앞으로 해야할 것들
+- 마이페이지 유형별 구성 및 테이블 구성 짜기
+- 크라우드 펀딩 리스트 + 상세페이지
+- 특허/벤치마킹 검색 페이지
