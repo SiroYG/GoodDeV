@@ -12,3 +12,5 @@
 -- 파이썬 및 크롤링 공부2
 -- 190909
 -- Middle Side 작업, Cloud Server Domain Work
+-- 190910
+-- github updating
