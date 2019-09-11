@@ -18,6 +18,8 @@ public interface itemMapper {
 	//select 회원이 가진 모든 아이템을 가져온다.
 	public Item selectItemByItemNum(MTI mti);
 	
+	//보드 전체 memberType과 qType의 객체를 생성해서 넣어준다.
+	//회원의 아이디는 파일구조상 MIT(브릿지테이블)에 넣어줌
 	public ArrayList<Item> getItemNumById(MTI mti);
 
 	

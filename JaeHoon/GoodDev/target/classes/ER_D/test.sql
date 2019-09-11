@@ -3,6 +3,7 @@
 
 DROP TABLE REPLY CASCADE CONSTRAINTS;
 DROP TABLE BOARD CASCADE CONSTRAINTS;
+DROP TABLE NEW_TABLE CASCADE CONSTRAINTS;
 DROP TABLE CROWDFUNDING CASCADE CONSTRAINTS;
 DROP TABLE MTI CASCADE CONSTRAINTS;
 DROP TABLE devMember CASCADE CONSTRAINTS;
@@ -59,7 +60,6 @@ CREATE SEQUENCE PATENTSUB_seq;//
 CREATE SEQUENCE PTI_seq;//
 
 CREATE SEQUENCE REPLY_seq;//
-
 
 
 
@@ -140,7 +140,10 @@ CREATE TABLE ITEM_QUESTION
 	itemNum number NOT NULL,
 	-- 창업자가 질문한 값
 	question varchar2(500) NOT NULL,
+	-- 설문추가 설명
+	description varchar2(1000),
 	dueDate date DEFAULT SYSDATE NOT NULL,
+	startDate date NOT NULL,
 	PRIMARY KEY (questionNum)
 );
 
@@ -163,6 +166,17 @@ CREATE TABLE MTI
 	memberId varchar2(20) NOT NULL,
 	itemNum number NOT NULL,
 	PRIMARY KEY (MTI_seq)
+);
+
+
+CREATE TABLE NEW_TABLE
+(
+	fundingReplyNum number NOT NULL,
+	fundingReply varchar2(500) NOT NULL,
+	memberId varchar2(20) NOT NULL,
+	fundingReplydate date NOT NULL,
+	crowdfundingNum number NOT NULL,
+	PRIMARY KEY (fundingReplyNum)
 );
 
 
@@ -218,6 +232,12 @@ CREATE TABLE REPLY
 ALTER TABLE REPLY
 	ADD FOREIGN KEY (boardNum)
 	REFERENCES BOARD (boardNum)
+;
+
+
+ALTER TABLE NEW_TABLE
+	ADD FOREIGN KEY (crowdfundingNum)
+	REFERENCES CROWDFUNDING (crowdfundingNum)
 ;
 
 
