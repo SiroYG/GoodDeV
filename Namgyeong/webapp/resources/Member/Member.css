@@ -1,11 +1,10 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css); 
-/*<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>*/ 
-* { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
+/*<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>*/ * { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
 /* ==========================================================================
    #FONT
    ========================================================================== */
 .font-robo {
-  font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
 }
 
 /* ==========================================================================
@@ -21,6 +20,11 @@
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
+
+/*body{
+    background-image: radial-gradient(circle, #a8ccff, #7d9ac9, #546b95, #2d4064, #051937);
+    font-family: 'Eoe_Zno_M'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_M.woff') format('woff'); font-weight: normal; font-style: normal;
+}*/
 
 .row-space {
   -webkit-box-pack: justify;
@@ -79,7 +83,7 @@ dl, dd, ol, ul,
 figure,
 hr,
 fieldset, legend {
-font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+     font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
   margin: 0;
   padding: 0;
 }
@@ -121,12 +125,12 @@ button {
    ========================================================================== */
 .page-wrapper {
   min-height: 100vh;
+    
 }
 
 body {
-  font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
-  font-weight: 400;
-  font-size: 14px;
+   font-family: 'Eoe_Zno_M'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_M.woff') format('woff'); font-weight: normal; font-style: normal;
+  
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -165,7 +169,7 @@ h6 {
 }
 
 .bg-red {
- background-image: linear-gradient(to right top, #794f9f, #786bb3, #7c85c3, #879ecf, #9ab5d8);
+   background-image: linear-gradient(to right top, #794f9f, #786bb3, #7c85c3, #879ecf, #9ab5d8);
 }
 
 /* ==========================================================================
@@ -210,6 +214,7 @@ h6 {
    #BUTTON
    ========================================================================== */
 .btn {
+   margin-right: 15px;
   line-height: 40px;
   display: inline-block;
   padding: 0 25px;
@@ -515,12 +520,12 @@ input {
   display: table-cell;
 }
 
-/* .card-2 .card-heading {
+/*.card-2 .card-heading {
   background: url("../images/bg-heading-02.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
-}
- */
+}*/
+
 .card-2 .card-body {
   display: table-cell;
   padding: 80px 90px;
