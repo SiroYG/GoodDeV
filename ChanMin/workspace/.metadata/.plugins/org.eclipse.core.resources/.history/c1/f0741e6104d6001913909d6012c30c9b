@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN">
+
+-<mapper namespace="com.dev.cloud.dao.itemMapper">
+
+<insert parameterType="Item" id="insertItem">insert into ITEM (itemNum,ideaDate,itemName,contract,itemContent,documentFilename,saveDocumentFilename)VALUES (item_seq.NEXTVAL,SYSDATE,#{itemName},'waiting',#{itemContent},#{documentFilename},#{saveDocumentFilename}) </insert>
+
+<insert parameterType="MTI" id="insertMTI">insert into MTI (MTI_seq,memberId,itemNum)VALUES (MTI_seq.NEXTVAL,#{memberId},#{itemNum}) </insert>
+
+<select parameterType="Item" id="getItemNumByItemName" resultType="Item">select itemNumfrom Itemwhere itemName=#{itemName} </select>
+
+<select parameterType="MTI" id="selectItemByItemNum" resultType="Item">select *from itemwhere itemNum=#{itemNum} </select>
+
+<select parameterType="MTI" id="getItemNumById" resultType="Item">SELECT itemNumFROM MTIWHERE memberId = #{memberId} </select>
+
+
+-<update parameterType="Item" id="updateItem">
+UPDATE ITEMSETitemName = #{itemName},price = #{price},contract =#{contract},itemContent = #{itemContent},itemRegDate = SYSDATE 
+
+-<choose>
+
+<when test="itemImagename != '' ">,itemImagename = #{itemImagename},saveItemImage = #{saveItemImage} </when>
+
+<when test="itemImagename != 'null'">,itemImagename = #{itemImagename},saveItemImage = #{saveItemImage} </when>
+
+<otherwise/>
+
+</choose>
+WHERE itemNum=#{itemNum} 
+</update>
+
+</mapper>

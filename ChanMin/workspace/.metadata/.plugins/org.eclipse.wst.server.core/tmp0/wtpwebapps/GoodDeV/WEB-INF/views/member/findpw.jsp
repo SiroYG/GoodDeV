@@ -59,6 +59,10 @@
   				success : function(res){
   					if(res ==''){
   						alert('정보를 잘못입력하셨습니다.');
+  						$('#id').val("");
+  						$('#memberName').val("");
+  						$('#email').val("");
+  						
   					}else{
   						alert(res);
   						$('#id').val("");

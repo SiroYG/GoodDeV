@@ -40,14 +40,28 @@
     <script src="/cloud/resources/js/ef-tabs.js"></script>
     
     <script>
-        function myFunction() {
-  alert("Modal/alert Test1");
-}
-        
-        function myFunction2() {
-  alert("Modal/alert Test1");
-}
-        </script>
+   $(function(){
+			patentTable();
+	   
+	   
+	   
+	   
+   
+   
+   });
+   function patentTable(){
+	   	$.ajax({
+	   		url : 'patentTable',
+	   		type : 'get',
+	   		succes : output	   		
+	   	})
+	   
+	   
+   }
+   function output(res){
+	   
+   }
+    </script>
 
 </head>
 <header class="header">
@@ -152,8 +166,8 @@
                     </section>
 
                     <section id="section-bar-patent">
-                           <table class="table">
-                            <caption class="table_title"><b>보유 및 사용 중인 특허 목록</b></caption>
+                           <table class="patentTable">
+                            <%-- <caption class="table_title"><b>보유 및 사용 중인 특허 목록</b></caption>
                             <thead class="navy">
                                 <tr>
                                     <th scope="col">특허 번호</th>
@@ -163,7 +177,7 @@
                                     <th scope="col">등록날짜</th>
                                     <th scope="col">서식파일 보기</th>
                                 </tr>
-                            </thead>
+                            </thead> 
                             <tbody>
                                 <tr>
                                     <th scope="row" name="patentNum">123-455-78890</th>
@@ -178,7 +192,7 @@
                                     </td>
                                 </tr>
                             
-                            </tbody>
+                            </tbody>--%>
                         </table>
                     </section>
 

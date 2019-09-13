@@ -53,6 +53,8 @@
   				success : function(res){
   					if(res==''){
   						alert('정보를 잘못입력하셨습니다.');
+  						$('#memberName').val("");
+  						$('#email').val("");
   					}else{
   						alert(res);
   						$('#memberName').val("");

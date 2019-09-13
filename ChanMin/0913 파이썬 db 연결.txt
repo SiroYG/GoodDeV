@@ -1,0 +1,14 @@
+! pip install cx_Oracle
+
+import cx_Oracle
+
+cursor = connection.cursor()
+
+sql = 'select * from patent'
+
+cursor.execute(sql)
+
+rows =cursor.fetchall()
+
+for row in rows:
+    print(row)

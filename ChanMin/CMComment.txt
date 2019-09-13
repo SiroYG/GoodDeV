@@ -13,4 +13,8 @@
 -- 190909
 -- Middle Side 작업, Cloud Server Domain Work
 -- 190910
--- github updating
+-- github updating1
+-- 190912
+-- github updating2
+-- 190913
+-- 파이썬 DB 연동

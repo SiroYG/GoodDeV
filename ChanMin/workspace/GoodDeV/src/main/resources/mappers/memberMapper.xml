@@ -35,6 +35,18 @@
 	
 	</select>
 	
+	<!-- 중복확인 -->
+	<select id="overlap" parameterType="String" resultType="devMember">
+	select  
+	memberId
+	,memberPw
+	from devMember
+	where
+
+	 memberId=#{memberId}
+	
+	</select>
+	
 		
 	<!-- 아이디/비번찾기 -->
 	<select id="searchId_pw_member" parameterType="devMember" resultType="devMember">
