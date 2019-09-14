@@ -18,3 +18,5 @@
 -- github updating2
 -- 190913
 -- 파이썬 DB 연동
+-- 190914
+-- 파이썬 DB select, insert 문 query 연습
