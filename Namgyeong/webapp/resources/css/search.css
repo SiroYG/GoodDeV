@@ -1,7 +1,8 @@
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css); 
+/*<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>*/ * { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
 
 body{
-   font-family: 'Jeju Gothic', sans-serif; 
+   font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
 }
 
 hr.hr_navy{

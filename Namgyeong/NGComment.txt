@@ -36,7 +36,9 @@ index - modify complete (o)
 
 --0914
 Board(Member, Admin), Survey - list modify (o)
+Search - search_patent form(o)
 Header & Footer modify (△)
+CSS - All modify(o)
 
 
 * 앞으로 해야할 것들
