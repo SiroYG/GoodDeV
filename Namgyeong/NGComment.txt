@@ -35,6 +35,9 @@ Board(Member, Admin), Survey - list modify (△)
 index - modify complete (o)
 
 --0914
+Board(Member, Admin), Survey - list modify (o)
+Header & Footer modify (△)
+
 
 * 앞으로 해야할 것들
 - 마이페이지 유형별 구성 및 테이블 구성 짜기
