@@ -30,12 +30,12 @@ Survey - insert, detail, list(form) (△)
 Funding - list(△)
 
 --0912 ~ 0913
+Funding - list (o)
 Board(Member, Admin), Survey - list modify (△)
 index - modify complete (o)
 
 --0914
 Board(Member, Admin), Survey - list modify (o)
-Funding - list (△) >> 프레임만 잡음;
 Header & Footer modify (△)
 
 
