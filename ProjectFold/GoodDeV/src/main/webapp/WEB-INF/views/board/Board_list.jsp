@@ -30,9 +30,13 @@
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/Header.css">
-    <link rel="stylesheet" href="/cloud/resources/css/Board.css">
+<!--     <link rel="stylesheet" href="/cloud/resources/css/Board.css"> -->
     
-    
+    <script type="text/javascript">
+		function submit() {
+			$("#searchForm").submit();
+		}
+	</script>	
   </head>
 <header class="header">
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -45,12 +49,21 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
 	          <li class="nav-item"><a href="index#home-section" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="goboard" class="nav-link"><span>Q & A게시판</span></a></li>
+	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A게시판</span></a></li>
 	          <li class="nav-item"><a href="#" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="#" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	         <li class="nav-item"><a href="#" class="nav-link"><span>마이페이지</span></a></li>
-	       <li style="margin-left: 20px; " class="nav-item cta"><a href="gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment">로그인</a></li>
-	       <li style="margin-left: 20px;" class="nav-item cta"><a href="gosign" class="nav-link" data-toggle="modal" data-target="#modalAppointment">회원가입</a></li>
+	         <li class="nav-item"><a href="#" class="nav-link"><span>마이페이지</span></a></li>				<c:if test="${sessionScope.loginId==null}">
+					<li style="margin-left: 20px;" class="nav-item cta"><a
+						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
+					<li style="margin-left: 20px;" class="nav-item cta"><a
+						href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
+				</c:if>
+				<c:if test="${sessionScope.loginId!=null}">
+					<li style="margin-left: 20px;" class="nav-item cta"><a
+							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님 </a></li>
+					<li style="margin-left: 20px;" class="nav-item cta"><a
+						href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
+				</c:if>
 	        </ul>
 	      </div>
 	    </div>
@@ -59,7 +72,7 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
   <div class="first">
-<h1 style="margin-top: 10%;">Q & A 게시판</h1>
+<h1 style="margin-top: 5%;">Q & A 게시판</h1>
  <p class="sub_title"><br>창업 및 특허 관련 사항들을<br>
  자유롭게 묻고 답할 수 있습니다.</p>
   </div>
@@ -67,7 +80,8 @@
   <div class="main_table">
    
    <table class="table">
-   <caption>게시글 목록</caption>
+   <caption>
+ <a href="/cloud/board/gowrite" class="btns btn-3">글쓰기</a></caption>
   <thead class="navy">
     <tr>
       <th scope="col">No.</th>
@@ -78,48 +92,43 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row" name="boardNum">1</th>
-      <td name="qCategory">[일반]</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="memberId">ididid</td>
-      <td name="boardDate">2019-09-09</td>
-    </tr>
-   <tr>
-      <th scope="row" name="boardNum">2</th>
-      <td name="qCategory">[특허]</td>
-      <td name="title">bbbbbbbbbbb</td>
-      <td name="memberId">ottotto</td>
-      <td name="boardDate">2019-09-07</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">3</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="memberId">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-    
+    	<!-- 게시글이 없는 경우 -->
+			<c:if test="${empty list}">
+				<tr>
+					<td colspan="5" align="center">데이터가 없습니다.</td>
+				</tr>
+			</c:if>
+			<!-- 게시글이 있는 경우 -->
+			<c:if test="${not empty list }">
+				<c:forEach var="board" items="${list}" varStatus="stat">
+					<tr> 
+						<th scope="row" name="boardNum">${stat.count + navi.startRecord}</th>
+						<td>${board.qCategory}</td>
+						<td class="board_title"><a href="boardDetail?boardnum=${board.boardNum}">${board.title}</a></td>
+						<td>${board.id}</td>
+						<td>${board.boardDate}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
   </tbody>
 </table>
 
   <!--페이징 & 검색-->
   <div class="page-center">
-  <nav>
+  <nav class="paging">
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <a class="page-link" aria-label="Previous">
+      <a class="page-link" aria-label="Previous" href="boardListForm?currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">
         <span aria-hidden="true">&laquo;</span>
         <span class="sr-only">Previous</span>
       </a>
     </li>
-    <li class="page-item active"><a class="page-link">1</a></li>
-    <li class="page-item"><a class="page-link">2</a></li>
-    <li class="page-item"><a class="page-link">3</a></li>
-    <li class="page-item"><a class="page-link">4</a></li>
-    <li class="page-item"><a class="page-link">5</a></li>
+<!--     <li class="page-item active"><a class="page-link">1</a></li> -->
+	<c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup }">
+		    <li class="page-item"><a href="boardListForm?currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}"class="page-link">${page}</a>
+	</c:forEach>
     <li class="page-item">
-      <a class="page-link" aria-label="Next">
+      <a class="page-link" aria-label="Next" href="boardListForm?currentPage=${navi.currentPage-1}&searchItem=${searchItem}&searchWord=${searchWord}">
         <span aria-hidden="true">&raquo;</span>
         <span class="sr-only">Next</span>
       </a>
@@ -127,26 +136,19 @@
   </ul>
 </nav>
       </div>
-<form action="" method="post" class="search-form" id="search-form">
+<form action="/cloud/board/boardListForm" method="get" class="search-form" id="searchForm">
 <!--Blue select-->
 <select name="searchItem" class="searchItem">
- <option value="all" selected>분류</option>
-  <option value="title" selected>제목</option>
-  <option value="content">내용</option>
-  <option value="id">작성자</option>
+ <option value="all">전체</option>
+  <option value="title" ${searchItem =='title'?'selected' :''}>제목</option>
+  <option value="content" ${searchItem =='content'? 'selected' :'' }>내용</option>
+  <option value="id" ${searchItem =='userid'?'selected' :'' }>작성자</option>
 </select>
-
-<input type="text" name="searchWord" class="searchWord" placeholder="  Search">
-<button type="button" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
+<input type="text" name="searchWord" value="${searchWord}" class="searchWord" placeholder="Search">
+<button type="submit" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
 </form>
- <a href="gowrite" class="btns btn-3"><span class="white">글쓰기</span></a>
- 
-  </div>
-  
-
-   
+  </div>   
     </body>
-    
     <footer class="ftco-footer ftco-section">
       <div class="container">
         <div class="row mb-5">

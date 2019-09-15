@@ -1,8 +1,61 @@
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
 
+body{
+   font-family: 'Jeju Gothic', sans-serif; 
+}
+
+hr.hr_navy{
+  border-color: #1f124a;
+    border-width: 7px;
+    padding: 0% 10%;
+}
+
 div.write_table{
     padding: 5% 10% 10%;
 }
+
+hr.hr_purple{
+    border-color: #1f124a;
+    border-width: 7px;
+    padding: 0% 10%;
+}
+
+.navy{
+    background-color: #1f124a;
+    color: white;
+    text-align: center;
+}
+
+div.second{
+    width:100%;
+    height: 550px;
+    display: inline-block;
+    margin: 0%; 
+    background: url("../images/board_cover_3.jpg") top left/cover no-repeat;
+}
+
+h1.main_title{
+     font-size: 3em;
+    padding-left: 10%;
+    color : black;
+    margin-top: 10%;
+    line-height: 1.5;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+}
+
+
+.form-control-readonly {
+  height: 60px !important;
+  background: #fff !important;
+  color: #000000 !important;
+  font-size: 25px;
+ /* border-radius: 5px;*/
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important; }
+  .form-control-readonly:focus, .form-control-readonly:active {
+   /* border-color: #000000;*/ }
 
 .form-group {
   margin-bottom: 1rem; }
@@ -53,3 +106,59 @@ div.write_table{
     margin-top: 0;
     margin-right: 0.3125rem;
     margin-left: 0; }
+
+.btns {
+width:280px;
+height: 70px;
+  padding: 1%;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #1f124a;
+  border: 2px solid #1f124a;
+  cursor: pointer;
+  width: max-content;
+  transition: 0.25s ease;
+}
+
+.btn-3:hover {
+  color: #1f124a;
+  background-color: transparent;
+}
+
+.btn-3-red:hover {
+  color: #d41515;
+    border-color: #d41515;
+  background-color: transparent;
+}
+
+.btn-3-green:hover {
+  color: #28a146;
+    border-color: #28a146;
+  background-color: transparent;
+}
+
+span.white{
+    padding: 2%;
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+    font-size: 1.2em;
+}
+
+
+.searchWord{
+    width: 80%;
+}
+
+.search-form{
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 30px;
+}
+
+div.page-center{
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 auto;
+    justify-content: center;
+}
+

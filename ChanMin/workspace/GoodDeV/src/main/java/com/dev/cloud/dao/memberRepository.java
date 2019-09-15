@@ -18,7 +18,7 @@ public class memberRepository implements memberMapper {
 		try {
 			result= mapper.signup_member(member);
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		return result;
