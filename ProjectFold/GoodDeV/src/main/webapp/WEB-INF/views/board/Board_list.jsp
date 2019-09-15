@@ -49,7 +49,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
 	          <li class="nav-item"><a href="index#home-section" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="/cloud/board/boardhome" class="nav-link"><span>Q & A게시판</span></a></li>
+	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A게시판</span></a></li>
 	          <li class="nav-item"><a href="#" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="#" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	         <li class="nav-item"><a href="#" class="nav-link"><span>마이페이지</span></a></li>				<c:if test="${sessionScope.loginId==null}">
@@ -80,7 +80,8 @@
   <div class="main_table">
    
    <table class="table">
-   <caption>게시글 목록</caption>
+   <caption>
+ <a href="/cloud/board/gowrite" class="btns btn-3">글쓰기</a></caption>
   <thead class="navy">
     <tr>
       <th scope="col">No.</th>
@@ -92,18 +93,18 @@
   </thead>
   <tbody>
     	<!-- 게시글이 없는 경우 -->
-				<c:if test="${empty list}">
+			<c:if test="${empty list}">
 				<tr>
 					<td colspan="5" align="center">데이터가 없습니다.</td>
 				</tr>
-				</c:if>
+			</c:if>
 			<!-- 게시글이 있는 경우 -->
 			<c:if test="${not empty list }">
 				<c:forEach var="board" items="${list}" varStatus="stat">
 					<tr> 
 						<th scope="row" name="boardNum">${stat.count + navi.startRecord}</th>
 						<td>${board.qCategory}</td>
-						<td class="board_title"><a href="boardDetail?boardno=${board.boardNum}">${board.title}</a></td>
+						<td class="board_title"><a href="boardDetail?boardnum=${board.boardNum}">${board.title}</a></td>
 						<td>${board.id}</td>
 						<td>${board.boardDate}</td>
 					</tr>
@@ -114,7 +115,7 @@
 
   <!--페이징 & 검색-->
   <div class="page-center">
-  <nav>
+  <nav class="paging">
   <ul class="pagination justify-content-center">
     <li class="page-item">
       <a class="page-link" aria-label="Previous" href="boardListForm?currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">
@@ -122,7 +123,7 @@
         <span class="sr-only">Previous</span>
       </a>
     </li>
-    <li class="page-item active"><a class="page-link">1</a></li>
+<!--     <li class="page-item active"><a class="page-link">1</a></li> -->
 	<c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup }">
 		    <li class="page-item"><a href="boardListForm?currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}"class="page-link">${page}</a>
 	</c:forEach>
@@ -137,16 +138,15 @@
       </div>
 <form action="/cloud/board/boardListForm" method="get" class="search-form" id="searchForm">
 <!--Blue select-->
-<select name="searchItem" class="searchItssem">
- <option value="all" selected>전체</option>
+<select name="searchItem" class="searchItem">
+ <option value="all">전체</option>
   <option value="title" ${searchItem =='title'?'selected' :''}>제목</option>
   <option value="content" ${searchItem =='content'? 'selected' :'' }>내용</option>
   <option value="id" ${searchItem =='userid'?'selected' :'' }>작성자</option>
 </select>
-<input type="text" name="searchWord" value="${searchWord}" class="searchWord" placeholder="  Search">
-<button type="button" value="javascript:submit();" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
+<input type="text" name="searchWord" value="${searchWord}" class="searchWord" placeholder="Search">
+<button type="submit" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
 </form>
- <a href="/cloud/board/gowrite" class="btns btn-3"><span class="white">글쓰기</span></a>
   </div>   
     </body>
     <footer class="ftco-footer ftco-section">

@@ -84,83 +84,86 @@
   
   <div class="write_table">
     <hr class="hr_purple">
-     <form action="" method="POST" id="">
-     <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label"><span><b>작성 날짜</b></span></label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="boardDate" id="" placeholder="2019 / 09 / 04 (목)" readonly="readonly">
-    </div>
+     
+     
+     <form action="/cloud/board/boardWrite" method="POST" id="writeform" enctype="multipart/form-data">
     
-  </div>
-  
-  <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label"><span><b>작성자</b></span></label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="" name="memberId" placeholder="${sessionScope.loginId}">
-    </div>
-  </div>
-  
-  <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label"><span><b>질문 분류</b></span></label>
-    <div class="col-sm-10">
-     <select name="qCategory">
-        <option value="etc" selected>일반</option>
-         <option value="patent">특허</option>
-         <option value="survey">블라인드 테스트</option>
-         <option value="funding">크라우드 펀딩</option>
-     </select>
-     <!-- <input type="email" class="form-control" id="inputEmail3" placeholder="Email">-->
-    </div>
-  </div>
-  <fieldset class="form-group">
-    <div class="row">
-      <legend class="col-form-label col-sm-2 pt-0"><span><b>공개여부</b></span></legend>
-      <div class="col-sm-10">
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="qType" id="gridRadios1" value="public" checked>
-          <label class="form-check-label" for="gridRadios1">
-            공개
-          </label>
-          
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="qType" id="gridRadios2" value="private">
-          <label class="form-check-label" for="gridRadios2">
-            비공개
-          </label><br>
-          <label class="form-check-label" for="gridRadios2">
-            * 비공개로 설정 시 해당 게시글은 운영자만 확인할 수 있습니다.
-          </label>
-        </div>
-      </div>
-    </div>
-  </fieldset>
-  <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label"><span><b>제목</b></span></label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputPassword3" placeholder="">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label"><span><b>내용</b></span></label>
-    <div class="col-sm-10">
-     <textarea rows="8" cols="112"></textarea>
-    </div>
-  </div>
-   <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label"><span><b>파일 업로드</b></span></label>
-    <div class="col-sm-10">
-      <input type="file" class="form-control" id="" placeholder="">
-    </div>
-  </div>
-  <hr class="hr_purple">
-   <div class="form-group row">
-    <div class="col-sm-10">
-      <a onclick="boardWrite()" class="btns btn-3"><span class="white">작성하기</span></a> &nbsp;&nbsp; <a href="/cloud/board/boardListForm" class="btns btn-3-red"><span class="white">취소</span></a> 
-    </div>
-    
-  </div>
-</form>
+			     <div class="form-group row">
+			    <label for="" class="col-sm-2 col-form-label"><span><b>작성 날짜</b></span></label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="boardDate" value="19년 09월 15일">
+			    </div>
+			  </div>
+				  <div class="form-group row">
+				    <label for="" class="col-sm-2 col-form-label"><span><b>작성자</b></span></label>
+				    <div class="col-sm-10">
+				    	<c:if test="${sessionScope.loginId!=null}">
+				    	<input type="text" class="form-control" name="id" value="${sessionScope.loginId}" readonly="readonly">
+				    	</c:if>
+				    <c:if test="${sessionScope.loginId==null}">	
+				      <input type="text" class="form-control" name="id" value="">
+				     </c:if>
+				    </div>
+				  </div>
+				  
+				  <div class="form-group row">
+				    <label for="" class="col-sm-2 col-form-label"><span><b>질문 분류</b></span></label>
+				    <div class="col-sm-10">
+				     <select name="qCategory">
+				        <option value="etc" selected>일반</option>
+				         <option value="patent">특허</option>
+				         <option value="survey">블라인드 테스트</option>
+				         <option value="funding">크라우드 펀딩</option>
+				     </select>
+				     <!-- <input type="email" class="form-control" id="inputEmail3" placeholder="Email">-->
+				    </div>
+				  </div>
+				  <fieldset class="form-group">
+				    <div class="row">
+				      <legend class="col-form-label col-sm-2 pt-0"><span><b>공개여부</b></span></legend>
+				      <div class="col-sm-10">
+				        <div class="form-check">
+				          <input class="form-check-input" type="radio" name="qType" id="gridRadios1" value="public" checked>
+				          <label class="form-check-label" for="gridRadios1"> 공개  </label>
+				        </div>
+				        <div class="form-check">
+				          <input class="form-check-input" type="radio" name="qType" id="gridRadios2" value="private">
+				          <label class="form-check-label" for="gridRadios2">
+				            비공개
+				          </label><br>
+				          <label class="form-check-label" for="gridRadios2">
+				            * 비공개로 설정 시 해당 게시글은 운영자만 확인할 수 있습니다.
+				          </label>
+				        </div>
+				      </div>
+				    </div>
+				  </fieldset>
+				  <div class="form-group row">
+				    <label for="" class="col-sm-2 col-form-label"><span><b>제목</b></span></label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control"  name="title" id ="title" placeholder="">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <label for="" class="col-sm-2 col-form-label"><span><b>내용</b></span></label>
+				    <div class="col-sm-10">
+				     <textarea rows="8" cols="112" id="contents"  name="content"></textarea>
+				    </div>
+				  </div>
+				   <div class="form-group row">
+				    <label for="" class="col-sm-2 col-form-label"><span><b>파일 업로드</b></span></label>
+				    <div class="col-sm-10">
+				      <input type="file" class="form-control" id="upload" name="upload">
+				    </div>
+				  </div>
+			  <hr class="hr_purple">
+			   <div class="form-group row">
+			    <div class="col-sm-10">
+			      <a onclick="boardWrite()" class="btns btn-3" style="cursor: pointer;"><span class="white">작성하기</span></a> &nbsp;&nbsp; <a href="/cloud/board/boardListForm" class="btns btn-3-red"><span class="white">취소</span></a> 
+			    </div>
+			    
+			  </div>
+		</form>
       
       
   </div>

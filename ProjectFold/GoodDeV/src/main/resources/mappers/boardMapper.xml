@@ -5,85 +5,86 @@
 
 <mapper namespace="com.dev.cloud.dao.boardMapper">
 	<select id="getBoardCount" parameterType="map" resultType="int">
-	SELECT count(*)
-	FROM BOARD
-	<if test="searchItem != null">
-	WHERE ${searchItem} LIKE '%'||#{searchWord} || '%'
-	</if>
+		SELECT count(*)
+		FROM BOARD
+		<if test="searchItem != null">
+			WHERE ${searchItem} LIKE '%'|| #{searchWord} || '%'
+		</if>
 	</select>
-	
+
 	<select id="selectAll" resultType="Board" parameterType="map">
 		SELECT
-			boardNum,
-			id,
-			TITLE,
-			CONTENT,
-			QTYPE,
-			QCATEGORY,
-			originalFilename,
-			saveFilename,
-			to_char(regdate, 'YYYY-MM-DD') as boardDate,
+		boardNum,
+		id,
+		TITLE,
+		CONTENT,
+		QTYPE,
+		QCATEGORY,
+		originalFilename,
+		saveFilename,
+		to_char(boardDate, 'YYYY-MM-DD') as boardDate
 		FROM BOARD
-			<if test="searchItem != null or searchItem != ''">
-				<if test="searchItem.equalsIgnoreCase('All')">
-					WHERE CUSTID LIKE '%'||#{searchWord}||'%'
-					OR TITLE LIKE '%'||#{searchWord}||'%'
-					OR CONTENT LIKE '%'||#{searchWord}||'%'
-				</if>
-				<if test="!searchItem.equalsIgnoreCase('All')">
-					WHERE ${searchItem} LIKE '%'||#{searchWord}||'%'
-				</if>
+		<if test="searchItem != null or searchItem != ''">
+			<if test="searchItem.equalsIgnoreCase('All')">
+				WHERE ID LIKE '%'||#{searchWord}||'%'
+				OR TITLE LIKE '%'||#{searchWord}||'%'
+				OR CONTENT LIKE '%'||#{searchWord}||'%'
 			</if>
-		ORDER BY BOARDNum DESC
+			<if test="!searchItem.equalsIgnoreCase('All')">
+				WHERE ${searchItem} LIKE '%'||#{searchWord}||'%'
+			</if>
+		</if>
+		ORDER BY boardNum DESC
 	</select>
-	
+
 	<select id="selectOne" parameterType="Board" resultType="Board">
-		Select * From BOARD
+		Select *
+		From BOARD
 		where boardnum = #{boardNum}
 	</select>
-	
-	<update id="updateBoard" parameterType="int" >
+
+	<update id="updateBoard" parameterType="int">
 		update BOARD set
 		HITCOUNT = HITCOUNT + 1
 		where boardnum = #{boardNum}
 	</update>
-	
+
 	<delete id="deleteBoard" parameterType="int">
 		Delete From BOARD
-		where boardnum = #{boardNum}
+		where
+		boardnum = #{boardNum}
 	</delete>
-	
-	<insert id="insertBoard" parameterType="Board" >
+
+	<insert id="insertBoard" parameterType="Board">
 		INSERT INTO BOARD
-		(	
-			boardNum,
-			id,
-			TITLE,
-			CONTENT,
-			QTYPE,
-			QCATEGORY,
-			<if test="originalFilename!= null">
+		(
+		boardNum,
+		id,
+		TITLE,
+		CONTENT,
+		QTYPE,
+		QCATEGORY,
+		<if test="originalFilename!= null">
 			originalFilename,
 			saveFilename,
-			</if>
-			boardDate
-			
+		</if>
+		boardDate
 		)
 		VALUES
 		(
 		BOARD_SEQ.nextval
-			, #{id}
-			, #{title}
-			, #{content}
-			, #{qType}
-			, #{qCategory}
-			<if test="originalFilename!= null">
+		, #{id}
+		, #{title}
+		, #{content}
+		, #{qType}
+		, #{qCategory}
+		<if test="originalFilename!= null">
 			, #{originalFilename}
 			, #{saveFilename}
-			</if>
-			, #{boardDate}
+		</if>
+		,sysdate
 		)
-		</insert>
+	</insert>
 </mapper>
 
 

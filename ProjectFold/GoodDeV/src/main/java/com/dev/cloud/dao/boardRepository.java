@@ -23,8 +23,7 @@ public class boardRepository {
 		map.put("searchItem", searchItem);
 		map.put("searchWord", searchWord);
 		
-		int total = mapper.getBoardCount(map);
-		
+		int total = mapper.getBoardCount(map);	
 		return total;
 	}
 
