@@ -5,7 +5,7 @@
 <configuration>
 <typeAliases>
 <typeAlias alias="Board" type="com.dev.cloud.vo.Board"/>
-<typeAlias alias="Cloudfunding" type="com.dev.cloud.vo.Cloudfunding"/>
+<typeAlias alias="Crowdfunding" type="com.dev.cloud.vo.Crowdfunding"/>
 <typeAlias alias="History" type="com.dev.cloud.vo.History"/>
 <typeAlias alias="Item_Survey" type="com.dev.cloud.vo.Item_Survey"/>
 <typeAlias alias="Item" type="com.dev.cloud.vo.Item"/>
@@ -15,6 +15,8 @@
 <typeAlias alias="Patentsub" type="com.dev.cloud.vo.Patentsub"/>
 <typeAlias alias="PTI" type="com.dev.cloud.vo.PTI"/>
 <typeAlias alias="Reply" type="com.dev.cloud.vo.Reply"/>
+<typeAlias alias="Item_Question" type="com.dev.cloud.vo.Item_Question"/>
+<typeAlias alias="FundingTable" type="com.dev.cloud.vo.FundingTable"/>
 
 
 </typeAliases>
@@ -30,6 +32,7 @@
 <mapper resource="mapper/PTIMapper.xml"/>
 <mapper resource="mapper/replyMapper.xml"/>
 <mapper resource="mapper/historyMapper.xml"/>
+
 
 </mappers>
 
