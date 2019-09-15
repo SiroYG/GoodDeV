@@ -1,5 +1,7 @@
 package com.dev.cloud.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,17 +10,21 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dev.cloud.dao.memberRepository;
-import com.dev.cloud.vo.devMember;
+import com.dev.cloud.dao.boardRepository;
+import com.dev.cloud.utill.PageNavigator;
+import com.dev.cloud.vo.Board;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/board")
 public class BoardController {
 
 	@Autowired
-	memberRepository dao;
+	boardRepository dao;
+
+	final String uploadPath = "/uploadfile";
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String gomain() { // 홈이동
@@ -30,148 +36,44 @@ public class BoardController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "/gologin", method = RequestMethod.GET)
-	public String gologin() { // 로그인창 이동
-		return "/member/login";
+	@RequestMapping(value = "/boardhome", method = RequestMethod.GET)
+	public String boardhome() { // 홈이동 (리다이렉트)
+		return "/board/Board_list";
 	}
-
-	@RequestMapping(value = "/gosign", method = RequestMethod.GET)
-	public String gosign() { // 회원가입창 이동
-		return "/member/signin";
-	}
-
-	@RequestMapping(value = "/gofindid", method = RequestMethod.GET)
-	public String gofindid() {
-		return "/member/findid";
-	}
-
-	@RequestMapping(value = "/gofindpw", method = RequestMethod.GET)
-	public String gofindpw() {
-		return "/member/findpw";
-	}
-
-	@RequestMapping(value = "/goupdate", method = RequestMethod.GET)
-	public String goupdate() {
-		return "/member/update";
-	}
-
-	@RequestMapping(value = "/godropout", method = RequestMethod.GET)
-	public String godropout() {
-		return "/member/udropout";
-	}
-
-	@RequestMapping(value = "/loginform" ,method=RequestMethod.POST)
-	public String login(devMember member, HttpSession session) { // 로그인 폼 request
-		System.out.println(member);
-		devMember mem = dao.login_member(member);
-		if (mem != null) {
-			session.setAttribute("loginId", mem.getMemberId());
-			session.setAttribute("loginName", mem.getMemberName());
-			session.setAttribute("loginType", mem.getMemberType());
-			System.out.println("로그인 성공 : " + member);
-			return "redirect:/";
-		} else {
-			System.out.println("로그인 실패");
-		}
-		return "redirect:/";
-	}
-
-	@RequestMapping(value = "/signupform", method=RequestMethod.POST)
-	public String signup_member(devMember member, HttpSession session) {	// 회원가입 폼 request
-		System.out.println(member);
-		try {
-			int signup = dao.signup_member(member);
-			if (signup == 1) {
-				System.out.println("회원가입 성공 : " + member);
-				return "redirect:/";
-			} else {
-				System.out.println("회원가입 실패");
-			}
-		} catch (Exception e) {
-			return "redirect:/member/gosign";
-		}
-
-		return "redirect:/member/gosign";
-	}
-
-	
-	@RequestMapping(value = "/updateform" ,method=RequestMethod.POST)
-	public String update_member(devMember member, HttpSession session) { // 회원수정 폼 request
-		System.out.println("update의member==>"+member);
-		try{
-		int update = dao.update_member(member);
-		if(update==1){
-			System.out.println("회원수정 성공 : " + member);
-			return "redirect:/";
-		}else{
-			System.out.println("회원수정 실패");
-		}
-		}catch (Exception e) {
-			return "redirect:/member/update";
-		}
-		return "redirect:/member/update";
+	@RequestMapping(value = "/gowrite", method = RequestMethod.GET)
+	public String gowrite() { // 홈이동 (리다이렉트)
+		return "/board/Board_Write";
 	}
 	
-	@RequestMapping(value = "/dropoutform" ,method=RequestMethod.POST)
-	public String dropout_member(devMember member, HttpSession session) { // 회원수정 폼 request
-		System.out.println("delete의member==>"+member);
-		try{
-		int dropout = dao.delete_member(member);
-		if(dropout==1){
-			System.out.println("회원삭제 성공 : " + member);
-			return "redirect:/";
-		}else{
-			System.out.println("회원삭제 실패");
-		}
-		}catch (Exception e) {
-			return "redirect:/member/dropout";
-		}
-		return "redirect:/member/dropout";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value ="/searchId", method=RequestMethod.POST)
-	public String searchId_member(devMember member) { // 회원id 폼 request
-		System.out.println("searchId의 member==>"+member);
-		devMember searchId_pw = dao.searchId_pw_member(member);
-		try{
-		if(searchId_pw!=null){
-			System.out.println("아이디 찾기 성공 : " + member);
-			return searchId_pw.getMemberId();
-			
-		}else{
-			System.out.println("아이디 찾기 실패");
-			return "";
-		}
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return searchId_pw.getMemberId();
-	}
-	
-	@ResponseBody
-	@RequestMapping(value ="/searchPw", method=RequestMethod.POST)
-	public String searchpw_member(devMember member) { // 회원id 폼 request
-		System.out.println("searchpw의 member==>"+member);
-		devMember searchId_pw = dao.searchId_pw_member(member);
-		try{
-		if(searchId_pw!=null){
-			System.out.println("비번 찾기 성공 : " + member);
-			return searchId_pw.getMemberPw();
-		}else{
-			System.out.println("비번 찾기 실패");
-			return "";
-		}
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return searchId_pw.getMemberPw();
-	}
-	
-	
+
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
 	}
+
+	@RequestMapping(value = "boardListForm", method = RequestMethod.GET)
+	public String boardListForm(@RequestParam(value = "searchItem", defaultValue = "title") String searchItem,
+			@RequestParam(value = "searchWord", defaultValue = "") String searchWord,
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, Model model) {
+
+		// 게시글 전체 개수 조회
+		int totalRecordCount = dao.getBoardCount(searchItem, searchWord);
+		System.out.println(totalRecordCount);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		System.out.println(navi.getStartRecord());
+		List<Board> list = dao.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		System.out.println(list.size());
+		for (Board vo : list) {
+			System.out.println(vo);
+		}
+
+		model.addAttribute("searchItem", searchItem);
+		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("navi", navi);
+		model.addAttribute("list", list);
+
+		return "/board/Board_list";
+	}
+
 }

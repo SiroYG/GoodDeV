@@ -46,8 +46,7 @@
 			<ul class="navbar-nav nav ml-auto">
 				<li class="nav-item" ><a href="home" class="nav-link"><span>Home</span></a></li>
 				<li class="nav-item"><a href="#about-section" class="nav-link"><span>소개글</span></a></li>
-				<li class="nav-item"><a href="#practice-section"
-					class="nav-link"><span>특허 FAQ</span></a></li>
+				<li class="nav-item"><a href="/cloud/board/boardhome" class="nav-link"><span>특허 FAQ</span></a></li>
 				<li class="nav-item"><a href="#blog-section" class="nav-link"><span>크라우드
 							펀딩</span></a></li>
 				<li class="nav-item"><a href="#contact-section"
