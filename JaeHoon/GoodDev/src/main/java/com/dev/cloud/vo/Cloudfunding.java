@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Crowdfunding{
+public class Cloudfunding{
 
-	private int crowdfundingNum ;
+	private int CouldfundingNum ;
 	private int itemNum;
 	private int itemGoalPrice ;
 	private int itemCurrecyPrice ;

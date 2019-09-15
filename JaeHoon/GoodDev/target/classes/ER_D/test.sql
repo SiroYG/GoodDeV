@@ -3,7 +3,7 @@
 
 DROP TABLE REPLY CASCADE CONSTRAINTS;
 DROP TABLE BOARD CASCADE CONSTRAINTS;
-DROP TABLE FundingTable CASCADE CONSTRAINTS;
+DROP TABLE NEW_TABLE CASCADE CONSTRAINTS;
 DROP TABLE CROWDFUNDING CASCADE CONSTRAINTS;
 DROP TABLE MTI CASCADE CONSTRAINTS;
 DROP TABLE devMember CASCADE CONSTRAINTS;
@@ -39,7 +39,6 @@ DROP SEQUENCE PTI_seq;
 
 DROP SEQUENCE REPLY_seq;
 
-DROP SEQUENCE FundingTable_seq;
 
 /* Create Sequences */
 CREATE SEQUENCE BOARD_seq;//
@@ -62,7 +61,7 @@ CREATE SEQUENCE PTI_seq;//
 
 CREATE SEQUENCE REPLY_seq;//
 
-CREATE SEQUENCE FundingTable_seq;//
+
 
 /* Create Tables */
 
@@ -102,18 +101,6 @@ CREATE TABLE devMember
 	memberName varchar2(20) NOT NULL,
 	phoneNum varchar2(20) NOT NULL,
 	PRIMARY KEY (memberId)
-);
-
-
-CREATE TABLE FundingTable
-(
-	fundingReplyNum number NOT NULL,
-	crowdfundingNum number NOT NULL,
-	memberId varchar2(20) NOT NULL,
-	investment number NOT NULL,
-	fundingReply varchar2(500) NOT NULL,
-	fundingReplydate date NOT NULL,
-	PRIMARY KEY (fundingReplyNum)
 );
 
 
@@ -182,6 +169,17 @@ CREATE TABLE MTI
 );
 
 
+CREATE TABLE NEW_TABLE
+(
+	fundingReplyNum number NOT NULL,
+	fundingReply varchar2(500) NOT NULL,
+	memberId varchar2(20) NOT NULL,
+	fundingReplydate date NOT NULL,
+	crowdfundingNum number NOT NULL,
+	PRIMARY KEY (fundingReplyNum)
+);
+
+
 CREATE TABLE PATENT
 (
 	patentNum varchar2(100) NOT NULL,
@@ -237,7 +235,7 @@ ALTER TABLE REPLY
 ;
 
 
-ALTER TABLE FundingTable
+ALTER TABLE NEW_TABLE
 	ADD FOREIGN KEY (crowdfundingNum)
 	REFERENCES CROWDFUNDING (crowdfundingNum)
 ;
