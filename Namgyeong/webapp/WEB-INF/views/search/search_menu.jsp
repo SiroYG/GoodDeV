@@ -3,12 +3,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
   <head>
-    <title>Survey :: All list</title>
+    <title>Search :: Search Menus</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
-
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
     
@@ -19,19 +17,17 @@
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
-    <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css">
     
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
-    <link rel="stylesheet" href="/cloud/resources/css/survey.css">
+    <link rel="stylesheet" href="/cloud/resources/css/search.css">
     
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     
     <script></script>
+    
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  
@@ -58,156 +54,45 @@
 	    </div>
 	  </nav>
 
-	  <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_8.jpg');" data-stellar-background-ratio="0.5">
+	  <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_10-1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
           <div class="col-md-9 ftco-animate pb-5 text-center">
-            <h1 class="mb-3 bread">Blind Test</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="home">Home <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="blog.html">블라인드 테스트 <i class="ion-ios-arrow-forward"></i></a></span> <span>진행중인 테스트 목록 <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-3 bread">Search Menu</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="home">Home <i class="ion-ios-arrow-forward"></i></a></span> <!--<span class="mr-2"><a href="blog.html">Q & A 게시판 <i class="ion-ios-arrow-forward"></i></a></span>--> <span>검색 분류 <i class="ion-ios-arrow-forward"></i></span></p>
           </div>
         </div>
       </div>
     </section>
 		
 
-<section class="ftco-section" id="">
+<section class="ftco-section" id="blog-section">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
           <div class="col-md-10 heading-section text-center ftco-animate">
             <span class="subheading"></span>
-            <h2 class="mb-4">블라인드 테스트</h2>
-            <p>시장 출시 전 시제품에 대한 설문조사를 진행・참가할 수 있습니다.<br>
-            모든 결과는 익명으로 처리되며, 각 기록은 마이페이지에서 확인 가능합니다.
+            <h2 class="mb-4">검색 메뉴</h2>
+            <p>산업분야 검색, 단어 검색 등을 지원하는 특허 검색,<br>
+            실제 출시 중인 상품들을 검색할 수 있는 제품 검색을 지원합니다.
             </p>
-            
           </div>
-        </div>
-          <div class="main_table">
    
-   <table class="table">
-  <thead class="navy">
-    <tr>
-      <th scope="col">No.</th>
-      <th scope="col">분류</th>
-      <th scope="col">제목</th>
-      <th scope="col">작성자</th>
-      <th scope="col">작성날짜</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row" name="boardNum">1</th>
-      <td name="qCategory">[일반]</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="id">ididid</td>
-      <td name="boardDate">2019-09-09</td>
-    </tr>
-   <tr>
-      <th scope="row" name="boardNum">2</th>
-      <td name="qCategory">[특허]</td>
-      <td name="title">bbbbbbbbbbb</td>
-      <td name="id">ottotto</td>
-      <td name="boardDate">2019-09-07</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">3</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">4</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">5</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">6</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">7</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">8</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">9</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">10</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-  </tbody>
   
-</table>
-     <a href="gosurvey_form" class="btns btn-3"><span class="white">테스트 진행하기</span></a><br><br> 
-       <!--페이징 & 검색-->
-  <div class="page-center">
-  
-  <nav>
-  <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <a class="page-link" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only">Previous</span>
-      </a>
-    </li>
-    <li class="page-item active"><a class="page-link">1</a></li>
-    <li class="page-item"><a class="page-link">2</a></li>
-    <li class="page-item"><a class="page-link">3</a></li>
-    <li class="page-item"><a class="page-link">4</a></li>
-    <li class="page-item"><a class="page-link">5</a></li>
-    <li class="page-item">
-      <a class="page-link" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only">Next</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-      </div>
-<form action="" method="post" class="search-form" id="search-form">
-<!--Blue select-->
-<select name="searchItem" class="searchItem">
- <option value="all" selected>분류</option>
-  <option value="title" selected>제목</option>
-  <option value="content">내용</option>
-  <option value="id">작성자</option>
-</select>
-
-<input type="text" name="searchWord" class="searchWord" placeholder="  Search">
-<button type="button" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
-    </form>
-          </div>
+         <div class="boxes">
+  <a class="box" href="search_patent.html">
+    <h3>특허 검색하기</h3>
+   <img src="/cloud/resources/images/search.png" alt="" class="icons">
+    <p>특정 단어, 산업분야 등 여러 검색 옵션이 있습니다.</p>
+  </a>
+<div class="hr_div"></div>
+  <a class="box2" href="#">
+    <h3>제품 검색하기</h3>
+    <img src="/cloud/resources/images/menu.png" alt="" class="icons">
+    <p>실제 판매중인 제품군들을 비교할 수 있습니다.</p>
+  </a>
+  </div>
+        </div> 
           </div>
     </section>
 		
@@ -286,8 +171,6 @@
   <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
   <script src="/cloud/resources/js/aos.js"></script>
   <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
-  <script src="/cloud/resources/js/bootstrap-datepicker.js"></script>
-  <script src="/cloud/resources/js/jquery.timepicker.min.js"></script>
   <script src="/cloud/resources/js/scrollax.min.js"></script>
   
   <script src="/cloud/resources/js/main.js"></script>
