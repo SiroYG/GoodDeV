@@ -3,10 +3,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
   <head>
-    <title>Search :: Search Patents</title>
+    <title>Search :: </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
     
@@ -18,18 +18,10 @@
 
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/search.css">
-    
-    <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
-    <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-    
-    <script></script>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  
@@ -56,13 +48,14 @@
 	    </div>
 	  </nav>
 
-	  <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_5-1.jpg');" data-stellar-background-ratio="0.5">
+
+	  <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_10-1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
           <div class="col-md-9 ftco-animate pb-5 text-center">
             <h1 class="mb-3 bread">Search Patent</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="index">Home <i class="ion-ios-arrow-forward"></i></a></span> <!--<span class="mr-2"><a href="blog.html">Q & A 게시판 <i class="ion-ios-arrow-forward"></i></a></span>--> <span>특허 검색 <i class="ion-ios-arrow-forward"></i></span></p>
+            <p class="breadcrumbs"><span class="mr-2"><a href="home">Home <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="#">검색 분류 <i class="ion-ios-arrow-forward"></i></a></span> <span>특허 검색 <i class="ion-ios-arrow-forward"></i></span></p>
           </div>
         </div>
       </div>
@@ -75,54 +68,62 @@
           <div class="col-md-10 heading-section text-center ftco-animate">
             <span class="subheading"></span>
             <h2 class="mb-4">특허 검색</h2>
-            <p>산업분야 검색, 단어 검색 등을 지원합니다.</p>
+            <p>산업분야 검색, 단어 검색 등을 지원합니다.</p><br>
             <hr class="hr_navy">
           </div>
         </div>
           <div class="main_table">
    <div class="search-container">
   <form action="" method="get" id="">
-      <label for="patent-type" class="col-sm-2 col-form-label">특허 산업분야</label>
-      <select id="patent-type" name="patenttype">
-          <option value="" selected>산업분야1</option>
-          <option value="" >산업분야2</option>
-          <option value="" >산업분야3</option>
-          <option value="" >여</option>
-          <option value="" >기</option>
-          <option value="" >는</option>
-          <option value="" >그</option>
-          <option value="" >냥</option>
-          <option value="" >샘</option>
-          <option value="" >플</option>
-      </select>
+       <label for="patent-type" class="col-sm-2 col-form-label">특허 산업분야</label>
+                        <select id="patent-type" name="patenttype">
+                            <option value="none" selected>[필수선택] 산업분야를 선택하세요</option>
+                            <option value="">고무 제품 및 플라스틱 제품 제조업</option>
+                            <option value="">기초 화학물질 제조업</option>
+                            <option value="">마그네틱 및 광학 매체 제조업</option>
+                            <option value="">반도체 제조업</option>
+                            <option value="">안경, 사진장비 및 기타 광학기기 제조업</option>
+                            <option value="patenttype1">영상 및 음향기기 제조업</option>
+                            <option value="">의료용 기기 제조업</option>
+                            <option value="">자동차 제조업</option>
+                            <option value="">전구 및 조명장치 제조업</option>
+                            <option value="">전동기, 발전기 및 전기 변환, 공급, 제어 장치 제조업</option>
+                            <option value="">전자부품 제조업</option>
+                            <option value="">절연선 및 케이블 제조업</option>
+                            <option value="">컴퓨터 및 주변장치 제조업</option>
+                            <option value="patenttype2">컴퓨터 프로그래밍 및 정보서비스업</option>
+                            <option value="patenttype3">통신 및 방송 장비 제조업</option>
+                            <option value="">특수 기계 제조업</option>
+                            <option value="">기타 전기장비 제조업</option>
+                            <option value="">기타 제품 제조업</option>
+                            <option value="etc">기타 산업분야</option>
+                        </select>&nbsp;&nbsp;&nbsp;
       <label for="patent-option" class="col-sm-2 col-form-label">특허 검색옵션</label>
       <select id="patent-option" name="searchItem">
-          <option value="none" selected>구분</option>
+      <option value="onlypatenttype" >구분</option>
+      	<option value="onlypatenttype" >특허 산업분야만 검색</option>
           <option value="" >특허명</option>
-          <option value="" >특허설명</option>
           <option value="" >특허 보유자명(개인/기업)</option>
-          <option value="" >여</option>
-          <option value="" >기</option>
-          <option value="" >도</option>
-          <option value="" >그</option>
-          <option value="" >냥</option>
-          <option value="" >...</option>
+          <option value="" >특허설명</option>
       </select><br><br>
       <label for="patent-word" class="col-sm-2 col-form-label">검색</label>
       <input type="text" class="patent-word" id="patent-word">&nbsp;&nbsp;&nbsp;
       <button type="button" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
   </form>
+  <hr class="hr_navy">
    </div>
     <!--검색 결과는 검색하기 버튼 누르고 난 후에 떠야 합니다,,,(with.Ajax) 이 테이블은 그저 예시일 뿐-->
         <div class="search-result" id="search-result">
              <table class="table">
+             <caption class="search-result">검색 결과 '00,000'개의 특허를 찾았습니다.</caption>
   <thead class="navy">
     <tr>
       <th scope="col">No.</th>
       <th scope="col">분류</th>
-      <th scope="col">제목</th>
-      <th scope="col">작성자</th>
-      <th scope="col">작성날짜</th>
+      <th scope="col">특허명</th>
+      <th scope="col">특허설명</th>
+      <th scope="col">특허 보유자</th>
+      <th scope="col">등록날짜</th>
     </tr>
   </thead>
   <tbody>
@@ -130,75 +131,70 @@
       <th scope="row" name="boardNum">1</th>
       <td name="qCategory">[일반]</td>
       <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
       <td name="id">ididid</td>
       <td name="boardDate">2019-09-09</td>
     </tr>
-   <tr>
-      <th scope="row" name="boardNum">2</th>
-      <td name="qCategory">[특허]</td>
-      <td name="title">bbbbbbbbbbb</td>
-      <td name="id">ottotto</td>
-      <td name="boardDate">2019-09-07</td>
+    <tr>
+      <th scope="row" name="boardNum">1</th>
+      <td name="qCategory">[일반]</td>
+      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+      <td name="id">ididid</td>
+      <td name="boardDate">2019-09-09</td>
     </tr>
      <tr>
-      <th scope="row" name="boardNum">3</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
+      <th scope="row" name="boardNum">1</th>
+      <td name="qCategory">[일반]</td>
+      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+      <td name="id">ididid</td>
+      <td name="boardDate">2019-09-09</td>
     </tr>
      <tr>
-      <th scope="row" name="boardNum">4</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
+      <th scope="row" name="boardNum">1</th>
+      <td name="qCategory">[일반]</td>
+      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+      <td name="id">ididid</td>
+      <td name="boardDate">2019-09-09</td>
     </tr>
      <tr>
-      <th scope="row" name="boardNum">5</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">6</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">7</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">8</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">9</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">10</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
+      <th scope="row" name="boardNum">1</th>
+      <td name="qCategory">[일반]</td>
+      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+      <td name="id">ididid</td>
+      <td name="boardDate">2019-09-09</td>
     </tr>
   </tbody>
   
 </table>
+              <!--페이징 & 검색-->
+  <div class="page-center">
+  
+  <nav>
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item active"><a class="page-link">1</a></li>
+    <li class="page-item"><a class="page-link">2</a></li>
+    <li class="page-item"><a class="page-link">3</a></li>
+    <li class="page-item"><a class="page-link">4</a></li>
+    <li class="page-item"><a class="page-link">5</a></li>
+    <li class="page-item">
+      <a class="page-link" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+      </div>
         </div>
          <hr class="hr_navy">
           </div>
@@ -260,6 +256,14 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+        </div>
       </div>
     </footer>
     
@@ -282,7 +286,7 @@
   <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
   <script src="/cloud/resources/js/scrollax.min.js"></script>
   
-  <script src="js/main.js"></script>
+  <script src="/cloud/resources/js/main.js"></script>
     
   </body>
 </html>
