@@ -21,4 +21,7 @@
 -- 190914
 -- 파이썬 DB select, insert 문 query 연습
 -- 190915
--- middleSide_myPage List만들기 
+-- middleSide_myPage List만들기 (1)
+-- 190916
+-- middleSide_myPage List만들기 (2) 
+
