@@ -40,6 +40,10 @@ Search - search_patent form(o)
 Header & Footer modify (△)
 CSS - All modify(o)
 
+--0915
+Search - search_menu (o)
+Survey - image modify (o)
+CSS - Search, Survey modify (o)
 
 * 앞으로 해야할 것들
 - 마이페이지 유형별 구성 및 테이블 구성 짜기
