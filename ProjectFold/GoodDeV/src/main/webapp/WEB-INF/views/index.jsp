@@ -34,7 +34,7 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	<div class="container">
-		<a class="navbar-brand" href="home">MainLogo</a>
+		<a class="navbar-brand" href="/cloud/home">MainLogo</a>
 		<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle"
 			type="button" data-toggle="collapse" data-target="#ftco-nav"
 			aria-controls="ftco-nav" aria-expanded="false"
@@ -44,7 +44,7 @@
 
 		<div class="collapse navbar-collapse" id="ftco-nav">
 			<ul class="navbar-nav nav ml-auto">
-				<li class="nav-item" ><a href="home" class="nav-link"><span>Home</span></a></li>
+				<li class="nav-item" ><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
 				<li class="nav-item"><a href="#about-section" class="nav-link"><span>소개글</span></a></li>
 				<li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>특허 FAQ</span></a></li>
 				<li class="nav-item"><a href="#blog-section" class="nav-link"><span>크라우드
