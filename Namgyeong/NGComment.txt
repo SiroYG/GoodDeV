@@ -45,6 +45,10 @@ Search - search_menu (o)
 Survey - image modify (o)
 CSS - Search, Survey modify (o)
 
+--0916
+Item - item_history list, write, update, Detail (o)
+CSS - Item.css (o)
+
 * 앞으로 해야할 것들
 - 마이페이지 유형별 구성 및 테이블 구성 짜기
 - 크라우드 펀딩 상세페이지 + 결제 API 연동?
