@@ -16,6 +16,7 @@
 <typeAlias alias="PTI" type="com.dev.cloud.vo.PTI"/>
 <typeAlias alias="Reply" type="com.dev.cloud.vo.Reply"/>
 </typeAliases>
+
 <mappers>
 <mapper resource="mappers/memberMapper.xml"/>
 <mapper resource="mappers/boardMapper.xml"/>
@@ -28,7 +29,6 @@
 <mapper resource="mappers/PTIMapper.xml"/>
 <mapper resource="mappers/replyMapper.xml"/>
 <mapper resource="mappers/historyMapper.xml"/>
-
 </mappers>
 
 </configuration>

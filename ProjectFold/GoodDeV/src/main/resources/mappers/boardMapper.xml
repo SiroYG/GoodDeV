@@ -43,11 +43,22 @@
 		where boardnum = #{boardNum}
 	</select>
 
-	<update id="updateBoard" parameterType="int">
+
+
+	<update id="updateBoard" parameterType="Board">
 		update BOARD set
-		HITCOUNT = HITCOUNT + 1
+		TITLE = #{title},
+		CONTENT = #{content},
+		QTYPE = #{qType},
+		QCATEGORY = #{qCategory}
+		<if test="originalFilename!= null">
+			originalFilename = #{originalFilename},
+			saveFilename = #{saveFilename},
+		</if>
 		where boardnum = #{boardNum}
 	</update>
+	
+	
 
 	<delete id="deleteBoard" parameterType="int">
 		Delete From BOARD
