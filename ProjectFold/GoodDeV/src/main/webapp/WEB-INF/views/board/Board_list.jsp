@@ -52,7 +52,8 @@
 	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A게시판</span></a></li>
 	          <li class="nav-item"><a href="#" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="#" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	         <li class="nav-item"><a href="#" class="nav-link"><span>마이페이지</span></a></li>				<c:if test="${sessionScope.loginId==null}">
+	         <li class="nav-item"><a href="#" class="nav-link"><span>마이페이지</span></a></li>		
+	         	<c:if test="${sessionScope.loginId==null}">
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a
@@ -104,7 +105,7 @@
 					<tr> 
 						<th scope="row" name="boardNum">${stat.count + navi.startRecord}</th>
 						<td>${board.qCategory}</td>
-						<td class="board_title"><a href="boardDetail?boardnum=${board.boardNum}">${board.title}</a></td>
+						<td class="board_title"><a href="boardDetail?boardNum=${board.boardNum}">${board.title}</a></td>
 						<td>${board.id}</td>
 						<td>${board.boardDate}</td>
 					</tr>
