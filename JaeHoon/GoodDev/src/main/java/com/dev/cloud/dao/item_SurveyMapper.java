@@ -34,6 +34,8 @@ public interface item_SurveyMapper {
 	//서베이 수정 세베이 번호로
 	public int updateItem_Survey(Item_Survey item_Survey);
 
-	
+	//서베이에서 기타의견 입력시 퀘스쳔테이블에 계속 업데이트 된다.
+	//
+	public int writeEtc(Item_Question itemQustion);
 	
 }

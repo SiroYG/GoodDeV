@@ -17,7 +17,7 @@
 <typeAlias alias="Reply" type="com.dev.cloud.vo.Reply"/>
 <typeAlias alias="Item_Question" type="com.dev.cloud.vo.Item_Question"/>
 <typeAlias alias="FundingTable" type="com.dev.cloud.vo.FundingTable"/>
-
+<typeAlias alias="FundingOption" type="com.dev.cloud.vo.FundingOption"/>
 
 </typeAliases>
 <mappers>
@@ -32,7 +32,7 @@
 <mapper resource="mapper/PTIMapper.xml"/>
 <mapper resource="mapper/replyMapper.xml"/>
 <mapper resource="mapper/historyMapper.xml"/>
-
+<mapper resource="mapper/FundingOption.xml"/>
 
 </mappers>
 

@@ -33,6 +33,7 @@
 		select *
 		from Item_Question
 		where itemNum=#{itemNum}
+		and SYSDATE between  #{startDate}) AND #{dueDate}
 	</select>
 
 	<update id="updateItem_Question" parameterType="Item_Question">
@@ -42,14 +43,22 @@
 		SET
 		question = #{question}
 		,description = #{description}
-		,dueDate =
-		#{dueDate}
+		,dueDate = #{dueDate}
 		,startDate = #{startDate}
 
 		WHERE questionNum=#{questionNum}
 
 	</update>
-
+	
+	
+	
+	
+	<update id="writeEtc" parameterType="Item_Question">
+		UPDATE Item_Question
+		SET
+		etc = #{etc}
+		WHERE questionNum=#{questionNum}
+	</update>
 	<update id="deleteItem_Question" parameterType="Item_Question">
 
 		UPDATE Item_Question
@@ -68,14 +77,12 @@
 		surveyNum
 		,questionNum
 		,qValuable
-		,etc
 		,writtenDate
 		)
 		VALUES (
 		Item_Survey_seq.NEXTVAL
 		,#{questionNum}
 		,#{qValuable}
-		,#{etc}
 		,SYSDATE
 		)
 	</insert>
@@ -85,32 +92,20 @@
 		select *
 		from Item_Survey
 		where questionNum=#{questionNum} and 
-		writtenDate between  #{startDate}) AND  writtenDate  #{dueDate}
+		writtenDate between  #{startDate} AND #{dueDate}
 	
 	</select>
 
-<update id="updateItem_Survey" parameterType="Item_Survey">
+	<update id="updateItem_Survey" parameterType="Item_Survey">
 
 		UPDATE Item_Survey
-
 		SET
 		qValuable = #{qValuable}
-		,etc=#{etc}
-
 		WHERE surveyNum=#{surveyNum}
 
 	</update>
 	
-	<update id="deleteItem_Survey" parameterType="Item_Survey">
 
-		UPDATE Item_Survey
-
-		SET
-		etc = 'none'
-
-		WHERE surveyNum=#{surveyNum}
-
-	</update>
 
 </mapper>
 

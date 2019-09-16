@@ -16,5 +16,6 @@ public class Item_Question {
 	private String description;
 	private String dueDate ;
 	private String startDate ;
+	private String etc ;
 
 }

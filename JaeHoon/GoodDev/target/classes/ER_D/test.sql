@@ -3,6 +3,7 @@
 
 DROP TABLE REPLY CASCADE CONSTRAINTS;
 DROP TABLE BOARD CASCADE CONSTRAINTS;
+DROP TABLE fundingOption CASCADE CONSTRAINTS;
 DROP TABLE FundingTable CASCADE CONSTRAINTS;
 DROP TABLE CROWDFUNDING CASCADE CONSTRAINTS;
 DROP TABLE MTI CASCADE CONSTRAINTS;
@@ -41,6 +42,8 @@ DROP SEQUENCE REPLY_seq;
 
 DROP SEQUENCE FundingTable_seq;
 
+DROP SEQUENCE fundingOption_seq;
+
 /* Create Sequences */
 CREATE SEQUENCE BOARD_seq;//
 
@@ -63,6 +66,11 @@ CREATE SEQUENCE PTI_seq;//
 CREATE SEQUENCE REPLY_seq;//
 
 CREATE SEQUENCE FundingTable_seq;//
+
+CREATE SEQUENCE fundingOption_seq;
+/* Create Tables */
+
+
 
 /* Create Tables */
 
@@ -105,6 +113,16 @@ CREATE TABLE devMember
 );
 
 
+CREATE TABLE fundingOption
+(
+	fundingOptionNum number NOT NULL,
+	crowdfundingNum number NOT NULL,
+	optionType varchar2(300) NOT NULL,
+	optionPrice number NOT NULL,
+	PRIMARY KEY (fundingOptionNum)
+);
+
+
 CREATE TABLE FundingTable
 (
 	fundingReplyNum number NOT NULL,
@@ -123,8 +141,7 @@ CREATE TABLE HISTORY
 	itemNum number NOT NULL,
 	comments varchar2(300),
 	itemVersion varchar2(20) NOT NULL,
-	startdate date NOT NULL,
-	enddate date NOT NULL,
+	historyDate date NOT NULL,
 	PRIMARY KEY (historyNum)
 );
 
@@ -135,8 +152,6 @@ CREATE TABLE ITEM
 	ideaDate date DEFAULT SYSDATE NOT NULL,
 	itemName varchar2(30) NOT NULL UNIQUE,
 	price number,
-	-- 계약 체결유무를 판단하기 위한 칼럼
-	contract varchar2(20) DEFAULT 'N' NOT NULL,
 	itemContent varchar2(300) NOT NULL,
 	itemRegDate date,
 	itemImagename varchar2(20),
@@ -157,6 +172,7 @@ CREATE TABLE ITEM_QUESTION
 	description varchar2(1000),
 	dueDate date DEFAULT SYSDATE NOT NULL,
 	startDate date NOT NULL,
+	etc varchar2(1000),
 	PRIMARY KEY (questionNum)
 );
 
@@ -167,7 +183,6 @@ CREATE TABLE ITEM_SURVEY
 	questionNum number NOT NULL,
 	-- 소비자가 입력한 질문지의 점수
 	qValuable number(2,0) DEFAULT 0 NOT NULL,
-	etc varchar2(1000),
 	writtenDate date DEFAULT SYSDATE NOT NULL,
 	PRIMARY KEY (surveyNum)
 );
@@ -213,6 +228,7 @@ CREATE TABLE PTI
 	PTI_seq number NOT NULL,
 	itemNum number NOT NULL,
 	patentNum varchar2(100) NOT NULL,
+	contract varchar2(20) NOT NULL,
 	PRIMARY KEY (PTI_seq)
 );
 
@@ -234,6 +250,12 @@ CREATE TABLE REPLY
 ALTER TABLE REPLY
 	ADD FOREIGN KEY (boardNum)
 	REFERENCES BOARD (boardNum)
+;
+
+
+ALTER TABLE fundingOption
+	ADD FOREIGN KEY (crowdfundingNum)
+	REFERENCES CROWDFUNDING (crowdfundingNum)
 ;
 
 

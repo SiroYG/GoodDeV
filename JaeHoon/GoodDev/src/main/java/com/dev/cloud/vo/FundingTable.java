@@ -10,8 +10,10 @@ import lombok.NoArgsConstructor;
 public class FundingTable{
 
 	private int fundingReplyNum ;
-	private String fundingReply;
-	private String memberId ;
-	private String fundingReplydate ;
 	private int crowdfundingNum ;
+	private String memberId ;
+	private int investment;
+	private String fundingReply;
+	private String fundingReplydate ;
+	
 }

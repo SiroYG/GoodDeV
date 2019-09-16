@@ -11,4 +11,8 @@ public interface historyMapper {
 	
 	//itemNum별 히스토리
 	public ArrayList<History> selectAllHistory(History history);
+	
+	//버전입력
+	public int updateHistory(History history);
+	
 }

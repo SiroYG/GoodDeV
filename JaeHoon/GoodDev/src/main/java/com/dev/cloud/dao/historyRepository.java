@@ -40,4 +40,16 @@ public class historyRepository implements historyMapper{
 		return result;
 	}
 
+	@Override
+	public int updateHistory(History history) {
+		int result=0;
+		historyMapper mapper=sqlSession.getMapper(historyMapper.class);
+		try {
+			result=mapper.updateHistory(history);
+		} catch (Exception e) {
+			e.printStackTrace();
+			}
+		
+		return result;
+	}
 }

@@ -5,33 +5,34 @@
 
 <mapper namespace="com.dev.cloud.dao.historyMapper">
 	<insert id="insertHistory" parameterType="History">
-	
+
 		insert into History (
 		HistoryNum
 		,itemNum
 		,comments
 		,itemVersion
-		,startdate
-		,enddate
+		,historyDate
 		)
 		VALUES (
 		History_seq.NEXTVAL
 		,#{itemNum}
 		,#{comments}
 		,#{itemVersion}
-		,#{startdate}
-		,#{enddate}
+		,#{historyDate}
 		)
 
 	</insert>
 	
-	<select id="selectAllHistory" parameterType="History" resultType="History">
-	select *
+
+
+	<select id="selectAllHistory" parameterType="History"
+		resultType="History">
+		select *
 		from History
 		where itemNum=#{itemNum}
-	
-	
+
+
 	</select>
 </mapper>
 
-<!-- //sql검토완료 -->
+
