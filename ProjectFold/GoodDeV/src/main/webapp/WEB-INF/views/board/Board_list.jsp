@@ -7,31 +7,23 @@
     <title>Board List :: </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
 <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-   
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/Header.css">
 <!--     <link rel="stylesheet" href="/cloud/resources/css/Board.css"> -->
-    
     <script type="text/javascript">
 		function submit() {
 			$("#searchForm").submit();
@@ -41,18 +33,19 @@
 <header class="header">
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index">MainLogo</a>
+	      <a class="navbar-brand" href="/cloud/home">MainLogo</a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="index#home-section" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
 	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A게시판</span></a></li>
 	          <li class="nav-item"><a href="#" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="#" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	         <li class="nav-item"><a href="#" class="nav-link"><span>마이페이지</span></a></li>				<c:if test="${sessionScope.loginId==null}">
+	         <li class="nav-item"><a href="#" class="nav-link"><span>마이페이지</span></a></li>		
+	         	<c:if test="${sessionScope.loginId==null}">
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a
@@ -104,7 +97,7 @@
 					<tr> 
 						<th scope="row" name="boardNum">${stat.count + navi.startRecord}</th>
 						<td>${board.qCategory}</td>
-						<td class="board_title"><a href="boardDetail?boardnum=${board.boardNum}">${board.title}</a></td>
+						<td class="board_title"><a href="boardDetail?boardNum=${board.boardNum}">${board.title}</a></td>
 						<td>${board.id}</td>
 						<td>${board.boardDate}</td>
 					</tr>

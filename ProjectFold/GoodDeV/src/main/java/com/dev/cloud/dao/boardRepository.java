@@ -44,17 +44,17 @@ public class boardRepository {
 		return list;
 	}
 
-	public Board selectOne(int boardno) {
+	public Board selectOne(int boardNum) {
 		boardMapper mapper = sqlSession.getMapper(boardMapper.class);
-		Board board = mapper.selectOne(boardno);
+		Board board = mapper.selectOne(boardNum);
 
 		return board;
 	}
 
-	public int deleteBoard(int boardno) {
+	public int deleteBoard(int boardNum) {
 		// TODO Auto-generated method stub
 		boardMapper mapper = sqlSession.getMapper(boardMapper.class);
-		int result = mapper.deleteBoard(boardno);
+		int result = mapper.deleteBoard(boardNum);
 		if (result ==1 ) {
 			System.out.println("삭제완료");
 		}
@@ -69,10 +69,10 @@ public class boardRepository {
 		int result = mapper.insertBoard(board);
 		return result;
 	}
-	public int updateBoard(int boardno) {
-		System.out.println("board repo=>" + boardno+"번보드");
+	public int updateBoard(Board board) {
+		System.out.println("board repo=>" + board);
 		boardMapper mapper = sqlSession.getMapper(boardMapper.class);
-		int result = mapper.updateBoard(boardno);
+		int result = mapper.updateBoard(board);
 		return result;
 	}
 }

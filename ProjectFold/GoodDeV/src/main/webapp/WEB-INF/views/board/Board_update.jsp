@@ -34,27 +34,50 @@
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/Header.css">
     <link rel="stylesheet" href="/cloud/resources/Board.css">
-    
+    <script>
+	function updatebtn() {
+		var qCategory = document.getElementById("qCategory");
+		var qType = document.getElementById("qType");
+		var title = document.getElementById("title");
+		var content = document.getElementById("content");
+		var saveFilename = document.getElementById("saveFilename");
+		var boardupdateform = document.getElementById("boardupdateform");
+		
+		boardupdateform.submit();
+	}
+    </script>
     
   </head>
 <header class="header">
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index">MainLogo</a>
+	      <a class="navbar-brand" href="/cloud/home">MainLogo</a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
 	          <li class="nav-item"><a href="/cloud/board/boardhome" class="nav-link"><span>Q & A게시판</span></a></li>
 	          <li class="nav-item"><a href="#" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="index#blog-section" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	         <li class="nav-item"><a href="#" class="nav-link"><span>마이페이지</span></a></li>
-	       <li style="margin-left: 20px; " class="nav-item cta"><a href="login_form.html" class="nav-link" data-toggle="modal" data-target="#modalAppointment">로그인</a></li>
-	       <li style="margin-left: 20px;" class="nav-item cta"><a href="register_form.html" class="nav-link" data-toggle="modal" data-target="#modalAppointment">회원가입</a></li>
-	        </ul>
+			 	    <c:if test="${sessionScope.loginId==null}">
+						<li style="margin-left: 20px;" class="nav-item cta"><a
+							href="/cloud/member/gologin" class="nav-link">로그인</a></li>
+						<li style="margin-left: 20px;" class="nav-item cta"><a
+							href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
+					</c:if>
+					
+					<c:if test="${sessionScope.loginId!=null}">
+						<li style="margin-left: 20px;" class="nav-item cta"><a
+							class="nav-link">${sessionScope.loginName}
+								${sessionScope.loginType}님 </a></li>
+						<li style="margin-left: 20px;" class="nav-item cta"><a
+							href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
+					</c:if>
+			  </ul>
 	      </div>
 	    </div>
 	  </nav>
@@ -68,25 +91,25 @@
   </div>
  
   <div class="Detail_table">
-     <form action="" method="post" id="">
+<form action="/cloud/board/boardupdate" method="post" id="boardupdateform">
+<input type="hidden" name="boardNum" value="${board.boardNum}">
      <hr class="hr_purple"> 
      <div class="form-group row">
     <label for="" class="col-sm-2 col-form-label"><span><b>작성 날짜</b></span></label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="boardDate" id="" placeholder="2019-09-04 (목)" readonly="readonly">
+      <input type="text" class="form-control" name="boardDate" placeholder="${board.boardDate}" readonly="readonly">
     </div>
     
   </div>
   <div class="form-group row">
     <label for="" class="col-sm-2 col-form-label"><span><b>질문 분류</b></span></label>
     <div class="col-sm-10">
-     <select name="qCategory">
+     <select name="qCategory" id="qCategory">
         <option value="etc" selected>일반</option>
          <option value="patent">특허</option>
          <option value="survey">블라인드 테스트</option>
          <option value="funding">크라우드 펀딩</option>
      </select>
-     <!-- <input type="email" class="form-control" id="inputEmail3" placeholder="Email">-->
     </div>
   </div>
   <fieldset class="form-group">
@@ -94,11 +117,11 @@
       <legend class="col-form-label col-sm-2 pt-0"><span><b>공개여부</b></span></legend>
       <div class="col-sm-10">
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="qType" id="" value="public" checked>
+          <input class="form-check-input" type="radio" name="qType" id="qType" value="public" checked>
           <label class="form-check-label" for="">공개</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="qType" id="" value="private">
+          <input class="form-check-input" type="radio" name="qType" id="qType" value="private">
           <label class="form-check-label" for="">비공개</label><br>
           <label class="form-check-label" for="">
             * 비공개로 설정 시 해당 게시글은 운영자만 확인할 수 있습니다.
@@ -111,19 +134,19 @@
   <div class="form-group row">
     <label for="" class="col-sm-2 col-form-label"><span><b>제목</b></span></label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="title" id="" placeholder="border 값 none으로 구분해야 하는데.." >
+      <input type="text" class="form-control" name="title" id="title" value="${board.title}">
     </div>
   </div>
   <div class="form-group row">
     <label for="" class="col-sm-2 col-form-label"><span><b>내용</b></span></label>
     <div class="col-sm-10">
-     <textarea rows="8" cols="112" name="content" class="form-control">내용내용내용내용내용내용내용내용내용내용내용내용내용</textarea>
+     <textarea rows="8" cols="112" name="content" id="content" class="form-control" >${board.content}</textarea>
     </div>
   </div>
    <div class="form-group row">
     <label for="" class="col-sm-2 col-form-label"><span><b>첨부파일</b></span></label>
     <div class="col-sm-10">
-      <input type="file" class="form-control" name="saveFilename" id="" >
+      <input type="file" class="form-control" name="saveFilename" id="saveFilename" >
     </div>
   </div>
   <hr class="hr_purple"> 
@@ -139,20 +162,15 @@
    <div class="form-group row">
     <div class="col-sm-10">
     <div style="margin-top: 40px;">
-     <a href="goboard" class="btns btn-3"><span class="white">돌아가기</span></a> 
-     &nbsp;&nbsp;  <a href="#" class="btns btn-3-green"><span class="white">수정</span></a> 
-     &nbsp;&nbsp;  <a href="#" class="btns btn-3-red"><span class="white">삭제</span></a>
+     <a href="/cloud/board/boardListForm" class="btns btn-3"><span class="white">돌아가기</span></a> 
+     &nbsp;&nbsp;  <a onclick="updatebtn()" style="cursor: pointer;" class="btns btn-3-green"><span class="white"> 수정확인 </span></a> 
+     &nbsp;&nbsp;   <a href="/cloud/board/godelete?boardNum=${board.boardNum}" class="btns btn-3-red"><span class="white">삭제</span></a>
      </div>
     </div>
-    
   </div>
 </form>
-      
-      
   </div>
-  
     </body>
-    
     <footer class="ftco-footer ftco-section">
       <div class="container">
         <div class="row mb-5">

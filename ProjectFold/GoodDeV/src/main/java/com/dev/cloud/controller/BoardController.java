@@ -49,13 +49,34 @@ public class BoardController {
 	public String boardhome() { // 홈이동 (리다이렉트)
 		return "/board/Board_list";
 	}
+
 	@RequestMapping(value = "gowrite", method = RequestMethod.GET)
 	public String gowrite(Model model) {
 		Date time = new Date();
 		model.addAttribute("today", time);
-		return "/board/Board_Write";  
+		return "/board/Board_Write";
 	}
 
+	@RequestMapping(value = "goupdate", method = RequestMethod.GET)
+	public String goupdate(Model model, int boardNum) {
+		System.out.println("boardNum => " + boardNum);
+		Board board = dao.selectOne(boardNum);
+		model.addAttribute("board", board);
+		return "/board/Board_update";
+	}
+	@RequestMapping(value = "boardupdate", method = {RequestMethod.POST, RequestMethod.GET})
+	public String boardupdate(Board board) {
+		System.out.println("수정하자"+board.getBoardNum());
+		System.out.println(" 수정시도 board => " + board);
+		if (dao.updateBoard(board)==1) {
+			System.out.println("수정성공 ");
+			return "redirect:/board/boardListForm";
+		}
+		System.out.println("수정실패");
+		return "/board/Board_update";
+	}
+	
+	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -85,20 +106,17 @@ public class BoardController {
 
 		return "/board/Board_list";
 	}
-	@RequestMapping(value="/boardWrite",method =  RequestMethod.POST)
-	public String boardWriteProcess(Board board, 
-			MultipartFile upload, 
-			HttpSession session, 
-			RedirectAttributes rttr
-			) {
-		
+
+	@RequestMapping(value = "/boardWrite", method = RequestMethod.POST)
+	public String boardWriteProcess(Board board, MultipartFile upload, HttpSession session, RedirectAttributes rttr) {
+
 		String userid = (String) session.getAttribute("loginId");
 		board.setId(userid);
 		System.out.println(upload.getOriginalFilename());
 		System.out.println(board);
-		
+
 		// 2) FileService 를 사용한 코드
-		if (upload!=null) {
+		if (upload != null) {
 			String originalfile = upload.getOriginalFilename();
 			String savedfile = FileService.saveFile(upload, uploadPath);
 			System.out.println(savedfile);
@@ -106,37 +124,59 @@ public class BoardController {
 			board.setSaveFilename(savedfile);
 		}
 		int result = dao.insertBoard(board);
-		System.out.println("게시물입력 : " +result);
-		
+		System.out.println("게시물입력 : " + result);
+
 		return "redirect:/board/boardListForm";
 	}
-	
-		// 파일 다운로드
-		@RequestMapping(value="/download", method=RequestMethod.GET) 
-		public String download(int boardno, HttpServletResponse response) {
-			Board board = dao.selectOne(boardno);
-			String savedfile = board.getSaveFilename();
-			String originalfile = board.getOriginalFilename();
-			System.out.println(savedfile);
-			response.setHeader("Content-Disposition", "attachment;filename="+originalfile);
-		
-			String fullPath = uploadPath +"/" + savedfile;
-			System.out.println(fullPath);
-			FileInputStream filein = null;
-			ServletOutputStream fileout = null;
-			
-			try {
-				filein  = new FileInputStream(fullPath);
-				fileout = response.getOutputStream();
-				FileCopyUtils.copy(filein, fileout);
-				filein.close();
-				fileout.close();
-			
-			} catch (IOException e) {
-				
-				e.printStackTrace();
-			}
-			
-			return null;
+
+	@RequestMapping(value = "boardDetail", method = RequestMethod.GET)
+	public String boardDetail(int boardNum, Model model) {
+
+		System.out.println("boardNum => " + boardNum);
+		Board board = dao.selectOne(boardNum);
+		model.addAttribute("board", board);
+		System.out.println(board);
+		return "/board/Board_Detail";
+	}
+
+	@RequestMapping(value = "godelete", method = RequestMethod.GET)
+	public String godelete(int boardNum, Model model) {
+		System.out.println("게시글 삭제 " + boardNum);
+		int result = dao.deleteBoard(boardNum);
+		if (result > 0) {
+
+			return "redirect:/board/boardListForm";
+		} else {
+			return "redirect:/";
 		}
+	}
+
+	// 파일 다운로드
+	@RequestMapping(value = "/download", method = RequestMethod.GET)
+	public String download(int boardno, HttpServletResponse response) {
+		Board board = dao.selectOne(boardno);
+		String savedfile = board.getSaveFilename();
+		String originalfile = board.getOriginalFilename();
+		System.out.println(savedfile);
+		response.setHeader("Content-Disposition", "attachment;filename=" + originalfile);
+
+		String fullPath = uploadPath + "/" + savedfile;
+		System.out.println(fullPath);
+		FileInputStream filein = null;
+		ServletOutputStream fileout = null;
+
+		try {
+			filein = new FileInputStream(fullPath);
+			fileout = response.getOutputStream();
+			FileCopyUtils.copy(filein, fileout);
+			filein.close();
+			fileout.close();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 }

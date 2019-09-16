@@ -64,18 +64,10 @@
   						$('#id').val("");
   						$('#memberName').val("");
   						$('#email').val("");
-  						
   					}
   				}
-  				
   			})
-    		
-    		
-    		
-    		
     	})
-    	
-    	
     });
     </script>
 </head>
@@ -101,14 +93,12 @@
                         <div class="p-t-30">
                             <button class="btn btn--radius btn--green" type="button" id="searchPw">비밀번호 찾기</button> &nbsp;
                             <a class="btn btn--radius btn--green" href="/cloud/member/home">취소</a><br><br>
-                            
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Jquery JS-->
     <script src="/cloud/resources/vendor/jquery/jquery.min.js"></script>
     <!-- Vendor JS-->
@@ -118,8 +108,6 @@
 
     <!-- Main JS-->
     <script src="/cloud/resources/js/global.js"></script>
-
 </body>
-
 </html>
 <!-- end document-->

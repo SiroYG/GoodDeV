@@ -15,14 +15,14 @@ public interface boardMapper {
 	//게시판 출력
 	List<Board> selectAll(Map<String, String> map, RowBounds rb);
 	//게시판디테일
-	Board selectOne(int boardno);
+	Board selectOne(int boardNum);
 	//게시판 삭제
-	int deleteBoard(int boardno);
+	int deleteBoard(int boardNum);
 	//게시판 등록
 	int insertBoard(Board board);
 	
 	//게시판 업데이트
-	int updateBoard(int boardno);
+	int updateBoard(Board Board);
 
 	
 }
