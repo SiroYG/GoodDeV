@@ -38,8 +38,7 @@ public class boardRepository implements boardMapper {
 		return result;
 	}
 
-	//뎅리트시 보드를 삭제가 아닌 qType(질문타입)을 'none'으로 변경해준다.
-	//정보를 유지하기 위함.
+	
 	@Override
 	public int deleteBoard(Board board) {
 		int result=0;
@@ -53,7 +52,7 @@ public class boardRepository implements boardMapper {
 	}
 
 	
-	//보드번호(pk)로 한개의 보드를 가져옴
+	
 	@Override
 	public Board selectBoardByboardNum(Board board) {
 		Board result=null;
@@ -66,10 +65,8 @@ public class boardRepository implements boardMapper {
 		return result;
 	}
 
-	//보드테이블의 모든 정보를 출력
 	@Override
 	public ArrayList<Board> selectAllBoard() {
-		//보드 전체 memberType과 qType의 객체를 생성해서 넣어준다.
 		ArrayList<Board> result=null;
 		boardMapper mapper=sqlSession.getMapper(boardMapper.class);
 		try {

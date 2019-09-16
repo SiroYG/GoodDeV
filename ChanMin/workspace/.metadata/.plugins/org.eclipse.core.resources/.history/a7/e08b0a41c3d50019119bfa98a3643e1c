@@ -1,0 +1,28 @@
+package com.dev.cloud.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.dev.cloud.vo.Patent;
+
+@Controller
+public class TableController {
+	
+	//@Autowired
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/patentTable", method=)
+	public List<Patent> patentTable(){
+		
+		
+		return null;
+	}
+	
+	
+	
+}

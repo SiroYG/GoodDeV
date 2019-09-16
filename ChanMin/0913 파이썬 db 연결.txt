@@ -1,0 +1,16 @@
+! pip install cx_Oracle  <== Oracle  설치
+
+import cx_Oracle   <== import 하기
+
+connection = cx_Oracle.connect('hr','hr','13.209.47.61:1521/xe')  <== db 연결
+
+cursor = connection.cursor()
+
+sql = 'select * from patent'
+
+cursor.execute(sql)
+
+rows =cursor.fetchall()
+
+for row in rows:
+    print(row)

@@ -1,0 +1,19 @@
+import cx_Oracle   <== import 하기
+
+connection = cx_Oracle.connect('hr','hr','13.209.47.61:1521/xe')  <== db 연결
+
+cursor = connection.cursor()
+
+예제) devMember에 insert하기 
+
+sql = 'insert into devmember value (:memberId, :memberPw, :memberType, :email, :fundPrice, :memberName, :phoneNum)'
+
+cursor.execute(sql, memberId='888', 
+		memberPw='888',
+		memberType='enp',
+		email='bb@bbb.bbb', 
+		fundPrice=888, 
+		memberName='888',
+		phoneNum='010-8888-8888')
+
+connection.commit()

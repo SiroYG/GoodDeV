@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.dev.cloud.dao.boardRepository;
 import com.dev.cloud.dao.itemRepository;
 import com.dev.cloud.dao.memberRepository;
+import com.dev.cloud.dao.replyRepository;
 import com.dev.cloud.vo.Board;
 import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.MTI;
+import com.dev.cloud.vo.Reply;
 import com.dev.cloud.vo.devMember;
 
 /**
@@ -30,6 +32,8 @@ public class checkController_mapperOperator {
 	boardRepository bRepo;
 	@Autowired 
 	itemRepository iRepo;
+	@Autowired 
+	replyRepository rRepo;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -49,8 +53,7 @@ public class checkController_mapperOperator {
 		
 		System.out.println(temp);
 
-		devMember copiedTemp=new devMember();
-		copiedTemp=temp;
+
 		int resultInt =repo.signup_member(temp);
 		sysout=checkInt(resultInt, "signup_member");
 		System.out.println(sysout);
@@ -101,8 +104,6 @@ public class checkController_mapperOperator {
 		
 		System.out.println(temp);
 
-		Board copiedTemp=new Board();
-		copiedTemp=temp;
 		Board resultObject =null;
 		ArrayList<Board> resultList =null;
 		//인서트확인
@@ -193,6 +194,46 @@ public class checkController_mapperOperator {
 		return "mapperOperator";
 	}
 	
+	
+	
+	
+	//아이템테이블의 쿼리문을 검증하기위함 
+		@RequestMapping(value = "home4", method = RequestMethod.GET)
+		public String home4(Locale locale, Model model) {
+			String sysout;
+			int resultInt=0;
+			Reply temp=new Reply();
+			ArrayList<Reply> tempList=new ArrayList<>();
+			temp.setBoardNum(5);
+			temp.setMemberId("temp");
+			temp.setReply("여기가 메모장???");
+			
+			
+			resultInt=rRepo.insert_reply(temp);
+			sysout=checkInt(resultInt, "insert_reply");
+			System.out.println(sysout);
+			
+			tempList=rRepo.selectAll_reply(temp);
+			sysout=checkObject(tempList, "selectAll_reply");
+			System.out.println(sysout);
+			
+			resultInt=rRepo.delete_reply(tempList.get(0));
+			sysout=checkInt(resultInt, "delete_reply");
+			System.out.println(sysout);
+			
+			temp=rRepo.selectOne_reply(tempList.get(0));
+			sysout=checkObject(temp, "selectOne_reply");
+			System.out.println(sysout);
+			
+			resultInt=rRepo.update_reply(temp);
+			sysout=checkInt(resultInt, "update_reply");
+			System.out.println(sysout);
+			
+			
+			
+			
+			return "mapperOperator";
+		}
 	
 	public String checkInt(int resultInt, String methodName){
 		
