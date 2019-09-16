@@ -20,3 +20,5 @@
 -- 파이썬 DB 연동
 -- 190914
 -- 파이썬 DB select, insert 문 query 연습
+-- 190915
+-- middleSide_myPage List만들기 

@@ -5,6 +5,29 @@
 
 <mapper namespace="com.dev.cloud.dao.patentMapper">
 	
+	<select id="patentAll" resultType="Patent">
+	select
+	 	 patentNum
+		,patentName
+		,patentHolderName
+		,patentContent
+		,to_char(patentAppDate,'YYYY-MM-DD') as patentAppDate
+		,to_char(patentRegDate,'YYYY-MM-DD') as patentRegDate 
+		,patenttype
+	from
+		patent
+		
+	</select>
+	
+	
+	
 </mapper>
-
+<!-- patentNum ;
+	private String patentName ;
+	private String patentHolderName ;
+	private String patentContent ;
+	private String patentAppDate;
+	private String patentRegDate ;
+	private String patenttype ;
+	 -->
 

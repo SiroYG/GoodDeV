@@ -16,8 +16,16 @@ public class PatentRepository implements patentMapper {
 
 	@Override
 	public List<Patent> patentAll() {
+		patentMapper mapper = session.getMapper(patentMapper.class);
+		List<Patent> pList = null;
+		try{
+			pList = mapper.patentAll();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		return null;
+		return pList;
 	}
+
 	
 }
