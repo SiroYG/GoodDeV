@@ -5,47 +5,28 @@
 <html lang="ko">
 <head>
 <title>Board Read ::</title>
-
-
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900"
-	rel="stylesheet">
-
-<link rel="stylesheet"
-	href="/cloud/resources/css/open-iconic-bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
+<link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-
 <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="/cloud/resources/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
 <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
 <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
 <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
-<link rel="stylesheet"
-	href="/cloud/resources/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css">
-
 <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
 <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
 <link rel="stylesheet" href="/cloud/resources/css/style.css">
 <link rel="stylesheet" href="/cloud/resources/Header.css">
 <link rel="stylesheet" href="/cloud/resources/Board.css">
-
-
 </head>
-<header class="header"> <nav
-	class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target"
-	id="ftco-navbar">
+<header class="header"> 
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 <div class="container">
 	<a class="navbar-brand" href="/cloud/home">MainLogo</a>
 	<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle"
@@ -81,9 +62,10 @@
 		</ul>
 	</div>
 </div>
-</nav> </header>
-<body data-spy="scroll" data-target=".site-navbar-target"
-	data-offset="300">
+</nav> 
+</header>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
 	<div class="first">
 		<h1 style="margin-top: 10%;">Q & A 게시글</h1>
@@ -185,12 +167,8 @@
 
 		</div>
 	</form>
-
-
 	</div>
-
 </body>
-
 <footer class="ftco-footer ftco-section">
 <div class="container">
 	<div class="row mb-5">
