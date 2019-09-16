@@ -6,6 +6,7 @@ import com.dev.cloud.vo.Patent;
 
 public interface patentMapper {
 
-	public List<Patent> patentAll();
+	//특허 리스트  
+	List<Patent> patentAll();
 	
 }

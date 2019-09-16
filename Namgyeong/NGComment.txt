@@ -47,6 +47,7 @@ CSS - Search, Survey modify (o)
 
 --0916
 Item - item_history list, write, update, Detail (o)
+Search - search_patent form modify (o)
 CSS - Item.css (o)
 
 * 앞으로 해야할 것들
