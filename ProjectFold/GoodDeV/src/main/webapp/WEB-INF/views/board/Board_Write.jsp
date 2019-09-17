@@ -55,7 +55,7 @@
 	        <ul class="navbar-nav nav ml-auto">
 	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
 	          <li class="nav-item"><a href="/cloud/board/boardhome" class="nav-link"><span>Q & A게시판</span></a></li>
-	          <li class="nav-item"><a href="#" class="nav-link"><span>블라인드 테스트</span></a></li>
+	          <li class="nav-item"><a href="/cloud/survey/main" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="index#blog-section" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	         <li class="nav-item"><a href="#" class="nav-link"><span>마이페이지</span></a></li>				
 	         	<c:if test="${sessionScope.loginId==null}">
@@ -188,7 +188,7 @@
                 <li><a href="#about-section"><span class="icon-long-arrow-right mr-2"></span>소개글</a></li>
                 <li><a href="#practice-section"><span class="icon-long-arrow-right mr-2"></span>특허 FAQ</a></li>
                 <!--<li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Attorneys</a></li>-->
-                <li><a href="#blog-section"><span class="icon-long-arrow-right mr-2"></span>설문조사</a></li>
+                <li><a href="/cloud/survey/main"><span class="icon-long-arrow-right mr-2"></span>설문조사</a></li>
                 <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>공식 연락처</a></li>
               </ul>
             </div>
