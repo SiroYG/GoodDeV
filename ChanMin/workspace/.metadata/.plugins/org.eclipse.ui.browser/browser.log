@@ -19,3 +19,22 @@
 9월 15, 2019 13:30:24.72 [6556:13408:0915/133024.728:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -21
 9월 15, 2019 13:33:44.23 [6556:13408:0915/133344.234:ERROR:browser_process_sub_thread.cc(203)] Waited 8 ms for network service
 9월 15, 2019 13:48:26.23 [1840:836:0915/134826.230:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
+
+9월 17, 2019 14:20:10.99 NEW SESSION
+9월 17, 2019 14:20:10.99 [6028:12468:0917/142010.995:ERROR:browser_process_sub_thread.cc(203)] Waited 19 ms for network service
+9월 17, 2019 14:33:30.52 [5480:17396:0917/143330.520:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -106
+9월 17, 2019 14:34:43.80 [5480:17396:0917/143443.801:ERROR:socket_stream.cc(219)] Closing stream with result -2
+9월 17, 2019 14:35:28.82 [5480:17396:0917/143528.824:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -106
+9월 17, 2019 14:35:58.25 [5480:17396:0917/143558.254:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -106
+9월 17, 2019 15:16:07.91 [5480:17396:0917/151607.918:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -106
+9월 17, 2019 15:41:58.98 [5480:17396:0917/154158.987:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -118
+9월 17, 2019 16:01:32.57 [5480:17396:0917/160132.574:ERROR:browser_process_sub_thread.cc(203)] Waited 18 ms for network service
+9월 17, 2019 16:01:52.69 [2328:2556:0917/160152.697:ERROR:browser_process_sub_thread.cc(203)] Waited 22 ms for network service
+9월 17, 2019 16:21:20.57 [10164:15764:0917/162120.573:ERROR:browser_process_sub_thread.cc(203)] Waited 7 ms for network service
+9월 17, 2019 16:48:37.11 [14792:11296:0917/164837.110:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
+9월 17, 2019 17:25:10.38 [15312:3552:0917/172510.384:ERROR:socket_stream.cc(219)] Closing stream with result -2
+9월 17, 2019 17:56:50.86 [15312:3552:0917/175650.867:ERROR:socket_stream.cc(219)] Closing stream with result -2
+9월 17, 2019 17:58:06.25 [15312:3552:0917/175806.257:ERROR:browser_process_sub_thread.cc(203)] Waited 9 ms for network service
+9월 17, 2019 19:03:30.44 [11912:14244:0917/190330.440:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
+9월 17, 2019 19:43:30.84 [17912:17800:0917/194330.844:ERROR:browser_process_sub_thread.cc(203)] Waited 9 ms for network service
+9월 17, 2019 20:58:52.90 [3312:16416:0917/205852.902:ERROR:browser_process_sub_thread.cc(203)] Waited 15 ms for network service

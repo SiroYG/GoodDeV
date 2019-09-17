@@ -71,6 +71,18 @@ public class MemberController {
 		
 		return "/member/Mypage";
 	}
+	
+	@RequestMapping(value = "/goPatent", method = RequestMethod.GET)
+	public String goPatent() {
+		
+		return "search/search_menu";
+	}
+	@RequestMapping(value = "/searchGo", method = RequestMethod.GET)
+	public String searhGo() {
+		
+		return "search/search_patent";
+	}
+	
 	@ResponseBody
 	@RequestMapping(value="/patentSu", method=RequestMethod.GET)
 	public int patentSu(){
@@ -79,23 +91,25 @@ public class MemberController {
 		System.out.println("78번줄 특허 양==>"+pList.size());
 		return pList.size();
 	}
+	
+	
 	@ResponseBody
 	@RequestMapping(value="/patentTable", method=RequestMethod.GET)
-	public List<Patent> patentTable(int pageSu){
-		// String searchWord( 단어 ), String patentDetail( 특허명, 보유자명, 특허내용 ), String patentType (영상 및 음향기기 제조업) int pageSu
+	public List<Patent> patentTable(String patentType,String searchItem,String searchWord,HttpSession session,int pageSu){
+		// String searchWord( 단어 ), String searchItem( 특허명, 보유자명, 특허내용 ), String patentType (영상 및 음향기기 제조업) int pageSu
 		// String memberId = session.getAttribute("loginId"); myPage에서 나의 특허만 확인할때 볼수 있다.
-		 
+		 System.out.println("타입 : "+patentType+"\n"+"아이템: "+searchItem+"\n"+"특허타입: "+searchWord);
 		//public List<Patent> patentTable(String searchWord,String patentDetail,String patentType)
 		//List<Patent> pList = papo.patentAll(searchWord,patentDetail,patentDetail); 
 		
 		List<Patent> pList = papo.patentAll(); 
 		
 		List<Patent> result = new ArrayList<Patent>();
-		
+
 		for(int i = 0 ; i<pList.size(); i++){
 			if(i>pageSu-10){
 				if(i<=pageSu){
-					result.add(pList.get(i));
+						result.add(pList.get(i));
 				}
 			}
 		}

@@ -24,6 +24,10 @@
 <!-- script -->
 <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 <script src="/cloud/resources/js/jquery-ui.min.js"></script>
+<script>
+
+	
+</script>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -71,7 +75,7 @@
 	</nav>
 
 	<section class="hero-wrap js-fullheight"
-		style="background-image: url('/cloud/resources/images/bg_1.jpg');"
+		style="background-image: url('/cloud/resources/images/about_2.jpg');"
 		data-section="home">
 	<div class="overlay"></div>
 	<div class="container">
@@ -88,7 +92,7 @@
 					창업자들을 위한 모든 지원이 여기 있습니다.<br>지금 바로 검색해보세요!
 				</p>
 				<p>
-					<a href="#" class="btn btn-primary py-3 px-4">특허 검색하기</a>
+					<a href="/cloud/member/goPatent" class="btn btn-primary py-3 px-4">특허 검색하기</a>
 				</p>
 			</div>
 		</div>
