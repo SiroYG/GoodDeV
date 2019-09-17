@@ -6,7 +6,7 @@ body{
 }
 
 div.write_table, div.main-table{
-    padding: 3% 20% 10%;
+    padding: 3% 10% 10%;
 }
 
 div.Detail_table{
@@ -59,8 +59,6 @@ height: 70px;
   width: max-content;
   transition: 0.25s ease;
 }
-
-
 
 .btn-3-comments {
 width:280px;
