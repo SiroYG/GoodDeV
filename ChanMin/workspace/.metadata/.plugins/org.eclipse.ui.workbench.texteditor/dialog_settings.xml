@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="body" key="selection"/>
+		<item value="patent-type" key="selection"/>
 		<item value="false" key="casesensitive"/>
-		<item value="false" key="incremental"/>
+		<item value="true" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="body"/>
-			<item value="patentTable"/>
-			<item value="pTable"/>
-			<item value="tab-current"/>
-			<item value="/*   "/>
-			<item value="rightBtn"/>
-			<item value="itemList"/>
-			<item value="goMypage"/>
+			<item value="patent-type"/>
+			<item value="section-bar-patent"/>
+			<item value="button id"/>
+			<item value="patentBtn"/>
+			<item value="검색하기"/>
+			<item value="datepic"/>
+			<item value="datep"/>
+			<item value="disp"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
@@ -25,7 +25,7 @@
 		<item value="340" key="DIALOG_WIDTH"/>
 		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
 		<item value="454" key="DIALOG_HEIGHT"/>
-		<item value="1341" key="DIALOG_X_ORIGIN"/>
-		<item value="324" key="DIALOG_Y_ORIGIN"/>
+		<item value="888" key="DIALOG_X_ORIGIN"/>
+		<item value="402" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

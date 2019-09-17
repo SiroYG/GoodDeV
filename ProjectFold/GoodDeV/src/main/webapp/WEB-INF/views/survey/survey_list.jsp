@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
@@ -6,36 +6,27 @@
     <title>Survey :: All list</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
-
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/survey.css">
-    
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
+    <script>
     
-    <script></script>
+    </script>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-	  
-	  
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="index">Mainlogo</a>
@@ -45,19 +36,29 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
 	          <li class="nav-item"><a href="gosearchmenu" class="nav-link"><span>검색</span></a></li>
-	          <li class="nav-item"><a href="goBoardlist" class="nav-link"><span>Q & A 게시판</span></a></li>
-	          <li class="nav-item"><a href="gosurveylist" class="nav-link"><span>블라인드 테스트</span></a></li>
+	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
+	          <li class="nav-item"><a href="/cloud/survey/main" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	          <li class="nav-item"><a href="gomyPage" class="nav-link"><span>마이페이지</span></a></li>
-	          <li style="margin-left: 20px; " class="nav-item cta"><a href="gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
-              <li style="margin-left: 20px;" class="nav-item cta"><a href="gosignin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
-	        </ul>
+	          	<c:if test="${sessionScope.loginId==null}">
+				<li style="margin-left: 20px;" class="nav-item cta"><a
+					href="/cloud/member/gologin" class="nav-link">로그인</a></li>
+				<li style="margin-left: 20px;" class="nav-item cta"><a
+					href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
+			</c:if>
+			<c:if test="${sessionScope.loginId!=null}">
+				<li style="margin-left: 20px;" class="nav-item cta"><a
+					class="nav-link">${sessionScope.loginName}
+						${sessionScope.loginType}님 </a></li>
+				<li style="margin-left: 20px;" class="nav-item cta"><a
+					href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
+			</c:if>
+			 </ul>
 	      </div>
 	    </div>
 	  </nav>
-
 	  <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_8.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
@@ -69,8 +70,6 @@
         </div>
       </div>
     </section>
-		
-
 <section class="ftco-section" id="">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
@@ -85,7 +84,7 @@
         </div>
           <div class="main_table">
    
-   <table class="table">
+ <table class="table">
   <thead class="navy">
     <tr>
       <th scope="col">No.</th>
@@ -96,98 +95,43 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row" name="boardNum">1</th>
-      <td name="qCategory">[일반]</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="id">ididid</td>
-      <td name="boardDate">2019-09-09</td>
-    </tr>
-   <tr>
-      <th scope="row" name="boardNum">2</th>
-      <td name="qCategory">[특허]</td>
-      <td name="title">bbbbbbbbbbb</td>
-      <td name="id">ottotto</td>
-      <td name="boardDate">2019-09-07</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">3</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">4</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">5</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">6</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">7</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">8</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">9</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">10</th>
-      <td name="qCategory">Mark</td>
-      <td name="title">aaaa</td>
-      <td name="id">Otto</td>
-      <td name="boardDate">@mdo</td>
-    </tr>
+ 			 <!-- 데이터가 없는 경우 -->
+			<c:if test="${empty list}">
+				<tr>
+					<td colspan="5" align="center">데이터가 없습니다.</td>
+				</tr>
+			</c:if>
+			<!-- 데이터가 있는 경우 -->
+			<c:if test="${not empty list }">
+				<c:forEach var="board" items="${list}" varStatus="stat">
+					<tr> 
+						<th scope="row" name="boardNum">${stat.count + navi.startRecord}</th>
+						<td>${board.qCategory}</td>
+						<td class="board_title"><a href="boardDetail?boardNum=${board.boardNum}">${board.title}</a></td>
+						<td>${board.id}</td>
+						<td>${board.boardDate}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
   </tbody>
-  
 </table>
-     <a href="gosurvey_form" class="btns btn-3"><span class="white">테스트 진행하기</span></a><br><br> 
-       <!--페이징 & 검색-->
+	<!-- 서베이 폼 호출/ 입력하기  -->
+     <a href="/cloud/survey/surveyform" class="btns btn-3"><span class="white">테스트 진행하기</span></a><br><br> 
+    <!--페이징 & 검색-->
   <div class="page-center">
-  
   <nav>
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <a class="page-link" aria-label="Previous">
+       <a class="page-link" aria-label="Previous" href="boardListForm?currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">
         <span aria-hidden="true">&laquo;</span>
         <span class="sr-only">Previous</span>
       </a>
     </li>
-    <li class="page-item active"><a class="page-link">1</a></li>
-    <li class="page-item"><a class="page-link">2</a></li>
-    <li class="page-item"><a class="page-link">3</a></li>
-    <li class="page-item"><a class="page-link">4</a></li>
-    <li class="page-item"><a class="page-link">5</a></li>
+	<c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup }">
+		    <li class="page-item"><a href="boardListForm?currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}"class="page-link">${page}</a>
+	</c:forEach>
     <li class="page-item">
-      <a class="page-link" aria-label="Next">
+      <a class="page-link" aria-label="Next" href="boardListForm?currentPage=${navi.currentPage-1}&searchItem=${searchItem}&searchWord=${searchWord}">
         <span aria-hidden="true">&raquo;</span>
         <span class="sr-only">Next</span>
       </a>
@@ -195,23 +139,20 @@
   </ul>
 </nav>
       </div>
-<form action="" method="post" class="search-form" id="search-form">
+<form action="" method="get" class="search-form" id="search-form">
 <!--Blue select-->
 <select name="searchItem" class="searchItem">
- <option value="all" selected>분류</option>
-  <option value="title" selected>제목</option>
-  <option value="content">내용</option>
-  <option value="id">작성자</option>
+ <option value="all">전체</option>
+  <option value="title" ${searchItem =='title'?'selected' :''}>제목</option>
+  <option value="content" ${searchItem =='content'? 'selected' :'' }>내용</option>
+  <option value="id" ${searchItem =='userid'?'selected' :'' }>작성자</option>
 </select>
-
 <input type="text" name="searchWord" class="searchWord" placeholder="  Search">
 <button type="button" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
     </form>
           </div>
           </div>
     </section>
-		
-
     <footer class="ftco-footer ftco-section">
       <div class="container">
         <div class="row mb-5">
@@ -268,13 +209,8 @@
         </div>
       </div>
     </footer>
-    
-  
-
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
   <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/cloud/resources/js/popper.min.js"></script>
@@ -288,9 +224,7 @@
   <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
   <script src="/cloud/resources/js/bootstrap-datepicker.js"></script>
   <script src="/cloud/resources/js/jquery.timepicker.min.js"></script>
-  <script src="/cloud/resources/js/scrollax.min.js"></script>
-  
+  <script src="/cloud/resources/js/scrollax.min.js"></script>  
   <script src="/cloud/resources/js/main.js"></script>
-    
   </body>
 </html>

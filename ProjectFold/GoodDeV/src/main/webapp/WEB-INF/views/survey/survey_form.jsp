@@ -6,52 +6,52 @@
     <title>Survey :: Write Form</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/survey.css">
-    
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-    
     <script></script>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-	  
-	  
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="index">Mainlogo</a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
-
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
 	          <li class="nav-item"><a href="gosearchmenu" class="nav-link"><span>검색</span></a></li>
 	          <li class="nav-item"><a href="goBoardlist" class="nav-link"><span>Q & A 게시판</span></a></li>
-	          <li class="nav-item"><a href="gosurveylist" class="nav-link"><span>블라인드 테스트</span></a></li>
+	          <li class="nav-item"><a href="/cloud/survey/main" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	          <li class="nav-item"><a href="gomyPage" class="nav-link"><span>마이페이지</span></a></li>
-	          <li style="margin-left: 20px; " class="nav-item cta"><a href="gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
-              <li style="margin-left: 20px;" class="nav-item cta"><a href="gosignin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
-	        </ul>
+	         	<c:if test="${sessionScope.loginId==null}">
+				<li style="margin-left: 20px;" class="nav-item cta"><a
+					href="/cloud/member/gologin" class="nav-link">로그인</a></li>
+				<li style="margin-left: 20px;" class="nav-item cta"><a
+					href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
+			</c:if>
+			<c:if test="${sessionScope.loginId!=null}">
+				<li style="margin-left: 20px;" class="nav-item cta"><a
+					class="nav-link">${sessionScope.loginName}
+						${sessionScope.loginType}님 </a></li>
+				<li style="margin-left: 20px;" class="nav-item cta"><a
+					href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
+			</c:if>
+			</ul>
 	      </div>
 	    </div>
 	  </nav>
@@ -319,8 +319,6 @@
 
             </div>
         </form>
-
-
     </div>
     </div></section>
     
@@ -338,11 +336,8 @@
   <script src="/cloud/resources/js/bootstrap-datepicker.js"></script>
   <script src="/cloud/resources/js/jquery.timepicker.min.js"></script>
   <script src="/cloud/resources/js/scrollax.min.js"></script>
-  
   <script src="/cloud/resources/js/main.js"></script>
-    
 </body>
-
 <footer class="ftco-footer ftco-section">
     <div class="container">
         <div class="row mb-5">
@@ -357,8 +352,7 @@
                     <h2 class="ftco-heading-2">바로가기</h2>
                     <ul class="list-unstyled">
                         <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
-                        <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>소개글</a></li>
-                        <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>특허 FAQ</a></li>
+                        <li><a href="#"><span class="icon-long-arrow-right mr-2 "></span>특허 FAQ</a></li>
                         <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>설문조사</a></li>
                         <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>공식 연락처</a></li>
                     </ul>

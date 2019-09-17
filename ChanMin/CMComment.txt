@@ -24,4 +24,5 @@
 -- middleSide_myPage List만들기 (1)
 -- 190916
 -- middleSide_myPage List만들기 (2) 
-
+-- 190917
+-- middleSide_ searchPatent, patentList 만들기

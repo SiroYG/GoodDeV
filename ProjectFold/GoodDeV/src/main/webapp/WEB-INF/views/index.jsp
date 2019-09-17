@@ -798,7 +798,7 @@
 						<li><a href="#practice-section"><span
 								class="icon-long-arrow-right mr-2"></span>특허 FAQ</a></li>
 						<!--<li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Attorneys</a></li>-->
-						<li><a href="#blog-section"><span
+						<li><a href="/cloud/survey/main"><span
 								class="icon-long-arrow-right mr-2"></span>설문조사</a></li>
 						<li><a href="#"><span class="icon-long-arrow-right mr-2"></span>공식
 								연락처</a></li>
@@ -919,8 +919,6 @@
 								</div>
 							</div>
 						</div>
-
-
 						<div class="form-group">
 							<label for="appointment_message" class="text-black">Message</label>
 							<textarea name="" id="appointment_message" class="form-control"
@@ -931,12 +929,9 @@
 						</div>
 					</form>
 				</div>
-
 			</div>
 		</div>
 	</div>
-
-
 	<script src="/cloud/resources/js/jquery.min.js"></script>
 	<script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="/cloud/resources/js/popper.min.js"></script>
@@ -951,10 +946,6 @@
 	<script src="/cloud/resources/js/bootstrap-datepicker.js"></script>
 	<script src="/cloud/resources/js/jquery.timepicker.min.js"></script>
 	<script src="/cloud/resources/js/scrollax.min.js"></script>
-
-
 	<script src="/cloud/resources/js/main.js"></script>
-
 </body>
-
 </html>

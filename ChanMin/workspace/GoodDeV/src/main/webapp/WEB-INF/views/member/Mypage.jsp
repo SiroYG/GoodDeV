@@ -34,132 +34,42 @@
 <!--     <link rel="stylesheet" href="/cloud/resources/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="/cloud/resources/css/ef-tabs.css">
     <link rel="stylesheet" href="/cloud/resources/css/ef-tabs-light-blue.css">
+    
+    <style>
+    div.tri-btn{
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 auto;
+    justify-content : center;
+    }
+    
+    .btn-primary{
+    margin-left :10px;
+    margin-right:10px;
+    }
+    </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script src="/cloud/resources/js/jquery.transit.js"></script>
     <script src="/cloud/resources/js/ef-tabs.js"></script>
-  <!-- <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script> -->  
+ 	<script src="/cloud/resources/js/list.js"></script>
     <script>
-   var pageSu;
-   $(function(){
-	
-	   $('#patentList').on('click',function(){
-		   pageSu = 9;
-		   patentTable(pageSu);   
-	   });
-	
-	
-	   
-
-   });
-   jQuery(document).on('click', '#rightBtn', function(){
-	   			pageSu += 10;
-	   			$.ajax({
-	   				url: 'patentSu',
-	   				type : 'get',
-	   				success : function(res){
-	   					if(pageSu<res){
-	   						patentTable(pageSu); 
-	   					}else {
-	   						pageSu = 9;
-	   						patentTable(pageSu);
-	   						//ex) 172개 일때, 170개는 보여지지만 2개는 아직 안보임;;
-	   					}
-	   				}
-	   			})
-	   			
-	   
-	   }); 
-   
-   jQuery(document).on('click', '#leftBtn', function(){
-	 	  		
-	   			pageSu -= 10;
-	 	
-	 	  		if(pageSu>0){
-	 	  			patentTable(pageSu); 
-	 	  		}else{
-	 	  			pageSu = 9;
-	 	  			alert('응 첫페이지..');
-	 	  			patentTable(pageSu); 
-	 	  		}
-	 	  		
-});
-   
-   /*
-   		참고용
-   		jQuery(document).on('click', '#searchBtn', function(){
-		var searchWord  =$('#').val();
-		$.ajax({
-			url : '' ,
-			type : 'get',
-			data : {
-				
-			}
-			
-		})
-		 
-		
-   });*/
-  
-   function patentTable(pageSu){
-	   /* var searchWord =$().val()	
-	   	  var patentDetail =$().val()
-	   	  var patentType  =$().val()
-	   */
-	   $.ajax({
-	   		url : 'patentTable',
-	   		type : 'get',
-	   		data : {
-	   			pageSu : pageSu
-	   		//	,searchWord : searchWord
-	   		//	,patentDetail : patentDetail
-	   		//	,patentType : patentType
-	   		},
-	   		success : output	   		
-	   	})
-	   
-	   
-   }
-   function output(res){
-	   var tag = '';
-	   tag += '<input id="seachWord" type="text" name="seachWord" /><button id="searchBtn" type="button">검색</button>'
-       tag += '<table class="pTable">'
-       tag += '<caption class="table_title"><b>보유 및 사용 중인 특허 목록</b></caption>'
-       tag += '<thead class="navy">' 
-       tag += '<tr>'   
-       tag += '<th scope="col">특허 번호</th>'        
-       tag += '<th scope="col">분류</th>'       
-       tag += '<th scope="col">특허명</th>'    
-       tag += '<th scope="col">사용구분</th>'    
-       tag += '<th scope="col">등록날짜</th>'    
-  	   tag += '<th scope="col">서식파일 보기</th>'    
-  	   tag += '</tr>'
-   	   tag += '</thead>' 
-   	   tag += '<tbody>'  
-   	   $.each(res,function(i,item){
-	   	   	tag += '<tr>'
-	   	  	tag += '<th scope="row" name="특허번호">'+item.patentNum+'</th>'        
-   	   		tag += '<td name="분류">'+item.patenttype+'</td>'
-   	   		tag += '<td name="특허명">'+item.patentName+'</td>'
-   	   		tag += '<td name="사용구분"></td>'
-   	   	if(item.patentRegDate != null){
-   	   		tag += '<td name="등록날짜">'+item.patentRegDate+'</td>'
-   	   	}else{
-   	   		tag += '<td>특허등록 진행중입니다.</td>'
-   	   	}
-   	   		tag += '<td name="서식파일보기"></td>'            
-   	   		tag += '</tr>'        
-   	   	})
-   	   
-   	   tag += '</tbody>'	
-   	   tag += '<tr><td>'
-   	   tag += '<button id="leftBtn">◀</button>'	
-   	   tag += '<button id="rightBtn">▶</button>'	
-   	   tag += '</td></tr>'
-   	   tag += '</table>' 
-   
-       $('#section-bar-patent').html(tag);	
-   }
+   	$(function(){
+   		
+   	  $('#patentList').on('click',function(){
+   			patent();
+   		})
+		   	
+   	  $('#itemList').on('click',function(){
+   			item();
+   		})	
+   		
+  	  $('#fundList').on('click',function(){
+ 			fund();
+ 		})	
+ 		
+   		
+   	});
     </script>
 
 </head>
@@ -239,7 +149,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#section-shape-funding">
+                            <a id="fundList" href="#section-shape-funding">
                                 <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
                                 </svg>
@@ -299,7 +209,7 @@
                     </section>
 
                     <section id="section-bar-item">
-                           <table class="table">
+                          <%--  <table class="table">
                             <caption class="table_title"><b>시제품 및 출시품 목록</b></caption>
                             <thead class="navy">
                                 <tr>
@@ -321,7 +231,7 @@
                                
 
                             </tbody>
-                        </table>
+                        </table> --%>
                     </section>
 
                     <section id="section-bar-survey">
@@ -413,7 +323,7 @@
                     </section>
 
                     <section id="section-bar-funding">
-                          <table class="table">
+                   <%--        <table class="table">
                             <caption class="table_title"><b>크라우드 펀딩 실시/투자 목록</b></caption>
                             <thead class="navy">
                                 <tr>
@@ -421,7 +331,7 @@
                                     <th scope="col">분류</th>
                                     <th scope="col">제목</th>
                                     <th scope="col">시작일</th>
-                                    <th scope="col">마김일</th>
+                                    <th scope="col">마감일</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -498,7 +408,7 @@
                                 </tr>
 
                             </tbody>
-                        </table>
+                        </table> --%>
                     </section>
                 </div><!-- /content -->
             </div><!-- /tabs -->
