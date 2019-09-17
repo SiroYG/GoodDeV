@@ -12,4 +12,6 @@ public class PTI {
 private int  PTI_seq ;
 private int  itemNum ;
 private String patentNum;
+private String  contract ;
+
 }

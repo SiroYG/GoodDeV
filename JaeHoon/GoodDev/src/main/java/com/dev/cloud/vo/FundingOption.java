@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item_Survey {
+public class FundingOption {
 	
-	private int surveyNum ;
-	private int questionNum;
-	private int qValuable;
-	private String writtenDate ;
+	private int fundingOptionNum;
+	private int crowdfundingNum;
+	private String optionType ;
+	private int optionPrice ;
 }

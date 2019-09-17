@@ -12,7 +12,6 @@ public class Item {
 	private String  ideaDate;
 	private String  itemName ;
 	private int price ;
-	private String  contract ;
 	private String  itemContent ;
 	private String  itemRegDate;
 	private String  itemImagename ;

@@ -1,11 +1,9 @@
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css); 
-/*<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>*/ 
-* { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
 /* ==========================================================================
    #FONT
    ========================================================================== */
 .font-robo {
-  font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
 }
 
 /* ==========================================================================
@@ -79,7 +77,6 @@ dl, dd, ol, ul,
 figure,
 hr,
 fieldset, legend {
-font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
   margin: 0;
   padding: 0;
 }
@@ -124,7 +121,7 @@ button {
 }
 
 body {
-  font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+  font-family: 'Jeju Gothic', sans-serif;
   font-weight: 400;
   font-size: 14px;
 }
@@ -165,7 +162,7 @@ h6 {
 }
 
 .bg-red {
- background-image: linear-gradient(to right top, #794f9f, #786bb3, #7c85c3, #879ecf, #9ab5d8);
+  background-image: linear-gradient(to right top, #794f9f, #786bb3, #7c85c3, #879ecf, #9ab5d8);
 }
 
 /* ==========================================================================
@@ -486,41 +483,41 @@ input {
 /*회원 기능별 사진 적용*/
 
 .card-2 .card-heading-register {
-  background: url("../images/flash_3.jpg") top left/cover no-repeat;
+   background: url("/cloud/resources/images/flash_3.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
 
 .card-2 .card-heading-find {
-  background: url("../images/flash_2.jpg") top left/cover no-repeat;
+   background: url("/cloud/resources/images/flash_2.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
 
 .card-2 .card-heading-login {
+   background: url("/cloud/resources/images/flash_3.jpg") top left/cover no-repeat;
+  width: 29.1%;
+  display: table-cell;
+}
+
+/* .card-2 .card-heading-update {
   background: url("../images/flash_3.jpg") top left/cover no-repeat;
+  width: 29.1%;
+  display: table-cell;
+} */
+
+.card-2 .card-heading-dropout {
+   background: url("/cloud/resources/images/flash_2.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
 
 .card-2 .card-heading-update {
-  background: url("../images/flash_3.jpg") top left/cover no-repeat;
+   background: url("/cloud/resources/images/flash_3.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
 
-.card-2 .card-heading-dropout {
-  background: url("../images/flash_2.jpg") top left/cover no-repeat;
-  width: 29.1%;
-  display: table-cell;
-}
-
-/* .card-2 .card-heading {
-  background: url("../images/bg-heading-02.jpg") top left/cover no-repeat;
-  width: 29.1%;
-  display: table-cell;
-}
- */
 .card-2 .card-body {
   display: table-cell;
   padding: 80px 90px;

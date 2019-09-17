@@ -13,6 +13,5 @@ public class History {
 	private int itemNum ;
 	private String comments ;
 	private String itemVersion ;
-	private String startdate ;
-	private String enddate ;
+	private String historyDate;
 }

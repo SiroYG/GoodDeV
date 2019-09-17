@@ -57,7 +57,7 @@
 		,#{memberId}
 		,#{investment}
 		,#{fundingReply}
-		#{fundingReplydate}
+		,#{fundingReplydate}
 		)
 	</insert>
 	
