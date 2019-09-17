@@ -7,15 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item_Question {
+public class Question {
 	
 	
 	private int questionNum;
-	private int itemNum ;
+	private int questionTimeNum ;
 	private String question;
-	private String description;
-	private String dueDate ;
-	private String startDate ;
-	private String etc ;
+	
 
 }

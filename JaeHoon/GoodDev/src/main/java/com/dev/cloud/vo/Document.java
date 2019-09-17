@@ -7,10 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Patentsub {
+public class Document {
 
-private int  PatentsubNum ;
-private String	patentNum ;
-private String	referenceFilename ;
-private String	saveReferenceFilename ;
+	private int DocumentNum;
+	private int PatentsubNum;
+	private String documentFilename;
+	private String saveDocumentFilename;
+	
 }
+

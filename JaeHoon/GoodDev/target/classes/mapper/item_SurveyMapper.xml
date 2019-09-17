@@ -5,46 +5,89 @@
 
 <mapper namespace="com.dev.cloud.dao.item_SurveyMapper">
 
-	<insert id="insertItem_Question" parameterType="Item_Question">
+
+		<insert id="insertQuestion_Time" parameterType="Question_Time">
 
 		insert into
-		Item_Question (
-		questionNum
+		Question_Time (
+		questionTimeNum
 		,itemNum
-		,question
+		,questionTitle
 		,description
-		,dueDate
 		,startDate
+		,dueDate
+		<if test="etc!=''">
+		,etc
+		</if>
+		
 		)
 		VALUES (
-		Item_Question_seq.NEXTVAL
+		question_Time_seq.NEXTVAL
 		,#{itemNum}
-		,#{question}
+		,#{questionTitle}
 		,#{description}
-		,#{dueDate}
 		,#{startDate}
+		,#{dueDate}
+			<if test="etc!=''">
+		,#{etc}
+		</if>
 		)
 	</insert>
+	
+	<insert id="insertQuestion" parameterType="Question">
+
+		insert into
+		Question (
+		questionNum
+		,questionTimeNum
+		,question
+		)
+		VALUES (
+		Question_seq.NEXTVAL
+		,#{questionTimeNum}
+		,#{question}
+		)
+	</insert>
+	
 
 
-	<select id="getItem_QuestionByItemNum" parameterType="Item_Question"
-		resultType="Item_Question">
-		
+	<select id="getQuestion_TimeByItemNum" parameterType="Question_Time"
+		resultType="Question_Time">
 		select *
-		from Item_Question
+		from Question_Time
 		where itemNum=#{itemNum}
-		and SYSDATE between  #{startDate}) AND #{dueDate}
+		
 	</select>
+	
 
-	<update id="updateItem_Question" parameterType="Item_Question">
+	<select id="getQuestionByQuestionTimeNum" parameterType="Question"
+		resultType="Question">
+		select *
+		from Question
+		where questionTimeNum=#{questionTimeNum}
+	</select>
+	
+	<update id="updateQuestion_Time" parameterType="Question_Time">
 
-		UPDATE Item_Question
+		UPDATE Question_Time
+
+		SET
+		questionTitle = #{questionTitle}
+		,description = #{description}
+		,startDate = #{startDate}
+		,dueDate = #{dueDate}
+		WHERE questionTimeNum=#{questionTimeNum}
+		
+		
+
+	</update>
+
+	<update id="updateQuestion" parameterType="Question">
+
+		UPDATE Question
 
 		SET
 		question = #{question}
-		,description = #{description}
-		,dueDate = #{dueDate}
-		,startDate = #{startDate}
 
 		WHERE questionNum=#{questionNum}
 
@@ -53,15 +96,19 @@
 	
 	
 	
-	<update id="writeEtc" parameterType="Item_Question">
-		UPDATE Item_Question
+	
+	
+	<update id="writeEtc" parameterType="Question_Time">
+	
+		UPDATE Question_Time
 		SET
 		etc = #{etc}
-		WHERE questionNum=#{questionNum}
+		WHERE questionTimeNum=#{questionTimeNum}
 	</update>
-	<update id="deleteItem_Question" parameterType="Item_Question">
+	
+	<update id="deleteQuestion" parameterType="Question">
 
-		UPDATE Item_Question
+		UPDATE Question
 
 		SET
 		question = 'none'
@@ -70,41 +117,41 @@
 
 	</update>
 
-	<insert id="insertItem_Survey" parameterType="Item_Survey">
+	<insert id="insertSurvey" parameterType="Survey">
 
 		insert into
-		Item_Survey (
+		Survey (
 		surveyNum
 		,questionNum
 		,qValuable
 		,writtenDate
 		)
 		VALUES (
-		Item_Survey_seq.NEXTVAL
+		Survey_seq.NEXTVAL
 		,#{questionNum}
 		,#{qValuable}
 		,SYSDATE
 		)
 	</insert>
 	
-	<select id="getqValueableByQuestionNum" parameterType="Item_Question" resultType="Item_Survey">
+	<select id="getqValueableByQuestionNum" parameterType="Survey" resultType="Survey">
 		
 		select *
-		from Item_Survey
-		where questionNum=#{questionNum} and 
-		writtenDate between  #{startDate} AND #{dueDate}
+		from Survey
+		where questionNum=#{questionNum} 
 	
 	</select>
 
-	<update id="updateItem_Survey" parameterType="Item_Survey">
+	<update id="deleteQuestion_Time" parameterType="Question_Time">
 
-		UPDATE Item_Survey
+		UPDATE Question_Time
+
 		SET
-		qValuable = #{qValuable}
-		WHERE surveyNum=#{surveyNum}
+		questionTitle = 'none'
+
+		WHERE questionTimeNum=#{questionTimeNum}
 
 	</update>
-	
 
 
 </mapper>

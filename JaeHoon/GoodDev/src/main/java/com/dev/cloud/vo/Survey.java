@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item_Survey {
+public class Survey {
 	
 	private int surveyNum ;
 	private int questionNum;

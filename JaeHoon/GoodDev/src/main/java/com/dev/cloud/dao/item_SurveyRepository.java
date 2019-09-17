@@ -6,8 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.dev.cloud.vo.Item_Question;
-import com.dev.cloud.vo.Item_Survey;
+import com.dev.cloud.vo.Question;
+import com.dev.cloud.vo.Survey;
+import com.dev.cloud.vo.Question_Time;
 
 @Repository
 public class item_SurveyRepository implements item_SurveyMapper{
@@ -16,37 +17,23 @@ public class item_SurveyRepository implements item_SurveyMapper{
 	SqlSession sqlsession;
 	
 	@Override
-	public int insertItem_Question(Item_Question itemQustion) {
+	public int insertQuestion_Time(Question_Time question_Time) {
 		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
 		int result=0;
 		try {
-			result=mapper.insertItem_Question(itemQustion);
+			result=mapper.insertQuestion_Time(question_Time);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
-
+	
 	@Override
-	public ArrayList<Item_Question> getItem_QuestionByItemNum(Item_Question itemQustion) {
-		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
-		ArrayList<Item_Question> result=null;
-		try {
-			result=mapper.getItem_QuestionByItemNum(itemQustion);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
-	}
-
-	@Override
-	public int updateItem_Question(Item_Question itemQustion) {
+	public int insertQuestion(Question qustion) {
 		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
 		int result=0;
 		try {
-			result=mapper.updateItem_Question(itemQustion);
+			result=mapper.insertQuestion(qustion);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -55,24 +42,54 @@ public class item_SurveyRepository implements item_SurveyMapper{
 	}
 
 	@Override
-	public int deleteItem_Question(Item_Question itemQustion) {
+	public ArrayList<Question_Time> getQuestion_TimeByItemNum(Question_Time question_Time) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		ArrayList<Question_Time> result=null;
+		try {
+			result=	mapper.getQuestion_TimeByItemNum(question_Time);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	
+	
+	
+	@Override
+	public ArrayList<Question> getQuestionByQuestionTimeNum(Question qustion) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		ArrayList<Question> result=null;
+		try {
+			result=mapper.getQuestionByQuestionTimeNum(qustion);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int updateQuestion_Time(Question_Time question_Time) {
 		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
 		int result=0;
 		try {
-			result=mapper.deleteItem_Question(itemQustion);
+			result=mapper.updateQuestion_Time(question_Time);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return result;
 	}
-
+	
 	@Override
-	public int insertItem_Survey(Item_Survey item_Survey) {
+	public int updateQuestion(Question qustion) {
 		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
 		int result=0;
 		try {
-			result=mapper.insertItem_Survey(item_Survey);
+			result=mapper.updateQuestion(qustion);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -80,25 +97,28 @@ public class item_SurveyRepository implements item_SurveyMapper{
 		return result;
 	}
 
-	@Override
-	public ArrayList<Item_Survey> getqValueableByQuestionNum(Item_Question item_Question) {
-		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
-		ArrayList<Item_Survey> result=null;
-		try {
-			result=mapper.getqValueableByQuestionNum(item_Question);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
-	}
 
 	@Override
-	public int deleteItem_Survey(Item_Survey item_Survey) {
+	public int writeEtc(Question_Time question_Time) {
 		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
 		int result=0;
 		try {
-			result=mapper.deleteItem_Survey(item_Survey);
+			result=mapper.writeEtc(question_Time);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	
+	
+	@Override
+	public int deleteQuestion(Question qustion) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		int result=0;
+		try {
+			result=mapper.deleteQuestion(qustion);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -107,11 +127,11 @@ public class item_SurveyRepository implements item_SurveyMapper{
 	}
 
 	@Override
-	public int updateItem_Survey(Item_Survey item_Survey) {
+	public int insertSurvey(Survey survey) {
 		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
 		int result=0;
 		try {
-			result=mapper.updateItem_Survey(item_Survey);
+			result=mapper.insertSurvey(survey);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -120,16 +140,41 @@ public class item_SurveyRepository implements item_SurveyMapper{
 	}
 
 	@Override
-	public int writeEtc(Item_Question itemQustion) {
+	public ArrayList<Survey> getqValueableByQuestionNum(Survey survey) {
 		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
-		int result=0;
+		ArrayList<Survey> result=null;
 		try {
-			result=mapper.writeEtc(itemQustion);
+			result=mapper.getqValueableByQuestionNum(survey);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return result;
 	}
+
+	@Override
+	public int deleteQuestion_Time(Question_Time question_Time) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		int result=0;
+		try {
+			result=mapper.deleteQuestion_Time(question_Time);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	
+
+	
+	
+
+	
+
+	
+
+
+
+
 
 }

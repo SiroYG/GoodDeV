@@ -8,14 +8,15 @@ DROP TABLE FundingTable CASCADE CONSTRAINTS;
 DROP TABLE CROWDFUNDING CASCADE CONSTRAINTS;
 DROP TABLE MTI CASCADE CONSTRAINTS;
 DROP TABLE devMember CASCADE CONSTRAINTS;
+DROP TABLE DOCUMENT CASCADE CONSTRAINTS;
 DROP TABLE HISTORY CASCADE CONSTRAINTS;
-DROP TABLE ITEM_SURVEY CASCADE CONSTRAINTS;
-DROP TABLE ITEM_QUESTION CASCADE CONSTRAINTS;
 DROP TABLE PTI CASCADE CONSTRAINTS;
+DROP TABLE SURVEY CASCADE CONSTRAINTS;
+DROP TABLE QUESTION CASCADE CONSTRAINTS;
+DROP TABLE QUESTION_TIME CASCADE CONSTRAINTS;
 DROP TABLE ITEM CASCADE CONSTRAINTS;
 DROP TABLE PATENTSUB CASCADE CONSTRAINTS;
 DROP TABLE PATENT CASCADE CONSTRAINTS;
-
 
 
 /* Drop Sequences */
@@ -24,13 +25,17 @@ DROP SEQUENCE BOARD_seq;
 
 DROP SEQUENCE CROWDFUNDING_seq;
 
+DROP SEQUENCE DOCUMENT_seq;
+
+DROP SEQUENCE QUESTION_TIME_seq;
+
 DROP SEQUENCE HISTORY_seq;
 
 DROP SEQUENCE ITEM_seq;
 
-DROP SEQUENCE ITEM_SURVEY_seq;
+DROP SEQUENCE SURVEY_seq;
 
-DROP SEQUENCE ITEM_QUESTION_seq;
+DROP SEQUENCE QUESTION_seq;
 
 DROP SEQUENCE MTI_seq;
 
@@ -45,30 +50,34 @@ DROP SEQUENCE FundingTable_seq;
 DROP SEQUENCE fundingOption_seq;
 
 /* Create Sequences */
-CREATE SEQUENCE BOARD_seq;//
+CREATE SEQUENCE BOARD_seq;
 
-CREATE SEQUENCE CROWDFUNDING_seq;//
+CREATE SEQUENCE CROWDFUNDING_seq;
 
-CREATE SEQUENCE HISTORY_seq;//
+CREATE SEQUENCE DOCUMENT_seq;
 
-CREATE SEQUENCE ITEM_seq;//
+CREATE SEQUENCE QUESTION_TIME_seq;
 
-CREATE SEQUENCE ITEM_SURVEY_seq;//
+CREATE SEQUENCE HISTORY_seq;
 
-CREATE SEQUENCE ITEM_QUESTION_seq;//
+CREATE SEQUENCE ITEM_seq;
 
-CREATE SEQUENCE MTI_seq;//
+CREATE SEQUENCE SURVEY_seq;
 
-CREATE SEQUENCE PATENTSUB_seq;//
+CREATE SEQUENCE QUESTION_seq;
 
-CREATE SEQUENCE PTI_seq;//
+CREATE SEQUENCE MTI_seq;
 
-CREATE SEQUENCE REPLY_seq;//
+CREATE SEQUENCE PATENTSUB_seq;
 
-CREATE SEQUENCE FundingTable_seq;//
+CREATE SEQUENCE PTI_seq;
+
+CREATE SEQUENCE REPLY_seq;
+
+CREATE SEQUENCE FundingTable_seq;
 
 CREATE SEQUENCE fundingOption_seq;
-/* Create Tables */
+
 
 
 
@@ -93,9 +102,10 @@ CREATE TABLE CROWDFUNDING
 (
 	crowdfundingNum number NOT NULL,
 	itemNum number NOT NULL,
-	itemGoalPrice number,
+	itemGoalPrice number NOT NULL,
 	itemCurrecyPrice number,
-	fundingDueDate date,
+	fundingDueDate date NOT NULL,
+	fundingStartDate date NOT NULL,
 	PRIMARY KEY (crowdfundingNum)
 );
 
@@ -110,6 +120,16 @@ CREATE TABLE devMember
 	memberName varchar2(20) NOT NULL,
 	phoneNum varchar2(20) NOT NULL,
 	PRIMARY KEY (memberId)
+);
+
+
+CREATE TABLE DOCUMENT
+(
+	DocumentNum number NOT NULL,
+	PatentsubNum number NOT NULL,
+	documentFilename varchar2(20),
+	saveDocumentFilename varchar2(20) UNIQUE,
+	PRIMARY KEY (DocumentNum)
 );
 
 
@@ -162,32 +182,6 @@ CREATE TABLE ITEM
 );
 
 
-CREATE TABLE ITEM_QUESTION
-(
-	questionNum number NOT NULL,
-	itemNum number NOT NULL,
-	-- 창업자가 질문한 값
-	question varchar2(500) NOT NULL,
-	-- 설문추가 설명
-	description varchar2(1000),
-	dueDate date DEFAULT SYSDATE NOT NULL,
-	startDate date NOT NULL,
-	etc varchar2(1000),
-	PRIMARY KEY (questionNum)
-);
-
-
-CREATE TABLE ITEM_SURVEY
-(
-	surveyNum number NOT NULL,
-	questionNum number NOT NULL,
-	-- 소비자가 입력한 질문지의 점수
-	qValuable number(2,0) DEFAULT 0 NOT NULL,
-	writtenDate date DEFAULT SYSDATE NOT NULL,
-	PRIMARY KEY (surveyNum)
-);
-
-
 CREATE TABLE MTI
 (
 	MTI_seq number NOT NULL,
@@ -215,8 +209,6 @@ CREATE TABLE PATENTSUB
 (
 	PatentsubNum number NOT NULL,
 	patentNum varchar2(100) NOT NULL,
-	documentFilename varchar2(20),
-	saveDocumentFilename varchar2(20),
 	referenceFilename varchar2(20),
 	saveReferenceFilename varchar2(20) UNIQUE,
 	PRIMARY KEY (PatentsubNum)
@@ -233,6 +225,30 @@ CREATE TABLE PTI
 );
 
 
+CREATE TABLE QUESTION
+(
+	questionNum number NOT NULL,
+	questionTimeNum number NOT NULL,
+	-- 창업자가 질문한 값
+	question varchar2(500) NOT NULL,
+	PRIMARY KEY (questionNum)
+);
+
+
+CREATE TABLE QUESTION_TIME
+(
+	questionTimeNum number NOT NULL,
+	itemNum number NOT NULL,
+	questionTitle varchar2(300) NOT NULL,
+	-- 설문추가 설명
+	description varchar2(1000),
+	startDate date NOT NULL,
+	dueDate date DEFAULT SYSDATE NOT NULL,
+	etc varchar2(1000),
+	PRIMARY KEY (questionTimeNum)
+);
+
+
 CREATE TABLE REPLY
 (
 	replyNum number NOT NULL,
@@ -241,6 +257,17 @@ CREATE TABLE REPLY
 	replyDate date DEFAULT SYSDATE NOT NULL,
 	memberId varchar2(20) NOT NULL,
 	PRIMARY KEY (replyNum)
+);
+
+
+CREATE TABLE SURVEY
+(
+	surveyNum number NOT NULL,
+	questionNum number NOT NULL,
+	-- 소비자가 입력한 질문지의 점수
+	qValuable number(2,0) DEFAULT 0 NOT NULL,
+	writtenDate date DEFAULT SYSDATE NOT NULL,
+	PRIMARY KEY (surveyNum)
 );
 
 
@@ -289,12 +316,6 @@ ALTER TABLE HISTORY
 ;
 
 
-ALTER TABLE ITEM_QUESTION
-	ADD FOREIGN KEY (itemNum)
-	REFERENCES ITEM (itemNum)
-;
-
-
 ALTER TABLE MTI
 	ADD FOREIGN KEY (itemNum)
 	REFERENCES ITEM (itemNum)
@@ -307,9 +328,9 @@ ALTER TABLE PTI
 ;
 
 
-ALTER TABLE ITEM_SURVEY
-	ADD FOREIGN KEY (questionNum)
-	REFERENCES ITEM_QUESTION (questionNum)
+ALTER TABLE QUESTION_TIME
+	ADD FOREIGN KEY (itemNum)
+	REFERENCES ITEM (itemNum)
 ;
 
 
@@ -322,6 +343,24 @@ ALTER TABLE PATENTSUB
 ALTER TABLE PTI
 	ADD FOREIGN KEY (patentNum)
 	REFERENCES PATENT (patentNum)
+;
+
+
+ALTER TABLE DOCUMENT
+	ADD FOREIGN KEY (PatentsubNum)
+	REFERENCES PATENTSUB (PatentsubNum)
+;
+
+
+ALTER TABLE SURVEY
+	ADD FOREIGN KEY (questionNum)
+	REFERENCES QUESTION (questionNum)
+;
+
+
+ALTER TABLE QUESTION
+	ADD FOREIGN KEY (questionTimeNum)
+	REFERENCES QUESTION_TIME (questionTimeNum)
 ;
 
 

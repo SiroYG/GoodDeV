@@ -7,7 +7,7 @@
 <typeAlias alias="Board" type="com.dev.cloud.vo.Board"/>
 <typeAlias alias="Crowdfunding" type="com.dev.cloud.vo.Crowdfunding"/>
 <typeAlias alias="History" type="com.dev.cloud.vo.History"/>
-<typeAlias alias="Item_Survey" type="com.dev.cloud.vo.Item_Survey"/>
+<typeAlias alias="Survey" type="com.dev.cloud.vo.Survey"/>
 <typeAlias alias="Item" type="com.dev.cloud.vo.Item"/>
 <typeAlias alias="devMember" type="com.dev.cloud.vo.devMember"/>
 <typeAlias alias="MTI" type="com.dev.cloud.vo.MTI"/>
@@ -15,10 +15,10 @@
 <typeAlias alias="Patentsub" type="com.dev.cloud.vo.Patentsub"/>
 <typeAlias alias="PTI" type="com.dev.cloud.vo.PTI"/>
 <typeAlias alias="Reply" type="com.dev.cloud.vo.Reply"/>
-<typeAlias alias="Item_Question" type="com.dev.cloud.vo.Item_Question"/>
+<typeAlias alias="Question" type="com.dev.cloud.vo.Question"/>
 <typeAlias alias="FundingTable" type="com.dev.cloud.vo.FundingTable"/>
 <typeAlias alias="FundingOption" type="com.dev.cloud.vo.FundingOption"/>
-
+<typeAlias alias="Question_Time" type="com.dev.cloud.vo.Question_Time"/>
 </typeAliases>
 <mappers>
 <mapper resource="mapper/memberMapper.xml"/>

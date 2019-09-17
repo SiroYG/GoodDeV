@@ -14,4 +14,7 @@ public class Crowdfunding{
 	private int itemGoalPrice ;
 	private int itemCurrecyPrice ;
 	private String fundingDueDate ;
+	private String fundingStartDate;
 }
+
+
