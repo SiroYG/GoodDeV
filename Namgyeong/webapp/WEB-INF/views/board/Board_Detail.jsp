@@ -12,9 +12,7 @@
     
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-    
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
-
+  
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
     
@@ -26,9 +24,6 @@
 
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
@@ -109,32 +104,34 @@
       <input type="file" class="form-control" name="saveFilename" id="" >
     </div>
   </div>
-  <hr class="hr_purple">
-  <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label"><span><b>아이디</b></span></label>
-    <div class="col-sm-10">
-     <input type="text" class="form-control" name="memberId" id="" placeholder="@@@1234">
-    </div>
-  </div> 
-  <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label"><span><b>Comments</b></span></label>
-    <div class="col-sm-10">
-     <input type="text" class="form-control" name="reply" id="" placeholder="@@@@@@@@@@@@@@@@@@@@" readonly="readonly">
-     <p name="repDate">2019-09-21 13:24</p>
-     <a href="#" class="btns btn-3-green"><span class="white">수정</span></a>&nbsp;&nbsp;<a href="#" class="btns btn-3-red"><span class="white">삭제</span></a>
-    </div>
-  </div> 
-  <hr class="hr_purple"> 
-  <div class="form-group row">
-    <label for="" class="col-sm-2 col-form-label"><span><b>댓글</b></span></label>
-    <div class="col-sm-10">
-     <textarea rows="5" cols="112" name="reply" class="form-control"></textarea><br>
-     <input type="hidden" name="id" value="${sessionScope.loginId}">
-    <a href="#" class="btns btn-3-comments"><span class="white">댓글 작성</span></a>
-     
-    </div>
-  </div>
-   <hr class="hr_purple"> 
+  <%-- <hr class="hr_purple">
+                    <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>아이디</b></span></label>
+                        <div class="col-sm-10">
+                            <!--<input type="text" class="form-control" name="id" id="" placeholder="@@@1234">-->
+                            <p name="memberId" class="qna-id">memberId</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>Comments</b></span></label>
+                        <div class="col-sm-10">
+                            
+                             <textarea rows="2" cols="112" name="reply" class="input-comment" placeholder="@@@@@@@@@@@@@@@@@@@@" readonly="readonly"></textarea><br>
+                            <input type="text" name="repDate" class="input-comment" placeholder="2019-09-21 13:24">
+                            <a href="#" class="btns btn-3-green"><span class="white">수정</span></a>&nbsp;&nbsp;<a href="#" class="btns btn-3-red"><span class="white">삭제</span></a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>댓글</b></span></label>
+                        <div class="col-sm-10">
+                            <textarea rows="5" cols="112" name="reply" class="form-control"></textarea><br>
+                            <input type="hidden" name="id" value="${sessionScope.loginId}">
+                            <a href="Board_update.html" class="btns btn-3-comments"><span class="white">댓글 작성</span></a>
+
+                        </div>
+                    </div>
+                    <hr class="hr_purple"> --%>
    <div class="form-group row">
     <div class="col-sm-10">
     <div style="margin-top: 40px;">

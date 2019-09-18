@@ -21,6 +21,15 @@
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/item.css">
+    
+    <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
+	<script src="/cloud/resources/js/jquery-ui.min.js"></script>
+    <script>
+    $(function(){
+    	
+    	
+    });
+    </script>
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -41,8 +50,8 @@
 	          <li class="nav-item"><a href="gosurveylist" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	          <li class="nav-item"><a href="gomyPage" class="nav-link"><span>마이페이지</span></a></li>
-	          <li style="margin-left: 20px; " class="nav-item cta"><a href="gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
-              <li style="margin-left: 20px;" class="nav-item cta"><a href="gosignin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
+	         <!--  <li style="margin-left: 20px; " class="nav-item cta"><a href="gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
+              <li style="margin-left: 20px;" class="nav-item cta"><a href="gosignin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li> -->
 	        </ul>
 	      </div>
 	    </div>
@@ -83,20 +92,20 @@
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>작성일</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="ideaDate" id="" placeholder="2019 / 09 / 04 (목)" readonly="readonly">
+                            <input type="text" class="form-control" name="ideaDate" id="ideaDate"  readonly="readonly">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>수정일</b></span></label>
                         <div class="col-sm-10">
                            <!--최초 작성시 아이디어날짜는 기존 ideaDate 고정, 등록 날짜는 sysdate 갱신-->
-                            <input type="text" class="form-control" name="itemRegDate" id="" placeholder="2019 / 09 / 24 (화)" readonly="readonly">
+                            <input type="text" class="form-control" value="${item.}" name="itemRegDate" id="itemRegDate" readonly="readonly">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>제품/서비스명</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="itemName" id="" placeholder="제품명을 입력해주세요">
+                            <input type="text" class="form-control" name="itemName" id="itemName" placeholder="제품명을 입력해주세요">
                         </div>
                     </div>
                      <div class="form-group row">

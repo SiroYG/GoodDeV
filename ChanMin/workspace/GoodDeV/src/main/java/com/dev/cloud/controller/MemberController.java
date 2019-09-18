@@ -1,6 +1,7 @@
 package com.dev.cloud.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dev.cloud.dao.PatentRepository;
+import com.dev.cloud.dao.itemRepository;
 import com.dev.cloud.dao.memberRepository;
+import com.dev.cloud.vo.Item;
+import com.dev.cloud.vo.MTI;
 import com.dev.cloud.vo.Patent;
 import com.dev.cloud.vo.devMember;
 
@@ -26,6 +30,8 @@ public class MemberController {
 	memberRepository dao;
 	@Autowired
 	PatentRepository papo;
+	@Autowired
+	itemRepository itpo;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String gomain() { // 홈이동
@@ -96,8 +102,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value="/patentTable", method=RequestMethod.GET)
 	public List<Patent> patentTable(String patentType,String searchItem,String searchWord,HttpSession session,int pageSu){
-		// String searchWord( 단어 ), String searchItem( 특허명, 보유자명, 특허내용 ), String patentType (영상 및 음향기기 제조업) int pageSu
-		// String memberId = session.getAttribute("loginId"); myPage에서 나의 특허만 확인할때 볼수 있다.
+		
 		 System.out.println("타입 : "+patentType+"\n"+"아이템: "+searchItem+"\n"+"특허타입: "+searchWord);
 		//public List<Patent> patentTable(String searchWord,String patentDetail,String patentType)
 		//List<Patent> pList = papo.patentAll(searchWord,patentDetail,patentDetail); 
@@ -113,10 +118,39 @@ public class MemberController {
 				}
 			}
 		}
-		
 		return result;
 	}
+	@ResponseBody
+	@RequestMapping(value="/itemSu", method=RequestMethod.GET)
+	public int itemSu(Item item,HttpSession session){
+		
+		String memberId = (String) session.getAttribute("loginId");
+		item.setMemberId(memberId);
+		List<Item> iList = itpo.selectAllItem(item);
+		System.out.println("130번줄 item 양==>"+iList.size());
+		return iList.size();
+	}
 	
+	@ResponseBody
+	@RequestMapping(value="/itemTable", method=RequestMethod.GET)
+	public List<Item> patentTable(HttpSession session,Item item,int pageSu){
+		String memberId = (String) session.getAttribute("loginId");
+		item.setMemberId(memberId);
+		List<Item> iList = itpo.selectAllItem(item); 
+		System.out.println("147번줄 mList==>"+iList);
+		List<Item> result = new ArrayList<Item>();   
+		
+		
+		for(int i = 0 ; i<iList.size(); i++){
+			if(i>pageSu-10){
+				if(i<=pageSu){
+						result.add(iList.get(i));
+				}
+			}
+		}
+		System.out.println("아이템==>"+result.size());
+		return result;
+	}
 	@ResponseBody
 	@RequestMapping(value ="/overlap", method=RequestMethod.GET)
 	public String overlap(String memberId) { // 회원id 폼 request
@@ -165,12 +199,12 @@ public class MemberController {
 				return "redirect:/";
 			} else {
 				System.out.println("회원가입 실패");
+				return "redirect:/member/gosign";
 			}
 		} catch (Exception e) {
 			return "redirect:/member/gosign";
 		}
 
-		return "redirect:/member/gosign";
 	}
 
 	

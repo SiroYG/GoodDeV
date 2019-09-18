@@ -7,6 +7,10 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+body{
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+}
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -2343,23 +2347,25 @@ fieldset:disabled a.btn {
       box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5); }
 
 .btn-outline-info {
-  color: #17a2b8;
-  border-color: #17a2b8; }
+margin-left: 30px;
+margin-right: 30px;
+  color: #1f124a;
+  border-color: #1f124a; }
   .btn-outline-info:hover {
     color: #fff;
-    background-color: #17a2b8;
-    border-color: #17a2b8; }
+    background-color: #1f124a;
+    border-color: #1f124a; } /*#17a2b8*/
   .btn-outline-info:focus, .btn-outline-info.focus {
     -webkit-box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5); }
   .btn-outline-info.disabled, .btn-outline-info:disabled {
-    color: #17a2b8;
+    color: #1f124a;
     background-color: transparent; }
   .btn-outline-info:not(:disabled):not(.disabled):active, .btn-outline-info:not(:disabled):not(.disabled).active,
   .show > .btn-outline-info.dropdown-toggle {
     color: #fff;
-    background-color: #17a2b8;
-    border-color: #17a2b8; }
+    background-color: #1f124a;
+    border-color: #1f124a; }
     .btn-outline-info:not(:disabled):not(.disabled):active:focus, .btn-outline-info:not(:disabled):not(.disabled).active:focus,
     .show > .btn-outline-info.dropdown-toggle:focus {
       -webkit-box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
@@ -8017,10 +8023,10 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #6e5773; }
+  color: #1f124a; }
   a:hover, a:focus {
     text-decoration: none;
-    color: #6e5773;
+    color: #1f124a;
     outline: none !important; }
 
 h1, h2, h3, h4, h5,
@@ -8030,7 +8036,7 @@ h1, h2, h3, h4, h5,
   font-weight: 400; }
 
 .text-primary {
-  color: #6e5773 !important; }
+  color: #1f124a !important; }
 
 .ftco-navbar-light {
   background: transparent !important;
@@ -8086,7 +8092,7 @@ h1, h2, h3, h4, h5,
         height: 2px;
         bottom: 0;
         left: 0;
-        background: #6e5773;
+        background: #1f124a;
         visibility: visible;
         -webkit-transform: scaleX(0);
         -moz-transform: scaleX(0);
@@ -8174,10 +8180,10 @@ h1, h2, h3, h4, h5,
         padding-right: 0 !important;
         padding-bottom: 20px !important; } }
     .ftco-navbar-light.scrolled .nav-item.active > a {
-      color: #6e5773 !important; }
+      color: #1f124a !important; }
     .ftco-navbar-light.scrolled .nav-item.cta > a {
       color: #fff !important;
-      background: #6e5773;
+      background: #1f124a;
       border: none !important;
       padding-top: 0.5rem !important;
       padding-bottom: .5rem !important;
@@ -8192,7 +8198,7 @@ h1, h2, h3, h4, h5,
         display: inline-block;
         color: #fff !important; }
     .ftco-navbar-light.scrolled .nav-item.cta.cta-colored span {
-      border-color: #6e5773; }
+      border-color: #1f124a; }
     @media (max-width: 991.98px) {
       .ftco-navbar-light.scrolled .navbar-nav {
         background: none;
@@ -8211,7 +8217,7 @@ h1, h2, h3, h4, h5,
     .ftco-navbar-light.scrolled .nav-link {
       color: #000000 !important; }
       .ftco-navbar-light.scrolled .nav-link.active {
-        color: #6e5773 !important; }
+        color: #1f124a !important; }
     .ftco-navbar-light.scrolled.awake {
       margin-top: 0px;
       -webkit-transition: .3s all ease-out;
@@ -8278,7 +8284,7 @@ h1, h2, h3, h4, h5,
     right: 0;
     bottom: 0;
     content: '';
-    opacity: .3;
+    opacity: .2;
     background: #000000; }
   .hero-wrap.hero-wrap-2 {
     height: 600px;
@@ -8336,9 +8342,9 @@ h1, h2, h3, h4, h5,
     .slider-text .breadcrumbs span a {
       color: white; }
       .slider-text .breadcrumbs span a:hover, .slider-text .breadcrumbs span a:focus {
-        color: #6e5773; }
+        color: #1f124a; }
         .slider-text .breadcrumbs span a:hover i, .slider-text .breadcrumbs span a:focus i {
-          color: #6e5773; }
+          color: #1f124a; }
 
 .slider-text .bread {
   font-weight: 700;
@@ -8349,7 +8355,7 @@ h1, h2, h3, h4, h5,
   background: #f8f9fa !important; }
 
 .bg-primary {
-  background: #6e5773; }
+  background: #1f124a; }
 
 .bg-darken {
   background: #222831 !important; }
@@ -8591,7 +8597,7 @@ h1, h2, h3, h4, h5,
   color: #6e5773;
   line-height: 1.2; }
 
-.ftco-services .tab-content .tab-pane .icon-law {
+.ftco-services .tab-content .tab-pane .icon-central{
   width: 140px; }
 
 .ftco-services .tab-content .tab-pane .text {
