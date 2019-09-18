@@ -85,13 +85,7 @@
 				return false;
 				}
 			
-			$.ajax({
-				url : 'searchId',
-				type : 'post',
-				data : 'searchId='+id.value,
-				success : function(res){
-					
-				}
+		
 			})
 			
 			
