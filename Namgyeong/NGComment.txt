@@ -54,6 +54,10 @@ CSS - Item.css (o)
 Survey - survey_result (o)
 CSS - survey, funding.css (o)
 
+--0918
+Patent - Patent_write, Patent_use_Detail, Patent_Detail (o)
+Item - item_history modify (o)
+
 * 앞으로 해야할 것들
 - 마이페이지 유형별 구성 및 테이블 구성 짜기
 - 크라우드 펀딩 상세페이지 + 결제 API 연동?
