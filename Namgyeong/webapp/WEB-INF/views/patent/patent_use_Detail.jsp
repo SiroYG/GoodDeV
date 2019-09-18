@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
     
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
@@ -104,13 +103,13 @@
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>사용 허가 신청서</b></span></label>
                 <div class="col-sm-10">
-                    <input type="file" class="form-control" id="" name="" placeholder="">
+                    <input type="file" class="form-control" id="" name="" placeholder="" multiple>
                 </div>
             </div>
              <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>사용 허가서</b></span></label>
                 <div class="col-sm-10">
-                    <input type="file" class="form-control" id="" name="" placeholder="">
+                    <input type="file" class="form-control" id="" name="" placeholder="" multiple>
                     <p>사용 허가를 원하실 경우 사용 허가서를 첨부해주세요.</p>
                 </div>
             </div>

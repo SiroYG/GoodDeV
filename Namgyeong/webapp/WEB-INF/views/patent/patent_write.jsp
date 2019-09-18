@@ -104,7 +104,7 @@
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>사용 허가 신청서</b></span></label>
                 <div class="col-sm-10">
-                    <input type="file" class="form-control" id="" name="" placeholder="업로드">
+                    <input type="file" class="form-control" id="" name="" placeholder="" multiple>
                 </div>
             </div>
 <br><br>
