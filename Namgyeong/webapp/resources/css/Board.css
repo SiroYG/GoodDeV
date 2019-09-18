@@ -23,6 +23,7 @@ div.cap-btn {
     text-align: right;
     margin: 0 auto;
     justify-content: right;
+    
 }
 
 div.tri-btn {
@@ -31,6 +32,8 @@ div.tri-btn {
     margin: 0 auto;
     justify-content: center;
 }
+
+
 
 .btn-primary{
     margin-left :10px;
@@ -124,4 +127,17 @@ span.white {
 
 .searchWord {
     width: 80%;
+}
+
+p.qna-id{
+    font-size: 1.2em;
+}
+
+.input-comment{
+    color: #999999;
+    border: none;
+        height: inherit !important;
+    overflow: auto;
+    resize: vertical;
+    width: 100%;
 }
