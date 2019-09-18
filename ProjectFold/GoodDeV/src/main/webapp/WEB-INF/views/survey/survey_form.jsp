@@ -55,7 +55,6 @@
 	      </div>
 	    </div>
 	  </nav>
-
 	  <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_8.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
@@ -67,8 +66,6 @@
         </div>
       </div>
     </section>
-		
-
 <section class="ftco-section" id="blog-section">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
@@ -78,26 +75,21 @@
             <p>시장 출시 전 시제품에 대한 설문조사를 진행・참가할 수 있습니다.<br>
             모든 결과는 익명으로 처리되며, 각 기록은 마이페이지에서 확인 가능합니다.
             </p>
-            
           </div>
         </div>
-
     <hr class="hr_purple">
-
     <div class="write_table">
         <form action="" method="POST" id="">
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>시작일</b></span></label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="writtenDate" id="" placeholder="2019 - 09 - 04 (목)" readonly="readonly">
-
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>마감일</b></span></label>
                 <div class="col-sm-10">
                     <input type="date" class="form-control" name="dueDate" id="" placeholder="2019 - 09 - 12 (목)">
-
                 </div>
             </div>
             <div class="form-group row">
@@ -303,26 +295,22 @@
                     </div>
                 </div>
             </div>
-            
-            
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>기타의견</b></span></label>
                 <div class="col-sm-10">
                     <textarea rows="4" cols="112" name="etc" class="form-control" placeholder="참가자들의 의견을 자유롭게 받을 수 있습니다." readonly="readonly"></textarea>
                 </div>
             </div>
-<br><br>
+		<br><br>
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <a href="#" class="btns btn-3"><span class="white">&nbsp;&nbsp;작성하기&nbsp;&nbsp;</span></a> &nbsp;&nbsp; <a href="survey_list.html" class="btns btn-3-red" style="margin-top: 0;"><span class="white">&nbsp;&nbsp;취소&nbsp;&nbsp;</span></a>
+                    <a href="#" class="btns btn-3"><span class="white">&nbsp;&nbsp;작성하기&nbsp;&nbsp;</span></a> &nbsp;&nbsp; <a href="/cloud/survey/surveyListForm" class="btns btn-3-red" style="margin-top: 0;"><span class="white">&nbsp;&nbsp;취소&nbsp;&nbsp;</span></a>
                 </div>
-
             </div>
         </form>
     </div>
     </div></section>
-    
-    <script src="/cloud/resources/js/jquery.min.js"></script>
+  <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/cloud/resources/js/popper.min.js"></script>
   <script src="/cloud/resources/js/bootstrap.min.js"></script>

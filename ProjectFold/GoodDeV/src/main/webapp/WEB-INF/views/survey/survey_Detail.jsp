@@ -101,7 +101,6 @@
                 <label for="" class="col-sm-2 col-form-label"><span><b>시작일</b></span></label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="writtenDate" id="" placeholder="2019 - 09 - 04 (목)" readonly="readonly">
-
                 </div>
             </div>
             <div class="form-group row">
@@ -309,8 +308,6 @@
                     </div>
                 </div>
             </div>
-            
-            
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>기타의견</b></span></label>
                 <div class="col-sm-10">
@@ -322,14 +319,13 @@
                 <div class="col-sm-10">
                     <a href="#" class="btns btn-3"><span class="white">&nbsp;&nbsp;작성하기&nbsp;&nbsp;</span></a> 
                     &nbsp;&nbsp; 
-                    <a href="gosurveylist" class="btns btn-3-red" style="margin-top: 0;"><span class="white">&nbsp;&nbsp;취소&nbsp;&nbsp;</span></a>
+                    <a href="/cloud/survey/surveyListForm" class="btns btn-3-red" style="margin-top: 0;"><span class="white">&nbsp;&nbsp;취소&nbsp;&nbsp;</span></a>
                 </div>
 
             </div>
         </form>
           </div>
     </div>
-    
       </section>
  <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
@@ -345,11 +341,8 @@
   <script src="/cloud/resources/js/bootstrap-datepicker.js"></script>
   <script src="/cloud/resources/js/jquery.timepicker.min.js"></script>
   <script src="/cloud/resources/js/scrollax.min.js"></script>
-  
   <script src="/cloud/resources/js/main.js"></script>
 </body>
-   
-    
    <footer class="ftco-footer ftco-section">
     <div class="container">
         <div class="row mb-5">
@@ -403,6 +396,5 @@
                 </div>
             </div>
         </div>
-        
     </div>
 </footer></html>

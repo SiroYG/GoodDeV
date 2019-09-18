@@ -798,7 +798,7 @@
 						<li><a href="#practice-section"><span
 								class="icon-long-arrow-right mr-2"></span>특허 FAQ</a></li>
 						<!--<li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Attorneys</a></li>-->
-						<li><a href="/cloud/survey/main"><span
+						<li><a href="/cloud/survey/surveyListForm"><span
 								class="icon-long-arrow-right mr-2"></span>설문조사</a></li>
 						<li><a href="#"><span class="icon-long-arrow-right mr-2"></span>공식
 								연락처</a></li>
