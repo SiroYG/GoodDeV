@@ -113,7 +113,7 @@
     function output(res){
  	   	var tag = '';
         tag += '<table class="pTable">'
-        tag += '<caption class="table_title"><b>보유 및 사용 중인 특허 목록</b></caption>'
+        tag += '<caption class="table_title"><b>검색하신 특허결과입니다.</b></caption>'
         tag += '<thead class="navy">' 
         tag += '<tr>'   
         tag += '<th scope="col">No.</th>'        

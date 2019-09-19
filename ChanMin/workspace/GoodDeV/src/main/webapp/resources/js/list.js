@@ -37,35 +37,15 @@ function patent(){
  	 	  		
  });
     
-    /*
-    		참고용
-    		jQuery(document).on('click', '#searchBtn', function(){
- 		var searchWord  =$('#').val();
- 		$.ajax({
- 			url : '' ,
- 			type : 'get',
- 			data : {
- 				
- 			}
- 			
- 		})
- 		 
- 		
-    });*/
+  
    
     function patentTable(pageSu){
- 	   /* var searchWord =$().val()	
- 	   	  var patentDetail =$().val()
- 	   	  var patentType  =$().val()
- 	   */
+ 	
  	   $.ajax({
  	   		url : 'patentTable',
  	   		type : 'get',
  	   		data : {
  	   			pageSu : pageSu
- 	   		//	,searchWord : searchWord
- 	   		//	,patentDetail : patentDetail
- 	   		//	,patentType : patentType
  	   		},
  	   		success : output	   		
  	   	})
@@ -91,8 +71,8 @@ function patent(){
     		   
 
     	   $.each(res,function(i,item){
- 	   	   	tag += '<tr>'
- 	   	  	tag += '<th scope="row" name="특허번호">'+item.patentNum+'</th>'        
+    		   	tag += '<tr>'
+ 	   	   		tag += '<th scope="row" name="특허번호">'+item.patentNum+'</th>'        
     	   		tag += '<td name="분류">'+item.patenttype+'</td>'
     	   		tag += '<td name="특허명">'+item.patentName+'</td>'
     	   		tag += '<td name="특허설명">'+item.patentContent+'</td>'
@@ -112,7 +92,7 @@ function patent(){
     	   tag += '<button id="leftBtn">◀</button>'	
     	   tag += '<button id="rightBtn">▶</button>'	
     	   tag += '</td></tr>'*/
-    	   tag += '</table>' 
+    	    tag += '</table>' 
     		tag += '<div class="tri-btn">'
     		tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
     	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
@@ -125,70 +105,49 @@ function item(){
 	var pageSu;
     $(function(){
  		   pageSu = 9;
- 		   patentTable(pageSu);   
+ 		   itemTable(pageSu);   
 
     });
     
-    jQuery(document).on('click', '#rightBtn', function(){
+    jQuery(document).on('click', '#riBtn', function(){
  	   			pageSu += 10;
  	   			$.ajax({
- 	   				url: 'patentSu',
+ 	   				url: 'itemSu',
  	   				type : 'get',
  	   				success : function(res){
  	   					if(pageSu<res){
- 	   						patentTable(pageSu); 
+ 	   					itemTable(pageSu); 
  	   					}else {
  	   						pageSu = 9;
- 	   						patentTable(pageSu);
+ 	   					itemTable(pageSu);
  	   						//ex) 172개 일때, 170개는 보여지지만 2개는 아직 안보임;;
  	   					}
  	   				}
  	   			})
  	   }); 
     
-    jQuery(document).on('click', '#leftBtn', function(){
+    jQuery(document).on('click', '#leBtn', function(){
  	 	  		
  	   			pageSu -= 10;
  	 	
  	 	  		if(pageSu>0){
- 	 	  			patentTable(pageSu); 
+ 	 	  		itemTable(pageSu); 
  	 	  		}else{
  	 	  			pageSu = 9;
  	 	  			alert('응 첫페이지..');
- 	 	  			patentTable(pageSu); 
+ 	 	  		itemTable(pageSu); 
  	 	  		}
  	 	  		
  });
     
-    /*
-    		참고용
-    		jQuery(document).on('click', '#searchBtn', function(){
- 		var searchWord  =$('#').val();
- 		$.ajax({
- 			url : '' ,
- 			type : 'get',
- 			data : {
- 				
- 			}
- 			
- 		})
- 		 
- 		
-    });*/
    
-    function patentTable(pageSu){
- 	   /* var searchWord =$().val()	
- 	   	  var patentDetail =$().val()
- 	   	  var patentType  =$().val()
- 	   */
+    function itemTable(pageSu){
+ 	 
  	   $.ajax({
- 	   		url : 'patentTable',
+ 	   		url : 'itemTable',
  	   		type : 'get',
  	   		data : {
  	   			pageSu : pageSu
- 	   		//	,searchWord : searchWord
- 	   		//	,patentDetail : patentDetail
- 	   		//	,patentType : patentType
  	   		},
  	   		success : output	   		
  	   	})
@@ -197,7 +156,6 @@ function item(){
     }
     function output(res){
  	   var tag = '';
- 	    tag += '<input id="seachWord" type="text" name="seachWord" /><button id="searchBtn" type="button">검색</button>'
         tag += '<table class="iTable">'
         tag += '<caption class="table_title"><b>시제품 및 출시품 목록</b></caption>'
         tag += '<thead class="navy">' 
@@ -220,13 +178,12 @@ function item(){
     	   		tag += '</tr>'
     	   	})
     	   
-    	   tag += '</tbody>'	
-    	   tag += '<tr><td>'
-    	   tag += '<button id="leftBtn">◀</button>'	
-    	   tag += '<button id="rightBtn">▶</button>'	
-    	   tag += '</td></tr>'
-    	   tag += '</table>' 
-    
+    	   	tag += '</tbody>'	
+    		tag += '</table>' 
+    		tag += '<div class="tri-btn">'
+    	   	tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
+    	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
+	        tag +='</div>'
         $('#section-bar-item').html(tag);	
     }
 }
@@ -270,35 +227,14 @@ function fund(){
  	 	  		
  });
     
-    /*
-    		참고용
-    		jQuery(document).on('click', '#searchBtn', function(){
- 		var searchWord  =$('#').val();
- 		$.ajax({
- 			url : '' ,
- 			type : 'get',
- 			data : {
- 				
- 			}
- 			
- 		})
- 		 
- 		
-    });*/
    
     function patentTable(pageSu){
- 	   /* var searchWord =$().val()	
- 	   	  var patentDetail =$().val()
- 	   	  var patentType  =$().val()
- 	   */
+ 	 
  	   $.ajax({
  	   		url : 'patentTable',
  	   		type : 'get',
  	   		data : {
  	   			pageSu : pageSu
- 	   		//	,searchWord : searchWord
- 	   		//	,patentDetail : patentDetail
- 	   		//	,patentType : patentType
  	   		},
  	   		success : output	   		
  	   	})

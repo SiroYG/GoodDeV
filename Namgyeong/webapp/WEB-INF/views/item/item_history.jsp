@@ -28,7 +28,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index">Mainlogo</a>
+	      <a class="navbar-brand" href="home">Mainlogo</a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -73,81 +73,72 @@
           <div class="main_table">
    
    <table class="table">
-  <thead class="navy">
-    <tr>
-      <th scope="col">Item No.</th>
-      <th scope="col">제품/서비스 명</th>
-      <th scope="col">변경사항</th>
-      <th scope="col">버전</th>
-      <th scope="col">수정일</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row" name="item_seq">1</th>
-      <td name="itemName">##################</td>
-      <td name="comments">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="itemVersion">2</td>
-      <td name="itemRegDate">2019-09-09</td>
-    </tr>
-    <tr>
-      <th scope="row" name="item_seq">1</th>
-      <td name="itemName">##################</td>
-      <td name="comments">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="itemVersion">2</td>
-      <td name="itemRegDate">2019-09-09</td>
-    </tr>
-    <tr>
-      <th scope="row" name="item_seq">1</th>
-      <td name="itemName">##################</td>
-      <td name="comments">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="itemVersion">2</td>
-      <td name="itemRegDate">2019-09-09</td>
-    </tr>
-    <tr>
-      <th scope="row" name="item_seq">1</th>
-      <td name="itemName">##################</td>
-      <td name="comments">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="itemVersion">2</td>
-      <td name="itemRegDate">2019-09-09</td>
-    </tr>
-    <tr>
-      <th scope="row" name="item_seq">1</th>
-      <td name="itemName">##################</td>
-      <td name="comments">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="itemVersion">2</td>
-      <td name="itemRegDate">2019-09-09</td>
-    </tr>
-  </tbody>
-  
-</table>
-       <!--페이징 -->
-  <div class="page-center">
-  
-  <nav>
-  <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <a class="page-link" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only">Previous</span>
-      </a>
-    </li>
-    <li class="page-item active"><a class="page-link">1</a></li>
-    <li class="page-item"><a class="page-link">2</a></li>
-    <li class="page-item"><a class="page-link">3</a></li>
-    <li class="page-item"><a class="page-link">4</a></li>
-    <li class="page-item"><a class="page-link">5</a></li>
-    <li class="page-item">
-      <a class="page-link" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only">Next</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-      </div>
-          </div>
-          </div>
+                    <!--tbody~</div> 까지 반복출력-->
+                    <tbody class="history-table">
+                        <tr>
+                            <th scope="col">Item No.</th>
+                            <td>1</td>
+                            <th scope="col">제품/서비스 명</th>
+                            <td name="">##################</td>
+                            <th scope="col">수정일</th>
+                            <td name="">2019-09-09</td>
+                        </tr>
+                        <tr>
+                            <th colspan="3" scope="col">변경사항</th>
+                            <td name="">aaaaaaaaaaaaaaaaaaaa</td>
+                            <th scope="row">버전</th>
+                            <td name="">2</td>
+                        </tr>
+
+                        
+                    </tbody>
+                    <div class="his-margin"></div>
+                    <tbody class="history-table">
+                        <tr>
+                            <th scope="col">Item No.</th>
+                            <td>1</td>
+                            <th scope="col">제품/서비스 명</th>
+                            <td name="">##################</td>
+                            <th scope="col">수정일</th>
+                            <td name="">2019-09-09</td>
+                        </tr>
+                        <tr>
+                            <th colspan="3" scope="col">변경사항</th>
+                            <td name="">aaaaaaaaaaaaaaaaaaaa</td>
+                            <th scope="row">버전</th>
+                            <td name="">2</td>
+                        </tr>
+
+                        
+                    </tbody>
+                </table>
+                <!--페이징만-->
+                <div class="page-center">
+
+                    <nav>
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item">
+                                <a class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item active"><a class="page-link">1</a></li>
+                            <li class="page-item"><a class="page-link">2</a></li>
+                            <li class="page-item"><a class="page-link">3</a></li>
+                            <li class="page-item"><a class="page-link">4</a></li>
+                            <li class="page-item"><a class="page-link">5</a></li>
+                            <li class="page-item">
+                                <a class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
     </section>
 
 

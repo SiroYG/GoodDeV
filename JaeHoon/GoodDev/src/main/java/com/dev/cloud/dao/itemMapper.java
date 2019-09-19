@@ -25,3 +25,7 @@ public interface itemMapper {
 	//아이템삭제(itemName='none')
 	public int deleteItem(Item item);
 }
+
+
+
+

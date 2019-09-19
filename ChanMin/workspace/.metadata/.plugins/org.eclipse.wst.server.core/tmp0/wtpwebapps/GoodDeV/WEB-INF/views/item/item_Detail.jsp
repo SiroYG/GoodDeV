@@ -23,6 +23,16 @@
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/item.css">
+    
+    <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
+	<script src="/cloud/resources/js/jquery-ui.min.js"></script>
+    <script>
+    $(function(){
+    	
+    	
+    });
+    </script>
+   
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -109,19 +119,19 @@
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>이미지 파일</b></span></label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="saveItemImage" id="">
+                            <input type="file" class="form-control" name="saveItemImage" id="saveItemImage">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>관련 특허 서식 파일</b></span></label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="saveDocumentFilename" id="">
+                            <input type="file" class="form-control" name="saveDocumentFilename" id="saveDocumentFilename">
                         </div>
                     </div><br>
                     <hr class="hr_navy"><br><br>
                      <a href="goitemlist" class="btns btn-3"><span class="white">돌아가기</span></a> &nbsp;&nbsp; 
                      <a href="goitemupdate" class="btns btn-3-green"><span class="white">수정하기</span></a> &nbsp;&nbsp; 
-                     <a href="<!-- deleteItem -->?item_seq=${item.item_seq}" class="btns btn-3-red"><span class="white">삭제</span></a> 
+                     <a href="/cloud/item/deleteItem?item_seq=${item.item_seq}" class="btns btn-3-red"><span class="white">삭제</span></a> 
                 </form>
             </div>
 

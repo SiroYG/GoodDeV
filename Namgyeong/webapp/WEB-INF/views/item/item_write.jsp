@@ -86,6 +86,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label"><span><b>제품 상태</b></span></label>
+                        <div class="col-sm-10">
+                            <select name="itemType">
+                                <option value="prototype" selected>[시제품]</option>
+                                <option value="release">[출시품]</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>제품/서비스명</b></span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="itemName" id="" placeholder="제품명을 입력해주세요">

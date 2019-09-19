@@ -38,3 +38,23 @@
 9월 17, 2019 19:03:30.44 [11912:14244:0917/190330.440:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
 9월 17, 2019 19:43:30.84 [17912:17800:0917/194330.844:ERROR:browser_process_sub_thread.cc(203)] Waited 9 ms for network service
 9월 17, 2019 20:58:52.90 [3312:16416:0917/205852.902:ERROR:browser_process_sub_thread.cc(203)] Waited 15 ms for network service
+
+9월 18, 2019 16:24:47.36 NEW SESSION
+9월 18, 2019 16:24:47.36 [1272:11968:0918/162447.362:ERROR:socket_stream.cc(219)] Closing stream with result -2
+9월 18, 2019 16:35:38.07 [1272:11968:0918/163538.073:ERROR:socket_stream.cc(219)] Closing stream with result -2
+9월 18, 2019 16:44:49.88 [1272:11968:0918/164449.889:ERROR:browser_process_sub_thread.cc(203)] Waited 10 ms for network service
+9월 18, 2019 16:55:14.19 [11360:18072:0918/165514.193:ERROR:browser_process_sub_thread.cc(203)] Waited 9 ms for network service
+9월 18, 2019 17:41:56.08 [17664:9760:0918/174156.089:ERROR:socket_stream.cc(219)] Closing stream with result -2
+9월 18, 2019 18:23:02.09 [17664:9760:0918/182302.096:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -106
+9월 18, 2019 18:29:22.90 [17664:9760:0918/182922.901:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -109
+9월 18, 2019 18:29:26.08 [17664:9760:0918/182926.083:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -105
+9월 18, 2019 18:53:09.46 [17664:9760:0918/185309.464:ERROR:socket_stream.cc(219)] Closing stream with result -2
+9월 18, 2019 19:02:37.56 [17664:9760:0918/190237.563:ERROR:socket_stream.cc(219)] Closing stream with result -2
+9월 18, 2019 19:02:49.57 [17664:9760:0918/190249.573:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -105
+9월 18, 2019 19:03:23.79 [17664:9760:0918/190323.789:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -105
+9월 18, 2019 19:04:21.26 [17664:9760:0918/190421.266:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -105
+9월 18, 2019 19:06:24.97 [17664:9760:0918/190624.977:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -105
+9월 18, 2019 19:09:57.64 [17664:9760:0918/190957.643:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -105
+9월 18, 2019 19:15:17.21 [17664:9760:0918/191517.214:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
+9월 18, 2019 19:51:37.04 [18740:18612:0918/195137.049:ERROR:browser_process_sub_thread.cc(203)] Waited 12 ms for network service
+9월 18, 2019 19:54:37.65 [7224:19232:0918/195437.658:ERROR:browser_process_sub_thread.cc(203)] Waited 17 ms for network service
