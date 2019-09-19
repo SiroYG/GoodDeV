@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.cloud.dao.documentMapper">
+
+	<insert id="insertDocument" parameterType="Document">
+	insert into Document (
+		DocumentNum
+		,PatentsubNum
+		<if test="documentFilename!=''">
+		,documentFilename
+		,saveDocumentFilename
+		</if>
+		)VALUES (
+		Document_seq.NEXTVAL
+		,#{PatentsubNum}
+		<if test="documentFilename!=''">
+		,#{documentFilename}
+		,#{saveDocumentFilename}
+		</if>
+		)
+	
+	</insert>
+
+	<update id="updateDocument" parameterType="Document">
+		UPDATE Document
+		SET
+		documentFilename = #{documentFilename}
+		,saveDocumentFilename = #{saveDocumentFilename}
+		where
+		DocumentNum=#{DocumentNum}
+	
+	
+	</update>
+
+</mapper>
+	

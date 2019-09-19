@@ -18,6 +18,7 @@ DROP TABLE devMember CASCADE CONSTRAINTS;
 
 
 
+
 /* Drop Sequences */
 
 DROP SEQUENCE BOARD_seq;
