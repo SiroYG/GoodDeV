@@ -28,3 +28,5 @@
 -- middleSide_ searchPatent, patentList 만들기
 -- 190918
 -- middleSide_ myPage_itemList 만들기
+-- 190919
+-- middleSide_ myPage_itemList (2), itemWrite 만들기

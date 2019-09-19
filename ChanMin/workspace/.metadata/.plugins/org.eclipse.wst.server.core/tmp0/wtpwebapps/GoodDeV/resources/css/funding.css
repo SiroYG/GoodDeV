@@ -1,7 +1,44 @@
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css); 
+/*<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>*/ * { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
 
 body{
-   font-family: 'Jeju Gothic', sans-serif; 
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+}
+
+div.write_table{
+    padding: 3% 20% 10%;
+}
+
+div.all-side{
+    width: 100%;
+    height: 500px;
+    display: flex;
+}
+
+div.left-side{
+    width: 50%;
+    height: 500px;
+    background-color: antiquewhite;
+    display: block;
+}
+
+div.right-side{
+    width: 50%;
+    height: 500px;
+    background-color: burlywood;
+    display: block;
+}
+
+div.detail-side{
+    width: 550px;
+    max-width: inherit;
+    height: 30px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+
+p.sub-name{
+    margin: 0;
 }
 
 .search-form{

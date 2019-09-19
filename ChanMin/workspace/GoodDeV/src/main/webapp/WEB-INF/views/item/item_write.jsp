@@ -25,8 +25,50 @@
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     
-    <script></script>
+    <script>
+    $(function(){
+    	
+		$('#itemInsert').on('click',function(){
+    		var itemName = $('#itemName').val();
+    		var price = $('#price').val();
+    		var itemContent = $('#itemContent').val();
+    		var itemImagename = $('#itemImagename').val();
+    		var documentFilename = $('#documentFilename').val();
+    		
+    		if(itemName.length==0||itemName.length==""){
+    			alert('아이템명을 입력하세요')
+    			return false;
+    		}
+    		if(price.length==0||price.length==""){
+    			alert('아이템명을 입력하세요')
+    			return false;
+    		}
+    		if(isNaN(price)){
+    			alert('숫자로 입력하세요')
+    			return false;
+    		}
+    		if(itemContent.length==0||itemContent.length==""){
+    			alert('아이템명을 입력하세요')
+    			return false;
+    		}
+    		$('#itemFrom').submit();
+    	})
+    	
     
+    });
+    </script>
+   <!-- 	private int itemNum;
+	private String memberId;
+	private String itemType;
+	private String  ideaDate;
+	private String  itemName ;
+	private int price ;
+	private String  itemContent ;
+	private String  itemRegDate;
+	private String  itemImagename ;
+	private String  saveItemImage ;
+	private String  documentFilename ;
+	private String  saveDocumentFilename ; -->
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -46,9 +88,13 @@
 	          <li class="nav-item"><a href="goBoardlist" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="gosurveylist" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <li class="nav-item"><a href="gomyPage" class="nav-link"><span>마이페이지</span></a></li>
+	          <c:if test="${sessionScope.loginId!=null}">
+	          <li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
+	          </c:if>
+	          <c:if test="${sessionScope.loginId==null}">
 	          <li style="margin-left: 20px; " class="nav-item cta"><a href="gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
               <li style="margin-left: 20px;" class="nav-item cta"><a href="gosignin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
+			  </c:if>      
 	        </ul>
 	      </div>
 	    </div>
@@ -78,45 +124,45 @@
                 </div>
             </div>
             <div class="main_table">
-                <form action="" method="POST" id="">
+                <form action="/cloud/item/goItemWriteProcess" method="post" id="itemFrom">
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>작성일</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="ideaDate" id="" placeholder="2019 / 09 / 04 (목)" readonly="readonly">
+                            <input type="text" class="form-control" name="ideaDate" value="${time}" id="ideaDate" placeholder="${time}" readonly="readonly">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>제품/서비스명</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="itemName" id="" placeholder="제품명을 입력해주세요">
+                            <input type="text" class="form-control" name="itemName" id="itemName" placeholder="제품명을 입력해주세요">
                         </div>
                     </div>
                      <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>출시 희망 가격</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="price" id="" placeholder="희망 가격은 숫자만 입력 가능합니다.">
+                            <input type="text" class="form-control" name="price" id="price" placeholder="희망 가격은 숫자만 입력 가능합니다.">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>제품/서비스 요약</b></span></label>
                         <div class="col-sm-10">
-                            <textarea rows="8" cols="112" class="form-control" name="itemContent">제품에 대한 간략한 설명을 입력할 수 있습니다.</textarea>
+                            <textarea rows="8" cols="112" class="form-control" name="itemContent" id="itemContent"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>이미지 업로드</b></span></label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="itemImagename" id="" multiple>
+                            <input type="file" class="form-control" name="itemImagename" id="itemImagename"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>특허 파일 업로드</b></span></label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="documentFilename" id="" multiple>
+                            <input type="file" class="form-control" name="documentFilename" id="documentFilename" >
                         </div>
                     </div><br>
                     <hr class="hr_navy"><br><br>
-                    <a href="#" class="btns btn-3"><span class="white">작성하기</span></a> &nbsp;&nbsp; 
+                    <a href="#" id="itemInsert" class="btns btn-3"><span class="white">작성하기</span></a> &nbsp;&nbsp; 
                     <a href="gomyPage#item-section" class="btns btn-3-red"><span class="white">취소</span></a> 
                 </form>
             </div>

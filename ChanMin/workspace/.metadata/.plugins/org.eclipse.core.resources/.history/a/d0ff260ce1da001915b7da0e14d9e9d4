@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.cloud.dao.itemMapper">
+	
+<insert parameterType="Item" id="insertItem">
+insert into ITEM (
+				itemNum
+				,memberId
+				,itemType
+				,ideaDate
+				,itemName
+				,itemContent
+				,documentFilename
+				,saveDocumentFilename
+				)VALUES 
+				(
+				item_seq.NEXTVAL
+				,#{memberId}
+				,#{itemType}
+				,#{ideaDate}
+				,#{itemName}
+				,#{itemContent}
+				,#{documentFilename}
+				,#{saveDocumentFilename}
+				) 
+				</insert>
+
+<select id="selectAllItem" parameterType="Item" resultType="Item">
+	select
+				itemNum
+				,ideaDate
+				,itemName
+				,itemContent
+				,documentFilename
+				,saveDocumentFilename
+	from
+				item
+	where 
+		memberId = #{memberId}		
+
+</select>
+
+
+<update parameterType="Item" id="updateItem">
+			UPDATE 
+				ITEM
+			SET
+				itemName = #{itemName}
+				,price = #{price}
+				,itemContent = #{itemContent}
+				,itemRegDate = SYSDATE 
+			<choose>
+
+				<when test="itemImagename != '' ">
+				,itemImagename = #{itemImagename}
+				,saveItemImage = #{saveItemImage} 
+			</when>
+
+			<when test="itemImagename != 'null'">
+				,itemImagename = #{itemImagename}
+				,saveItemImage = #{saveItemImage}
+			</when>
+
+<otherwise/>
+
+			</choose>
+			WHERE itemNum = #{itemNum} 
+</update>
+
+</mapper>
+
+

@@ -58,3 +58,25 @@
 9월 18, 2019 19:15:17.21 [17664:9760:0918/191517.214:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
 9월 18, 2019 19:51:37.04 [18740:18612:0918/195137.049:ERROR:browser_process_sub_thread.cc(203)] Waited 12 ms for network service
 9월 18, 2019 19:54:37.65 [7224:19232:0918/195437.658:ERROR:browser_process_sub_thread.cc(203)] Waited 17 ms for network service
+
+9월 19, 2019 13:35:52.91 NEW SESSION
+9월 19, 2019 13:35:52.91 [14440:9804:0919/133552.910:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
+9월 19, 2019 14:10:11.36 [2868:9300:0919/141011.363:ERROR:browser_process_sub_thread.cc(203)] Waited 17 ms for network service
+9월 19, 2019 14:17:59.31 [16352:2816:0919/141759.317:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
+9월 19, 2019 14:22:18.29 [18640:9804:0919/142218.296:ERROR:browser_process_sub_thread.cc(203)] Waited 16 ms for network service
+9월 19, 2019 14:41:22.14 [14072:2676:0919/144122.145:ERROR:browser_process_sub_thread.cc(203)] Waited 10 ms for network service
+
+9월 19, 2019 15:46:00.72 NEW SESSION
+9월 19, 2019 15:46:00.72 [18868:18256:0919/154600.565:ERROR:browser_process_sub_thread.cc(203)] Waited 21 ms for network service
+9월 19, 2019 15:53:26.48 [15496:12868:0919/155326.489:ERROR:browser_process_sub_thread.cc(203)] Waited 10 ms for network service
+
+9월 19, 2019 16:35:23.81 NEW SESSION
+9월 19, 2019 16:35:23.81 [2688:8616:0919/163523.808:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -21
+9월 19, 2019 17:25:12.90 [2688:8616:0919/172512.907:ERROR:socket_stream.cc(219)] Closing stream with result -2
+9월 19, 2019 18:45:27.32 [2688:8616:0919/184527.322:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -106
+9월 19, 2019 18:48:39.31 [2688:8616:0919/184839.309:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -106
+9월 19, 2019 20:02:55.86 [2688:8616:0919/200255.865:ERROR:browser_process_sub_thread.cc(203)] Waited 22 ms for network service
+9월 19, 2019 20:19:55.36 [3448:15432:0919/201955.359:ERROR:browser_process_sub_thread.cc(203)] Waited 21 ms for network service
+9월 19, 2019 22:37:29.75 [3140:5876:0919/223729.752:ERROR:browser_process_sub_thread.cc(203)] Waited 16 ms for network service
+9월 19, 2019 22:41:30.92 [13560:17608:0919/224130.921:ERROR:browser_process_sub_thread.cc(203)] Waited 17 ms for network service
+9월 19, 2019 22:49:51.89 [14796:10472:0919/224951.898:ERROR:browser_process_sub_thread.cc(203)] Waited 15 ms for network service

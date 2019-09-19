@@ -48,11 +48,11 @@
     margin-right:10px;
     }
     </style>
-
+	<script src="/cloud/resources/js/list.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script src="/cloud/resources/js/jquery.transit.js"></script>
     <script src="/cloud/resources/js/ef-tabs.js"></script>
- 	<script src="/cloud/resources/js/list.js"></script>
+ 	
     <script>
    	$(function(){
    		
@@ -239,6 +239,7 @@
                             <caption class="table_title"><b>테스트 목록</b></caption>
                             <thead class="navy">
                                 <tr>
+                                	
                                     <th scope="col">No.</th>
                                     <th scope="col">분류</th>
                                     <th scope="col">제목</th>
@@ -250,7 +251,7 @@
                                 <tr>
                                     <th scope="row" name="boardNum">1</th>
                                     <td name="qCategory">[일반]</td>
-                                    <td name="title"><a href="survey_list.html" class="mypage-link">aaaaaaaaaaaaaaaaaaa</a></td>
+                                    <td name="title">aaaaaaaaaaaaaaaaaa</a></td>
                                     <td name="id">ididid</td>
                                     <td name="boardDate">2019-09-09</td>
                                 </tr>
