@@ -18,7 +18,6 @@ DROP TABLE devMember CASCADE CONSTRAINTS;
 
 
 
-
 /* Drop Sequences */
 
 DROP SEQUENCE BOARD_seq;
@@ -75,6 +74,7 @@ CREATE SEQUENCE REPLY_seq;
 CREATE SEQUENCE FundingTable_seq;
 
 CREATE SEQUENCE fundingOption_seq;
+
 
 
 /* Create Tables */
@@ -168,7 +168,7 @@ CREATE TABLE ITEM
 	itemNum number NOT NULL,
 	memberId varchar2(20) NOT NULL,
 	itemType varchar2(100) NOT NULL,
-	ideaDate date DEFAULT SYSDATE NOT NULL,
+	ideaDate varchar2(100) DEFAULT '' NOT NULL,
 	itemName varchar2(30) NOT NULL UNIQUE,
 	price number NOT NULL,
 	itemContent varchar2(300) NOT NULL,
