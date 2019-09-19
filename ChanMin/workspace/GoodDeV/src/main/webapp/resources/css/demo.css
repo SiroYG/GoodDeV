@@ -1,3 +1,10 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
+/*<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>*/
+* {
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+}
+
 html, body, aside {
 	display: block;
 	margin: 0;
@@ -11,6 +18,7 @@ body {
 	background-position: 50% 0;
 	background-size: cover;
 	-webkit-text-size-adjust: none;
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
 }
 a {
 	text-decoration: none;
@@ -23,7 +31,7 @@ a.mypage-link{
     text-decoration : none;
 }
 
-a.btn {
+/*a.btn {
 text-decoration: none;
   line-height: 40px;
   display: inline-block;
@@ -37,7 +45,7 @@ text-decoration: none;
   transition: all 0.4s ease;
   font-size: 14px;
   font-weight: 700;
-}
+}*/
 
 .btn--radius {
   -webkit-border-radius: 3px;
@@ -48,10 +56,11 @@ text-decoration: none;
 
 .btn--green {
   background: #57b846;
+    color: white;
 }
 
 .btn--green:hover {
-  background: #4dae3c;
+  background: #70cc60;
 }
 
 .btn--green2 {
@@ -59,7 +68,7 @@ text-decoration: none;
 }
 
 .btn--green2:hover {
-  background: #35b84f;
+  background: #70cc60;
 }
 
 

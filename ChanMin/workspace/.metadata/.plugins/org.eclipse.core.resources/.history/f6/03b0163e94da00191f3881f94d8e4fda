@@ -1,0 +1,99 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
+
+body{
+   font-family: 'Jeju Gothic', sans-serif; 
+}
+
+.search-form{
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 30px;
+}
+
+.searchWord{
+    width: 80%;
+}
+
+div.page-center{
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.btns {
+width:280px;
+height: 70px;
+  padding: 1%;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #523e96;
+  border: 2px solid #523e96;
+  cursor: pointer;
+  width: max-content;
+  transition: 0.25s ease;
+}
+
+.btnss {
+width:280px;
+height: 70px;
+  padding: 1%;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #1f124a;
+  border: 2px solid #1f124a;
+  cursor: pointer;
+  width: max-content;
+  transition: 0.25s ease;
+}
+
+.btn-3-comments {
+width:280px;
+height: 70px;
+  padding: 1%;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #28a146;
+  border: 2px solid #28a146;
+  cursor: pointer;
+  width: max-content;
+  transition: 0.25s ease;
+}
+
+.btn-3:hover {
+  color: #523e96;
+  background-color: transparent;
+}
+
+.btn-3-navy:hover {
+  color: #1f124a;
+     border-color: #1f124a;
+  background-color: transparent;
+}
+
+.btn-3-red:hover {
+  color: #d41515;
+    border-color: #d41515;
+  background-color: transparent;
+}
+
+.btn-3-green:hover {
+  color: #28a146;
+    border-color: #28a146;
+  background-color: transparent;
+}
+
+.btn-3-comments:hover {
+  color: #28a146;
+    border-color: #28a146;
+  background-color: transparent;
+}
+
+span.white{
+    padding: 2%;
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+    font-size: 1.2em;
+}

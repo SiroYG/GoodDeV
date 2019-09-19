@@ -5,66 +5,101 @@
 
 <mapper namespace="com.dev.cloud.dao.itemMapper">
 	
+
 <insert parameterType="Item" id="insertItem">
 insert into ITEM (
-				itemNum
-				,ideaDate
-				,itemName
-				,itemContent
-				,documentFilename
-				,saveDocumentFilename
-				)VALUES 
-				(
-				item_seq.NEXTVAL
-				,SYSDATE
-				,#{itemName}
-				,#{itemContent}
-				,#{documentFilename}
-				,#{saveDocumentFilename}
-				) 
-				</insert>
+			itemNum
+			,memberId
+			,itemType
+			,ideaDate
+			,itemName
+			,price
+			,itemContent 
+<if test="itemImagename != ''">
+			,itemImagename
+			,saveItemImage 
+</if>
 
-<select id="selectAllItem" parameterType="Item" resultType="Item">
-	select
-				itemNum
-				,ideaDate
-				,itemName
-				,itemContent
-				,documentFilename
-				,saveDocumentFilename
-	from
-				item
-	where 
-		memberId = #{memberId}		
+<if test="documentFilename != ''">
+			,documentFilename
+			,saveDocumentFilename 
+</if>
+			)VALUES (
+			item_seq.NEXTVAL
+			,#{memberId}
+			,#{itemType}
+			,#{ideaDate}
+			,#{itemName}
+			,#{price}
+			,#{itemContent} 
+<if test="itemImagename != ''">
+			,#{itemImagename}
+			,#{saveItemImage}
+</if>
 
+<if test="documentFilename != ''">
+			,#{documentFilename}
+			,#{saveDocumentFilename} 
+</if>
+) 
+</insert>
+
+<select parameterType="Item" id="getItemNumByItemType" resultType="Item">
+select
+		*
+from 
+	ITEM
+where 
+	itemType = #{itemType} 
+</select>
+
+<select id="getAllItem" resultType="Item">
+select
+		*
+from 
+	ITEM 
+</select>
+
+<select parameterType="devMember" id="getItemByMemberId" resultType="Item">
+select
+		*
+from 
+		ITEM
+where 
+		memberId=#{memberId}
 </select>
 
 
 <update parameterType="Item" id="updateItem">
-			UPDATE 
-				ITEM
-			SET
-				itemName = #{itemName}
-				,price = #{price}
-				,itemContent = #{itemContent}
-				,itemRegDate = SYSDATE 
-			<choose>
+UPDATE 
+		Item
+	SET
+		itemName = #{itemName}
+		,price = #{price}
+		,itemContent=#{itemContent}
+		,itemType = #{itemType} 
+<if test="itemImagename != ''">
+		,itemImagename=#{itemImagename}
+		,saveItemImage=#{saveItemImage} 
+</if>
 
-				<when test="itemImagename != '' ">
-				,itemImagename = #{itemImagename}
-				,saveItemImage = #{saveItemImage} 
-			</when>
-
-			<when test="itemImagename != 'null'">
-				,itemImagename = #{itemImagename}
-				,saveItemImage = #{saveItemImage}
-			</when>
-
-<otherwise/>
-
-			</choose>
-			WHERE itemNum = #{itemNum} 
+<if test="documentFilename != ''">
+		,documentFilename=#{documentFilename}
+		,saveDocumentFilename=#{saveDocumentFilename} 
+</if>
+where
+		itemNum=#{itemNum} 
 </update>
+
+<update parameterType="Item" id="deleteItem">
+UPDATE
+	 	Item
+SET
+		itemName = 'none'
+where
+	itemNum = #{itemNum}
+</update>
+
 
 </mapper>
 

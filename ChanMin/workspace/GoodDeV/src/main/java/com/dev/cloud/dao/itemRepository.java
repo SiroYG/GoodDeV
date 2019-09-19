@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.MTI;
+import com.dev.cloud.vo.devMember;
 
 @Repository
 public class itemRepository implements itemMapper {
@@ -16,63 +17,83 @@ public class itemRepository implements itemMapper {
 	@Autowired
 	SqlSession sqlSession;
 	//아이템 삽입
+
 	@Override
 	public int insertItem(Item item) {
-		itemMapper mapper = sqlSession.getMapper(itemMapper.class);
-
-		int result = 0;
+		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
+		int result=0;
 		try {
-			result = mapper.insertItem(item);
+			result=mapper.insertItem(item);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return result;
 	}
 
-	//아이템 업데이트 쿼리
+	@Override
+	public ArrayList<Item> getItemNumByItemType(Item item) {
+		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
+		ArrayList<Item> result=null;
+		try {
+			result=mapper.getItemNumByItemType(item);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public ArrayList<Item> getAllItem() {
+		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
+		ArrayList<Item> result=null;
+		try {
+			result=mapper.getAllItem();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public ArrayList<Item> getItemByMemberId(Item item) {
+		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
+		ArrayList<Item> result=null;
+		try {
+			result=mapper.getItemByMemberId(item);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 	@Override
 	public int updateItem(Item item) {
-		itemMapper mapper = sqlSession.getMapper(itemMapper.class);
-
-		int result = 0;
+		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
+		int result=0;
 		try {
-			result = mapper.updateItem(item);
+			result=mapper.updateItem(item);
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
 		return result;
 	}
-
-
 
 	@Override
-	public List<Item> selectAllItem(Item item) {
-		itemMapper mapper = sqlSession.getMapper(itemMapper.class);
-
-		List<Item> result = null;
+	public int deleteItem(Item item) {
+		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
+		int result=0;
 		try {
-			result = mapper.selectAllItem(item);
+			result=mapper.deleteItem(item);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-
 		return result;
 	}
 
-	public Item selectOneItem(Item item) {
-		itemMapper mapper = sqlSession.getMapper(itemMapper.class);
-		
-		Item result = null;
-		try {
-			result = mapper.selectOneItem(item);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-
-		return result;
-	}
 
 }

@@ -69,7 +69,7 @@ function patent(){
     	   tag += '<tbody>'  
     		   
     		   
-
+    		   
     	   $.each(res,function(i,item){
     		   	tag += '<tr>'
  	   	   		tag += '<th scope="row" name="특허번호">'+item.patentNum+'</th>'        
@@ -139,7 +139,11 @@ function item(){
  	 	  		}
  	 	  		
  });
-    
+    jQuery("#section-bar-item").on('click', '#itemSign', function(){
+    		
+	  		window.location.href="/cloud/item/goItemWrite";
+			
+});
    
     function itemTable(pageSu){
  	 
@@ -158,31 +162,33 @@ function item(){
  	   var tag = '';
         tag += '<table class="iTable">'
         tag += '<caption class="table_title"><b>시제품 및 출시품 목록</b></caption>'
+        tag += '<div class="cap-btn">'
+        tag += '<a href="#" id="itemSign" class="btn btn-outlinr-info">제품 등록</a>'
+        tag += '<a id="itemUpdate" class="btn btn-outlinr-info">제품 수정 기록 보기</a>'
+        tag += '</div>'
         tag += '<thead class="navy">' 
         tag += '<tr>'   
         tag += '<th scope="col">Item No.</th>'        
         tag += '<th scope="col">분류</th>'       
         tag += '<th scope="col">제품명</th>'    
-        tag += '<th scope="col">테스트 여부</th>'    
-        tag += '<th scope="col">펀딩 여부</th>'        
+        tag += '<th scope="col">제품 설명</th>'     
    	    tag += '</tr>'
    	    tag += '</thead>' 
     	tag += '<tbody>'
     	   $.each(res,function(i,item){
  	   	   	tag += '<tr>'
  	   	  	tag += '<th scope="row" name="아이템번호">'+item.itemNum+'</th>'        
-    	   		tag += '<td name="분류">'+item.itemOption+'</td>'
-    	   		tag += '<td name="제품명">'+item.itemName+'</td>'
-    	   		tag += '<td name="테스트 여부">'+item.contract+'</td>'
-    	   		tag += '<td name="펀딩 여부">'+item.patentRegDate+'</td>'
+    	   		tag += '<td name="분류">' + item.memberId + '</td>'
+    	   		tag += '<td name="제품명">' + item.itemName + '</td>'
+    	   		tag += '<td name="제품 내용">'+item.itemContent+'</td>'
     	   		tag += '</tr>'
     	   	})
     	   
     	   	tag += '</tbody>'	
     		tag += '</table>' 
     		tag += '<div class="tri-btn">'
-    	   	tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
-    	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
+    	   	tag += '<button id="leBtn" class="btn btn-primary">◀</button>'	
+    	    tag += '<button id="riBtn" class="btn btn-primary">▶</button>'	
 	        tag +='</div>'
         $('#section-bar-item').html(tag);	
     }
@@ -196,7 +202,7 @@ function fund(){
 
     });
     
-    jQuery(document).on('click', '#rightBtn', function(){
+    jQuery(document).on('click', '#', function(){
  	   			pageSu += 10;
  	   			$.ajax({
  	   				url: 'patentSu',
@@ -213,7 +219,7 @@ function fund(){
  	   			})
  	   }); 
     
-    jQuery(document).on('click', '#leftBtn', function(){
+    jQuery(document).on('click', '#', function(){
  	 	  		
  	   			pageSu -= 10;
  	 	
@@ -257,11 +263,11 @@ function fund(){
     	tag += '<tbody>'
     	   $.each(res,function(i,item){
  	   	   	tag += '<tr>'
- 	   	  	tag += '<th scope="row" name="아이템번호">'+item.CouldfundingNum+'</th>'        
-    	   		tag += '<td name="분류">'+item.itemOption+'</td>'
-    	   		tag += '<td name="제목">'+item.fundName+'</td>' //item.fundName 필요 ()
-    	   		tag += '<td name="시작일">'+item+'</td>'// item.시작일 	==> 필요
-    	   		tag += '<td name="마감일">'+item.fundingDueDate+'</td>'
+ 	   	  	tag += '<th scope="row" name="아이템번호">'+item.d+'</th>'        
+    	   		tag += '<td name="분류">'+item.a+'</td>'
+    	   		tag += '<td name="제목">'+item.b+'</td>' //item.fundName 필요 ()
+    	   		tag += '<td name="시작일">'+item.b+'</td>'// item.시작일 	==> 필요
+    	   		tag += '<td name="마감일">'+item.c+'</td>'
     	   		tag += '</tr>'
     	   	})
     	   

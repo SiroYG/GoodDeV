@@ -18,6 +18,20 @@
 		patent
 		
 	</select>
+		<select id="patentIdAll" parameterType="String" resultType="Patent">
+	select
+	 	 patentNum
+		,patentName
+		,patentHolderName
+		,patentContent
+		,to_char(patentAppDate,'YYYY-MM-DD') as patentAppDate
+		,to_char(patentRegDate,'YYYY-MM-DD') as patentRegDate 
+		,patenttype
+	from
+		patent
+	where
+		patentHolderName=#{patentHolderName}	
+	</select>
 	
 	
 	

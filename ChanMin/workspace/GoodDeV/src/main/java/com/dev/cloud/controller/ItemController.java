@@ -1,6 +1,8 @@
 package com.dev.cloud.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -27,9 +29,9 @@ public class ItemController {
 	@RequestMapping(value = "/goItemDetail", method = RequestMethod.GET)
 	public String goItemDetail(Item item, Model model) {
 		
-		 Item it = repo.selectOneItem(item);
+		 /*Item it = repo.selectOneItem(item);
 		
-		 model.addAttribute("item",it);
+		 model.addAttribute("item",it);*/
 		 
 		return "/item/item_Detail" ;
 	}
@@ -41,8 +43,14 @@ public class ItemController {
 	}
 	
 	@RequestMapping(value = "/goItemWrite", method = RequestMethod.GET)
-	public String goItemWrite() {
+	public String goItemWrite(Model model) {
+		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd (E) ");
 		
+		Calendar time = Calendar.getInstance();
+		
+		String times = format.format(time.getTime());
+		
+		model.addAttribute("time", times);
 		return "/item/item_write";
 	}
 	
@@ -52,14 +60,18 @@ public class ItemController {
 		return "redirect:/";
 	}
 	@RequestMapping(value = "/goItemWriteProcess", method = RequestMethod.POST)
-	public String goItemWriteProcess(Item item) {
+	public String goItemWriteProcess(Item item, HttpSession session) {
 		
+		String memberId= (String) session.getAttribute("loginId");
+		item.setMemberId(memberId);
+		item.setItemType("통신장비");
+		System.out.println("item==>"+item);
 		int result = repo.insertItem(item);
 		try{
 		if(result==1){
-			return "redirect:/";
+			return "redirect:/member/goMypage";
 		}else{
-			return "redirect:/goItemWrite";
+			return "redirect:/item/goItemWrite";
 		}
 		}catch (Exception e) {
 			e.printStackTrace();
