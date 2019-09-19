@@ -19,6 +19,11 @@ hr.hr_navy{
     padding: 0% 10%;
 }
 
+a.a_document{
+    text-decoration: none;
+    color: blue;
+}
+
 div.write_table{
     padding: 5% 10% 10%;
 }
