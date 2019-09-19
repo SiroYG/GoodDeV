@@ -16,14 +16,14 @@ import com.dev.cloud.dao.memberRepository;
 import com.dev.cloud.dao.replyRepository;
 import com.dev.cloud.vo.Board;
 import com.dev.cloud.vo.Item;
-import com.dev.cloud.vo.MTI;
+
 import com.dev.cloud.vo.Reply;
 import com.dev.cloud.vo.devMember;
 
 /**
  * Handles requests for the application home page.
  */
-@Controller
+
 public class checkController_mapperOperator {
 	
 	@Autowired 
@@ -169,14 +169,13 @@ public class checkController_mapperOperator {
 		resultInt=iRepo.insertMTI(mti);
 		sysout=checkInt(resultInt, "insertMTI");
 		System.out.println(sysout);*/
-		MTI mti=new MTI();
-		mti.setMemberId("temp");
-		tempList=iRepo.getItemNumById(mti);
+		//mti.setMemberId("temp");
+		//tempList=iRepo.getItemNumById(mti);
 		sysout=checkObject(tempList, "selectItemById");
 		System.out.println(sysout);
 		
-		mti.setItemNum(tempList.get(1).getItemNum());
-		temp=iRepo.selectItemByItemNum(mti);
+		//mti.setItemNum(tempList.get(1).getItemNum());
+		//temp=iRepo.selectItemByItemNum(mti);
 		sysout=checkObject(tempList, "selectItemByItemNum");
 		System.out.println(sysout);
 		

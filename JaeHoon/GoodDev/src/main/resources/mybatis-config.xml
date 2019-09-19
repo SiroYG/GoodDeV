@@ -10,7 +10,6 @@
 <typeAlias alias="Survey" type="com.dev.cloud.vo.Survey"/>
 <typeAlias alias="Item" type="com.dev.cloud.vo.Item"/>
 <typeAlias alias="devMember" type="com.dev.cloud.vo.devMember"/>
-<typeAlias alias="MTI" type="com.dev.cloud.vo.MTI"/>
 <typeAlias alias="Patent" type="com.dev.cloud.vo.Patent"/>
 <typeAlias alias="Patentsub" type="com.dev.cloud.vo.Patentsub"/>
 <typeAlias alias="PTI" type="com.dev.cloud.vo.PTI"/>
@@ -26,7 +25,6 @@
 <mapper resource="mapper/crowdfundingMapper.xml"/>
 <mapper resource="mapper/item_SurveyMapper.xml"/>
 <mapper resource="mapper/itemMapper.xml"/>
-<mapper resource="mapper/MTIMapper.xml"/>
 <mapper resource="mapper/patentMapper.xml"/>
 <mapper resource="mapper/patentsubMapper.xml"/>
 <mapper resource="mapper/PTIMapper.xml"/>

@@ -11,6 +11,7 @@ public class Patentsub {
 
 private int  PatentsubNum ;
 private String	patentNum ;
+private String	memberId;
 private String	referenceFilename ;
 private String	saveReferenceFilename ;
 }
