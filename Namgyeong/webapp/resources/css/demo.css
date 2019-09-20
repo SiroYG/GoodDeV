@@ -24,10 +24,16 @@ a {
 	text-decoration: none;
 }
 a:hover {
+    color: blue;
 	text-decoration: none;
 }
 
 a.mypage-link{
+    text-decoration : none;
+}
+
+a.mypage-link:hover{
+    color: blue;
     text-decoration : none;
 }
 
