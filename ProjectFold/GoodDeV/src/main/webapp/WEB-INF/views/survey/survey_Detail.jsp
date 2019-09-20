@@ -100,26 +100,26 @@
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>시작일</b></span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="writtenDate" id="" placeholder="2019 - 09 - 04 (목)" readonly="readonly">
+                    <input type="text" class="form-control" name="writtenDate" id="" placeholder="${Question_Time.startDate}" readonly="readonly">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>마감일</b></span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="dueDate" id="" placeholder="2019 - 09 - 14 (토)">
+                    <input type="text" class="form-control" name="dueDate" id="" placeholder="${Question_Time.startDate}">
 
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>제목</b></span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="" id="" placeholder="@@@을 이용한 ### 제품에 대한 설문조사" readonly="readonly">
+                    <input type="text" class="form-control" name="" id="" placeholder="${Question_Time.questionTitle}" readonly="readonly">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>내용</b></span></label>
                 <div class="col-sm-10">
-                     <textarea rows="8" cols="112" class="form-control" name="itemContent" placeholder=""></textarea>
+                     <textarea rows="8" cols="112" class="form-control" name="itemContent" placeholder="${Question_Time.description}"></textarea>
                 </div>
             </div>
             <div class="form-group row">

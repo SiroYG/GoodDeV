@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
+
+import com.dev.cloud.vo.Board;
 import com.dev.cloud.vo.Question;
 import com.dev.cloud.vo.Survey;
 import com.dev.cloud.vo.Question_Time;
@@ -14,6 +16,8 @@ public interface item_SurveyMapper {
 	int getBoardCount(Map<String, Object> map);
 	//게시판 출력
 	List<Question_Time> selectAll(Map<String, String> map, RowBounds rb);
+	
+	Question_Time selectOne(int questionTimeNum);
 	
 	//질문시간 입력
 	public int insertQuestion_Time(Question_Time question_Time);

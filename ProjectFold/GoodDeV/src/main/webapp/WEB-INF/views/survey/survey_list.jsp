@@ -107,7 +107,7 @@
 					<tr> 
 						<th scope="row" name="boardNum">${stat.count + navi.startRecord}</th>
 						<td>${Question_Time.questionTimeNum}</td>
-						<td class="board_title"><a href="boardDetail?boardNum=${board.boardNum}">${Question_Time.questionTitle}</a></td>
+						<td class="board_title"><a href="surveyDetail?questionTimeNum=${Question_Time.questionTimeNum}">${Question_Time.questionTitle}</a></td>
 						<td>작성자</td>
 						<td>${Question_Time.dueDate}</td>
 					</tr>
@@ -115,11 +115,11 @@
 			</c:if>
   </tbody>
 </table>
-	<!-- 서베이 폼 호출/ 입력하기  -->
-<%-- 	<c:if test="${sessionScope.loginType}=='inventor'"> --%>
-     <a href="/cloud/survey/surveyform" class="btns btn-3"><span class="white">테스트 진행하기</span></a><br><br> 
-<%--     </c:if> --%>
-    <!--페이징 & 검색-->
+<!-- 서베이 폼 호출/ 입력하기  -->
+	<%-- 	<c:if test="${sessionScope.loginType}=='inventor'"> --%>
+    	 <a href="/cloud/survey/surveyform" class="btns btn-3"><span class="white">테스트 진행하기</span></a><br><br> 
+	<%--     </c:if> --%>
+<!--페이징 & 검색-->
   <div class="page-center">
   <nav>
   <ul class="pagination justify-content-center">
@@ -140,14 +140,14 @@
     </li>
   </ul>
 </nav>
-      </div>
+</div>
 <form action="" method="get" class="search-form" id="search-form">
 <!--Blue select-->
 <select name="searchItem" class="searchItem">
  <option value="all">전체</option>
-  <option value="title" ${searchItem =='questionTitle'?'selected' :''}>제목</option>
-  <option value="content" ${searchItem =='description'? 'selected' :'' }>내용</option>
-  <option value="id" ${searchItem =='etc'?'selected' :'' }>작성자</option>
+  <option value="questionTitle" ${searchItem =='questionTitle'?'selected' :''}>제목</option>
+  <option value="description" ${searchItem =='description'? 'selected' :'' }>내용</option>
+  <option value="etc" ${searchItem =='etc'?'selected' :'' }>작성자</option>
 </select>
 <input type="text" name="searchWord" class="searchWord" placeholder="  Search">
 <button type="submit" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<jsp:useBean id="toDay" class="java.util.Date" />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
   <head>
@@ -83,19 +86,19 @@
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>시작일</b></span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="writtenDate" id="" placeholder="2019 - 09 - 04 (목)" readonly="readonly">
+                    <input type="text" class="form-control" name="writtenDate" id="" placeholder="<fmt:formatDate value='${toDay}' pattern='yyyy-MM-dd'/>" readonly='readonly'>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>마감일</b></span></label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control" name="dueDate" id="" placeholder="2019 - 09 - 12 (목)">
+                    <input type="date" class="form-control" name="dueDate" id="" placeholder="날짜를 입력해주세요">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>작성자</b></span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="memberId" id="" placeholder="${sessionScope.loginId}">
+                    <input type="text" class="form-control" name="memberId" id="" placeholder="${sessionScope.loginId}" readonly="readonly">
                 </div>
             </div>
             <div class="form-group row">
@@ -122,32 +125,19 @@
                     <input type="file" class="form-control" id="" name="itemImagename" placeholder="">
                 </div>
             </div>
-            
             <hr class="hr_navy">
-            
             <div class="survey_form">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"><span><b>설문목록</b></span></label>
                     <div class="col-sm-10">
                         <p class="form-control-readonly">평가받고자 하는 항목을 자유롭게 기술해주세요.</p>
-
                     </div>
                 </div>
-
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label"><span><b>질문 1) </b></span></label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="" name="question" placeholder="질문을 입력해주세요">
-                        &nbsp; &nbsp; <label for="">1점 </label>
-                        <input type="radio" name="qValueable" value="1" id=""> &nbsp; &nbsp;
-                        <label for="">2점 </label>
-                        <input type="radio" name="qValueable" value="2" id=""> &nbsp; &nbsp;
-                        <label for="">3점 </label>
-                        <input type="radio" name="qValueable" value="3" id=""> &nbsp; &nbsp;
-                        <label for="">4점 </label>
-                        <input type="radio" name="qValueable" value="4" id=""> &nbsp; &nbsp;
-                        <label for="">5점 </label>
-                        <input type="radio" name="qValueable" value="5" id=""> &nbsp; &nbsp;
+                        &nbsp; &nbsp;
                     </div>
                 </div>
                 <div class="form-group row">

@@ -62,8 +62,12 @@ Item - item_history modify (o)
 Patent_use_list, search_Patent(Modal) (o)
 CSS - search.css(o)
 
+--0920
+Item - Item_History modify (o)
+Patent - search_menu > insert form modify(o)
+
 * 앞으로 해야할 것들
 - 마이페이지 유형별 구성 및 테이블 구성 짜기
 - 크라우드 펀딩 상세페이지 + 결제 API 연동?
 - 인덱스 및 헤더 파트 리뉴얼
-- patent part...
+- patent part css 수정
