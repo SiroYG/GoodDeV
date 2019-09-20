@@ -15,6 +15,8 @@ DROP TABLE ITEM CASCADE CONSTRAINTS;
 DROP TABLE DOCUMENT CASCADE CONSTRAINTS;
 DROP TABLE PATENTSUB CASCADE CONSTRAINTS;
 DROP TABLE devMember CASCADE CONSTRAINTS;
+DROP TABLE officialFile CASCADE CONSTRAINTS;
+
 
 
 
@@ -48,6 +50,8 @@ DROP SEQUENCE FundingTable_seq;
 
 DROP SEQUENCE fundingOption_seq;
 
+DROP SEQUENCE officalFile_seq;
+
 /* Create Sequences */
 CREATE SEQUENCE BOARD_seq;
 
@@ -75,7 +79,7 @@ CREATE SEQUENCE FundingTable_seq;
 
 CREATE SEQUENCE fundingOption_seq;
 
-
+CREATE SEQUENCE officalFile_seq;
 
 /* Create Tables */
 
@@ -181,16 +185,25 @@ CREATE TABLE ITEM
 );
 
 
+CREATE TABLE officialFile
+(
+	officalFile_seq varchar2(100) NOT NULL,
+	originalFileName varchar2(100) NOT NULL,
+	saveFileName varchar2(100) UNIQUE,
+	PRIMARY KEY (officalFile_seq)
+);
+
+
 CREATE TABLE PATENT
 (
 	patentNum varchar2(100) NOT NULL,
-	patentName varchar2(500) NOT NULL,
+	patentName varchar2(500),
 	patentHolderName varchar2(500) NOT NULL,
-	patentContent varchar2(2000) NOT NULL,
+	patentContent varchar2(2000),
 	patentAppDate date NOT NULL,
 	-- 등록날짜
-	patentRegDate date DEFAULT SYSDATE,
-	patenttype varchar2(100) NOT NULL,
+	patentRegDate date,
+	patenttype varchar2(100),
 	PRIMARY KEY (patentNum)
 );
 
