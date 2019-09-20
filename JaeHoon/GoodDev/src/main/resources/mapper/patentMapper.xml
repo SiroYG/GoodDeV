@@ -5,34 +5,145 @@
 
 <mapper namespace="com.dev.cloud.dao.patentMapper">
 	<insert id="insertPatent" parameterType="Patent">
-	
-	insert into Patent (
+
+		insert into Patent (
+		patentNum
+		<if test="patentName!='' || patentName!='null'">
+			,patentName
+			,patentContent
+			,patenttype
+		</if>
+		,patentHolderName
+		,patentAppDate
+		)VALUES (
+		Patent_seq.NEXTVAL
+		<if test="patentName!='' || patentName!='null'">
+			,#{patentName}
+			,#{patentContent}
+			,#{patenttype}
+		</if>
+		,#{patentHolderName}
+		,SYSDATE
+		)
+	</insert>
+	<update id="updatePatent" parameterType="Patent">
+
+		UPDATE Patent
+		SET
+		patentRegDate = #{patentRegDate}
+		where
+		patentNum=#{patentNum}
+
+	</update>
+
+
+	<select id="patentAll" resultType="Patent">
+		select
 		patentNum
 		,patentName
 		,patentHolderName
 		,patentContent
-		,patentAppDate
+		,to_char(patentAppDate,'YYYY-MM-DD') as
+		patentAppDate
+		,to_char(patentRegDate,'YYYY-MM-DD') as patentRegDate
 		,patenttype
-		
-		)VALUES (
-		Patent_seq.NEXTVAL
-		,#{patentName}
-		,#{patentHolderName}
-		,#{patentContent}
-		,SYSDATE
-		,#{patenttype}
-		)
-	</insert>
-	<update id="updatePatent" parameterType="Patent">
-	
-	UPDATE Patent 
-	SET 
-	patentRegDate = #{patentRegDate}
-	where 
-	patentNum=#{patentNum} 
-	
-	</update>
-	
+		from
+		patent
+
+	</select>
+	<select id="patentIdAll" parameterType="String" resultType="Patent">
+		select
+		patentNum
+		,patentName
+		,patentHolderName
+		,patentContent
+		,to_char(patentAppDate,'YYYY-MM-DD') as patentAppDate
+		,to_char(patentRegDate,'YYYY-MM-DD') as patentRegDate
+		,patenttype
+		from
+		patent
+		where
+		patentHolderName=#{patentHolderName}
+	</select>
+
+	<select id="searchPatent" parameterType="Patent" resultType="Patent">
+
+		select *
+		from Patent
+
+		<choose>
+			<when test="patenttype=='patenttype1'">
+				where patenttype='영상 및 음향기기 제조업'
+				<choose>
+					<when test="searchItem=='patentName'">
+						and patentName LIKE '%'||#{patentName}||'%'
+					</when>
+					<when test="searchItem=='patentHolderName'">
+						and patentHolderName LIKE
+						'%'||#{patentHolderName}||'%'
+					</when>
+					<when test="searchItem=='patentContent'">
+						and patentContent LIKE '%'||#{patentContent}||'%'
+					</when>
+					<otherwise></otherwise>
+				</choose>
+
+			</when>
+			<when test="patenttype=='patenttype2'">
+				where patenttype='컴퓨터 프로그래밍 및 정보서비스업'
+				<choose>
+					<when test="searchItem=='patentName'">
+						and patentName LIKE '%'||#{patentName}||'%'
+					</when>
+					<when test="searchItem=='patentHolderName'">
+						and patentHolderName LIKE
+						'%'||#{patentHolderName}||'%'
+					</when>
+					<when test="searchItem=='patentContent'">
+						and patentContent LIKE '%'||#{patentContent}||'%'
+					</when>
+					<otherwise></otherwise>
+				</choose>
+
+			</when>
+			<when test="patenttype=='patenttype3'">
+				where patenttype='통신 및 방송 장비 제조업'
+				<choose>
+					<when test="searchItem=='patentName'">
+						and patentName LIKE '%'||#{patentName}||'%'
+					</when>
+					<when test="searchItem=='patentHolderName'">
+						and patentHolderName LIKE
+						'%'||#{patentHolderName}||'%'
+					</when>
+					<when test="searchItem=='patentContent'">
+						and patentContent LIKE '%'||#{patentContent}||'%'
+					</when>
+					<otherwise></otherwise>
+				</choose>
+
+			</when>
+
+			<otherwise>
+				<choose>
+					<when test="searchItem=='patentName'">
+						where patentName LIKE '%'||#{patentName}||'%'
+					</when>
+					<when test="searchItem=='patentHolderName'">
+						where patentHolderName LIKE
+						'%'||#{patentHolderName}||'%'
+					</when>
+					<when test="searchItem=='patentContent'">
+						where patentContent LIKE '%'||#{patentContent}||'%'
+					</when>
+					<otherwise></otherwise>
+				</choose>
+
+			</otherwise>
+		</choose>
+
+	</select>
+
 </mapper>
 
 

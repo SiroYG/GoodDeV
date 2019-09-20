@@ -25,7 +25,7 @@
 		item_seq.NEXTVAL
 		,#{memberId}
 		,#{itemType}
-		,SYSDATE
+		,#{ideaDate}
 		,#{itemName}
 		,#{price}
 		,#{itemContent}
