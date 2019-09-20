@@ -40,7 +40,7 @@
     			return false;
     		}
     		if(price.length==0||price.length==""){
-    			alert('아이템명을 입력하세요')
+    			alert('가격을 입력하세요')
     			return false;
     		}
     		if(isNaN(price)){
@@ -57,18 +57,7 @@
     
     });
     </script>
-   <!-- 	private int itemNum;
-	private String memberId;
-	private String itemType;
-	private String  ideaDate;
-	private String  itemName ;
-	private int price ;
-	private String  itemContent ;
-	private String  itemRegDate;
-	private String  itemImagename ;
-	private String  saveItemImage ;
-	private String  documentFilename ;
-	private String  saveDocumentFilename ; -->
+  
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -124,11 +113,20 @@
                 </div>
             </div>
             <div class="main_table">
-                <form action="/cloud/item/goItemWriteProcess" method="post" id="itemFrom">
+                <form action="/cloud/item/goItemWriteProcess" enctype="multipart/form-data" method="post" id="itemFrom">
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>작성일</b></span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="ideaDate" value="${time}" id="ideaDate" placeholder="${time}" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label"><span><b>제품 상태</b></span></label>
+                        <div class="col-sm-10">
+                            <select name="itemType">
+                                <option value="prototype" selected>[시제품]</option>
+                                <option value="release">[출시품]</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -152,13 +150,13 @@
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>이미지 업로드</b></span></label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="itemImagename" id="itemImagename"/>
+                            <input type="file" class="form-control" name="upload" id="itemImagename"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>특허 파일 업로드</b></span></label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="documentFilename" id="documentFilename" >
+                            <input type="file" class="form-control" name="upload1" id="documentFilename" >
                         </div>
                     </div><br>
                     <hr class="hr_navy"><br><br>

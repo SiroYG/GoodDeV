@@ -95,5 +95,20 @@ public class itemRepository implements itemMapper {
 		return result;
 	}
 
+	@Override
+	public Item goItemDetail(Item item) {
+		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
+		Item result = null;
+		try {
+			result = mapper.goItemDetail(item);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				
+		
+		
+		return result;
+	}
+
 
 }
