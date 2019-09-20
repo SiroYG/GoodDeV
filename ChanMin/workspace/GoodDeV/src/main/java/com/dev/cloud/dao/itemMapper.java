@@ -18,7 +18,9 @@ public interface itemMapper {
 
 		//셀렉올Item
 		public ArrayList<Item> getAllItem();
-
+		
+		public Item goItemDetail(Item item);
+		
 		//셀렉byId
 		public ArrayList<Item> getItemByMemberId(Item item);
 

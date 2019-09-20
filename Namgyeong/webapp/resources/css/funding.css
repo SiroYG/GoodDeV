@@ -5,6 +5,12 @@ body{
     font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
 }
 
+hr.hr_purple {
+    border-color: #1f124a;
+    border-width: 7px;
+    padding: 0% 10%;
+}
+
 div.write_table{
     padding: 3% 20% 10%;
 }

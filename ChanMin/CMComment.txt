@@ -30,3 +30,5 @@
 -- middleSide_ myPage_itemList 만들기
 -- 190919
 -- middleSide_ myPage_itemList (2), itemWrite 만들기
+-- 190920
+-- middleSide_ myPage_itemList (3), itemWrite, itemDetail, itemUpdate 하기

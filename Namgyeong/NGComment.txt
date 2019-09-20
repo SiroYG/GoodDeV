@@ -65,6 +65,7 @@ CSS - search.css(o)
 --0920
 Item - Item_History modify (o)
 Patent - search_menu > insert form modify(o)
+CSS - modify(-)
 
 * 앞으로 해야할 것들
 - 마이페이지 유형별 구성 및 테이블 구성 짜기

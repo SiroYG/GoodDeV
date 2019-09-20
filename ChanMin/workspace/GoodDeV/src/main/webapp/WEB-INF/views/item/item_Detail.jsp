@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
@@ -27,10 +27,7 @@
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 	<script src="/cloud/resources/js/jquery-ui.min.js"></script>
     <script>
-    $(function(){
-    	
-    	
-    });
+    
     </script>
    
 </head>
@@ -88,50 +85,50 @@
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>작성일</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="ideaDate" id="" placeholder="2019 / 09 / 04 (목)" readonly="readonly">
+                            <input type="text" class="form-control" name="ideaDate" id="ideaDate" value="${it.ideaDate}" placeholder="${it.ideaDate}" readonly="readonly">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>수정일</b></span></label>
                         <div class="col-sm-10">
                            <!--최초 작성시 아이디어날짜는 기존 ideaDate 고정, 등록 날짜는 최근 업데이트 날짜 갱신-->
-                            <input type="text" class="form-control" name="itemRegDate" id="" placeholder="2019 / 09 / 24 (화)" readonly="readonly">
+                            <input type="text" class="form-control" name="itemRegDate" id="itemRegDate" value="${time}" placeholder="${tiem}"  readonly="readonly">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>제품/서비스명</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="itemName" id="" placeholder="제품명" readonly="readonly">
+                            <input type="text" class="form-control" name="itemName" id="itemName"  value="${it.itemName}" placeholder="${it.itemName}" readonly="readonly">
                         </div>
                     </div>
                      <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>출시 희망 가격</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="price" id="" placeholder="" readonly="readonly">
+                            <input type="text" class="form-control" name="price" id="price" value="${it.price}" placeholder="${it.price}" readonly="readonly">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>제품/서비스 요약</b></span></label>
                         <div class="col-sm-10">
-                            <textarea rows="8" cols="112" class="form-control" name="itemContent" readonly="readonly">제품에 대한 간략한 설명을 입력할 수 있습니다.</textarea>
+                            <textarea rows="8" cols="112" class="form-control" name="itemContent" value="${it.itemContent}" readonly="readonly">${it.itemContent}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>이미지 파일</b></span></label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="saveItemImage" id="saveItemImage">
+                            <input type="text" class="form-control" name="itemImagename" value="${it.itemImagename}" readonly="readonly" id="itemImagename">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>관련 특허 서식 파일</b></span></label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="saveDocumentFilename" id="saveDocumentFilename">
+                            <input type="text" class="form-control" name="documentFilename" value="${it.documentFilename}" readonly="readonly" id="saveDocumentFilename">
                         </div>
                     </div><br>
                     <hr class="hr_navy"><br><br>
-                     <a href="goitemlist" class="btns btn-3"><span class="white">돌아가기</span></a> &nbsp;&nbsp; 
-                     <a href="goitemupdate" class="btns btn-3-green"><span class="white">수정하기</span></a> &nbsp;&nbsp; 
-                     <a href="/cloud/item/deleteItem?item_seq=${item.item_seq}" class="btns btn-3-red"><span class="white">삭제</span></a> 
+                     <a href="/cloud/member/goMypage" class="btns btn-3"><span class="white">돌아가기</span></a> &nbsp;&nbsp; 
+                     <a href="/cloud/item/goItemUpdate?itemNum=${ it.itemNum }" class="btns btn-3-green"><span class="white">수정하기</span></a> &nbsp;&nbsp; 
+                     <a href="/cloud/item/deleteItem?itemNum=${ it.itemNum }" class="btns btn-3-red"><span class="white">삭제</span></a> 
                 </form>
             </div>
 
