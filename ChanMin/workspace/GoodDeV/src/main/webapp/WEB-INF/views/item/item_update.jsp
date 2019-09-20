@@ -27,6 +27,30 @@
     <script>
     $(function(){
     	
+    	$('#updating').on('click',function(){
+    		var itemName =$('#itemName').val();
+    		var price =$('#price').val();
+    		var itemContent =$('#itemContent').val();
+    		if(itemName.length==0||itemName.length==""){
+    			alert('아이템명을 입력하세요')
+    			return false;
+    		}
+    		if(price.length==0||price.length==""){
+    			alert('가격을 입력하세요')
+    			return false;
+    		}
+    		if(isNaN(price)){
+    			alert('숫자로 입력하세요')
+    			return false;
+    		}
+    		if(itemContent.length==0||itemContent.length==""){
+    			alert('아이템명을 입력하세요')
+    			return false;
+    		}
+    		$('#updateForm').submit();
+
+    		
+    	})
     	
     });
     </script>
@@ -81,8 +105,8 @@
                 </div>
             </div>
             <div class="main_table">
-                <form action="" method="POST" id="">
-                  <input type="hidden" name="item_seq" value="${item.item_seq}" class="form-control" id="">
+                <form action="goItemUpdateProcess" method="post" id="updateForm">
+                  <input type="hidden" name="itemNum" value="${it.itemNum}" class="form-control" id="itemNum">
                    <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>버전명(수정횟수)</b></span></label>
                         <div class="col-sm-10">
@@ -92,54 +116,63 @@
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>작성일</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="ideaDate" id="ideaDate"  readonly="readonly">
+                            <input type="text" class="form-control" name="ideaDate" id="ideaDate" value="${it.ideaDate}" placeholder="${it.ideaDate}" readonly="readonly">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>수정일</b></span></label>
                         <div class="col-sm-10">
                            <!--최초 작성시 아이디어날짜는 기존 ideaDate 고정, 등록 날짜는 sysdate 갱신-->
-                            <input type="text" class="form-control" value="${item.}" name="itemRegDate" id="itemRegDate" readonly="readonly">
+                            <input type="text" class="form-control" value="${time}" name="itemRegDate" id="itemRegDate"  placeholder="${time}" readonly="readonly">
+                        </div>
+                    </div>
+                        <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label"><span><b>제품 상태</b></span></label>
+                        <div class="col-sm-10">
+                            <select name="itemType">
+                                <option value="prototype" selected>[시제품]</option>
+                                <option value="release">[출시품]</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>제품/서비스명</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="itemName" id="itemName" placeholder="제품명을 입력해주세요">
+                            <input type="text" class="form-control" name="itemName" value="${it.itemName}" id="itemName" placeholder="${it.itemName}">
                         </div>
                     </div>
                      <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>출시 희망 가격</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="price" id="" placeholder="희망 가격은 숫자만 입력 가능합니다.">
+                            <input type="text" class="form-control" name="price" value="${it.price}" id="price" placeholder="${it.price}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>제품/서비스 요약</b></span></label>
                         <div class="col-sm-10">
-                            <textarea rows="8" cols="112" name="itemContent" class="form-control">기존 입력 내용</textarea>
+                            <textarea rows="8" cols="112" name="miribogi" readonly="readonly" class="form-control">${it.itemContent}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>제품/서비스 수정내용</b></span></label>
                         <div class="col-sm-10">
-                            <textarea rows="8" cols="112" name="comments" class="form-control">어떤 점을 개선했는지, 기존 제품과 달라진 내용</textarea>
+                            <textarea rows="8" cols="112" name="itemContent" id="itemContent" class="form-control">어떤 점을 개선했는지, 기존 제품과 달라진 내용</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>이미지 업로드</b></span></label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="itemImagename" id="">
+                            <input type="file" class="form-control" name="upload" id="upload">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>특허 파일 업로드</b></span></label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="documentFilename" id="">
+                            <input type="file" class="form-control" name="upload1" id="upload1">
                         </div>
                     </div><br>
                     <hr class="hr_navy"><br><br>
-                    <a href="#" class="btns btn-3-green"><span class="white">수정하기</span></a> &nbsp;&nbsp; 
+                    <a href="#" id="updating" class="btns btn-3-green"><span class="white">수정하기</span></a> &nbsp;&nbsp; 
                     <a href="#" class="btns btn-3"><span class="white">돌아가기</span></a> &nbsp;&nbsp;
                 </form>
             </div>

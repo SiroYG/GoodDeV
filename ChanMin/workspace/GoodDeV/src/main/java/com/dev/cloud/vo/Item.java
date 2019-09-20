@@ -20,5 +20,5 @@ public class Item {
 	private String  saveItemImage ;
 	private String  documentFilename ;
 	private String  saveDocumentFilename ;
-	
+	private String  updateCount;
 }
