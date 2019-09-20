@@ -6,17 +6,17 @@ DROP TABLE BOARD CASCADE CONSTRAINTS;
 DROP TABLE fundingOption CASCADE CONSTRAINTS;
 DROP TABLE FundingTable CASCADE CONSTRAINTS;
 DROP TABLE CROWDFUNDING CASCADE CONSTRAINTS;
-DROP TABLE MTI CASCADE CONSTRAINTS;
-DROP TABLE devMember CASCADE CONSTRAINTS;
-DROP TABLE DOCUMENT CASCADE CONSTRAINTS;
 DROP TABLE HISTORY CASCADE CONSTRAINTS;
 DROP TABLE PTI CASCADE CONSTRAINTS;
 DROP TABLE SURVEY CASCADE CONSTRAINTS;
 DROP TABLE QUESTION CASCADE CONSTRAINTS;
 DROP TABLE QUESTION_TIME CASCADE CONSTRAINTS;
 DROP TABLE ITEM CASCADE CONSTRAINTS;
+DROP TABLE DOCUMENT CASCADE CONSTRAINTS;
 DROP TABLE PATENTSUB CASCADE CONSTRAINTS;
-DROP TABLE PATENT CASCADE CONSTRAINTS;
+DROP TABLE devMember CASCADE CONSTRAINTS;
+
+
 
 
 /* Drop Sequences */
@@ -66,8 +66,6 @@ CREATE SEQUENCE SURVEY_seq;
 
 CREATE SEQUENCE QUESTION_seq;
 
-CREATE SEQUENCE MTI_seq;
-
 CREATE SEQUENCE PATENTSUB_seq;
 
 CREATE SEQUENCE PTI_seq;
@@ -77,8 +75,6 @@ CREATE SEQUENCE REPLY_seq;
 CREATE SEQUENCE FundingTable_seq;
 
 CREATE SEQUENCE fundingOption_seq;
-
-
 
 
 /* Create Tables */
@@ -91,8 +87,8 @@ CREATE TABLE BOARD
 	content varchar2(1000) NOT NULL,
 	qType varchar2(20) NOT NULL,
 	qCategory varchar2(20) NOT NULL,
-	originalFilename varchar2(20),
-	saveFilename varchar2(20) UNIQUE,
+	originalFilename varchar2(100),
+	saveFilename varchar2(100) UNIQUE,
 	boardDate date DEFAULT SYSDATE NOT NULL,
 	PRIMARY KEY (boardNum)
 );
@@ -106,6 +102,7 @@ CREATE TABLE CROWDFUNDING
 	itemCurrecyPrice number,
 	fundingDueDate date NOT NULL,
 	fundingStartDate date NOT NULL,
+	memberId varchar2(20) NOT NULL,
 	PRIMARY KEY (crowdfundingNum)
 );
 
@@ -127,8 +124,8 @@ CREATE TABLE DOCUMENT
 (
 	DocumentNum number NOT NULL,
 	PatentsubNum number NOT NULL,
-	documentFilename varchar2(20),
-	saveDocumentFilename varchar2(20) UNIQUE,
+	documentFilename varchar2(100),
+	saveDocumentFilename varchar2(100) UNIQUE,
 	PRIMARY KEY (DocumentNum)
 );
 
@@ -169,25 +166,18 @@ CREATE TABLE HISTORY
 CREATE TABLE ITEM
 (
 	itemNum number NOT NULL,
+	memberId varchar2(20) NOT NULL,
+	itemType varchar2(100) NOT NULL,
 	ideaDate date DEFAULT SYSDATE NOT NULL,
 	itemName varchar2(30) NOT NULL UNIQUE,
-	price number,
+	price number NOT NULL,
 	itemContent varchar2(300) NOT NULL,
 	itemRegDate date,
-	itemImagename varchar2(20),
-	saveItemImage varchar2(20) UNIQUE,
-	documentFilename varchar2(20) NOT NULL,
-	saveDocumentFilename varchar2(20) NOT NULL,
+	itemImagename varchar2(100),
+	saveItemImage varchar2(100) UNIQUE,
+	documentFilename varchar2(100),
+	saveDocumentFilename varchar2(100) UNIQUE,
 	PRIMARY KEY (itemNum)
-);
-
-
-CREATE TABLE MTI
-(
-	MTI_seq number NOT NULL,
-	memberId varchar2(20) NOT NULL,
-	itemNum number NOT NULL,
-	PRIMARY KEY (MTI_seq)
 );
 
 
@@ -209,8 +199,9 @@ CREATE TABLE PATENTSUB
 (
 	PatentsubNum number NOT NULL,
 	patentNum varchar2(100) NOT NULL,
-	referenceFilename varchar2(20),
-	saveReferenceFilename varchar2(20) UNIQUE,
+	memberId varchar2(20) NOT NULL,
+	referenceFilename varchar2(100),
+	saveReferenceFilename varchar2(100) UNIQUE,
 	PRIMARY KEY (PatentsubNum)
 );
 
@@ -221,6 +212,7 @@ CREATE TABLE PTI
 	itemNum number NOT NULL,
 	patentNum varchar2(100) NOT NULL,
 	contract varchar2(20) NOT NULL,
+	contractDate date,
 	PRIMARY KEY (PTI_seq)
 );
 
@@ -245,6 +237,7 @@ CREATE TABLE QUESTION_TIME
 	startDate date NOT NULL,
 	dueDate date DEFAULT SYSDATE NOT NULL,
 	etc varchar2(1000),
+	memberId varchar2(20) NOT NULL,
 	PRIMARY KEY (questionTimeNum)
 );
 
@@ -298,7 +291,13 @@ ALTER TABLE BOARD
 ;
 
 
-ALTER TABLE MTI
+ALTER TABLE ITEM
+	ADD FOREIGN KEY (memberId)
+	REFERENCES devMember (memberId)
+;
+
+
+ALTER TABLE PATENTSUB
 	ADD FOREIGN KEY (memberId)
 	REFERENCES devMember (memberId)
 ;
@@ -311,12 +310,6 @@ ALTER TABLE CROWDFUNDING
 
 
 ALTER TABLE HISTORY
-	ADD FOREIGN KEY (itemNum)
-	REFERENCES ITEM (itemNum)
-;
-
-
-ALTER TABLE MTI
 	ADD FOREIGN KEY (itemNum)
 	REFERENCES ITEM (itemNum)
 ;

@@ -9,16 +9,12 @@ div.write_table, div.main-table{
     padding: 3% 20% 10%;
 }
 
+div.his-margin{
+            margin-bottom: 30px;
+        }
+
 div.Detail_table{
     padding: 5% 10% 5%;
-}
-
-div.first{
-    width:100%;
-    height: 550px;
-    display: inline-block;
-    margin: 0%; 
-    background: url("../images/board_cover_2.jpg") top left/cover no-repeat;
 }
 
 div.page-center{
@@ -26,6 +22,20 @@ div.page-center{
     text-align: center;
     margin: 0 auto;
     justify-content: center;
+}
+
+.history-table tr{
+    border : 1px solid #cdcfd1;
+}
+
+.history-table th{
+    border : 1px solid #cdcfd1;
+    background-color: #523e96;
+    color: white;
+}
+
+.history-table td{
+    border : 1px solid #cdcfd1;
 }
 
 .navy{

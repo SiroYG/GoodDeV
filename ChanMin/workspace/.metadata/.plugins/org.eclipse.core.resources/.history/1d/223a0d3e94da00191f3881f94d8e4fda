@@ -1,0 +1,39 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
+
+body{
+    font-family: 'Jeju Gothic', sans-serif; 
+}
+
+header{
+    background-color: beige;
+}
+
+.navy{
+    background-color: #523e96;
+    color: white;
+    text-align: center;
+}
+
+hr.hr_purple{
+  border-color: #523e96;
+    border-width: 7px;
+    padding: 0% 10%;
+}
+
+div.main_table{
+    padding: 0% 10% 10%;
+}
+
+
+h1{
+    font-size: 3em;
+    padding-left: 20%;
+    color : black;
+}
+
+p.sub_title{
+    font-size: 1.2em;
+    padding-left: 20%;
+    color : #3b3b3b;
+}
+

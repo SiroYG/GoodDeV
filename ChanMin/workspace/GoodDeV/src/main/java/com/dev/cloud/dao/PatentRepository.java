@@ -27,5 +27,20 @@ public class PatentRepository implements patentMapper {
 		return pList;
 	}
 
+	@Override
+	public List<Patent> patentIdAll(String patentHolderName) {
+		patentMapper mapper = session.getMapper(patentMapper.class);
+		List<Patent> pList = null;
+		try{
+			pList = mapper.patentIdAll(patentHolderName);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return pList;
+	}
+
+	
+
 	
 }

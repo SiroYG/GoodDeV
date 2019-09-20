@@ -28,8 +28,9 @@
     <script>
     $(function(){
     	
-    		$('#id').on('keyup',function(){
-    				var memberId = $('#id').val();
+    		$('#memberId').on('keyup',function(){
+    			
+    				var memberId = $('#memberId').val();
     				$.ajax({
   						url : 'overlap',
   						type : 'get',
@@ -47,15 +48,9 @@
   
     		})
     	
-    	
-    	
-    	
-    	
-    	
-    	
     });
 	function signupbtn(){
-			var id =document.getElementById("id");
+			var id =document.getElementById("memberId");
 			var pw =document.getElementById("pw");
 			var memberName =document.getElementById("memberName");
 			var email =document.getElementById("email");
@@ -85,12 +80,11 @@
 				return false;
 				}
 			
-		
-			})
-			
-			
 			$("#signin-form").submit();
-		}
+			}
+
+			
+	
     </script>
 </head>
 
@@ -102,8 +96,8 @@
                 <div class="card-body">
                     <h2 class="title">회원가입</h2>
                     <form action="signupform" method="POST" id="signin-form">
-                        <div class="input-group">  <input class="input--style-2" type="text" placeholder="아이디" name="memberId" id="id">
-                        							<span id="overlap" ></span>
+                        <div class="input-group"><input class="input--style-2" type="text" placeholder="아이디" name="memberId" id="memberId">
+                        							<span id="overlap"></span>
                         </div>
                         <div class="input-group"> <input class="input--style-2" type="password" placeholder="비밀번호" name="memberPw" id="pw">
                         </div>

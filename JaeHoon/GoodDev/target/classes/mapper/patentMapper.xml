@@ -4,7 +4,38 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dev.cloud.dao.patentMapper">
+	<insert id="insertPatent" parameterType="Patent">
+	
+	insert into Patent (
+		patentNum
+		,patentName
+		,patentHolderName
+		,patentContent
+		,patentAppDate
+		,patenttype
+		
+		)VALUES (
+		Patent_seq.NEXTVAL
+		,#{patentName}
+		,#{patentHolderName}
+		,#{patentContent}
+		,SYSDATE
+		,#{patenttype}
+		)
+	</insert>
+	<update id="updatePatent" parameterType="Patent">
+	
+	UPDATE Patent 
+	SET 
+	patentRegDate = #{patentRegDate}
+	where 
+	patentNum=#{patentNum} 
+	
+	</update>
 	
 </mapper>
 
 
+
+
+	

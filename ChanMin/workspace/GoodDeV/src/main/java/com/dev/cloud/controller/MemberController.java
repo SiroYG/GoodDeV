@@ -19,6 +19,7 @@ import com.dev.cloud.dao.itemRepository;
 import com.dev.cloud.dao.memberRepository;
 import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.MTI;
+import com.dev.cloud.vo.Pat;
 import com.dev.cloud.vo.Patent;
 import com.dev.cloud.vo.devMember;
 
@@ -101,24 +102,39 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value="/patentTable", method=RequestMethod.GET)
-	public List<Patent> patentTable(String patentType,String searchItem,String searchWord,HttpSession session,int pageSu){
+	public List<Patent> patentTable(Pat pat,HttpSession session,int pageSu){
 		
-		 System.out.println("타입 : "+patentType+"\n"+"아이템: "+searchItem+"\n"+"특허타입: "+searchWord);
+		// System.out.println("타입 : "+patentType+"\n"+"아이템: "+searchItem+"\n"+"특허타입: "+searchWord);
 		//public List<Patent> patentTable(String searchWord,String patentDetail,String patentType)
-		//List<Patent> pList = papo.patentAll(searchWord,patentDetail,patentDetail); 
-		
-		List<Patent> pList = papo.patentAll(); 
-		
-		List<Patent> result = new ArrayList<Patent>();
+		//List<Patent> pList = papo.patentAll(searchWord,patentType,patentDetail); 
+		if(pat.getPatentType()!=null){
+			List<Patent> pList = papo.patentAll(); 
+			
+			List<Patent> result = new ArrayList<Patent>();
 
-		for(int i = 0 ; i<pList.size(); i++){
-			if(i>pageSu-10){
-				if(i<=pageSu){
-						result.add(pList.get(i));
+			for(int i = 0 ; i<pList.size(); i++){
+				if(i>pageSu-10){
+					if(i<=pageSu){
+							result.add(pList.get(i));
+					}
 				}
 			}
+			return result;
+		}else{
+			String patentHolderName = (String) session.getAttribute("loginName");
+			List<Patent> cList = papo.patentIdAll(patentHolderName); 
+			List<Patent> pResult = new ArrayList<Patent>();
+
+			for(int i = 0 ; i<cList.size(); i++){
+				if(i>pageSu-10){
+					if(i<=pageSu){
+						pResult.add(cList.get(i));
+					}
+				}
+			}
+			return pResult;
 		}
-		return result;
+		
 	}
 	@ResponseBody
 	@RequestMapping(value="/itemSu", method=RequestMethod.GET)
@@ -126,7 +142,7 @@ public class MemberController {
 		
 		String memberId = (String) session.getAttribute("loginId");
 		item.setMemberId(memberId);
-		List<Item> iList = itpo.selectAllItem(item);
+		List<Item> iList = itpo.getItemByMemberId(item);
 		System.out.println("130번줄 item 양==>"+iList.size());
 		return iList.size();
 	}
@@ -136,7 +152,8 @@ public class MemberController {
 	public List<Item> patentTable(HttpSession session,Item item,int pageSu){
 		String memberId = (String) session.getAttribute("loginId");
 		item.setMemberId(memberId);
-		List<Item> iList = itpo.selectAllItem(item); 
+		System.out.println("item==>"+item);
+		List<Item> iList = itpo.getItemByMemberId(item); 
 		System.out.println("147번줄 mList==>"+iList);
 		List<Item> result = new ArrayList<Item>();   
 		

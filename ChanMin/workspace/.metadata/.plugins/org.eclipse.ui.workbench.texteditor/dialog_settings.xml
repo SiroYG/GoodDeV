@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="searchId의" key="selection"/>
+		<item value="overlap" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="true" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="searchId의"/>
-			<item value="getItemNumById"/>
-			<item value="getItemNumByIdgetItemNumById"/>
-			<item value="seachWord"/>
-			<item value="item"/>
-			<item value="selectItemByItemNum"/>
-			<item value="getItemNumByItemName"/>
-			<item value="patent-type"/>
+			<item value="overlap"/>
+			<item value="goMypage"/>
+			<item value="itemFrom"/>
+			<item value="action"/>
+			<item value="file"/>
+			<item value="itemInsert"/>
+			<item value="작성하기"/>
+			<item value="section-bar-item"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

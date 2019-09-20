@@ -58,9 +58,12 @@ CSS - survey, funding.css (o)
 Patent - Patent_write, Patent_use_Detail, Patent_Detail (o)
 Item - item_history modify (o)
 
+--0919
+Patent_use_list, search_Patent(Modal) (o)
+CSS - search.css(o)
+
 * 앞으로 해야할 것들
 - 마이페이지 유형별 구성 및 테이블 구성 짜기
 - 크라우드 펀딩 상세페이지 + 결제 API 연동?
-- 벤치마킹 검색 페이지
 - 인덱스 및 헤더 파트 리뉴얼
-- board reply 다시 짜기...
+- patent part...

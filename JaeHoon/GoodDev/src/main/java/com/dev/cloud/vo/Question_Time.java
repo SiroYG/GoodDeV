@@ -16,5 +16,6 @@ public class Question_Time {
 	public String startDate;
 	public String dueDate;
 	public String etc;
+	private String memberId;
 
 }
