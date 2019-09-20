@@ -47,7 +47,12 @@ public class item_SurveyRepository implements item_SurveyMapper{
 		System.out.println("조회된 데이터 개수 => " + list.size());
 		return list;
 	}
-	
+	public Question_Time selectOne(int questionTimeNum) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		Question_Time Question_Time = mapper.selectOne(questionTimeNum);
+
+		return Question_Time;
+	}
 	
 	@Override
 	public int insertQuestion_Time(Question_Time question_Time) {

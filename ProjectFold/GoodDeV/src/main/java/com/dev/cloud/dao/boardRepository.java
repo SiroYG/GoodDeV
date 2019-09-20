@@ -17,7 +17,7 @@ public class boardRepository {
 	private SqlSession sqlSession;
 
 	public int getBoardCount(String searchItem, String searchWord) {
-		// TODO Auto-generated method stub
+		// TOD O Auto-generated method stub
 		boardMapper mapper = sqlSession.getMapper(boardMapper.class);
 		Map<String, Object> map = new HashMap<>();
 		map.put("searchItem", searchItem);
