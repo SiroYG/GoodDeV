@@ -39,12 +39,12 @@
 	</select>
 
 
-
-
-
-
-
-
+	<select id="selectOne" parameterType="Question_Time" resultType="Question_Time">
+		Select *
+		From Question_Time
+		where questionTimeNum = #{questionTimeNum}
+	</select>
+	
 
 
 

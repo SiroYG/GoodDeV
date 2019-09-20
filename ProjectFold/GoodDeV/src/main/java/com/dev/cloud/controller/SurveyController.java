@@ -63,13 +63,13 @@ public class SurveyController {
 	}
 
 	@RequestMapping(value = "surveyDetail", method = RequestMethod.GET)
-	public String surveyDetail(int boardNum, Model model) {
+	public String surveyDetail(int questionTimeNum, Model model) {
 
-		System.out.println("boardNum => " + boardNum);
-		Board board = dao.selectOne(boardNum);
-		model.addAttribute("board", board);
-		System.out.println(board);
-		return "/board/Board_Detail";
+		System.out.println("Question_Time => " + questionTimeNum);
+		Question_Time Question_Time = dao.selectOne(questionTimeNum);
+		model.addAttribute("Question_Time", Question_Time);
+		System.out.println(Question_Time);
+		return "/survey/survey_Detail";
 	}
 	
 	

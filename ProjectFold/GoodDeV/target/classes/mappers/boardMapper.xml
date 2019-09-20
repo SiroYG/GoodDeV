@@ -15,7 +15,7 @@
 	<select id="selectAll" resultType="Board" parameterType="map">
 		SELECT
 		boardNum,
-		id,
+		MEMBERid,
 		TITLE,
 		CONTENT,
 		QTYPE,
@@ -26,7 +26,7 @@
 		FROM BOARD
 		<if test="searchItem != null or searchItem != ''">
 			<if test="searchItem.equalsIgnoreCase('All')">
-				WHERE ID LIKE '%'||#{searchWord}||'%'
+				WHERE MEMBERid LIKE '%'||#{searchWord}||'%'
 				OR TITLE LIKE '%'||#{searchWord}||'%'
 				OR CONTENT LIKE '%'||#{searchWord}||'%'
 			</if>
@@ -70,7 +70,7 @@
 		INSERT INTO BOARD
 		(
 		boardNum,
-		id,
+		MEMBERID,
 		TITLE,
 		CONTENT,
 		QTYPE,
