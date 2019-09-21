@@ -817,7 +817,7 @@
 									특허 사용 허가</span></a></li>
 						<li><a href="#"><span class="icon-long-arrow-right mr-2">
 									특허의 종류</span></a></li>
-						<li><a href="#"><span class="icon-long-arrow-right mr-2">
+						<li><a href="/cloud/patent/patentlistForm"><span class="icon-long-arrow-right mr-2">
 									필요 서류 관련</span></a></li>
 						<li><a href="#"><span class="icon-long-arrow-right mr-2">
 									특허 절차 관련 수수료</span></a></li>
