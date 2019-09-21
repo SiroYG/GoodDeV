@@ -48,7 +48,7 @@
 			
 
  	    	$('#patentBtn').on('click',function(){
- 	    		var type = $('#patenttype').val();
+ 	    		var type = $('#patentType').val();
  	    		if(type =='none'){
  	    			alert('산업분야를 클릭하세요! 개놈시키야');
  	    			return false;
@@ -94,7 +94,7 @@
     function patentTable(pageSu){
  	    var searchWord =$('#searchWord').val()	
  	   	var searchItem =$('#searchItem').val()
- 	   	var patentType  =$('#patenttype').val()
+ 	   	var patentType  =$('#patentType').val()
  	   
  	   $.ajax({
  	   		url : 'patentTable',
@@ -240,14 +240,14 @@
    <div class="search-container">
   <form>
        <label for="patent-type" class="col-sm-2 col-form-label">특허 산업분야</label>
-                        <select id="patenttype" name="patenttype">
+                        <select id="patentType" name="patentType">
                             <option value="none" selected>[필수선택] 산업분야를 선택하세요</option>
                             <option value="">고무 제품 및 플라스틱 제품 제조업</option>
                             <option value="">기초 화학물질 제조업</option>
                             <option value="">마그네틱 및 광학 매체 제조업</option>
                             <option value="">반도체 제조업</option>
                             <option value="">안경, 사진장비 및 기타 광학기기 제조업</option>
-                            <option value="patenttype1">영상 및 음향기기 제조업</option>
+                            <option value="patentType1">영상 및 음향기기 제조업</option>
                             <option value="">의료용 기기 제조업</option>
                             <option value="">자동차 제조업</option>
                             <option value="">전구 및 조명장치 제조업</option>
@@ -255,8 +255,8 @@
                             <option value="">전자부품 제조업</option>
                             <option value="">절연선 및 케이블 제조업</option>
                             <option value="">컴퓨터 및 주변장치 제조업</option>
-                            <option value="patenttype2">컴퓨터 프로그래밍 및 정보서비스업</option>
-                            <option value="patenttype3">통신 및 방송 장비 제조업</option>
+                            <option value="patentType2">컴퓨터 프로그래밍 및 정보서비스업</option>
+                            <option value="patentType3">통신 및 방송 장비 제조업</option>
                             <option value="">특수 기계 제조업</option>
                             <option value="">기타 전기장비 제조업</option>
                             <option value="">기타 제품 제조업</option>
@@ -271,7 +271,7 @@
           <option value="patentContent" >특허설명</option>
       </select><br><br>
       <label for="patent-word" class="col-sm-2 col-form-label">검색</label>
-      <input type="text" class="patent-word" id="searchWord">&nbsp;&nbsp;&nbsp;
+      <input type="text" class="patent-word" name="searchWord" id="searchWord">&nbsp;&nbsp;&nbsp;
       <button type="button" id="patentBtn" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
   </form>
   <hr class="hr_navy">

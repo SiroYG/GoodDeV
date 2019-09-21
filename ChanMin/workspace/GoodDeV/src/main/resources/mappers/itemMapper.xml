@@ -107,7 +107,7 @@ UPDATE
 SET
 		itemName = 'none'
 where
-	itemNum = #{itemNum}
+	itemNum = #{itemNum} and memberId = #{memberId}
 </update>
 
 

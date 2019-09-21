@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="updateItem" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="true" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="onlypatenttype"/>
+			<item value="patentBtn"/>
 			<item value="updateItem"/>
 			<item value="item_seq"/>
 			<item value="${item.}"/>
 			<item value="item"/>
 			<item value="IDENTIFIER"/>
 			<item value="overlap"/>
-			<item value="goMypage"/>
-			<item value="itemFrom"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
@@ -24,7 +24,7 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="340" key="DIALOG_WIDTH"/>
 		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
-		<item value="450" key="DIALOG_HEIGHT"/>
+		<item value="448" key="DIALOG_HEIGHT"/>
 		<item value="1122" key="DIALOG_X_ORIGIN"/>
 		<item value="513" key="DIALOG_Y_ORIGIN"/>
 	</section>
