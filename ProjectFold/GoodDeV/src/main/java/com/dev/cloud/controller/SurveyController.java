@@ -30,7 +30,7 @@ public class SurveyController {
 		return "index";
 	}
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String gologin() { //LIST
+	public String main() { //LIST
 		return "/survey/survey_list";
 	}
 	@RequestMapping(value = "/surveyform", method = RequestMethod.GET)
