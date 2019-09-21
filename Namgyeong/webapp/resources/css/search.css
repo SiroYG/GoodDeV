@@ -214,8 +214,21 @@ div.page-center {
     vertical-align: middle;
     justify-content: center;
     position: relative;
+    display: flex;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 10px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.boxes-head{
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
     padding-left: 10%;
     padding-right: 10%;
 }
@@ -223,7 +236,7 @@ div.page-center {
 .boxes .box {
     background-color: #97a3cc;
     display: block;
-    float: left;
+    float: none;
     position: relative;
     width: 400px;
     height: 350px;
@@ -238,7 +251,7 @@ div.page-center {
     background-color: #8dc99d;
     margin-bottom: 30px;
     display: block;
-    float: right;
+    float: none;
     position: relative;
     width: 400px;
     height: 350px;
@@ -246,7 +259,7 @@ div.page-center {
     border-collapse: collapse;
     text-decoration: none;
     color: #fff;
-    margin-left: 45px;
+    margin-left: 15px;
 }
 
 .boxes .box h3,
