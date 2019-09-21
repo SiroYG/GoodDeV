@@ -1,5 +1,7 @@
 package com.dev.cloud.dao;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,6 +40,46 @@ public class patentRepository implements patentMapper {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public ArrayList<Patent> patentAll() {
+		patentMapper mapper = sqlSession.getMapper(patentMapper.class);
+		ArrayList<Patent> pList = null;
+		try{
+			pList = mapper.patentAll();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return pList;
+	}
+
+	@Override
+	public ArrayList<Patent> patentIdAll(String memberName) {
+		patentMapper mapper = sqlSession.getMapper(patentMapper.class);
+		ArrayList<Patent> pList = null;
+		try{
+			pList = mapper.patentIdAll(memberName);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return pList;
+	}
+
+
+	@Override
+	public ArrayList<Patent> searchPatent(Patent patent) {
+		patentMapper mapper = sqlSession.getMapper(patentMapper.class);
+		ArrayList<Patent> pList = null;
+		try{
+			pList = mapper.searchPatent(patent);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return pList;
 	}
 
 }

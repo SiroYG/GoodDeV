@@ -62,57 +62,103 @@
 
 
    <section class="ftco-section" id="blog-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-10 heading-section text-center ftco-animate">
-            <span class="subheading"></span>
-            <h2 class="mb-4">제품 및 서비스 수정 기록</h2>
-            <p>실제 출시를 원하는 제품 및 서비스들을 등록, 관리할 수 있습니다.</p><br>
-          </div>
-        </div>
-          <div class="main_table">
-   
-   <table class="table">
-                    <!--tbody~</div> 까지 반복출력-->
-                    <tbody class="history-table">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-5">
+                <div class="col-md-10 heading-section text-center ftco-animate">
+                    <span class="subheading"></span>
+                    <h2 class="mb-4">제품 및 서비스 수정 기록</h2>
+                    <p>실제 출시를 원하는 제품 및 서비스들을 등록, 관리할 수 있습니다.</p><br>
+                </div>
+            </div>
+            <div class="main_table">
+
+                <table class="table">
+                    <thead class="navy">
                         <tr>
                             <th scope="col">Item No.</th>
-                            <td>1</td>
-                            <th scope="col">제품/서비스 명</th>
-                            <td name="">##################</td>
+                            <th scope="col">제품/서비스명</th>
+                            <th scope="col">변경사항</th>
+                            <!--<th scope="col"></th>-->
+                            <th scope="col">버전명</th>
                             <th scope="col">수정일</th>
-                            <td name="">2019-09-09</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" name="boardNum">1</th>
+                            <td name="qCategory">[산업분야]</td>
+                            <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+                            <td name="id">ididid</td>
+                            <td name="boardDate">2019-09-09</td>
                         </tr>
                         <tr>
-                            <th colspan="3" scope="col">변경사항</th>
-                            <td name="">aaaaaaaaaaaaaaaaaaaa</td>
-                            <th scope="row">버전</th>
-                            <td name="">2</td>
+                            <th scope="row" name="boardNum">1</th>
+                            <td name="qCategory">[산업분야]</td>
+                            <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+                            <td name="id">ididid</td>
+                            <td name="boardDate">2019-09-09</td>
                         </tr>
-
-                        
+                        <tr>
+                            <th scope="row" name="boardNum">1</th>
+                            <td name="qCategory">[산업분야]</td>
+                            <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+                            <td name="id">ididid</td>
+                            <td name="boardDate">2019-09-09</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" name="boardNum">1</th>
+                            <td name="qCategory">[산업분야]</td>
+                            <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+                            <td name="id">ididid</td>
+                            <td name="boardDate">2019-09-09</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" name="boardNum">1</th>
+                            <td name="qCategory">[산업분야]</td>
+                            <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+                            <td name="id">ididid</td>
+                            <td name="boardDate">2019-09-09</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" name="boardNum">1</th>
+                            <td name="qCategory">[산업분야]</td>
+                            <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+                            <td name="id">ididid</td>
+                            <td name="boardDate">2019-09-09</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" name="boardNum">1</th>
+                            <td name="qCategory">[산업분야]</td>
+                            <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+                            <td name="id">ididid</td>
+                            <td name="boardDate">2019-09-09</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" name="boardNum">1</th>
+                            <td name="qCategory">[산업분야]</td>
+                            <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+                            <td name="id">ididid</td>
+                            <td name="boardDate">2019-09-09</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" name="boardNum">1</th>
+                            <td name="qCategory">[산업분야]</td>
+                            <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+                            <td name="id">ididid</td>
+                            <td name="boardDate">2019-09-09</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" name="boardNum">1</th>
+                            <td name="qCategory">[산업분야]</td>
+                            <td name="title">aaaaaaaaaaaaaaaaaaa</td>
+                            <td name="id">ididid</td>
+                            <td name="boardDate">2019-09-09</td>
+                        </tr>
                     </tbody>
-                    <div class="his-margin"></div>
-                    <tbody class="history-table">
-                        <tr>
-                            <th scope="col">Item No.</th>
-                            <td>1</td>
-                            <th scope="col">제품/서비스 명</th>
-                            <td name="">##################</td>
-                            <th scope="col">수정일</th>
-                            <td name="">2019-09-09</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3" scope="col">변경사항</th>
-                            <td name="">aaaaaaaaaaaaaaaaaaaa</td>
-                            <th scope="row">버전</th>
-                            <td name="">2</td>
-                        </tr>
 
-                        
-                    </tbody>
                 </table>
-                <!--페이징만-->
+                
+                <!--페이징만 가능-->
                 <div class="page-center">
 
                     <nav>

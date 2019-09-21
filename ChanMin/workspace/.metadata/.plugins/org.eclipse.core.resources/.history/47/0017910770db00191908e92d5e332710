@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.cloud.dao.itemMapper">
+	
+
+<insert parameterType="Item" id="insertItem">
+insert into ITEM (
+			itemNum
+			,memberId
+			,itemType
+			,ideaDate
+			,itemName
+			,price
+			,itemContent 
+<if test="itemImagename != ''">
+			,itemImagename
+			,saveItemImage 
+</if>
+
+<if test="documentFilename != ''">
+			,documentFilename
+			,saveDocumentFilename 
+</if>
+			)VALUES (
+			item_seq.NEXTVAL
+			,#{memberId}
+			,#{itemType}
+			,#{ideaDate}
+			,#{itemName}
+			,#{price}
+			,#{itemContent} 
+<if test="itemImagename != ''">
+			,#{itemImagename}
+			,#{saveItemImage}
+</if>
+
+<if test="documentFilename != ''">
+			,#{documentFilename}
+			,#{saveDocumentFilename} 
+</if>
+) 
+</insert>
+
+<select parameterType="Item" id="getItemNumByItemType" resultType="Item">
+select
+		*
+from 
+	ITEM
+where 
+	itemType = #{itemType} 
+</select>
+
+<select id="goItemDetail" parameterType="int" resultType="Item">
+select 
+	*
+from
+	ITEM
+where 		
+	memberId = #{memberId} and itemNum = #{itemNum}
+
+</select>
+
+<select id="getAllItem" resultType="Item">
+select
+		*
+from 
+	ITEM 
+</select>
+
+<select parameterType="devMember" id="getItemByMemberId" resultType="Item">
+select
+		*
+from 
+		ITEM
+where 
+		memberId=#{memberId}
+</select>
+
+
+<update parameterType="Item" id="updateItem">
+UPDATE 
+		Item
+	SET
+		itemName = #{itemName}
+		,price = #{price}
+		,itemContent=#{itemContent}
+		,itemType = #{itemType} 
+<if test="itemImagename != ''">
+		,itemImagename=#{itemImagename}
+		,saveItemImage=#{saveItemImage} 
+</if>
+
+<if test="documentFilename != ''">
+		,documentFilename=#{documentFilename}
+		,saveDocumentFilename=#{saveDocumentFilename} 
+</if>
+where
+		itemNum=#{itemNum} 
+</update>
+
+<update parameterType="Item" id="deleteItem">
+UPDATE
+	 	Item
+SET
+		itemName = 'none'
+where
+	itemNum = #{itemNum}
+</update>
+
+
+</mapper>
+
+

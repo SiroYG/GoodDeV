@@ -19,7 +19,7 @@
 <typeAlias alias="FundingOption" type="com.dev.cloud.vo.FundingOption"/>
 <typeAlias alias="Question_Time" type="com.dev.cloud.vo.Question_Time"/>
 <typeAlias alias="Document" type="com.dev.cloud.vo.Document"/>
-
+<typeAlias alias="officialFile" type="com.dev.cloud.vo.officialFile"/>
 </typeAliases>
 <mappers>
 <mapper resource="mapper/memberMapper.xml"/>
@@ -34,6 +34,8 @@
 <mapper resource="mapper/historyMapper.xml"/>
 <mapper resource="mapper/FundingOption.xml"/>
 <mapper resource="mapper/document.xml"/>
+<mapper resource="mapper/officialFileMapper.xml"/>
+
 </mappers>
 
 </configuration>
