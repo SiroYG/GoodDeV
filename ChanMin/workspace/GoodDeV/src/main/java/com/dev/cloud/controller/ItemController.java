@@ -14,6 +14,7 @@ import java.util.List;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.Highlighter.HighlightPainter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dev.cloud.dao.HistoryRepository;
 import com.dev.cloud.dao.historyMapper;
 import com.dev.cloud.dao.itemRepository;
 import com.dev.cloud.utill.FileService;
@@ -31,6 +33,7 @@ import com.dev.cloud.vo.History;
 import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.MTI;
 import com.dev.cloud.vo.Patent;
+import com.dev.cloud.vo.Total;
 
 @Controller
 @RequestMapping("/item")
@@ -41,24 +44,30 @@ public class ItemController {
 	@Autowired
 	itemRepository repo;
 	@Autowired
-	historyMapper hipo;
+	HistoryRepository hipo;
 	
 	@RequestMapping(value = "/goItemUpdate", method = RequestMethod.GET)
-	public String goItemUpdate(Item item, HttpSession session,Model model) {
+	public String goItemUpdate(Total total, HttpSession session,Model model) {
 		String memberId = (String) session.getAttribute("loginId"); 
-		item.setMemberId(memberId);
+		total.setMemberId(memberId);
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd (E) ");
 		Calendar time = Calendar.getInstance();
-		
+		Total his =null;
 		String times = format.format(time.getTime());
 		
 		
 		
-		item.setMemberId(memberId);
 		
-		Item it = repo.goItemDetail(item);
+		List<Total> hist =  hipo.historyIdDetail(total);
+		System.out.println("62번줄hist==>"+hist);
+		for(int i=0; i<hist.size();i++){
+			his= hist.get(0);
+		}
+		Total it = repo.goItemDetail(total);
 		
 		System.out.println("58번줄==>"+it);
+		System.out.println("64번줄his==>"+hist);
+		model.addAttribute("his",his);
 		model.addAttribute("it",it);
 		model.addAttribute("time", times);
 		
@@ -66,8 +75,8 @@ public class ItemController {
 	}
 	
 	@RequestMapping(value = "/goItemDetail", method = RequestMethod.GET)
-	public String goItemDetail(HttpSession session ,Item item,Model model) {
-		System.out.println("51번줄==>"+item);
+	public String goItemDetail(HttpSession session ,Total total,Model model) {
+		System.out.println("51번줄==>"+total);
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd (E) ");
 		
 		Calendar time = Calendar.getInstance();
@@ -77,12 +86,13 @@ public class ItemController {
 		
 		String memberId = (String) session.getAttribute("loginId"); 
 		
-		item.setMemberId(memberId);
+		total.setMemberId(memberId);
 		
-		Item it = repo.goItemDetail(item);
+		Total it = repo.goItemDetail(total);
 		
 		
 		model.addAttribute("it",it);
+		
 		model.addAttribute("time", times);
 		return "/item/item_Detail";
 	}
@@ -100,11 +110,11 @@ public class ItemController {
 	}
 	
 	@RequestMapping(value = "/goItemDelete", method = RequestMethod.GET)
-	public String goItemDelete(HttpSession session,Item item,Model model) {
+	public String goItemDelete(HttpSession session,Total total,Model model) {
 		String memberId = (String) session.getAttribute("loginId");
-		item.setMemberId(memberId);
-		System.out.println("104번줄==>"+item);
-		int result = repo.deleteItem(item);
+		total.setMemberId(memberId);
+		System.out.println("104번줄==>"+total);
+		int result = repo.deleteItem(total);
 		try{
 		if(result==1){
 			System.out.println("삭제성공");
@@ -120,25 +130,55 @@ public class ItemController {
 		
 	}
 	
+	@RequestMapping(value = "/goItemHistory", method = RequestMethod.GET)
+	public String goItemHistory(HttpSession session,Total total,Model model) {
+		String memberId = (String) session.getAttribute("loginId");
+		total.setMemberId(memberId);
+		
+		List<Total> hList = hipo.selectAllHistory(total);
+		
+		model.addAttribute("hList", hList);	
+		
+		return "item/item_history";
+	}
+	
+	
 	@RequestMapping(value = "/goItemUpdateProcess", method = RequestMethod.POST)
-	public String goItemUpdateProcess(MultipartFile upload,MultipartFile upload1,Item item, HttpSession session) {
+	public String goItemUpdateProcess(MultipartFile upload,MultipartFile upload1,Total total, HttpSession session) {
 		System.out.println("upload==>"+upload+ "upload1==>"+upload1);
 		int result =0;
+		int re = 0;
+		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd (E) ");
 		
+		Calendar time = Calendar.getInstance();
+		
+		String times = format.format(time.getTime());
 		String memberId = (String) session.getAttribute("loginId"); 
-		item.setMemberId(memberId);
-		
-		Item it = repo.goItemDetail(item);
-		
+		total.setHistoryDate(times);
+		total.setMemberId(memberId);
+		total.setItemContent(total.getComments());
+		List<Total> hist = repo.getIdDe(total);
+		System.out.println("142번hist==>"+hist);
+		System.out.println("142번줄total==>"+total);
+		Total it = repo.goItemDetail(total);
+		for(Total to : hist){
+			if(to.getItemNum()==total.getItemNum()){
+				total.setItemNum(to.getItemNum());
+				System.out.println("208번줄his==>"+total);
+				total.setComments(total.getItemContent());
+				total.setItemVersion(total.getItemVersion()+1);
+				re = hipo.insertHistory(total);
+			}
+		}
 		if(upload==null||upload1==null){
 			
 			 System.out.println("108번 여기요!!");
-			 result = repo.updateItem(item);
+			 result = repo.updateItem(total);
 			 
 		}else if(upload.getSize() == 0 || upload.isEmpty()||upload1.getSize() == 0 || upload1.isEmpty()){
 			
 			System.out.println("111번 여기요!!"); 
-			result = repo.updateItem(item);
+			result = repo.updateItem(total);
 			
 		}else{
 			  System.out.println("114번줄it==>"+it);
@@ -146,14 +186,14 @@ public class ItemController {
 			  FileService.deleteFile(uploadPath + "/" + it.getSaveDocumentFilename());
 		         String savedname = FileService.saveFile(upload, uploadPath);
 		         String savedname1 = FileService.saveFile(upload1, uploadPath);
-		         item.setItemImagename(upload.getOriginalFilename());
-		         item.setSaveItemImage(savedname);	
-		         item.setDocumentFilename(upload1.getOriginalFilename());
-		         item.setSaveDocumentFilename(savedname1);
-		         result = repo.updateItem(item);
+		         total.setItemImagename(upload.getOriginalFilename());
+		         total.setSaveItemImage(savedname);	
+		         total.setDocumentFilename(upload1.getOriginalFilename());
+		         total.setSaveDocumentFilename(savedname1);
+		         result = repo.updateItem(total);
 		}
 		
-		System.out.println("124번줄==>"+item);
+		System.out.println("124번줄==>"+total);
 		try{
 		if(result==1){
 			System.out.println("item 수정성공");
@@ -168,11 +208,19 @@ public class ItemController {
 		
 	}
 	@RequestMapping(value = "/goItemWriteProcess", method = RequestMethod.POST)
-	public String goItemWriteProcess(MultipartFile upload,MultipartFile upload1,Item item, HttpSession session) {
-		String memberId= (String) session.getAttribute("loginId");
-		item.setMemberId(memberId);
-		System.out.println("item==>"+item);
+	public String goItemWriteProcess(MultipartFile upload,MultipartFile upload1,Total total, HttpSession session) {
+		int re =0;
+		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd (E) ");
 		
+		Calendar time = Calendar.getInstance();
+		
+		String times = format.format(time.getTime());
+		String memberId= (String) session.getAttribute("loginId");
+		total.setMemberId(memberId);
+		System.out.println("item==>"+total);
+		total.setItemVersion(1);
+		total.setHistoryDate(times);
+		total.setComments("");
 		try {
 			String itemImage = upload.getOriginalFilename();
 			
@@ -180,18 +228,28 @@ public class ItemController {
 			
 			String documentFilename = upload1.getOriginalFilename();
 			String saveDocumentFilename = FileService.saveFile(upload1, uploadPath);
-			item.setItemImagename(itemImage);
-			item.setSaveItemImage(saveitemImage);	
-			item.setDocumentFilename(documentFilename);
-			item.setSaveDocumentFilename(saveDocumentFilename);
+			total.setItemImagename(itemImage);
+			total.setSaveItemImage(saveitemImage);	
+			total.setDocumentFilename(documentFilename);
+			total.setSaveDocumentFilename(saveDocumentFilename);
 		} catch (IllegalStateException e) {
 			
 			e.printStackTrace();
 		}
-
-		int result = repo.insertItem(item);
+		
+		int result = repo.insertItem(total); 
+		System.out.println("203==>"+total);
+		List<Total> hist = repo.getIdDe(total);
+		for(Total to : hist){
+			if(to.getItemName().equals(total.getItemName())){
+				total.setItemNum(to.getItemNum());
+				System.out.println("208번줄his==>"+total);
+			 
+				 re = hipo.insertHistory(total);
+			}
+		}
 		try{
-		if(result==1){
+		if(result==1&&re==1){
 			return "redirect:/member/goMypage";
 		}else{
 			return "redirect:/item/goItemWrite";

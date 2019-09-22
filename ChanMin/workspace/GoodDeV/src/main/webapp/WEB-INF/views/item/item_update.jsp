@@ -28,9 +28,10 @@
     $(function(){
     	
     	$('#updating').on('click',function(){
+    		alert('수정');
     		var itemName =$('#itemName').val();
     		var price =$('#price').val();
-    		var itemContent =$('#itemContent').val();
+    		var comments =$('#comments').val();
     		if(itemName.length==0||itemName.length==""){
     			alert('아이템명을 입력하세요')
     			return false;
@@ -43,7 +44,7 @@
     			alert('숫자로 입력하세요')
     			return false;
     		}
-    		if(itemContent.length==0||itemContent.length==""){
+    		if(comments.length==0||comments.length==""){
     			alert('아이템명을 입력하세요')
     			return false;
     		}
@@ -74,8 +75,8 @@
 	          <li class="nav-item"><a href="gosurveylist" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	          <c:if test="${sessionScope.loginId==null}">
-	          <li style="margin-left: 20px; " class="nav-item cta"><a href="gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
-              <li style="margin-left: 20px;" class="nav-item cta"><a href="gosignin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
+	          <li style="margin-left: 20px; " class="nav-item cta"><a href="/cloud/member/gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
+              <li style="margin-left: 20px;" class="nav-item cta"><a href="/cloud/member/gosignin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
 	       	  </c:if>	
 	          <c:if test="${sessionScope.loginId!=null}">
 			  <li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
@@ -116,7 +117,7 @@
                    <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>버전명(수정횟수)</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="itemVersion" id="" placeholder="2" readonly="readonly">
+                            <input type="text" class="form-control" name="itemVersion" id="itemVersion" value="${his.itemVersion}" placeholder="${his.itemVersion}" readonly="readonly">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -156,13 +157,13 @@
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>제품/서비스 요약</b></span></label>
                         <div class="col-sm-10">
-                            <textarea rows="8" cols="112" name="miribogi" readonly="readonly" class="form-control">${it.itemContent}</textarea>
+                            <textarea rows="8" cols="112" name="miribogi"  readonly="readonly" class="form-control">${it.itemContent}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>제품/서비스 수정내용</b></span></label>
                         <div class="col-sm-10">
-                            <textarea rows="8" cols="112" name="itemContent" id="itemContent" class="form-control">어떤 점을 개선했는지, 기존 제품과 달라진 내용</textarea>
+                            <textarea rows="8" cols="112" name="comments" id="comments" class="form-control">어떤 점을 개선했는지, 기존 제품과 달라진 내용</textarea>
                         </div>
                     </div>
                     <div class="form-group row">

@@ -1,0 +1,21 @@
+package com.dev.cloud.dao;
+
+import java.util.List;
+
+import com.dev.cloud.vo.History;
+
+public class HistoryRepository implements historyMapper {
+
+	@Override
+	public int insertHistory(Total total) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<History> selectAllHistory(Total total) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

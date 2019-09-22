@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="btn btn-primary" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="true" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="onlypatenttype"/>
-			<item value="patentBtn"/>
-			<item value="updateItem"/>
-			<item value="item_seq"/>
-			<item value="${item.}"/>
-			<item value="item"/>
-			<item value="IDENTIFIER"/>
-			<item value="overlap"/>
+			<item value="btn btn-primary"/>
+			<item value="searchGo"/>
+			<item value="data-"/>
+			<item value="itemUpdate"/>
+			<item value="hipo.historyDetail"/>
+			<item value="58"/>
+			<item value="getItemByMemberId"/>
+			<item value="goItemDetail"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

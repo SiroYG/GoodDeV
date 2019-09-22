@@ -111,6 +111,7 @@ function item(){
     
     jQuery(document).on('click', '#riBtn', function(){
  	   			pageSu += 10;
+ 	   			alert('오른쪽');
  	   			$.ajax({
  	   				url: 'itemSu',
  	   				type : 'get',
@@ -160,13 +161,15 @@ function item(){
  	   
  	   
     }
+    
+  
     function output(res){
  	   var tag = '';
         tag += '<table class="iTable">'
         tag += '<caption class="table_title"><b>시제품 및 출시품 목록</b></caption>'
         tag += '<div class="cap-btn">'
         tag += '<a href="#" id="itemSign" class="btn btn-outlinr-info">제품 등록</a>'
-        tag += '<a id="itemUpdate" class="btn btn-outlinr-info">제품 수정 기록 보기</a>'
+        tag += '<a href="/cloud/item/goItemHistory"  class="btn btn-outlinr-info">제품 수정 기록 보기</a>'
         tag += '</div>'
         tag += '<thead class="navy">' 
         tag += '<tr>'   
@@ -178,7 +181,7 @@ function item(){
    	    tag += '</thead>' 
     	tag += '<tbody>'
     	   $.each(res,function(i,item){
-    		if(item.itemName!='none'){   
+    		if(item.itemType != 'none'){   
  	   	   	tag += '<tr>'
  	   	  	tag += '<th scope="row" name="아이템번호">'+item.itemNum+'</th>'        
     	   		tag += '<td name="분류">' + item.itemType + '</td>'
