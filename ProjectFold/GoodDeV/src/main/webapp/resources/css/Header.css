@@ -1,47 +1,47 @@
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
 
+body{
+    font-family: 'Jeju Gothic', sans-serif; 
+}
+
 header{
     background-color: beige;
 }
 
+.navy{
+    background-color: #523e96;
+    color: white;
+    text-align: center;
+}
+
 hr.hr_purple{
-     border-color: #973299;
+  border-color: #523e96;
     border-width: 7px;
     padding: 0% 10%;
 }
 
 div.main_table{
-    padding: 10% 10% 10%;
+    padding: 0% 10% 10%;
 }
 
-div.first{
-    width:100%;
-    height: 150px;
-    margin-top: 10%;
-    display: inline-block;
-}
 
 h1{
     font-size: 3em;
     padding-left: 10%;
+    color : black;
 }
 
-p{
+p.sub_title{
     font-size: 1.2em;
     padding-left: 10%;
+    color : #3b3b3b;
 }
 
 #ftco-navbar{
-    background-color: #973299 !important;
+    background-color: #392775 !important;
 }
 
-.purple{
-    background-color: #973299;
-    color: white;
-    text-align: center;
-}
-
-a.btn {
+/*a.btn {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 900;
   padding: 1rem 1rem;
@@ -66,7 +66,7 @@ a.btn span {
 }
 a.btn:before {
   content: "";
-  background-color: #d95edb;
+  background-color: #392775;
   position: absolute;
   top: 0;
   right: 0;
@@ -96,7 +96,7 @@ a.btn--beta:hover, a.btn--beta:focus, a.btn--beta:active {
 
 span.white{
     color: white;
-}
+}*/
 
 .navbar > .container,
   .navbar > .container-fluid {
@@ -461,6 +461,7 @@ span.white{
       margin-right: 0; } }
   .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
     font-size: 16px;
+      text-decoration: none;
     padding-top: .7rem;
     padding-bottom: .7rem;
     padding-left: 20px;
@@ -510,12 +511,12 @@ span.white{
         color: #fff; } }
   .ftco-navbar-light .navbar-nav > .nav-item.cta > a {
     color: #fff;
-    border: 1px solid #da84db;
+    border: 1px solid #9da3c9;
     padding-top: .7rem;
     padding-bottom: .7rem;
     padding-left: 18px;
     padding-right: 18px;
-    background: #da84db;
+    background: #9da3c9;
     margin-top: 0;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -525,8 +526,8 @@ span.white{
       display: inline-block;
       color: #fff; }
     .ftco-navbar-light .navbar-nav > .nav-item.cta > a:hover {
-      background: #da84db;
-      border: 1px solid #da84db; }
+      background: #6871a8;
+      border: 1px solid #6871a8; }
   .ftco-navbar-light .navbar-nav > .nav-item.cta.cta-colored a {
     border: 1px solid #a0f669;
     background: #a0f669 !important; }

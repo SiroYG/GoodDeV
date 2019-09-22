@@ -57,8 +57,25 @@ public class MemberController {
 
 	@RequestMapping(value = "/godropout", method = RequestMethod.GET)
 	public String godropout() {
-		return "/member/udropout";
+		return "/member/dropout";
 	}
+	@RequestMapping(value = "/goMypage", method = RequestMethod.GET)
+	public String goMypage() {
+		
+		return "/member/Mypage";
+	}
+	
+	@RequestMapping(value = "/goPatent", method = RequestMethod.GET)
+	public String goPatent() {
+		
+		return "search/search_menu";
+	}
+	@RequestMapping(value = "/searchGo", method = RequestMethod.GET)
+	public String searhGo() {
+		
+		return "search/search_patent";
+	}
+	
 
 	@RequestMapping(value = "/loginform" ,method=RequestMethod.POST)
 	public String login(devMember member, HttpSession session) { // 로그인 폼 request
