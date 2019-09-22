@@ -24,17 +24,17 @@ a {
 	text-decoration: none;
 }
 a:hover {
+    color: blue;
 	text-decoration: none;
 }
 
 a.mypage-link{
     text-decoration : none;
-    color : black;
 }
 
-a.mypage-link{
-	text-decoration : none;
-	color:blue;
+a.mypage-link:hover{
+    color: blue;
+    text-decoration : none;
 }
 
 /*a.btn {

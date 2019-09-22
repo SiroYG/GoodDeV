@@ -21,6 +21,7 @@ import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.MTI;
 import com.dev.cloud.vo.Pat;
 import com.dev.cloud.vo.Patent;
+import com.dev.cloud.vo.Total;
 import com.dev.cloud.vo.devMember;
 
 @Controller
@@ -87,6 +88,9 @@ public class MemberController {
 	@RequestMapping(value = "/searchGo", method = RequestMethod.GET)
 	public String searhGo() {
 		
+		
+		
+		
 		return "search/search_patent";
 	}
 	
@@ -137,24 +141,24 @@ public class MemberController {
 	}
 	@ResponseBody
 	@RequestMapping(value="/itemSu", method=RequestMethod.GET)
-	public int itemSu(Item item,HttpSession session){
+	public int itemSu(Total total,HttpSession session){
 		
 		String memberId = (String) session.getAttribute("loginId");
-		item.setMemberId(memberId);
-		List<Item> iList = itpo.getItemByMemberId(item);
+		total.setMemberId(memberId);
+		List<Total> iList = itpo.getItemByMemberId(total);
 		System.out.println("130번줄 item 양==>"+iList.size());
 		return iList.size();
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/itemTable", method=RequestMethod.GET)
-	public List<Item> patentTable(HttpSession session,Item item,int pageSu){
+	public List<Total> patentTable(HttpSession session,Total total,int pageSu){
 		String memberId = (String) session.getAttribute("loginId");
-		item.setMemberId(memberId);
-		System.out.println("item==>"+item);
-		List<Item> iList = itpo.getItemByMemberId(item); 
+		total.setMemberId(memberId);
+		System.out.println("item==>"+total);
+		List<Total> iList = itpo.getItemByMemberId(total); 
 		System.out.println("147번줄 mList==>"+iList);
-		List<Item> result = new ArrayList<Item>();   
+		List<Total> result = new ArrayList<Total>();   
 		
 		
 		for(int i = 0 ; i<iList.size(); i++){

@@ -45,12 +45,14 @@
     $(function(){
  		   pageSu = 9;
  		   patentTable(pageSu);   
-			
-
+ 			
+ 		    
+ 		   $('.btn btn-primary').on('click',checking);
+ 		   
  	    	$('#patentBtn').on('click',function(){
  	    		var type = $('#patentType').val();
  	    		if(type =='none'){
- 	    			alert('산업분야를 클릭하세요! 개놈시키야');
+ 	    			alert('산업분야를 클릭하세요!');
  	    			return false;
  	    		}else{
  	    			patentTable(pageSu); 
@@ -58,6 +60,15 @@
  	    	})
  		   
     });
+    
+    
+    
+    function checking(){	
+    	var patentNum = $('.btn btn-primary').attr("data-value");
+	   	alert(patentNum);
+		}   
+    
+    
     
     jQuery(document).on('click', '#rightBtn', function(){
  	   			pageSu += 10;
@@ -141,16 +152,12 @@
     	   	}else{
     	   		tag += '<td>특허등록 진행중입니다.</td>'
     	   	}
-    	   		tag += '<td name="서식파일보기"></td>'            
+    	   		tag += '<td name="서식파일보기"><button type="button" class="btn btn-primary" data-value="'+item.patentNum+'" data-toggle="modal" data-target="#exampleModal">사용 허가 신청</button></td>'            
     	   		tag += '</tr>'        
     	   	})
     	   
-    	   tag += '</tbody>'	
-    	  /* tag += '<tr><td>'
-    	   tag += '<button id="leftBtn">◀</button>'	
-    	   tag += '<button id="rightBtn">▶</button>'	
-    	   tag += '</td></tr>'*/
-    	   tag += '</table>' 
+    	    tag += '</tbody>'
+    	    tag += '</table>' 
     		tag += '<div class="tri-btn">'
     		tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
     	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
@@ -436,6 +443,54 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
+<!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">특허 사용 허가 신청서</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post" id="">
+              <div class="form-group">
+                <label for="appointment_name" class="text-black">신청인</label>
+                <input type="text" class="form-control" name="memberId" id="memberId" placeholder="이름을 입력해주세요">
+              </div>
+              <div class="form-group">
+                <label for="appointment_patentnum" class="text-black">특허번호</label>
+                <input type="text" class="form-control" name="patentNum" value="" id="patentNum" placeholder="" readonly="readonly">
+              </div>
+               <div class="form-group">
+                    <label for="appointment_file" class="text-black">특허 사용 신청서</label>
+                    <input type="file" class="form-control" name="" id="appointment_file" multiple>
+                  </div>
+                  <div class="form-group">
+                    <label for="appointment_file2" class="text-black">특허 사용 허가서</label>
+                    <input type="file" class="form-control" name="" id="appointment_file2" multiple>
+                  </div>
+              
+
+              <!--<div class="form-group">
+                <label for="appointment_message" class="text-black">Message</label>
+                <textarea name="" id="appointment_message" class="form-control" cols="30" rows="10"></textarea>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Send Message" class="btn btn-primary">
+              </div>-->
+            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-info">신청하기</button>
+                <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
 
   <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>

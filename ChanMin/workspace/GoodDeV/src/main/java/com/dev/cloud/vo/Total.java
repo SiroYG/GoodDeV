@@ -21,10 +21,10 @@ public class Total {
 	private String  documentFilename ;
 	private String  saveDocumentFilename ;
 	private String  updateCount;
-	private int HistoryNum ;
+	private int historyNum ;
 	
 	private String comments ;
-	private String itemVersion ;
+	private int itemVersion ;
 	private String historyDate;
 	
 	

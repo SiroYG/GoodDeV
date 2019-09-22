@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.dev.cloud.dao.cloudfundingMapper">
-<insert parameterType="History" id="insertHistory">
+<mapper namespace="com.dev.cloud.dao.historyMapper">
+<insert parameterType="Total" id="insertHistory">
 		insert into History (
 			HistoryNum
 			,itemNum
@@ -12,7 +12,8 @@
 			,itemVersion
 			,historyDate
 			)
-		VALUES (History_seq.NEXTVAL
+		VALUES (
+				History_seq.NEXTVAL
 				,#{itemNum}
 				,#{comments}
 				,#{itemVersion}
@@ -20,13 +21,29 @@
 				)
 </insert>
 
-<select parameterType="History" id="selectAllHistory" resultType="History">
+<select parameterType="Total" id="selectAllHistory" resultType="Total">
 	select 
+		itemNum, i.itemName, h.itemVersion, h.historyDate, h.comments
+     from History h JOIN Item i
+     USING (itemNum) where  i.memberId = #{memberId}
+</select>
+
+<select id="historyDetail" parameterType="Total" resultType="Total">
+select 
 		*
-	from 
-		History
-	where 
-		itemNum=#{itemNum}
+from 
+	History
+where 
+	 itemNum = #{itemNum}
+</select>
+<select id="historyIdDetail" parameterType="Total" resultType="Total">
+select 
+	*
+from 
+	history
+where
+	itemNum = #{itemNum}	
+order by itemVersion desc	
 </select>
 </mapper>
 

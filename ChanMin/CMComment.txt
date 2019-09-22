@@ -34,3 +34,5 @@
 -- middleSide_ myPage_itemList (3), itemWrite, itemDetail, itemUpdate 만들기
 -- 190921
 -- middleSide_ myPage_itemUpdate, itemDelete, PatentSearch 만들기
+-- 190922
+-- middleSide_ myPage_itemUpdate 수정, itemWrite 수정, history_insert, history_selectAll 만들기  

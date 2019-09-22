@@ -114,3 +114,27 @@
 9월 21, 2019 18:56:36.41 [19116:15608:0921/185636.412:ERROR:socket_stream.cc(219)] Closing stream with result -2
 9월 21, 2019 18:56:40.55 [19116:15608:0921/185640.549:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -21
 9월 21, 2019 18:57:04.56 [19116:15608:0921/185704.566:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -118
+
+9월 22, 2019 14:01:55.73 NEW SESSION
+9월 22, 2019 14:01:55.73 [17148:9380:0922/140155.733:ERROR:browser_process_sub_thread.cc(203)] Waited 13 ms for network service
+9월 22, 2019 14:07:26.54 [3052:2432:0922/140726.548:ERROR:browser_process_sub_thread.cc(203)] Waited 10 ms for network service
+9월 22, 2019 14:08:15.82 [5624:812:0922/140815.824:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
+9월 22, 2019 14:57:01.41 [14196:12536:0922/145701.411:ERROR:browser_process_sub_thread.cc(203)] Waited 10 ms for network service
+9월 22, 2019 15:17:08.66 [18672:720:0922/151708.661:ERROR:browser_process_sub_thread.cc(203)] Waited 6 ms for network service
+9월 22, 2019 15:25:17.31 [800:16548:0922/152517.318:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
+9월 22, 2019 15:53:05.23 [5760:5924:0922/155305.238:ERROR:browser_process_sub_thread.cc(203)] Waited 5 ms for network service
+9월 22, 2019 16:13:45.60 [17332:14212:0922/161345.608:ERROR:browser_process_sub_thread.cc(203)] Waited 5 ms for network service
+9월 22, 2019 16:30:12.83 [1692:1112:0922/163012.832:ERROR:browser_process_sub_thread.cc(203)] Waited 7 ms for network service
+9월 22, 2019 16:35:21.03 [18192:14680:0922/163521.034:ERROR:browser_process_sub_thread.cc(203)] Waited 5 ms for network service
+9월 22, 2019 16:40:22.17 [5500:3848:0922/164022.173:ERROR:browser_process_sub_thread.cc(203)] Waited 8 ms for network service
+9월 22, 2019 17:01:20.27 [16880:17144:0922/170120.271:ERROR:browser_process_sub_thread.cc(203)] Waited 6 ms for network service
+9월 22, 2019 17:13:57.70 [10548:13152:0922/171357.708:ERROR:browser_process_sub_thread.cc(203)] Waited 6 ms for network service
+9월 22, 2019 17:21:10.75 [16404:7996:0922/172110.754:ERROR:browser_process_sub_thread.cc(203)] Waited 7 ms for network service
+9월 22, 2019 17:27:19.72 [11432:6432:0922/172719.725:ERROR:browser_process_sub_thread.cc(203)] Waited 10 ms for network service
+9월 22, 2019 18:20:37.56 [19056:7656:0922/182037.563:ERROR:browser_process_sub_thread.cc(203)] Waited 6 ms for network service
+9월 22, 2019 18:25:18.56 [17868:16960:0922/182518.565:ERROR:browser_process_sub_thread.cc(203)] Waited 10 ms for network service
+9월 22, 2019 19:04:07.33 [10808:13644:0922/190407.334:ERROR:browser_process_sub_thread.cc(203)] Waited 8 ms for network service
+9월 22, 2019 20:05:44.07 [1112:12588:0922/200544.077:ERROR:socket_stream.cc(219)] Closing stream with result -2
+9월 22, 2019 20:14:32.03 [1112:12588:0922/201432.031:ERROR:browser_process_sub_thread.cc(203)] Waited 9 ms for network service
+9월 22, 2019 20:41:25.00 [212:14576:0922/204125.003:ERROR:browser_process_sub_thread.cc(203)] Waited 7 ms for network service
+9월 22, 2019 21:36:42.72 [2552:4968:0922/213642.728:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -106
