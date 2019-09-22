@@ -6,15 +6,11 @@
 <fullyQualifiedTypeName name="com.dev.cloud.dao.patentMapper"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
-<fullyQualifiedTypeName name="com.dev.cloud.vo.Patent"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
-<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 <fullyQualifiedTypeName name="com.dev.cloud.dao.itemRepository"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.MTI"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="com.dev.cloud.vo.Pat"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.devMember"/>
@@ -31,6 +27,13 @@
 <fullyQualifiedTypeName name="com.dev.cloud.utill.FileService"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.Item"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="com.dev.cloud.vo.Pat"/>
+<fullyQualifiedTypeName name="com.dev.cloud.vo.Patent"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="com.dev.cloud.dao.historyMapper"/>
+<fullyQualifiedTypeName name="com.dev.cloud.vo.History"/>
+<fullyQualifiedTypeName name="com.dev.cloud.vo.Total"/>
 </qualifiedTypeNameHistroy>

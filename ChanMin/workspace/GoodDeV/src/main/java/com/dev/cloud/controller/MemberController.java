@@ -103,13 +103,11 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value="/patentTable", method=RequestMethod.GET)
 	public List<Patent> patentTable(Pat pat,HttpSession session,int pageSu){
+		System.out.println("106번줄 pat==>"+pat);
 		
-		// System.out.println("타입 : "+patentType+"\n"+"아이템: "+searchItem+"\n"+"특허타입: "+searchWord);
-		//public List<Patent> patentTable(String searchWord,String patentDetail,String patentType)
-		//List<Patent> pList = papo.patentAll(searchWord,patentType,patentDetail); 
 		if(pat.getPatentType()!=null){
-			List<Patent> pList = papo.patentAll(); 
-			
+			List<Patent> pList = papo.searchPatent(pat); 
+			System.out.println("110번줄 pList사이즈==>"+pList.size());
 			List<Patent> result = new ArrayList<Patent>();
 
 			for(int i = 0 ; i<pList.size(); i++){
@@ -119,6 +117,7 @@ public class MemberController {
 					}
 				}
 			}
+			
 			return result;
 		}else{
 			String patentHolderName = (String) session.getAttribute("loginName");

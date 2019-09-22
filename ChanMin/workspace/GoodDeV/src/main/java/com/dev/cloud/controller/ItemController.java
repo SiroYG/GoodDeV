@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dev.cloud.dao.historyMapper;
 import com.dev.cloud.dao.itemRepository;
 import com.dev.cloud.utill.FileService;
+import com.dev.cloud.vo.History;
 import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.MTI;
 import com.dev.cloud.vo.Patent;
@@ -38,7 +40,8 @@ public class ItemController {
 	
 	@Autowired
 	itemRepository repo;
-	
+	@Autowired
+	historyMapper hipo;
 	
 	@RequestMapping(value = "/goItemUpdate", method = RequestMethod.GET)
 	public String goItemUpdate(Item item, HttpSession session,Model model) {
@@ -78,7 +81,7 @@ public class ItemController {
 		
 		Item it = repo.goItemDetail(item);
 		
-		System.out.println("58번줄==>"+it);
+		
 		model.addAttribute("it",it);
 		model.addAttribute("time", times);
 		return "/item/item_Detail";
@@ -95,30 +98,62 @@ public class ItemController {
 		model.addAttribute("time", times);
 		return "/item/item_write";
 	}
-
-	@RequestMapping(value = "/goItemUpdateProcess", method = RequestMethod.POST)
-	public String goItemUpdateProcess(MultipartFile upload,MultipartFile upload1,Item item, HttpSession session) {
-		String memberId = (String) session.getAttribute("loginId"); 
+	
+	@RequestMapping(value = "/goItemDelete", method = RequestMethod.GET)
+	public String goItemDelete(HttpSession session,Item item,Model model) {
+		String memberId = (String) session.getAttribute("loginId");
 		item.setMemberId(memberId);
-		System.out.println(item);
-		Item it = repo.goItemDetail(item);
-		if(upload==null||upload1==null){
-			int result = repo.updateItem(item);
-		}else if(upload.getSize() == 0 || upload.isEmpty()||upload1.getSize() == 0 || upload1.isEmpty()){
-			int result = repo.updateItem(item);
+		System.out.println("104번줄==>"+item);
+		int result = repo.deleteItem(item);
+		try{
+		if(result==1){
+			System.out.println("삭제성공");
+			return "redirect:/member/goMypage";
 		}else{
-			
-			  FileService.deleteFile(uploadPath + "/" + it.getSaveItemImage());
-			  FileService.deleteFile(uploadPath + "/" + it.getDocumentFilename());
-		         String savedname = FileService.saveFile(upload, uploadPath);
-		         String savedname1 = FileService.saveFile(upload1, uploadPath);
-		         item.setItemImagename(savedname);
-		         item.setSaveItemImage(upload.getOriginalFilename());	
-		         item.setDocumentFilename(savedname1);
-		         item.setSaveDocumentFilename(upload1.getOriginalFilename());
+			System.out.println("삭제실패");
+			return "redirect:/member/goMypage";
+		}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "redirect:/member/goMypage";
 		}
 		
-		int result = repo.updateItem(item);
+	}
+	
+	@RequestMapping(value = "/goItemUpdateProcess", method = RequestMethod.POST)
+	public String goItemUpdateProcess(MultipartFile upload,MultipartFile upload1,Item item, HttpSession session) {
+		System.out.println("upload==>"+upload+ "upload1==>"+upload1);
+		int result =0;
+		
+		String memberId = (String) session.getAttribute("loginId"); 
+		item.setMemberId(memberId);
+		
+		Item it = repo.goItemDetail(item);
+		
+		if(upload==null||upload1==null){
+			
+			 System.out.println("108번 여기요!!");
+			 result = repo.updateItem(item);
+			 
+		}else if(upload.getSize() == 0 || upload.isEmpty()||upload1.getSize() == 0 || upload1.isEmpty()){
+			
+			System.out.println("111번 여기요!!"); 
+			result = repo.updateItem(item);
+			
+		}else{
+			  System.out.println("114번줄it==>"+it);
+			  FileService.deleteFile(uploadPath + "/" + it.getSaveItemImage());
+			  FileService.deleteFile(uploadPath + "/" + it.getSaveDocumentFilename());
+		         String savedname = FileService.saveFile(upload, uploadPath);
+		         String savedname1 = FileService.saveFile(upload1, uploadPath);
+		         item.setItemImagename(upload.getOriginalFilename());
+		         item.setSaveItemImage(savedname);	
+		         item.setDocumentFilename(upload1.getOriginalFilename());
+		         item.setSaveDocumentFilename(savedname1);
+		         result = repo.updateItem(item);
+		}
+		
+		System.out.println("124번줄==>"+item);
 		try{
 		if(result==1){
 			System.out.println("item 수정성공");
@@ -140,7 +175,9 @@ public class ItemController {
 		
 		try {
 			String itemImage = upload.getOriginalFilename();
+			
 			String saveitemImage = FileService.saveFile(upload, uploadPath);
+			
 			String documentFilename = upload1.getOriginalFilename();
 			String saveDocumentFilename = FileService.saveFile(upload1, uploadPath);
 			item.setItemImagename(itemImage);

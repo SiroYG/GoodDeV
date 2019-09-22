@@ -67,6 +67,12 @@ Item - Item_History modify (o)
 Patent - search_menu > insert form modify(o)
 CSS - modify(-)
 
+--0921
+Funding - form, Detail (△)
+
+--0922
+Funding - form, Detail, list (o)
+
 * 앞으로 해야할 것들
 - 마이페이지 유형별 구성 및 테이블 구성 짜기
 - 크라우드 펀딩 상세페이지 + 결제 API 연동?

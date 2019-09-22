@@ -178,12 +178,14 @@ function item(){
    	    tag += '</thead>' 
     	tag += '<tbody>'
     	   $.each(res,function(i,item){
+    		if(item.itemName!='none'){   
  	   	   	tag += '<tr>'
  	   	  	tag += '<th scope="row" name="아이템번호">'+item.itemNum+'</th>'        
     	   		tag += '<td name="분류">' + item.itemType + '</td>'
     	   		tag += '<td name="제품명"><a href="/cloud/item/goItemDetail?itemNum='+item.itemNum+'" class="mypage-link">' + item.itemName + '</a></td>'
     	   		tag += '<td name="제품 내용">'+item.itemContent+'</td>'
     	   		tag += '</tr>'
+    		}
     	   	})
     	   
     	   	tag += '</tbody>'	
