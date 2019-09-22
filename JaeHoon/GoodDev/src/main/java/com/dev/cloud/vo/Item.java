@@ -1,5 +1,7 @@
 package com.dev.cloud.vo;
 
+import java.util.ArrayList;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +20,7 @@ public class Item {
 	private String  itemRegDate;
 	private String  itemImagename ;
 	private String  saveItemImage ;
-	private String  documentFilename ;
+	private ArrayList<String>  documentFilename ;
 	private String  saveDocumentFilename ;
 	
 }

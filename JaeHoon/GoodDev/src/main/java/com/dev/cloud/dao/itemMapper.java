@@ -3,7 +3,6 @@ package com.dev.cloud.dao;
 import java.util.ArrayList;
 
 import com.dev.cloud.vo.Item;
-import com.dev.cloud.vo.devMember;
 
 public interface itemMapper {
 	//가계약 신청시 아이템생성
@@ -16,7 +15,7 @@ public interface itemMapper {
 	public ArrayList<Item> getAllItem();
 
 	//셀렉byId
-	public ArrayList<Item> getItemByMemberId(devMember member);
+	public ArrayList<Item> getItemByMemberId(Item item);
 
 	
 	//아이템등록시 (가계약에서)생성된 아이템 수정 또는 아이템수정

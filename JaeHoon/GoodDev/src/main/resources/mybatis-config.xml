@@ -20,6 +20,12 @@
 <typeAlias alias="Question_Time" type="com.dev.cloud.vo.Question_Time"/>
 <typeAlias alias="Document" type="com.dev.cloud.vo.Document"/>
 <typeAlias alias="officialFile" type="com.dev.cloud.vo.officialFile"/>
+<typeAlias alias="QuestionTotal" type="com.dev.cloud.vo.QuestionTotal"/>
+<typeAlias alias="Search" type="com.dev.cloud.vo.Search"/>
+
+
+
+
 </typeAliases>
 <mappers>
 <mapper resource="mapper/memberMapper.xml"/>
@@ -32,7 +38,7 @@
 <mapper resource="mapper/PTIMapper.xml"/>
 <mapper resource="mapper/replyMapper.xml"/>
 <mapper resource="mapper/historyMapper.xml"/>
-<mapper resource="mapper/FundingOption.xml"/>
+<mapper resource="mapper/fundingOption.xml"/>
 <mapper resource="mapper/document.xml"/>
 <mapper resource="mapper/officialFileMapper.xml"/>
 

@@ -9,17 +9,37 @@
 	insert into Document (
 		DocumentNum
 		,PatentsubNum
-		<if test="documentFilename!=''">
+		<choose>
+		<when test="documentFilename!=''">
 		,documentFilename
 		,saveDocumentFilename
-		</if>
+		</when>
+		<when test="documentFilename!='null'">
+		,documentFilename
+		,saveDocumentFilename
+		</when>
+		<otherwise>
+		
+		</otherwise>
+		</choose>
+		
 		)VALUES (
 		Document_seq.NEXTVAL
 		,#{PatentsubNum}
-		<if test="documentFilename!=''">
+		<choose>
+		<when test="documentFilename!=''">
 		,#{documentFilename}
 		,#{saveDocumentFilename}
-		</if>
+		</when>
+		<when test="documentFilename!='null'">
+		,#{documentFilename}
+		,#{saveDocumentFilename}
+		</when>
+		<otherwise>
+		
+		</otherwise>
+		</choose>
+		
 		)
 	
 	</insert>

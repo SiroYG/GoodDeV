@@ -1,10 +1,13 @@
 package com.dev.cloud.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.dev.cloud.vo.Question;
+import com.dev.cloud.vo.QuestionTotal;
 import com.dev.cloud.vo.Survey;
 import com.dev.cloud.vo.Question_Time;
+import com.dev.cloud.vo.Search;
 
 public interface item_SurveyMapper {
 
@@ -42,5 +45,10 @@ public interface item_SurveyMapper {
 
 	//퀘스쳔 타임삭제(questionTitle = 'none') questionTimeNum번호로
 	public int deleteQuestion_Time(Question_Time question_Time);
+	
+	public ArrayList<QuestionTotal> selectAllQuestion_TimeById(Question_Time Question_Time);
+	
+	public List<QuestionTotal> selectBySearchItem(Search search);
+
 	
 }

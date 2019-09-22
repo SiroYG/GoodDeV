@@ -16,7 +16,6 @@ DROP TABLE DOCUMENT CASCADE CONSTRAINTS;
 DROP TABLE PATENTSUB CASCADE CONSTRAINTS;
 DROP TABLE devMember CASCADE CONSTRAINTS;
 DROP TABLE officialFile CASCADE CONSTRAINTS;
-DROP TABLE PATENT CASCADE CONSTRAINTS;
 
 
 
@@ -110,6 +109,8 @@ CREATE TABLE CROWDFUNDING
 	fundingDueDate date NOT NULL,
 	fundingStartDate date NOT NULL,
 	memberId varchar2(20) NOT NULL,
+	fundingTitle varchar2(100) NOT NULL,
+	fundingContent varchar2(2000) NOT NULL,
 	PRIMARY KEY (crowdfundingNum)
 );
 
@@ -164,8 +165,8 @@ CREATE TABLE HISTORY
 	historyNum number NOT NULL,
 	itemNum number NOT NULL,
 	comments varchar2(300),
-	itemVersion varchar2(20) NOT NULL,
-	historyDate date NOT NULL,
+	itemVersion number NOT NULL,
+	historyDate nvarchar2(100) NOT NULL,
 	PRIMARY KEY (historyNum)
 );
 

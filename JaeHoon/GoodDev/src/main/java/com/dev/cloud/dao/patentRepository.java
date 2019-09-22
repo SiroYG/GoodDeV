@@ -42,6 +42,7 @@ public class patentRepository implements patentMapper {
 		return result;
 	}
 
+	
 	@Override
 	public ArrayList<Patent> patentAll() {
 		patentMapper mapper = sqlSession.getMapper(patentMapper.class);
@@ -56,11 +57,11 @@ public class patentRepository implements patentMapper {
 	}
 
 	@Override
-	public ArrayList<Patent> patentIdAll(String memberName) {
+	public ArrayList<Patent> patentIdAll(String patentHolderName) {
 		patentMapper mapper = sqlSession.getMapper(patentMapper.class);
 		ArrayList<Patent> pList = null;
 		try{
-			pList = mapper.patentIdAll(memberName);
+			pList = mapper.patentIdAll(patentHolderName);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -81,5 +82,4 @@ public class patentRepository implements patentMapper {
 		
 		return pList;
 	}
-
 }

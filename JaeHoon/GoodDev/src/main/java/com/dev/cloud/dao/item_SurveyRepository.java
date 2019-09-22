@@ -1,14 +1,17 @@
 package com.dev.cloud.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dev.cloud.vo.Question;
+import com.dev.cloud.vo.QuestionTotal;
 import com.dev.cloud.vo.Survey;
 import com.dev.cloud.vo.Question_Time;
+import com.dev.cloud.vo.Search;
 
 @Repository
 public class item_SurveyRepository implements item_SurveyMapper{
@@ -164,7 +167,36 @@ public class item_SurveyRepository implements item_SurveyMapper{
 		return result;
 	}
 
-	
+	@Override
+	public ArrayList<QuestionTotal> selectAllQuestion_TimeById(Question_Time Question_Time) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		ArrayList<QuestionTotal> result=null;
+		try {
+			System.out.println("173 : "+Question_Time);
+			result=mapper.selectAllQuestion_TimeById(Question_Time);
+			System.out.println("175 : "+result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public List<QuestionTotal> selectBySearchItem(Search search) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		List<QuestionTotal> result=null;
+		try {
+			result=mapper.selectBySearchItem(search);
+			System.out.println("175 : "+result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 	
 	
