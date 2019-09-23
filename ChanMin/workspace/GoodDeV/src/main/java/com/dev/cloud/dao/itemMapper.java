@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dev.cloud.vo.Item;
+import com.dev.cloud.vo.ItemDo;
 import com.dev.cloud.vo.MTI;
 import com.dev.cloud.vo.Patent;
 import com.dev.cloud.vo.Total;
@@ -32,5 +33,7 @@ public interface itemMapper {
 		public Total gohisD(Total total);
 		//아이템삭제(itemName='none')
 		public int deleteItem(Total total);
+		
+		public int updateItemDo(ItemDo itemdo);
 		
 }

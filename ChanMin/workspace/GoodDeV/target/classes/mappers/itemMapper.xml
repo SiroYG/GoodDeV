@@ -15,14 +15,9 @@ insert into ITEM (
 			,itemName
 			,price
 			,itemContent 
-<if test="itemImagename != ''">
+<if test="itemImagename != null">
 			,itemImagename
 			,saveItemImage 
-</if>
-
-<if test="documentFilename != ''">
-			,documentFilename
-			,saveDocumentFilename 
 </if>
 			)VALUES (
 			item_seq.NEXTVAL
@@ -32,14 +27,9 @@ insert into ITEM (
 			,#{itemName}
 			,#{price}
 			,#{itemContent} 
-<if test="itemImagename != ''">
+<if test="itemImagename != null">
 			,#{itemImagename}
 			,#{saveItemImage}
-</if>
-
-<if test="documentFilename != ''">
-			,#{documentFilename}
-			,#{saveDocumentFilename} 
 </if>
 ) 
 </insert>
@@ -111,10 +101,6 @@ UPDATE
 		,saveItemImage=#{saveItemImage} 
 </if>
 
-<if test="documentFilename != null">
-		,documentFilename=#{documentFilename}
-		,saveDocumentFilename=#{saveDocumentFilename} 
-</if>
 where
 		itemNum=#{itemNum} and memberId=#{memberId} 
 </update>
@@ -124,6 +110,16 @@ UPDATE
 	 	Item
 SET
 		itemType = 'none'
+where
+	itemNum = #{itemNum} and memberId = #{memberId}
+</update>
+
+<update id="updateItemDo" parameterType="ItemDo">
+UPDATE
+	 	Item
+SET
+	  documentFilename = #{documentFilename} and
+      saveDocumentFilename  = #{saveDocumentFilename}
 where
 	itemNum = #{itemNum} and memberId = #{memberId}
 </update>

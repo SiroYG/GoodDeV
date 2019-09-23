@@ -1,0 +1,19 @@
+package com.dev.cloud.dao;
+
+import com.dev.cloud.vo.ItemDo;
+
+public class documentRepository implements documentMapper {
+
+	@Override
+	public int insertDocument(ItemDo itemdo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateDocument(ItemDo itemdo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

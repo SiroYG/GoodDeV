@@ -17,8 +17,10 @@
 <typeAlias alias="Reply" type="com.dev.cloud.vo.Reply"/>
 <typeAlias alias="Pat" type="com.dev.cloud.vo.Pat"/>
 <typeAlias alias="Total" type="com.dev.cloud.vo.Total"/>
+<typeAlias alias="ItemDo" type="com.dev.cloud.vo.ItemDo"/>
 </typeAliases>
 <mappers>
+<mapper resource="mappers/documentMapper.xml"/>
 <mapper resource="mappers/memberMapper.xml"/>
 <mapper resource="mappers/boardMapper.xml"/>
 <mapper resource="mappers/crowdfundingMapper.xml"/>
