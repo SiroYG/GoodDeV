@@ -40,7 +40,7 @@
 	          <li class="nav-item"><a href="gosearchmenu" class="nav-link"><span>검색</span></a></li>
 	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="/cloud/survey/main" class="nav-link"><span>블라인드 테스트</span></a></li>
-	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
+	          <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	          <li class="nav-item"><a href="gomyPage" class="nav-link"><span>마이페이지</span></a></li>
 	          	<c:if test="${sessionScope.loginId==null}">
 				<li style="margin-left: 20px;" class="nav-item cta"><a

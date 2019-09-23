@@ -5,7 +5,6 @@
 <configuration>
 <typeAliases>
 <typeAlias alias="Board" type="com.dev.cloud.vo.Board"/>
-<typeAlias alias="Cloudfunding" type="com.dev.cloud.vo.Cloudfunding"/>
 <typeAlias alias="History" type="com.dev.cloud.vo.History"/>
 
 <typeAlias alias="Item_Survey" type="com.dev.cloud.vo.Item_Survey"/>
@@ -25,7 +24,6 @@
 <mappers>
 <mapper resource="mappers/memberMapper.xml"/>
 <mapper resource="mappers/boardMapper.xml"/>
-<mapper resource="mappers/crowdfundingMapper.xml"/>
 <mapper resource="mappers/item_SurveyMapper.xml"/>
 <mapper resource="mappers/itemMapper.xml"/>
 <mapper resource="mappers/MTIMapper.xml"/>
