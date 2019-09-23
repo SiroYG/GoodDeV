@@ -73,8 +73,14 @@ Funding - form, Detail (△)
 --0922
 Funding - form, Detail, list (o)
 
+--0923
+Chat - chat.css, index chat banner(anonymous) (o)
+
+--0924
+
 * 앞으로 해야할 것들
-- 마이페이지 유형별 구성 및 테이블 구성 짜기
-- 크라우드 펀딩 상세페이지 + 결제 API 연동?
+- 마이페이지 유형별 구성
+- 크라우드 펀딩 결제 API 연동(?)
+- 펀딩 리스트 flex,,,,,,,,,
 - 인덱스 및 헤더 파트 리뉴얼
-- patent part css 수정
+- mid-back 끝난 jsp css 수정

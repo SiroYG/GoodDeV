@@ -4229,6 +4229,10 @@ input[type="button"].btn-block {
 .alert-link {
   font-weight: 700; }
 
+a.alert-link:hover{
+  text-decoration: underline; 
+}
+
 .alert-dismissible {
   padding-right: 4rem; }
   .alert-dismissible .close {
@@ -4239,6 +4243,7 @@ input[type="button"].btn-block {
     color: inherit; }
 
 .alert-primary {
+    font-size: 1.2em;
   color: #004085;
   background-color: #cce5ff;
   border-color: #b8daff; }
@@ -6612,7 +6617,9 @@ button.bg-dark:focus {
   padding-left: 1rem !important; }
 
 .p-4 {
-  padding: 1.5rem !important; }
+  padding: 1.5rem !important;
+display: block;
+text-align: left;}
 
 .pt-4,
 .py-4 {
@@ -8075,7 +8082,7 @@ h1, h2, h3, h4, h5,
     padding-bottom: .7rem;
     padding-left: 20px;
     padding-right: 20px;
-    color: #fff;
+    color: #000;
     font-weight: 400;
     opacity: 1 !important; }
     .ftco-navbar-light .navbar-nav > .nav-item > .nav-link span {
