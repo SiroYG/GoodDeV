@@ -32,6 +32,15 @@ insert into
 				) 
 </insert>
 
+<select id="selectPatent" resultType="Patent" parameterType="Patent">
+select 
+		*
+from 		
+	Patent
+where
+	patentNum = #{patentNum}	
+</select>
+
 
 <!-- Patent 수정 -->
 <update parameterType="Patent" id="updatePatent">

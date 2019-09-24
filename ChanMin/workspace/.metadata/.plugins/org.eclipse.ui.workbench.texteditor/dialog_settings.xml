@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="btn btn-primary" key="selection"/>
+		<item value="347번" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="true" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="btn btn-primary"/>
-			<item value="searchGo"/>
-			<item value="data-"/>
-			<item value="itemUpdate"/>
-			<item value="hipo.historyDetail"/>
-			<item value="58"/>
+			<item value="347번"/>
+			<item value="upload"/>
+			<item value="permitForm"/>
+			<item value="memId"/>
 			<item value="getItemByMemberId"/>
-			<item value="goItemDetail"/>
+			<item value="gohisD"/>
+			<item value="memberItemNum"/>
+			<item value="item-option"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
@@ -25,7 +25,7 @@
 		<item value="340" key="DIALOG_WIDTH"/>
 		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
 		<item value="448" key="DIALOG_HEIGHT"/>
-		<item value="1122" key="DIALOG_X_ORIGIN"/>
+		<item value="629" key="DIALOG_X_ORIGIN"/>
 		<item value="513" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

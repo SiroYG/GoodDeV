@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="ko">
   <head>
     <title>Search :: </title>
@@ -42,12 +42,13 @@
    
     <script>
 	var pageSu;
+	
     $(function(){
  		   pageSu = 9;
  		   patentTable(pageSu);   
  			
  		    
- 		   $('.btn btn-primary').on('click',checking);
+ 		
  		   
  	    	$('#patentBtn').on('click',function(){
  	    		var type = $('#patentType').val();
@@ -58,15 +59,80 @@
  	    			patentTable(pageSu); 
  	    		}
  	    	})
+ 	    	
+ 	    	
+ 	    	$('#permitBtn').on('click',function(){
+ 	    		var memberId = $('#memId').val();
+ 	    		var patentNum =$('#patentNum').val();
+ 	    		var itemNum = $('#item-option').val();
+ 	    		var upload = $('#upload').val();
+ 	    		var upload1 = $('#upload1').val();
+ 	    		var total ={
+ 	    			"memberId"	: memberId,
+ 	    			"patentNum"	: patentNum,
+ 	    			"itemNum"	: itemNum,
+ 	    			"upload"	: upload,
+ 	    			"upload1"	: upload1
+ 	    		}
+ 	    	
+ 	    		$.ajax({
+ 	    			url : 'permitForm',
+ 	    			type : 'post',
+ 	    			data : total,
+ 	    			success : function(res){
+ 	    				if(res=='success'){
+ 	    					alert('성공');
+ 	    					
+ 	    					$('#exampleModal').modal('hide');
+ 	    				}else{
+ 	    					alert('실패')
+ 	    				}
+ 	    			}
+ 	    		})	
+ 	    	})
  		   
     });
     
-    
+    function selectIt(){
+    	var memberId = $('#memId').val();
+    	$.ajax({
+    		url : 'memberItemNum',
+    		type : 'get',
+    		data :	{
+    			memberId : memberId
+    		},
+    		success : function(res){
+    			var tag ="";
+    			$.each(res,function(i,item){
+    				tag += '<option value="'+item.itemNum+'">'+item.itemName+'</option>'
+    			})
+    			$('#item-option').html(tag);
+    		}
+    	})
+    	
+    }
     
     function checking(){	
-    	var patentNum = $('.btn btn-primary').attr("data-value");
-	   	alert(patentNum);
-		}   
+    	var patentNum = $(this).attr('data-value');
+    	
+    	$.ajax({
+	 			url  : 'selectPatent',
+	 			type : 'get',
+	 			data : {
+	 				patentNum : patentNum
+	 			},
+	 			success : function(res){
+	 				if(res!=null){
+	 					$("#patentNum").val(res);	
+	 				}else{
+	 					alert('에러!!');
+	 				}
+	 				
+	 			}
+	   	})  
+		
+    
+    }   
     
     
     
@@ -78,7 +144,7 @@
  	   				success : function(res){
  	   					if(pageSu<res){
  	   						patentTable(pageSu); 
- 	   					}else {
+ 	   					}else {	
  	   						pageSu = 9;
  	   						patentTable(pageSu);
  	   						//ex) 172개 일때, 170개는 보여지지만 2개는 아직 안보임;;
@@ -152,7 +218,9 @@
     	   	}else{
     	   		tag += '<td>특허등록 진행중입니다.</td>'
     	   	}
-    	   		tag += '<td name="서식파일보기"><button type="button" class="btn btn-primary" data-value="'+item.patentNum+'" data-toggle="modal" data-target="#exampleModal">사용 허가 신청</button></td>'            
+    	   		
+    	   		tag += '<td name="서식파일보기"><button type="button" class="btn-primary" data-value="'+item.patentNum+'" data-toggle="modal" data-target="#exampleModal">사용 허가 신청</button></td>'            
+    	   		//인터셉터 처리
     	   		tag += '</tr>'        
     	   	})
     	   
@@ -163,6 +231,8 @@
     	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
     	    tag +=	'</div>'
         $('#section-bar-patent').html(tag);	
+    	$('.btn-primary').on('click',checking);    
+    	$('.btn-primary').on('click',selectIt);
     }
 
     	
@@ -186,7 +256,7 @@
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  
-	  
+	
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="home">Mainlogo</a>
@@ -285,62 +355,7 @@
    </div>
     <!--검색 결과는 검색하기 버튼 누르고 난 후에 떠야 합니다,,,(with.Ajax) 이 테이블은 그저 예시일 뿐-->
         <div class="search-result" id="section-bar-patent">
-         <%--     <table class="table">
-             <caption class="search-result">검색 결과 '00,000'개의 특허를 찾았습니다.</caption>
-  <thead class="navy">
-    <tr>
-      <th scope="col">No.</th>
-      <th scope="col">분류</th>
-      <th scope="col">특허명</th>
-      <th scope="col">특허설명</th>
-      <th scope="col">특허 보유자</th>
-      <th scope="col">등록날짜</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row" name="boardNum">1</th>
-      <td name="qCategory">[일반]</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="id">ididid</td>
-      <td name="boardDate">2019-09-09</td>
-    </tr>
-    <tr>
-      <th scope="row" name="boardNum">1</th>
-      <td name="qCategory">[일반]</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="id">ididid</td>
-      <td name="boardDate">2019-09-09</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">1</th>
-      <td name="qCategory">[일반]</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="id">ididid</td>
-      <td name="boardDate">2019-09-09</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">1</th>
-      <td name="qCategory">[일반]</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="id">ididid</td>
-      <td name="boardDate">2019-09-09</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">1</th>
-      <td name="qCategory">[일반]</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="id">ididid</td>
-      <td name="boardDate">2019-09-09</td>
-    </tr>
-  </tbody>
-  
-</table> --%>
+ 
               <!--페이징 & 검색-->
   <div class="page-center">
   
@@ -444,7 +459,7 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -454,23 +469,31 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="post" id="">
+                <form action="permitForm" method="post" id="permitForm">
               <div class="form-group">
                 <label for="appointment_name" class="text-black">신청인</label>
-                <input type="text" class="form-control" name="memberId" id="memberId" placeholder="이름을 입력해주세요">
+                <input type="text" class="form-control" name="memberId" value="${sessionScope.loginId}" id="memId" placeholder="${sessionScope.loginId}">
               </div>
               <div class="form-group">
                 <label for="appointment_patentnum" class="text-black">특허번호</label>
                 <input type="text" class="form-control" name="patentNum" value="" id="patentNum" placeholder="" readonly="readonly">
               </div>
+              
+              <label for="item-option" class="text-black">특허 검색옵션<label>
+              <select id="item-option" name="itemNum">
+              <option value="none" selected>특허에 사용할 제품/서비스를 선택해주세요</option>
+              <!--  <option value="">itemName_1</option>-->
+              </select><br><br>
+              
                <div class="form-group">
                     <label for="appointment_file" class="text-black">특허 사용 신청서</label>
-                    <input type="file" class="form-control" name="" id="appointment_file" multiple>
+                    <input type="file" class="form-control" name="upload" id="upload" />
                   </div>
                   <div class="form-group">
                     <label for="appointment_file2" class="text-black">특허 사용 허가서</label>
-                    <input type="file" class="form-control" name="" id="appointment_file2" multiple>
+                    <input type="file" class="form-control" name="upload1" id="upload1" />
                   </div>
+              
               
 
               <!--<div class="form-group">
@@ -483,7 +506,7 @@
             </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-info">신청하기</button>
+                <button type="button" id="permitBtn" class="btn btn-outline-info">신청하기</button>
                 <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>
             </div>
         </div>

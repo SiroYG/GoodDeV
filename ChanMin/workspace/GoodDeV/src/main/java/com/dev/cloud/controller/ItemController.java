@@ -186,10 +186,10 @@ public class ItemController {
 			  FileService.deleteFile(uploadPath + "/" + it.getSaveDocumentFilename());
 		         String savedname = FileService.saveFile(upload, uploadPath);
 		         String savedname1 = FileService.saveFile(upload1, uploadPath);
-		         total.setItemImagename(upload.getOriginalFilename());
-		         total.setSaveItemImage(savedname);	
-		         total.setDocumentFilename(upload1.getOriginalFilename());
-		         total.setSaveDocumentFilename(savedname1);
+		         total.setItemImagename(upload.getOriginalFilename()+"@"+upload1.getOriginalFilename());
+		         total.setSaveItemImage(savedname+"@"+savedname1);	
+		         //total.setDocumentFilename();
+		         //total.setSaveDocumentFilename(savedname1);
 		         result = repo.updateItem(total);
 		}
 		
@@ -228,10 +228,10 @@ public class ItemController {
 			
 			String documentFilename = upload1.getOriginalFilename();
 			String saveDocumentFilename = FileService.saveFile(upload1, uploadPath);
-			total.setItemImagename(itemImage);
-			total.setSaveItemImage(saveitemImage);	
-			total.setDocumentFilename(documentFilename);
-			total.setSaveDocumentFilename(saveDocumentFilename);
+			total.setItemImagename(itemImage+"@"+documentFilename);
+			total.setSaveItemImage(saveitemImage+"@"+saveDocumentFilename);	
+		//	total.setDocumentFilename(documentFilename);
+		//	total.setSaveDocumentFilename(saveDocumentFilename);
 		} catch (IllegalStateException e) {
 			
 			e.printStackTrace();

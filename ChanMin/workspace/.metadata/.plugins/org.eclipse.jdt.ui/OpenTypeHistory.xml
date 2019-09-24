@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
 <typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{patentMapper.java[patentMapper" modifiers="513" timestamp="1569058514244"/>
-<typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{itemMapper.java[itemMapper" modifiers="513" timestamp="1569131758419"/>
+<typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{itemMapper.java[itemMapper" modifiers="513" timestamp="1569137289335"/>
 <typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{item_SurveyMapper.java[item_SurveyMapper" modifiers="513" timestamp="1567826259310"/>
-<typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{historyMapper.java[historyMapper" modifiers="513" timestamp="1569063301314"/>
+<typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{historyMapper.java[historyMapper" modifiers="513" timestamp="1569141501348"/>
+<typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{patentsubMapper.java[patentsubMapper" modifiers="513" timestamp="1569213616352"/>
+<typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{documentMapper.java[documentMapper" modifiers="513" timestamp="1569236970141"/>
 </typeInfoHistroy>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.cloud.dao.patentMapper">
+	
+
+
+	
+<!-- Patent 추가 -->	
+<insert parameterType="Patent" id="insertPatent">
+insert into 
+		Patent (
+				 patentNum 
+		<if test="patentName!='' || patentName!='null'">
+				,patentName
+				,patentContent
+				,patentType 
+		</if>
+				,patentHolderName
+				,patentAppDate
+				)VALUES (
+				Patent_seq.NEXTVAL 
+		<if test="patentName!='' || patentName!='null'">
+				,#{patentName}
+				,#{patentContent}
+				,#{patentType} 
+		</if>
+				,#{patentHolderName}
+				,SYSDATE
+				) 
+</insert>
+
+
+<!-- Patent 수정 -->
+<update parameterType="Patent" id="updatePatent">
+UPDATE 
+		Patent
+SET
+		patentRegDate = #{patentRegDate}
+where
+		patentNum=#{patentNum} 
+</update>
+
+
+<!-- Patent 전체리스트 -->
+<select id="patentAll" resultType="Patent">
+select
+		 patentNum
+		,patentName
+		,patentHolderName
+		,patentContent
+		,to_char(patentAppDate,'YYYY-MM-DD') as patentAppDate
+		,to_char(patentRegDate,'YYYY-MM-DD') as patentRegDate
+		,patentType
+from
+		patent
+</select>
+
+
+<!-- Patent myList보기 -->
+<select parameterType="String" id="patentIdAll" resultType="Patent">
+select
+		patentNum
+		,patentName
+		,patentHolderName
+		,patentContent
+		,to_char(patentAppDate,'YYYY-MM-DD') as patentAppDate
+		,to_char(patentRegDate,'YYYY-MM-DD') as patentRegDate
+		,patentType
+from
+		patent
+where
+		patentHolderName = #{patentHolderName} 
+</select>
+
+<!-- Patent 특허검색 -->
+<select parameterType="Pat" id="searchPatent" resultType="Patent">
+select 
+		patentNum
+		,patentName
+		,patentHolderName
+		,patentContent
+		,to_char(patentAppDate,'YYYY-MM-DD') as patentAppDate
+		,to_char(patentRegDate,'YYYY-MM-DD') as patentRegDate
+		,patentType
+from 
+		Patent 
+<choose>
+
+
+<when test="patentType=='patentType1'">
+where patentType='영상 및 음향기기 제조업' 
+
+<choose>
+
+<when test="searchItem=='patentName'"> 
+	and patentName LIKE '%'||#{searchWord}||'%' 
+</when>
+
+<when test="searchItem=='patentHolderName'">
+	and patentHolderName LIKE'%'||#{searchWord}||'%'
+</when>
+
+<when test="searchItem=='patentContent'">
+	and patentContent LIKE '%'||#{searchWord}||'%' 
+</when>
+
+<otherwise/>
+
+</choose>
+
+</when>
+
+<when test="patentType=='patentType2'">
+where patenttype='컴퓨터 프로그래밍 및 정보서비스업' 
+
+<choose>
+
+<when test="searchItem=='patentName'"> 
+	and patentName LIKE '%'||#{searchWord}||'%' 
+</when>
+
+<when test="searchItem=='patentHolderName'">
+	and patentHolderName LIKE'%'||#{searchWord}||'%'
+</when>
+
+<when test="searchItem=='patentContent'">
+	and patentContent LIKE '%'||#{searchWord}||'%' 
+</when>
+
+<otherwise/>
+
+</choose>
+
+</when>
+
+
+<when test="patentType=='patentType3'">
+where patenttype='통신 및 방송 장비 제조업' 
+				     	
+<choose>
+
+<when test="searchItem=='patentName'"> 
+	and patentName LIKE '%'||#{searchWord}||'%' 
+</when>
+
+<when test="searchItem=='patentHolderName'">
+	and patentHolderName LIKE'%'||#{searchWord}||'%' 
+</when>
+
+<when test="searchItem=='patentContent'">
+	and patentContent LIKE '%'||#{searchWord}||'%' 
+</when>
+
+<otherwise/>
+
+</choose>
+
+</when>
+
+
+<otherwise>
+
+
+<choose>
+
+<when test="searchItem=='patentName'">
+	where patentName LIKE '%'||#{searchWord}||'%' 
+</when>
+
+<when test="searchItem=='patentHolderName'">
+	where patentHolderName LIKE'%'||#{searchWord}||'%' 
+</when>
+
+<when test="searchItem=='patentContent'">
+	where patentContent LIKE '%'||#{searchWord}||'%' 
+</when>
+
+<otherwise/>
+
+</choose>
+
+</otherwise>
+
+</choose>
+
+
+</select>
+	
+</mapper>
+<!-- patentNum ;
+	private String patentName ;
+	private String patentHolderName ;
+	private String patentContent ;
+	private String patentAppDate;
+	private String patentRegDate ;
+	private String patenttype ;
+	 -->
+
