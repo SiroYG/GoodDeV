@@ -19,5 +19,6 @@ public class QuestionTotal {
 	public String etc;
 	private String memberId;
 	private String itemType;
+	
 
 }

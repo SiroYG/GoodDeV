@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="ko">
   <head>
     <title>Survey :: All list</title>
@@ -20,8 +20,8 @@
 
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css">
+<!--     <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css"> -->
+<!--     <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css"> -->
     
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
@@ -54,18 +54,21 @@
      			  },
      			  success : function(res){
      				  alert(res);
-     				  
+     				  $(".tbody").remove();
      				  $.each(res,function(i,item){  
-     					i+=1;  
-     					  
-     					  
+     					i+=1;       					  
     					  str+='<tr>' 
          				  str+='<th scope="row">'
-         				  str+='<a href="gosurvey_Detail?questionTimeNum="'+item.questionTimeNum+'">'
+         				  str+='<a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
          				  str+=' <span>'+i+' </span> </a></th>'
-         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum="'+item.questionTimeNum+'">'
+         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
          				  str+='<span>'+item.itemType+'</span> </a></th>'
-        				  
+         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
+         				  str+='<span>'+item.questionTitle+'</span> </a></th>'
+         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
+         				  str+='<span>'+item.memberId+'</span> </a></th>'
+         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
+         				  str+='<span>'+item.startDate+'</span> </a></th>'
          				  
      				  })
     				$('.tbodyAjax').html(str);
@@ -99,7 +102,7 @@
 	          <li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
 	          <li class="nav-item"><a href="gosearchmenu" class="nav-link"><span>검색</span></a></li>
 	          <li class="nav-item"><a href="goBoardlist" class="nav-link"><span>Q & A 게시판</span></a></li>
-	          <li class="nav-item"><a href="gosurveylist" class="nav-link"><span>블라인드 테스트</span></a></li>
+	          <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	          <li class="nav-item"><a href="gomyPage" class="nav-link"><span>마이페이지</span></a></li>
 	          <li style="margin-left: 20px; " class="nav-item cta"><a href="gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>

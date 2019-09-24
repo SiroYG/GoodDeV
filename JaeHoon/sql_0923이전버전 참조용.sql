@@ -100,6 +100,8 @@ CREATE TABLE BOARD
 );
 
 
+
+
 CREATE TABLE CROWDFUNDING
 (
 	crowdfundingNum number NOT NULL,
@@ -109,11 +111,12 @@ CREATE TABLE CROWDFUNDING
 	fundingDueDate date NOT NULL,
 	fundingStartDate date NOT NULL,
 	memberId varchar2(20) NOT NULL,
-	fundingTitle varchar2(100) NOT NULL,
-	fundingContent varchar2(2000) NOT NULL,
+	fundingTitle varchar2(1000) NOT NULL,
+	fundingContents varchar2(3000) NOT NULL,
+	originalFileName varchar2(100),
+	savedFileName varchar2(100),
 	PRIMARY KEY (crowdfundingNum)
 );
-
 
 CREATE TABLE devMember
 (
@@ -132,8 +135,8 @@ CREATE TABLE DOCUMENT
 (
 	DocumentNum number NOT NULL,
 	PatentsubNum number NOT NULL,
-	documentFilename varchar2(100),
-	saveDocumentFilename varchar2(100) UNIQUE,
+	documentFilename varchar2(1000) NOT NULL,
+	saveDocumentFilename varchar2(1000) UNIQUE NOT NULL,
 	PRIMARY KEY (DocumentNum)
 );
 
@@ -181,10 +184,10 @@ CREATE TABLE ITEM
 	price number NOT NULL,
 	itemContent varchar2(300) NOT NULL,
 	itemRegDate date,
-	itemImagename varchar2(100),
-	saveItemImage varchar2(100) UNIQUE,
-	documentFilename varchar2(100),
-	saveDocumentFilename varchar2(100) UNIQUE,
+	itemImagename varchar2(1000),
+	saveItemImage varchar2(1000) UNIQUE,
+	documentFilename varchar2(1000),
+	saveDocumentFilename varchar2(1000) UNIQUE,
 	PRIMARY KEY (itemNum)
 );
 
@@ -217,8 +220,8 @@ CREATE TABLE PATENTSUB
 	PatentsubNum number NOT NULL,
 	patentNum varchar2(100) NOT NULL,
 	memberId varchar2(20) NOT NULL,
-	referenceFilename varchar2(100),
-	saveReferenceFilename varchar2(100) UNIQUE,
+	referenceFilename varchar2(1000),
+	saveReferenceFilename varchar2(1000) UNIQUE,
 	PRIMARY KEY (PatentsubNum)
 );
 

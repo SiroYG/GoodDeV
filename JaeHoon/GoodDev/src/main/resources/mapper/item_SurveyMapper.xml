@@ -59,6 +59,15 @@
 		where itemNum=#{itemNum}
 		
 	</select>
+	<select id="getQuestion_TimeByQuestion_TimeNum" parameterType="Question_Time"
+		resultType="Question_Time">
+		select *
+		from Question_Time
+		where questionTimeNum=#{questionTimeNum}
+		
+	</select>
+	
+	
 	
 
 	<select id="getQuestionByQuestionTimeNum" parameterType="Question"
@@ -188,7 +197,11 @@
 		</choose>
 		
 	</select>
-
+	
+	<select id="getQuestionByQuestionNum" parameterType="Question" resultType="Question">
+	select * from Question where questionNum=#{questionNum}
+	
+	 </select>
 
 </mapper>
 

@@ -51,4 +51,9 @@ public interface item_SurveyMapper {
 	public List<QuestionTotal> selectBySearchItem(Search search);
 
 	
+	public Question_Time getQuestion_TimeByQuestion_TimeNum(Question_Time question_Time);
+	
+	public Question getQuestionByQuestionNum(Question question);
+	
+	 
 }

@@ -67,6 +67,7 @@ public class item_SurveyRepository implements item_SurveyMapper{
 		ArrayList<Question> result=null;
 		try {
 			result=mapper.getQuestionByQuestionTimeNum(qustion);
+			System.out.println("repo70line"+qustion);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -189,6 +190,36 @@ public class item_SurveyRepository implements item_SurveyMapper{
 		List<QuestionTotal> result=null;
 		try {
 			result=mapper.selectBySearchItem(search);
+			System.out.println("175 : "+result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public Question_Time getQuestion_TimeByQuestion_TimeNum(Question_Time question_Time) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		Question_Time result=null;
+		try {
+			result=mapper.getQuestion_TimeByQuestion_TimeNum(question_Time);
+			System.out.println("175 : "+result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public Question getQuestionByQuestionNum(Question question) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		Question result=null;
+		try {
+			result=mapper.getQuestionByQuestionNum(question);
 			System.out.println("175 : "+result);
 
 		} catch (Exception e) {

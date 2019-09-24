@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="ko">
   <head>
     <title>Survey :: Survey Form</title>
@@ -29,7 +29,46 @@
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     
-    <script></script>
+    <script>
+    $(function(){
+    	$(document).on('click', '#insertSurveyButton', function(){
+    		alert("aa");
+    		$("#insertSurveyData").submit();
+    	
+    		var radioNumbers = [];
+    		
+    		$(".queRadio").each(function(index,item){
+    			if($(this).prop("checked")){
+    				
+    				var SurveyTotal = {
+   						qValuable : parseInt($(this).val()),
+   						questionNum : parseInt($(this).attr("questionNum"))
+    				};
+    			}
+    			radioNumbers.push(SurveyTotal);
+    		});
+    		
+    		
+    		var etc = $("#etc").val();
+    		$.ajax({
+    				contentType : "application/json; charset=utf8",
+    				data : JSON.stringify({
+    					params : radioNumbers,
+    					etc : etc
+    				}),
+    				url:"getSurvey_Detail",
+    				method : 'POST',
+    				success : function(res){
+    					alert("check");
+    				}
+    				
+    		})
+    		
+    	});
+    	
+    	
+    });
+    </script>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  
@@ -46,7 +85,7 @@
 	          <li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
 	          <li class="nav-item"><a href="gosearchmenu" class="nav-link"><span>검색</span></a></li>
 	          <li class="nav-item"><a href="goBoardlist" class="nav-link"><span>Q & A 게시판</span></a></li>
-	          <li class="nav-item"><a href="gosurveylist" class="nav-link"><span>블라인드 테스트</span></a></li>
+	          <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	          <li class="nav-item"><a href="gomyPage" class="nav-link"><span>마이페이지</span></a></li>
 	          <li style="margin-left: 20px; " class="nav-item cta"><a href="gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
@@ -84,41 +123,58 @@
 
     <hr class="hr_purple">
 
+<!-- <form action="/cloud/survey/insertSurveyDatas" method="POST"> -->
+<!--                   <input type = "text" name = "aaa"> -->
+<!--                   <input type = "submit" value = "zz"> -->
+<!--            </form>     -->
     <div class="write_table">
-        <form action="" method="POST" id="">
+    	
+        <form action="/cloud/survey/insertSurveyDatas" method="POST" id="insertSurveyData">
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>시작일</b></span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="writtenDate" id="" placeholder="2019 - 09 - 04 (목)" readonly="readonly">
+                    <input type="text" class="form-control" name="writtenDate" id="" placeholder="${qTime.startDate }" readonly="readonly">
 
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>마감일</b></span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="dueDate" id="" placeholder="2019 - 09 - 14 (토)">
+                    <input type="text" class="form-control" name="dueDate" id="" placeholder="${qTime.dueDate }">
 
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>제목</b></span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="" id="" placeholder="@@@을 이용한 ### 제품에 대한 설문조사" readonly="readonly">
+                    <input type="text" class="form-control" name="" id="" placeholder="${qTime.questionTitle}" readonly="readonly">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>내용</b></span></label>
                 <div class="col-sm-10">
-                     <textarea rows="8" cols="112" class="form-control" name="itemContent" placeholder=""></textarea>
+                     <textarea rows="8" cols="112" class="form-control" name="itemContent" placeholder="${qTime.description }"></textarea>
                 </div>
             </div>
-            <div class="form-group row">
+<!--             <div class="form-group row"> -->
+<!--                 <label for="" class="col-sm-2 col-form-label"><span><b>첨부파일</b></span></label> -->
+<!--                 <div class="col-sm-10"> -->
+<!--                     <input type="file" class="form-control" name="upload" id="" placeholder=""> -->
+<!--                 </div> -->
+<!--             </div> -->
+
+  <div class="form-group row"> 
                 <label for="" class="col-sm-2 col-form-label"><span><b>첨부파일</b></span></label>
                 <div class="col-sm-10">
-                    <input type="file" class="form-control" name="saveItemImage" id="" placeholder="">
+                    <a href="#" class="form-control" >다운로드</a>
                 </div>
             </div>
-            
+<!--              <div class="form-group row"> -->
+<!--                            <div class="form-group"> -->
+<!--                                     <a href="#" class="a_document"> 다운로드</a> -->
+<!--                            </div> -->
+<!--                    </div> -->
+<!--              </div> -->
             <hr class="hr_navy">
             
             <div class="survey_form">
@@ -130,186 +186,78 @@
                     </div>
                 </div>
  <div class="form-group row">
+ 
                 <label for="" class="col-sm-2 col-form-label"><span><b>평가일</b></span></label>
                 <div class="col-sm-10">
                    <!--평가자가 이 페이지에 들어온 시점에서 sysdate-->
-                    <input type="text" class="form-control" name="writtenDate" id="" placeholder="2019 - 09 - 09 (월)" readonly="readonly">
+                    <input type="text" class="form-control" name="writtenDate" id="" placeholder="${time }" readonly="readonly">
 
                 </div>
-            </div>
-                <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label"><span><b>질문 1) </b></span></label>
+            </div> 
+                
+<%--             <c:forEach var="name" items="${nameList}" varStatus="status"> --%>
+
+<%--     <p>${status.count} : <c:out value="${name}" /></p> --%>
+
+<%-- </c:forEach> --%>
+
+
+
+<!-- 출처: https://offbyone.tistory.com/368 [쉬고 싶은 개발자] -->
+<%--            // <c:forEach var="que" items="${qList}" varStatus="status" > --%>
+<%--                     <label for="" class="col-sm-2 col-form-label"><span><b>질문 ${status.count}) </b></span></label> --%>
+<!--                     <div class="col-sm-10"> -->
+<%--                         <input type="text" class="form-control" name="question" id="question" value="${que.question}"> --%>
+                  
+                  <c:forEach var="que" items="${qList}" varStatus="status" >
+                  <div class="form-group row">
+                  <input type="hidden" name="questionNum" value="${que.questionNum}" id="questionNum">
+                    <label for="" class="col-sm-2 col-form-label"><span><b>질문 ${status.count}) </b></span></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="question" id="" placeholder="질문을 입력해주세요">
+                        <input type="text" class="form-control" name="question" id="question" value="${que.question}" readonly="readonly">
                         &nbsp; &nbsp; <label for="">1점 </label>
-                        <input type="radio" name="" value="1" id=""> &nbsp; &nbsp;
-                        <label for="">2점 </label>
-                        <input type="radio" name="" value="2" id=""> &nbsp; &nbsp;
+                        <input type="radio" class="queRadio" name="${que.questionNum}" questionNum="${que.questionNum}" value="1"  > &nbsp; &nbsp;
+                        <label for="">2점 </label>	
+                        <input type="radio" class="queRadio" name="${que.questionNum}" questionNum="${que.questionNum}" value="2" > &nbsp; &nbsp;
                         <label for="">3점 </label>
-                        <input type="radio" name="" value="3" id=""> &nbsp; &nbsp;
+                        <input type="radio" class="queRadio" name="${que.questionNum}" questionNum="${que.questionNum}" value="3" > &nbsp; &nbsp;
                         <label for="">4점 </label>
-                        <input type="radio" name="" value="4" id=""> &nbsp; &nbsp;
+                        <input type="radio" class="queRadio" name="${que.questionNum}" questionNum="${que.questionNum}" value="4" > &nbsp; &nbsp;
                         <label for="">5점 </label>
-                        <input type="radio" name="" value="5" id=""> &nbsp; &nbsp;
-                    </div>
+                        <input type="radio" class="queRadio" name="${que.questionNum}" questionNum="${que.questionNum}" value="5"  checked> &nbsp; &nbsp;
+                        
+                    </div> 
                 </div>
-                <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label"><span><b>질문 2) </b></span></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="question" id="" placeholder="질문을 입력해주세요">
-                        &nbsp; &nbsp; <label for="">1점 </label>
-                        <input type="radio" name="" value="1" id=""> &nbsp; &nbsp;
-                        <label for="">2점 </label>
-                        <input type="radio" name="" value="2" id=""> &nbsp; &nbsp;
-                        <label for="">3점 </label>
-                        <input type="radio" name="" value="3" id=""> &nbsp; &nbsp;
-                        <label for="">4점 </label>
-                        <input type="radio" name="" value="4" id=""> &nbsp; &nbsp;
-                        <label for="">5점 </label>
-                        <input type="radio" name="" value="5" id=""> &nbsp; &nbsp;
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label"><span><b>질문 3) </b></span></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="question" id="" placeholder="질문을 입력해주세요">
-                        &nbsp; &nbsp; <label for="">1점 </label>
-                        <input type="radio" name="" value="1" id=""> &nbsp; &nbsp;
-                        <label for="">2점 </label>
-                        <input type="radio" name="" value="2" id=""> &nbsp; &nbsp;
-                        <label for="">3점 </label>
-                        <input type="radio" name="" value="3" id=""> &nbsp; &nbsp;
-                        <label for="">4점 </label>
-                        <input type="radio" name="" value="4" id=""> &nbsp; &nbsp;
-                        <label for="">5점 </label>
-                        <input type="radio" name="" value="5" id=""> &nbsp; &nbsp;
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label"><span><b>질문 4) </b></span></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="question" id="" placeholder="질문을 입력해주세요">
-                        &nbsp; &nbsp; <label for="">1점 </label>
-                        <input type="radio" name="" value="1" id=""> &nbsp; &nbsp;
-                        <label for="">2점 </label>
-                        <input type="radio" name="" value="2" id=""> &nbsp; &nbsp;
-                        <label for="">3점 </label>
-                        <input type="radio" name="" value="3" id=""> &nbsp; &nbsp;
-                        <label for="">4점 </label>
-                        <input type="radio" name="" value="4" id=""> &nbsp; &nbsp;
-                        <label for="">5점 </label>
-                        <input type="radio" name="" value="5" id=""> &nbsp; &nbsp;
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label"><span><b>질문 5) </b></span></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="question" id="" placeholder="질문을 입력해주세요">
-                        &nbsp; &nbsp; <label for="">1점 </label>
-                        <input type="radio" name="" value="1" id=""> &nbsp; &nbsp;
-                        <label for="">2점 </label>
-                        <input type="radio" name="" value="2" id=""> &nbsp; &nbsp;
-                        <label for="">3점 </label>
-                        <input type="radio" name="" value="3" id=""> &nbsp; &nbsp;
-                        <label for="">4점 </label>
-                        <input type="radio" name="" value="4" id=""> &nbsp; &nbsp;
-                        <label for="">5점 </label>
-                        <input type="radio" name="" value="5" id=""> &nbsp; &nbsp;
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label"><span><b>질문 6) </b></span></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="question" id="" placeholder="질문을 입력해주세요">
-                        &nbsp; &nbsp; <label for="">1점 </label>
-                        <input type="radio" name="" value="1" id=""> &nbsp; &nbsp;
-                        <label for="">2점 </label>
-                        <input type="radio" name="" value="2" id=""> &nbsp; &nbsp;
-                        <label for="">3점 </label>
-                        <input type="radio" name="" value="3" id=""> &nbsp; &nbsp;
-                        <label for="">4점 </label>
-                        <input type="radio" name="" value="4" id=""> &nbsp; &nbsp;
-                        <label for="">5점 </label>
-                        <input type="radio" name="" value="5" id=""> &nbsp; &nbsp;
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label"><span><b>질문 7) </b></span></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="question" id="" placeholder="질문을 입력해주세요">
-                        &nbsp; &nbsp; <label for="">1점 </label>
-                        <input type="radio" name="" value="1" id=""> &nbsp; &nbsp;
-                        <label for="">2점 </label>
-                        <input type="radio" name="" value="2" id=""> &nbsp; &nbsp;
-                        <label for="">3점 </label>
-                        <input type="radio" name="" value="3" id=""> &nbsp; &nbsp;
-                        <label for="">4점 </label>
-                        <input type="radio" name="" value="4" id=""> &nbsp; &nbsp;
-                        <label for="">5점 </label>
-                        <input type="radio" name="" value="5" id=""> &nbsp; &nbsp;
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label"><span><b>질문 8) </b></span></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="question" id="" placeholder="질문을 입력해주세요">
-                        &nbsp; &nbsp; <label for="">1점 </label>
-                        <input type="radio" name="" value="1" id=""> &nbsp; &nbsp;
-                        <label for="">2점 </label>
-                        <input type="radio" name="" value="2" id=""> &nbsp; &nbsp;
-                        <label for="">3점 </label>
-                        <input type="radio" name="" value="3" id=""> &nbsp; &nbsp;
-                        <label for="">4점 </label>
-                        <input type="radio" name="" value="4" id=""> &nbsp; &nbsp;
-                        <label for="">5점 </label>
-                        <input type="radio" name="" value="5" id=""> &nbsp; &nbsp;
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label"><span><b>질문 9) </b></span></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="question" id="" placeholder="질문을 입력해주세요">
-                        &nbsp; &nbsp; <label for="">1점 </label>
-                        <input type="radio" name="" value="1" id=""> &nbsp; &nbsp;
-                        <label for="">2점 </label>
-                        <input type="radio" name="" value="2" id=""> &nbsp; &nbsp;
-                        <label for="">3점 </label>
-                        <input type="radio" name="" value="3" id=""> &nbsp; &nbsp;
-                        <label for="">4점 </label>
-                        <input type="radio" name="" value="4" id=""> &nbsp; &nbsp;
-                        <label for="">5점 </label>
-                        <input type="radio" name="" value="5" id=""> &nbsp; &nbsp;
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label"><span><b>질문 10) </b></span></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="question" id="" placeholder="(공란)">
-                        &nbsp; &nbsp; <label for="">1점 </label>
-                        <input type="radio" name="" value="1" id="" disabled> &nbsp; &nbsp;
-                        <label for="">2점 </label>
-                        <input type="radio" name="" value="2" id="" disabled> &nbsp; &nbsp;
-                        <label for="">3점 </label>
-                        <input type="radio" name="" value="3" id="" disabled> &nbsp; &nbsp;
-                        <label for="">4점 </label>
-                        <input type="radio" name="" value="4" id="" disabled> &nbsp; &nbsp;
-                        <label for="">5점 </label>
-                        <input type="radio" name="" value="5" id="" disabled> &nbsp; &nbsp;
-                    </div>
-                </div>
+               			 
+               			
+                  </c:forEach>
+                    
+              
+                
+     	 
+     	 
+                  
+                  
+                  
+             
+                
+                
+                
+                
+                
             </div>
             
             
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>기타의견</b></span></label>
                 <div class="col-sm-10">
-                    <textarea rows="4" cols="112" class="form-control" name="itemContent" placeholder=""></textarea>
+                    <textarea rows="4" cols="112" class="form-control" id="etc" placeholder=""></textarea>
                 </div>
             </div>
 <br><br>
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <a href="#" class="btns btn-3"><span class="white">&nbsp;&nbsp;작성하기&nbsp;&nbsp;</span></a> 
+                    <a href="#" class="btns btn-3" id="insertSurveyButton"><span class="white">&nbsp;&nbsp;작성하기&nbsp;&nbsp;</span></a> 
                     &nbsp;&nbsp; 
                     <a href="gosurveylist" class="btns btn-3-red" style="margin-top: 0;"><span class="white">&nbsp;&nbsp;취소&nbsp;&nbsp;</span></a>
                 </div>
