@@ -11,4 +11,5 @@ public class Pat {
 	private String patentType;
 	private String searchItem;
 	private String searchWord;
+	
 }

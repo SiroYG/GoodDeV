@@ -15,17 +15,17 @@
     <title>Update :: </title>
 
     <!-- Icons font CSS-->
-    <link href="resources/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="resources/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="/cloud/resources/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/cloud/resources/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
 
     <!-- Vendor CSS-->
-    <link href="resources/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="resources/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+    <link href="/cloud/resources/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/cloud/resources/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href="resources/css/Member.css" rel="stylesheet" media="all">
+    <link href="/cloud/resources/css/Member.css" rel="stylesheet" media="all">
     <script>
     function update(){
     	var id =document.getElementById("id");
@@ -58,12 +58,12 @@
     <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
         <div class="wrapper wrapper--w960">
             <div class="card card-2">
-                <div class="card-heading"></div>
+                <div class="card-heading-update"></div>
                 <div class="card-body">
                     <h2 class="title">회원정보수정</h2>
                     <form action="updateform" method="post" id="update_form">
                        <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="${sessionScope.loginId}" name="memberId" id="id" readonly="readonly">
+                            <input class="input--style-2" type="text" placeholder="${sessionScope.loginId}" value="${sessionScope.loginId}" name="memberId" id="id" readonly="readonly">
                         </div>
                         <div class="input-group">
                             <input class="input--style-2" type="password" placeholder="비밀번호" name="memberPw" id="pw">
@@ -81,7 +81,7 @@
                         <div class="p-t-30">
                             <button class="btn btn--radius btn--green" onclick="update()" type="submit">수정</button> &nbsp;
                             <a class="btn btn--radius btn--green" href="index">취소</a><br><br>
-                             <a href="godropout" class="grey">회원탈퇴</a>
+                             <a href="/cloud/member/godropout" class="grey">회원탈퇴</a>
                         </div>
                     </form>
                 </div>
@@ -90,11 +90,11 @@
     </div>
 
     <!-- Jquery JS-->
-    <script src="resources/vendor/jquery/jquery.min.js"></script>
+    <script src="/cloud/resources/vendor/jquery/jquery.min.js"></script>
     <!-- Vendor JS-->
-    <script src="resources/vendor/select2/select2.min.js"></script>
-    <script src="resources/vendor/datepicker/moment.min.js"></script>
-    <script src="resources/vendor/datepicker/daterangepicker.js"></script>
+    <script src="/cloud/resources/vendor/select2/select2.min.js"></script>
+    <script src="/cloud/resources/vendor/datepicker/moment.min.js"></script>
+    <script src="/cloud/resources/vendor/datepicker/daterangepicker.js"></script>
 
     <!-- Main JS-->
     <script src="resources/js/global.js"></script>

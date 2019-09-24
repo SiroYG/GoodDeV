@@ -9,12 +9,9 @@ div.write_table, div.main-table{
     padding: 3% 20% 10%;
 }
 
-div.his-margin{
-            margin-bottom: 30px;
-        }
-
 div.Detail_table{
     padding: 5% 10% 5%;
+    
 }
 
 div.page-center{
@@ -22,6 +19,12 @@ div.page-center{
     text-align: center;
     margin: 0 auto;
     justify-content: center;
+}
+
+div.tr-margin{
+    width: 100%;
+    height: 30px;
+    background-color: black;
 }
 
 .history-table tr{

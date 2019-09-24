@@ -1,0 +1,11 @@
+package com.dev.cloud.dao;
+
+import com.dev.cloud.vo.History;
+
+public interface historyMapper {
+
+	public int insertHistory(History history);
+	
+	public int selectAllHistory(History history);
+	
+}

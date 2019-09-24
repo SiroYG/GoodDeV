@@ -31,4 +31,12 @@
 -- 190919
 -- middleSide_ myPage_itemList (2), itemWrite 만들기
 -- 190920
--- middleSide_ myPage_itemList (3), itemWrite, itemDetail, itemUpdate 하기
+-- middleSide_ myPage_itemList (3), itemWrite, itemDetail, itemUpdate 만들기
+-- 190921
+-- middleSide_ myPage_itemUpdate, itemDelete, PatentSearch 만들기
+-- 190922
+-- middleSide_ myPage_itemUpdate 수정, itemWrite 수정, history_insert, history_selectAll 만들기  
+-- 190923
+-- middleSide_ search_patent에서 document (insert), itemUpdate(3) 만들기
+-- 190924
+-- middleSide_ search_patent에서 document (insert (2)), itemUpdate(4), PTI (insert), patentList, Patent (insert) 만들기

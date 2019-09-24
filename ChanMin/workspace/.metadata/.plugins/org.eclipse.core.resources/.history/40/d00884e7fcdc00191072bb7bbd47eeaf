@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.cloud.dao.itemMapper">
+	
+
+<insert parameterType="Total" id="insertItem">
+insert into ITEM (
+			itemNum
+			,memberId
+			,itemType
+			,ideaDate
+			,itemName
+			,price
+			,itemContent 
+<if test="itemImagename != ''">
+			,itemImagename
+			,saveItemImage 
+</if>
+
+<if test="documentFilename != ''">
+			,documentFilename
+			,saveDocumentFilename 
+</if>
+			)VALUES (
+			item_seq.NEXTVAL
+			,#{memberId}
+			,#{itemType}
+			,#{ideaDate}
+			,#{itemName}
+			,#{price}
+			,#{itemContent} 
+<if test="itemImagename != ''">
+			,#{itemImagename}
+			,#{saveItemImage}
+</if>
+
+<if test="documentFilename != ''">
+			,#{documentFilename}
+			,#{saveDocumentFilename} 
+</if>
+) 
+</insert>
+
+<select parameterType="Total" id="getItemNumByItemType" resultType="Total">
+select
+		*
+from 
+	ITEM
+where 
+	itemType = #{itemType} 
+</select>
+
+<select id="goItemDetail" parameterType="Total" resultType="Total">
+select 
+	*
+from
+	ITEM
+where 		
+	memberId = #{memberId} and itemNum = #{itemNum}
+
+</select>
+
+<select id="getAllItem" resultType="Total">
+select
+		*
+from 
+	ITEM 
+</select>
+
+<select parameterType="devMember" id="getItemByMemberId" resultType="Total">
+select
+		*
+from 
+		ITEM
+where 
+		memberId=#{memberId}
+</select>
+
+
+<update parameterType="Total" id="updateItem">
+UPDATE 
+		Item
+	SET
+		itemName = #{itemName}
+		,price = #{price}
+		,itemContent=#{itemContent}
+		,itemType = #{itemType} 
+<if test="itemImagename != null">
+		,itemImagename=#{itemImagename}
+		,saveItemImage=#{saveItemImage} 
+</if>
+
+<if test="documentFilename != null">
+		,documentFilename=#{documentFilename}
+		,saveDocumentFilename=#{saveDocumentFilename} 
+</if>
+where
+		itemNum=#{itemNum} and memberId=#{memberId} 
+</update>
+
+<update parameterType="Total" id="deleteItem">
+UPDATE
+	 	Item
+SET
+		itemName = 'none'
+where
+	itemNum = #{itemNum} and memberId = #{memberId}
+</update>
+
+
+</mapper>
+
+

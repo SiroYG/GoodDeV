@@ -6,7 +6,7 @@
 <mapper namespace="com.dev.cloud.dao.itemMapper">
 	
 
-<insert parameterType="Item" id="insertItem">
+<insert parameterType="Total" id="insertItem">
 insert into ITEM (
 			itemNum
 			,memberId
@@ -15,14 +15,9 @@ insert into ITEM (
 			,itemName
 			,price
 			,itemContent 
-<if test="itemImagename != ''">
+<if test="itemImagename != null">
 			,itemImagename
 			,saveItemImage 
-</if>
-
-<if test="documentFilename != ''">
-			,documentFilename
-			,saveDocumentFilename 
 </if>
 			)VALUES (
 			item_seq.NEXTVAL
@@ -32,19 +27,14 @@ insert into ITEM (
 			,#{itemName}
 			,#{price}
 			,#{itemContent} 
-<if test="itemImagename != ''">
+<if test="itemImagename != null">
 			,#{itemImagename}
 			,#{saveItemImage}
-</if>
-
-<if test="documentFilename != ''">
-			,#{documentFilename}
-			,#{saveDocumentFilename} 
 </if>
 ) 
 </insert>
 
-<select parameterType="Item" id="getItemNumByItemType" resultType="Item">
+<select parameterType="Total" id="getItemNumByItemType" resultType="Total">
 select
 		*
 from 
@@ -53,7 +43,7 @@ where
 	itemType = #{itemType} 
 </select>
 
-<select id="goItemDetail" parameterType="Item" resultType="Item">
+<select id="goItemDetail" parameterType="Total" resultType="Total">
 select 
 	*
 from
@@ -63,24 +53,42 @@ where
 
 </select>
 
-<select id="getAllItem" resultType="Item">
+<select id="getAllItem" resultType="Total">
 select
 		*
 from 
 	ITEM 
 </select>
 
-<select parameterType="devMember" id="getItemByMemberId" resultType="Item">
+<select id="getIdDe" parameterType="Total" resultType="Total">
+select
+		*
+from 
+	ITEM 
+where 
+	memberId= #{memberId}	
+</select>
+
+
+<select parameterType="Total" id="getItemByMemberId" resultType="Total">
 select
 		*
 from 
 		ITEM
 where 
-		memberId=#{memberId}
+		memberId=#{memberId} 
 </select>
 
+<select id="gohisD" parameterType="Total" resultType="Total">
+select 
+	*
+from 
+	ITEM
+where 
+		memberId=#{memberId} 
+</select>
 
-<update parameterType="Item" id="updateItem">
+<update parameterType="Total" id="updateItem">
 UPDATE 
 		Item
 	SET
@@ -93,21 +101,27 @@ UPDATE
 		,saveItemImage=#{saveItemImage} 
 </if>
 
-<if test="documentFilename != null">
-		,documentFilename=#{documentFilename}
-		,saveDocumentFilename=#{saveDocumentFilename} 
-</if>
 where
 		itemNum=#{itemNum} and memberId=#{memberId} 
 </update>
 
-<update parameterType="Item" id="deleteItem">
+<update parameterType="Total" id="deleteItem">
 UPDATE
 	 	Item
 SET
-		itemName = 'none'
+		itemType = 'none'
 where
-	itemNum = #{itemNum}
+	itemNum = #{itemNum} and memberId = #{memberId}
+</update>
+
+<update id="updateItemDo" parameterType="ItemDo">
+UPDATE
+	 	Item
+SET
+	  documentFilename = #{documentFilename} ,
+      saveDocumentFilename  = #{saveDocumentFilename}
+where
+	itemNum = #{itemNum} and memberId = #{memberId}
 </update>
 
 

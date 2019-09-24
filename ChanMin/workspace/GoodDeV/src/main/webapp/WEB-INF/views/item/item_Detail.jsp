@@ -49,9 +49,17 @@
 	          <li class="nav-item"><a href="goBoardlist" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="gosurveylist" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <li class="nav-item"><a href="gomyPage" class="nav-link"><span>마이페이지</span></a></li>
-	          <li style="margin-left: 20px; " class="nav-item cta"><a href="gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
-              <li style="margin-left: 20px;" class="nav-item cta"><a href="gosignin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
+	          <c:if test="${sessionScope.loginId==null}">
+	          <li style="margin-left: 20px; " class="nav-item cta"><a href="/cloud/member/gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
+              <li style="margin-left: 20px;" class="nav-item cta"><a href="/cloud/member/gosignin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
+	       	  </c:if>	
+	       	  <c:if test="${sessionScope.loginId!=null}">
+				<li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
+					<li style="margin-left: 20px;" class="nav-item cta"><a
+							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님 </a></li>
+					<li style="margin-left: 20px;" class="nav-item cta"><a
+						href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
+				</c:if>
 	        </ul>
 	      </div>
 	    </div>
@@ -128,7 +136,7 @@
                     <hr class="hr_navy"><br><br>
                      <a href="/cloud/member/goMypage" class="btns btn-3"><span class="white">돌아가기</span></a> &nbsp;&nbsp; 
                      <a href="/cloud/item/goItemUpdate?itemNum=${ it.itemNum }" class="btns btn-3-green"><span class="white">수정하기</span></a> &nbsp;&nbsp; 
-                     <a href="/cloud/item/deleteItem?itemNum=${ it.itemNum }" class="btns btn-3-red"><span class="white">삭제</span></a> 
+                     <a href="/cloud/item/goItemDelete?itemNum=${ it.itemNum }" class="btns btn-3-red"><span class="white">삭제</span></a> 
                 </form>
             </div>
 

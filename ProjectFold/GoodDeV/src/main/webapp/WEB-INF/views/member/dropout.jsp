@@ -61,7 +61,7 @@
                     <h2 class="title">회원탈퇴</h2>
                     <form method="post" action="dropoutform" id="dropout-form" >
                        <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="${sessionScope.loginId}" name="memberId" readonly="readonly" id="id" >
+                            <input class="input--style-2" type="text" placeholder="${sessionScope.loginId}" value="${sessionScope.loginId}"  name="memberId" readonly="readonly" id="id" >
                         </div>
                         <div class="input-group">
                             <input class="input--style-2" type="password" placeholder="비밀번호" name="memberPw" id="pw">

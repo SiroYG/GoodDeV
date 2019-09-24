@@ -169,7 +169,7 @@ CREATE TABLE HISTORY
 	itemNum number NOT NULL,
 	comments varchar2(300),
 	itemVersion varchar2(20) NOT NULL,
-	historyDate date NOT NULL,
+	historyDate varchar2(50)  NOT NULL,
 	PRIMARY KEY (historyNum)
 );
 

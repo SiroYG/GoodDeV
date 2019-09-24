@@ -2348,7 +2348,7 @@ fieldset:disabled a.btn {
 
 .btn-outline-info {
 margin-left: 30px;
-margin-right: 30px;
+    margin-right: 30px;
   color: #1f124a;
   border-color: #1f124a; }
   .btn-outline-info:hover {
@@ -4706,8 +4706,8 @@ a.close.disabled {
 .modal-body {
   position: relative;
   -webkit-box-flex: 1;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
+  -ms-flex: 2 2 auto;
+  flex: 2 2 auto;
   padding: 1rem; }
 
 .modal-footer {
@@ -6529,7 +6529,7 @@ button.bg-dark:focus {
 
 .mb-5,
 .my-5 {
-  margin-bottom: 3rem !important; }
+  margin-bottom: 1rem !important; }
 
 .ml-5,
 .mx-5 {
@@ -8426,6 +8426,15 @@ h1, h2, h3, h4, h5,
     .btn.btn-darken:hover {
       border: 1px solid #222831;
       background: #222831;
+      color: #fff; }
+
+.btn.btn-submit {
+    border: 1px solid #007bff !important;
+    color: #fff !important;
+    background: #007bff; }
+    .btn.btn-submit:hover {
+      border: 1px solid #0d57a6;
+      background: #0d57a6;
       color: #fff; }
 
 .ftco-about .img-about {

@@ -1,0 +1,19 @@
+http://localhost:8888/notebooks/google%20Chrome.ipynb
+
+파이썬 및 셀레니움 정리하기 
+from selenium import webdriver    <== selenium webdriver 선언 및 설정하기 
+driver = webdriver.Chrome("C:\Program Files\chromedriver.exe")   <== chromedriver을 실행하는 기능
+
+유튜브에 있는 검색 ajax로 이용한 연관검색어를 끌고와서 print 하기
+1. import requests   <== 통신연결 준비하기 
+
+2. keyword = "아이유"   <== 검색어 변수를 미리 지정함 
+
+3. url = "https://clients1.google.com/complete/search?client=youtube&hl=ko&gl=kr&gs_rn=64&gs_ri=youtube&tok=b7DLsvcES9RewxW3A9AOCg&ds=yt&pq=%EC%95%84%EC%9D%B4%EC%9C%A0&cp=3&gs_id=1z3&q={keyword}&callback=google.sbox.p50&gs_gbg=E7Ko8GYIvB6qSK0W861j5gO4KomGaEl92t6"
+
+q = {keyword}   <== 3번에 있는 q 라는 위치에 keyword에 {keyword}를 씌여 변수를 넣어준다. 
+
+4.  url = url.format(keyword = keyword)    <== 같이 끌어오는 연관검색어를 포맷하여 한글로 바꿔주는 역할을 한다.
+
+5. html = requests.get(url)  <== url (아이유를 검색한것)을  요청하여 같이 딸려오는 연관검색어를  html 변수에 저장한다.
+
