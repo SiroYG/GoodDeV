@@ -1,15 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
   <head>
-    <title>Crowd Funding :: All List</title>
+    <title>Neutral :: </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
-
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
     
@@ -20,39 +17,28 @@
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
-    <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css">
     
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/funding.css">
-    
-    <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
-    <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-    
-    <script></script>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-	  
-	  
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index">Mainlogo</a>
+	      <a class="navbar-brand" href="/cloud/home">Mainlogo</a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
-
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
 	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="gosearchmenu" class="nav-link"><span>검색</span></a></li>
+	          <li class="nav-item"><a href="index.html#about-section" class="nav-link"><span>About</span></a></li>
 	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="/cloud/survey/surveyListForm" class="nav-link"><span>블라인드 테스트</span></a></li>
-	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <li class="nav-item"><a href="gomyPage" class="nav-link"><span>마이페이지</span></a></li>
-	          <c:if test="${sessionScope.loginId==null}">
+	          <li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드 펀딩</span></a></li>
+	          <li class="nav-item"><a href="index.html#contact-section" class="nav-link"><span>마이페이지</span></a></li>
+	  			 <c:if test="${sessionScope.loginId==null}">
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a
@@ -64,7 +50,6 @@
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
 				</c:if>
-				
 				 </ul>
 	      </div>
 	    </div>
@@ -76,15 +61,15 @@
         <div class="row no-gutters slider-text align-items-end justify-content-center">
           <div class="col-md-9 ftco-animate pb-5 text-center">
             <h1 class="mb-3 bread">Crowd Funding</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="home">Home <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="blog.html">크라우드 펀딩 <i class="ion-ios-arrow-forward"></i></a></span> <span>진행중인 리스트 <i class="ion-ios-arrow-forward"></i></span></p>
+            <p class="breadcrumbs"><span class="mr-2"><a href="home">Home <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="blog.html">크라우드 펀딩 <i class="ion-ios-arrow-forward"></i></a></span> <span>현재 진행중인 펀딩 <i class="ion-ios-arrow-forward"></i></span></p>
           </div>
         </div>
       </div>
     </section>
-    
-    
-	<section class="ftco-section" id="">
-      <div class="container">     
+		
+
+<section class="ftco-section" id="blog-section">
+      <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
           <div class="col-md-10 heading-section text-center ftco-animate">
             <span class="subheading">새로운 시작</span>
@@ -92,33 +77,27 @@
             <p>소비자와 함께 사업을 시작할 수 있습니다.</p>
           </div>
         </div>
-        
-        
-        <!-- 게시글이 없는 경우 -->
-         <c:if test="${empty list}">
+          <!-- 게시글이 없는 경우 -->
+        <c:if test="${empty list}">
 				<div style="height: 200px">
 					<p align="center" style="margin-top: 100px">데이터가 없습니다.</tp>
 				</div>
 		</c:if>
-		<!-- 게시글이 있는 경우 -->	
+		
 	<c:if test="${not empty list }">
 	<c:forEach var="board" items="${list}" varStatus="stat">
         <div class="row d-flex">
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
           		<div class="text">
-          			<h3 class="heading"><a href="single.html">All you want to know about industrial laws</a></h3>
+          			<h3 class="heading"><a href="fundingDetail?crowdfundingNum=${board.crowdfundingNum}">${board.fundingTitle}</a></h3>
           		</div>
-              <a href="single.html" class="block-20" style="background-image: url('/cloud/resources/images/image_1.jpg');">
+              <a href="fundingDetail?crowdfundingNum=${board.crowdfundingNum}" class="block-20" style="background-image: url('/cloud/resources/images/image_1.jpg');">
               </a>
               <div class="text mt-3 float-right d-block">
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                <p>${board.fundingContents}</p>
                 <div class="d-flex align-items-center mt-4 meta">
-	                <p class="mb-0"><a href="list.html" class="btn btn-primary">더 보기 <span class="ion-ios-arrow-round-forward"></span></a></p>
-	                <p class="ml-auto mb-0">
-	                	<a href="#" class="mr-2">comments </a>
-	                	<a href="#" class="meta-chat"><span class="icon-chat"></span> 27</a>
-	                </p>
+	                <p class="mb-0"><a href="#" class="btn btn-primary">더 보기 <span class="ion-ios-arrow-round-forward"></span></a></p>
                 </div>
               </div>
             </div>
@@ -126,70 +105,44 @@
         </div>
       </c:forEach>
 	</c:if>
-	 <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-          		<div class="text">
-          			<h3 class="heading"><a href="single.html">All you want to know about industrial laws</a></h3>
-          		</div>
-              <a href="single.html" class="block-20" style="background-image: url('/cloud/resources/images/image_1.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <div class="d-flex align-items-center mt-4 meta">
-	                <p class="mb-0"><a href="list.html" class="btn btn-primary">더 보기 <span class="ion-ios-arrow-round-forward"></span></a></p>
-	                <p class="ml-auto mb-0">
-	                	<a href="#" class="mr-2">comments </a>
-	                	<a href="#" class="meta-chat"><span class="icon-chat"></span> 27</a>
-	                </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-	
-	
-       <div>
-        <a href="Board_Write.html" class="btnss btn-3-navy"><span class="white">펀딩 진행하기</span></a><br><br>
-      </div>
+	 <div>
+        <a href="/cloud/funding/gofundingform" class="btnss btn-3-navy"><span class="white">펀딩 진행하기</span></a><br><br>
       </div>
        <!--페이징 & 검색-->
   <div class="page-center">
   <nav>
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <a class="page-link" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
+      <a class="page-link" aria-label="Previous" href="fundingListForm?currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">
+          <span aria-hidden="true">&laquo;</span>
         <span class="sr-only">Previous</span>
       </a>
     </li>
-    <li class="page-item active"><a class="page-link">1</a></li>
-    <li class="page-item"><a class="page-link">2</a></li>
-    <li class="page-item"><a class="page-link">3</a></li>
-    <li class="page-item"><a class="page-link">4</a></li>
-    <li class="page-item"><a class="page-link">5</a></li>
+  	<c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup }">
+		    <li class="page-item"><a href="fundingListForm?currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}"class="page-link">${page}</a>
+	</c:forEach>
     <li class="page-item">
-      <a class="page-link" aria-label="Next">
+     <a class="page-link" aria-label="Next" href="fundingListForm?currentPage=${navi.currentPage-1}&searchItem=${searchItem}&searchWord=${searchWord}">
         <span aria-hidden="true">&raquo;</span>
         <span class="sr-only">Next</span>
       </a>
     </li>
   </ul>
 </nav>
-      </div>
-<form action="" method="post" class="search-form" id="search-form">
+      
+<form action="/cloud/funding/fundingListForm" method="get" class="search-form" id="search-form">
 <!--Blue select-->
 <select name="searchItem" class="searchItem">
  <option value="all" selected>분류</option>
-  <option value="title" selected>제목</option>
-  <option value="content">내용</option>
-  <option value="id">작성자</option>
+  <option value="fundingTitle" ${searchItem =='fundingTitle'?'selected' :''}>제목</option>
+  <option value="fundingContents" ${searchItem =='fundingContents'? 'selected' :'' }>내용</option>
+  <option value="memberId" ${searchItem =='memberId'?'selected' :'' }>작성자</option>
 </select>
 
 <input type="text" name="searchWord" class="searchWord" placeholder="  Search">
-<button type="button" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
+<button type="submit" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
     </form>
-    
+    </div>
       
     </section>
 		

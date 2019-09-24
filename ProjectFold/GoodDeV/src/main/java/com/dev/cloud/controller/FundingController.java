@@ -21,15 +21,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.dev.cloud.dao.boardRepository;
+import com.dev.cloud.dao.fundingRepository;
 import com.dev.cloud.utill.FileService;
 import com.dev.cloud.utill.PageNavigator;
 import com.dev.cloud.vo.Board;
+import com.dev.cloud.vo.Crowdfunding;
 
 @Controller
 @RequestMapping("/funding")
 public class FundingController {
 
+	@Autowired
+	fundingRepository dao;
+	
 	final String uploadPath = "/uploadfile";
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -50,9 +54,14 @@ public class FundingController {
 	public String gofunding() { // 홈이동 (리다이렉트)
 		return "/funding/funding_list";
 	}
+	@RequestMapping(value = "/gofundingform", method = RequestMethod.GET)
+	public String gofundingform() { // 홈이동 (리다이렉트)
+		return "/funding/funding_form";
+	}
+	
 	
 	@RequestMapping(value = "fundingListForm", method = RequestMethod.GET)
-	public String boardListForm(@RequestParam(value = "searchItem", defaultValue = "title") String searchItem,
+	public String boardListForm(@RequestParam(value = "searchItem", defaultValue = "fundingTitle") String searchItem,
 			@RequestParam(value = "searchWord", defaultValue = "") String searchWord,
 			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, Model model) {
 
@@ -61,9 +70,9 @@ public class FundingController {
 		System.out.println(totalRecordCount);
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
 		System.out.println(navi.getStartRecord());
-		List<Board> list = dao.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		List<Crowdfunding> list = dao.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
 		System.out.println(list.size());
-		for (Board vo : list) {
+		for (Crowdfunding vo : list) {
 			System.out.println(vo);
 		}
 
@@ -77,14 +86,37 @@ public class FundingController {
 
 
 	@RequestMapping(value = "fundingDetail", method = RequestMethod.GET)
-	public String boardDetail(int boardNum, Model model) {
+	public String boardDetail(int crowdfundingNum, Model model) {
 
-		System.out.println("boardNum => " + boardNum);
-		Board board = dao.selectOne(boardNum);
-		model.addAttribute("board", board);
-		System.out.println(board);
-		return "/board/Board_Detail";
+		System.out.println("funding => " + crowdfundingNum);
+		Crowdfunding Crowdfunding = dao.selectOne(crowdfundingNum);
+		int percent =(Crowdfunding.getItemCurrecyPrice()*100 / Crowdfunding.getItemGoalPrice());
+		System.out.println("퍼센트 : "+percent);
+		model.addAttribute("fund", Crowdfunding);
+		model.addAttribute("percent",percent);
+		
+		System.out.println(Crowdfunding);
+		return "/funding/funding_Detail";
 	}
 	
+	
+	@RequestMapping(value = "/fundingWrite", method = RequestMethod.POST)
+	public String fundingWrite(Crowdfunding Crowdfunding, MultipartFile upload, HttpSession session, RedirectAttributes rttr) {
+		System.out.println(upload.getOriginalFilename());
+		System.out.println(Crowdfunding);
+
+		// 2) FileService 를 사용한 코드
+		if (upload != null) {
+			String originalfile = upload.getOriginalFilename();
+			String savedfile = FileService.saveFile(upload, uploadPath);
+			System.out.println(savedfile);
+			Crowdfunding.setOriginalFileName(originalfile);
+			Crowdfunding.setSavedFileName(savedfile);
+		}
+		int result = dao.insertBoard(Crowdfunding);
+		System.out.println("게시물입력 : " + result);
+
+		return "/funding/funding_list";
+	}
 
 }

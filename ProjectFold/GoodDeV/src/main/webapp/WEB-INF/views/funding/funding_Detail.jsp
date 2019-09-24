@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
   <head>
-    <title>Funding :: Detail</title>
+    <title>Funding ::</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -43,22 +43,32 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="home">MainLogo</a>
+            <a class="navbar-brand" href="index.html">MainLogo</a>
             <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav nav ml-auto">
-                    <li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
-                    <li class="nav-item"><a href="search_menu" class="nav-link"><span>검색 메뉴</span></a></li>
-                    <li class="nav-item"><a href="#FAQ-section" class="nav-link"><span>특허 FAQ</span></a></li>
-                    <li class="nav-item"><a href="survey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
-                    <li class="nav-item"><a href="funding_list" class="nav-link"><span>크라우드 펀딩</span></a></li>
+                    <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
+                    <li class="nav-item"><a href="search_menu.html" class="nav-link"><span>검색 메뉴</span></a></li>
+                    <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>특허 FAQ</span></a></li>
+                    <li class="nav-item"><a href="/cloud/survey/surveyListForm" class="nav-link"><span>블라인드 테스트</span></a></li>
+                    <li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드 펀딩</span></a></li>
                     <li class="nav-item"><a href="#contact-section" class="nav-link"><span>공식 연락처</span></a></li>
-                    <li style="margin-left: 20px;" class="nav-item cta"><a href="login_form.html" class="nav-link">로그인</a></li>
-                    <li style="margin-left: 20px;" class="nav-item cta"><a href="register_form.html" class="nav-link">회원가입</a></li>
-                </ul>
+                     <c:if test="${sessionScope.loginId==null}">
+					<li style="margin-left: 20px;" class="nav-item cta"><a
+						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
+					<li style="margin-left: 20px;" class="nav-item cta"><a
+						href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
+				</c:if>
+				<c:if test="${sessionScope.loginId!=null}">
+					<li style="margin-left: 20px;" class="nav-item cta"><a
+							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님 </a></li>
+					<li style="margin-left: 20px;" class="nav-item cta"><a
+						href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
+				</c:if>
+				 </ul>
             </div>
         </div>
     </nav>
@@ -81,7 +91,7 @@
             <div class="row justify-content-center mb-5 pb-5">
                 <div class="col-md-10 heading-section text-center ftco-animate">
                     <span class="subheading"></span>
-                    <h2 class="mb-4">(select된)제품명/서비스명</h2>
+                    <h2 class="mb-4">${fund.fundingTitle}</h2>
                     <!--Main layout-->
                     <main class="mt-5 pt-4">
                         <div class="container dark-grey-text mt-5">
@@ -105,13 +115,13 @@
 
                                         <div class="mb-3">
                                             <a href="">
-                                                <span class="badge purple mr-1">tag를 그냥 데려왔는데</span>
+                                                <span class="badge purple mr-1">tag1</span>
                                             </a>
                                             <a href="">
-                                                <span class="badge blue mr-1">이 데이터를</span>
+                                                <span class="badge blue mr-1">tag2</span>
                                             </a>
                                             <a href="">
-                                                <span class="badge red mr-1">남길까 말까</span>
+                                                <span class="badge red mr-1">tag3</span>
                                             </a>
                                         </div>
 
@@ -119,18 +129,21 @@
                                            <span>가격 : (price)</span>
                                         </p>-->
 
-                                        <p class="lead font-weight-bold">펀딩 진행 기간 : (startdate ~ enddate)</p>
-                                        
+                                        <p class="lead font-weight-bold">펀딩 진행 기간 : ${fund.fundingStartDate} ~ ${fund.fundingDueDate}</p>
                                         <p class="lead font-weight-bold">
-                                            <span>펀딩 목표 금액 : (price) / (@@%)</span>
+                                            <span>펀딩 목표 금액 : ${fund.itemGoalPrice}</span>
                                         </p>
-                                        
-                                         <div class="progress2 progress-moved">
+                                        <br>
+                                        <div class="ftco-animate">
+                                            <p class="lead font-weight-bold">현재 달성률 :
+                                                <strong class="number" data-number="${percent}"></strong>% / 100 %</p>
+                                        </div>
+                                        <div class="progress2 progress-moved">
                                             <div class="progress-bar2">
                                             </div>
                                         </div>
-
-                                        <p></p>
+<br>
+                                       <!-- <p class="lead">현재 진행 금액 : (itemCurrencyPrice)</p>-->
 
                                         <form class="d-block justify-content-left">
                                             <!-- Default input -->
@@ -141,7 +154,8 @@
                                                 <option value="optionThree">펀딩옵션3</option>
                                             </select>
                                             <br><br>
-                                            <label for="">구매 가격 : <span name="price">(옵션 해당 가격)</span></label>
+                                            <p class="lead font-weight-bold">구매 가격 : <span name="price">(옵션 해당 가격)</span></p>
+                                            <!--<label for="">구매 가격 : <span name="price">(옵션 해당 가격)</span></label>-->
                                             <br>
                                         </form>
                                         <hr>
@@ -149,71 +163,46 @@
                                         </button>
                                     </div>
                                     <!--Content-->
-
                                 </div>
                                 <!--Grid column-->
-
                             </div>
                             <!--Grid row-->
-
                             <hr>
-
                             <!--Grid row-->
                             <div class="row d-flex justify-content-center wow fadeIn">
-
                                 <!--Grid column-->
                                 <div class="col-md-6 text-center">
-
-                                    <h4 class="my-4 h4">Additional information</h4>
-
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
-                                        voluptates,
-                                        quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
-
+                                    <h4 class="my-4 h4">${fund.fundingTitle}</h4>
+                                    <p>${fund.fundingContents}</p>
                                 </div>
                                 <!--Grid column-->
-
                             </div>
                             <!--Grid row-->
-
                             <!--Grid row-->
                             <div class="row wow fadeIn">
-
                                 <!--Grid column-->
                                 <div class="col-lg-4 col-md-12 mb-4">
-
                                     <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
-
                                 </div>
                                 <!--Grid column-->
-
                                 <!--Grid column-->
                                 <div class="col-lg-4 col-md-6 mb-4">
-
                                     <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
-
                                 </div>
                                 <!--Grid column-->
-
                                 <!--Grid column-->
                                 <div class="col-lg-4 col-md-6 mb-4">
-
                                     <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
-
                                 </div>
                                 <!--Grid column-->
-
                             </div>
                             <!--Grid row-->
-
                         </div>
                     </main>
                 </div>
             </div>
         </div>
-
     </section>
-
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -226,7 +215,6 @@
                 </div>
                 <div class="modal-body">
                     <div class="card-body p-5">
-
                         <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
@@ -235,7 +223,6 @@
                                 <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
                                     <i class="fa fa-university"></i> Bank Transfer</a></li>
                         </ul>
-
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="nav-tab-card">
                                 <!--<p class="alert alert-success">결제 완료</p>-->
@@ -245,7 +232,6 @@
                                         <label for="username">이름</label>
                                         <input type="text" class="form-control" name="username" placeholder="" required>
                                     </div> <!-- form-group.// -->
-
                                     <div class="form-group">
                                         <label for="cardNumber">카드 번호</label>
                                         <div class="input-group">
@@ -257,7 +243,6 @@
                                             </div>
                                         </div>
                                     </div> <!-- form-group.// -->
-
                                     <div class="row">
                                         <div class="col-sm-8">
                                             <div class="form-group">

@@ -47,7 +47,7 @@
 				<li class="nav-item" ><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
 				<li class="nav-item"><a href="#about-section" class="nav-link"><span>소개글</span></a></li>
 				<li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>특허 FAQ</span></a></li>
-				<li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드
+				<li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드
 							펀딩</span></a></li>
 				<li class="nav-item"><a href="#contact-section"
 					class="nav-link"><span>공식 연락처</span></a></li>

@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Crowdfunding{
-
 	private int crowdfundingNum ;
 	private int itemNum;
 	private int itemGoalPrice ;
@@ -16,6 +15,10 @@ public class Crowdfunding{
 	private String fundingDueDate ;
 	private String fundingStartDate;
 	private String memberId;
+	private String fundingTitle;
+	private String fundingContents;
+	private String originalFileName;
+	private String savedFileName;
 }
 
 
