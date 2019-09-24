@@ -77,6 +77,8 @@ Funding - form, Detail, list (o)
 Chat - chat.css, index chat banner(anonymous) (o)
 
 --0924
+Search_patent - 출력 글자수 자르기 (o)
+Header/Footer form (o)
 
 * 앞으로 해야할 것들
 - 마이페이지 유형별 구성
