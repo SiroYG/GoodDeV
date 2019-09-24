@@ -8,16 +8,16 @@
 <insert parameterType="ItemDo" id="insertDocument">
 insert into 
 		Document (
-					DocumentNum
-					,PatentsubNum 
-<if test="documentFilename!=''">
+					documentNum
+					,patentsubNum 
+<if test="documentFilename!=null">
 					,documentFilename
 					,saveDocumentFilename 
 </if>
 					)VALUES (
 					Document_seq.NEXTVAL
-					,#{PatentsubNum} 
-<if test="documentFilename!=''">
+					,#{patentsubNum} 
+<if test="documentFilename!=null">
 					,#{documentFilename}
 					,#{saveDocumentFilename}
 </if>

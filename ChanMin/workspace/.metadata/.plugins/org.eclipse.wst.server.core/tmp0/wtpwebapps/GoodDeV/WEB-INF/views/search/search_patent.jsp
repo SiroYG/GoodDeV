@@ -67,6 +67,7 @@
  	    		var itemNum = $('#item-option').val();
  	    		var upload = $('#upload').val();
  	    		var upload1 = $('#upload1').val();
+ 	    		var formData = new FormData($('#permitForm')[0]);
  	    		var total ={
  	    			"memberId"	: memberId,
  	    			"patentNum"	: patentNum,
@@ -74,21 +75,27 @@
  	    			"upload"	: upload,
  	    			"upload1"	: upload1
  	    		}
+ 	    		if(upload==''||upload.length==0&&upload1==''||upload1.length==0){
+ 	    			alert('파일을 반드시 첨부하세요!')
+ 	    			return false;
+ 	    		}
  	    	
- 	    		$.ajax({
+ 	    		 $.ajax({
  	    			url : 'permitForm',
  	    			type : 'post',
- 	    			data : total,
+ 	    			enctype : 'multipart/form-data',
+ 	    			processData : false,
+ 	    			contentType : false,
+ 	    			data : formData,
  	    			success : function(res){
  	    				if(res=='success'){
  	    					alert('성공');
- 	    					
  	    					$('#exampleModal').modal('hide');
  	    				}else{
  	    					alert('실패')
  	    				}
  	    			}
- 	    		})	
+ 	    		})	 
  	    	})
  		   
     });
@@ -219,7 +226,7 @@
     	   		tag += '<td>특허등록 진행중입니다.</td>'
     	   	}
     	   		
-    	   		tag += '<td name="서식파일보기"><button type="button" class="btn-primary" data-value="'+item.patentNum+'" data-toggle="modal" data-target="#exampleModal">사용 허가 신청</button></td>'            
+    	   		tag += '<td name="서식파일보기"><button type="button" class="pri" data-value="'+item.patentNum+'" data-toggle="modal" data-target="#exampleModal">사용 허가 신청</button></td>'            
     	   		//인터셉터 처리
     	   		tag += '</tr>'        
     	   	})
@@ -231,14 +238,10 @@
     	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
     	    tag +=	'</div>'
         $('#section-bar-patent').html(tag);	
-    	$('.btn-primary').on('click',checking);    
-    	$('.btn-primary').on('click',selectIt);
+    	$('.pri').on('click',checking);    
+    	$('.pri').on('click',selectIt);
     }
 
-    	
-    	
-  
-    
     
     function loginGo(){
     	window.location.href="/cloud/member/gologin";
@@ -267,7 +270,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
 	          <li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="gosearchmenu" class="nav-link"><span>검색</span></a></li>
+	          <li class="nav-item"><a href="/cloud/member/searchGo" class="nav-link"><span>검색</span></a></li>
 	          <li class="nav-item"><a href="goBoardlist" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="gosurveylist" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
@@ -277,12 +280,9 @@
               <li style="margin-left: 20px;" class="nav-item cta"><a onclick="signGo()" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
 	          </c:if>
 	          <c:if test="${sessionScope.loginId!=null}">
-	          	<li class="nav-item"><a href="/cloud/member/goMypage"
-					class="nav-link"><span>마이페이지</span></a></li>
-					<li style="margin-left: 20px;" class="nav-item cta"><a
-							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님 </a></li>
-					<li style="margin-left: 20px;" class="nav-item cta"><a
-						href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
+	          <li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
+			  <li style="margin-left: 20px;" class="nav-item cta"><a class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님 </a></li>
+			  <li style="margin-left: 20px;" class="nav-item cta"><a href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
 	          </c:if>
 	        </ul>
 	      </div>
@@ -469,10 +469,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="permitForm" method="post" id="permitForm">
+                <form action="/cloud/member/permitForm" method="post" id="permitForm">
               <div class="form-group">
                 <label for="appointment_name" class="text-black">신청인</label>
-                <input type="text" class="form-control" name="memberId" value="${sessionScope.loginId}" id="memId" placeholder="${sessionScope.loginId}">
+                <input type="text" class="form-control" name="memberId" value="${sessionScope.loginId}" id="memId" placeholder="${sessionScope.loginId}" readonly="readonly">
               </div>
               <div class="form-group">
                 <label for="appointment_patentnum" class="text-black">특허번호</label>
@@ -487,11 +487,11 @@
               
                <div class="form-group">
                     <label for="appointment_file" class="text-black">특허 사용 신청서</label>
-                    <input type="file" class="form-control" name="upload" id="upload" />
+                    <input type="file" class="form-control" name="upload" id="upload" multiple />
                   </div>
                   <div class="form-group">
                     <label for="appointment_file2" class="text-black">특허 사용 허가서</label>
-                    <input type="file" class="form-control" name="upload1" id="upload1" />
+                    <input type="file" class="form-control" name="upload1" id="upload1" multiple />
                   </div>
               
               

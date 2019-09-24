@@ -117,7 +117,7 @@
                             </div>
                         </div>
                         <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="submit" onclick="signupbtn()">가입하기</button> &nbsp;
+                            <button class="btn btn--radius btn--green" type="button" onclick="signupbtn()">가입하기</button> &nbsp;
                             <a class="btn btn--radius btn--green" href="/cloud/member/home">취소</a>
                         </div>
                     </form>

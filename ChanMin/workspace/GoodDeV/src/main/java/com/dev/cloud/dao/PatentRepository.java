@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dev.cloud.vo.Pat;
 import com.dev.cloud.vo.Patent;
+import com.dev.cloud.vo.PatentTotal;
 import com.dev.cloud.vo.Patentsub;
 
 @Repository
@@ -61,6 +62,30 @@ public class PatentRepository implements patentMapper {
 		Patent result =null;
 		try {
 			result = mapper.selectPatent(patent);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int insertPatent(PatentTotal paten) {
+		patentMapper mapper = session.getMapper(patentMapper.class);
+		int result =0;
+		try {
+			result = mapper.insertPatent(paten);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public Patent patsearchNum(String patentNum) {
+		patentMapper mapper = session.getMapper(patentMapper.class);
+		Patent result =null;
+		try {
+			result = mapper.patsearchNum(patentNum);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
