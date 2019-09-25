@@ -5,9 +5,12 @@
 <configuration>
 <typeAliases>
 <typeAlias alias="Board" type="com.dev.cloud.vo.Board"/>
-<typeAlias alias="Cloudfunding" type="com.dev.cloud.vo.Cloudfunding"/>
 <typeAlias alias="History" type="com.dev.cloud.vo.History"/>
+<typeAlias alias="Crowdfunding" type="com.dev.cloud.vo.Crowdfunding"/>
 <typeAlias alias="Item_Survey" type="com.dev.cloud.vo.Item_Survey"/>
+<typeAlias alias="Survey" type="com.dev.cloud.vo.Survey"/>
+<typeAlias alias="Question" type="com.dev.cloud.vo.Question"/>
+<typeAlias alias="Question_Time" type="com.dev.cloud.vo.Question_Time"/>
 <typeAlias alias="Item" type="com.dev.cloud.vo.Item"/>
 <typeAlias alias="devMember" type="com.dev.cloud.vo.devMember"/>
 <typeAlias alias="MTI" type="com.dev.cloud.vo.MTI"/>
@@ -16,6 +19,7 @@
 <typeAlias alias="PTI" type="com.dev.cloud.vo.PTI"/>
 <typeAlias alias="Reply" type="com.dev.cloud.vo.Reply"/>
 </typeAliases>
+
 <mappers>
 <mapper resource="mappers/memberMapper.xml"/>
 <mapper resource="mappers/boardMapper.xml"/>
@@ -28,7 +32,6 @@
 <mapper resource="mappers/PTIMapper.xml"/>
 <mapper resource="mappers/replyMapper.xml"/>
 <mapper resource="mappers/historyMapper.xml"/>
-
 </mappers>
 
 </configuration>

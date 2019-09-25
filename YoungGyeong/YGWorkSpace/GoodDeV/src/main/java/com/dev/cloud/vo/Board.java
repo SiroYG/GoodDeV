@@ -9,13 +9,29 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Board {
 
-private int boardNum ;
-private String 	id ;
-private String 	title;
-private String 	content;
-private String 	qType ;
-private String 	qCategory ;
-private String 	originalFilename;
-private String 	saveFilename ;
-private String 	boardDate ;
+public int boardNum ;
+public String 	id ;
+public String 	title;
+public String 	content;
+public String 	qType ;
+public String 	qCategory ;
+public String 	originalFilename;
+public String 	saveFilename ;
+public String 	boardDate ;
+
+
+public String getqType() {
+	return qType;
+}
+public void setqType(String qType) {
+	this.qType = qType;
+}
+public String getqCategory() {
+	return qCategory;
+}
+public void setqCategory(String qCategory) {
+	this.qCategory = qCategory;
+}
+
+
 }

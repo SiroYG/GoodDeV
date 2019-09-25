@@ -53,6 +53,9 @@
 		,itemCurrecyPrice
 		,fundingDueDate
 		,fundingStartDate
+		,memberId
+		,fundingTitle
+		,fundingContents
 		)
 		VALUES (
 		crowdfunding_seq.NEXTVAL
@@ -60,7 +63,10 @@
 		,#{itemGoalPrice}
 		,#{itemCurrecyPrice}
 		,#{fundingDueDate}
-		,#{fundingStartDate}
+		,sysdate
+		,#{memberId}
+		,#{fundingTitle}
+		,#{fundingContents}
 		)
 	</insert>
 	
