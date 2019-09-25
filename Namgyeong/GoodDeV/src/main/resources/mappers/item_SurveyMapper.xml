@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.cloud.dao.item_SurveyMapper">
+
+	<select id="getBoardCount" parameterType="map" resultType="int">
+		SELECT count(*)
+		FROM Question_Time
+		<if test="searchItem != null">
+			WHERE ${searchItem} LIKE '%'|| #{searchWord} || '%'
+		</if>
+	</select>
+
+	<select id="selectAll" resultType="Question_Time" parameterType="map">
+		SELECT
+		questionTimeNum
+		,itemNum
+		,questionTitle
+		,description
+		,startDate
+		,dueDate
+		<if test="etc!=''">
+		,etc
+		</if>
+		FROM Question_Time
+		<if test="searchItem != null or searchItem != ''">
+			<if test="searchItem.equalsIgnoreCase('All')">
+				WHERE etc LIKE '%'||#{searchWord}||'%'
+				OR questionTitle LIKE '%'||#{searchWord}||'%'
+				OR description LIKE '%'||#{searchWord}||'%'
+			</if>
+			<if test="!searchItem.equalsIgnoreCase('All')">
+				WHERE ${searchItem} LIKE '%'||#{searchWord}||'%'
+			</if>
+		</if>
+		ORDER BY questionTimeNum DESC
+	</select>
+
+
+	<select id="selectOne" parameterType="Question_Time" resultType="Question_Time">
+		Select *
+		From Question_Time
+		where questionTimeNum = #{questionTimeNum}
+	</select>
+	
+
+
+
+		<insert id="insertQuestion_Time" parameterType="Question_Time">
+		insert into
+		Question_Time (
+		questionTimeNum
+		,itemNum
+		,questionTitle
+		,description
+		,startDate
+		,dueDate
+		<if test="etc!=''">
+		,etc
+		</if>
+		)
+		VALUES (
+		question_Time_seq.NEXTVAL
+		,#{itemNum}
+		,#{questionTitle}
+		,#{description}
+		,#{startDate}
+		,#{dueDate}
+			<if test="etc!=''">
+		,#{etc}
+		</if>
+		)
+	</insert>
+	
+	<insert id="insertQuestion" parameterType="Question">
+
+		insert into
+		Question (
+		questionNum
+		,questionTimeNum
+		,question
+		)
+		VALUES (
+		Question_seq.NEXTVAL
+		,#{questionTimeNum}
+		,#{question}
+		)
+	</insert>
+	<select id="getQuestion_TimeByItemNum" parameterType="Question_Time"
+		resultType="Question_Time">
+		select *
+		from Question_Time
+		where itemNum=#{itemNum}
+		
+	</select>
+	
+
+	<select id="getQuestionByQuestionTimeNum" parameterType="Question"
+		resultType="Question">
+		select *
+		from Question
+		where questionTimeNum=#{questionTimeNum}
+	</select>
+	
+	<update id="updateQuestion_Time" parameterType="Question_Time">
+
+		UPDATE Question_Time
+		SET
+		questionTitle = #{questionTitle}
+		,description = #{description}
+		,startDate = #{startDate}
+		,dueDate = #{dueDate}
+		WHERE questionTimeNum=#{questionTimeNum}
+	</update>
+
+	<update id="updateQuestion" parameterType="Question">
+		UPDATE Question
+		SET
+		question = #{question}
+		WHERE questionNum=#{questionNum}
+
+	</update>
+	
+	
+	
+	
+	
+	
+	<update id="writeEtc" parameterType="Question_Time">
+	
+		UPDATE Question_Time
+		SET
+		etc = #{etc}
+		WHERE questionTimeNum=#{questionTimeNum}
+	</update>
+	
+	<update id="deleteQuestion" parameterType="Question">
+
+		UPDATE Question
+
+		SET
+		question = 'none'
+
+		WHERE questionNum=#{questionNum}
+
+	</update>
+
+	<insert id="insertSurvey" parameterType="Survey">
+
+		insert into
+		Survey (
+		surveyNum
+		,questionNum
+		,qValuable
+		,writtenDate
+		)
+		VALUES (
+		Survey_seq.NEXTVAL
+		,#{questionNum}
+		,#{qValuable}
+		,SYSDATE
+		)
+	</insert>
+	
+	<select id="getqValueableByQuestionNum" parameterType="Survey" resultType="Survey">
+		
+		select *
+		from Survey
+		where questionNum=#{questionNum} 
+	
+	</select>
+
+	<update id="deleteQuestion_Time" parameterType="Question_Time">
+
+		UPDATE Question_Time
+
+		SET
+		questionTitle = 'none'
+
+		WHERE questionTimeNum=#{questionTimeNum}
+
+	</update>
+
+
+</mapper>
+
+
