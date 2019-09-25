@@ -1,3 +1,4 @@
+package Servlet;
 
 
 import java.io.IOException;
@@ -10,6 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+//@WebServlet() : 어노테이션
+//--> URL Mapping속성값을 가짐
+//-->해당 서블릿과 문자열을 맵핑
+//-->문자열이 똑같은 서블릿 파일이 있는 경우에 서버는 동작하지 못함.
+//-->겹치면 안된다!
+//@WebServlet() : 어노테이션
+//-->URL MAPPING속성값을 가짐
+//-->해당 서블릿과 문자열을 병합
 @WebServlet("/PythonServlet")
 public class PythonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
