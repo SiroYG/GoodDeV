@@ -36,11 +36,11 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
-	           <li class="nav-item"><a href="search_menu" class="nav-link"><span>검색</span></a></li>
+	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>검색</span></a></li>
 	          <li class="nav-item"><a href="home#FAQ-section" class="nav-link"><span>특허 FAQ</span></a></li>
-	          <li class="nav-item"><a href="survey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
-	          <li class="nav-item"><a href="funding_list" class="nav-link"><span>크라우드 펀딩</span></a></li>
+	         <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
+	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	          <li class="nav-item"><a href="index#contact-section" class="nav-link"><span>공식 연락처</span></a></li>
 	       <li style="margin-left: 20px;" class="nav-item cta"><a href="login_form.html" class="nav-link" >로그인</a></li>
 	       <li style="margin-left: 20px;" class="nav-item cta"><a href="register_form.html" class="nav-link" >회원가입</a></li>

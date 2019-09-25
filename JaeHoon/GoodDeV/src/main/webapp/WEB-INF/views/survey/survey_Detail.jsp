@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<jsp:useBean id="toDay" class="java.util.Date" />
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -31,6 +33,8 @@
     
     <script>
     $(function(){
+    	
+    	
     	$(document).on('click', '#insertSurveyButton', function(){
     		alert("aa");
     		$("#insertSurveyData").submit();
@@ -68,6 +72,8 @@
     	
     	
     });
+    
+
     </script>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -82,12 +88,12 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="gosearchmenu" class="nav-link"><span>검색</span></a></li>
+	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>검색</span></a></li>
 	          <li class="nav-item"><a href="goBoardlist" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <li class="nav-item"><a href="gomyPage" class="nav-link"><span>마이페이지</span></a></li>
+	          <li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
 	          <li style="margin-left: 20px; " class="nav-item cta"><a href="gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
               <li style="margin-left: 20px;" class="nav-item cta"><a href="gosignin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
 	        </ul>
@@ -133,14 +139,14 @@
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>시작일</b></span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="writtenDate" id="" placeholder="${qTime.startDate }" readonly="readonly">
+                    <input type="text" class="form-control" name="writtenDate" id="startDate"  placeholder="${qTime.startDate}" readonly="readonly">
 
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>마감일</b></span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="dueDate" id="" placeholder="${qTime.dueDate }">
+                    <input type="text" class="form-control" name="dueDate" id="dueDate"  placeholder="${qTime.dueDate }">
 
                 </div>
             </div>

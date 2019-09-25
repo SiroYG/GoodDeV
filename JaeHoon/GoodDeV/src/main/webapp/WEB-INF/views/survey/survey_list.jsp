@@ -6,9 +6,7 @@
     <title>Survey :: All list</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
-
+   
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
     
@@ -17,12 +15,8 @@
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
 
-<!--     <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css"> -->
-<!--     <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css"> -->
-    
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
@@ -30,12 +24,6 @@
     
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-<!--     <select name="searchItem" class="searchItem"> -->
-<!--  <option value="all" selected>없음</option> -->
-<!--   <option value="title" >제목</option> -->
-<!--   <option value="content">내용</option> -->
-<!--   <option value="id">작성자</option> -->
-<!--  data: {search:'banana'}, -->
     <script>
     $(function(){
     	
@@ -78,12 +66,45 @@
     			  
 
      		});
-    		
-    		
+     		
+     		
      	});
-    	
+     	
+     	//var status = $('#listbox-taskStatus option').attr('status');
+     	
+    	$(document).on('click','#goSurvey_form_button', function(){
+    		
+    		
+    		
+    		var itemNum =$('#item-option option:selected').attr("data-value");
+    		alert(itemNum);
+    		$('#itemNum').html('<input type="hidden" name="itemNum" value='+itemNum+'>');
+    		$('#goSurvey_form').submit();
+    	}); 
+     	
+     	/* $('#goSurvey_form_button').on('click',function(){
+     		
+    		//var itemNum =$(this).prop("data-value");
+    		alert(itemNum);
+    		$('#itemNum').html('<input type="hidden" name="itemNum" value='+itemNum+'>');
+    		$('#goSurvey_form').submit();
+     	})
+     	 */
     });    
+    //    	var itemNum =$(this).attr(".temp");
+
+     
     
+    //function pp(){
+    	
+    	
+//     	var element =$(this);
+//     	temp=element.attr('data-value')
+//     	alert(temp);
+//     	var itemNum=temp.attr("data-value");
+// 		alert(itemNum);
+// 		$('#itemNum').html('<input type="hidden" name="itemNum" value='+itemNum+'>');
+// 		$('#goSurvey_form').submit();
     
     </script>
   </head>
@@ -99,12 +120,12 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="gosearchmenu" class="nav-link"><span>검색</span></a></li>
+	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>검색</span></a></li>
 	          <li class="nav-item"><a href="goBoardlist" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <li class="nav-item"><a href="gomyPage" class="nav-link"><span>마이페이지</span></a></li>
+	          <li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
 	          <li style="margin-left: 20px; " class="nav-item cta"><a href="gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
               <li style="margin-left: 20px;" class="nav-item cta"><a href="gosignin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
 	        </ul>
@@ -154,7 +175,7 @@
 
 </tbody>
 
-  <tbody class="tbody">
+ <  <tbody class="tbody">
   <c:forEach var="qTotal" items="${qTotalList}" varStatus="status">
     <tr>
       <th scope="row"> <a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span>${status.count} </span> </a></th>
@@ -164,14 +185,18 @@
       <td ><a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span><c:out value="${qTotal.startDate}" /></span> </a></td>
     </tr>
   </c:forEach>
-   
-  </tbody>
   
+  </tbody> 
+  
+    
 </table>
-     <a href="gosurvey_form" class="btns btn-3"><span class="white">테스트 진행하기</span></a><br><br> 
+
+<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">진행하기</button>
+
+
        <!--페이징 & 검색-->
   <div class="page-center">
-  
+  <br>
   <nav>
   <ul class="pagination justify-content-center">
     <li class="page-item">
@@ -267,12 +292,60 @@
         </div>
       </div>
     </footer>
-    
-  
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
+ <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">블라인드 테스트 아이템 선택</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <form action="goSurvey_form" method="get" id="goSurvey_form">
+                       <!-- <div class="form-group">
+                            <label for="appointment_name" class="text-black">신청인</label>
+                            <input type="text" class="form-control" id="appointment_name" placeholder="이름을 입력해주세요">
+                        </div>
+                        <div class="form-group">
+                            <label for="appointment_patentnum" class="text-black">특허번호</label>
+                            <input type="text" class="form-control" id="appointment_patentnum" placeholder="KR000000000" readonly="readonly">
+                        </div>-->
+                        <label for="item-option" class="text-black">제품 선택</label><br>
+                        <select id="item-option" name="searchItem">
+                            <option value="none" selected>테스트 진행을 위한 제품을 선택해주세요</option>
+                            <c:forEach var="item" items="${iList }" varStatus="status">
+                            <option class="temp" data-value="${item.itemNum}">${status.count }. ${item.itemName }</option>
+                            </c:forEach>
+                         
+                        </select><br><br>
+                        <div id="itemNum">
+                        
+                    
+                        </div>
+                        
+
+                        <!--<div class="form-group">
+                <label for="appointment_message" class="text-black">Message</label>
+                <textarea name="" id="appointment_message" class="form-control" cols="30" rows="10"></textarea>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Send Message" class="btn btn-primary">
+              </div>-->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-info" onclick="pp()" id="goSurvey_form_button">진행하기</button>
+                    <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
   <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
