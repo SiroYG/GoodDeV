@@ -34,17 +34,6 @@ public class BoardController {
 	boardRepository dao;
 
 	final String uploadPath = "/uploadfile";
-
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String gomain() { // 홈이동
-		return "/index";
-	}
-
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String main() { // 홈이동 (리다이렉트)
-		return "redirect:/";
-	}
-
 	@RequestMapping(value = "/boardhome", method = RequestMethod.GET)
 	public String boardhome() { // 홈이동 (리다이렉트)
 		return "/board/Board_list";

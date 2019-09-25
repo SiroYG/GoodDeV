@@ -39,12 +39,13 @@
 		ORDER BY crowdfundingNum DESC
 	</select>
 
+
+
 	<select id="selectOne" parameterType="Crowdfunding" resultType="Crowdfunding">
 		Select *
 		From Crowdfunding
 		where crowdfundingNum = #{crowdfundingNum}
 	</select>
-	
 		<insert id="makeCrowdFunding" parameterType="Crowdfunding">
 		insert into Crowdfunding (
 		crowdfundingNum

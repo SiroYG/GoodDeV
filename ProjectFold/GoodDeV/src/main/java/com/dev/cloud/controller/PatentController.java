@@ -20,12 +20,6 @@ public class PatentController {
 	patentRepository dao;
 
 	final String uploadPath = "/uploadfile";
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index() {
-			
-		return "index";
-	}
 
 	@RequestMapping(value = "/patentlist", method = RequestMethod.GET)
 	public String patentlist() { //LIST

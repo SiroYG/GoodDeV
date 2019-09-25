@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="ko">
   <head>
     <title>Search :: </title>
@@ -42,22 +42,106 @@
    
     <script>
 	var pageSu;
+	
     $(function(){
  		   pageSu = 9;
  		   patentTable(pageSu);   
-			
-
+ 			
+ 		    
+ 		
+ 		   
  	    	$('#patentBtn').on('click',function(){
- 	    		var type = $('#patenttype').val();
+ 	    		var type = $('#patentType').val();
  	    		if(type =='none'){
- 	    			alert('산업분야를 클릭하세요! 개놈시키야');
+ 	    			alert('산업분야를 클릭하세요!');
  	    			return false;
  	    		}else{
  	    			patentTable(pageSu); 
  	    		}
  	    	})
+ 	    	
+ 	    	
+ 	    	$('#permitBtn').on('click',function(){
+ 	    		var memberId = $('#memId').val();
+ 	    		var patentNum =$('#patentNum').val();
+ 	    		var itemNum = $('#item-option').val();
+ 	    		var upload = $('#upload').val();
+ 	    		var upload1 = $('#upload1').val();
+ 	    		var formData = new FormData($('#permitForm')[0]);
+ 	    		var total ={
+ 	    			"memberId"	: memberId,
+ 	    			"patentNum"	: patentNum,
+ 	    			"itemNum"	: itemNum,
+ 	    			"upload"	: upload,
+ 	    			"upload1"	: upload1
+ 	    		}
+ 	    		if(upload==''||upload.length==0&&upload1==''||upload1.length==0){
+ 	    			alert('파일을 반드시 첨부하세요!')
+ 	    			return false;
+ 	    		}
+ 	    	
+ 	    		 $.ajax({
+ 	    			url : 'permitForm',
+ 	    			type : 'post',
+ 	    			enctype : 'multipart/form-data',
+ 	    			processData : false,
+ 	    			contentType : false,
+ 	    			data : formData,
+ 	    			success : function(res){
+ 	    				if(res=='success'){
+ 	    					alert('성공');
+ 	    					$('#exampleModal').modal('hide');
+ 	    				}else{
+ 	    					alert('실패')
+ 	    				}
+ 	    			}
+ 	    		})	 
+ 	    	})
  		   
     });
+    
+    function selectIt(){
+    	var memberId = $('#memId').val();
+    	$.ajax({
+    		url : 'memberItemNum',
+    		type : 'get',
+    		data :	{
+    			memberId : memberId
+    		},
+    		success : function(res){
+    			var tag ="";
+    			$.each(res,function(i,item){
+    				tag += '<option value="'+item.itemNum+'">'+item.itemName+'</option>'
+    			})
+    			$('#item-option').html(tag);
+    		}
+    	})
+    	
+    }
+    
+    function checking(){	
+    	var patentNum = $(this).attr('data-value');
+    	
+    	$.ajax({
+	 			url  : 'selectPatent',
+	 			type : 'get',
+	 			data : {
+	 				patentNum : patentNum
+	 			},
+	 			success : function(res){
+	 				if(res!=null){
+	 					$("#patentNum").val(res);	
+	 				}else{
+	 					alert('에러!!');
+	 				}
+	 				
+	 			}
+	   	})  
+		
+    
+    }   
+    
+    
     
     jQuery(document).on('click', '#rightBtn', function(){
  	   			pageSu += 10;
@@ -67,7 +151,7 @@
  	   				success : function(res){
  	   					if(pageSu<res){
  	   						patentTable(pageSu); 
- 	   					}else {
+ 	   					}else {	
  	   						pageSu = 9;
  	   						patentTable(pageSu);
  	   						//ex) 172개 일때, 170개는 보여지지만 2개는 아직 안보임;;
@@ -94,7 +178,7 @@
     function patentTable(pageSu){
  	    var searchWord =$('#searchWord').val()	
  	   	var searchItem =$('#searchItem').val()
- 	   	var patentType  =$('#patenttype').val()
+ 	   	var patentType  =$('#patentType').val()
  	   
  	   $.ajax({
  	   		url : 'patentTable',
@@ -141,27 +225,23 @@
     	   	}else{
     	   		tag += '<td>특허등록 진행중입니다.</td>'
     	   	}
-    	   		tag += '<td name="서식파일보기"></td>'            
+    	   		
+    	   		tag += '<td name="서식파일보기"><button type="button" class="pri" data-value="'+item.patentNum+'" data-toggle="modal" data-target="#exampleModal">사용 허가 신청</button></td>'            
+    	   		//인터셉터 처리
     	   		tag += '</tr>'        
     	   	})
     	   
-    	   tag += '</tbody>'	
-    	  /* tag += '<tr><td>'
-    	   tag += '<button id="leftBtn">◀</button>'	
-    	   tag += '<button id="rightBtn">▶</button>'	
-    	   tag += '</td></tr>'*/
-    	   tag += '</table>' 
+    	    tag += '</tbody>'
+    	    tag += '</table>' 
     		tag += '<div class="tri-btn">'
     		tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
     	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
     	    tag +=	'</div>'
         $('#section-bar-patent').html(tag);	
+    	$('.pri').on('click',checking);    
+    	$('.pri').on('click',selectIt);
     }
 
-    	
-    	
-  
-    
     
     function loginGo(){
     	window.location.href="/cloud/member/gologin";
@@ -179,7 +259,7 @@
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  
-	  
+	
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="home">Mainlogo</a>
@@ -190,7 +270,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
 	          <li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="gosearchmenu" class="nav-link"><span>검색</span></a></li>
+	          <li class="nav-item"><a href="/cloud/member/searchGo" class="nav-link"><span>검색</span></a></li>
 	          <li class="nav-item"><a href="goBoardlist" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="gosurveylist" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
@@ -200,12 +280,9 @@
               <li style="margin-left: 20px;" class="nav-item cta"><a onclick="signGo()" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
 	          </c:if>
 	          <c:if test="${sessionScope.loginId!=null}">
-	          	<li class="nav-item"><a href="/cloud/member/goMypage"
-					class="nav-link"><span>마이페이지</span></a></li>
-					<li style="margin-left: 20px;" class="nav-item cta"><a
-							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님 </a></li>
-					<li style="margin-left: 20px;" class="nav-item cta"><a
-						href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
+	          <li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
+			  <li style="margin-left: 20px;" class="nav-item cta"><a class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님 </a></li>
+			  <li style="margin-left: 20px;" class="nav-item cta"><a href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
 	          </c:if>
 	        </ul>
 	      </div>
@@ -240,14 +317,14 @@
    <div class="search-container">
   <form>
        <label for="patent-type" class="col-sm-2 col-form-label">특허 산업분야</label>
-                        <select id="patenttype" name="patenttype">
+                        <select id="patentType" name="patentType">
                             <option value="none" selected>[필수선택] 산업분야를 선택하세요</option>
                             <option value="">고무 제품 및 플라스틱 제품 제조업</option>
                             <option value="">기초 화학물질 제조업</option>
                             <option value="">마그네틱 및 광학 매체 제조업</option>
                             <option value="">반도체 제조업</option>
                             <option value="">안경, 사진장비 및 기타 광학기기 제조업</option>
-                            <option value="patenttype1">영상 및 음향기기 제조업</option>
+                            <option value="patentType1">영상 및 음향기기 제조업</option>
                             <option value="">의료용 기기 제조업</option>
                             <option value="">자동차 제조업</option>
                             <option value="">전구 및 조명장치 제조업</option>
@@ -255,8 +332,8 @@
                             <option value="">전자부품 제조업</option>
                             <option value="">절연선 및 케이블 제조업</option>
                             <option value="">컴퓨터 및 주변장치 제조업</option>
-                            <option value="patenttype2">컴퓨터 프로그래밍 및 정보서비스업</option>
-                            <option value="patenttype3">통신 및 방송 장비 제조업</option>
+                            <option value="patentType2">컴퓨터 프로그래밍 및 정보서비스업</option>
+                            <option value="patentType3">통신 및 방송 장비 제조업</option>
                             <option value="">특수 기계 제조업</option>
                             <option value="">기타 전기장비 제조업</option>
                             <option value="">기타 제품 제조업</option>
@@ -271,69 +348,14 @@
           <option value="patentContent" >특허설명</option>
       </select><br><br>
       <label for="patent-word" class="col-sm-2 col-form-label">검색</label>
-      <input type="text" class="patent-word" id="searchWord">&nbsp;&nbsp;&nbsp;
+      <input type="text" class="patent-word" name="searchWord" id="searchWord">&nbsp;&nbsp;&nbsp;
       <button type="button" id="patentBtn" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
   </form>
   <hr class="hr_navy">
    </div>
     <!--검색 결과는 검색하기 버튼 누르고 난 후에 떠야 합니다,,,(with.Ajax) 이 테이블은 그저 예시일 뿐-->
         <div class="search-result" id="section-bar-patent">
-         <%--     <table class="table">
-             <caption class="search-result">검색 결과 '00,000'개의 특허를 찾았습니다.</caption>
-  <thead class="navy">
-    <tr>
-      <th scope="col">No.</th>
-      <th scope="col">분류</th>
-      <th scope="col">특허명</th>
-      <th scope="col">특허설명</th>
-      <th scope="col">특허 보유자</th>
-      <th scope="col">등록날짜</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row" name="boardNum">1</th>
-      <td name="qCategory">[일반]</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="id">ididid</td>
-      <td name="boardDate">2019-09-09</td>
-    </tr>
-    <tr>
-      <th scope="row" name="boardNum">1</th>
-      <td name="qCategory">[일반]</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="id">ididid</td>
-      <td name="boardDate">2019-09-09</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">1</th>
-      <td name="qCategory">[일반]</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="id">ididid</td>
-      <td name="boardDate">2019-09-09</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">1</th>
-      <td name="qCategory">[일반]</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="id">ididid</td>
-      <td name="boardDate">2019-09-09</td>
-    </tr>
-     <tr>
-      <th scope="row" name="boardNum">1</th>
-      <td name="qCategory">[일반]</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="title">aaaaaaaaaaaaaaaaaaa</td>
-      <td name="id">ididid</td>
-      <td name="boardDate">2019-09-09</td>
-    </tr>
-  </tbody>
-  
-</table> --%>
+ 
               <!--페이징 & 검색-->
   <div class="page-center">
   
@@ -436,6 +458,62 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
+<!-- Modal -->
+    <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">특허 사용 허가 신청서</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/cloud/member/permitForm" method="post" id="permitForm">
+              <div class="form-group">
+                <label for="appointment_name" class="text-black">신청인</label>
+                <input type="text" class="form-control" name="memberId" value="${sessionScope.loginId}" id="memId" placeholder="${sessionScope.loginId}" readonly="readonly">
+              </div>
+              <div class="form-group">
+                <label for="appointment_patentnum" class="text-black">특허번호</label>
+                <input type="text" class="form-control" name="patentNum" value="" id="patentNum" placeholder="" readonly="readonly">
+              </div>
+              
+              <label for="item-option" class="text-black">특허 검색옵션<label>
+              <select id="item-option" name="itemNum">
+              <option value="none" selected>특허에 사용할 제품/서비스를 선택해주세요</option>
+              <!--  <option value="">itemName_1</option>-->
+              </select><br><br>
+              
+               <div class="form-group">
+                    <label for="appointment_file" class="text-black">특허 사용 신청서</label>
+                    <input type="file" class="form-control" name="upload" id="upload" multiple />
+                  </div>
+                  <div class="form-group">
+                    <label for="appointment_file2" class="text-black">특허 사용 허가서</label>
+                    <input type="file" class="form-control" name="upload1" id="upload1" multiple />
+                  </div>
+              
+              
+
+              <!--<div class="form-group">
+                <label for="appointment_message" class="text-black">Message</label>
+                <textarea name="" id="appointment_message" class="form-control" cols="30" rows="10"></textarea>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Send Message" class="btn btn-primary">
+              </div>-->
+            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="permitBtn" class="btn btn-outline-info">신청하기</button>
+                <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
 
   <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>

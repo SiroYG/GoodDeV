@@ -23,12 +23,7 @@ public class SurveyController {
 	item_SurveyRepository dao;
 
 	final String uploadPath = "/uploadfile";
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index() {
-			
-		return "index";
-	}
+
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String main() { //LIST
 		return "/survey/survey_list";
