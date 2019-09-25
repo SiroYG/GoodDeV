@@ -1,0 +1,19 @@
+﻿﻿1일차(2019.09.03) -
+DB설계(개념설계) 
+
+2일차(2019.09.04) -
+ ER-D, USECASE 
+
+3일차(2019.09.05) -
+vo 생성,
+interface 생성 (memberInterface완료),
+Mapper 생성 (memberMapper완료),
+mybatis 설정,
+web.xml 한글 필터 설정,
+pom설정
+
+4, 5일차(0909, 0910)
+item, board쿼리문 생성
+아이템명 유니크키 설정
+원본파일명 유니크키 해제
+저장파일명 유니크기 설정

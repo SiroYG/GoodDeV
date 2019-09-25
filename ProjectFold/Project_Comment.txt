@@ -1,0 +1,7 @@
+-- GoodDev Project
+-- Project Table
+
+--190906
+- Project 만들고 구조 확립
+- front / back / function 으로 나눠서 작업했던 코드 병합 (merge)
+- member단 mapping path 작업
