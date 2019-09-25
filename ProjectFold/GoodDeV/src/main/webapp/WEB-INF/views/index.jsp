@@ -34,7 +34,7 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	<div class="container">
-		<a class="navbar-brand" href="home">MainLogo</a>
+		<a class="navbar-brand" href="/cloud/home">MainLogo</a>
 		<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle"
 			type="button" data-toggle="collapse" data-target="#ftco-nav"
 			aria-controls="ftco-nav" aria-expanded="false"
@@ -44,11 +44,10 @@
 
 		<div class="collapse navbar-collapse" id="ftco-nav">
 			<ul class="navbar-nav nav ml-auto">
-				<li class="nav-item" ><a href="home" class="nav-link"><span>Home</span></a></li>
+				<li class="nav-item" ><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
 				<li class="nav-item"><a href="#about-section" class="nav-link"><span>소개글</span></a></li>
-				<li class="nav-item"><a href="#practice-section"
-					class="nav-link"><span>특허 FAQ</span></a></li>
-				<li class="nav-item"><a href="#blog-section" class="nav-link"><span>크라우드
+				<li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>특허 FAQ</span></a></li>
+				<li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드
 							펀딩</span></a></li>
 				<li class="nav-item"><a href="#contact-section"
 					class="nav-link"><span>공식 연락처</span></a></li>
@@ -89,7 +88,7 @@
 					창업자들을 위한 모든 지원이 여기 있습니다.<br>지금 바로 검색해보세요!
 				</p>
 				<p>
-					<a href="#" class="btn btn-primary py-3 px-4">특허 검색하기</a>
+					<a href="/cloud/member/goPatent" class="btn btn-primary py-3 px-4">특허 검색하기</a>
 				</p>
 			</div>
 		</div>
@@ -497,105 +496,7 @@
 		</div>
 	</div>
 	</section>
-
-	<!--<section class="ftco-section bg-light" id="attorneys-section">
-    	<div class="container">
-    		<div class="row justify-content-center pb-5">
-          <div class="col-md-10 heading-section text-center ftco-animate">
-          	<span class="subheading">About Us</span>
-            <h2 class="mb-4">Our Legal Attorneys</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-          </div>
-        </div>
-        <div class="row">
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img-wrap d-flex align-items-stretch">
-								<div class="img align-self-stretch" style="background-image: url(images/staff-1.jpg);"></div>
-							</div>
-							<div class="text d-flex align-items-center pt-3 text-center">
-								<div>
-									<h3 class="mb-2">Lloyd Wilson</h3>
-									<span class="position mb-4">CEO, Founder</span>
-									<div class="faded">
-										<ul class="ftco-social text-center">
-			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              </ul>
-		              </div>
-		            </div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img-wrap d-flex align-items-stretch">
-								<div class="img align-self-stretch" style="background-image: url(images/staff-2.jpg);"></div>
-							</div>
-							<div class="text d-flex align-items-center pt-3 text-center">
-								<div>
-									<h3 class="mb-2">Rachel Parker</h3>
-									<span class="position mb-4">Business Lawyer</span>
-									<div class="faded">
-										<ul class="ftco-social text-center">
-			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              </ul>
-		              </div>
-		            </div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img-wrap d-flex align-items-stretch">
-								<div class="img align-self-stretch" style="background-image: url(images/staff-3.jpg);"></div>
-							</div>
-							<div class="text d-flex align-items-center pt-3 text-center">
-								<div>
-									<h3 class="mb-2">Ian Smith</h3>
-									<span class="position mb-4">Insurance Lawyer</span>
-									<div class="faded">
-										<ul class="ftco-social text-center">
-			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              </ul>
-		              </div>
-		            </div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img-wrap d-flex align-items-stretch">
-								<div class="img align-self-stretch" style="background-image: url(images/staff-4.jpg);"></div>
-							</div>
-							<div class="text d-flex align-items-center pt-3 text-center">
-								<div>
-									<h3 class="mb-2">Alicia Henderson</h3>
-									<span class="position mb-4">Criminal Law</span>
-									<div class="faded">
-										<ul class="ftco-social text-center">
-			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              </ul>
-		              </div>
-		            </div>
-							</div>
-						</div>
-					</div>
-				</div>
-    	</div>
-    </section>-->
-
+	
 	<section class="ftco-section" id="blog-section">
 	<div class="container">
 		<div class="row justify-content-center mb-5 pb-5">
@@ -610,8 +511,7 @@
 				<div class="blog-entry justify-content-end">
 					<div class="text">
 						<h3 class="heading">
-							<a href="single.html">All you want to know about industrial
-								laws</a>
+							<a href="single.html">All you want to know about industrial laws</a>
 						</h3>
 					</div>
 					<a href="#" class="block-20"
@@ -747,34 +647,9 @@
 			</div>
 		</div>
 		<div class="row no-gutters block-9">
-			<!--<div class="col-md-6 order-md-last d-flex">
-            <form action="#" class="bg-primary p-5 contact-form">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject">
-              </div>
-              <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-darken py-3 px-5">
-              </div>
-            </form>-->
-
 		</div>
-
-		<!--<div class="col-md-6 d-flex">
-          	<div id="map" class="bg-white"></div>
-          </div>-->
 	</div>
 	</section>
-
-
 	<footer class="ftco-footer ftco-section">
 	<div class="container">
 		<div class="row mb-5">
@@ -799,7 +674,7 @@
 						<li><a href="#practice-section"><span
 								class="icon-long-arrow-right mr-2"></span>특허 FAQ</a></li>
 						<!--<li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Attorneys</a></li>-->
-						<li><a href="#blog-section"><span
+						<li><a href="/cloud/survey/surveyListForm"><span
 								class="icon-long-arrow-right mr-2"></span>설문조사</a></li>
 						<li><a href="#"><span class="icon-long-arrow-right mr-2"></span>공식
 								연락처</a></li>
@@ -818,7 +693,7 @@
 									특허 사용 허가</span></a></li>
 						<li><a href="#"><span class="icon-long-arrow-right mr-2">
 									특허의 종류</span></a></li>
-						<li><a href="#"><span class="icon-long-arrow-right mr-2">
+						<li><a href="/cloud/patent/patentlistForm"><span class="icon-long-arrow-right mr-2">
 									필요 서류 관련</span></a></li>
 						<li><a href="#"><span class="icon-long-arrow-right mr-2">
 									특허 절차 관련 수수료</span></a></li>
@@ -920,8 +795,6 @@
 								</div>
 							</div>
 						</div>
-
-
 						<div class="form-group">
 							<label for="appointment_message" class="text-black">Message</label>
 							<textarea name="" id="appointment_message" class="form-control"
@@ -932,12 +805,9 @@
 						</div>
 					</form>
 				</div>
-
 			</div>
 		</div>
 	</div>
-
-
 	<script src="/cloud/resources/js/jquery.min.js"></script>
 	<script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="/cloud/resources/js/popper.min.js"></script>
@@ -952,10 +822,6 @@
 	<script src="/cloud/resources/js/bootstrap-datepicker.js"></script>
 	<script src="/cloud/resources/js/jquery.timepicker.min.js"></script>
 	<script src="/cloud/resources/js/scrollax.min.js"></script>
-
-
 	<script src="/cloud/resources/js/main.js"></script>
-
 </body>
-
 </html>

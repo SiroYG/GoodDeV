@@ -59,6 +59,10 @@
   				success : function(res){
   					if(res ==''){
   						alert('정보를 잘못입력하셨습니다.');
+  						$('#id').val("");
+  						$('#memberName').val("");
+  						$('#email').val("");
+  						
   					}else{
   						alert(res);
   						$('#id').val("");
@@ -84,7 +88,7 @@
     <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
         <div class="wrapper wrapper--w960">
             <div class="card card-2">
-                <div class="card-heading"></div>
+                <div class="card-heading-find"></div>
                 <div class="card-body">
                     <h2 class="title">비밀번호 찾기</h2>
                     <form id="">
@@ -101,7 +105,7 @@
                         <div class="p-t-30">
                             <button class="btn btn--radius btn--green" type="button" id="searchPw">비밀번호 찾기</button> &nbsp;
                             <a class="btn btn--radius btn--green" href="/cloud/member/home">취소</a><br><br>
-                            
+                            <a href="gofindid" class="grey">&nbsp;아이디 찾기</a>&nbsp;&nbsp;<a href="gologin" class="grey">/ 로그인</a>
                         </div>
                     </form>
                 </div>

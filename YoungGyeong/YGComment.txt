@@ -15,9 +15,27 @@
 - 데이터 넣을량 결정 , 들어오는 데이터 정비
 
 --190906
--Middle Side 구축 / 
-Front/Back연결작업, Spring구축 작업 Member단_
+- Middle Side 구축 / 
+- Front/Back연결작업, Spring구축 작업 Member단_
 
 --190909
--Middle Side 작업/
-Cloud Server Domain Work
+- Middle Side 작업/
+- Cloud Server Domain Work
+
+--190910
+- Server domain Work Complete
+-----> http://siroyg.shop/
+- Middle Side - ( Board )
+
+--190911
+- Board Paging
+- board Download Unique Set
+
+--190915 
+- Board Detail / Delete / Update
+- Middle Side - function
+
+--190916
+- Detail Delete / Update
+- Middle Side - Function
+- Survey Function

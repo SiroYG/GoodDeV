@@ -19,6 +19,8 @@ public interface memberMapper {
 	//회원탈퇴
 	public int delete_member(devMember member);
 
+	//중복확인
+	public devMember overlap(String memberId);
 	
 	
 }

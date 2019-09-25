@@ -1,0 +1,5 @@
+package com.dev.cloud.vo;
+
+public class Document {
+
+}

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>Neutral :: </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="chat_index.css">
+    
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    
+    <script>
+    /* $(function(){
+         $('#chat_open').on('click', function(){
+             $('#collapseOne').attr('#panel-collapse collapse');
+         })
+     })*/
+        
+        $(document).ready(function() {
+
+	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+	var floatPosition = parseInt($("#scroll_chat").css('top'));
+	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+
+	$(window).scroll(function() {
+		// 현재 스크롤 위치를 가져온다.
+		var scrollTop = $(window).scrollTop();
+		var newPosition = scrollTop + floatPosition - 700 + "px";
+
+		//애니메이션 없이 바로 따라감
+		 //$("#scroll_chat").css('top', newPosition);
+		 
+
+		$("#scroll_chat").stop().animate({
+			"top" : newPosition
+		}, 400);
+
+	}).scroll();
+
+});
+      </script>
+
+    <!--chat css-->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
+
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">MainLogo</a>
+            <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav nav ml-auto">
+                    <li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
+                    <li class="nav-item"><a href="search_menu" class="nav-link"><span>검색</span></a></li>
+                    <li class="nav-item"><a href="#FAQ-section" class="nav-link"><span>특허 FAQ</span></a></li>
+                    <li class="nav-item"><a href="survey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
+                    <li class="nav-item"><a href="funding_list" class="nav-link"><span>크라우드 펀딩</span></a></li>
+                    <li class="nav-item"><a href="#contact-section" class="nav-link"><span>공식 연락처</span></a></li>
+                    <li style="margin-left: 20px;" class="nav-item cta"><a href="login_form.html" class="nav-link">로그인</a></li>
+                    <li style="margin-left: 20px;" class="nav-item cta"><a href="register_form.html" class="nav-link">회원가입</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/about_10-1.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate pb-5 text-center">
+                    <h1 class="mb-3 bread">Search Item</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="index">Home <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="#">검색 분류 <i class="ion-ios-arrow-forward"></i></a></span> <span>제품/서비스 검색 <i class="ion-ios-arrow-forward"></i></span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="ftco-section" id="blog-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-5">
+                <div class="col-md-10 heading-section text-center ftco-animate">
+                    <span class="subheading"></span>
+                    <h2 class="mb-4">제품/서비스 검색</h2>
+                    <p>실제 출시되어 있는 제품 및 서비스를 검색할 수 있습니다.</p><br>
+                    <hr class="hr_navy">
+                </div>
+            </div>
+            
+            
+            
+            
+           <!--chat start--> 
+    <div class="row">
+        <div class="col-md-5" id="scroll_chat">
+            <div class="panel panel-primary">
+                <div class="panel-heading" id="accordion">
+                    <span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp; 1 : 1 채팅 목록
+                    <div class="btn-group pull-right">
+                        <a type="button" id="chat_open" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                    </div>
+                </div>
+            <div class="panel-collapse collapse" id="collapseOne">
+                <div class="panel-body">
+                    <ul class="chat">
+                        <li class="left clearfix">
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">(memberId)</strong>
+                                </div>
+                                <p class="left_chat">
+                                    [마지막에 입력한 내용 나오게 할 수 있는지 조장님께 물어볼것]
+                                </p>
+                                <small class=" text-muted">09-23 | 14:14</small>
+                            </div>
+                        </li>
+                        <li class="left clearfix">
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">(memberId)</strong>
+                                </div>
+                                <p class="left_chat">
+                                    [아니면 멤버 아이디 옆에 바로 시간 나오게 출력할 수 있을 것 같은데]
+                                </p>
+                                <small class=" text-muted">09-23 | 14:14</small>
+                            </div>
+                        </li>
+                        <li class="left clearfix">
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">(memberId)</strong>
+                                    <small class=" text-muted">09-23 | 14:14</small>
+                                </div>
+                                <!--<p class="left_chat">
+                                    [익명 채팅방...의 내용은 일단 왼쪽 정렬]
+                                    [장문도 일단은 여기 입력하면 칸 벗어나지는 않음]
+                                </p>-->
+                                <small class=" text-muted">[예를 들면 이렇게요....]</small>
+                            </div>
+                        </li>
+                       <!--<li class="right clearfix">
+                            <div class="chat-body clearfix">
+                                <div class="pull-right header">
+                                    <strong name="" class="pull-right primary-font">((sessionScope.loginId))</strong>
+                                </div><br>
+                                <p name="" class="my-chat">
+                                    Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                                <small name="" class="pull-right text-muted">09-23 | 14:14  </small>
+                            </div>
+                        </li>-->
+                        <li class="left clearfix">
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">(memberId)</strong>
+                                </div>
+                                <p class="left_chat">
+                                    [내가 마지막이던 상대가 마지막이던 여긴 참가자 목록이니까 이렇게만 뜨게 하는게 맞겠지 아마도]
+                                </p>
+                                <small class=" text-muted">09-23 | 14:14</small>
+                            </div>
+                        </li>
+                       
+                    </ul>
+                </div>
+                <!--<div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="send-msg" placeholder=" 메시지를 입력하세요"/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary" id="btn-chat">보내기</button>
+                        </span>
+                    </div>
+                </div>-->
+            </div>
+            </div>
+        </div>
+    </div><!--chat end-->
+    
+    <!--real chat start-->
+    
+               <!--chat start--> 
+    <div class="row">
+        <div class="col-md-5" id="scroll_chat">
+            <div class="panel panel-primary">
+                <div class="panel-heading" id="accordion">
+                    <span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp; 1 : 1 채팅 목록
+                    <div class="btn-group pull-right">
+                        <a type="button" id="chat_open" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                    </div>
+                </div>
+            <div class="panel-collapse collapse" id="collapseOne">
+                <div class="panel-body">
+                    <ul class="chat">
+                        <li class="left clearfix">
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">(memberId)</strong>
+                                </div>
+                                <p class="left_chat">
+                                    [마지막에 입력한 내용 나오게 할 수 있는지 조장님께 물어볼것]
+                                </p>
+                                <small class=" text-muted">09-23 | 14:14</small>
+                            </div>
+                        </li>
+                        <li class="left clearfix">
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">(memberId)</strong>
+                                </div>
+                                <p class="left_chat">
+                                    [아니면 멤버 아이디 옆에 바로 시간 나오게 출력할 수 있을 것 같은데]
+                                </p>
+                                <small class=" text-muted">09-23 | 14:14</small>
+                            </div>
+                        </li>
+                        <li class="left clearfix">
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">(memberId)</strong>
+                                    <small class=" text-muted">09-23 | 14:14</small>
+                                </div>
+                                <!--<p class="left_chat">
+                                    [익명 채팅방...의 내용은 일단 왼쪽 정렬]
+                                    [장문도 일단은 여기 입력하면 칸 벗어나지는 않음]
+                                </p>-->
+                                <small class=" text-muted">[예를 들면 이렇게요....]</small>
+                            </div>
+                        </li>
+                       <!--<li class="right clearfix">
+                            <div class="chat-body clearfix">
+                                <div class="pull-right header">
+                                    <strong name="" class="pull-right primary-font">((sessionScope.loginId))</strong>
+                                </div><br>
+                                <p name="" class="my-chat">
+                                    Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                                <small name="" class="pull-right text-muted">09-23 | 14:14  </small>
+                            </div>
+                        </li>-->
+                        <li class="left clearfix">
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">(memberId)</strong>
+                                </div>
+                                <p class="left_chat">
+                                    [내가 마지막이던 상대가 마지막이던 여긴 참가자 목록이니까 이렇게만 뜨게 하는게 맞겠지 아마도]
+                                </p>
+                                <small class=" text-muted">09-23 | 14:14</small>
+                            </div>
+                        </li>
+                       
+                    </ul>
+                </div>
+                <!--<div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="send-msg" placeholder=" 메시지를 입력하세요"/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary" id="btn-chat">보내기</button>
+                        </span>
+                    </div>
+                </div>-->
+            </div>
+            </div>
+        </div>
+    </div><!--chat end-->
+    
+    
+</div>
+    </section>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+
+    <script src="js/main.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+</body></html>

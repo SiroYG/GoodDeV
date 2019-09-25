@@ -47,8 +47,8 @@ CREATE TABLE BOARD
 	content varchar2(1000) NOT NULL,
 	qType varchar2(20) NOT NULL,
 	qCategory varchar2(20) NOT NULL,
-	originalFilename varchar2(20) UNIQUE,
-	saveFilename varchar2(20) UNIQUE,
+	originalFilename varchar2(20) ,
+	saveFilename varchar2(20) ,
 	boardDate date DEFAULT SYSDATE NOT NULL,
 	PRIMARY KEY (boardNum)
 )

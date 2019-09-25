@@ -15,6 +15,5 @@ public class Patent {
 	private String patentAppDate;
 	private String patentRegDate ;
 	private String patenttype ;
-	
-	
+	private String searchItem;
 }

@@ -5,16 +5,25 @@
 <configuration>
 <typeAliases>
 <typeAlias alias="Board" type="com.dev.cloud.vo.Board"/>
-<typeAlias alias="Cloudfunding" type="com.dev.cloud.vo.Cloudfunding"/>
+<typeAlias alias="Crowdfunding" type="com.dev.cloud.vo.Crowdfunding"/>
 <typeAlias alias="History" type="com.dev.cloud.vo.History"/>
-<typeAlias alias="Item_Survey" type="com.dev.cloud.vo.Item_Survey"/>
+<typeAlias alias="Survey" type="com.dev.cloud.vo.Survey"/>
 <typeAlias alias="Item" type="com.dev.cloud.vo.Item"/>
 <typeAlias alias="devMember" type="com.dev.cloud.vo.devMember"/>
-<typeAlias alias="MTI" type="com.dev.cloud.vo.MTI"/>
 <typeAlias alias="Patent" type="com.dev.cloud.vo.Patent"/>
 <typeAlias alias="Patentsub" type="com.dev.cloud.vo.Patentsub"/>
 <typeAlias alias="PTI" type="com.dev.cloud.vo.PTI"/>
 <typeAlias alias="Reply" type="com.dev.cloud.vo.Reply"/>
+<typeAlias alias="Question" type="com.dev.cloud.vo.Question"/>
+<typeAlias alias="FundingTable" type="com.dev.cloud.vo.FundingTable"/>
+<typeAlias alias="FundingOption" type="com.dev.cloud.vo.FundingOption"/>
+<typeAlias alias="Question_Time" type="com.dev.cloud.vo.Question_Time"/>
+<typeAlias alias="Document" type="com.dev.cloud.vo.Document"/>
+<typeAlias alias="officialFile" type="com.dev.cloud.vo.officialFile"/>
+<typeAlias alias="QuestionTotal" type="com.dev.cloud.vo.QuestionTotal"/>
+<typeAlias alias="Search" type="com.dev.cloud.vo.Search"/>
+
+
 
 
 </typeAliases>
@@ -24,12 +33,14 @@
 <mapper resource="mapper/crowdfundingMapper.xml"/>
 <mapper resource="mapper/item_SurveyMapper.xml"/>
 <mapper resource="mapper/itemMapper.xml"/>
-<mapper resource="mapper/MTIMapper.xml"/>
 <mapper resource="mapper/patentMapper.xml"/>
 <mapper resource="mapper/patentsubMapper.xml"/>
 <mapper resource="mapper/PTIMapper.xml"/>
 <mapper resource="mapper/replyMapper.xml"/>
 <mapper resource="mapper/historyMapper.xml"/>
+<mapper resource="mapper/fundingOption.xml"/>
+<mapper resource="mapper/document.xml"/>
+<mapper resource="mapper/officialFileMapper.xml"/>
 
 </mappers>
 

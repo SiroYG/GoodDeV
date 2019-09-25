@@ -5,100 +5,97 @@
 
 <mapper namespace="com.dev.cloud.dao.itemMapper">
 	<insert id="insertItem" parameterType="Item">
-
 		insert into ITEM (
 		itemNum
+		,memberId
+		,itemType
 		,ideaDate
 		,itemName
-		,contract
+		,price
 		,itemContent
-		,documentFilename
-		,saveDocumentFilename
-		)
-		VALUES (
+		<if test="itemImagename != ''">
+			,itemImagename
+			,saveItemImage
+		</if>
+		<if test="documentFilename != ''">
+			,documentFilename
+			,saveDocumentFilename
+		</if>
+		)VALUES (
 		item_seq.NEXTVAL
-		,SYSDATE
-		,#{itemName}
-		,'waiting'
-		,#{itemContent}
-		,#{documentFilename}
-		,#{saveDocumentFilename}
-		)
-
-	</insert>
-
-	<insert id="insertMTI" parameterType="MTI">
-
-		insert into MTI (
-		MTI_seq
-		,memberId
-		,itemNum
-		)
-		VALUES (
-		MTI_seq.NEXTVAL
 		,#{memberId}
-		,#{itemNum}
+		,#{itemType}
+		,#{ideaDate}
+		,#{itemName}
+		,#{price}
+		,#{itemContent}
+		<if test="itemImagename != ''">
+			,#{itemImagename}
+			,#{saveItemImage}
+		</if>
+		<if test="documentFilename != ''">
+			,#{documentFilename}
+			,#{saveDocumentFilename}
+		</if>
 		)
 	</insert>
-
-
-	<select id="getItemNumByItemName" parameterType="Item"
+	<select id="getItemNumByItemType" parameterType="Item"
 		resultType="Item">
-		select itemNum
-		from Item
-		where itemName=#{itemName}
-	</select>
+		select
+		*
+		from ITEM
 
+		where itemType=#{itemType}
 
-
-
-
-	<select id="selectItemByItemNum" parameterType="MTI" resultType="Item">
-
-		select *
-		from item
-		where itemNum=#{itemNum}
 
 	</select>
 
-	<select id="getItemNumById" parameterType="MTI" resultType="Item">
-
-		SELECT itemNum
-		FROM MTI
-		WHERE memberId = #{memberId}
+	<select id="getAllItem" resultType="Item">
+		select
+		*
+		from ITEM
 
 	</select>
+	<select id="getItemByMemberId" parameterType="devMember"
+		resultType="Item">
+		select
+		*
+		from ITEM
 
+		where memberId=#{memberId}
+	</select>
 
 	<update id="updateItem" parameterType="Item">
 
-		UPDATE ITEM
+		UPDATE Item
 		SET
 		itemName = #{itemName}
 		,price = #{price}
-		,contract =
-		#{contract}
-		,itemContent = #{itemContent}
-		,itemRegDate = SYSDATE
-		<choose>
-			<when test="itemImagename != '' ">
-				,itemImagename = #{itemImagename}
-				,saveItemImage = #{saveItemImage}
-			</when>
-			<when test="itemImagename != 'null'">
-				,itemImagename = #{itemImagename}
-				,saveItemImage = #{saveItemImage}
+		,itemContent=#{itemContent}
+		,itemType = #{itemType}
+		<if test="itemImagename != ''">
+			,itemImagename=#{itemImagename}
+			,saveItemImage=,#{saveItemImage}
+		</if>
+		<if test="documentFilename != ''">
+			,documentFilename=,#{documentFilename}
+			,saveDocumentFilename=,#{saveDocumentFilename}
+		</if>
+		where
+		itemNum=#{itemNum}
+	</update>
 
-			</when>
-			<otherwise></otherwise>
-		</choose>
+	<update id="deleteItem" parameterType="Item">
 
-		WHERE itemNum=#{itemNum}
+		UPDATE Item
+		SET
+		itemName = 'none'
+		where
+		itemNum=#{itemNum}
 
 	</update>
 
 </mapper>
-
 
 	
 	

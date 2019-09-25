@@ -162,7 +162,7 @@ h6 {
 }
 
 .bg-red {
-  background: #743d8a;
+  background-image: linear-gradient(to right top, #794f9f, #786bb3, #7c85c3, #879ecf, #9ab5d8);
 }
 
 /* ==========================================================================
@@ -482,38 +482,38 @@ input {
 
 /*회원 기능별 사진 적용*/
 
-.card-2 .card-heading {
-  background: url("../images/bg-heading-02.jpg") top left/cover no-repeat;
+.card-2 .card-heading-register {
+   background: url("/cloud/resources/images/flash_3.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
 
 .card-2 .card-heading-find {
-  background: url("../images/bg-heading-02.jpg") top left/cover no-repeat;
+   background: url("/cloud/resources/images/flash_2.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
 
 .card-2 .card-heading-login {
-  background: url("../images/bg-heading-02.jpg") top left/cover no-repeat;
+   background: url("/cloud/resources/images/flash_3.jpg") top left/cover no-repeat;
+  width: 29.1%;
+  display: table-cell;
+}
+
+/* .card-2 .card-heading-update {
+  background: url("../images/flash_3.jpg") top left/cover no-repeat;
+  width: 29.1%;
+  display: table-cell;
+} */
+
+.card-2 .card-heading-dropout {
+   background: url("/cloud/resources/images/flash_2.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
 
 .card-2 .card-heading-update {
-  background: url("../images/bg-heading-02.jpg") top left/cover no-repeat;
-  width: 29.1%;
-  display: table-cell;
-}
-
-.card-2 .card-heading-dropout {
-  background: url("../images/about-1.jpg") top left/cover no-repeat;
-  width: 29.1%;
-  display: table-cell;
-}
-
-.card-2 .card-heading {
-  background: url("../images/bg-heading-02.jpg") top left/cover no-repeat;
+   background: url("/cloud/resources/images/flash_3.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
