@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dev.cloud.vo.Item;
-import com.dev.cloud.vo.devMember;
 
 @Repository
 public class itemRepository implements itemMapper {
@@ -56,11 +55,11 @@ public class itemRepository implements itemMapper {
 	}
 
 	@Override
-	public ArrayList<Item> getItemByMemberId(devMember member) {
+	public ArrayList<Item> getItemByMemberId(Item item) {
 		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
 		ArrayList<Item> result=null;
 		try {
-			result=mapper.getItemByMemberId(member);
+			result=mapper.getItemByMemberId(item);
 
 		} catch (Exception e) {
 			e.printStackTrace();

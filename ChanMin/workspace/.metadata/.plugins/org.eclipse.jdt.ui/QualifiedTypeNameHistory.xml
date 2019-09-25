@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
-<fullyQualifiedTypeName name="com.dev.cloud.dao.PatentRepository"/>
-<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.dev.cloud.dao.itemRepository"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.MTI"/>
@@ -22,7 +19,6 @@
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="com.dev.cloud.utill.FileService"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.Pat"/>
 <fullyQualifiedTypeName name="com.dev.cloud.dao.historyMapper"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.History"/>
@@ -31,16 +27,25 @@
 <fullyQualifiedTypeName name="javax.swing.text.Highlighter.HighlightPainter"/>
 <fullyQualifiedTypeName name="com.dev.cloud.dao.PatentSubRepository"/>
 <fullyQualifiedTypeName name="com.dev.cloud.dao.patentMapper"/>
-<fullyQualifiedTypeName name="org.springframework.ui.Model"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.Patentsub"/>
-<fullyQualifiedTypeName name="com.dev.cloud.vo.Patent"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.Document"/>
-<fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
-<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 <fullyQualifiedTypeName name="com.dev.cloud.dao.documentRepository"/>
-<fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.Total"/>
+<fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+<fullyQualifiedTypeName name="com.dev.cloud.dao.PtiRepository"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.ItemDo"/>
+<fullyQualifiedTypeName name="java.lang.SecurityException"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="com.dev.cloud.vo.PatentTotal"/>
+<fullyQualifiedTypeName name="javax.swing.plaf.synth.SynthSpinnerUI"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+<fullyQualifiedTypeName name="com.dev.cloud.dao.PatentRepository"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.dev.cloud.vo.Patent"/>
 </qualifiedTypeNameHistroy>

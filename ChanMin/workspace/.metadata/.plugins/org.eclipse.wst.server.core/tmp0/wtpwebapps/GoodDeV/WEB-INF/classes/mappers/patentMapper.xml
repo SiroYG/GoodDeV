@@ -9,24 +9,15 @@
 
 	
 <!-- Patent 추가 -->	
-<insert parameterType="Patent" id="insertPatent">
+<insert parameterType="PatentTotal" id="insertPatent">
 insert into 
 		Patent (
 				 patentNum 
-		<if test="patentName!='' || patentName!='null'">
-				,patentName
-				,patentContent
-				,patentType 
-		</if>
 				,patentHolderName
 				,patentAppDate
-				)VALUES (
-				Patent_seq.NEXTVAL 
-		<if test="patentName!='' || patentName!='null'">
-				,#{patentName}
-				,#{patentContent}
-				,#{patentType} 
-		</if>
+				) 
+				VALUES (
+				 #{patentNum}
 				,#{patentHolderName}
 				,SYSDATE
 				) 
@@ -51,6 +42,15 @@ SET
 where
 		patentNum=#{patentNum} 
 </update>
+
+<select id="patsearchNum" parameterType="String" resultType="Patent">
+select 
+	*
+from 
+	patent
+where 
+	patentNum = #{patentNum}		
+</select>
 
 
 <!-- Patent 전체리스트 -->

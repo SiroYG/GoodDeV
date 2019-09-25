@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dev.cloud.vo.ItemDo;
+import com.dev.cloud.vo.PatentTotal;
 import com.dev.cloud.vo.Patentsub;
 
 @Repository
@@ -14,11 +15,11 @@ public class PatentSubRepository implements patentsubMapper {
 	SqlSession session;
 	
 	@Override
-	public int insertPatentsub(Patentsub patentsub) {
+	public int insertPatentsub(PatentTotal paten) {
 		int result=0;
 		patentsubMapper mapper = session.getMapper(patentsubMapper.class);
 		try {
-			result=mapper.insertPatentsub(patentsub);
+			result=mapper.insertPatentsub(paten);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

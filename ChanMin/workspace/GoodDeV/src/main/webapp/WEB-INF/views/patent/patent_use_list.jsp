@@ -29,7 +29,14 @@
 
 <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-
+<script>
+$(function(){
+	
+	
+	
+	
+});
+</script>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
@@ -38,7 +45,7 @@
 		class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target"
 		id="ftco-navbar">
 	<div class="container">
-		<a class="navbar-brand" href="home">MainLogo</a>
+		<a class="navbar-brand" href="/cloud/home">MainLogo</a>
 		<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle"
 			type="button" data-toggle="collapse" data-target="#ftco-nav"
 			aria-controls="ftco-nav" aria-expanded="false"
@@ -48,20 +55,20 @@
 
 		<div class="collapse navbar-collapse" id="ftco-nav">
 			<ul class="navbar-nav nav ml-auto">
-				<li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
-				<li class="nav-item"><a href="search_menu" class="nav-link"><span>검색</span></a></li>
-				<li class="nav-item"><a href="#FAQ-section" class="nav-link"><span>특허
-							FAQ</span></a></li>
-				<li class="nav-item"><a href="survey_list" class="nav-link"><span>블라인드
-							테스트</span></a></li>
-				<li class="nav-item"><a href="funding_list" class="nav-link"><span>크라우드
-							펀딩</span></a></li>
-				<li class="nav-item"><a href="#contact-section"
-					class="nav-link"><span>공식 연락처</span></a></li>
-				<li style="margin-left: 20px;" class="nav-item cta"><a
-					href="login_form.html" class="nav-link">로그인</a></li>
-				<li style="margin-left: 20px;" class="nav-item cta"><a
-					href="register_form.html" class="nav-link">회원가입</a></li>
+				<li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
+				<!--  <li class="nav-item"><a href="search_menu" class="nav-link"><span>검색</span></a></li>-->
+				<li class="nav-item"><a href="#FAQ-section" class="nav-link"><span>특허 FAQ</span></a></li>
+				<li class="nav-item"><a href="survey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
+				<li class="nav-item"><a href="funding_list" class="nav-link"><span>크라우드 펀딩</span></a></li>
+			  <c:if test="${sessionScope.loginId==null}">
+	          <li style="margin-left: 20px; " class="nav-item cta"><a href="/cloud/member/gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
+              <li style="margin-left: 20px;" class="nav-item cta"><a href="/cloud/member/gosign" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
+			  </c:if>
+			  <c:if test="${sessionScope.loginId!=null}">
+	          <li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
+			  <li style="margin-left: 20px;" class="nav-item cta"><a class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님 </a></li>
+			  <li style="margin-left: 20px;" class="nav-item cta"><a href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
+	          </c:if>  
 			</ul>
 		</div>
 	</div>
@@ -106,7 +113,9 @@
 
 		<div class="search-result" id="search-result">
 			<table class="table">
-				<thead class="navy">
+			
+			
+			 <thead class="navy">
 					<tr>
 						<th scope="col">No.</th>
 						<th scope="col">분류</th>
@@ -117,59 +126,19 @@
 						<th colspan="2" scope="col"></th>
 					</tr>
 				</thead>
+					
 				<tbody>
-					<tr>
-						<th scope="row" name="">1</th>
-						<td name="patenttype">[산업분야]</td>
-						<td name="patentName">aaaaaaaaaaaaaaaaaaa</td>
-						<td name="patentHolderName">ididid</td>
-						<td name="contractDate">2019-09-09</td>
-						<td name=""><button type="button" class="btn btn-primary"
-								data-id="${memberId}" data-toggle="modal"
-								data-target="#exampleModal">상세보기</button></td>
-					</tr>
-					<tr>
-						<th scope="row" name="">1</th>
-						<td name="patenttype">[산업분야]</td>
-						<td name="patentName">aaaaaaaaaaaaaaaaaaa</td>
-						<td name="patentHolderName">ididid</td>
-						<td name="contractDate">2019-09-09</td>
-						<td name=""><button type="button" class="btn btn-primary"
-								data-id="${memberId}" data-toggle="modal"
-								data-target="#exampleModal">상세보기</button></td>
-					</tr>
-					<tr>
-						<th scope="row" name="">1</th>
-						<td name="patenttype">[산업분야]</td>
-						<td name="patentName">aaaaaaaaaaaaaaaaaaa</td>
-						<td name="patentHolderName">ididid</td>
-						<td name="contractDate">2019-09-09</td>
-						<td name=""><button type="button" class="btn btn-primary"
-								data-id="${memberId}" data-toggle="modal"
-								data-target="#exampleModal">상세보기</button></td>
-					</tr>
-					<tr>
-						<th scope="row" name="">1</th>
-						<td name="patenttype">[산업분야]</td>
-						<td name="patentName">aaaaaaaaaaaaaaaaaaa</td>
-						<td name="patentHolderName">ididid</td>
-						<td name="contractDate">2019-09-09</td>
-						<td name=""><button type="button" class="btn btn-primary"
-								data-id="${memberId}" data-toggle="modal"
-								data-target="#exampleModal">상세보기</button></td>
-					</tr>
-					<tr>
-						<th scope="row" name="">1</th>
-						<td name="patenttype">[산업분야]</td>
-						<td name="patentName">aaaaaaaaaaaaaaaaaaa</td>
-						<td name="patentHolderName">ididid</td>
-						<td name="contractDate">2019-09-09</td>
-						<td name=""><button type="button" class="btn btn-primary"
-								data-id="${memberId}" data-toggle="modal"
-								data-target="#exampleModal">상세보기</button></td>
-					</tr>
-				</tbody>
-
+				<c:forEach varStatus="status" var="pat" items="${pList}" >
+				<tr>
+				<th scope="row" name="" >${status.count}</th>
+				<td>${pat.patenttype}</td>
+				<td>${pat.patentName}</td>
+				<td></td>
+				<td></td>
+				<td><button type="button" class="btn btn-primary" data-id="${memberId}" data-toggle="modal" data-target="#exampleModal">상세보기</button></td>
+				</tr>
+				</c:forEach>
+				</tbody> 
 			</table>
 			<!--페이징 & 검색-->
 			<div class="page-center">

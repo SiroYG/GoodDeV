@@ -36,7 +36,6 @@
 
 	</update>
 
-
 	<select id="patentAll" resultType="Patent">
 		select
 		patentNum
@@ -79,8 +78,7 @@
 						and patentName LIKE '%'||#{patentName}||'%'
 					</when>
 					<when test="searchItem=='patentHolderName'">
-						and patentHolderName LIKE
-						'%'||#{patentHolderName}||'%'
+						and patentHolderName LIKE '%'||#{patentHolderName}||'%'
 					</when>
 					<when test="searchItem=='patentContent'">
 						and patentContent LIKE '%'||#{patentContent}||'%'
@@ -96,8 +94,7 @@
 						and patentName LIKE '%'||#{patentName}||'%'
 					</when>
 					<when test="searchItem=='patentHolderName'">
-						and patentHolderName LIKE
-						'%'||#{patentHolderName}||'%'
+						and patentHolderName LIKE '%'||#{patentHolderName}||'%'
 					</when>
 					<when test="searchItem=='patentContent'">
 						and patentContent LIKE '%'||#{patentContent}||'%'
@@ -113,8 +110,7 @@
 						and patentName LIKE '%'||#{patentName}||'%'
 					</when>
 					<when test="searchItem=='patentHolderName'">
-						and patentHolderName LIKE
-						'%'||#{patentHolderName}||'%'
+						and patentHolderName LIKE '%'||#{patentHolderName}||'%'
 					</when>
 					<when test="searchItem=='patentContent'">
 						and patentContent LIKE '%'||#{patentContent}||'%'
@@ -130,8 +126,7 @@
 						where patentName LIKE '%'||#{patentName}||'%'
 					</when>
 					<when test="searchItem=='patentHolderName'">
-						where patentHolderName LIKE
-						'%'||#{patentHolderName}||'%'
+						where patentHolderName LIKE '%'||#{patentHolderName}||'%'
 					</when>
 					<when test="searchItem=='patentContent'">
 						where patentContent LIKE '%'||#{patentContent}||'%'

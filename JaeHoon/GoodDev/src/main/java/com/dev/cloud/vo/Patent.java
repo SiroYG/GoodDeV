@@ -16,5 +16,4 @@ public class Patent {
 	private String patentRegDate ;
 	private String patenttype ;
 	private String searchItem;
-	/////vo까지만
 }

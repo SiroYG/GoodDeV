@@ -18,10 +18,15 @@ public class ItemDo {
 	private String  itemContent ;
 	private String  itemRegDate;
 	private String  itemImagename ;
+	private String patentHolderName;
 	private String  saveItemImage ;
 	private String  updateCount;
 	private int documentNum;
 	private int patentsubNum;
 	private String documentFilename;
 	private String saveDocumentFilename;
+	private int  pti_seq ;
+	private String  contract ;
+	private String  contractDate ;
+	
 }

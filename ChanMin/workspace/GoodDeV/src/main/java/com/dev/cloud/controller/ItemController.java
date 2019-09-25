@@ -50,9 +50,10 @@ public class ItemController {
 	public String goItemUpdate(Total total, HttpSession session,Model model) {
 		String memberId = (String) session.getAttribute("loginId"); 
 		total.setMemberId(memberId);
+		
+		Total his =null;
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd (E) ");
 		Calendar time = Calendar.getInstance();
-		Total his =null;
 		String times = format.format(time.getTime());
 		
 		

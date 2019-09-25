@@ -78,4 +78,16 @@ public class memberRepository implements memberMapper {
 		return result;
 	}
 
+	public devMember overlap(String memberId) {
+		memberMapper mapper=sqlSession.getMapper(memberMapper.class);
+		devMember result=null;
+		try {
+			result= mapper.overlap(memberId);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

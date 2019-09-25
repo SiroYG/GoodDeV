@@ -73,7 +73,7 @@ function patent(){
     	   $.each(res,function(i,item){
     		   	tag += '<tr>'
  	   	   		tag += '<th scope="row" name="특허번호">'+item.patentNum+'</th>'        
-    	   		tag += '<td name="분류">'+item.patenttype+'</td>'
+    	   		tag += '<td name="분류">'+item.patentType+'</td>'
     	   		tag += '<td name="특허명">'+item.patentName+'</td>'
     	   		tag += '<td name="특허설명">'+item.patentContent+'</td>'
     	   		tag += '<td name="특허 보유자">'+item.patentHolderName+'</td>'	
@@ -111,7 +111,7 @@ function item(){
     
     jQuery(document).on('click', '#riBtn', function(){
  	   			pageSu += 10;
- 	   			alert('오른쪽');
+ 	   			alert(pageSu);
  	   			$.ajax({
  	   				url: 'itemSu',
  	   				type : 'get',

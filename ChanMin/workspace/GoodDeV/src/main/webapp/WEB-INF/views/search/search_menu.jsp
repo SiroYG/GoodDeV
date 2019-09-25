@@ -27,6 +27,47 @@
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     
     <script>
+    $(function(){
+    	
+    	$('#request').on('click',function(){
+    		var check = $('#check').is(':checked');
+    		var memName = $('#memName').val();
+    		var formData = new FormData($('#patinsertForm')[0]);
+    		var upload =$('#upload').val();
+    		if(!check){
+        		alert('이용약관 반드시 체크하세요!');
+        		return false;
+        	}  
+    		if(memName==''||memName.length==0){
+    			alert('이름을 입력하세요!');
+        		return false;
+    		}
+        	if(upload==''||upload.length==0){
+	    			alert('파일을 반드시 첨부하세요!')
+	    			return false;
+	    		}
+    		$.ajax({
+    				url : 'patinsertForm',
+	    			type : 'post',
+	    			enctype : 'multipart/form-data',
+	    			processData : false,
+	    			contentType : false,
+	    			data : formData,
+    				success : function(res){
+    					if(res=='success'){
+    						alert('성공')
+    						$('#exampleModal').modal('hide');
+    					}else{
+    						alert('실패')
+    					}
+    				}
+    		})
+    		
+    	});
+    
+    	
+    });
+    
     function loginGo(){
     	window.location.href="/cloud/member/gologin";
     }
@@ -52,15 +93,19 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
 	          <li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="gosearchmenu" class="nav-link"><span>검색</span></a></li>
+	          <li class="nav-item"><a href="/cloud/member/searchGo" class="nav-link"><span>검색</span></a></li>
 	          <li class="nav-item"><a href="goBoardlist" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="gosurveylist" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
 	          <c:if test="${sessionScope.loginId==null}">
 	          <li style="margin-left: 20px; " class="nav-item cta"><a onclick="loginGo()" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
               <li style="margin-left: 20px;" class="nav-item cta"><a onclick="signGo()" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
-			  </c:if>	        
+			  </c:if>	    
+			  <c:if test="${sessionScope.loginId!=null}">
+	          <li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
+			  <li style="margin-left: 20px;" class="nav-item cta"><a class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님 </a></li>
+			  <li style="margin-left: 20px;" class="nav-item cta"><a href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
+	          </c:if>    
 	        </ul>
 	      </div>
 	    </div>
@@ -109,7 +154,7 @@
                         <p>출원 절차를 밟아 정식으로 특허를 등록할 수 있습니다.</p>
                     </a>
 
-                    <a class="box2" href="patent_use_list.html">
+                    <a class="box2" href="/cloud/patent/patentUseList">
                         <h3>특허 출원/사용 확인하기</h3>
                         <img src="/cloud/resources/images/menu.png" alt="" class="icons">
                         <p>출원 및 사용 허가 여부를 확인할 수 있습니다.</p>
@@ -194,7 +239,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post" id="">
+                    <form action="#" method="post" id="patinsertForm">
                         <div class="form-group">
                             <label for="appointment_message" class="text-black">특허 신청 이용 약관</label>
                             <textarea name="" id="appointment_message" class="form-control" cols="30" rows="10" readonly="readonly" style="overflow-y:scroll;">제 1 조 (목적)
@@ -389,11 +434,12 @@
 
 시행일 : 본 약관은 2013년 4월 1일부터 시행된다.
                             </textarea>
-                            <p><input type="checkbox">이용 약관에 동의합니다.</p>
+                            <p><input id="check" type="checkbox">이용 약관에 동의합니다.</p>
                         </div>
                         <div class="form-group">
                             <label for="appointment_name" class="text-black">신청인</label>
-                            <input type="text" class="form-control" id="appointment_name" placeholder="이름을 입력해주세요">
+                            <input type="hidden" name="patentNum" value="${num}" >
+                            <input type="text" class="form-control" id="memName" name="patentHolderName" placeholder="이름을 입력해주세요">
                         </div>
                         <!--  <div class="form-group">
                             <label for="appointment_patentnum" class="text-black">특허번호</label>
@@ -401,7 +447,7 @@
                         </div>-->
                         <div class="form-group">
                             <label for="appointment_file2" class="text-black">특허 출원 신청서</label>
-                            <input type="file" class="form-control" id="appointment_file2" multiple>
+                            <input type="file" class="form-control" name="upload" id="upload" multiple>
                         </div>
                         <div class="form-group">
                             <p> ▶ [출원 신청자] 특허 신청서를 첨부해주세요.</p>
@@ -409,7 +455,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-info">신청하기</button>
+                    <button type="button" id="request" class="btn btn-outline-info">신청하기</button>
                     <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>
                 </div>
             </div>

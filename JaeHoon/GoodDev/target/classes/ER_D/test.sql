@@ -20,7 +20,6 @@ DROP TABLE PATENT CASCADE CONSTRAINTS;
 
 
 
-
 /* Drop Sequences */
 
 DROP SEQUENCE BOARD_seq;
@@ -84,6 +83,7 @@ CREATE SEQUENCE officalFile_seq;
 
 
 
+
 /* Create Tables */
 
 CREATE TABLE BOARD
@@ -110,6 +110,10 @@ CREATE TABLE CROWDFUNDING
 	fundingDueDate date NOT NULL,
 	fundingStartDate date NOT NULL,
 	memberId varchar2(20) NOT NULL,
+	fundingTitle varchar2(1000) NOT NULL,
+	fundingContents varchar2(3000) NOT NULL,
+	originalFileName varchar2(100),
+	savedFileName varchar2(100),
 	PRIMARY KEY (crowdfundingNum)
 );
 
@@ -121,7 +125,7 @@ CREATE TABLE devMember
 	memberType varchar2(20) NOT NULL,
 	email varchar2(20) NOT NULL,
 	fundPrice number,
-	memberName varchar2(20) NOT NULL,
+	memberName varchar2(500) NOT NULL,
 	phoneNum varchar2(20) NOT NULL,
 	PRIMARY KEY (memberId)
 );

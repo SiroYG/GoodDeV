@@ -118,7 +118,7 @@ where
 UPDATE
 	 	Item
 SET
-	  documentFilename = #{documentFilename} and
+	  documentFilename = #{documentFilename} ,
       saveDocumentFilename  = #{saveDocumentFilename}
 where
 	itemNum = #{itemNum} and memberId = #{memberId}
