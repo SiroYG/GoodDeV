@@ -45,6 +45,17 @@ where
 	patentNum = #{patentNum}	
 </select>
 
+<select id="selectSub" resultType="Patentsub" parameterType="String">
+select 
+		*
+from 		
+	Patentsub
+where
+	patentNum = #{patentNum}	
+</select>
+
+
+
 
 </mapper>
 
