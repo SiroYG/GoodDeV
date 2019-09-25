@@ -19,12 +19,14 @@ import javax.servlet.http.HttpServletResponse;
 //@WebServlet() : 어노테이션
 //-->URL MAPPING속성값을 가짐
 //-->해당 서블릿과 문자열을 병합
+
+
 @WebServlet("/PythonServlet")
 public class PythonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProcessBuilder builder = new ProcessBuilder("python","C:\\Users\\vdi02\\Downloads\\pythonTest.py","hello","world","apple");
+		ProcessBuilder builder = new ProcessBuilder("python","/Users/SiroYG/Documents/GitHub/EngineerSiro/Cord storage/pythonTest.py","hello","world","apple");
 		Process process = builder.start();
 		Scanner errorScanner = new Scanner(process.getErrorStream());
 		Scanner outputScanner = new Scanner(process.getInputStream());
