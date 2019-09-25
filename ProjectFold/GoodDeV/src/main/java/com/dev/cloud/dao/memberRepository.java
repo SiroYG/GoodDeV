@@ -75,7 +75,7 @@ public class memberRepository implements memberMapper {
 		}
 		return result;
 	}
-
+	@Override
 	public devMember overlap(String memberId) {
 		memberMapper mapper=session.getMapper(memberMapper.class);
 		devMember result=null;
