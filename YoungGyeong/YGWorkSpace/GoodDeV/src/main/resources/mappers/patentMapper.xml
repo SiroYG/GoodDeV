@@ -4,7 +4,59 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dev.cloud.dao.patentMapper">
+	<insert id="insertPatent" parameterType="Patent">
+	insert into Patent (
+		patentNum
+		,patentName
+		,patentHolderName
+		,patentContent
+		,patentAppDate
+		,patenttype
+		
+		)VALUES (
+		Patent_seq.NEXTVAL
+		,#{patentName}
+		,#{patentHolderName}
+		,#{patentContent}
+		,SYSDATE
+		,#{patenttype}
+		)
+	</insert>
+	
+	<update id="updatePatent" parameterType="Patent">
+		UPDATE Patent 
+		SET 
+		patentRegDate = #{patentRegDate}
+		where 
+		patentNum=#{patentNum} 
+	</update>
+	
+	<select id="getBoardCount" parameterType="map" resultType="int">
+		SELECT count(*)
+		FROM PATENT
+	</select>
+	
+	<select id="selectAll" resultType="Patent" parameterType="map">
+		SELECT
+		patentNum
+		,patentName
+		,patentHolderName
+		,patentContent
+		,to_char(patentAppDate, 'YYYY-MM-DD') as patentAppDate
+		,patenttype
+		FROM PATENT
+		ORDER BY patentNum DESC
+	</select>
+	
+	<select id="selectOne" parameterType="Patent" resultType="Patent">
+		Select *
+		From PATENT
+		where patentNum = #{patentNum}
+	</select>
 	
 </mapper>
 
 
+
+
+	

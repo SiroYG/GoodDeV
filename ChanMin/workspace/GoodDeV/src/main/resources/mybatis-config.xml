@@ -19,6 +19,7 @@
 <typeAlias alias="Total" type="com.dev.cloud.vo.Total"/>
 <typeAlias alias="ItemDo" type="com.dev.cloud.vo.ItemDo"/>
 <typeAlias alias="PatentTotal" type="com.dev.cloud.vo.PatentTotal"/>
+<typeAlias alias="PdpVo" type="com.dev.cloud.vo.PdpVo"/>
 </typeAliases>
 <mappers>
 <mapper resource="mappers/documentMapper.xml"/>

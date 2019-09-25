@@ -124,13 +124,13 @@
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>이미지 파일</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="itemImagename" value="${it.itemImagename}" readonly="readonly" id="itemImagename">
+                            <input type="text" class="form-control" name="itemImagename" value="${tt}" readonly="readonly" id="itemImagename">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>관련 특허 서식 파일</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="documentFilename" value="${it.documentFilename}" readonly="readonly" id="saveDocumentFilename">
+                            <input type="text" class="form-control" name="documentFilename" value="${yy}" readonly="readonly" id="saveDocumentFilename">
                         </div>
                     </div><br>
                     <hr class="hr_navy"><br><br>

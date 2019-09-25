@@ -28,6 +28,18 @@ where
 	PTI_seq=#{PTI_seq} 
 </update>
 
+<select id="selectPti" parameterType="int" resultType="PTI">
+select 
+		PTI_seq
+		,itemNum
+		,patentNum
+		,contract
+		,to_char(contractDate,'YYYY-MM-DD') as contractDate
+from 
+		pti
+where 
+		PTI_seq = #{PTI_seq}
+</select>
 
 
 </mapper>

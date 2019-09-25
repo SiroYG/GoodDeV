@@ -29,7 +29,7 @@
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index">Mainlogo</a>
+	      <a class="navbar-brand" href="/cloud/home">Mainlogo</a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -41,7 +41,7 @@
 	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="/cloud/survey/main" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <li class="nav-item"><a href="gomyPage" class="nav-link"><span>마이페이지</span></a></li>
+	          <li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
 	          	<c:if test="${sessionScope.loginId==null}">
 				<li style="margin-left: 20px;" class="nav-item cta"><a
 					href="/cloud/member/gologin" class="nav-link">로그인</a></li>

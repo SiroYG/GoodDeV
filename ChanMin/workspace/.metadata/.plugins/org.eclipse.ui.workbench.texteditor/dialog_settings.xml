@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="signupbtn" key="selection"/>
+		<item value="checking" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="true" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="signupbtn"/>
-			<item value="loginGo"/>
-			<item value="logingo"/>
-			<item value="(select 된)memberId"/>
-			<item value="오른쪽"/>
-			<item value="selectPatent"/>
-			<item value="box2"/>
-			<item value="request"/>
+			<item value="checking"/>
+			<item value="pri"/>
+			<item value="patentNum"/>
+			<item value="FileCopyUtils"/>
+			<item value="selectSub"/>
+			<item value="down1"/>
+			<item value="Connector"/>
+			<item value="permitionForm"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
@@ -25,7 +25,7 @@
 		<item value="417" key="DIALOG_WIDTH"/>
 		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
 		<item value="483" key="DIALOG_HEIGHT"/>
-		<item value="1047" key="DIALOG_X_ORIGIN"/>
-		<item value="473" key="DIALOG_Y_ORIGIN"/>
+		<item value="704" key="DIALOG_X_ORIGIN"/>
+		<item value="556" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

@@ -37,7 +37,7 @@
 	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="/cloud/survey/surveyListForm" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <li class="nav-item"><a href="index.html#contact-section" class="nav-link"><span>마이페이지</span></a></li>
+	          <li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
 	  			 <c:if test="${sessionScope.loginId==null}">
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/gologin" class="nav-link">로그인</a></li>

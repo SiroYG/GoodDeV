@@ -80,9 +80,14 @@ Chat - chat.css, index chat banner(anonymous) (o)
 Search_patent - 출력 글자수 자르기 (o)
 Header/Footer form (o)
 
+--0925
+Index - chat form(o)
+Board - list mapping (o)
+Survey - list modal(o)
+
 * 앞으로 해야할 것들
 - 마이페이지 유형별 구성
 - 크라우드 펀딩 결제 API 연동(?)
 - 펀딩 리스트 flex,,,,,,,,,
-- 인덱스 및 헤더 파트 리뉴얼
+- 채팅 js,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 - mid-back 끝난 jsp css 수정

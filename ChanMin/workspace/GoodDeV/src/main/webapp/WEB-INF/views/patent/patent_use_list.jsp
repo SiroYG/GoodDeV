@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <title>Neutral ::</title>
@@ -32,8 +31,124 @@
 <script>
 $(function(){
 	
+	$('.pri').on('click',function(){
+		var patentNum = $(this).attr("data-value");
+		
+		$.ajax({
+			url : 'sePatent',
+			type : 'get',
+			data : {
+				"patentNum" : patentNum
+			},
+			success : function(res){
+				$('#patentNum').val(res.patentNum);
+				$('#memberId').val(res.memberId);
+				
+			}
+			
+		})
 	
+	})
 	
+	$('.pri').on('click',function(){
+		var pti_seq = $(this).val();
+		
+		$.ajax({
+			url : 'sePti',
+			type : 'get',
+			data : {
+				"PTI_seq" : pti_seq
+			},
+			success : function(res){
+				$('#contractDate').val(res.contractDate);
+				
+			}
+			
+		})
+	
+	})
+		
+	$('.pri').on('click',function(){
+		var patentNum = $(this).attr("data-value");
+		
+		$.ajax({
+			url : 'down',
+			type : 'get',
+			data : {
+				"patentNum" : patentNum
+			},
+			success : function(res){
+				$('#down').html(res);
+			}
+			
+		})
+	
+	}) 
+	$('.pri').on('click',function(){
+		var patentNum = $(this).attr("data-value");
+		
+		$.ajax({
+			url : 'down1',
+			type : 'get',
+			data : {
+				"patentNum" : patentNum
+			},
+			success : function(res){
+				$('#down1').html(res);
+				
+			}
+			
+		})
+	
+	}) 
+	
+	$('#down').on('click',function(){
+		var patentNum = $('#patentNum').val();
+
+		alert(patentNum);
+		$.ajax({
+			url : 'download',
+			type : 'get',
+			data : {
+				"patentNum" : patentNum
+			},
+			success : alert('성공')
+		})
+	
+	})
+	
+	$('#down1').on('click',function(){
+		var patentNum = $('#patentNum').val();
+		
+		$.ajax({
+			url : 'download1',
+			type : 'get',
+			data : {
+				"patentNum" : patentNum
+			},
+			success : alert('성공')
+		})
+	
+	})
+	/* $('#permitBtn').on('click',function(){
+		var formData = new FormData($('#permitionForm')[0]);
+		
+		$.ajax({
+			url : 'permitionForm',
+			type : 'post',
+			enctype : 'multipart/form-data',
+			processData : false,
+			contentType : false,
+			data : formData,
+			success : function(res){
+				
+			}
+			
+		}) 
+		
+		
+	})
+	*/
 	
 });
 </script>
@@ -133,10 +248,10 @@ $(function(){
 				<th scope="row" name="" >${status.count}</th>
 				<td>${pat.patenttype}</td>
 				<td>${pat.patentName}</td>
-				<td></td>
-				<td></td>
-				<td><button type="button" class="btn btn-primary" data-id="${memberId}" data-toggle="modal" data-target="#exampleModal">상세보기</button></td>
-				</tr>
+				<td>${pat.memberId}</td>
+				<td>${pat.contractDate}</td>
+				<td><button type="button" class="pri" data-value="${pat.patentNum}" value="${pat.pti_seq}"  data-toggle="modal" data-target="#exampleModal">상세보기</button></td>
+				</tr>								<!-- data-id= "${memberId}" -->
 				</c:forEach>
 				</tbody> 
 			</table>
@@ -185,39 +300,39 @@ $(function(){
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post" id="">
+                    <form action="/cloud/patent/permitionForm" method="post" id="permitionForm"  >
                         <div class="form-group">
                             <label for="appointment_date" class="text-black"><b>신청일</b></label>
-                            <input type="text" class="form-control" name="contractDate" id="appointment_date" placeholder="2019-09-19 (목)" readonly="readonly">
+                            <input type="text" class="form-control" name="contractDate" id="contractDate" placeholder="" readonly="readonly">
                         </div>
                         <div class="form-group">
                             <label for="appointment_name" class="text-black"><b>신청인</b></label>
-                            <input type="text" class="form-control" name="memberId" id="appointment_name" placeholder="(select 된)memberId" readonly="readonly">
+                            <input type="text" class="form-control" name="memberId" id="memberId" placeholder="" readonly="readonly">
                         </div>
                         <div class="form-group">
                             <label for="appointment_patentnum" class="text-black"><b>특허번호</b></label>
-                            <input type="text" class="form-control" name="patentName" id="appointment_patentnum" placeholder="(select 된)KR000000000" readonly="readonly">
+                            <input type="text" class="form-control" name="patentNum" id="patentNum" value="" placeholder="" readonly="readonly">
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <a href="#" class="a_document"> ▶ [신청자] 특허 사용 신청서</a>
+                                    <a href="#" class="a_document" id="down"></a>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <a href="#" class="a_document"> ▶ [신청자] 특허 사용 허가서</a>
+                                    <a href="#" class="a_document" id="down1"></a>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="appointment_file" class="text-black"><b>[보유자]특허 사용 신청서 / 허가서</b></label>
-                            <input type="file" class="form-control" name="documentFilename" id="appointment_file" multiple>
+                            <input type="file" class="form-control" name="upload" id="appointment_file" multiple>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-info">승인하기</button>
+                    <button type="button" id="permitBtn" class="btn btn-outline-info">승인하기</button>
                     <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>
                 </div>
             </div>

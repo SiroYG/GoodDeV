@@ -15,7 +15,7 @@ public class devMember {
 	public String memberType ;
 	public String email ;
 	public int fundPrice ;
-	public String memberName ;
+	public String memberName;
 	public String phoneNum ;
 
 }

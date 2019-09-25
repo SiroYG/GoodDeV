@@ -88,9 +88,27 @@ public class ItemController {
 		String memberId = (String) session.getAttribute("loginId"); 
 		
 		total.setMemberId(memberId);
-		
+		String a = "";
+		String b = "";
+		String c = "";
+		String d = "";
 		Total it = repo.goItemDetail(total);
+		String lcm = it.getItemImagename();
 		
+		String [] array = lcm.split("@");
+		
+		for(int i=0;i<array.length;i++){
+			a = array[0];
+			b = array[1];		
+		}
+		
+		String tt = a+",  "+b;
+		if(!c.equals("")&&!d.equals("")){
+			String yy = c+",  "+d;
+			model.addAttribute("yy",yy);
+		}
+		
+		model.addAttribute("tt",tt);
 		
 		model.addAttribute("it",it);
 		

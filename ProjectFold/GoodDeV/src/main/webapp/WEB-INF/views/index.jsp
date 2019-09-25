@@ -51,13 +51,17 @@
 							펀딩</span></a></li>
 				<li class="nav-item"><a href="#contact-section"
 					class="nav-link"><span>공식 연락처</span></a></li>
-				<c:if test="${sessionScope.loginId==null}">
+					<c:if test="${sessionScope.loginId==null}">
+				<li class="nav-item"><a href="#contact-section"
+					class="nav-link"><span>공식 연락처</span></a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
 				</c:if>
 				<c:if test="${sessionScope.loginId!=null}">
+				<li class="nav-item"><a href="/cloud/member/goMypage"
+					class="nav-link"><span>마이페이지</span></a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님 </a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a

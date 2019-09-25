@@ -51,6 +51,18 @@ public class PatentSubRepository implements patentsubMapper {
 		return result;
 	}
 
+	@Override
+	public Patentsub selectSub(String patentNum) {
+		Patentsub result =null;
+		patentsubMapper mapper = session.getMapper(patentsubMapper.class);
+		try {
+			result=mapper.selectSub(patentNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 	
 
 }
