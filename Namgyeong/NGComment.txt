@@ -85,6 +85,9 @@ Index - chat form(o)
 Board - list mapping (o)
 Survey - list modal(o)
 
+--0926
+Chat - Funding 1:1 (o)
+
 * 앞으로 해야할 것들
 - 마이페이지 유형별 구성
 - 크라우드 펀딩 결제 API 연동(?)
