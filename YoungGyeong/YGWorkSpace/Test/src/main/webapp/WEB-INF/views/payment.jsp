@@ -5,7 +5,7 @@
     String email = (String)request.getAttribute("email");
     String phone = (String)request.getAttribute("phone");
     String address = (String)request.getAttribute("address");
-    int totalPrice = (int)request.getAttribute("totalPrice");    
+//     int totalPrice = (int)request.getAttribute("totalPrice");    
 %>
 <!DOCTYPE html>
 <html>
@@ -66,8 +66,7 @@
                 alert(msg);
             }
         });
-
+    });
     </script>
- 
 </body>
 </html>
