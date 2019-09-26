@@ -10,6 +10,7 @@ import com.dev.cloud.vo.Pat;
 import com.dev.cloud.vo.Patent;
 import com.dev.cloud.vo.PatentTotal;
 import com.dev.cloud.vo.Patentsub;
+import com.dev.cloud.vo.PdpVo;
 
 @Repository
 public class PatentRepository implements patentMapper {
@@ -90,6 +91,34 @@ public class PatentRepository implements patentMapper {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public List<PdpVo> pdpIdAll(String memberName) {
+		patentMapper mapper = session.getMapper(patentMapper.class);
+		List<PdpVo> pList = null;
+		try{
+			pList = mapper.pdpIdAll(memberName);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return pList;
+
+	}
+
+	@Override
+	public List<PdpVo> pdpIdGo(String memberName) {
+		patentMapper mapper = session.getMapper(patentMapper.class);
+		List<PdpVo> pList = null;
+		try{
+			pList = mapper.pdpIdGo(memberName);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return pList;
+
 	}
 
 	

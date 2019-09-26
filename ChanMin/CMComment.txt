@@ -40,3 +40,5 @@
 -- middleSide_ search_patent에서 document (insert), itemUpdate(3) 만들기
 -- 190924
 -- middleSide_ search_patent에서 document (insert (2)), itemUpdate(4), PTI (insert), patentList, Patent (insert) 만들기
+-- 190925
+-- middleSide_ patent_useList, patent_useList에서 download 전까지 만들기

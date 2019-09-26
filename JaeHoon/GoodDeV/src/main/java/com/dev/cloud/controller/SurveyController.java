@@ -19,12 +19,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dev.cloud.dao.itemRepository;
 import com.dev.cloud.dao.item_SurveyRepository;
+import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.Question;
 import com.dev.cloud.vo.QuestionTotal;
 import com.dev.cloud.vo.Question_Time;
 import com.dev.cloud.vo.Search;
 import com.dev.cloud.vo.Survey;
+import com.dev.cloud.vo.devMember;
 
 
 @Controller
@@ -33,6 +36,9 @@ public class SurveyController {
 
 	@Autowired
 	item_SurveyRepository IsRepo;
+	
+	@Autowired 
+	itemRepository Irepo ;
 
 	@RequestMapping(value = "/goSurvey_list", method = RequestMethod.GET)
 	public String goSurvey_list(HttpSession session, Model model) {
@@ -44,7 +50,10 @@ public class SurveyController {
 		ArrayList<QuestionTotal> qTotalList = new ArrayList<>();
 		qTotalList = IsRepo.selectAllQuestion_TimeById(qTime);
 		model.addAttribute("qTotalList", qTotalList);
-
+		Item item=new Item();
+		item.setMemberId((String)session.getAttribute("loginId"));
+		ArrayList<Item> iList=Irepo.getItemByMemberId(item);
+		model.addAttribute("iList", iList);
 		if (qTotalList.size() != 0) {
 			for (QuestionTotal q : qTotalList) {
 				System.out.println(q.toString());
@@ -146,5 +155,16 @@ public class SurveyController {
 		}
 		return qtLsist;
 	}
-
+	@RequestMapping(value = "/goSurvey_form", method = RequestMethod.GET)
+	public String goSurvey_form(Model model, Item item) {
+		System.out.println(item);
+		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd (E) ");
+	      Calendar time = Calendar.getInstance();
+	      String times = format.format(time.getTime());
+	     
+	      model.addAttribute("times", times);
+		return "/survey/survey_form";
+	}
+	
+	
 }

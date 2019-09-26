@@ -84,6 +84,40 @@ where
 		patentHolderName = #{patentHolderName} 
 </select>
 
+<select parameterType="String" id="pdpIdAll" resultType="PdpVo">
+select
+		patentNum
+		,patentName
+		,patentHolderName
+		,patentContent
+		,to_char(patentAppDate,'YYYY-MM-DD') as patentAppDate
+		,to_char(patentRegDate,'YYYY-MM-DD') as patentRegDate
+		,patentType
+from
+		patent
+where
+		patentHolderName = #{patentHolderName} 
+</select>
+
+<select id="pdpIdGo" parameterType="String" resultType="PdpVo">
+select 	i.itemnum
+		,t.pti_seq
+		,t.contract
+		,to_char(t.contractDate,'YYYY-MM-DD') as contractDate
+		,p.patenttype
+		,p.patentName
+		,p.patentNum
+		,i.memberId
+		,ps.referenceFilename
+		,ps.saveReferenceFilename
+from item i inner join PTI t on
+i.itemnum=t.itemnum
+inner join patent p on t.patentnum= p.patentnum inner join patentsub ps  on ps.patentNum=p.patentNum
+where 
+	p.patentHolderName = #{patentHolderName} and t.contract='wait'
+
+</select>
+
 <!-- Patent 특허검색 -->
 <select parameterType="Pat" id="searchPatent" resultType="Patent">
 select 

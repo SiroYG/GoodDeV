@@ -6,6 +6,7 @@ import com.dev.cloud.vo.Pat;
 import com.dev.cloud.vo.Patent;
 import com.dev.cloud.vo.PatentTotal;
 import com.dev.cloud.vo.Patentsub;
+import com.dev.cloud.vo.PdpVo;
 
 public interface patentMapper {
 
@@ -21,4 +22,9 @@ public interface patentMapper {
 	public int insertPatent(PatentTotal paten);
 	
 	public Patent patsearchNum(String patentNum);
+	
+	public List<PdpVo> pdpIdAll(String memberName);
+	
+	public List<PdpVo> pdpIdGo(String memberName);
+	
 }
