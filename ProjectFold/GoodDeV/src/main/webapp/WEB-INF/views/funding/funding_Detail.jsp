@@ -33,9 +33,7 @@
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/funding.css">
-
-
-
+  
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -72,7 +70,6 @@
             </div>
         </div>
     </nav>
-
     <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_7.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
@@ -84,8 +81,6 @@
             </div>
         </div>
     </section>
-
-
     <section class="ftco-section" id="blog-section">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-5">
@@ -144,7 +139,6 @@
                                         </div>
 <br>
                                        <!-- <p class="lead">현재 진행 금액 : (itemCurrencyPrice)</p>-->
-
                                         <form class="d-block justify-content-left">
                                             <!-- Default input -->
                                             <select name="optionType" class="browser-default custom-select">
@@ -218,7 +212,7 @@
                         <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
-                                    <i class="fa fa-credit-card"></i> Credit Card</a></li>
+                                    <i class="fa fa-credit-card"></i> Payment </a></li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
                                     <i class="fa fa-university"></i> Bank Transfer</a></li>
@@ -226,19 +220,21 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="nav-tab-card">
                                 <!--<p class="alert alert-success">결제 완료</p>-->
-                                <p class="alert alert-danger">결제 정보를 다시 한번 확인해주세요.</p>
-                                <form action="" method="post" id="" role="form" class="needs-validation">
+                                <p style="display: none" class="alert alert-danger">결제 정보를 다시 한번 확인해주세요.</p>
+                                <form action="" method="post" name="pay" role="form" class="needs-validation">
+                                	<input type="hidden" name="itemname" value="${fund.fundingTitle}">
+                                	<input type="hidden" name="memberid" value="${sessionScope.loginId}">
                                     <div class="form-group">
-                                        <label for="username">이름</label>
-                                        <input type="text" class="form-control" name="username" placeholder="" required>
+                                        <label for="username"> 투자금액 </label>
+                                        <input type="text" class="form-control" oninput="amountcheck()" name="amount" id="amount" placeholder="투자금액을 입력해주세요" required>
                                     </div> <!-- form-group.// -->
                                     <div class="form-group">
-                                        <label for="cardNumber">카드 번호</label>
+                                        <label for="cardNumber"> 결제확인 email </label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="cardNumber" placeholder="" required>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="email을 입력해주세요." required>
                                             <div class="input-group-append">
                                                 <div class="invalid-feedback">
-                                                    카드 번호를 입력해주세요
+                                                   결제 이메일을 입력해주세요
                                                 </div>
                                             </div>
                                         </div>
@@ -246,35 +242,33 @@
                                     <div class="row">
                                         <div class="col-sm-8">
                                             <div class="form-group">
-                                                <label><span class="hidden-xs">유효 기한</span> </label>
+                                                <label><span class="hidden-xs">핸드폰번호</span> </label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="MM" name="" required>
-                                                    <input type="text" class="form-control" placeholder="YY" name="" required>
+                                                    <input type="text" class="form-control" id="tel" placeholder="'-'자 없이 입력해주세요" name="tel" required>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <div class="form-group">
-                                                <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV </label>
-                                                <input type="text" class="form-control" required>
+                                                <label data-toggle="tooltip" title=""> 주소 </label>
+                                                <input type="text" class="form-control" id="addr" name = "addr" required>
                                             </div> <!-- form-group.// -->
                                         </div>
                                     </div> <!-- row.// -->
-                                    <button class="subscribe btn btn-submit btn-block" type="submit"> 결제하기 </button>
+                                    <button onClick="paycheck()" type="submit" class="subscribe btn btn-submit btn-block"> 결제하기 </button>
                                 </form>
                             </div> <!-- tab-pane.// -->
                             <div class="tab-pane fade" id="nav-tab-bank">
                                 <p>무통장입금을 원하실 경우 다음 계좌를 참고하세요.<br>
-
                                 </p>
                                 <dl class="param">
-                                    <dd>은행 : <b>국민은행</b></dd>
+                                    <dd>은행 : <b>신한은행</b></dd>
                                 </dl>
                                 <dl class="param">
-                                    <dd>계좌번호 : <b>123-456-7891</b></dd>
+                                    <dd>계좌번호 : <b>110-391-432959</b></dd>
                                 </dl>
                                 <dl class="param">
-                                    <dd>예금주 : <b>홍길동</b></dd>
+                                    <dd>예금주 : <b>銀行</b></dd>
                                 </dl>
                             </div> <!-- tab-pane.// -->
                         </div> <!-- tab-content .// -->
@@ -286,11 +280,8 @@
                     <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>
                 </div>
             </div>
-
-
         </div>
     </div>
-
     <script src="/cloud/resources/js/jquery.min.js"></script>
     <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="/cloud/resources/js/popper.min.js"></script>
@@ -305,9 +296,7 @@
     <!--  <script src="/cloud/resources/js/bootstrap-datepicker.js"></script>
   <script src="/cloud/resources/js/jquery.timepicker.min.js"></script>-->
     <script src="/cloud/resources/js/scrollax.min.js"></script>
-
     <script src="/cloud/resources/js/main.js"></script>
-
     <!-- SCRIPTS -->
     <!-- JQuery -->
     <script type="text/javascript" src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
@@ -321,12 +310,8 @@
     <!--<script type="text/javascript">
     // Animations initialization
     new WOW().init();
-
   </script>-->
-
 </body>
-
-
 <footer class="ftco-footer ftco-section">
     <div class="container">
         <div class="row mb-5">
@@ -381,4 +366,46 @@
             </div>
         </div>
     </div>
-</footer></html>
+</footer>
+
+  <script>
+    var amount = document.getElementById("amount");
+    var eamil = document.getElementById("email");
+    var tel = document.getElementById("tel");
+    var addr = document.getElementById("addr");
+    
+    function amountcheck(){
+    	  if (!isNaN(amount.value)===false) {
+    			alert("금액을 입력해주세요.");
+    			return;
+    		}
+    }
+    function paycheck(){
+    	 if (!isNaN(amount.value)===false) {
+ 			alert("금액에는 숫자만 입력해주세요.");
+ 			return ;
+ 		}
+    	 if (amount.value.length==0	|| amount.value=="") {
+			alert("금액이 입력되지 않았습니다.");
+			return ;
+		}	 if (email.value.length==0	|| amount.value=="") {
+			alert("이메일이 입력되지 않았습니다.");
+			return ;
+		}	 if (tel.value.length==0	|| amount.value=="") {
+			alert("전화번호가 입력되지 않았습니다.");
+			return ;
+		}
+		 if (addr.value.length==0	|| addr.value=="") {
+				alert("전화번호가 입력되지 않았습니다.");
+				return ;
+			}
+    	var paywin = window.open('about:blank', 'payment', 'location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no, scrollbars=no, width=650, height=480');
+    	var pay =document.pay;
+    	pay.action = '/cloud/funding/paymentform';
+    	pay.target='payment';
+    	pay.method='POST';
+    	pay.submit();
+    }
+    
+    </script>
+</html>
