@@ -229,6 +229,18 @@ public class item_SurveyRepository implements item_SurveyMapper{
 		return result;
 	}
 
+	@Override
+	public int getLastSeqNum() {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		int result=0;
+		try {
+			 result=mapper.getLastSeqNum();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 	
 	
 

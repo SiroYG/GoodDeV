@@ -137,6 +137,7 @@ CREATE TABLE DOCUMENT
 	PatentsubNum number NOT NULL,
 	documentFilename varchar2(100),
 	saveDocumentFilename varchar2(100) UNIQUE,
+	itemNum number NOT NULL,
 	PRIMARY KEY (DocumentNum)
 );
 
@@ -254,8 +255,8 @@ CREATE TABLE QUESTION_TIME
 	questionTitle varchar2(300) NOT NULL,
 	-- 설문추가 설명
 	description varchar2(1000),
-	startDate date NOT NULL,
-	dueDate date DEFAULT SYSDATE NOT NULL,
+	startDate varchar2(20) NOT NULL,
+	dueDate varchar2(20) DEFAULT 'SYSDATE' NOT NULL,
 	etc varchar2(1000),
 	memberId varchar2(20) NOT NULL,
 	PRIMARY KEY (questionTimeNum)

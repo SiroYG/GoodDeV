@@ -91,4 +91,19 @@ public class itemRepository implements itemMapper {
 		}
 		return result;
 	}
+
+	@Override
+	public Item getOneItemByItemNum(Item item) {
+		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
+		Item result=null;
+		try {
+			result=mapper.getOneItemByItemNum(item);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

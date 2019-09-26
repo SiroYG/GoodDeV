@@ -55,5 +55,8 @@ public interface item_SurveyMapper {
 	
 	public Question getQuestionByQuestionNum(Question question);
 	
+	public int getLastSeqNum();
+	
+	
 	 
 }

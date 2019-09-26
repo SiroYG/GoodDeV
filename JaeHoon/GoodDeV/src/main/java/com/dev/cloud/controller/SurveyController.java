@@ -42,11 +42,8 @@ public class SurveyController {
 
 	@RequestMapping(value = "/goSurvey_list", method = RequestMethod.GET)
 	public String goSurvey_list(HttpSession session, Model model) {
-		System.out.println("line 32");
 
 		Question_Time qTime = new Question_Time();
-		System.out.println("line 35");
-
 		ArrayList<QuestionTotal> qTotalList = new ArrayList<>();
 		qTotalList = IsRepo.selectAllQuestion_TimeById(qTime);
 		model.addAttribute("qTotalList", qTotalList);
@@ -62,6 +59,58 @@ public class SurveyController {
 
 		return "/survey/survey_list";
 	}
+	@RequestMapping(value = "/goSurvey_list", method = RequestMethod.POST)
+	public String goSurvey_list( HttpSession session, Model model, Question_Time question_Time , Question question) {
+		System.out.println("question_Time>>>>"+question_Time);
+		System.out.println("question>>>>"+question);
+//		try {
+//			Thread.sleep(5000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
+		Question_Time qTime = new Question_Time();
+		ArrayList<QuestionTotal> qTotalList = new ArrayList<>();
+		qTotalList = IsRepo.selectAllQuestion_TimeById(qTime);
+		model.addAttribute("qTotalList", qTotalList);
+		//폼으로 업뎃한 이전의 데이타는 가져오지 못함!!
+		for(QuestionTotal temp : qTotalList){
+			System.out.println("check"+temp);
+		}
+		
+		
+		Item item=new Item();
+		item.setMemberId((String)session.getAttribute("loginId"));
+		ArrayList<Item> iList=Irepo.getItemByMemberId(item);
+		model.addAttribute("iList", iList);
+		if (qTotalList.size() != 0) {
+			for (QuestionTotal q : qTotalList) {
+				System.out.println(q.toString());
+			}
+		}
+		
+		IsRepo.insertQuestion_Time(question_Time);
+		int lastSeqNum=IsRepo.getLastSeqNum();
+		
+		String getQuestion=question.getQuestion();
+		String [] arrGetQuestion=getQuestion.split(",");
+		Question que=new Question();
+		for(String temp : arrGetQuestion){
+			que.setQuestion(temp);
+			que.setQuestionTimeNum(lastSeqNum);
+			System.out.println(que);
+			IsRepo.insertQuestion(que);
+		}
+		
+		
+		 
+		
+		return "/survey/survey_list";
+	}
+	
+	
 
 	@RequestMapping(value = "/gosurvey_Detail", method = RequestMethod.GET)
 	public String gosurvey_Detail(Model model, Question_Time question_Time) {
@@ -163,6 +212,11 @@ public class SurveyController {
 	      String times = format.format(time.getTime());
 	     
 	      model.addAttribute("times", times);
+	      
+	      Item getOneItem=Irepo.getOneItemByItemNum(item);
+	      model.addAttribute("getOneItem", getOneItem);
+	      System.out.println(getOneItem);
+	      
 		return "/survey/survey_form";
 	}
 	

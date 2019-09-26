@@ -175,7 +175,7 @@
 
 </tbody>
 
- <  <tbody class="tbody">
+   <tbody class="tbody">
   <c:forEach var="qTotal" items="${qTotalList}" varStatus="status">
     <tr>
       <th scope="row"> <a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span>${status.count} </span> </a></th>

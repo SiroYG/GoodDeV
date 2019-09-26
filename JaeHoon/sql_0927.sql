@@ -16,7 +16,7 @@ DROP TABLE DOCUMENT CASCADE CONSTRAINTS;
 DROP TABLE PATENTSUB CASCADE CONSTRAINTS;
 DROP TABLE devMember CASCADE CONSTRAINTS;
 DROP TABLE officialFile CASCADE CONSTRAINTS;
-
+DROP TABLE PATENT CASCADE CONSTRAINTS;
 
 
 
@@ -83,6 +83,7 @@ CREATE SEQUENCE officalFile_seq;
 
 
 
+
 /* Create Tables */
 
 CREATE TABLE BOARD
@@ -98,8 +99,6 @@ CREATE TABLE BOARD
 	boardDate date DEFAULT SYSDATE NOT NULL,
 	PRIMARY KEY (boardNum)
 );
-
-
 
 
 CREATE TABLE CROWDFUNDING
@@ -118,6 +117,7 @@ CREATE TABLE CROWDFUNDING
 	PRIMARY KEY (crowdfundingNum)
 );
 
+
 CREATE TABLE devMember
 (
 	memberId varchar2(20) NOT NULL,
@@ -125,7 +125,7 @@ CREATE TABLE devMember
 	memberType varchar2(20) NOT NULL,
 	email varchar2(20) NOT NULL,
 	fundPrice number,
-	memberName varchar2(20) NOT NULL,
+	memberName varchar2(500) NOT NULL,
 	phoneNum varchar2(20) NOT NULL,
 	PRIMARY KEY (memberId)
 );
@@ -135,8 +135,9 @@ CREATE TABLE DOCUMENT
 (
 	DocumentNum number NOT NULL,
 	PatentsubNum number NOT NULL,
-	documentFilename varchar2(1000) NOT NULL,
-	saveDocumentFilename varchar2(1000) UNIQUE NOT NULL,
+	documentFilename varchar2(100),
+	saveDocumentFilename varchar2(100) UNIQUE,
+	itemNum number NOT NULL,
 	PRIMARY KEY (DocumentNum)
 );
 
@@ -168,8 +169,8 @@ CREATE TABLE HISTORY
 	historyNum number NOT NULL,
 	itemNum number NOT NULL,
 	comments varchar2(300),
-	itemVersion number NOT NULL,
-	historyDate nvarchar2(100) NOT NULL,
+	itemVersion varchar2(20) NOT NULL,
+	historyDate date NOT NULL,
 	PRIMARY KEY (historyNum)
 );
 
@@ -184,10 +185,10 @@ CREATE TABLE ITEM
 	price number NOT NULL,
 	itemContent varchar2(300) NOT NULL,
 	itemRegDate date,
-	itemImagename varchar2(1000),
-	saveItemImage varchar2(1000) UNIQUE,
-	documentFilename varchar2(1000),
-	saveDocumentFilename varchar2(1000) UNIQUE,
+	itemImagename varchar2(100),
+	saveItemImage varchar2(100) UNIQUE,
+	documentFilename varchar2(100),
+	saveDocumentFilename varchar2(100) UNIQUE,
 	PRIMARY KEY (itemNum)
 );
 
@@ -220,8 +221,8 @@ CREATE TABLE PATENTSUB
 	PatentsubNum number NOT NULL,
 	patentNum varchar2(100) NOT NULL,
 	memberId varchar2(20) NOT NULL,
-	referenceFilename varchar2(1000),
-	saveReferenceFilename varchar2(1000) UNIQUE,
+	referenceFilename varchar2(100),
+	saveReferenceFilename varchar2(100) UNIQUE,
 	PRIMARY KEY (PatentsubNum)
 );
 
@@ -254,8 +255,8 @@ CREATE TABLE QUESTION_TIME
 	questionTitle varchar2(300) NOT NULL,
 	-- 설문추가 설명
 	description varchar2(1000),
-	startDate date NOT NULL,
-	dueDate date DEFAULT SYSDATE NOT NULL,
+	startDate varchar2(20) NOT NULL,
+	dueDate varchar2(20) DEFAULT 'SYSDATE' NOT NULL,
 	etc varchar2(1000),
 	memberId varchar2(20) NOT NULL,
 	PRIMARY KEY (questionTimeNum)

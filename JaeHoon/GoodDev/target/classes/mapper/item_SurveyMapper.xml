@@ -16,9 +16,6 @@
 		,description
 		,startDate
 		,dueDate
-		<if test="etc!=''">
-		,etc
-		</if>
 		,memberId
 		)
 		VALUES (
@@ -28,9 +25,6 @@
 		,#{description}
 		,#{startDate}
 		,#{dueDate}
-			<if test="etc!=''">
-		,#{etc}
-		</if>
 		,#{memberId}
 		)
 	</insert>
@@ -201,6 +195,9 @@
 	<select id="getQuestionByQuestionNum" parameterType="Question" resultType="Question">
 	select * from Question where questionNum=#{questionNum}
 	
+	 </select>
+	 <select id="getLastSeqNum" resultType="int">
+	 select last_number from user_sequences where sequence_name=upper('question_Time_seq')
 	 </select>
 
 </mapper>
