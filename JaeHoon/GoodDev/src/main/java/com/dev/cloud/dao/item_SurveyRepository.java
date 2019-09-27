@@ -230,6 +230,19 @@ public class item_SurveyRepository implements item_SurveyMapper{
 	}
 
 	
+	@Override
+	public Question_Time getQuestionTimeNumByItemNumandTitle(Question_Time question_Time) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		Question_Time result=null;
+		try {
+			 result=mapper.getQuestionTimeNumByItemNumandTitle(question_Time);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	
 	
 
 	

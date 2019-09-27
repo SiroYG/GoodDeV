@@ -16,9 +16,6 @@
 		,description
 		,startDate
 		,dueDate
-		<if test="etc!=''">
-		,etc
-		</if>
 		,memberId
 		)
 		VALUES (
@@ -28,9 +25,6 @@
 		,#{description}
 		,#{startDate}
 		,#{dueDate}
-			<if test="etc!=''">
-		,#{etc}
-		</if>
 		,#{memberId}
 		)
 	</insert>
@@ -166,7 +160,7 @@
 	
 	<select id="selectAllQuestion_TimeById" parameterType="Question_Time"
 		resultType="QuestionTotal">
-			select i.itemtype, q.questiontitle, q.memberid, q.startdate, q.questionTimeNum
+			select i.itemtype, q.questiontitle, q.memberid, q.startdate, q.questionTimeNum, q.dueDate
 		from Question_Time q join item i using (itemNum)
 		<choose>
 		<when test="memberId!=null">
@@ -202,6 +196,11 @@
 	select * from Question where questionNum=#{questionNum}
 	
 	 </select>
+	
+	
+	<select id="getQuestionTimeNumByItemNumandTitle" parameterType="Question_Time" resultType="Question_Time">
+	select QuestionTimeNum from Question_Time where itemNum=#{itemNum} and questionTitle=#{questionTitle}
+	</select>
 
 </mapper>
 

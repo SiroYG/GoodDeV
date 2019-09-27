@@ -265,7 +265,7 @@
                 <div class="col-sm-10">
                     <a href="#" class="btns btn-3" id="insertSurveyButton"><span class="white">&nbsp;&nbsp;작성하기&nbsp;&nbsp;</span></a> 
                     &nbsp;&nbsp; 
-                    <a href="gosurveylist" class="btns btn-3-red" style="margin-top: 0;"><span class="white">&nbsp;&nbsp;취소&nbsp;&nbsp;</span></a>
+                    <a href="/cloud/survey/goSurvey_list" class="btns btn-3-red" style="margin-top: 0;"><span class="white">&nbsp;&nbsp;취소&nbsp;&nbsp;</span></a>
                 </div>
 
             </div>

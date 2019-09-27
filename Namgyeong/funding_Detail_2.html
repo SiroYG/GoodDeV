@@ -43,14 +43,38 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="funding.css">
     <link rel="stylesheet" href="chat.css">
-    
+
     <script>
-        $(function(){
-            $('.chat_people').on('click', function(){
+        $(function() {
+            var chat = '';
+            var msg = '';
+
+            $('#popup').on('click', function() {
+                window.open("/chat_popup.html", "PopupWin", "width=500,height=600");
+            });
+
+            $('.chat_people').on('click', function() {
                 $(this).parent().css("background-color", "#ebebeb");
                 $('mesgs').attr('disabled', 'disabled');
-                $('.chat_people').not(this).parent().css("background-color", "#f8f8f8"); 
+                $('.chat_people').not(this).parent().css("background-color", "#f8f8f8");
             });
+
+            $('#msg_send_btn').on('click', function() {
+                msg = $('#write_msg').val();
+
+                chat += '<div class = "outgoing_msg" >';
+                chat += '<div class = "sent_msg" >';
+                chat += '<p>' + msg + '</p>';
+                chat += '<span class = "time_date" >' + '18: 47 | 09 / 26' + '</span>';
+                chat += '</div> </div>';
+                
+                //$('#msg_history').append(chat);
+                $(chat).appendTo('#msg_history');
+                chat = '';
+                msg = '';
+
+            });
+
         });
     </script>
 
@@ -170,8 +194,8 @@
                                         <hr>
                                         <button type="button" class="btns btn-3-green" data-toggle="modal" data-target="#exampleModal">결제하기
                                         </button>
-                                        &nbsp; &nbsp; 
-                                        <button type="button" class="btns btn-3-green" onclick="location.href='funding_Detail_2.html#container_chat'">1 : 1 채팅</button>
+                                        &nbsp; &nbsp;
+                                        <button type="button" class="btns btn-3-green" onclick="location.href='funding_Detail_2.html#container_chat'">1 : 1 채팅</button> <button type="button" class="btns btn-3-green" id="popup">채팅 팝업</button>
                                     </div>
                                     <!--Content-->
 
@@ -185,44 +209,32 @@
 
                             <!--Grid row-->
                             <div class="row d-flex justify-content-center wow fadeIn">
-
                                 <!--Grid column-->
                                 <div class="col-md-6 text-center">
-
                                     <h4 class="my-4 h4">(non-title2)</h4>
-
                                     <p>(fundingContents)</p>
-
                                 </div>
                                 <!--Grid column-->
-
                             </div>
                             <!--Grid row-->
 
                             <!--Grid row-->
                             <div class="row wow fadeIn">
-
                                 <!--Grid column-->
                                 <div class="col-lg-4 col-md-12 mb-4">
-
                                     <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
-
                                 </div>
                                 <!--Grid column-->
 
                                 <!--Grid column-->
                                 <div class="col-lg-4 col-md-6 mb-4">
-
                                     <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
-
                                 </div>
                                 <!--Grid column-->
 
                                 <!--Grid column-->
                                 <div class="col-lg-4 col-md-6 mb-4">
-
                                     <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
-
                                 </div>
                                 <!--Grid column-->
 
@@ -240,22 +252,23 @@
                                     <div class="inbox_people" id="">
                                         <div class="headind_srch">
                                             <!--<div class="recent_heading">-->
-                                            <h4>1 : 1 채팅 참여자 목록</h4>
+                                            <h5>1 : 1 채팅 참여자 목록</h5>
                                             <!--</div>-->
                                             <!--<div class="srch_bar">
-              <div class="stylish-input-group">
-                <input type="text" class="search-bar"  placeholder="Search" >
-                <span class="input-group-addon">
-                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </span> </div>
-            </div>-->
+                                                <div class="stylish-input-group">
+                                                    <input type="text" class="search-bar" placeholder="Search">
+                                                    <span class="input-group-addon">
+                                                        <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                                                    </span> </div>
+                                            </div> -->
+
                                         </div>
                                         <div class="inbox_chat">
                                             <div class="chat_list">
                                                 <div class="chat_people">
                                                     <div class="chat_ib">
                                                         <h5>[memberName] <span class="chat_date">09 / 25</span></h5>
-                                                        <p>[방장(?)은 별도 표시를 해줘야 할까요]</p>
+                                                        <p>[chat_Content]</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -303,14 +316,14 @@
                                                 <div class="chat_people">
                                                     <div class="chat_ib">
                                                         <h5>[memberId] <span class="chat_date">09 / 25</span></h5>
-                                                       <p>[chat_Content]</p>
+                                                        <p>[chat_Content]</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mesgs" id="mesgs" disabled="disabled">
-                                        <div class="msg_history">
+                                        <div class="msg_history" id="msg_history">
                                             <div class="incoming_msg">
                                                 <div class="received_msg">
                                                     <div class="received_withd_msg">
@@ -336,7 +349,7 @@
                                             <div class="outgoing_msg">
                                                 <div class="sent_msg">
                                                     <p>...</p>
-                                                   <span class="time_date"> 18:47 | 09 / 26</span>
+                                                    <span class="time_date"> 18:47 | 09 / 26</span>
                                                 </div>
                                             </div>
                                             <div class="incoming_msg">
@@ -350,8 +363,9 @@
                                         </div>
                                         <div class="type_msg">
                                             <div class="input_msg_write">
-                                                <input type="text" class="write_msg" placeholder="메시지를 입력하세요." />
-                                                <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                                                <input type="text" id="write_msg" class="write_msg" placeholder="메시지를 입력하세요." />
+                                                <button class="msg_send_btn" id="msg_send_btn" type="button">▲
+                                                    <!--<i class="fa fa-paper-plane-o" aria-hidden="true"></i>--></button>
                                             </div>
                                         </div>
                                     </div>
@@ -365,98 +379,6 @@
         </div>
 
     </section>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">결제 확인</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="card-body p-5">
-
-                        <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
-                                    <i class="fa fa-credit-card"></i> Credit Card</a></li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
-                                    <i class="fa fa-university"></i> Bank Transfer</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="nav-tab-card">
-                                <!--<p class="alert alert-success">결제 완료</p>-->
-                                <p class="alert alert-danger">결제 정보를 다시 한번 확인해주세요.</p>
-                                <form action="" method="post" id="" role="form" class="needs-validation">
-                                    <div class="form-group">
-                                        <label for="username">이름</label>
-                                        <input type="text" class="form-control" name="username" placeholder="" required>
-                                    </div> <!-- form-group.// -->
-
-                                    <div class="form-group">
-                                        <label for="cardNumber">카드 번호</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="cardNumber" placeholder="" required>
-                                            <div class="input-group-append">
-                                                <div class="invalid-feedback">
-                                                    카드 번호를 입력해주세요
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> <!-- form-group.// -->
-
-                                    <div class="row">
-                                        <div class="col-sm-8">
-                                            <div class="form-group">
-                                                <label><span class="hidden-xs">유효 기한</span> </label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="MM" name="" required>
-                                                    <input type="text" class="form-control" placeholder="YY" name="" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV </label>
-                                                <input type="text" class="form-control" required>
-                                            </div> <!-- form-group.// -->
-                                        </div>
-                                    </div> <!-- row.// -->
-                                    <button class="subscribe btn btn-submit btn-block" type="button"> 결제하기 </button>
-                                </form>
-                            </div> <!-- tab-pane.// -->
-                            <div class="tab-pane fade" id="nav-tab-bank">
-                                <p>무통장입금을 원하실 경우 다음 계좌를 참고하세요.<br></p>
-                                <dl class="param">
-                                    <dd>은행 : <b>국민은행</b></dd>
-                                </dl>
-                                <dl class="param">
-                                    <dd>계좌번호 : <b>123-456-7891</b></dd>
-                                </dl>
-                                <dl class="param">
-                                    <dd>예금주 : <b>홍길동</b></dd>
-                                </dl>
-                            </div> <!-- tab-pane.// -->
-                        </div> <!-- tab-content .// -->
-
-                    </div> <!-- card-body.// -->
-                </div>
-                <div class="modal-footer">
-                    <!--<button type="button" class="btn btn-outline-info">결제하기</button>-->
-                    <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-
-
 
     <!-- SCRIPTS -->
     <!-- JQuery -->

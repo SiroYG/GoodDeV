@@ -22,65 +22,14 @@ DROP TABLE PATENT CASCADE CONSTRAINTS;
 
 /* Drop Sequences */
 
-DROP SEQUENCE BOARD_seq;
+DROP SEQUENCE SEQ_deapartment_departno;
 
-DROP SEQUENCE CROWDFUNDING_seq;
 
-DROP SEQUENCE DOCUMENT_seq;
 
-DROP SEQUENCE QUESTION_TIME_seq;
-
-DROP SEQUENCE HISTORY_seq;
-
-DROP SEQUENCE ITEM_seq;
-
-DROP SEQUENCE SURVEY_seq;
-
-DROP SEQUENCE QUESTION_seq;
-
-DROP SEQUENCE MTI_seq;
-
-DROP SEQUENCE PATENTSUB_seq;
-
-DROP SEQUENCE PTI_seq;
-
-DROP SEQUENCE REPLY_seq;
-
-DROP SEQUENCE FundingTable_seq;
-
-DROP SEQUENCE fundingOption_seq;
-
-DROP SEQUENCE officalFile_seq;
 
 /* Create Sequences */
-CREATE SEQUENCE BOARD_seq;
 
-CREATE SEQUENCE CROWDFUNDING_seq;
-
-CREATE SEQUENCE DOCUMENT_seq;
-
-CREATE SEQUENCE QUESTION_TIME_seq;
-
-CREATE SEQUENCE HISTORY_seq;
-
-CREATE SEQUENCE ITEM_seq;
-
-CREATE SEQUENCE SURVEY_seq;
-
-CREATE SEQUENCE QUESTION_seq;
-
-CREATE SEQUENCE PATENTSUB_seq;
-
-CREATE SEQUENCE PTI_seq;
-
-CREATE SEQUENCE REPLY_seq;
-
-CREATE SEQUENCE FundingTable_seq;
-
-CREATE SEQUENCE fundingOption_seq;
-
-CREATE SEQUENCE officalFile_seq;
-
+CREATE SEQUENCE SEQ_deapartment_departno INCREMENT BY 1 START WITH 1;
 
 
 
@@ -137,6 +86,7 @@ CREATE TABLE DOCUMENT
 	PatentsubNum number NOT NULL,
 	documentFilename varchar2(100),
 	saveDocumentFilename varchar2(100) UNIQUE,
+	itemNum number NOT NULL,
 	PRIMARY KEY (DocumentNum)
 );
 
@@ -254,8 +204,8 @@ CREATE TABLE QUESTION_TIME
 	questionTitle varchar2(300) NOT NULL,
 	-- 설문추가 설명
 	description varchar2(1000),
-	startDate date NOT NULL,
-	dueDate date DEFAULT SYSDATE NOT NULL,
+	startDate varchar2(20) NOT NULL,
+	dueDate varchar2(20) DEFAULT 'SYSDATE' NOT NULL,
 	etc varchar2(1000),
 	memberId varchar2(20) NOT NULL,
 	PRIMARY KEY (questionTimeNum)

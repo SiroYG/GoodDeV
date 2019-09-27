@@ -95,6 +95,11 @@
 
 	</update>
 
+	<select id="getOneItemByItemNum" parameterType="Item" resultType="Item">
+		select * from Item where itemNum=#{itemNum}
+	</select>
+	
+	
 </mapper>
 
 	

@@ -23,4 +23,7 @@ public interface itemMapper {
 	
 	//아이템삭제(itemName='none')
 	public int deleteItem(Item item);
+	
+	//아이템한개번호로가져오기
+	public Item getOneItemByItemNum(Item item);
 }

@@ -42,11 +42,8 @@ public class SurveyController {
 
 	@RequestMapping(value = "/goSurvey_list", method = RequestMethod.GET)
 	public String goSurvey_list(HttpSession session, Model model) {
-		System.out.println("line 32");
 
 		Question_Time qTime = new Question_Time();
-		System.out.println("line 35");
-
 		ArrayList<QuestionTotal> qTotalList = new ArrayList<>();
 		qTotalList = IsRepo.selectAllQuestion_TimeById(qTime);
 		model.addAttribute("qTotalList", qTotalList);
@@ -54,14 +51,64 @@ public class SurveyController {
 		item.setMemberId((String)session.getAttribute("loginId"));
 		ArrayList<Item> iList=Irepo.getItemByMemberId(item);
 		model.addAttribute("iList", iList);
-		if (qTotalList.size() != 0) {
-			for (QuestionTotal q : qTotalList) {
-				System.out.println(q.toString());
-			}
-		}
+//		
+//		System.out.println(qTotalList);
+//		if (qTotalList.size() != 0) {
+//			for (QuestionTotal q : qTotalList) {
+//				System.out.println(q.toString());
+//			}
+//		}
 
 		return "/survey/survey_list";
 	}
+	@RequestMapping(value = "/goSurvey_list", method = RequestMethod.POST)
+	public String goSurvey_list( HttpSession session, Model model, Question_Time question_Time , Question question) {
+		System.out.println("line64 : "+question_Time);
+		
+		IsRepo.insertQuestion_Time(question_Time);
+		
+		Question_Time questionTimeNum=IsRepo.getQuestionTimeNumByItemNumandTitle(question_Time);
+		System.out.println(questionTimeNum);
+		String getQeustion=question.getQuestion();
+		String [] arrGetQuestion=getQeustion.split(",");
+		Question que=new Question();
+		for(String temp : arrGetQuestion){
+			que.setQuestion(temp);
+			que.setQuestionTimeNum(questionTimeNum.getQuestionTimeNum());
+			System.out.println("line77 : "+que);
+			IsRepo.insertQuestion(que);
+		}
+		
+//		
+//		Question_Time qTime = new Question_Time();
+//		ArrayList<QuestionTotal> qTotalList = new ArrayList<>();
+//		qTotalList = IsRepo.selectAllQuestion_TimeById(qTime);
+//		model.addAttribute("qTotalList", qTotalList);
+//
+//		for(QuestionTotal temp : qTotalList){
+//			System.out.println("check"+temp);
+//		}
+//		
+//		
+//		Item item=new Item();
+//		item.setMemberId((String)session.getAttribute("loginId"));
+//		ArrayList<Item> iList=Irepo.getItemByMemberId(item);
+//		model.addAttribute("iList", iList);
+//		if (qTotalList.size() != 0) {
+//			for (QuestionTotal q : qTotalList) {
+//				System.out.println(q.toString());
+//			}
+//		}
+		
+		
+		
+		
+		 
+		
+		return "redirect:goSurvey_list";
+	}
+	
+	
 
 	@RequestMapping(value = "/gosurvey_Detail", method = RequestMethod.GET)
 	public String gosurvey_Detail(Model model, Question_Time question_Time) {
@@ -70,24 +117,29 @@ public class SurveyController {
 		ArrayList<Question> qList = new ArrayList<>();
 
 		Question_Time qTime = new Question_Time();
-		System.out.println("61line" + question_time);
+		System.out.println("61line : " + question_time);
 		qTime = IsRepo.getQuestion_TimeByQuestion_TimeNum(question_time);
 
 		Question Qtemp=new Question();
+		System.out.println("124line : "+question_Time.getQuestionTimeNum());
 		Qtemp.setQuestionTimeNum(question_Time.getQuestionTimeNum());
+		
 		qList = IsRepo.getQuestionByQuestionTimeNum(Qtemp);
+		System.out.println("127line : "+qList);
+		
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd (E) ");
 	      Calendar time = Calendar.getInstance();
 	      String times = format.format(time.getTime());
-		
+	      
+	      
 		model.addAttribute("qTime", qTime);
 		model.addAttribute("qList", qList);
 		model.addAttribute("qtnum", question_Time.getQuestionTimeNum());
 	    model.addAttribute("time", times);
-		System.out.println("65line"+question_Time.getQuestionTimeNum());
-		System.out.println("65line qTime" + qTime);
+		System.out.println("65line :"+question_Time.getQuestionTimeNum());
+		System.out.println("65line qTime : " + qTime);
 
-		System.out.println("67line qList" + qList);
+		System.out.println("67line qList : " + qList);
 	
 
 
@@ -96,10 +148,10 @@ public class SurveyController {
 	@RequestMapping(value = "/insertSurveyDatas", method = RequestMethod.POST)
 //	public String insertSurveyDatas(Model model, @RequestParam HashMap<String, String> hashMap) {
 	public String insertSurveyDatas(Model model) {	
-		System.out.println("zzzzzzzzzzzzzzzz");
 		
 		
-		return "/survey/survey_list";
+		
+		return "redirect:goSurvey_list";
 		}
 
 		
@@ -163,8 +215,30 @@ public class SurveyController {
 	      String times = format.format(time.getTime());
 	     
 	      model.addAttribute("times", times);
+	      
+	      Item getOneItem=Irepo.getOneItemByItemNum(item);
+	      model.addAttribute("getOneItem", getOneItem);
+	      System.out.println(getOneItem);
+	      
 		return "/survey/survey_form";
 	}
 	
+	@RequestMapping(value = "/getSurveyListById", method = RequestMethod.GET)
+	@ResponseBody
+	public List<QuestionTotal> getSurveyListById(Model model, HttpSession session) {
+		System.out.println("229line");
+		List<QuestionTotal> qtList=new ArrayList<QuestionTotal>();
+		Question_Time qtime=new Question_Time();
+		String memberId=(String) session.getAttribute("loginId");
+		
+		qtime.setMemberId(memberId);
+		System.out.println("235line"+qtList);
+		qtList=IsRepo.selectAllQuestion_TimeById(qtime);
+		System.out.println(qtList+"<-----size");
+		return qtList;
+	
+	
+	
+	}
 	
 }

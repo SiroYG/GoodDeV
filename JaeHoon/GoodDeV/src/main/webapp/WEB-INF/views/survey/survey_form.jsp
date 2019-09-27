@@ -32,17 +32,12 @@
     <script>
     $(function(){
     	
-    	$(document).on('click','.btns btn-3', function(){
+    	$('#executeForm').on('click', function(){
+    		alert("ok")
+    		$('#goSurvey_list').submit();
+    		
     	
-    		$(function(){
-    			
-    		})
-    		var question=$("#question").val();
-        	alert(question);
-        	
-    	} )
-    	
-    	
+    	});
     });
     
     
@@ -103,11 +98,12 @@
     <hr class="hr_purple">
 
     <div class="write_table">
-        <form action="" method="POST" id="">
+        <form action="/cloud/survey/goSurvey_list" method="POST" id="goSurvey_list">
+        <input type="hidden" name="itemNum" value="${getOneItem.itemNum}">
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>시작일</b></span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="writtenDate" id="" placeholder="${times}" readonly="readonly">
+                    <input type="text" class="form-control" name="startDate" id="" value="${times}" readonly="readonly">
 
                 </div>
             </div>
@@ -121,33 +117,28 @@
             <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>작성자</b></span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="memberId" id="" placeholder="${sessionScope.loginId}" readonly="readonly">
+                    <input type="text" class="form-control" name="memberId" id="" value="${sessionScope.loginId}" readonly="readonly">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>제목</b></span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="itemName" id="itemName" placeholder="제목을 입력해주세요">
+                    <input type="text" class="form-control" name="questionTitle" id="questionTitle" placeholder="제목을 입력해주세요">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>시제품 설명</b></span></label>
                 <div class="col-sm-10">
-                    <textarea rows="8" cols="112" class="form-control" name="itemContent" id="itemContent" placeholder=""></textarea>
+                    <textarea rows="8" cols="112" class="form-control" name="itemContent" id="itemContent"  readonly="readonly">${getOneItem.itemContent}</textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>부가설명</b></span></label>
                 <div class="col-sm-10">
-                    <textarea rows="8" cols="112" class="form-control" name="description" id="description" placeholder=""></textarea>
+                    <textarea rows="8" cols="112" class="form-control" name="description" id="description" placeholder="부가설명을 입력해주세요"></textarea>
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label"><span><b>파일 업로드</b></span></label>
-                <div class="col-sm-10">
-                    <input type="file" class="form-control" id="itemImagename" name="itemImagename" placeholder="">
-                </div>
-            </div>
+            
             
             <hr class="hr_navy">
             
@@ -237,8 +228,8 @@
 <br><br>
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <a href="#" class="btns btn-3"><span class="white">&nbsp;&nbsp;작성하기&nbsp;&nbsp;</span></a> &nbsp;&nbsp; <a href="survey_list.html" class="btns btn-3-red" style="margin-top: 0;"><span class="white">&nbsp;&nbsp;취소&nbsp;&nbsp;</span></a>
-                    <a href="goSurvey_list" class="goSurvey_list">
+                    <a href="#" class="btns btn-3" id="executeForm"><span class="white">&nbsp;&nbsp;작성하기&nbsp;&nbsp;</span></a> &nbsp;&nbsp; <a href="survey_list.html" class="btns btn-3-red" style="margin-top: 0;"><span class="white">&nbsp;&nbsp;취소&nbsp;&nbsp;</span></a>
+                    <a href="/cloud/survey/goSurvey_list" class="goSurvey_list">
                 </div>
 
             </div>

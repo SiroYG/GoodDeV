@@ -55,5 +55,8 @@ public interface item_SurveyMapper {
 	
 	public Question getQuestionByQuestionNum(Question question);
 	
+	public Question_Time getQuestionTimeNumByItemNumandTitle(Question_Time question_Time);
+	
+	
 	 
 }
