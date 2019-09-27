@@ -9,6 +9,7 @@
 	insert into Document (
 		DocumentNum
 		,PatentsubNum
+		,itemNum
 		<choose>
 		<when test="documentFilename!=''">
 		,documentFilename
@@ -26,6 +27,7 @@
 		)VALUES (
 		Document_seq.NEXTVAL
 		,#{PatentsubNum}
+		,#{itemNum}
 		<choose>
 		<when test="documentFilename!=''">
 		,#{documentFilename}

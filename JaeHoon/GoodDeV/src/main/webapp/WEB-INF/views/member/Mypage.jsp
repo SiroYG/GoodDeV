@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
@@ -49,12 +49,49 @@
 	var pageSu;
 	$(function() {
 
+		
+		
+		
 		$('#patentList').on('click', function() {
+			alert("hi");
 			pageSu = 9;
-			patentTable(pageSu);
+			patentTable(pageSu)
 		});
+		
+		
+		$('#shape-survey').on('click',  function() {
+			
+			$.ajax({
+				url : '/cloud/survey/getSurveyListById',
+				type : 'get',
+				success : outputServey
+				
+			})
+			
+		})
+			
+			
+		
+		
 
 	});
+// 	jQuery(document).on('click', '#shape-survey', function() {
+// 		alert("hi");
+// 		$.ajax({
+// 			url : 'getSurveyListById',
+// 			type : 'get',
+// 			success : outputServey(res)
+			
+// 		})
+		
+// 	});
+
+	
+	
+	
+	
+	
+	
 	jQuery(document).on('click', '#rightBtn', function() {
 		pageSu += 10;
 		$.ajax({
@@ -164,6 +201,24 @@
 		tag += '</div>'
 		$('#section-bar-patent').html(tag);
 	}
+	
+	function outputServey(res){
+		
+		var tag = '';
+		$.each(res, function(i, item) {
+			i+=1;
+			tag += '<tr>'
+				tag += '<th scope="row" >'+i+'</th>'
+				tag += '<td name="questionTitle"><a href="gosurvey_result?questionTimeNum='+item.questionTimeNum+'">'+item.questionTitle+'</a></td>'
+				tag += '<td name="startDate"><a href="gosurvey_result?questionTimeNum='+item.questionTimeNum+'">'+item.startDate+'</td>';
+				tag += '<td name="dueDate"><a href="gosurvey_result?questionTimeNum='+item.questionTimeNum+'">'+item.dueDate+'</td>';
+				tag += '</tr>';
+		
+				$('.surveyTbody').html(tag);
+		})
+		
+	}
+	
 </script>
 
 </head>
@@ -227,7 +282,7 @@
 							preserveAspectRatio="none"> <use xlink:href="#tabshape"></use>
 						</svg> <span><b>시제품, 출시품 등록 현황</b></span>
 				</a></li>
-				<li><a href="#section-shape-survey"> <svg
+				<li><a href="#section-shape-survey" id="shape-survey"> <svg
 							viewBox="0 0 80 60" preserveAspectRatio="none"> <use
 							xlink:href="#tabshape"></use> </svg> <svg viewBox="0 0 80 60"
 							preserveAspectRatio="none"> <use xlink:href="#tabshape"></use>
@@ -331,84 +386,21 @@
 					<thead class="navy">
 						<tr>
 							<th scope="col">No.</th>
-							<th scope="col">분류</th>
 							<th scope="col">제목</th>
 							<th scope="col">시작일</th>
-							<th scope="col">마김일</th>
+							<th scope="col">마감일</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<th scope="row" name="boardNum">1</th>
-							<td name="qCategory">[일반]</td>
-							<td name="title"><a href="survey_list.html"
-								class="mypage-link">aaaaaaaaaaaaaaaaaaa</a></td>
-							<td name="id">ididid</td>
-							<td name="boardDate">2019-09-09</td>
-						</tr>
-						<tr>
-							<th scope="row" name="boardNum">2</th>
-							<td name="qCategory">[특허]</td>
-							<td name="title">bbbbbbbbbbb</td>
-							<td name="id">ottotto</td>
-							<td name="boardDate">2019-09-07</td>
-						</tr>
-						<tr>
-							<th scope="row" name="boardNum">3</th>
-							<td name="qCategory">Mark</td>
-							<td name="title">aaaa</td>
-							<td name="id">Otto</td>
-							<td name="boardDate">@mdo</td>
-						</tr>
-						<tr>
-							<th scope="row" name="boardNum">4</th>
-							<td name="qCategory">Mark</td>
-							<td name="title">aaaa</td>
-							<td name="id">Otto</td>
-							<td name="boardDate">@mdo</td>
-						</tr>
-						<tr>
-							<th scope="row" name="boardNum">5</th>
-							<td name="qCategory">Mark</td>
-							<td name="title">aaaa</td>
-							<td name="id">Otto</td>
-							<td name="boardDate">@mdo</td>
-						</tr>
-						<tr>
-							<th scope="row" name="boardNum">6</th>
-							<td name="qCategory">Mark</td>
-							<td name="title">aaaa</td>
-							<td name="id">Otto</td>
-							<td name="boardDate">@mdo</td>
-						</tr>
-						<tr>
-							<th scope="row" name="boardNum">7</th>
-							<td name="qCategory">Mark</td>
-							<td name="title">aaaa</td>
-							<td name="id">Otto</td>
-							<td name="boardDate">@mdo</td>
-						</tr>
-						<tr>
-							<th scope="row" name="boardNum">8</th>
-							<td name="qCategory">Mark</td>
-							<td name="title">aaaa</td>
-							<td name="id">Otto</td>
-							<td name="boardDate">@mdo</td>
-						</tr>
-						<tr>
-							<th scope="row" name="boardNum">9</th>
-							<td name="qCategory">Mark</td>
-							<td name="title">aaaa</td>
-							<td name="id">Otto</td>
-							<td name="boardDate">@mdo</td>
-						</tr>
-						<tr>
-							<th scope="row" name="boardNum">10</th>
-							<td name="qCategory">Mark</td>
-							<td name="title">aaaa</td>
-							<td name="id">Otto</td>
-							<td name="boardDate">@mdo</td>
-						</tr>
+					<tbody class="surveyTbody">
+<!-- 						<tr> -->
+<!-- 							<th scope="row" name="boardNum">1</th> -->
+<!-- 							<td name="qCategory">[일반]</td> -->
+<!-- 							<td name="title"><a href="survey_list.html" -->
+<!-- 								class="mypage-link">aaaaaaaaaaaaaaaaaaa</a></td> -->
+<!-- 							<td name="id">ididid</td> -->
+<!-- 							<td name="boardDate">2019-09-09</td> -->
+<!-- 						</tr> -->
+						
 
 					</tbody>
 				</table>
