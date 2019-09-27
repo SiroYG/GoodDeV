@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="ChatRoomVO" type="com.message.domain.ChatRoomVO" />
+		<typeAlias alias="MessageVO" type="com.message.domain.MessageVO" />
+		<typeAlias alias="UserVO" type="com.message.domain.UserVO" />
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="mapper/ChatMapper.xml" />
+	</mappers>
+
+</configuration>

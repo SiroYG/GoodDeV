@@ -255,7 +255,7 @@
                                             </div> <!-- form-group.// -->
                                         </div>
                                     </div> <!-- row.// -->
-                                    <button onClick="paycheck()" type="submit" class="subscribe btn btn-submit btn-block"> 결제하기 </button>
+                                    <button onClick="paycheck()" type="submit" class="subscribe btn btn-submit btn-block" data-dismiss="modal"> 결제하기 </button>
                                 </form>
                             </div> <!-- tab-pane.// -->
                             <div class="tab-pane fade" id="nav-tab-bank">
@@ -399,7 +399,7 @@
 				alert("전화번호가 입력되지 않았습니다.");
 				return ;
 			}
-    	var paywin = window.open('about:blank', 'payment', 'location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no, scrollbars=no, width=650, height=480');
+    	var paywin = window.open('payment', 'payment', 'location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no, scrollbars=no, width=650, height=480');
     	var pay =document.pay;
     	pay.action = '/cloud/funding/paymentform';
     	pay.target='payment';
