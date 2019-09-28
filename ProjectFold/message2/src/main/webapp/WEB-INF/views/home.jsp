@@ -5,11 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-widthm, intial-scale=1">
-<link rel="stylesheet" href="/chat/css/bootstrap.css">
-<link rel="stylesheet" href="/chat/css/custom.css">
+<link rel="stylesheet" href="/chat/resources/css/bootstrap.css">
+<link rel="stylesheet" href="/chat/resources/css/custom.css">
 <title>JSP AJAX 실시간 익명 채팅 사이</title>
-<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="/chat/js/bootstrap.js"></script>
+<script src="/chat/resources/js/jquery-3.4.1.min.js"></script>
+<script src="/chat/resources/js/bootstrap.js"></script>
 <script type="text/javascript">	
 	var lastID = 0;
 	function submitFunction(){
@@ -17,7 +17,7 @@
 		var chatContent = $('#chatContent').val();
 		$.ajax({
 			type: "POST",
-			url: "./chatSubmitServlet",
+			url: "/chatSubmitServlet",
 			data: {
 				chatName: encodeURIComponent(chatName),
 				chatContent: encodeURIComponent(chatContent)
@@ -44,7 +44,7 @@
 	function chatListFunction(type){
 		$.ajax({
 			type: "POST",
-			url: "./chatListServlet",
+			url: "/chatListServlet",
 			data: {
 				listType: type,
 			},
@@ -66,7 +66,7 @@
 				'<div class = "col-lg-12">' +
 				'<div class = "media">' +
 				'<a class="pull-left" href="#">' +
-				'<img class="media-object img-circle" src="/chat/images/go.png" alt="">' +
+				'<img class="media-object img-circle" src="/chat/resources/images/go.png" alt="">' +
 				'</a>' +
 				'<div class="media-body">' +
 				'<h4 class="media-heading">' +
