@@ -58,7 +58,10 @@ public class FundingController {
 	public String gofundingform() { // 홈이동 (리다이렉트)
 		return "/funding/funding_form";
 	}
-	
+	@RequestMapping(value = "/fundingChat", method = RequestMethod.GET)
+	public String fundingChat() { // 홈이동 (리다이렉트)
+		return "/funding/chat_popup";
+	}
 	
 	@RequestMapping(value = "fundingListForm", method = RequestMethod.GET)
 	public String boardListForm(@RequestParam(value = "searchItem", defaultValue = "fundingTitle") String searchItem,
