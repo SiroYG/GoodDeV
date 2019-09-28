@@ -72,7 +72,7 @@ public class BoardController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "boardListForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/boardListForm", method = RequestMethod.GET)
 	public String boardListForm(@RequestParam(value = "searchItem", defaultValue = "title") String searchItem,
 			@RequestParam(value = "searchWord", defaultValue = "") String searchWord,
 			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, Model model) {

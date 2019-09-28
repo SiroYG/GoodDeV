@@ -11,6 +11,14 @@
 			<value>classpath:db.properties</value>
 		</property>
 	</bean>
+	
+	<!-- <bean id="propertyConfigurerDB" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+   <property name="locations">
+       <list>
+           <value>classpath:db.properties</value>
+       </list>
+   </property>
+</bean> -->
 
 	<!-- db.properties의 설정 값을 읽어서 setting -->
 	<bean id="dataSource"

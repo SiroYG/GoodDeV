@@ -1,6 +1,12 @@
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css); 
-/*<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>*/ * { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
+@font-face { font-family: 'Eoe_Zno_B'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_B.woff') format('woff'); font-weight: normal; font-style: normal; }
 
+* {
+    font-family: 'Eoe_Zno_B';
+}
+
+body{
+    font-family: 'Eoe_Zno_B';
+}
 /*!
  * Bootstrap v4.2.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -8,9 +14,6 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-body{
-    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
-}
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
