@@ -83,7 +83,7 @@
 	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="/cloud/survey/surveyListForm" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li>
+	          <!-- <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li> -->
 	  			 <c:if test="${sessionScope.loginId==null}">
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
@@ -91,6 +91,7 @@
 						href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
 				</c:if>
 				<c:if test="${sessionScope.loginId!=null}">
+				<li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님, 로그아웃 </a></li>
 					<!-- <li style="margin-left: 20px;" class="nav-item cta"><a
@@ -123,9 +124,6 @@
 			          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
 			            <div class="block-18">
 			              <div class="text">
-			              	<!--<div class="icon d-flex justify-content-center align-items-center">
-			              		<span class="flaticon-house"></span>
-			              	</div>-->
 			                <strong class="number" data-number="158">0</strong>
 			                <span>실제 창업 성공 건수</span>
 			              </div>
@@ -134,9 +132,7 @@
 			          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
 			            <div class="block-18">
 			              <div class="text">
-			              	<!--<div class="icon d-flex justify-content-center align-items-center">
-			              		<span class="flaticon-handshake"></span>
-			              	</div>-->
+			              	<img src="/cloud/resources/images/certifications.png" alt="" class="main_icon">
 			                <strong class="number" data-number="1087">0</strong>
 			                <span>특허 출원 및 <br>사용 허가 합의 건수</span>
 			              </div>
@@ -145,9 +141,6 @@
 			          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
 			            <div class="block-18">
 			              <div class="text">
-			              	<!--<div class="icon d-flex justify-content-center align-items-center">
-			              		<span class="flaticon-lawyer"></span>
-			              	</div>-->
 			                <strong class="number" data-number="564">0</strong>
 			                <span>특허 보유 회원 수</span>
 			              </div>
@@ -156,9 +149,6 @@
 			          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
 			            <div class="block-18">
 			              <div class="text">
-			              	<!--<div class="icon d-flex justify-content-center align-items-center">
-			              		<span class="flaticon-medal"></span>
-			              	</div>-->
 			                <strong class="number" data-number="500">0</strong>
 			                <span>실제 출시 된 상품 건수<!--&amp;--></span>
 			              </div>
@@ -382,7 +372,7 @@
           			<span class="icon-map-signs"></span>
           		</div>
           		<h3 class="mb-4">찾아오는 길</h3>
-	            <p>Class B, 4th floor, 513, Yeongdong-daero, Gangnam-gu, Seoul, Republic of Korea</p>
+	            <p>4th floor, 513, Yeongdong-daero, Gangnam-gu, Seoul, Republic of Korea</p>
 	          </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex ftco-animate">

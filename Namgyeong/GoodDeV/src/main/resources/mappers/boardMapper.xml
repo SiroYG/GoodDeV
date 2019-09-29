@@ -19,7 +19,7 @@
 		TITLE,
 		CONTENT,
 		QTYPE,
-		QCATEGORY,
+		qCategory,
 		originalFilename,
 		saveFilename,
 		to_char(boardDate, 'YYYY-MM-DD') as boardDate
@@ -50,7 +50,7 @@
 		TITLE = #{title},
 		CONTENT = #{content},
 		QTYPE = #{qType},
-		QCATEGORY = #{qCategory}
+		qCategory = #{qCategory}
 		<if test="originalFilename!= null">
 			originalFilename = #{originalFilename},
 			saveFilename = #{saveFilename},

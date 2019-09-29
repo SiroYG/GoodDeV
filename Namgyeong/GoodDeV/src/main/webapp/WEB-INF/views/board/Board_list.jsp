@@ -45,7 +45,7 @@
 	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="/cloud/survey/surveyListForm" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li>
+	          <!-- <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li> -->
 	  			 <c:if test="${sessionScope.loginId==null}">
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
@@ -53,6 +53,7 @@
 						href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
 				</c:if>
 				<c:if test="${sessionScope.loginId!=null}">
+				<li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님, 로그아웃 </a></li>
 					<!-- <li style="margin-left: 20px;" class="nav-item cta"><a
@@ -85,7 +86,7 @@
           </div>
         </div>
   
-  <div class="main_table ftco-animate">
+  <div class="ftco-animate">
    
    <table class="table">
   
@@ -112,7 +113,7 @@
 						<th scope="row" name="boardNum">${stat.count + navi.startRecord}</th>
 						<td>${board.qCategory}</td>
 						<td class="board_title"><a href="boardDetail?boardNum=${board.boardNum}">${board.title}</a></td>
-						<td>${board.id}</td>
+						<td>${board.MEMBERid}</td>
 						<td>${board.boardDate}</td>
 					</tr>
 				</c:forEach>
@@ -146,14 +147,25 @@
       </div>
 <form action="/cloud/board/boardListForm" method="get" class="search-form" id="searchForm">
 <!--Blue select-->
-<select name="searchItem" class="searchItem">
+
+<select class="browser-default custom-select" name="searchItem">
+  <option value="all" selected>전체</option>
+  <option value="title" ${searchItem =='title'?'selected' :''}>제목</option>
+  <option value="content" ${searchItem =='content'? 'selected' :'' }>내용</option>
+  <option value="id" ${searchItem =='userid'?'selected' :'' }>작성자</option>
+</select>
+
+<input type="text" name="searchWord" value="${searchWord}" class="searchWord" placeholder="Search">
+<button type="submit" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
+
+<%-- <select name="searchItem" class="searchItem">
  <option value="all">전체</option>
   <option value="title" ${searchItem =='title'?'selected' :''}>제목</option>
   <option value="content" ${searchItem =='content'? 'selected' :'' }>내용</option>
   <option value="id" ${searchItem =='userid'?'selected' :'' }>작성자</option>
 </select>
 <input type="text" name="searchWord" value="${searchWord}" class="searchWord" placeholder="Search">
-<button type="submit" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
+<button type="submit" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button> --%>
 </form>
   </div>   
   

@@ -17,13 +17,11 @@
 <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
 <link rel="stylesheet" href="/cloud/resources/css/aos.css">
 <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-<link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css">
+
 <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
 <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
 <link rel="stylesheet" href="/cloud/resources/css/style.css">
-<link rel="stylesheet" href="/cloud/resources/Header.css">
-<link rel="stylesheet" href="/cloud/resources/Board.css">
+<link rel="stylesheet" href="/cloud/resources/css/Board.css">
 </head>
 
 
@@ -42,7 +40,7 @@
 	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="/cloud/survey/surveyListForm" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li>
+	          <!-- <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li> -->
 	  			 <c:if test="${sessionScope.loginId==null}">
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
@@ -50,6 +48,7 @@
 						href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
 				</c:if>
 				<c:if test="${sessionScope.loginId!=null}">
+				<li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님, 로그아웃 </a></li>
 					<!-- <li style="margin-left: 20px;" class="nav-item cta"><a
@@ -81,9 +80,8 @@
             <p>궁금한 것을 자유롭게 묻고 답할 수 있습니다.</p>
           </div>
         </div>
-	
+	<div class="Detail_table ftco-animate">
 	<form action="" method="post" id="">
-		<div class="Detail_table ftco-animate">
 			<div class="form-group row">
 				<label for="" class="col-sm-2 col-form-label"><span><b>작성 날짜</b></span></label>
 				<div class="col-sm-10">
@@ -95,11 +93,10 @@
 				<label for="" class="col-sm-2 col-form-label"><span><b>작성자</b></span></label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="" name="memberId"
-						placeholder="${board.id}" readonly="readonly">
+						placeholder="${board.MEMBERid}" readonly="readonly">
 				</div>
 			</div>
 
-		</div>
 		<div class="form-group row">
 			<label for="" class="col-sm-2 col-form-label"><span><b>질문
 						분류</b></span></label>
@@ -172,7 +169,7 @@
 <%-- 					</c:if> --%>
 				</div>
 			</div>
-
+</div>
 		</div>
 	</form>
 	</div>

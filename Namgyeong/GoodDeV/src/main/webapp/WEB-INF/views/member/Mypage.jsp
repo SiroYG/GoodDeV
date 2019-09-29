@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="ko">
 	<head>
     <meta charset="utf-8">
-    <title>My Page :: </title>
+    <title>Member :: My Page</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
@@ -19,16 +19,11 @@
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
-    <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
-    <link rel="stylesheet" href="/cloud/resources/css/Header.css">
     <link rel="stylesheet" href="/cloud/resources/css/Board.css">
     <link rel="stylesheet" href="/cloud/resources/css/demo.css">
 <!--     <link rel="stylesheet" href="/cloud/resources/css/font-awesome.min.css"> -->
@@ -73,34 +68,41 @@
     </script>
 
 </head>
-<header class="header">
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="home" style="text-decoration: none;">MainLogo</a>
-            <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav nav ml-auto">
-                    <li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
-                    <li class="nav-item"><a href="#" class="nav-link"><span>Q & A게시판</span></a></li>
-                    <li class="nav-item"><a href="#" class="nav-link"><span>블라인드 테스트</span></a></li>
-                    <li class="nav-item"><a href="#" class="nav-link"><span>크라우드 펀딩</span></a></li>
-                    <c:if test="${sessionScope.loginId!=null}">
-					<li style="margin-left: 20px;" class="nav-item cta"><a class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님 </a></li>
-			  		<li style="margin-left: 20px;" class="nav-item cta"><a href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
-			  		</c:if>
-                	<c:if test="${sessionScope.loginId==null}">
-	          		<li style="margin-left: 20px; " class="nav-item cta"><a href="gologin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
-              		<li style="margin-left: 20px;" class="nav-item cta"><a href="gosignin" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
-	       			</c:if>	
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
 
 <body class="bg-black">
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
+	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
+	          <li class="nav-item"><a href="/cloud/survey/surveyListForm" class="nav-link"><span>블라인드 테스트</span></a></li>
+	          <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
+	          <!-- <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li> -->
+	  			 <c:if test="${sessionScope.loginId==null}">
+					<li style="margin-left: 20px;" class="nav-item cta"><a
+						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
+					<li style="margin-left: 20px;" class="nav-item cta"><a
+						href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
+				</c:if>
+				<c:if test="${sessionScope.loginId!=null}">
+				<li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
+					<li style="margin-left: 20px;" class="nav-item cta"><a
+							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님, 로그아웃 </a></li>
+					<!-- <li style="margin-left: 20px;" class="nav-item cta"><a
+						href="/cloud/member/logout" class="nav-link">로그아웃</a></li> -->
+				</c:if>
+				 </ul>
+	      </div>
+	    </div>
+	  </nav>
+
     <div class="body">
    
         <section>
@@ -449,5 +451,18 @@
   <script src="js/jquery-migrate-3.0.1.min.js"></script>-->
   <script src="/cloud/resources/js/popper.min.js"></script>
   <script src="/cloud/resources/js/bootstrap.min.js"></script>
+  
+  <!--  <script src="/cloud/resources/js/jquery.min.js"></script>
+  <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
+  <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
+  <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
+  <script src="/cloud/resources/js/owl.carousel.min.js"></script>
+  <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
+  <script src="/cloud/resources/js/aos.js"></script>
+  <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
+  <script src="/cloud/resources/js/scrollax.min.js"></script>
+  
+  <script src="/cloud/resources/js/main.js"></script> -->
 
 </html>

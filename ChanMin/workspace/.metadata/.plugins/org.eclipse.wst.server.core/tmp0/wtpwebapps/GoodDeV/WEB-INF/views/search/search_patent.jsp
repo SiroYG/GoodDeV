@@ -92,7 +92,7 @@
  	    					alert('성공');
  	    					$('#exampleModal').modal('hide');
  	    				}else{
- 	    					alert('실패')
+ 	    					alert('이미 사용중인 특허번호입니다.');
  	    				}
  	    			}
  	    		})	 
@@ -111,8 +111,10 @@
     		success : function(res){
     			var tag ="";
     			$.each(res,function(i,item){
+    				
     				tag += '<option value="'+item.itemNum+'">'+item.itemName+'</option>'
-    			})
+    				
+    				})
     			$('#item-option').html(tag);
     		}
     	})

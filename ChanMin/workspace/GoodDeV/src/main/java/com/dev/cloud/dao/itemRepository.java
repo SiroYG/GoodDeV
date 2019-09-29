@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.ItemDo;
 import com.dev.cloud.vo.MTI;
+import com.dev.cloud.vo.PdpVo;
 import com.dev.cloud.vo.Total;
 import com.dev.cloud.vo.devMember;
 
@@ -147,6 +148,34 @@ public class itemRepository implements itemMapper {
 		int result=0;
 		try {
 			result=mapper.updateItemDo(itemdo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public Item selectItemNum(int itemNum) {
+		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
+		Item result = null;
+		try {
+			result = mapper.selectItemNum(itemNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				
+		
+		
+		return result;
+		
+	}
+
+	@Override
+	public int pdpUpdate(PdpVo pd) {
+		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
+		int result=0;
+		try {
+			result=mapper.pdpUpdate(pd);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

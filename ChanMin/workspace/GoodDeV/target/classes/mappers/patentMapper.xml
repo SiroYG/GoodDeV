@@ -100,28 +100,34 @@ where
 </select>
 
 <select id="pdpIdGo" parameterType="String" resultType="PdpVo">
-select 	i.itemnum
-		,t.pti_seq
-		,t.contract
-		,to_char(t.contractDate,'YYYY-MM-DD') as contractDate
-		,p.patenttype
-		,p.patentName
-		,p.patentNum
-		,i.memberId
-		,ps.referenceFilename
-		,ps.saveReferenceFilename
-from item i inner join PTI t on
-i.itemnum=t.itemnum
-inner join patent p on t.patentnum= p.patentnum inner join patentsub ps  on ps.patentNum=p.patentNum
-where 
-	p.patentHolderName = #{patentHolderName} and t.contract='wait'
-
+select   DISTINCT d.itemNum
+				,i.memberId as memberGo
+				,ps.memberId
+				,t.itemNum
+				,p.patentHolderName
+				,t.contract
+				,to_char(t.contractDate,'YYYY-MM-DD') as contractDate
+ 				,t.Pti_seq
+				,p.patenttype
+				,p.patentName
+				,p.patentNum
+				,i.memberId
+				,d.DocumentNum
+				,d.documentFilename
+				,d.saveDocumentFilename
+from document d inner join item i on d.itemNum=i.itemNum inner join PTI t on
+i.itemNum=t.itemNum
+inner join patent p on t.patentNum= p.patentNum inner join patentsub ps on ps.patentNum= p.patentNum  
+inner join document d on d.patentsubNum=ps.patentsubNum
+where p.patentHolderName = #{patentHolderName} and t.contract='wait' 
 </select>
+	
+
 
 <!-- Patent 특허검색 -->
 <select parameterType="Pat" id="searchPatent" resultType="Patent">
 select 
-		patentNum
+		 patentNum
 		,patentName
 		,patentHolderName
 		,patentContent
