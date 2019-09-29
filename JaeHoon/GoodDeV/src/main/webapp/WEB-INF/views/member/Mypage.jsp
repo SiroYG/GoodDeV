@@ -209,9 +209,9 @@
 			i+=1;
 			tag += '<tr>'
 				tag += '<th scope="row" >'+i+'</th>'
-				tag += '<td name="questionTitle"><a href="gosurvey_result?questionTimeNum='+item.questionTimeNum+'">'+item.questionTitle+'</a></td>'
-				tag += '<td name="startDate"><a href="gosurvey_result?questionTimeNum='+item.questionTimeNum+'">'+item.startDate+'</td>';
-				tag += '<td name="dueDate"><a href="gosurvey_result?questionTimeNum='+item.questionTimeNum+'">'+item.dueDate+'</td>';
+				tag += '<td name="questionTitle"><a href="/cloud/survey/gosurvey_result?questionTimeNum='+item.questionTimeNum+'">'+item.questionTitle+'</a></td>'
+				tag += '<td name="startDate"><a href="/cloud/survey/gosurvey_result?questionTimeNum='+item.questionTimeNum+'">'+item.startDate+'</td>';
+				tag += '<td name="dueDate"><a href="/cloud/survey/gosurvey_result?questionTimeNum='+item.questionTimeNum+'">'+item.dueDate+'</td>';
 				tag += '</tr>';
 		
 				$('.surveyTbody').html(tag);

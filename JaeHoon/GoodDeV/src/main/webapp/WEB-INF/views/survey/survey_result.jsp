@@ -78,44 +78,36 @@
 
             <div class="write_table">
            
+                   
                     <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>제목</b></span></label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="" id="" placeholder="${getQTime.questionTitle}" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>관련아이템</b></span></label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="" id="" placeholder="${itemTemp.itemName}" readonly="readonly">
+                        </div>
+                    </div>
+                  
+            	 <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>시작일</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="startDate" id="" placeholder="2019 - 09 - 04 (목)" readonly="readonly">
+                            <input type="text" class="form-control" name="startDate"  placeholder="${getQTime.startDate }" readonly="readonly">
 
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>마감일</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="dueDate" id="" placeholder="2019 - 09 - 14 (토)">
+                            <input type="text" class="form-control" name="dueDate" id="" placeholder="${getQTime.dueDate }" readonly="readonly">
 
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>제목</b></span></label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="" id="" placeholder="@@@을 이용한 ### 제품에 대한 설문조사" readonly="readonly">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label"><span><b>시제품 설명</b></span></label>
-                <div class="col-sm-10">
-                    <textarea rows="8" cols="112" class="form-control" name="itemContent" placeholder=""></textarea>
-                </div>
-            	</div>
-            	<div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label"><span><b>부가설명</b></span></label>
-                <div class="col-sm-10">
-                    <textarea rows="8" cols="112" class="form-control" name="description" placeholder=""></textarea>
-                </div>
-           		</div>
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label"><span><b>첨부파일</b></span></label>
-                        <div class="col-sm-10">
-                            <input type="file" class="form-control" name="saveItemImage" id="" placeholder="">
-                        </div>
-                    </div>
+            	
+                    
 
                     <hr class="hr_navy">
 
@@ -127,97 +119,29 @@
 
                             </div>
                         </div>
+                        <c:forEach var="question" items="${questionList}" varStatus="status">
                         <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label"><span><b>질문 1) </b></span></label>
+                            <label for="" class="col-sm-2 col-form-label"><span><b>질문  ${status.count}) </b></span></label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="question" id="" placeholder="1번 질문,,,"><br>
-                                <p name="qValuable">avr(${survey.qValuable})</p> &nbsp; &nbsp;
+                                <input type="text" class="form-control" name="question" id="" placeholder="${question.question}" readonly="readonly"><br>
+                                <p name="qValuable">${question.avgSurvey}</p> &nbsp; &nbsp;
                                 &nbsp; &nbsp; 
                             </div>
                         </div>
-                       <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label"><span><b>질문 2) </b></span></label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="question" id="" placeholder="2번 질문,,,"><br>
-                                <p name="qValuable">avr(${survey.qValuable})</p> &nbsp; &nbsp;
-                                &nbsp; &nbsp; 
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label"><span><b>질문 3) </b></span></label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="question" id="" placeholder="3번 질문,,,"><br>
-                                <p name="qValuable">avr(${survey.qValuable})</p> &nbsp; &nbsp;
-                                &nbsp; &nbsp; 
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label"><span><b>질문 4) </b></span></label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="question" id="" placeholder="4번 질문,,,"><br>
-                                <p name="qValuable">avr(${survey.qValuable})</p> &nbsp; &nbsp;
-                                &nbsp; &nbsp; 
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label"><span><b>질문 5) </b></span></label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="question" id="" placeholder="5번 질문,,,"><br>
-                                <p name="qValuable">avr(${survey.qValuable})</p> &nbsp; &nbsp;
-                                &nbsp; &nbsp; 
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label"><span><b>질문 6) </b></span></label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="question" id="" placeholder="6번 질문,,,"><br>
-                                <p name="qValuable">avr(${survey.qValuable})</p> &nbsp; &nbsp;
-                                &nbsp; &nbsp; 
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label"><span><b>질문 7) </b></span></label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="question" id="" placeholder="7번 질문,,,"><br>
-                                <p name="qValuable">avr(${survey.qValuable})</p> &nbsp; &nbsp;
-                                &nbsp; &nbsp; 
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label"><span><b>질문 8) </b></span></label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="question" id="" placeholder="8번 질문,,,"><br>
-                                <p name="qValuable">avr(${survey.qValuable})</p> &nbsp; &nbsp;
-                                &nbsp; &nbsp; 
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label"><span><b>질문 9) </b></span></label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="question" id="" placeholder="9번 질문,,,"><br>
-                                <p name="qValuable">avr(${survey.qValuable})</p> &nbsp; &nbsp;
-                                &nbsp; &nbsp; 
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label"><span><b>질문 10) </b></span></label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="question" id="" placeholder="10번 질문,,,"><br>
-                                <p name="qValuable">avr(${survey.qValuable})</p> &nbsp; &nbsp;
-                                &nbsp; &nbsp; 
-                            </div>
-                        </div>
-                    </div>
+                        </c:forEach>
+                       
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>기타의견</b></span></label>
                         <div class="col-sm-10">
-                            <textarea rows="4" cols="112" class="form-control" name="etc" placeholder=""></textarea>
+                        
+                            <textarea rows="4" cols="112" class="form-control" name="etc" placeholder="${getQTime.etc}" readonly="readonly"></textarea>
+                       
                         </div>
                     </div>
                     <br><br>
                     <div class="form-group row">
                         <div class="col-sm-10">
-                            <a href="#" class="btns btn-3"><span class="white">&nbsp;&nbsp;돌아가기&nbsp;&nbsp;</span></a> &nbsp;&nbsp;
+                            <a href="/cloud/member/goMypage" class="btns btn-3"><span class="white">&nbsp;&nbsp;돌아가기&nbsp;&nbsp;</span></a> &nbsp;&nbsp;
 
                     </div>
             </div>

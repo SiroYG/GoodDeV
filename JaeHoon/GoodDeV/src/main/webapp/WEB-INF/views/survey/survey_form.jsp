@@ -34,7 +34,27 @@
     	
     	$('#executeForm').on('click', function(){
     		alert("ok")
-    		$('#goSurvey_list').submit();
+    		var a = $('#dueDate').val();
+    		alert(a)
+    		if($('#dueDate').val()==null){
+    			alert("마감일을 입력해주세요.")
+    			return
+    		}
+    		
+    		if($('#questionTitle').val().length==0||$('#questionTitle').val()==""){
+    			alert("제목을 입력해주세요.")
+    			return
+    		}
+    		
+    		if($('#question').val().length==0||$('#question').val()==""){
+    			alert("질문을 입력해주세요.")
+    			return
+    		}
+    		
+    			$('#goSurvey_list').submit();
+    		
+    		
+    		
     		
     	
     	});
@@ -110,7 +130,7 @@
             <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>마감일</b></span></label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control" name="dueDate" id="" placeholder="">
+                    <input type="date" class="form-control" name="dueDate" id="dueDate" placeholder="">
 
                 </div>
             </div>
@@ -228,7 +248,7 @@
 <br><br>
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <a href="#" class="btns btn-3" id="executeForm"><span class="white">&nbsp;&nbsp;작성하기&nbsp;&nbsp;</span></a> &nbsp;&nbsp; <a href="survey_list.html" class="btns btn-3-red" style="margin-top: 0;"><span class="white">&nbsp;&nbsp;취소&nbsp;&nbsp;</span></a>
+                    <a href="#" class="btns btn-3" id="executeForm"><span class="white">&nbsp;&nbsp;작성하기&nbsp;&nbsp;</span></a> &nbsp;&nbsp; <a href="/cloud/survey/goSurvey_list" class="btns btn-3-red" style="margin-top: 0;"><span class="white">&nbsp;&nbsp;취소&nbsp;&nbsp;</span></a>
                     <a href="/cloud/survey/goSurvey_list" class="goSurvey_list">
                 </div>
 
