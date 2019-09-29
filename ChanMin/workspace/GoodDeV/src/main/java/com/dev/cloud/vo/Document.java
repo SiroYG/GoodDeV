@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Document {
 		
-	private int documentNum;
-	private int patentsubNum;
+	private int DocumentNum;
+	private int PatentsubNum;
+	private int itemNum;
 	private String documentFilename;
 	private String saveDocumentFilename;
 	

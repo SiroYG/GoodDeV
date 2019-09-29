@@ -19,15 +19,18 @@ public class PdpVo { // patent , devmember, Pti 섞음
 	private String patentHolderName ;
 	private String patenttype ;
 	//PTI
-	private int  pti_seq ;
+	private int  PTI_seq ;
 	private String  contract ;
 	private String  contractDate ;
 	//devMember
 	public String memberId;
 	public String memberName;
-	
+	public String memberGo;
 	//patentSub
 	private int patentsubNum;
-	private String	referenceFilename ;
-	private String	saveReferenceFilename ;
+	
+	//Document
+	private int DocumentNum;
+	private String documentFilename;
+	private String saveDocumentFilename;
 }

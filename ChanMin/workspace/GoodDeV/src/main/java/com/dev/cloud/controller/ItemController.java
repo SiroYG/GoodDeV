@@ -91,7 +91,7 @@ public class ItemController {
 		String a = "";
 		String b = "";
 		String c = "";
-		String d = "";
+		
 		Total it = repo.goItemDetail(total);
 		String lcm = it.getItemImagename();
 		
@@ -103,10 +103,15 @@ public class ItemController {
 		}
 		
 		String tt = a+",  "+b;
-		if(!c.equals("")&&!d.equals("")){
-			String yy = c+",  "+d;
+		c= it.getDocumentFilename();
+		if(c==null){
+			String yy= "";
+			model.addAttribute("yy",yy);
+		}else{
+			String yy = c;
 			model.addAttribute("yy",yy);
 		}
+		
 		
 		model.addAttribute("tt",tt);
 		
@@ -249,8 +254,7 @@ public class ItemController {
 			String saveDocumentFilename = FileService.saveFile(upload1, uploadPath);
 			total.setItemImagename(itemImage+"@"+documentFilename);
 			total.setSaveItemImage(saveitemImage+"@"+saveDocumentFilename);	
-		//	total.setDocumentFilename(documentFilename);
-		//	total.setSaveDocumentFilename(saveDocumentFilename);
+		
 		} catch (IllegalStateException e) {
 			
 			e.printStackTrace();

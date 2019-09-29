@@ -7,6 +7,7 @@ import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.ItemDo;
 import com.dev.cloud.vo.MTI;
 import com.dev.cloud.vo.Patent;
+import com.dev.cloud.vo.PdpVo;
 import com.dev.cloud.vo.Total;
 import com.dev.cloud.vo.devMember;
 
@@ -35,5 +36,9 @@ public interface itemMapper {
 		public int deleteItem(Total total);
 		
 		public int updateItemDo(ItemDo itemdo);
+		
+		public Item selectItemNum(int itemNum);
+		
+		public int pdpUpdate(PdpVo pd);
 		
 }

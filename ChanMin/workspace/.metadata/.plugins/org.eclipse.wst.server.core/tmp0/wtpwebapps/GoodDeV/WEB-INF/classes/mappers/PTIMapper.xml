@@ -20,7 +20,7 @@ insert into PTI (
 				) 
 				</insert>
 
-<update parameterType="ItemDo" id="updatePTI">
+<update parameterType="PdpVo" id="updatePTI">
 UPDATE PTI
 	SET
 	contract = #{contract}
@@ -39,6 +39,11 @@ from
 		pti
 where 
 		PTI_seq = #{PTI_seq}
+</select>
+
+<select id="ptiNums" parameterType="PTI" resultType="PTI">
+select * from pti 
+where itemNum = #{itemNum} and patentNum = #{patentNum}
 </select>
 
 

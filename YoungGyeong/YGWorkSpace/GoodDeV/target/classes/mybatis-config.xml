@@ -18,6 +18,7 @@
 <typeAlias alias="Patentsub" type="com.dev.cloud.vo.Patentsub"/>
 <typeAlias alias="PTI" type="com.dev.cloud.vo.PTI"/>
 <typeAlias alias="Reply" type="com.dev.cloud.vo.Reply"/>
+<typeAlias alias="Chat" type="com.dev.cloud.vo.Chat"/>
 </typeAliases>
 
 <mappers>
@@ -32,6 +33,8 @@
 <mapper resource="mappers/PTIMapper.xml"/>
 <mapper resource="mappers/replyMapper.xml"/>
 <mapper resource="mappers/historyMapper.xml"/>
+<mapper resource="mappers/chatMapper.xml"/>
+
 </mappers>
 
 </configuration>

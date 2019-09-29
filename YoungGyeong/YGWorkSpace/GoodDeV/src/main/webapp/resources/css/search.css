@@ -9,8 +9,20 @@ body {
     font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
 }
 
+a.alert-link:hover{
+	text-decoration: underline;
+}
+
+tr>td, tr>th{
+	padding-bottom: 1em;
+	border-bottom: 1px solid #999999;
+	padding-left : 0.5em;
+	padding-right : 0.5em;
+	padding-top : 1em;
+}
+
 caption.search-result {
-    font-size: 2em;
+    font-size: 1em;
 }
 
 div.search-container {
@@ -21,18 +33,6 @@ hr.hr_navy {
     border-color: #1f124a;
     border-width: 7px;
     padding: 0% 10%;
-}
-
-a.down-documents {
-    font-size: 1.5em;
-    text-decoration: none;
-    color: ;
-}
-
-a.down-documents:hover{
-    font-size: 1.8em;
-    text-decoration: underline;
-    color: blue;
 }
 
 div.write_table {
@@ -50,14 +50,6 @@ div.write_table {
     height: 80px;
 }
 
-div.second {
-    width: 100%;
-    height: 550px;
-    display: inline-block;
-    margin: 0%;
-    background: url("../images/board_cover_3.jpg") top left/cover no-repeat;
-}
-
 h1.main_title {
     font-size: 3em;
     padding-left: 10%;
@@ -69,6 +61,31 @@ h1.main_title {
     font-family: inherit;
 }
 
+div.tri-btn{
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 auto;
+    justify-content : center;
+    }
+    
+.btn-primary{
+    margin-left :10px;
+    margin-right:10px;
+    }      
+
+.pri{
+	border: 1px solid #1f124a !important;
+    color: #fff !important;
+    background: #1f124a;
+    cursor: pointer;
+}
+
+.pri:hover{
+	border: 1px solid #1f124a !important;
+    color: #1f124a !important;
+    background: #fff;
+    cursor: pointer;
+}
 
 .form-control-readonly {
     height: 60px !important;
@@ -221,7 +238,7 @@ div.page-center {
     padding-right: 10%;
 }
 
-.boxes-head{
+.boxes-head {
     text-align: center;
     vertical-align: middle;
     justify-content: center;
@@ -233,8 +250,9 @@ div.page-center {
     padding-right: 10%;
 }
 
-.boxes .box {
-    background-color: #97a3cc;
+.boxes .box,
+.boxes .box4 {
+    background-color: #a4c4e0;
     display: block;
     float: none;
     position: relative;
@@ -247,7 +265,8 @@ div.page-center {
     margin-left: 15px;
 }
 
-.boxes .box2 {
+.boxes .box2,
+.boxes .box3 {
     background-color: #8dc99d;
     margin-bottom: 30px;
     display: block;
@@ -263,7 +282,9 @@ div.page-center {
 }
 
 .boxes .box h3,
-.box2 h3 {
+.box2 h3,
+.box3 h3,
+.box4 h3 {
     transition: all 0.3s;
     padding-top: 50px;
     padding-bottom: 60px;
@@ -274,12 +295,16 @@ div.page-center {
 }
 
 .boxes .box p,
-.box2 p {
+.box2 p,
+.box3 p,
+.box4 p {
     transition: all 0.3s;
     margin-top: 20px;
+    color: #fff;
 }
 
-.boxes .box:before {
+.boxes .box:before,
+.boxes .box4:before {
     transition: all 0.4s;
     position: absolute;
     content: "";
@@ -293,7 +318,8 @@ div.page-center {
     border-width: 0 0px;
 }
 
-.boxes .box2:before {
+.boxes .box2:before,
+.boxes .box3:before {
     transition: all 0.4s;
     position: absolute;
     content: "";
@@ -307,7 +333,8 @@ div.page-center {
     border-width: 0 0px;
 }
 
-.boxes .box:after {
+.boxes .box:after,
+.boxes .box4:after {
     transition: all 0.4s;
     position: absolute;
     content: "";
@@ -318,10 +345,11 @@ div.page-center {
     top: 0;
     border-color: rgba(200, 200, 200, 0);
     border-style: solid;
-    border-width: 7px solid #384670;
+    border-width: 7px solid #2e5578;
 }
 
-.boxes .box2:after {
+.boxes .box2:after,
+.boxes .box3:after {
     transition: all 0.4s;
     position: absolute;
     content: "";
@@ -335,59 +363,74 @@ div.page-center {
     border-width: 7px solid #3b7049;
 }
 
-.boxes .box:hover {
+.boxes .box:hover,
+.boxes .box4:hover {
     color: #fff;
-    background-color: #8899cf;
+    background-color: #568ebf;
 }
 
-.boxes .box2:hover {
+.boxes .box2:hover,
+.boxes .box3:hover {
     color: #fff;
     background-color: #74b385;
 }
 
-.boxes .box:hover h3 {
+/*.boxes .box:hover h3 {
+    padding-top: 80px;
+    padding-bottom: 30px;
+}*/
+
+.boxes .box:hover h3,
+.boxes .box2:hover h3,
+.boxes .box3:hover h3,
+.boxes .box4:hover h3 {
     padding-top: 80px;
     padding-bottom: 30px;
 }
 
-.boxes .box2:hover h3 {
-    padding-top: 80px;
-    padding-bottom: 30px;
-}
-
+/*
 .boxes .box:hover p {
     margin-top: 30px;
 }
+*/
 
-.boxes .box2:hover p {
+.boxes .box:hover p,
+.boxes .box2:hover p,
+.boxes .box3:hover p,
+.boxes .box4:hover p {
     margin-top: 30px;
 }
 
-.boxes .box:hover:after {
+.boxes .box:hover:after,
+.boxes .box4:hover:after {
     width: 402px;
     margin-left: -50%;
     /*border-color: #5a5a5a;*/
-    border-color: #384670;
+    border-color: #274d6e;
 }
 
-.boxes .box2:hover:after {
+.boxes .box2:hover:after,
+.boxes .box3:hover:after {
     width: 402px;
     margin-left: -50%;
     /*border-color: #5a5a5a;*/
     border-color: #3b7049;
 }
 
-.boxes .box:hover:before {
+.boxes .box:hover:before,
+.boxes .box3:hover:before {
     height: 352px;
     top: 0%;
     /*border-color: #5a5a5a;*/
-    border-color: #384670;
+    border-color: #274d6e;
 }
 
-.boxes .box2:hover:before {
+.boxes .box2:hover:before,
+.boxes .box3:hover:before {
     height: 352px;
     top: 0%;
     /*border-color: #5a5a5a;*/
     border-color: #3b7049;
 }
+
 
