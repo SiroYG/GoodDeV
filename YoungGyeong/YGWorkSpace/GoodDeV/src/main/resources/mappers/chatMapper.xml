@@ -24,6 +24,7 @@
 		resultType="Chat">
 		Select *
 		from Chat_index
+		ORDER BY chatnum DESC
 	</select>
 
 
