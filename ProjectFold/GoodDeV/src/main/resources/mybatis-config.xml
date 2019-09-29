@@ -22,6 +22,7 @@
 <typeAlias alias="Total" type="com.dev.cloud.vo.Total"/>
 <typeAlias alias="ItemDo" type="com.dev.cloud.vo.ItemDo"/>
 <typeAlias alias="PatentTotal" type="com.dev.cloud.vo.PatentTotal"/>
+<typeAlias alias="Chat" type="com.dev.cloud.vo.Chat"/>
 </typeAliases>
 
 <mappers>
@@ -37,6 +38,7 @@
 <mapper resource="mappers/PTIMapper.xml"/>
 <mapper resource="mappers/replyMapper.xml"/>
 <mapper resource="mappers/historyMapper.xml"/>
+<mapper resource="mappers/chatMapper.xml"/>
 </mappers>
 
 </configuration>

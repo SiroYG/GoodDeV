@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="ko">
   <head>
     <title>Search :: Search Menus</title>
@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
+    <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/search.css">
 
@@ -82,16 +83,17 @@
 	  
 	    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="/cloud/home">Mainlogo</a>
+	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
 	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
 	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="/cloud/survey/surveyListForm" class="nav-link"><span>블라인드 테스트</span></a></li>
-	          <li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드 펀딩</span></a></li>
+	          <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	          <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li>
 	  			 <c:if test="${sessionScope.loginId==null}">
 					<li style="margin-left: 20px;" class="nav-item cta"><a
@@ -157,7 +159,7 @@
                         <p>출원 절차를 밟아 정식으로 특허를 등록할 수 있습니다.</p>
                     </a>
 
-                    <a class="box4" href="/cloud/patent/patentUseList">
+                    <a class="box4" href="/cloud/patent/patentlist">
                         <h3>특허 출원/사용 확인하기</h3>
                         <img src="/cloud/resources/images/menu.png" alt="" class="icons">
                         <p>출원 및 사용 허가 여부를 확인할 수 있습니다.</p>
@@ -175,52 +177,43 @@
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">About <span>Neutral</span></h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <h2 class="ftco-heading-2">About <span>SupporterS</span></h2>
+              <p>창업자가 궁금해하는 것, <br>필요로 하는 것, <br>필요로 할 것들을 최대한 지원하기 위해 만든 사이트입니다.</p>
             </div>
           </div>
           <div class="col-md">
             <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">Links</h2>
+              <h2 class="ftco-heading-2">바로가기</h2>
               <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>About</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Practice Areas</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Attorneys</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Blog</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
+                <li><a href="/cloud/home"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
+                <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"></span>검색 및 특허 관련</a></li>
+                <li><a href="/cloud/board/boardListForm"><span class="icon-long-arrow-right mr-2"></span>Q & A 게시판</a></li>
+                <li><a href="/cloud/survey/surveyListForm"><span class="icon-long-arrow-right mr-2"></span>블라인드 테스트</a></li>
+                <li><a href="/cloud/funding/fundingListForm"><span class="icon-long-arrow-right mr-2"></span>크라우드 펀딩</a></li>
+                <li><a href="/cloud/home#contact-section"><span class="icon-long-arrow-right mr-2"></span>공식 연락처</a></li>
               </ul>
             </div>
           </div>
           <div class="col-md">
              <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Practice Areas</h2>
+              <h2 class="ftco-heading-2">검색 및 특허 관련</h2>
               <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Family Law</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Business Law</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Insurance Law</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Criminal Law</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Drug Offenses</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Property Law</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Employment Law</a></li>
+                <li><a href="/cloud/member/searchGo"><span class="icon-long-arrow-right mr-2"> 특허 검색</span></a></li>
+                <li><a href="/cloud/member/"><span class="icon-long-arrow-right mr-2"> 제품 검색</span></a></li>
+                 <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"> 특허 출원 신청</span></a></li>
               </ul>
             </div>
           </div>
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<h2 class="ftco-heading-2">찾아오는 길</h2>
             	<div class="block-23 mb-0">
 	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+	                <li><span class="icon icon-map-marker"></span><span class="text">4th floor, 513, Yeongdong-daero, Gangnam-gu, Seoul, Republic of Korea</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+82 02 6000 0114</span></a></li>
 	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
 	              </ul>
 	            </div>
-	            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-4">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
             </div>
           </div>
         </div>

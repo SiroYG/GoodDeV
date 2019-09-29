@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -29,53 +30,33 @@
 <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 <script src="/cloud/resources/js/jquery-ui.min.js"></script>
 <script>
+
 $(function(){
 	
-	$('.pri').on('click',function(){
+	$(".pri").on('click', function(){
+		var tempContractDate=$(this).attr("data-contractDate");
+		$('#contractDate').val(tempContractDate);
 		var patentNum = $(this).attr("data-value");
-		
-		$.ajax({
-			url : 'sePatent',
-			type : 'get',
-			data : {
-				"patentNum" : patentNum
-			},
-			success : function(res){
-				$('#patentNum').val(res.patentNum);
-				$('#memberId').val(res.memberId);
-				
-			}
-			
-		})
-	
-	})
-	
-	$('.pri').on('click',function(){
+		$('#patentNum').val(patentNum);
 		var pti_seq = $(this).val();
-		
-		$.ajax({
-			url : 'sePti',
-			type : 'get',
-			data : {
-				"PTI_seq" : pti_seq
-			},
-			success : function(res){
-				$('#contractDate').val(res.contractDate);
-				
-			}
-			
-		})
+		$('#Pti_seq').val(pti_seq);
+		var itemNum = $(this).attr("data-id");
+		$('#itNum').val(itemNum);
+		var documentNum = $(this).attr("data-name");
+		$('#DocumentNum').val(documentNum);
+		var memId = $(this).attr("data-member");
+		$('#memberId').val(memId);
+	});	
 	
-	})
-		
-	$('.pri').on('click',function(){
-		var patentNum = $(this).attr("data-value");
+	
+	 $('.pri').on('click',function(){
+		var itemNum = $(this).attr("data-id");
 		
 		$.ajax({
 			url : 'down',
 			type : 'get',
 			data : {
-				"patentNum" : patentNum
+				"itemNum" : itemNum
 			},
 			success : function(res){
 				$('#down').html(res);
@@ -83,15 +64,14 @@ $(function(){
 			
 		})
 	
-	}) 
-	$('.pri').on('click',function(){
-		var patentNum = $(this).attr("data-value");
-		
+	})  
+	 $('.pri').on('click',function(){
+		var itemNum = $(this).attr("data-id");
 		$.ajax({
 			url : 'down1',
 			type : 'get',
 			data : {
-				"patentNum" : patentNum
+				"itemNum" : itemNum
 			},
 			success : function(res){
 				$('#down1').html(res);
@@ -100,55 +80,71 @@ $(function(){
 			
 		})
 	
-	}) 
+	})  
+	
+	
+
 	
 	$('#down').on('click',function(){
-		var patentNum = $('#patentNum').val();
-
-		alert(patentNum);
+		var itemNum =$('#itNum').val();
 		$.ajax({
 			url : 'download',
 			type : 'get',
 			data : {
-				"patentNum" : patentNum
+				"itemNum" : itemNum
 			},
-			success : alert('성공')
+			success : function(resp) {alert('성공')},
+			error : function(a, b, c) {alert('실패'+ a+", " + b + "," + c)}
 		})
 	
 	})
 	
 	$('#down1').on('click',function(){
-		var patentNum = $('#patentNum').val();
+		var itemNum =$('#itNum').val();
 		
 		$.ajax({
 			url : 'download1',
 			type : 'get',
 			data : {
-				"patentNum" : patentNum
+				"itemNum" : itemNum
 			},
-			success : alert('성공')
+			success : function(resp) {alert('성공')},
+			error : function(a, b, c) {alert('실패'+ a+", " + b + "," + c)}
 		})
 	
 	})
-	/* $('#permitBtn').on('click',function(){
+	
+	 $('#permitBtn').on('click',function(){
 		var formData = new FormData($('#permitionForm')[0]);
+		var upload = $('#upload').val();
+		if(upload.length==0||upload==""){
+			alert('파일을 반드시 첨부하세요!');
+			return false;	
+		}
+		var itemNum =$('#item-option option:selected').attr("data-value");
+		var del = $('.pri').parent().parent();
 		
 		$.ajax({
 			url : 'permitionForm',
 			type : 'post',
 			enctype : 'multipart/form-data',
-			processData : false,
-			contentType : false,
-			data : formData,
+ 			processData : false,
+ 			contentType : false,
+ 			data : formData,
 			success : function(res){
-				
+				if(res=='success'){
+					alert("성공");
+					$('#exampleModal').modal('hide');
+					del.remove();
+				}else{
+					alert("실패");
+				}
 			}
 			
-		}) 
-		
-		
+		})
+			
 	})
-	*/
+	
 	
 });
 </script>
@@ -244,13 +240,14 @@ $(function(){
 					
 				<tbody>
 				<c:forEach varStatus="status" var="pat" items="${pList}" >
-				<tr>
+				<tr class= "del" >
 				<th scope="row" name="" >${status.count}</th>
 				<td>${pat.patenttype}</td>
 				<td>${pat.patentName}</td>
-				<td>${pat.memberId}</td>
+				<td>${pat.memberGo}</td>
 				<td>${pat.contractDate}</td>
-				<td><button type="button" class="pri" data-value="${pat.patentNum}" value="${pat.pti_seq}"  data-toggle="modal" data-target="#exampleModal">상세보기</button></td>
+				<td><button type="button" class="pri" data-member="${pat.memberGo}" data-value="${pat.patentNum}" data-id="${pat.itemNum}" data-name="${pat.documentNum}"  value="${pat.PTI_seq}"  data-toggle="modal" data-target="#exampleModal" data-contractDate=${pat.contractDate }>상세보기	
+				</button></td>
 				</tr>								<!-- data-id= "${memberId}" -->
 				</c:forEach>
 				</tbody> 
@@ -300,18 +297,23 @@ $(function(){
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/cloud/patent/permitionForm" method="post" id="permitionForm"  >
+                    <form  id="permitionForm" >
                         <div class="form-group">
                             <label for="appointment_date" class="text-black"><b>신청일</b></label>
-                            <input type="text" class="form-control" name="contractDate" id="contractDate" placeholder="" readonly="readonly">
+                            <input type="text" class="form-control" name="contractDate" id="contractDate" value="" placeholder="" readonly="readonly">
+                            <input type="hidden" name="itemNum" id="itNum" value=""  /> 
+                             <input type="hidden" name="DocumentNum" id="DocumentNum" value=""  /> 
+                              
                         </div>
                         <div class="form-group">
+                        <input type="hidden" name="PTI_seq" id="Pti_seq" value=""  /> 
                             <label for="appointment_name" class="text-black"><b>신청인</b></label>
-                            <input type="text" class="form-control" name="memberId" id="memberId" placeholder="" readonly="readonly">
+                            <input type="text" class="form-control" name="memberId" id="memberId" value="" placeholder="" readonly="readonly">
                         </div>
                         <div class="form-group">
                             <label for="appointment_patentnum" class="text-black"><b>특허번호</b></label>
                             <input type="text" class="form-control" name="patentNum" id="patentNum" value="" placeholder="" readonly="readonly">
+                       		
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -327,7 +329,7 @@ $(function(){
                         </div>
                         <div class="form-group">
                             <label for="appointment_file" class="text-black"><b>[보유자]특허 사용 신청서 / 허가서</b></label>
-                            <input type="file" class="form-control" name="upload" id="appointment_file" multiple>
+                            <input type="file" class="form-control" name="upload" id="upload" multiple>
                         </div>
                     </form>
                 </div>

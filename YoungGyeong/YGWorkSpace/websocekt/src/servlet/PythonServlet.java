@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 public class PythonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProcessBuilder builder = new ProcessBuilder("python","/Users/SiroYG/Documents/GitHub/EngineerSiro/Cord storage/pythonTest.py","hello","world","apple");
+	protected void service(HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
+		ProcessBuilder builder = new ProcessBuilder("python","/Users/SiroYG/Downloads/pythonTest.py","hello","world","apple");
 		//processBuilder 파라미터 (1: 파이썬파일경로 / 2: 구동시킬 py파일경로 / 3~…. 넘길 파라미터)
 		Process process = builder.start();
 		//ProcessBuilder.start 로 동작 , 파이썬이 Py파일의 명령을 순차적으로 실행

@@ -1,0 +1,47 @@
+package com.dev.cloud.controller;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+@Controller
+@RequestMapping("/item")
+public class PythonServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ProcessBuilder builder = new ProcessBuilder("python","C:/Users/pythonTest.py","hello","world","apple");
+		Process process = builder.start();
+		Scanner errorScanner = new Scanner(process.getErrorStream());
+		Scanner outputScanner = new Scanner(process.getInputStream());
+		try {
+			process.waitFor();
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
+		}
+	
+		// 에러 스트림 from 파이썬파일
+		while(errorScanner.hasNext()) {
+			System.out.println(errorScanner.nextLine());
+		}
+		errorScanner.close();
+		
+		// 입력 스트립 from 파이썬파일
+		while(outputScanner.hasNext()) {
+			System.out.println(outputScanner.nextLine());
+		}
+		outputScanner.close();
+		
+		
+	}
+
+}

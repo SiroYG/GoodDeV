@@ -141,7 +141,7 @@
     <p>특정 단어, 산업분야 등 여러 검색 옵션이 있습니다.</p>
   </a>
 <div class="hr_div"></div>
-  <a class="box2" href="#">
+  <a class="box2" href="/cloud/item/searchItem">
     <h3>제품 검색하기</h3>
     <img src="/cloud/resources/images/menu.png" alt="" class="icons">
     <p>실제 판매중인 제품군들을 비교할 수 있습니다.</p>
