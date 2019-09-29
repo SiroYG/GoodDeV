@@ -114,6 +114,16 @@ where
 	itemNum = #{itemNum} and memberId = #{memberId}
 </update>
 
+<select id="selectItemNum" parameterType="int" resultType="Item" >
+select 
+		*
+from
+	item
+where 
+	itemNum = #{itemNum}
+
+</select>
+
 <update id="updateItemDo" parameterType="ItemDo">
 UPDATE
 	 	Item
@@ -122,6 +132,16 @@ SET
       saveDocumentFilename  = #{saveDocumentFilename}
 where
 	itemNum = #{itemNum} and memberId = #{memberId}
+</update>
+
+<update id="pdpUpdate" parameterType="PdpVo">
+UPDATE
+	 	Item
+SET
+	  documentFilename = #{documentFilename} ,
+      saveDocumentFilename  = #{saveDocumentFilename}
+where
+	itemNum = #{itemNum}
 </update>
 
 

@@ -27,6 +27,7 @@ import com.dev.cloud.utill.FileService;
 import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.ItemDo;
 import com.dev.cloud.vo.MTI;
+import com.dev.cloud.vo.PTI;
 import com.dev.cloud.vo.Pat;
 import com.dev.cloud.vo.Patent;
 import com.dev.cloud.vo.PatentTotal;
@@ -52,8 +53,7 @@ public class MemberController {
 	documentRepository dopo;
 	@Autowired
 	PtiRepository ptipo;
-	
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String gomain() { // 홈이동
 		return "/index";
@@ -99,12 +99,10 @@ public class MemberController {
 
 		return "/member/Mypage";
 	}
-	
-	
 
 	@RequestMapping(value = "/searchGo", method = RequestMethod.GET)
 	public String searhGo() {
-			
+
 		return "search/search_patent";
 	}
 
@@ -165,49 +163,49 @@ public class MemberController {
 		}
 
 	}
+
 	@RequestMapping(value = "/goPatent", method = RequestMethod.GET)
 	public String goPatent(Model model) {
 		Random random = new Random();
-		int i = random.nextInt(9999)+1000;
-		int j = random.nextInt(999999)+1000;
+		int i = random.nextInt(9999) + 1000;
+		int j = random.nextInt(999999) + 1000;
 		String total = "KR10-";
 		String dasi = "-";
-		String patentNum ="";
-		patentNum = total+i+dasi+j; 	
-		Patent patent = papo.patsearchNum(patentNum);  //예외처리.. 하긴했는데 몬가 허술함;;
-		if(patent!=null){
-			model.addAttribute("num",patentNum);
+		String patentNum = "";
+		patentNum = total + i + dasi + j;
+		Patent patent = papo.patsearchNum(patentNum); // 예외처리.. 하긴했는데 몬가 허술함;;
+		if (patent != null) {
+			model.addAttribute("num", patentNum);
 		}
 		return "search/search_menu";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/patinsertForm", method = RequestMethod.POST)
-	public String patinsertForm(MultipartFile upload,PatentTotal paten, HttpSession session) {
-		//patentNum 신청서(referenceFilename) 아이디(로그인) ,이름 
-		System.out.println("173번줄"+paten);
-			System.out.println("174번줄"+upload);
+	public String patinsertForm(MultipartFile upload, PatentTotal paten, HttpSession session) {
+		// patentNum 신청서(referenceFilename) 아이디(로그인) ,이름
+		System.out.println("173번줄" + paten);
+		System.out.println("174번줄" + upload);
 		int result = 0;
-		int re =0;
-		String memberId = (String) session.getAttribute("loginId");	
+		int re = 0;
+		String memberId = (String) session.getAttribute("loginId");
 		paten.setMemberId(memberId);
 		String referenceFilename = upload.getOriginalFilename();
 		String saveReferenceFilename = FileService.saveFile(upload, uploadPath);
 		paten.setReferenceFilename(referenceFilename);
 		paten.setSaveReferenceFilename(saveReferenceFilename);
-		
-		result = papo.insertPatent(paten);  // Patent insert 하는 부분
-		re = pspo.insertPatentsub(paten);	// PatentSun insert
-		System.out.println("198번줄 result==>"+result+",  re==>"+re);
-		if(result==1&&re==1){
+
+		result = papo.insertPatent(paten); // Patent insert 하는 부분
+		re = pspo.insertPatentsub(paten); // PatentSun insert
+		System.out.println("198번줄 result==>" + result + ",  re==>" + re);
+		if (result == 1 && re == 1) {
 			return "success";
-		}else{
+		} else {
 			return "false";
 		}
-		
-		
+
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/itemSu", method = RequestMethod.GET)
 	public int itemSu(Total total, HttpSession session) {
@@ -392,13 +390,13 @@ public class MemberController {
 		System.out.println("346번줄patent==>" + itemdo);
 		System.out.println("upload==>" + upload + "  upload1==>" + upload1);
 		ItemDo sub = pspo.selectPatSub(itemdo);
-		System.out.println("349번줄==>"+sub);
+		System.out.println("349번줄==>" + sub);
 		itemdo.setPatentsubNum(sub.getPatentsubNum());
 		if (upload == null || upload1 == null) {
 			System.out.println("351번 여기요!!");
 			re = itpo.updateItemDo(itemdo);
 			result = dopo.insertDocument(itemdo);
-			System.out.println("354번줄 re==>"+re+",  result==>"+result);
+			System.out.println("354번줄 re==>" + re + ",  result==>" + result);
 		} else if (upload.getSize() == 0 || upload.isEmpty() || upload1.getSize() == 0 || upload1.isEmpty()) {
 			System.out.println("351번 여기요!!");
 			re = itpo.updateItemDo(itemdo);
@@ -414,26 +412,24 @@ public class MemberController {
 			String saveDocumentFilename = FileService.saveFile(upload1, uploadPath);
 			itemdo.setDocumentFilename(referenceFilename + "@" + documentFilename);
 			itemdo.setSaveDocumentFilename(saveReferenceFilename + "@" + saveDocumentFilename);
-			ptiResult = ptipo.insertPTI(itemdo);
-			re = itpo.updateItemDo(itemdo); // documentFilename,
-											// saveDocumentFilename ==>item
-											// Table 업데이트 clear
-			result = dopo.insertDocument(itemdo); // documentFileName,
-													// saveDocument ==> document
-													// Table 추가 patentSubNum 필요
-			try {
-				if (result == 1 && re == 1 && ptiResult==1) {
-					System.out.println("377번줄!! success");
-					return "success";
-				} else {
-					return "false";
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
+			PTI pti = new PTI();
+			pti.setItemNum(itemdo.getItemNum());
+			pti.setPatentNum(itemdo.getPatentNum());
+			PTI p = ptipo.ptiNums(pti);
+			if (p == null) {
+				ptiResult = ptipo.insertPTI(itemdo);
+				re = itpo.updateItemDo(itemdo); // documentFilename,	// saveDocumentFilename ==>item// Table 업데이트 clear					
+				result = dopo.insertDocument(itemdo); // documentFileName,
+			} // saveDocument ==> document
+				// Table 추가 patentSubNum 필요
+
+			if (result == 1 && re == 1 && ptiResult == 1) {
+				System.out.println("377번줄!! success");
+				return "success";
+			} else {
 				return "false";
 			}
 		}
-		System.out.println("387번줄!! success");
 		return "success";
 	}
 
@@ -442,7 +438,7 @@ public class MemberController {
 	public List<Total> memberItemNum(Total total) {
 		System.out.println("370번줄==>" + total);
 		List<Total> result = itpo.getItemByMemberId(total);
-
+		
 		return result;
 	}
 

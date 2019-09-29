@@ -10,13 +10,15 @@ insert into
 		Document (
 					documentNum
 					,patentsubNum 
+					,itemNum
 <if test="documentFilename!=null">
 					,documentFilename
 					,saveDocumentFilename 
 </if>
 					)VALUES (
 					Document_seq.NEXTVAL
-					,#{patentsubNum} 
+					,#{patentsubNum}
+					,#{itemNum} 
 <if test="documentFilename!=null">
 					,#{documentFilename}
 					,#{saveDocumentFilename}
@@ -32,6 +34,27 @@ UPDATE Document
 where
 	DocumentNum=#{DocumentNum} 
 </update>
+
+<update id="updateDocu" parameterType="PdpVo" >
+UPDATE Document
+	SET
+	documentFilename = #{documentFilename}
+	,saveDocumentFilename = #{saveDocumentFilename}
+where
+	DocumentNum=#{DocumentNum} 
+
+</update>
+
+<select id="selectDocu" parameterType="int" resultType="Document" >
+select 
+	*
+from
+	Document
+where 
+	DocumentNum=#{DocumentNum} 		
+</select>
+
+
 </mapper>
 
 
