@@ -1,8 +1,11 @@
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css); 
-/*<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>*/ * { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
+@font-face { font-family: 'Eoe_Zno_B'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_B.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+* {
+    font-family: 'Eoe_Zno_B';
+}
 
 body{
-    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+    font-family: 'Eoe_Zno_B';
 }
 
 hr.hr_purple {
@@ -78,13 +81,23 @@ height: 70px;
   transition: 0.25s ease;
 }
 
+a:not([href]):not([tabindex]) {
+  color: #fff;
+  text-decoration: none;
+  }
+  
+  a:not([href]):not([tabindex]):hover {
+  color: #1f124a;
+  text-decoration: none;
+  }
+
 .btnss {
 width:280px;
 height: 70px;
   padding: 1%;
   font-size: 16px;
   font-weight: 700;
-  color: #fff;
+  color : #fff;
   background-color: #1f124a;
   border: 2px solid #1f124a;
   cursor: pointer;
@@ -137,6 +150,5 @@ height: 70px;
 
 span.white{
     padding: 2%;
-    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
     font-size: 1.2em;
 }

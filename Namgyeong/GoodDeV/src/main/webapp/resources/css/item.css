@@ -1,8 +1,11 @@
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css); 
-/*<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>*/ * { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
+@font-face { font-family: 'Eoe_Zno_B'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_B.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+* {
+    font-family: 'Eoe_Zno_B';
+}
 
 body{
-    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+    font-family: 'Eoe_Zno_B';
 }
 
 div.write_table, div.main-table{
@@ -33,7 +36,7 @@ div.tr-margin{
 
 .history-table th{
     border : 1px solid #cdcfd1;
-    background-color: #523e96;
+    background-color: #1f124a;
     color: white;
 }
 
@@ -42,7 +45,7 @@ div.tr-margin{
 }
 
 .navy{
-    background-color: #523e96;
+    background-color: #1f124a;
     color: white;
     text-align: center;
 }
@@ -60,63 +63,63 @@ hr.hr_navy{
 }
 
 .btns {
-width:280px;
-height: 70px;
-  padding: 1%;
-  font-size: 16px;
-  font-weight: 700;
-  color: #fff;
-  background-color: #523e96;
-  border: 2px solid #523e96;
-  cursor: pointer;
-  width: max-content;
-  transition: 0.25s ease;
+    width: 280px;
+    height: 70px;
+    padding: 1%;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff !important;
+    background-color: #1f124a;
+    border: 2px solid #1f124a;
+    cursor: pointer;
+    width: max-content;
+    transition: 0.25s ease;
 }
 
 
 
 .btn-3-comments {
-width:280px;
-height: 70px;
-  padding: 1%;
-  font-size: 16px;
-  font-weight: 700;
-  color: #fff;
-  background-color: #28a146;
-  border: 2px solid #28a146;
-  cursor: pointer;
-  width: max-content;
-  transition: 0.25s ease;
+    width: 280px;
+    height: 70px;
+    padding: 1%;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff ;
+    background-color: #28a146;
+    border: 2px solid #28a146;
+    cursor: pointer;
+    width: max-content;
+    transition: 0.25s ease;
 }
 
 .btn-3:hover {
-  color: #523e96;
-  background-color: transparent;
+    color: #1f124a !important;
+    background-color: transparent;
 }
 
 .btn-3-red:hover {
-  color: #d41515;
+    color: #d41515 !important;
     border-color: #d41515;
-  background-color: transparent;
+    background-color: transparent;
 }
 
 .btn-3-green:hover {
-  color: #28a146;
+    color: #28a146 !important;
     border-color: #28a146;
-  background-color: transparent;
+    background-color: transparent;
 }
 
 .btn-3-comments:hover {
-  color: #28a146;
+    color: #28a146 !important;
     border-color: #28a146;
-  background-color: transparent;
+    background-color: transparent;
 }
 
-span.white{
+span.white {
     padding: 2%;
-    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
     font-size: 1.2em;
 }
+
 
 
 .searchWord{

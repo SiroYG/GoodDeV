@@ -19,17 +19,12 @@
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
-    <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css">
     
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
-    <link rel="stylesheet" href="/cloud/resources/Header.css">
-    <link rel="stylesheet" href="/cloud/resources/Board.css">
+    <link rel="stylesheet" href="/cloud/resources/css/Board.css">
     
    	<script>
 		function boardWrite(){
@@ -55,7 +50,7 @@
 	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="/cloud/survey/surveyListForm" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li>
+	          <!-- <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li> -->
 	  			 <c:if test="${sessionScope.loginId==null}">
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
@@ -63,6 +58,7 @@
 						href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
 				</c:if>
 				<c:if test="${sessionScope.loginId!=null}">
+				<li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님, 로그아웃 </a></li>
 					<!-- <li style="margin-left: 20px;" class="nav-item cta"><a
@@ -160,7 +156,7 @@
 				  <div class="form-group row">
 				    <label for="" class="col-sm-2 col-form-label"><span><b>내용</b></span></label>
 				    <div class="col-sm-10">
-				     <textarea rows="8" cols="112" id="contents"  name="content"></textarea>
+				     <textarea rows="8" cols="112" id="contents" class="form-control" name="content"></textarea>
 				    </div>
 				  </div>
 				   <div class="form-group row">
@@ -172,17 +168,15 @@
 			  <hr class="hr_purple">
 			   <div class="form-group row">
 			    <div class="col-sm-10">
-			      <a onclick="boardWrite()" class="btns btn-3" style="cursor: pointer;"><span class="white">작성하기</span></a> &nbsp;&nbsp; <a href="/cloud/board/boardListForm" class="btns btn-3-red"><span class="white">취소</span></a> 
+			      <a onclick="boardWrite()" class="btns btn-3"><span class="white">작성하기</span></a> &nbsp;&nbsp; <a href="/cloud/board/boardListForm" class="btns btn-3-red"><span class="white">취소</span></a> 
 			    </div>
 			    
 			  </div>
 		</form>
       </div>
       </section>
-   
-    </body>
-    
-  <footer class="ftco-footer ftco-section">
+      
+      <footer class="ftco-footer ftco-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md">
@@ -229,4 +223,21 @@
         </div>
       </div>
     </footer>
+      
+       <script src="/cloud/resources/js/jquery.min.js"></script>
+  <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/cloud/resources/js/popper.min.js"></script>
+  <script src="/cloud/resources/js/bootstrap.min.js"></script>
+  <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
+  <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
+  <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
+  <script src="/cloud/resources/js/owl.carousel.min.js"></script>
+  <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
+  <script src="/cloud/resources/js/aos.js"></script>
+  <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
+  <script src="/cloud/resources/js/scrollax.min.js"></script>
+  
+  <script src="/cloud/resources/js/main.js"></script>
+   
+    </body>
 </html>
