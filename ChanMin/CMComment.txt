@@ -48,3 +48,5 @@
 -- middleSide_ patent_useList, patent_useList에서 download (2) 만들기
 -- 190928
 -- middleSide_ patent_useList, patent_useList에서 download (3) 만들기
+-- 190929
+-- middleSide_ patent_useList (4), crawling 연결하기
