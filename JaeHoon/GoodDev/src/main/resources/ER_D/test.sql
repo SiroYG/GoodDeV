@@ -19,18 +19,66 @@ DROP TABLE officialFile CASCADE CONSTRAINTS;
 DROP TABLE PATENT CASCADE CONSTRAINTS;
 
 
-
 /* Drop Sequences */
 
-DROP SEQUENCE SEQ_deapartment_departno;
+DROP SEQUENCE BOARD_seq;
 
+DROP SEQUENCE CROWDFUNDING_seq;
 
+DROP SEQUENCE DOCUMENT_seq;
 
+DROP SEQUENCE QUESTION_TIME_seq;
+
+DROP SEQUENCE HISTORY_seq;
+
+DROP SEQUENCE ITEM_seq;
+
+DROP SEQUENCE SURVEY_seq;
+
+DROP SEQUENCE QUESTION_seq;
+
+DROP SEQUENCE MTI_seq;
+
+DROP SEQUENCE PATENTSUB_seq;
+
+DROP SEQUENCE PTI_seq;
+
+DROP SEQUENCE REPLY_seq;
+
+DROP SEQUENCE FundingTable_seq;
+
+DROP SEQUENCE fundingOption_seq;
+
+DROP SEQUENCE officalFile_seq;
 
 /* Create Sequences */
+CREATE SEQUENCE BOARD_seq;
 
-CREATE SEQUENCE SEQ_deapartment_departno INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE CROWDFUNDING_seq;
 
+CREATE SEQUENCE DOCUMENT_seq;
+
+CREATE SEQUENCE QUESTION_TIME_seq;
+
+CREATE SEQUENCE HISTORY_seq;
+
+CREATE SEQUENCE ITEM_seq;
+
+CREATE SEQUENCE SURVEY_seq;
+
+CREATE SEQUENCE QUESTION_seq;
+
+CREATE SEQUENCE PATENTSUB_seq;
+
+CREATE SEQUENCE PTI_seq;
+
+CREATE SEQUENCE REPLY_seq;
+
+CREATE SEQUENCE FundingTable_seq;
+
+CREATE SEQUENCE fundingOption_seq;
+
+CREATE SEQUENCE officalFile_seq;
 
 
 /* Create Tables */
@@ -43,8 +91,8 @@ CREATE TABLE BOARD
 	content varchar2(1000) NOT NULL,
 	qType varchar2(20) NOT NULL,
 	qCategory varchar2(20) NOT NULL,
-	originalFilename varchar2(100),
-	saveFilename varchar2(100) UNIQUE,
+	originalFilename varchar2(1000),
+	saveFilename varchar2(1000) UNIQUE,
 	boardDate date DEFAULT SYSDATE NOT NULL,
 	PRIMARY KEY (boardNum)
 );
@@ -84,8 +132,8 @@ CREATE TABLE DOCUMENT
 (
 	DocumentNum number NOT NULL,
 	PatentsubNum number NOT NULL,
-	documentFilename varchar2(100),
-	saveDocumentFilename varchar2(100) UNIQUE,
+	documentFilename varchar2(1000),
+	saveDocumentFilename varchar2(1000) UNIQUE,
 	itemNum number NOT NULL,
 	PRIMARY KEY (DocumentNum)
 );
@@ -119,7 +167,7 @@ CREATE TABLE HISTORY
 	itemNum number NOT NULL,
 	comments varchar2(300),
 	itemVersion varchar2(20) NOT NULL,
-	historyDate date NOT NULL,
+	historyDate varchar2(100) NOT NULL,
 	PRIMARY KEY (historyNum)
 );
 
@@ -134,10 +182,10 @@ CREATE TABLE ITEM
 	price number NOT NULL,
 	itemContent varchar2(300) NOT NULL,
 	itemRegDate date,
-	itemImagename varchar2(100),
-	saveItemImage varchar2(100) UNIQUE,
-	documentFilename varchar2(100),
-	saveDocumentFilename varchar2(100) UNIQUE,
+	itemImagename varchar2(1000),
+	saveItemImage varchar2(1000) UNIQUE,
+	documentFilename varchar2(1000),
+	saveDocumentFilename varchar2(1000) UNIQUE,
 	PRIMARY KEY (itemNum)
 );
 
@@ -170,8 +218,8 @@ CREATE TABLE PATENTSUB
 	PatentsubNum number NOT NULL,
 	patentNum varchar2(100) NOT NULL,
 	memberId varchar2(20) NOT NULL,
-	referenceFilename varchar2(100),
-	saveReferenceFilename varchar2(100) UNIQUE,
+	referenceFilename varchar2(1000),
+	saveReferenceFilename varchar2(1000) UNIQUE,
 	PRIMARY KEY (PatentsubNum)
 );
 

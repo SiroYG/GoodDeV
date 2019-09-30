@@ -27,6 +27,12 @@
     <script>
     $(function(){
     	
+    
+    	
+    	
+    	
+    	
+    	
      	$(document).on('click', '#search', function(){
     		var searchItem= $("#searchItem").val();
     		var searchWord= $("#searchWord").val();
@@ -73,7 +79,12 @@
      	//var status = $('#listbox-taskStatus option').attr('status');
      	
     	$(document).on('click','#goSurvey_form_button', function(){
-    		
+    		var itemNum =$('#item-option option:selected').attr("data-value");
+        	
+        	if(itemNum=='none'){
+        		alert("아이템을 선택해주세요.")
+        		return;
+        	}
     		
     		
     		var itemNum =$('#item-option option:selected').attr("data-value");
@@ -168,6 +179,7 @@
       <th scope="col">제목</th>
       <th scope="col">작성자</th>
       <th scope="col">작성날짜</th>
+      <th scope="col">마감날짜</th>
     </tr>
   </thead>
 
@@ -183,6 +195,7 @@
       <td ><a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span><c:out value="${qTotal.questionTitle}" /></span> </a></td>
       <td ><a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span><c:out value="${qTotal.memberId}" /></span> </a></td>
       <td ><a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span><c:out value="${qTotal.startDate}" /></span> </a></td>
+      <td ><a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span><c:out value="${qTotal.dueDate}" /></span> </a></td>
     </tr>
   </c:forEach>
   
@@ -318,7 +331,7 @@
                         </div>-->
                         <label for="item-option" class="text-black">제품 선택</label><br>
                         <select id="item-option" name="searchItem">
-                            <option value="none" selected>테스트 진행을 위한 제품을 선택해주세요</option>
+                            <option data-value="none" selected>테스트 진행을 위한 제품을 선택해주세요</option>
                             <c:forEach var="item" items="${iList }" varStatus="status">
                             <option class="temp" data-value="${item.itemNum}">${status.count }. ${item.itemName }</option>
                             </c:forEach>

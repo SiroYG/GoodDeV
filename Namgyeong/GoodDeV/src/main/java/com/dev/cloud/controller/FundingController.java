@@ -26,6 +26,8 @@ import com.dev.cloud.utill.FileService;
 import com.dev.cloud.utill.PageNavigator;
 import com.dev.cloud.vo.Board;
 import com.dev.cloud.vo.Crowdfunding;
+import com.dev.cloud.vo.Payment;
+import com.dev.cloud.vo.Question_Time;
 
 @Controller
 @RequestMapping("/funding")
@@ -47,6 +49,11 @@ public class FundingController {
 	@RequestMapping(value = "/gofundingform", method = RequestMethod.GET)
 	public String gofundingform() { // 홈이동 (리다이렉트)
 		return "/funding/funding_form";
+	}
+	@RequestMapping(value = "/gopayment", method = RequestMethod.GET)
+	public String gopayment(@RequestParam(value = "itemname", defaultValue = "paymentTest") String itemname ,Model model) { 
+		model.addAttribute("itemname",itemname);
+		return "/funding/payment";
 	}
 	
 	
@@ -89,7 +96,6 @@ public class FundingController {
 		return "/funding/funding_Detail";
 	}
 	
-	
 	@RequestMapping(value = "/fundingWrite", method = RequestMethod.POST)
 	public String fundingWrite(Crowdfunding Crowdfunding, MultipartFile upload, HttpSession session, RedirectAttributes rttr) {
 		System.out.println(upload.getOriginalFilename());
@@ -108,6 +114,13 @@ public class FundingController {
 		System.out.println("게시물입력 : " + result);
 
 		return "/funding/funding_list";
+	}
+	
+	@RequestMapping(value = "paymentform", method = {RequestMethod.POST,RequestMethod.GET})
+	public String paymentform(Payment payment, Model model) {
+		System.out.println("payment => " + payment);
+		model.addAttribute("payment", payment);
+		return "/funding/payment";
 	}
 
 }

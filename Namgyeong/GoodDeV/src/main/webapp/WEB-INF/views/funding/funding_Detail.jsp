@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>Funding ::</title>
+<title>SupporterS :: Funding Detail</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -420,56 +420,7 @@ $(function() {
 	</div>
 	</section>
 
-	<!-- loader -->
-	<div id="ftco-loader" class="show fullscreen">
-		<svg class="circular" width="48px" height="48px">
-		<circle class="path-bg" cx="24" cy="24" r="22" fill="none"
-			stroke-width="4" stroke="#eeeeee" />
-		<circle class="path" cx="24" cy="24" r="22" fill="none"
-			stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
-	</div>
-
-
-
-	<script src="/cloud/resources/js/jquery.min.js"></script>
-	<script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="/cloud/resources/js/popper.min.js"></script>
-	<script src="/cloud/resources/js/bootstrap.min.js"></script>
-	<script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
-	<script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
-	<script src="/cloud/resources/js/jquery.stellar.min.js"></script>
-	<script src="/cloud/resources/js/owl.carousel.min.js"></script>
-	<script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="/cloud/resources/js/aos.js"></script>
-	<script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
-	<!--  <script src="/cloud/resources/js/bootstrap-datepicker.js"></script>
-  <script src="/cloud/resources/js/jquery.timepicker.min.js"></script>-->
-	<script src="/cloud/resources/js/scrollax.min.js"></script>
-
-	<script src="/cloud/resources/js/main.js"></script>
-
-	<!-- SCRIPTS -->
-	<!-- JQuery -->
-	<script type="text/javascript"
-		src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
-	<!-- Bootstrap tooltips -->
-	<script type="text/javascript" src="/cloud/resources/js/popper.min.js"></script>
-	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript"
-		src="/cloud/resources/js/bootstrap.min.js"></script>
-	<!-- MDB core JavaScript -->
-	<script type="text/javascript" src="/cloud/resources/js/mdb.min.js"></script>
-	<!-- Initializations -->
-	<!--<script type="text/javascript">
-    // Animations initialization
-    new WOW().init();
-
-  </script>-->
-
-</body>
-
-
-<footer class="ftco-footer ftco-section">
+	<footer class="ftco-footer ftco-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md">
@@ -516,4 +467,47 @@ $(function() {
         </div>
       </div>
     </footer>
+    
+     <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6082cc"/></svg></div>
+
+
+
+
+	<script src="/cloud/resources/js/jquery.min.js"></script>
+	<script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="/cloud/resources/js/popper.min.js"></script>
+	<script src="/cloud/resources/js/bootstrap.min.js"></script>
+	<script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
+	<script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
+	<script src="/cloud/resources/js/jquery.stellar.min.js"></script>
+	<script src="/cloud/resources/js/owl.carousel.min.js"></script>
+	<script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="/cloud/resources/js/aos.js"></script>
+	<script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
+	<!--  <script src="/cloud/resources/js/bootstrap-datepicker.js"></script>
+  <script src="/cloud/resources/js/jquery.timepicker.min.js"></script>-->
+	<script src="/cloud/resources/js/scrollax.min.js"></script>
+
+	<script src="/cloud/resources/js/main.js"></script>
+
+	<!-- SCRIPTS -->
+	<!-- JQuery -->
+	<script type="text/javascript"
+		src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="/cloud/resources/js/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript"
+		src="/cloud/resources/js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="/cloud/resources/js/mdb.min.js"></script>
+	<!-- Initializations -->
+	<!--<script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+  </script>-->
+
+</body>
 </html>

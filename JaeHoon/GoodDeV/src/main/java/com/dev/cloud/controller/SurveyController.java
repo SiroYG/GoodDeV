@@ -1,6 +1,6 @@
 package com.dev.cloud.controller;
 
-import java.lang.reflect.Array;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,9 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import com.dev.cloud.dao.itemRepository;
 import com.dev.cloud.dao.item_SurveyRepository;
 import com.dev.cloud.vo.Item;
@@ -27,7 +26,6 @@ import com.dev.cloud.vo.QuestionTotal;
 import com.dev.cloud.vo.Question_Time;
 import com.dev.cloud.vo.Search;
 import com.dev.cloud.vo.Survey;
-import com.dev.cloud.vo.devMember;
 
 
 @Controller
@@ -45,8 +43,49 @@ public class SurveyController {
 
 		Question_Time qTime = new Question_Time();
 		ArrayList<QuestionTotal> qTotalList = new ArrayList<>();
-		qTotalList = IsRepo.selectAllQuestion_TimeById(qTime);
+		ArrayList<QuestionTotal> getQTList = new ArrayList<>();
+		getQTList = IsRepo.selectAllQuestion_TimeById(qTime);
+		System.out.println("getQTList : "+getQTList);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		Date today=new Date();
+		System.out.println("today : "+today);
+		//가져온due데이트가 오늘 날짜를 지나지 않았을 경우 어레이에 추가 해준다.
+		if(getQTList.size()!=0){
+		for(QuestionTotal qtemp:getQTList){
+				String dueDate=qtemp.getDueDate();
+			try {
+				Date tempDueDate=sdf.parse(dueDate);
+				int compare=0;
+				compare=tempDueDate.compareTo(today);
+				System.out.println(qtemp.getQuestionTimeNum()+":"+compare);
+				if(compare==1){
+					
+					qTotalList.add(qtemp);
+				}
+			//같은 날짜일 경우에도 가져오기 위함.
+				String tempStrToday = sdf.format(today);
+				String tempStrDuedate=sdf.format(tempDueDate);
+				if(tempStrToday.equals(tempStrDuedate)){
+				
+					qTotalList.add(qtemp);
+				}
+				
+				
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		}
+		
+
+
+	
+		
 		model.addAttribute("qTotalList", qTotalList);
+		
+		
+		//아이템보유자가 테스트진행하려고 할때  item을선택하도록 해주기 위함.
 		Item item=new Item();
 		item.setMemberId((String)session.getAttribute("loginId"));
 		ArrayList<Item> iList=Irepo.getItemByMemberId(item);
@@ -117,9 +156,9 @@ public class SurveyController {
 		ArrayList<Question> qList = new ArrayList<>();
 
 		Question_Time qTime = new Question_Time();
-		System.out.println("61line : " + question_time);
+		System.out.println("61 line : " + question_time);
 		qTime = IsRepo.getQuestion_TimeByQuestion_TimeNum(question_time);
-
+		System.out.println("161ine qTime : "+qTime);
 		Question Qtemp=new Question();
 		System.out.println("124line : "+question_Time.getQuestionTimeNum());
 		Qtemp.setQuestionTimeNum(question_Time.getQuestionTimeNum());
@@ -127,7 +166,7 @@ public class SurveyController {
 		qList = IsRepo.getQuestionByQuestionTimeNum(Qtemp);
 		System.out.println("127line : "+qList);
 		
-		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd (E) ");
+		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd");
 	      Calendar time = Calendar.getInstance();
 	      String times = format.format(time.getTime());
 	      
@@ -180,12 +219,20 @@ public class SurveyController {
 		}
 		Question q=new Question();
 		q.setQuestionNum(s.getQuestionNum());
-		Question qtemp= IsRepo.getQuestionByQuestionNum(q);
-		int QTNUM=qtemp.getQuestionTimeNum();
+		ArrayList<Question> qtemp= IsRepo.getQuestionByQuestionNum(q);
+		int QTNUM=qtemp.get(0).getQuestionTimeNum();
+		////////
+		
 		Question_Time qtime=new Question_Time();
 		qtime.setQuestionTimeNum(QTNUM);
 		qtime=IsRepo.getQuestion_TimeByQuestion_TimeNum(qtime);
-		qtime.setEtc(qtime.getEtc()+"\n"+etc);
+		System.out.println("qtime.getEtc() : "+qtime.getEtc());
+		if(qtime.getEtc()==null){
+			qtime.setEtc(etc);
+		}else {
+			qtime.setEtc(qtime.getEtc()+"\n"+etc);
+		}
+		
 		IsRepo.writeEtc(qtime);
 		System.out.println(qtime);
 		
@@ -210,7 +257,7 @@ public class SurveyController {
 	@RequestMapping(value = "/goSurvey_form", method = RequestMethod.GET)
 	public String goSurvey_form(Model model, Item item) {
 		System.out.println(item);
-		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd (E) ");
+		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd");
 	      Calendar time = Calendar.getInstance();
 	      String times = format.format(time.getTime());
 	     
@@ -240,5 +287,54 @@ public class SurveyController {
 	
 	
 	}
+	@RequestMapping(value = "/gosurvey_result", method = RequestMethod.GET)
+	public String gosurvey_result(Model model, Item item, Question_Time qTime) {
+		
+	      System.out.println("288line");
+	      System.out.println(qTime);
+	      int questionTimeNum=qTime.getQuestionTimeNum();
+	      Question_Time getQTime=IsRepo.getQuestion_TimeByQuestion_TimeNum(qTime);
+	      System.out.println(getQTime);
+		  model.addAttribute("getQTime", getQTime);
+		  
+		  int itemNum=getQTime.getItemNum();
+		  Item itemTemp=new Item();
+		  itemTemp.setItemNum(itemNum);
+		  itemTemp=Irepo.getOneItemByItemNum(itemTemp);
+		  model.addAttribute("itemTemp", itemTemp);
+
+
+	      Question temp=new Question();
+	      temp.setQuestionTimeNum(questionTimeNum);
+	      System.out.println("temp"+temp);
+	     ArrayList<Question> questionList=new ArrayList<>();
+	     questionList=IsRepo.getQuestionByQuestionTimeNum(temp);
+	     System.out.println("312line questionList : "+questionList);
+	     ArrayList<Survey> surList=new ArrayList<>();
+	     Survey surveyTemp=new Survey();
+	     //퀘스쳔리스트에 퀘스쳔 한개당 에버리지밸류값을 넣어주기 위함
+	     for(Question question : questionList){
+	    	int questionNum= question.getQuestionNum();
+	    	surveyTemp.setQuestionNum(questionNum);
+	    	surList=IsRepo.getqValueableByQuestionNum(surveyTemp);
+	    	int getAvgSurvey=0;
+	    	//한 퀘스쳔에 해당되는 여러개의 서베이 밸류의 에버리지를 구해서 넣어준다.
+	    	for(Survey survey :  surList){
+	    		
+	    		getAvgSurvey+=survey.getQValuable();	
+	    	}
+	    	getAvgSurvey=getAvgSurvey/surList.size();
+	    	question.setAvgSurvey(getAvgSurvey);
+	     }
+	     model.addAttribute("questionList", questionList);
+	     System.out.println("questionList : "+questionList);
+	     
+	     
+	     
+
+
+		return "/survey/survey_result";
+	}
+	
 	
 }

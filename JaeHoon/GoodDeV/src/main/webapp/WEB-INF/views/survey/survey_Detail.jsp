@@ -146,7 +146,7 @@
             <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>마감일</b></span></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="dueDate" id="dueDate"  placeholder="${qTime.dueDate }">
+                    <input type="text" class="form-control" name="dueDate" id="dueDate"  placeholder="${qTime.dueDate }" readonly="readonly">
 
                 </div>
             </div>
@@ -159,7 +159,7 @@
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>내용</b></span></label>
                 <div class="col-sm-10">
-                     <textarea rows="8" cols="112" class="form-control" name="itemContent" placeholder="${qTime.description }"></textarea>
+                     <textarea rows="8" cols="112" class="form-control" readonly="readonly">${qTime.description} </textarea>
                 </div>
             </div>
 <!--             <div class="form-group row"> -->

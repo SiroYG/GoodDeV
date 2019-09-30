@@ -13,6 +13,6 @@ public class Question {
 	private int questionNum;
 	private int questionTimeNum ;
 	private String question;
-	
+	private int avgSurvey;
 
 }

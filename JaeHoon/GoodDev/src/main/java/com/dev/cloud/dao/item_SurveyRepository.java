@@ -215,9 +215,9 @@ public class item_SurveyRepository implements item_SurveyMapper{
 	}
 
 	@Override
-	public Question getQuestionByQuestionNum(Question question) {
+	public ArrayList<Question> getQuestionByQuestionNum(Question question){
 		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
-		Question result=null;
+		ArrayList<Question> result=null;
 		try {
 			result=mapper.getQuestionByQuestionNum(question);
 			System.out.println("175 : "+result);

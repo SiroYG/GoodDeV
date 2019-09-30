@@ -53,7 +53,8 @@ public interface item_SurveyMapper {
 	
 	public Question_Time getQuestion_TimeByQuestion_TimeNum(Question_Time question_Time);
 	
-	public Question getQuestionByQuestionNum(Question question);
+	
+	public ArrayList<Question> getQuestionByQuestionNum(Question question);
 	
 	public Question_Time getQuestionTimeNumByItemNumandTitle(Question_Time question_Time);
 	

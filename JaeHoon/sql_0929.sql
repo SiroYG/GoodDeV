@@ -19,7 +19,6 @@ DROP TABLE officialFile CASCADE CONSTRAINTS;
 DROP TABLE PATENT CASCADE CONSTRAINTS;
 
 
-
 /* Drop Sequences */
 
 DROP SEQUENCE BOARD_seq;
@@ -82,8 +81,6 @@ CREATE SEQUENCE fundingOption_seq;
 CREATE SEQUENCE officalFile_seq;
 
 
-
-
 /* Create Tables */
 
 CREATE TABLE BOARD
@@ -94,8 +91,8 @@ CREATE TABLE BOARD
 	content varchar2(1000) NOT NULL,
 	qType varchar2(20) NOT NULL,
 	qCategory varchar2(20) NOT NULL,
-	originalFilename varchar2(100),
-	saveFilename varchar2(100) UNIQUE,
+	originalFilename varchar2(1000),
+	saveFilename varchar2(1000) UNIQUE,
 	boardDate date DEFAULT SYSDATE NOT NULL,
 	PRIMARY KEY (boardNum)
 );
@@ -135,8 +132,9 @@ CREATE TABLE DOCUMENT
 (
 	DocumentNum number NOT NULL,
 	PatentsubNum number NOT NULL,
-	documentFilename varchar2(100),
-	saveDocumentFilename varchar2(100) UNIQUE,
+	documentFilename varchar2(1000),
+	saveDocumentFilename varchar2(1000) UNIQUE,
+	itemNum number NOT NULL,
 	PRIMARY KEY (DocumentNum)
 );
 
@@ -169,7 +167,7 @@ CREATE TABLE HISTORY
 	itemNum number NOT NULL,
 	comments varchar2(300),
 	itemVersion varchar2(20) NOT NULL,
-	historyDate varchar2(50)  NOT NULL,
+	historyDate varchar2(100) NOT NULL,
 	PRIMARY KEY (historyNum)
 );
 
@@ -184,10 +182,10 @@ CREATE TABLE ITEM
 	price number NOT NULL,
 	itemContent varchar2(300) NOT NULL,
 	itemRegDate date,
-	itemImagename varchar2(100),
-	saveItemImage varchar2(100) UNIQUE,
-	documentFilename varchar2(100),
-	saveDocumentFilename varchar2(100) UNIQUE,
+	itemImagename varchar2(1000),
+	saveItemImage varchar2(1000) UNIQUE,
+	documentFilename varchar2(1000),
+	saveDocumentFilename varchar2(1000) UNIQUE,
 	PRIMARY KEY (itemNum)
 );
 
@@ -220,8 +218,8 @@ CREATE TABLE PATENTSUB
 	PatentsubNum number NOT NULL,
 	patentNum varchar2(100) NOT NULL,
 	memberId varchar2(20) NOT NULL,
-	referenceFilename varchar2(100),
-	saveReferenceFilename varchar2(100) UNIQUE,
+	referenceFilename varchar2(1000),
+	saveReferenceFilename varchar2(1000) UNIQUE,
 	PRIMARY KEY (PatentsubNum)
 );
 
@@ -254,8 +252,8 @@ CREATE TABLE QUESTION_TIME
 	questionTitle varchar2(300) NOT NULL,
 	-- 설문추가 설명
 	description varchar2(1000),
-	startDate date NOT NULL,
-	dueDate date DEFAULT SYSDATE NOT NULL,
+	startDate varchar2(20) NOT NULL,
+	dueDate varchar2(20) DEFAULT 'SYSDATE' NOT NULL,
 	etc varchar2(1000),
 	memberId varchar2(20) NOT NULL,
 	PRIMARY KEY (questionTimeNum)

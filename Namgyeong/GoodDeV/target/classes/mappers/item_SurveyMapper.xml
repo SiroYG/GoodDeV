@@ -5,50 +5,9 @@
 
 <mapper namespace="com.dev.cloud.dao.item_SurveyMapper">
 
-	<select id="getBoardCount" parameterType="map" resultType="int">
-		SELECT count(*)
-		FROM Question_Time
-		<if test="searchItem != null">
-			WHERE ${searchItem} LIKE '%'|| #{searchWord} || '%'
-		</if>
-	</select>
-
-	<select id="selectAll" resultType="Question_Time" parameterType="map">
-		SELECT
-		questionTimeNum
-		,itemNum
-		,questionTitle
-		,description
-		,startDate
-		,dueDate
-		<if test="etc!=''">
-		,etc
-		</if>
-		FROM Question_Time
-		<if test="searchItem != null or searchItem != ''">
-			<if test="searchItem.equalsIgnoreCase('All')">
-				WHERE etc LIKE '%'||#{searchWord}||'%'
-				OR questionTitle LIKE '%'||#{searchWord}||'%'
-				OR description LIKE '%'||#{searchWord}||'%'
-			</if>
-			<if test="!searchItem.equalsIgnoreCase('All')">
-				WHERE ${searchItem} LIKE '%'||#{searchWord}||'%'
-			</if>
-		</if>
-		ORDER BY questionTimeNum DESC
-	</select>
-
-
-	<select id="selectOne" parameterType="Question_Time" resultType="Question_Time">
-		Select *
-		From Question_Time
-		where questionTimeNum = #{questionTimeNum}
-	</select>
-	
-
-
 
 		<insert id="insertQuestion_Time" parameterType="Question_Time">
+
 		insert into
 		Question_Time (
 		questionTimeNum
@@ -57,9 +16,7 @@
 		,description
 		,startDate
 		,dueDate
-		<if test="etc!=''">
-		,etc
-		</if>
+		,memberId
 		)
 		VALUES (
 		question_Time_seq.NEXTVAL
@@ -68,9 +25,7 @@
 		,#{description}
 		,#{startDate}
 		,#{dueDate}
-			<if test="etc!=''">
-		,#{etc}
-		</if>
+		,#{memberId}
 		)
 	</insert>
 	
@@ -88,6 +43,9 @@
 		,#{question}
 		)
 	</insert>
+	
+
+
 	<select id="getQuestion_TimeByItemNum" parameterType="Question_Time"
 		resultType="Question_Time">
 		select *
@@ -95,6 +53,15 @@
 		where itemNum=#{itemNum}
 		
 	</select>
+	<select id="getQuestion_TimeByQuestion_TimeNum" parameterType="Question_Time"
+		resultType="Question_Time">
+		select *
+		from Question_Time
+		where questionTimeNum=#{questionTimeNum}
+		
+	</select>
+	
+	
 	
 
 	<select id="getQuestionByQuestionTimeNum" parameterType="Question"
@@ -107,18 +74,25 @@
 	<update id="updateQuestion_Time" parameterType="Question_Time">
 
 		UPDATE Question_Time
+
 		SET
 		questionTitle = #{questionTitle}
 		,description = #{description}
 		,startDate = #{startDate}
 		,dueDate = #{dueDate}
 		WHERE questionTimeNum=#{questionTimeNum}
+		
+		
+
 	</update>
 
 	<update id="updateQuestion" parameterType="Question">
+
 		UPDATE Question
+
 		SET
 		question = #{question}
+
 		WHERE questionNum=#{questionNum}
 
 	</update>
@@ -182,7 +156,51 @@
 		WHERE questionTimeNum=#{questionTimeNum}
 
 	</update>
+	
+	
+	<select id="selectAllQuestion_TimeById" parameterType="Question_Time"
+		resultType="QuestionTotal">
+			select i.itemtype, q.questiontitle, q.memberid, q.startdate, q.questionTimeNum, q.dueDate
+		from Question_Time q join item i using (itemNum)
+		<choose>
+		<when test="memberId!=null">
+		where q.memberId=#{memberId}
+		</when>
+		<otherwise></otherwise>
+		</choose>
+		
+	</select>
 
+
+<select id="selectBySearchItem" parameterType="Search"
+		resultType="QuestionTotal">
+		select i.itemtype, q.questiontitle, q.memberid, q.startdate, q.questionTimeNum
+		from Question_Time q join item i using (itemNum)
+		<choose>
+		<when test="searchItem=='title'">
+		where q.questionTitle LIKE '%'||#{searchWord}||'%' 
+		</when>
+		<when test="searchItem=='content'">
+		where q.description LIKE '%'||#{searchWord}||'%' 
+		</when>
+		<when test="searchItem=='id'">
+		where q.memberId LIKE '%'||#{searchWord}||'%' 
+		</when>
+		
+		<otherwise></otherwise>
+		</choose>
+		
+	</select>
+	
+	<select id="getQuestionByQuestionNum" parameterType="Question" resultType="Question">
+	select * from Question where questionNum=#{questionNum}
+	
+	 </select>
+	
+	
+	<select id="getQuestionTimeNumByItemNumandTitle" parameterType="Question_Time" resultType="Question_Time">
+	select QuestionTimeNum from Question_Time where itemNum=#{itemNum} and questionTitle=#{questionTitle}
+	</select>
 
 </mapper>
 

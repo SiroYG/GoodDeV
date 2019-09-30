@@ -14,7 +14,7 @@ import com.dev.cloud.vo.Patent;
 import com.dev.cloud.vo.PatentTotal;
 
 @Repository
-public class patentRepository{
+public class PatentRepository{
 	
 	@Autowired
 	private SqlSession sqlSession;
