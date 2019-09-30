@@ -72,7 +72,7 @@ public class BoardController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "/boardListForm", method = RequestMethod.GET)
+	@RequestMapping(value = "boardListForm", method = RequestMethod.GET)
 	public String boardListForm(@RequestParam(value = "searchItem", defaultValue = "title") String searchItem,
 			@RequestParam(value = "searchWord", defaultValue = "") String searchWord,
 			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, Model model) {
@@ -85,15 +85,13 @@ public class BoardController {
 		List<Board> list = dao.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
 		System.out.println(list.size());
 		for (Board vo : list) {
-			System.out.println("vo:"+vo);
+			System.out.println(vo);
 		}
 
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("navi", navi);
 		model.addAttribute("list", list);
-		System.out.println(list.size());
-		System.out.println(list.get(0).toString());
 
 		return "/board/Board_list";
 	}
@@ -102,7 +100,7 @@ public class BoardController {
 	public String boardWriteProcess(Board board, MultipartFile upload, HttpSession session, RedirectAttributes rttr) {
 
 		String userid = (String) session.getAttribute("loginId");
-		board.setMEMBERid(userid);
+		board.setId(userid);
 		System.out.println(upload.getOriginalFilename());
 		System.out.println(board);
 

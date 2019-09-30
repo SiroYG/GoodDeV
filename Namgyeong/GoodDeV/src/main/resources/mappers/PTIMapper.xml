@@ -4,7 +4,29 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dev.cloud.dao.replyMapper">
-	
+	<insert id="insertPTI" parameterType="PTI">
+		insert into PTI (
+		PTI_seq
+		,itemNum
+		,patentNum
+		,contract
+		,contractDate
+		)VALUES (
+		PTI_seq.NEXTVAL
+		,#{itemNum}
+		,#{patentNum}
+		,#{contract}
+		,SYSDATE
+		)
+	</insert>
+	<update id="updatePTI" parameterType="PTI">
+		UPDATE PTI
+		SET
+		contract = #{contract}
+		where
+		PTI_seq=#{PTI_seq}
+
+	</update>
+
 </mapper>
-
-
+	

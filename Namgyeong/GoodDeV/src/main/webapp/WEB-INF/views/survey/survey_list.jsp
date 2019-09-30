@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <title>Survey :: All list</title>
+    <title>SupporterS :: Survey list</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    
@@ -26,6 +26,12 @@
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     <script>
     $(function(){
+    	
+    
+    	
+    	
+    	
+    	
     	
      	$(document).on('click', '#search', function(){
     		var searchItem= $("#searchItem").val();
@@ -66,19 +72,35 @@
     			  
 
      		});
-    		
-    		
+     		
+     		
      	});
-    	
+     	
+     	//var status = $('#listbox-taskStatus option').attr('status');
+     	
+    	$(document).on('click','#goSurvey_form_button', function(){
+    		var itemNum =$('#item-option option:selected').attr("data-value");
+        	
+        	if(itemNum=='none'){
+        		alert("아이템을 선택해주세요.")
+        		return;
+        	}
+    		
+    		
+    		var itemNum =$('#item-option option:selected').attr("data-value");
+    		alert(itemNum);
+    		$('#itemNum').html('<input type="hidden" name="itemNum" value='+itemNum+'>');
+    		$('#goSurvey_form').submit();
+    	}); 
+     	
+     	
     });    
-    
     
     </script>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  
-	  
-     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,7 +113,7 @@
 	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="/cloud/survey/surveyListForm" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li>
+	          <!-- <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li> -->
 	  			 <c:if test="${sessionScope.loginId==null}">
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
@@ -99,6 +121,7 @@
 						href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
 				</c:if>
 				<c:if test="${sessionScope.loginId!=null}">
+				<li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님, 로그아웃 </a></li>
 					<!-- <li style="margin-left: 20px;" class="nav-item cta"><a
@@ -144,6 +167,7 @@
       <th scope="col">제목</th>
       <th scope="col">작성자</th>
       <th scope="col">작성날짜</th>
+      <th scope="col">마감날짜</th>
     </tr>
   </thead>
 
@@ -151,7 +175,7 @@
 
 </tbody>
 
- <%--  <tbody class="tbody">
+   <tbody class="tbody">
   <c:forEach var="qTotal" items="${qTotalList}" varStatus="status">
     <tr>
       <th scope="row"> <a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span>${status.count} </span> </a></th>
@@ -159,18 +183,21 @@
       <td ><a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span><c:out value="${qTotal.questionTitle}" /></span> </a></td>
       <td ><a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span><c:out value="${qTotal.memberId}" /></span> </a></td>
       <td ><a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span><c:out value="${qTotal.startDate}" /></span> </a></td>
+      <td ><a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span><c:out value="${qTotal.dueDate}" /></span> </a></td>
     </tr>
   </c:forEach>
   
-  </tbody> --%>
+  </tbody> 
   
     
 </table>
-<button type="button" class="btns btn-3" data-toggle="modal" data-target="#exampleModal">진행하기</button>
+
+<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">진행하기</button>
+
 
        <!--페이징 & 검색-->
   <div class="page-center">
-  
+  <br>
   <nav>
   <ul class="pagination justify-content-center">
     <li class="page-item">
@@ -210,57 +237,48 @@
     </section>
 		
 
-    <footer class="ftco-footer ftco-section">
+   <footer class="ftco-footer ftco-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">About <span>Neutral</span></h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <h2 class="ftco-heading-2">About <span>SupporterS</span></h2>
+              <p>창업자가 궁금해하는 것, <br>필요로 하는 것, <br>필요로 할 것들을 최대한 지원하기 위해 만든 사이트입니다.</p>
             </div>
           </div>
           <div class="col-md">
             <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">Links</h2>
+              <h2 class="ftco-heading-2">바로가기</h2>
               <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>About</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Practice Areas</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Attorneys</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Blog</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
+                <li><a href="/cloud/home"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
+                <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"></span>검색 및 특허 관련</a></li>
+                <li><a href="/cloud/board/boardListForm"><span class="icon-long-arrow-right mr-2"></span>Q & A 게시판</a></li>
+                <li><a href="/cloud/survey/surveyListForm"><span class="icon-long-arrow-right mr-2"></span>블라인드 테스트</a></li>
+                <li><a href="/cloud/funding/fundingListForm"><span class="icon-long-arrow-right mr-2"></span>크라우드 펀딩</a></li>
+                <li><a href="/cloud/home#contact-section"><span class="icon-long-arrow-right mr-2"></span>공식 연락처</a></li>
               </ul>
             </div>
           </div>
           <div class="col-md">
              <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Practice Areas</h2>
+              <h2 class="ftco-heading-2">검색 및 특허 관련</h2>
               <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Family Law</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Business Law</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Insurance Law</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Criminal Law</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Drug Offenses</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Property Law</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Employment Law</a></li>
+                <li><a href="/cloud/member/searchGo"><span class="icon-long-arrow-right mr-2"> 특허 검색</span></a></li>
+                <li><a href="/cloud/member/"><span class="icon-long-arrow-right mr-2"> 제품 검색</span></a></li>
+                 <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"> 특허 출원 신청</span></a></li>
               </ul>
             </div>
           </div>
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<h2 class="ftco-heading-2">찾아오는 길</h2>
             	<div class="block-23 mb-0">
 	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+	                <li><span class="icon icon-map-marker"></span><span class="text">4th floor, 513, Yeongdong-daero, Gangnam-gu, Seoul, Republic of Korea</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+82 02 6000 0114</span></a></li>
 	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
 	              </ul>
 	            </div>
-	            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-4">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
             </div>
           </div>
         </div>
@@ -268,7 +286,7 @@
     </footer>
 
   <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6082cc"/></svg></div>
 
  <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -281,7 +299,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#">
+                  <form action="goSurvey_form" method="get" id="goSurvey_form">
                        <!-- <div class="form-group">
                             <label for="appointment_name" class="text-black">신청인</label>
                             <input type="text" class="form-control" id="appointment_name" placeholder="이름을 입력해주세요">
@@ -292,12 +310,17 @@
                         </div>-->
                         <label for="item-option" class="text-black">제품 선택</label><br>
                         <select id="item-option" name="searchItem">
-                            <option value="none" selected>테스트 진행을 위한 제품을 선택해주세요</option>
-                            <option value="">itemName_1</option>
-                            <option value="">itemName_2</option>
-                            <option value="">itemName_3</option>
-                            <option value="">itemName_4</option>
+                            <option data-value="none" selected>테스트 진행을 위한 제품을 선택해주세요</option>
+                            <c:forEach var="item" items="${iList }" varStatus="status">
+                            <option class="temp" data-value="${item.itemNum}">${status.count }. ${item.itemName }</option>
+                            </c:forEach>
+                         
                         </select><br><br>
+                        <div id="itemNum">
+                        
+                    
+                        </div>
+                        
 
                         <!--<div class="form-group">
                 <label for="appointment_message" class="text-black">Message</label>
@@ -309,7 +332,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-info">진행하기</button>
+                    <button type="button" class="btn btn-outline-info" onclick="pp()" id="goSurvey_form_button">진행하기</button>
                     <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>
                 </div>
             </div>

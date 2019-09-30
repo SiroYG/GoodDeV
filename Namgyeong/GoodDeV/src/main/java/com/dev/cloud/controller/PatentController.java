@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.dev.cloud.dao.patentRepository;
+import com.dev.cloud.dao.PatentRepository;
 import com.dev.cloud.utill.PageNavigator;
 import com.dev.cloud.vo.Patent;
 
@@ -17,7 +17,7 @@ import com.dev.cloud.vo.Patent;
 @RequestMapping("/patent")
 public class PatentController {
 	@Autowired
-	patentRepository dao;
+	PatentRepository dao;
 
 	final String uploadPath = "/uploadfile";
 

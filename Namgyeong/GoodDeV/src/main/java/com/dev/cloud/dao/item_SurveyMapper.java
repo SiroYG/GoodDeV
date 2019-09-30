@@ -2,22 +2,15 @@ package com.dev.cloud.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.session.RowBounds;
-
-import com.dev.cloud.vo.Board;
 import com.dev.cloud.vo.Question;
+import com.dev.cloud.vo.QuestionTotal;
 import com.dev.cloud.vo.Survey;
 import com.dev.cloud.vo.Question_Time;
+import com.dev.cloud.vo.Search;
 
 public interface item_SurveyMapper {
-	//게시판 카운트
-	int getBoardCount(Map<String, Object> map);
-	//게시판 출력
-	List<Question_Time> selectAll(Map<String, String> map, RowBounds rb);
-	
-	Question_Time selectOne(int questionTimeNum);
+
 	
 	//질문시간 입력
 	public int insertQuestion_Time(Question_Time question_Time);
@@ -53,4 +46,18 @@ public interface item_SurveyMapper {
 	//퀘스쳔 타임삭제(questionTitle = 'none') questionTimeNum번호로
 	public int deleteQuestion_Time(Question_Time question_Time);
 	
+	public ArrayList<QuestionTotal> selectAllQuestion_TimeById(Question_Time Question_Time);
+	
+	public List<QuestionTotal> selectBySearchItem(Search search);
+
+	
+	public Question_Time getQuestion_TimeByQuestion_TimeNum(Question_Time question_Time);
+	
+	
+	public ArrayList<Question> getQuestionByQuestionNum(Question question);
+	
+	public Question_Time getQuestionTimeNumByItemNumandTitle(Question_Time question_Time);
+	
+	
+	 
 }

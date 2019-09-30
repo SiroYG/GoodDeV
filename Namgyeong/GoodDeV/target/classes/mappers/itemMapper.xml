@@ -4,145 +4,105 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dev.cloud.dao.itemMapper">
-	<insert parameterType="Total" id="insertItem">
-insert into ITEM (
-			itemNum
-			,memberId
-			,itemType
-			,ideaDate
-			,itemName
-			,price
-			,itemContent 
-<if test="itemImagename != null">
+	<insert id="insertItem" parameterType="Item">
+		insert into ITEM (
+		itemNum
+		,memberId
+		,itemType
+		,ideaDate
+		,itemName
+		,price
+		,itemContent
+		<if test="itemImagename != ''">
 			,itemImagename
-			,saveItemImage 
-</if>
-			)VALUES (
-			item_seq.NEXTVAL
-			,#{memberId}
-			,#{itemType}
-			,#{ideaDate}
-			,#{itemName}
-			,#{price}
-			,#{itemContent} 
-<if test="itemImagename != null">
+			,saveItemImage
+		</if>
+		<if test="documentFilename != ''">
+			,documentFilename
+			,saveDocumentFilename
+		</if>
+		)VALUES (
+		item_seq.NEXTVAL
+		,#{memberId}
+		,#{itemType}
+		,#{ideaDate}
+		,#{itemName}
+		,#{price}
+		,#{itemContent}
+		<if test="itemImagename != ''">
 			,#{itemImagename}
 			,#{saveItemImage}
-</if>
-) 
-</insert>
-
-<select parameterType="Total" id="getItemNumByItemType" resultType="Total">
-select
+		</if>
+		<if test="documentFilename != ''">
+			,#{documentFilename}
+			,#{saveDocumentFilename}
+		</if>
+		)
+	</insert>
+	<select id="getItemNumByItemType" parameterType="Item"
+		resultType="Item">
+		select
 		*
-from 
-	ITEM
-where 
-	itemType = #{itemType} 
-</select>
+		from ITEM
 
-<select id="goItemDetail" parameterType="Total" resultType="Total">
-select 
-	*
-from
-	ITEM
-where 		
-	memberId = #{memberId} and itemNum = #{itemNum}
+		where itemType=#{itemType}
 
-</select>
 
-<select id="getAllItem" resultType="Total">
-select
+	</select>
+
+	<select id="getAllItem" resultType="Item">
+		select
 		*
-from 
-	ITEM 
-</select>
+		from ITEM
 
-<select id="getIdDe" parameterType="Total" resultType="Total">
-select
+	</select>
+	<select id="getItemByMemberId" parameterType="devMember"
+		resultType="Item">
+		select
 		*
-from 
-	ITEM 
-where 
-	memberId= #{memberId}	
-</select>
+		from ITEM
 
+		where memberId=#{memberId}
+	</select>
 
-<select parameterType="Total" id="getItemByMemberId" resultType="Total">
-select
-		*
-from 
-		ITEM
-where 
-		memberId=#{memberId} 
-</select>
+	<update id="updateItem" parameterType="Item">
 
-<select id="gohisD" parameterType="Total" resultType="Total">
-select 
-	*
-from 
-	ITEM
-where 
-		memberId=#{memberId} 
-</select>
-
-<update parameterType="Total" id="updateItem">
-UPDATE 
-		Item
-	SET
+		UPDATE Item
+		SET
 		itemName = #{itemName}
 		,price = #{price}
 		,itemContent=#{itemContent}
-		,itemType = #{itemType} 
-<if test="itemImagename != null">
-		,itemImagename=#{itemImagename}
-		,saveItemImage=#{saveItemImage} 
-</if>
+		,itemType = #{itemType}
+		<if test="itemImagename != ''">
+			,itemImagename=#{itemImagename}
+			,saveItemImage=,#{saveItemImage}
+		</if>
+		<if test="documentFilename != ''">
+			,documentFilename=,#{documentFilename}
+			,saveDocumentFilename=,#{saveDocumentFilename}
+		</if>
+		where
+		itemNum=#{itemNum}
+	</update>
 
-where
-		itemNum=#{itemNum} and memberId=#{memberId} 
-</update>
+	<update id="deleteItem" parameterType="Item">
 
-<update parameterType="Total" id="deleteItem">
-UPDATE
-	 	Item
-SET
-		itemType = 'none'
-where
-	itemNum = #{itemNum} and memberId = #{memberId}
-</update>
+		UPDATE Item
+		SET
+		itemName = 'none'
+		where
+		itemNum=#{itemNum}
 
-<select id="selectItemNum" parameterType="int" resultType="Item" >
-select 
-		*
-from
-	item
-where 
-	itemNum = #{itemNum}
+	</update>
 
-</select>
-
-<update id="updateItemDo" parameterType="ItemDo">
-UPDATE
-	 	Item
-SET
-	  documentFilename = #{documentFilename} ,
-      saveDocumentFilename  = #{saveDocumentFilename}
-where
-	itemNum = #{itemNum} and memberId = #{memberId}
-</update>
-
-<update id="pdpUpdate" parameterType="PdpVo">
-UPDATE
-	 	Item
-SET
-	  documentFilename = #{documentFilename} ,
-      saveDocumentFilename  = #{saveDocumentFilename}
-where
-	itemNum = #{itemNum}
-</update>
-
+	<select id="getOneItemByItemNum" parameterType="Item" resultType="Item">
+		select * from Item where itemNum=#{itemNum}
+	</select>
+	
 	
 </mapper>
 
-
+	
+	
+	
+	
