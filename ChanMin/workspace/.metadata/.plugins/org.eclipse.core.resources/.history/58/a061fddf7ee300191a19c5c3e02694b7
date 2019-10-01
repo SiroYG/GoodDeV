@@ -1,0 +1,58 @@
+package com.dev.cloud.controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Python_TEST {
+
+	public static ArrayList<String> pytest() throws IOException {
+
+		ArrayList<String> list = new ArrayList<>();
+		
+		ProcessBuilder builder = new ProcessBuilder("C:/Users/창민/AppData/Local/Programs/Python/Python37/python","C:/Program Files/pythonTest.py","카메라","world","apple");
+		Process process = null;
+		String a = "";
+		try {
+			process = builder.start();
+
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+				Scanner errorScanner = new Scanner(process.getErrorStream());
+		Scanner outputScanner = new Scanner(process.getInputStream());
+		try {
+			process.waitFor();
+
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+
+	/*	while(errorScanner.hasNext()) {
+			System.out.println(errorScanner.nextLine());
+		}
+		errorScanner.close();
+		*/
+		// �Է� ��Ʈ�� from ���̽�����
+		
+		System.out.println("39번줄==>"+process.exitValue());
+		while(outputScanner.hasNext()) {
+			list.add(outputScanner.nextLine());
+			
+		}
+		outputScanner.close();
+
+
+		return list;
+	}
+
+	
+	public static void main(String[] args) throws IOException {
+		ArrayList<String> arr = pytest();
+		
+		for (int i = 0; i < arr.size(); i++) {
+			System.out.println(arr.get(i));
+		}
+	}
+}

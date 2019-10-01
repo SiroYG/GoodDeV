@@ -31,8 +31,6 @@
 <mapper resource="mappers/patentMapper.xml"/>
 <mapper resource="mappers/patentsubMapper.xml"/>
 <mapper resource="mappers/PTIMapper.xml"/>
-<mapper resource="mappers/replyMapper.xml"/>
-<mapper resource="mappers/historyMapper.xml"/>
 <mapper resource="mappers/chatMapper.xml"/>
 
 </mappers>

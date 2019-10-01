@@ -201,3 +201,35 @@
 9월 28, 2019 14:57:12.67 NEW SESSION
 9월 28, 2019 14:57:12.67 [21016:22720:0928/145712.675:ERROR:socket_stream.cc(219)] Closing stream with result -2
 9월 28, 2019 15:04:25.49 [21016:22720:0928/150425.498:ERROR:connection_factory_impl.cc(418)] Failed to connect to MCS endpoint with error -21
+
+9월 30, 2019 13:27:25.12 NEW SESSION
+9월 30, 2019 13:27:25.12 [7308:22272:0930/132724.928:ERROR:CONSOLE(2073)] "Uncaught ReferenceError: cr is not defined", source: chrome://apps/ (2073)
+9월 30, 2019 16:02:05.30 [7308:22412:0930/160205.299:ERROR:socket_stream.cc(219)] Closing stream with result -2
+9월 30, 2019 17:02:48.70 [7308:22412:0930/170248.699:ERROR:socket_stream.cc(219)] Closing stream with result -2
+9월 30, 2019 17:03:00.71 [7308:22412:0930/170300.711:ERROR:connection_factory_impl.cc(418)] Failed to connect to MCS endpoint with error -105
+9월 30, 2019 17:03:28.38 [7308:22412:0930/170328.386:ERROR:connection_factory_impl.cc(418)] Failed to connect to MCS endpoint with error -21
+9월 30, 2019 17:03:30.59 [7308:22412:0930/170330.593:ERROR:connection_factory_impl.cc(418)] Failed to connect to MCS endpoint with error -106
+9월 30, 2019 17:05:08.34 [7308:22412:0930/170508.339:ERROR:connection_factory_impl.cc(418)] Failed to connect to MCS endpoint with error -106
+9월 30, 2019 17:09:04.61 [7308:22412:0930/170904.614:ERROR:connection_factory_impl.cc(418)] Failed to connect to MCS endpoint with error -106
+9월 30, 2019 17:15:13.56 [7308:22412:0930/171513.569:ERROR:connection_factory_impl.cc(418)] Failed to connect to MCS endpoint with error -106
+9월 30, 2019 17:23:44.65 [7308:22272:0930/172344.651:ERROR:gcm_channel_status_request.cc(145)] GCM channel request failed.
+9월 30, 2019 17:24:10.31 [7308:22272:0930/172410.315:ERROR:gcm_channel_status_request.cc(145)] GCM channel request failed.
+9월 30, 2019 17:24:56.70 [7308:22272:0930/172456.701:ERROR:gcm_channel_status_request.cc(145)] GCM channel request failed.
+9월 30, 2019 17:25:13.57 [7308:22412:0930/172513.579:ERROR:connection_factory_impl.cc(418)] Failed to connect to MCS endpoint with error -106
+9월 30, 2019 17:33:43.33 [7308:22272:0930/173343.330:ERROR:gcm_channel_status_request.cc(145)] GCM channel request failed.
+
+10월 01, 2019 15:28:30.39 NEW SESSION
+10월 01, 2019 15:28:30.39 [26912:27848:1001/152830.392:ERROR:CONSOLE(4463)] "Uncaught (in promise) TypeError: Cannot read property 'resolveToObject' of null", source: devtools://devtools/bundled/shell.js (4463)
+10월 01, 2019 15:28:49.56 [26912:27848:1001/152849.564:ERROR:CONSOLE(4463)] "Uncaught (in promise) TypeError: Cannot read property 'resolveToObject' of null", source: devtools://devtools/bundled/shell.js (4463)
+10월 01, 2019 15:28:55.06 [26912:27848:1001/152855.065:ERROR:CONSOLE(4463)] "Uncaught (in promise) TypeError: Cannot read property 'resolveToObject' of null", source: devtools://devtools/bundled/shell.js (4463)
+10월 01, 2019 15:28:55.24 [26912:27848:1001/152855.242:ERROR:CONSOLE(4463)] "Uncaught (in promise) TypeError: Cannot read property 'resolveToObject' of null", source: devtools://devtools/bundled/shell.js (4463)
+10월 01, 2019 15:28:55.38 [26912:27848:1001/152855.380:ERROR:CONSOLE(4463)] "Uncaught (in promise) TypeError: Cannot read property 'resolveToObject' of null", source: devtools://devtools/bundled/shell.js (4463)
+10월 01, 2019 15:28:56.28 [26912:27848:1001/152856.283:ERROR:CONSOLE(4463)] "Uncaught (in promise) TypeError: Cannot read property 'resolveToObject' of null", source: devtools://devtools/bundled/shell.js (4463)
+10월 01, 2019 15:28:57.20 [26912:27848:1001/152857.204:ERROR:CONSOLE(4463)] "Uncaught (in promise) TypeError: Cannot read property 'resolveToObject' of null", source: devtools://devtools/bundled/shell.js (4463)
+10월 01, 2019 15:28:58.80 [26912:27848:1001/152858.808:ERROR:CONSOLE(4463)] "Uncaught (in promise) TypeError: Cannot read property 'resolveToObject' of null", source: devtools://devtools/bundled/shell.js (4463)
+10월 01, 2019 15:29:20.46 [26912:27848:1001/152920.462:ERROR:CONSOLE(4463)] "Uncaught (in promise) TypeError: Cannot read property 'resolveToObject' of null", source: devtools://devtools/bundled/shell.js (4463)
+10월 01, 2019 15:29:23.01 [26912:27848:1001/152923.016:ERROR:CONSOLE(4463)] "Uncaught (in promise) TypeError: Cannot read property 'resolveToObject' of null", source: devtools://devtools/bundled/shell.js (4463)
+10월 01, 2019 15:29:29.07 [26912:27848:1001/152929.072:ERROR:CONSOLE(4463)] "Uncaught (in promise) TypeError: Cannot read property 'resolveToObject' of null", source: devtools://devtools/bundled/shell.js (4463)
+10월 01, 2019 15:29:40.33 [26912:27848:1001/152940.336:ERROR:CONSOLE(4463)] "Uncaught (in promise) TypeError: Cannot read property 'resolveToObject' of null", source: devtools://devtools/bundled/shell.js (4463)
+10월 01, 2019 15:29:45.31 [26912:27848:1001/152945.310:ERROR:CONSOLE(4463)] "Uncaught (in promise) TypeError: Cannot read property 'resolveToObject' of null", source: devtools://devtools/bundled/shell.js (4463)
+10월 01, 2019 15:29:52.75 [26912:27848:1001/152952.752:ERROR:CONSOLE(4463)] "Uncaught (in promise) TypeError: Cannot read property 'resolveToObject' of null", source: devtools://devtools/bundled/shell.js (4463)

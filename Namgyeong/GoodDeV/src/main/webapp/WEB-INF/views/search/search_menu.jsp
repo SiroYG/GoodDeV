@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <title>Search :: Search Menus</title>
+    <title>SupporterS :: Search Menus</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -219,24 +219,10 @@
         </div>
       </div>
     </footer>
-    
-   <script src="/cloud/resources/js/bootstrap.min.js"></script>
-  <script src="/cloud/resources/js/jquery.min.js"></script>
-  <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="/cloud/resources/js/popper.min.js"></script>
-  <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
-  <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
-  <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
-  <script src="/cloud/resources/js/owl.carousel.min.js"></script>
-  <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
-  <script src="/cloud/resources/js/aos.js"></script>
-  <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
-  <script src="/cloud/resources/js/scrollax.min.js"></script>
-  
-  <script src="/cloud/resources/js/main.js"></script> 
 
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+   <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6082cc"/></svg></div>
+
 	  <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -472,6 +458,21 @@
 
         </div>
     </div>
+    
+     <script src="/cloud/resources/js/bootstrap.min.js"></script>
+  <script src="/cloud/resources/js/jquery.min.js"></script>
+  <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/cloud/resources/js/popper.min.js"></script>
+  <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
+  <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
+  <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
+  <script src="/cloud/resources/js/owl.carousel.min.js"></script>
+  <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
+  <script src="/cloud/resources/js/aos.js"></script>
+  <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
+  <script src="/cloud/resources/js/scrollax.min.js"></script>
+  
+  <script src="/cloud/resources/js/main.js"></script> 
     
   </body>
 </html>

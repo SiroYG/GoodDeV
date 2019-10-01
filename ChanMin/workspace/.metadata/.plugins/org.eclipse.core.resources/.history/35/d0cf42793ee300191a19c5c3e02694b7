@@ -1,0 +1,8 @@
+package com.dev.cloud.vo;
+
+
+
+public class Shoping {
+		String title;
+		String price;
+}

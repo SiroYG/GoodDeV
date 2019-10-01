@@ -15,6 +15,8 @@
 <typeAlias alias="Survey" type="com.dev.cloud.vo.Survey"/>
 <typeAlias alias="Question" type="com.dev.cloud.vo.Question"/>
 <typeAlias alias="Question_Time" type="com.dev.cloud.vo.Question_Time"/>
+<typeAlias alias="QuestionTotal" type="com.dev.cloud.vo.QuestionTotal"/>
+<typeAlias alias="Search" type="com.dev.cloud.vo.Search"/>
 <typeAlias alias="Patentsub" type="com.dev.cloud.vo.Patentsub"/>
 <typeAlias alias="PTI" type="com.dev.cloud.vo.PTI"/>
 <typeAlias alias="Reply" type="com.dev.cloud.vo.Reply"/>
@@ -35,10 +37,9 @@
 <mapper resource="mappers/MTIMapper.xml"/>
 <mapper resource="mappers/patentMapper.xml"/>
 <mapper resource="mappers/patentsubMapper.xml"/>
-<mapper resource="mappers/PTIMapper.xml"/>
-<mapper resource="mappers/replyMapper.xml"/>
-<mapper resource="mappers/historyMapper.xml"/>
 <mapper resource="mappers/chatMapper.xml"/>
+<mapper resource="mappers/replyMapper.xml"/>
+
 </mappers>
 
 </configuration>

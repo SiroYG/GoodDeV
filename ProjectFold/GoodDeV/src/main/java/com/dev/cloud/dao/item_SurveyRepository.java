@@ -1,58 +1,23 @@
 package com.dev.cloud.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.dev.cloud.vo.Board;
 import com.dev.cloud.vo.Question;
+import com.dev.cloud.vo.QuestionTotal;
 import com.dev.cloud.vo.Survey;
 import com.dev.cloud.vo.Question_Time;
+import com.dev.cloud.vo.Search;
 
 @Repository
 public class item_SurveyRepository implements item_SurveyMapper{
 
 	@Autowired
 	SqlSession sqlsession;
-	
-	public int getBoardCount(String searchItem, String searchWord) {
-		// TODO Auto-generated method stub
-		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
-		Map<String, Object> map = new HashMap<>();
-		map.put("searchItem", searchItem);
-		map.put("searchWord", searchWord);
-		
-		int total = mapper.getBoardCount(map);	
-		return total;
-	}
-
-	public List<Question_Time> selectAll(String searchItem, String searchWord, int startRecord, int countPerPage) {
-		List<Question_Time> list;
-		
-		RowBounds rb = new RowBounds(startRecord, countPerPage);
-		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
-
-		Map<String, String> map = new HashMap<>();
-		map.put("searchItem", searchItem);
-		map.put("searchWord", searchWord);
-		
-		list = mapper.selectAll(map, rb);
-		
-		System.out.println("조회된 데이터 개수 => " + list.size());
-		return list;
-	}
-	public Question_Time selectOne(int questionTimeNum) {
-		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
-		Question_Time Question_Time = mapper.selectOne(questionTimeNum);
-
-		return Question_Time;
-	}
 	
 	@Override
 	public int insertQuestion_Time(Question_Time question_Time) {
@@ -102,6 +67,7 @@ public class item_SurveyRepository implements item_SurveyMapper{
 		ArrayList<Question> result=null;
 		try {
 			result=mapper.getQuestionByQuestionTimeNum(qustion);
+			System.out.println("repo70line"+qustion);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -203,18 +169,78 @@ public class item_SurveyRepository implements item_SurveyMapper{
 	}
 
 	@Override
-	public int getBoardCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+	public ArrayList<QuestionTotal> selectAllQuestion_TimeById(Question_Time Question_Time) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		ArrayList<QuestionTotal> result=null;
+		try {
+			System.out.println("173 : "+Question_Time);
+			result=mapper.selectAllQuestion_TimeById(Question_Time);
+			System.out.println("175 : "+result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 	@Override
-	public List<Question_Time> selectAll(Map<String, String> map, RowBounds rb) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<QuestionTotal> selectBySearchItem(Search search) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		List<QuestionTotal> result=null;
+		try {
+			result=mapper.selectBySearchItem(search);
+			System.out.println("175 : "+result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public Question_Time getQuestion_TimeByQuestion_TimeNum(Question_Time question_Time) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		Question_Time result=null;
+		try {
+			result=mapper.getQuestion_TimeByQuestion_TimeNum(question_Time);
+			System.out.println("175 : "+result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public Question getQuestionByQuestionNum(Question question) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		Question result=null;
+		try {
+			result=mapper.getQuestionByQuestionNum(question);
+			System.out.println("175 : "+result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 	
+	@Override
+	public Question_Time getQuestionTimeNumByItemNumandTitle(Question_Time question_Time) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		Question_Time result=null;
+		try {
+			 result=mapper.getQuestionTimeNumByItemNumandTitle(question_Time);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 	
 	

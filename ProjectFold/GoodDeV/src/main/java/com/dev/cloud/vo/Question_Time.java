@@ -1,5 +1,7 @@
 package com.dev.cloud.vo;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,5 +18,6 @@ public class Question_Time {
 	public String startDate;
 	public String dueDate;
 	public String etc;
+	private String memberId;
 
 }

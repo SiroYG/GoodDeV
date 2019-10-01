@@ -1,31 +1,26 @@
 package com.dev.cloud.dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dev.cloud.vo.Item;
-import com.dev.cloud.vo.ItemDo;
-import com.dev.cloud.vo.MTI;
-import com.dev.cloud.vo.Total;
-import com.dev.cloud.vo.devMember;
 
 @Repository
 public class itemRepository implements itemMapper {
 
 	@Autowired
 	SqlSession sqlSession;
-	//아이템 삽입
+	// 아이템 삽입
 
 	@Override
-	public int insertItem(Total total) {
+	public int insertItem(Item item) {
 		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
 		int result=0;
 		try {
-			result=mapper.insertItem(total);
+			result=mapper.insertItem(item);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -34,11 +29,11 @@ public class itemRepository implements itemMapper {
 	}
 
 	@Override
-	public ArrayList<Total> getItemNumByItemType(Total total) {
+	public ArrayList<Item> getItemNumByItemType(Item item) {
 		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
-		ArrayList<Total> result=null;
+		ArrayList<Item> result=null;
 		try {
-			result=mapper.getItemNumByItemType(total);
+			result=mapper.getItemNumByItemType(item);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -47,9 +42,9 @@ public class itemRepository implements itemMapper {
 	}
 
 	@Override
-	public ArrayList<Total> getAllItem() {
+	public ArrayList<Item> getAllItem() {
 		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
-		ArrayList<Total> result=null;
+		ArrayList<Item> result=null;
 		try {
 			result=mapper.getAllItem();
 
@@ -60,11 +55,11 @@ public class itemRepository implements itemMapper {
 	}
 
 	@Override
-	public ArrayList<Total> getItemByMemberId(Total total) {
+	public ArrayList<Item> getItemByMemberId(Item item) {
 		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
-		ArrayList<Total> result=null;
+		ArrayList<Item> result=null;
 		try {
-			result=mapper.getItemByMemberId(total);
+			result=mapper.getItemByMemberId(item);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,11 +68,11 @@ public class itemRepository implements itemMapper {
 	}
 
 	@Override
-	public int updateItem(Total total) {
+	public int updateItem(Item item) {
 		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
 		int result=0;
 		try {
-			result=mapper.updateItem(total);
+			result=mapper.updateItem(item);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,11 +81,11 @@ public class itemRepository implements itemMapper {
 	}
 
 	@Override
-	public int deleteItem(Total total) {
+	public int deleteItem(Item item) {
 		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
 		int result=0;
 		try {
-			result=mapper.deleteItem(total);
+			result=mapper.deleteItem(item);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -98,58 +93,17 @@ public class itemRepository implements itemMapper {
 	}
 
 	@Override
-	public Total goItemDetail(Total total) {
+	public Item getOneItemByItemNum(Item item) {
 		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
-		Total result = null;
+		Item result=null;
 		try {
-			result = mapper.goItemDetail(total);
+			result=mapper.getOneItemByItemNum(item);
+
 		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 		}
-				
 		
-		
-		return result;
-	}
-
-	@Override
-	public List<Total> getIdDe(Total total) {
-		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
-		 List<Total> result = null;
-		try {
-			result = mapper.getIdDe(total);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return result;
-	}
-
-	@Override
-	public Total gohisD(Total total) {
-		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
-		Total result = null;
-		try {
-			result = mapper.gohisD(total);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-				
-		
-		
-		return result;
-		
-	}
-
-	@Override
-	public int updateItemDo(ItemDo itemdo) {
-		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
-		int result=0;
-		try {
-			result=mapper.updateItemDo(itemdo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return result;
 	}
 }

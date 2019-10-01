@@ -1,0 +1,124 @@
+package com.dev.cloud.controller;
+
+
+import java.awt.List;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Logger;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+
+
+
+
+@Controller
+@RequestMapping("/PythonServlet")
+public class PythonServlet {
+	//private static final long serialVersionUID = 1L;
+
+	
+	@RequestMapping(value="/searchGoee",method = RequestMethod.GET, produces="application/text; charset=utf8")	
+	@ResponseBody
+	public java.util.List<String> service(HttpServletRequest request, HttpServletResponse response,String keyWord){
+		try {
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e2) {
+			e2.printStackTrace();
+		}
+		java.util.List<String> list = new ArrayList<>();
+		ProcessBuilder builder = new ProcessBuilder("C:/Users/창민/AppData/Local/Programs/Python/Python37/python","C:/Program Files/pythonTest.py",keyWord,"world","apple");
+		Process process=null;
+		String a ="";
+		try {
+			System.out.println("builder.toString()"+builder.toString());
+			
+			process = builder.start();
+		
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		Scanner errorScanner = new Scanner(process.getErrorStream());
+		Scanner outputScanner = new Scanner(process.getInputStream());
+		
+		System.out.println(process.getInputStream().toString());
+		try {
+		 		process.waitFor();
+		 		
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("51踰덉쨪"+process.exitValue());
+		while(errorScanner.hasNext()) {
+			System.out.println(errorScanner.nextLine());
+		}
+		errorScanner.close();
+		System.out.println("56踰덉쨪-->"+process.exitValue());
+		
+		
+		while(outputScanner.hasNext()) {
+				System.out.println(outputScanner.hasNext());
+			 	
+				
+
+//				Charset Description 
+//				US-ASCII Seven-bit ASCII, a.k.a. ISO646-US, a.k.a. the Basic Latin block of the Unicode character set //
+//				ISO-8859-1   ISO Latin Alphabet No. 1, a.k.a. ISO-LATIN-1 
+//				UTF-8 Eight-bit UCS Transformation Format 
+//				UTF-16BE Sixteen-bit UCS Transformation Format, big-endian byte order //
+//				UTF-16LE Sixteen-bit UCS Transformation Format, little-endian byte order //
+//				UTF-16 Sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order mark 
+				//UTF-1; UTF-7 UTF-8; UTF-16; (UTF-16/UTF-16) / UTF-16; UTF-32; (UTF-32/UTF-32) / UTF-32 UTF-EBCDICGB 18030BOCU-1CESU-8SCSU
+
+//Unicode Standard Annexes
+//UAX	9	Unicode Bidirectional Algorithm//
+//UAX	11	East Asian Width
+//UAX	14	
+//Unicode Line Breaking Algorithm
+//
+//UAX	15	Unicode Normalization Forms//
+//UAX	24	Unicode Script Property
+//UAX	29	Unicode Text Segmentation
+//UAX	31	Unicode Identifier and Pattern Syntax
+//UAX	34	Unicode Named Character Sequences
+//UAX	38	Unicode Han Database (Unihan)
+//UAX	41	Common References for Unicode Standard Annexes
+//UAX	42	Unicode Character Database in XML//
+//UAX	44	Unicode Character Database//
+//UAX	45	U-Source Ideographs
+//UAX	50	Unicode Vertical Text Layout
+				a = outputScanner.nextLine();
+				String temp=null;
+			/*	try {
+					 temp = new String(a.getBytes("UTF-8"),"ISO-8859-1");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}*/
+			 	System.out.println("62踰덉쨪a==>"+temp);
+				list.add(a);
+				if(a.equals("finish")){
+					break;
+				}
+				
+		}
+		System.out.println("68踰덉쨪list=>"+list);
+		
+		outputScanner.close();
+		
+		return list;
+		
+	}
+
+}

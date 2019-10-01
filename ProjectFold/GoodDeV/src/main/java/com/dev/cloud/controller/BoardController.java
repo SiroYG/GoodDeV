@@ -2,6 +2,7 @@ package com.dev.cloud.controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,9 +23,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dev.cloud.dao.boardRepository;
+import com.dev.cloud.dao.replyRepository;
 import com.dev.cloud.utill.FileService;
 import com.dev.cloud.utill.PageNavigator;
 import com.dev.cloud.vo.Board;
+import com.dev.cloud.vo.Reply;
 
 @Controller
 @RequestMapping("/board")
@@ -32,6 +35,9 @@ public class BoardController {
 
 	@Autowired
 	boardRepository dao;
+	@Autowired
+	replyRepository Redao;
+	
 
 	final String uploadPath = "/uploadfile";
 	@RequestMapping(value = "/boardhome", method = RequestMethod.GET)
@@ -124,6 +130,8 @@ public class BoardController {
 		System.out.println("boardNum => " + boardNum);
 		Board board = dao.selectOne(boardNum);
 		model.addAttribute("board", board);
+		ArrayList<Reply> reply = Redao.selectAll_reply(boardNum);
+		model.addAttribute("reply",reply);
 		System.out.println(board);
 		return "/board/Board_Detail";
 	}
@@ -168,4 +176,15 @@ public class BoardController {
 
 		return null;
 	}
+	
+	
+	@RequestMapping(value = "insert_Reply", method = RequestMethod.GET)
+	public String insert_Reply(Model model, Reply reply ) {
+		System.out.println("Reply => " + reply);
+		int result = Redao.insert_reply(reply);
+		model.addAttribute("reply", reply);
+		return "/board/Board_update";
+	}
+	
+	
 }

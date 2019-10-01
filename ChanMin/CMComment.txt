@@ -50,3 +50,7 @@
 -- middleSide_ patent_useList, patent_useList에서 download (3) 만들기
 -- 190929
 -- middleSide_ patent_useList (4), crawling 연결하기
+-- 190930
+-- middleSide_ python Crawling(1) - search_item 연결하여 만들기
+-- 191001
+-- middleSide_ python Crawling(2) - search_item / 인코딩하기 및 연결하여 만들기

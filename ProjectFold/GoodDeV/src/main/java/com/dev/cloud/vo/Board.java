@@ -18,4 +18,16 @@ private String 	qCategory ;
 private String 	originalFilename;
 private String 	saveFilename ;
 private String 	boardDate ;
+public String getqType() {
+	return qType;
+}
+public void setqType(String qType) {
+	this.qType = qType;
+}
+public String getqCategory() {
+	return qCategory;
+}
+public void setqCategory(String qCategory) {
+	this.qCategory = qCategory;
+}
 }
