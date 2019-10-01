@@ -66,7 +66,6 @@
 </header>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
 	<div class="first">
 		<h1 style="margin-top: 10%;">Q & A 게시글</h1>
 		<p class="sub_title">
@@ -86,8 +85,7 @@
 			<div class="form-group row">
 				<label for="" class="col-sm-2 col-form-label"><span><b>작성자</b></span></label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="" name="memberId"
-						placeholder="${board.id}" readonly="readonly">
+					<input type="text" class="form-control" id="" name="memberId" placeholder="${board.id}" readonly="readonly">
 				</div>
 			</div>
 
@@ -127,14 +125,14 @@
 			<label for="" class="col-sm-2 col-form-label"><span><b>아이디</b></span></label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" name="memberId" id=""
-					placeholder="${sessionScope.loginId}">
+					value="${sessionScope.loginId}" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="" class="col-sm-2 col-form-label"><span><b>Comments</b></span></label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" name="reply" id=""
-					placeholder="댓글        " readonly="readonly">
+					placeholder="댓글" readonly="readonly">
 				<p name="repDate">2019-09-21 13:24</p>
 				<a href="#" class="btns btn-3-green"><span class="white">수정</span></a>&nbsp;&nbsp;<a
 					href="#" class="btns btn-3-red"><span class="white">삭제</span></a>
@@ -146,9 +144,8 @@
 			<div class="col-sm-10">
 				<textarea rows="5" cols="112" name="reply" class="form-control"></textarea>
 				<br> <input type="hidden" name="id"
-					value="${sessionScope.loginId}"> <a href="#"
+					value="${sessionScope.loginId}"> <a href="insert_reply"
 					class="btns btn-3-comments"><span class="white">댓글 작성</span></a>
-
 			</div>
 		</div>
 		<hr class="hr_purple">
@@ -164,7 +161,6 @@
 <%-- 					</c:if> --%>
 				</div>
 			</div>
-
 		</div>
 	</form>
 	</div>
@@ -248,7 +244,6 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12 text-center">
-
 			<p>
 				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 				Copyright &copy;

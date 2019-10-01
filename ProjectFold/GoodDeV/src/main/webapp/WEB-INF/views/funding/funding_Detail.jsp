@@ -46,7 +46,7 @@
 <link rel="stylesheet" href="/cloud/resources/css/chat.css">
 
 
-<script>
+<script> 
 $(function() {
     /*채팅 div랑 채팅 내용 input값 초기화*/
     var chat = '';
@@ -54,7 +54,7 @@ $(function() {
     
     /*채팅창 팝업 띄우기*/
     $('#popup').on('click', function() {
-        window.open("/cloud/funding/fundingChat", "PopupWin", "width=800,height=700");
+        window.open("/cloud/chat/Chatmain", "PopupWin", "width=800,height=700");
     });
     
     /*채팅방 선택 css 애니메이션(?)*/
@@ -409,7 +409,7 @@ $(function() {
 								<div class="type_msg">
 									<div class="input_msg_write">
 										<input type="text" class="write_msg" placeholder="메시지를 입력하세요." />
-										<button class="msg_send_btn" id="msg_send_btn" type="button"><img src="images/paper-plane.png" alt="" class="plane">
+										<button class="msg_send_btn" id="msg_send_btn" type="button"><img src="/cloud/resouces/images/paper-plane.png" alt="" class="plane">
 							</button>
 									</div>
 								</div>

@@ -38,6 +38,8 @@
 <mapper resource="mappers/patentMapper.xml"/>
 <mapper resource="mappers/patentsubMapper.xml"/>
 <mapper resource="mappers/chatMapper.xml"/>
+<mapper resource="mappers/replyMapper.xml"/>
+
 </mappers>
 
 </configuration>

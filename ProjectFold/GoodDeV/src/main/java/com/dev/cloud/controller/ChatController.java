@@ -39,4 +39,13 @@ public class ChatController {
 			return rep.selectAll(Chat);
 	}
 	
+	@RequestMapping(value = "/Chatmain", method = RequestMethod.GET)
+	public String boardhome() { // 홈이동 (리다이렉트)
+		return "/funding/chat_popup";
+	}
+
+	
+	
+	
+	
 }

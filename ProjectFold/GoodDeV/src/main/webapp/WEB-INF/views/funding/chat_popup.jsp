@@ -35,6 +35,32 @@
             /*채팅 div랑 채팅 내용 input값 초기화*/
             var chatdiv = '';
             var ms = '';
+            var people = '';
+            var peopleinfo= '';
+            
+            
+            /* '참가자 목록 +' 누르면 상대 추가 가능 */ 
+            $('#h4').on('click', function(){
+                //people = $(this, 'h5').val();
+                peopleinfo += '<div class="chat_list">';
+                peopleinfo += '<div class="chat_people">';
+                peopleinfo += '<div class="chat_ib">';
+                peopleinfo += '<h5>'+'[memberId=h5]'+ '<span class="chat_date">09 / 25</span></h5>';
+                peopleinfo += '<p>[11111111111]</p>';
+                peopleinfo += '</div> </div> </div>';
+                
+                $('.inbox_chat').prepend(peopleinfo);
+                
+                $('.chat_people').on('click', function() {
+                    $(this).parent().css("background-color", "#ebebeb");
+                    $('mesgs').attr('disabled', 'disabled');
+                    $('.chat_people').not(this).parent().css("background-color", "#f8f8f8");
+                });
+                
+                peopleinfo='';
+                people='';
+            });
+
             
             /*채팅방 선택 css 애니메이션(?)*/
             $('.chat_people').on('click', function() {
@@ -79,16 +105,9 @@
 			<div class="inbox_msg">
 				<div class="inbox_people" id="">
 					<div class="headind_srch">
-						<!--<div class="recent_heading">-->
-						<h4>참여자 목록</h4>
-						<!--</div>-->
-						<!--<div class="srch_bar">
-              <div class="stylish-input-group">
-                <input type="text" class="search-bar"  placeholder="Search" >
-                <span class="input-group-addon">
-                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </span> </div>
-            </div>-->
+					<div class="recent_heading">
+                            <h4 class="h4" id="h4">참여자 목록 +</h4>
+                        </div>
 					</div>
 					<div class="inbox_chat">
 						<div class="chat_list">
@@ -101,66 +120,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="chat_list">
-							<div class="chat_people">
-								<div class="chat_ib">
-									<h5>
-										[memberId] <span class="chat_date">09 / 25</span>
-									</h5>
-									<p>[채팅 마지막 내용은 여기에]</p>
-								</div>
-							</div>
-						</div>
-						<div class="chat_list">
-							<div class="chat_people">
-								<div class="chat_ib">
-									<h5>
-										[memberId] <span class="chat_date">09 / 25</span>
-									</h5>
-									<p>[chat_Content]</p>
-								</div>
-							</div>
-						</div>
-						<div class="chat_list">
-							<div class="chat_people">
-								<div class="chat_ib">
-									<h5>
-										[memberId] <span class="chat_date">09 / 25</span>
-									</h5>
-									<p>[chat_Content]</p>
-								</div>
-							</div>
-						</div>
-						<div class="chat_list">
-							<div class="chat_people">
-								<div class="chat_ib">
-									<h5>
-										[memberId] <span class="chat_date">09 / 25</span>
-									</h5>
-									<p>[chat_Content]</p>
-								</div>
-							</div>
-						</div>
-						<div class="chat_list">
-							<div class="chat_people">
-								<div class="chat_ib">
-									<h5>
-										[memberId] <span class="chat_date">09 / 25</span>
-									</h5>
-									<p>[chat_Content]</p>
-								</div>
-							</div>
-						</div>
-						<div class="chat_list">
-							<div class="chat_people">
-								<div class="chat_ib">
-									<h5>
-										[memberId] <span class="chat_date">09 / 25</span>
-									</h5>
-									<p>[chat_Content]</p>
-								</div>
-							</div>
-						</div>
+
 					</div>
 				</div>
 				<div class="mesgs" id="mesgs" disabled="disabled">
@@ -216,6 +176,10 @@
 			</div>
 		</div>
 	</div>
+	
+<!-- 	 <!-- loader --> -->
+<%--   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6082cc"/></svg></div> --%>
+	
 
 <!-- SCRIPTS -->
     <!-- JQuery -->

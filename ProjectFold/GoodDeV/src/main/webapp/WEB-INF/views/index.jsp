@@ -7,28 +7,24 @@
    <title>Main</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/chat_index.css">
-    
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
+    
 	<style>
 	ul{
-	   list-style:none;
+	list-style:none;
 	   }
 	</style>
 
@@ -55,7 +51,6 @@
 		}, 400);
 
 	}).scroll();
-            
         /*  $('#btn-chat').on('click', function(){
              chattag += '<li class="right clearfix">'
             chattag += '<div class="chat-body clearfix">'
@@ -65,12 +60,9 @@
             chattag += '<p name="" class="my-chat">'+chatval+'</p>'
             chattag += '<small name="" class="pull-right text-muted">'+'09-23 | 14:14'+'</small>'
             chattag += '</div></li>'
-             
          });   */
-
 });
-        
-        
+
         window.onload = function (){
     		$.ajax({
     			"url" :"/cloud/chat/selectAll",
@@ -354,7 +346,6 @@
         </div>
       </div>
     </section>
-
     <section class="ftco-section" id="blog-section">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
@@ -425,7 +416,6 @@
         </div>
       </div>
     </section>
-
     <section class="ftco-section contact-section ftco-no-pb bg-light" id="contact-section">
       <div class="container">
       	<div class="row justify-content-center mb-5 pb-3">
@@ -492,15 +482,12 @@
                 <input type="submit" value="Send Message" class="btn btn-darken py-3 px-5">
               </div>
             </form>-->
-          
           </div>
-
           <!--<div class="col-md-6 d-flex">
           	<div id="map" class="bg-white"></div>
           </div>-->
         </div>
     </section>
-		
      <!--chat start--> 
      <form>
     <div class="row">
@@ -543,8 +530,6 @@
             </div>
         </div>
     </div></form><!--chat end-->
-    
-
     <footer class="ftco-footer ftco-section">
       <div class="container">
         <div class="row mb-5">
@@ -592,7 +577,6 @@
         </div>
       </div>
     </footer>
-
   <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/cloud/resources/js/popper.min.js"></script>
@@ -605,7 +589,6 @@
   <script src="/cloud/resources/js/aos.js"></script>
   <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
   <script src="/cloud/resources/js/scrollax.min.js"></script>
-  
   <script src="/cloud/resources/js/main.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   </body>

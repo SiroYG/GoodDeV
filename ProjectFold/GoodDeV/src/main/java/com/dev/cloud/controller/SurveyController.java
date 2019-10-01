@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dev.cloud.dao.itemRepository;
 import com.dev.cloud.dao.item_SurveyRepository;
+import com.dev.cloud.utill.PageNavigator;
+import com.dev.cloud.vo.Board;
 import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.Question;
 import com.dev.cloud.vo.QuestionTotal;
@@ -41,16 +43,29 @@ public class SurveyController {
 	itemRepository Irepo ;
 
 	@RequestMapping(value = "/goSurvey_list", method = RequestMethod.GET)
-	public String goSurvey_list(HttpSession session, Model model) {
+	public String goSurvey_list(@RequestParam(value = "currentPage", defaultValue = "1") 
+	int currentPage, HttpSession session, Model model) 
+	{	// 게시글 전체 개수 조회
+		
 
 		Question_Time qTime = new Question_Time();
 		ArrayList<QuestionTotal> qTotalList = new ArrayList<>();
 		qTotalList = IsRepo.selectAllQuestion_TimeById(qTime);
+		
+		
+			// 추가
+		int totalRecordCount = IsRepo.selectAllQuestion_TimeById(qTime).size();
+				System.out.println(totalRecordCount);
+				PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		
 		model.addAttribute("qTotalList", qTotalList);
 		Item item=new Item();
 		item.setMemberId((String)session.getAttribute("loginId"));
 		ArrayList<Item> iList=Irepo.getItemByMemberId(item);
 		model.addAttribute("iList", iList);
+		
+		//추가
+		model.addAttribute("navi", navi);
 //		System.out.println(qTotalList);
 //		if (qTotalList.size() != 0) {
 //			for (QuestionTotal q : qTotalList) {

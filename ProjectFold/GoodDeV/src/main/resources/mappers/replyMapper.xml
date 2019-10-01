@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.cloud.dao.replyMapper">
+	<!-- 리플등록 -->
+	<insert id="insert_reply" parameterType="Reply">
+		insert into Reply (
+		replyNum
+		,boardNum
+		,reply
+		,replyDate
+		,memberId
+		)
+		VALUES (
+		reply_seq.NEXTVAL
+		,#{boardNum}
+		,#{reply}
+		,SYSDATE
+		,#{memberId}
+		)
+		
+
+	</insert>
+
+	<!-- 리플수정 -->
+	<update id="update_reply" parameterType="Reply">
+
+		UPDATE Reply
+		SET
+		reply = #{reply}
+		where
+		replyNum=#{replyNum}
+
+	</update>
+
+	<!-- 리플선택 -->
+	<select id="selectOne_reply" parameterType="Reply" resultType="Reply">
+
+		select
+		*
+		from Reply
+		where replyNum=#{replyNum}
+
+	</select>
+
+	<!-- 리플전체선택 -->
+	<select id="selectAll_reply" parameterType="int" resultType="Reply">
+		select
+		*
+		from Reply
+
+
+	</select>
+
+	<!-- 리플삭제 -->
+	<update id="delete_reply" parameterType="Reply">
+		UPDATE Reply
+		SET
+		reply = '이 댓글은 삭제 되었습니다.'
+		where
+		replyNum=#{replyNum}
+
+	</update>
+
+
+
+</mapper>
+
