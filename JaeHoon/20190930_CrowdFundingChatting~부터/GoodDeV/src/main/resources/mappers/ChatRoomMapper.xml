@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.cloud.dao.chatRoomMapper">
+	
+	<insert id="insertChatRoom" parameterType="ChatRoom">
+	insert into ChatRoom(
+	CHATROOM_seq, 
+	crowdfundingNum
+	)values(
+	CHATROOM_seq.nextval,
+	#{crowdfundingNum}
+	)
+	</insert>
+	
+	<insert id="sendMessage" parameterType="ChatMember">
+	
+	insert into ChatMember(
+	CHATMEMBER_seq, 
+	CHATROOM_seq,
+	memberId,
+	message
+	)values(
+	CHATMEMBER_seq.nextval,
+	#{CHATROOM_seq},
+	#{memberId},
+	#{message}
+	)
+	
+	
+	</insert>
+	<select id="getAllchatMemberByCrowdfundingNum" parameterType="ChatRoom" resultType="ChatMember">
+
+	select cr.CHATROOM_seq, cm.CHATMEMBER_seq, cm.memberId, TO_CHAR(cm.messageDate, 'MM-DD | HH24:mi') as messageDate, cm.message 
+	from ChatRoom cr inner join ChatMember cm on cr.CHATROOM_seq=cm.CHATROOM_seq 
+	where cr.crowdfundingNum=#{crowdfundingNum}
+    order by cm.messagedate desc 
+	</select>
+	
+	<select id="getAllchatRoomByCrowdfundingNum" parameterType="ChatRoom" resultType="ChatRoom">
+   	  select chatroom_seq from ChatRoom where crowdfundingNum=#{crowdfundingNum} ORDER BY chatroom_seq desc
+	
+	</select>
+	
+	
+</mapper>
