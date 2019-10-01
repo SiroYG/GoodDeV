@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.cloud.dao.patentsubMapper">
+	<insert id="insertPatentsub" parameterType="Patentsub">
+		insert into Patentsub (
+		PatentsubNum
+		,patentNum
+		,memberId
+		<if test="referenceFilename!=''">
+			,referenceFilename
+			,saveReferenceFilename
+		</if>
+		)VALUES (
+		Patentsub_seq.NEXTVAL
+		,#{patentNum}
+		,#{memberId}
+		<if test="referenceFilename!=''">
+			,#{referenceFilename}
+			,#{saveReferenceFilename}
+		</if>
+		)
+	</insert>
+	
+	<update id="updatePatentsub" parameterType="Patentsub">
+		UPDATE Patentsub
+		SET
+		referenceFilename = #{referenceFilename}
+		,saveReferenceFilename = #{saveReferenceFilename}
+		where
+		PatentsubNum=#{PatentsubNum}
+	</update>
+
+
+</mapper>
+
+
