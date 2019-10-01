@@ -96,6 +96,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/goMypage", method = RequestMethod.GET)
 	public String goMypage() {
+		
 
 		return "/member/Mypage";
 	}

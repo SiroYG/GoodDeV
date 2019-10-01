@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 public class PythonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
+	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProcessBuilder builder = new ProcessBuilder("C:/Users/창민/AppData/Local/Programs/Python/Python37/python","C:/Program Files/pythonTest.py","hello","world","apple");
 		Process process = builder.start();
