@@ -81,7 +81,7 @@
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  
-	    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -113,7 +113,7 @@
 				<c:if test="${sessionScope.loginId!=null}">
 				<li style="margin-left: 20px;" class="nav-item cta">
 				<div class="dropdown show">
-                        <a style="margin-left: 20px;" class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
                         </a>
 
@@ -129,7 +129,6 @@
 	      </div>
 	    </div>
 	  </nav>
-
 	  <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_10-1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">

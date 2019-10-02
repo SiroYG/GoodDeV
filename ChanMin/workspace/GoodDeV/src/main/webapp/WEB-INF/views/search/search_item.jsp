@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="ko">
   <head>
     <title>Search :: Search Item</title>
@@ -21,10 +21,50 @@
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/search.css">
+     
+    <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
+    <script src="/cloud/resources/js/jquery-ui.min.js"></script>
+    
+    <script>
+    $(function(){
+    	
+    	$('#searchBtn').on('click',function(){
+    		var keyWord = $('#itemWord').val();
+    		var tag = '';
+    		$.ajax({
+    			url : "/cloud/PythonServlet/searchGoee",
+    			type : 'get',
+    			data : {
+    				"keyWord" : keyWord 
+    			},
+    			success : function(res){
+    				$.each(res,function(i,item){
+    					if(item!='finish'){
+    					tag += '<tr>'
+    				
+						//tag += '<td>'+'<img src ="'+item+' "> </td>'	 	
+    				
+						tag += '<td>'+'<img src ="'+ item + '"></td>'
+    					tag += '</tr>'
+    					}
+    				})
+    				$('#god').html(tag);
+    			}
+    			
+    			
+    			
+    		})
+    		
+    	})
+    	
+    	
+    
+    });
+    </script>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  
-	  
+	  <img alt="" src=":image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D">
    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="/cloud/home">Mainlogo</a>
@@ -38,7 +78,7 @@
 	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
 	          <li class="nav-item"><a href="/cloud/survey/surveyListForm" class="nav-link"><span>블라인드 테스트</span></a></li>
 	          <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li>
+	          
 	  			 <c:if test="${sessionScope.loginId==null}">
 					<li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
@@ -46,8 +86,9 @@
 						href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
 				</c:if>
 				<c:if test="${sessionScope.loginId!=null}">
-					<li style="margin-left: 20px;" class="nav-item cta"><a
-							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님, 로그아웃 </a></li>
+					<li style="margin-left: 20px;" class="nav-item cta">
+					<li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li>
+					<a class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님, 로그아웃 </a></li>
 					<!-- <li style="margin-left: 20px;" class="nav-item cta"><a
 						href="/cloud/member/logout" class="nav-link">로그아웃</a></li> -->
 				</c:if>
@@ -80,15 +121,19 @@
           </div>
         </div>
    <div class="search-container">
+  <!-- <img alt="" src="https://shopping-phinf.pstatic.net/main_8221695/82216959865.jpg?type=f140"> --> 
   <form action="" method="get" id="">
-      <label for="patent-word" class="col-sm-2 col-form-label">검색</label>
-      <input type="text" class="patent-word" id="patent-word">&nbsp;&nbsp;&nbsp;
-      <button type="button" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
+      <label for="patent-word" class="col-sm-2 col-form-label">아이템검색</label>
+      <input type="text" class="patent-word" id="itemWord">&nbsp;&nbsp;&nbsp;
+      <button type="button" id="searchBtn" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
   </form>
   <hr class="hr_navy">
    </div>
          <div class="">
              <!--result;-->
+             <table id="god">
+             
+             </table>
          </div>
           </div>
     </section>

@@ -138,7 +138,7 @@ a:not([href]):not([tabindex]) {
 .btnss {
 
   width: max-content;
-    height: 50px;
+    height: 70px;
     padding-left: 1%;
     padding-right: 1%;
     font-size: 16px;

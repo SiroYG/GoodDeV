@@ -1,0 +1,47 @@
+
+# coding: utf-8
+
+# In[1]:
+
+
+import time
+# 프로그램 시작시 입력 값 받는 방법
+import sys
+
+from selenium import webdriver as wb
+driver = wb.Chrome('C:\Program Files\chromedriver.exe')
+url = "https://shopping.naver.com"
+driver.get(url)
+keyWord = sys.argv[1]
+driver.find_element_by_name('query').send_keys(keyWord)
+
+driver.find_element_by_xpath('//*[@id="autocompleteWrapper"]/a[2]').click()
+
+from bs4 import BeautifulSoup as bs
+soup = bs(driver.page_source, 'html.parser')
+title =[]
+title = soup.select('div.tit > .link')
+price =[]
+price = soup.select('em > span.num')
+img = soup.find_all("li", {"class" : "_model_list _itemSection"})
+
+for i in range(len(title)):
+  
+  print('품명: ',title[i].text)
+  print('가격: ',price[i].text,'원')
+
+time.sleep(2)
+driver.close()
+print('finish')
+
+
+
+# In[2]:
+
+
+
+# In[3]:
+
+
+
+

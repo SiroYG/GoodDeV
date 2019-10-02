@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.Highlighter.HighlightPainter;
 
+import org.apache.log4j.chainsaw.Main;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,10 +62,20 @@ public class ItemController {
 
 	@RequestMapping(value = "/searchItem", method = RequestMethod.GET)
 	public String searchItem() { 
+		/*try {
+			ArrayList<String> list =  Python_TEST.pytest();
+			for(int i=0;i<list.size();i++){
+				System.out.println("68번줄==>"+list.get(i));
+			}
+			
+		} catch (IOException e) {
 		
+			e.printStackTrace();
+		}*/
 		
 		return "/search/search_item";
 	}
+	
 	
 	@RequestMapping(value = "/goItemUpdate", method = RequestMethod.GET)
 	public String goItemUpdate(Total total, HttpSession session,Model model) {

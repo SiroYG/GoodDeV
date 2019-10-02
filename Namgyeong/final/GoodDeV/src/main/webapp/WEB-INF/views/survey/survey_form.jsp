@@ -98,7 +98,7 @@
 				<c:if test="${sessionScope.loginId!=null}">
 				<li style="margin-left: 20px;" class="nav-item cta">
 				<div class="dropdown show">
-                        <a style="margin-left: 20px;" class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
                         </a>
 
