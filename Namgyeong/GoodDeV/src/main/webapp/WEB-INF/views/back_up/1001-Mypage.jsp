@@ -64,29 +64,6 @@
                 })
 
             })
-            
-             $('#shape-qna').on('click', function() {
-
-                $.ajax({
-                    url: '/cloud/board/',
-                    type: 'get',
-                    success: outputBoard
-
-                })
-
-            })
-            
-            $('#shape-funding').on('click', function() {
-
-                $.ajax({
-                    url: '/cloud/funding/',
-                    type: 'get',
-                    success: outputFunding
-
-                })
-
-            })
-
 
         });
        
@@ -212,40 +189,6 @@
             })
 
         }
-        
-        /* function outputBoard(res) {
-
-            var tag = '';
-            $.each(res, function(i, board) {
-                i += 1;
-                tag += '<tr>'
-                tag += '<th scope="row" >' + i + '</th>'
-                tag += '<td name="title"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.title + '</td>';
-                tag += '<td name="boardDate"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.boardDate + '</a></td>'
-                tag += '<td name="qType"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.qType + '</td>';
-                tag += '</tr>';
-
-                $('.boardTbody').append(tag);
-            })
-
-        }
-        
-        function outputFunding(res) {
-
-            var tag = '';
-            $.each(res, function(i, fund) {
-                i += 1;
-                tag += '<tr>'
-                tag += '<td scope="row" >' + i + '</th>'
-                tag += '<td name=""><a href="/cloud/funding/fundingDetail?crowdfundingNum=' + fund.questionTimeNum + '">' + fund.questionTitle + '</a></td>'
-                tag += '<td name="fundingStartDate"><a href="/cloud/funding/fundingDetail?crowdfundingNum=' + fund.questionTimeNum + '">' + fund.fundingStartDate + '</td>';
-                tag += '<td name="fundingDueDate"><a href="/cloud/funding/fundingDetail?crowdfundingNum=' + fund.questionTimeNum + '">' + fund.fundingDueDate + '</td>';
-                tag += '</tr>';
-
-                $('.FundingTbody').append(tag);
-            })
-
-        } */
     </script>
 </head>
 
@@ -311,7 +254,7 @@
                 </svg>
                 <nav>
                     <ul>
-                        <li><a href="#section-shape-qna" id="shape-qna"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
+                        <li><a href="#section-shape-qna"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <span><b>내 게시글 목록</b></span>
                             </a></li>
@@ -333,7 +276,7 @@
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <span><b>블라인드 테스트 현황</b></span>
                             </a></li>
-                        <li><a href="#section-shape-funding" id="shape-funding"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
+                        <li><a href="#section-shape-funding"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <span><b>크라우드 펀딩 현황</b></span>
                             </a></li>
@@ -341,19 +284,7 @@
                 </nav>
                 <div class="content-wrap">
                     <section id="section-bar-qna">
-                        <table class="table">
-                            <thead class="navy">
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">제목</th>
-                                    <th scope="col">작성일</th>
-                                    <th scope="col">공개 여부</th>
-                                </tr>
-                            </thead>
-                            <tbody class="boardTbody">
-
-                            </tbody>
-                        </table>
+                        
                     </section>
 
                     <section id="section-bar-patent"> </section>
@@ -387,12 +318,13 @@
                             <thead class="navy">
                                 <tr>
                                     <th scope="col">No.</th>
+                                    <th scope="col">분류</th>
                                     <th scope="col">제목</th>
                                     <th scope="col">시작일</th>
                                     <th scope="col">마김일</th>
                                 </tr>
                             </thead>
-                            <tbody class="FundingTbody">
+                            <tbody>
                                 <tr>
                                     <th scope="row" name="boardNum">1</th>
                                     <td name="qCategory">[일반]</td>

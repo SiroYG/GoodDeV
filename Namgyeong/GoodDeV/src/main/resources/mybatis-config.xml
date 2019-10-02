@@ -22,12 +22,19 @@
 <typeAlias alias="officialFile" type="com.dev.cloud.vo.officialFile"/>
 <typeAlias alias="QuestionTotal" type="com.dev.cloud.vo.QuestionTotal"/>
 <typeAlias alias="Search" type="com.dev.cloud.vo.Search"/>
+<typeAlias alias="Total" type="com.dev.cloud.vo.Total"/>
+<typeAlias alias="Pat" type="com.dev.cloud.vo.Pat"/>
+<typeAlias alias="PatentTotal" type="com.dev.cloud.vo.PatentTotal"/>
+<typeAlias alias="PdpVo" type="com.dev.cloud.vo.PdpVo"/>
 </typeAliases>
 
 <mappers>
 <mapper resource="mappers/memberMapper.xml"/>
 <mapper resource="mappers/boardMapper.xml"/>
+<mapper resource="mappers/MTIMapper.xml"/>
 <mapper resource="mappers/crowdfundingMapper.xml"/>
+<mapper resource="mappers/document.xml"/>
+<mapper resource="mappers/documentMapper.xml"/>
 <mapper resource="mappers/item_SurveyMapper.xml"/>
 <mapper resource="mappers/itemMapper.xml"/>
 <mapper resource="mappers/patentMapper.xml"/>

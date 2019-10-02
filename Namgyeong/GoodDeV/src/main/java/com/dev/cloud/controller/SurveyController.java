@@ -26,6 +26,7 @@ import com.dev.cloud.vo.QuestionTotal;
 import com.dev.cloud.vo.Question_Time;
 import com.dev.cloud.vo.Search;
 import com.dev.cloud.vo.Survey;
+import com.dev.cloud.vo.Total;
 
 
 @Controller
@@ -86,9 +87,9 @@ public class SurveyController {
 		
 		
 		//아이템보유자가 테스트진행하려고 할때  item을선택하도록 해주기 위함.
-		Item item=new Item();
+		Total item=new Total();
 		item.setMemberId((String)session.getAttribute("loginId"));
-		ArrayList<Item> iList=Irepo.getItemByMemberId(item);
+		List<Total> iList=Irepo.getItemByMemberId(item);
 		model.addAttribute("iList", iList);
 //		
 //		System.out.println(qTotalList);
@@ -255,7 +256,7 @@ public class SurveyController {
 		return qtLsist;
 	}
 	@RequestMapping(value = "/goSurvey_form", method = RequestMethod.GET)
-	public String goSurvey_form(Model model, Item item) {
+	public String goSurvey_form(Model model, Total item) {
 		System.out.println(item);
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd");
 	      Calendar time = Calendar.getInstance();
@@ -263,7 +264,7 @@ public class SurveyController {
 	     
 	      model.addAttribute("times", times);
 	      
-	      Item getOneItem=Irepo.getOneItemByItemNum(item);
+	      Total getOneItem=Irepo.getOneItemByItemNum(item);
 	      model.addAttribute("getOneItem", getOneItem);
 	      System.out.println(getOneItem);
 	      
@@ -288,7 +289,7 @@ public class SurveyController {
 	
 	}
 	@RequestMapping(value = "/gosurvey_result", method = RequestMethod.GET)
-	public String gosurvey_result(Model model, Item item, Question_Time qTime) {
+	public String gosurvey_result(Model model, Total item, Question_Time qTime) {
 		
 	      System.out.println("288line");
 	      System.out.println(qTime);
@@ -298,7 +299,7 @@ public class SurveyController {
 		  model.addAttribute("getQTime", getQTime);
 		  
 		  int itemNum=getQTime.getItemNum();
-		  Item itemTemp=new Item();
+		  Total itemTemp=new Total();
 		  itemTemp.setItemNum(itemNum);
 		  itemTemp=Irepo.getOneItemByItemNum(itemTemp);
 		  model.addAttribute("itemTemp", itemTemp);

@@ -32,8 +32,8 @@ a.mypage-link{
 }
 
 a.mypage-link:hover{
-    color: blue;
-    text-decoration : none;
+    text-decoration: underline;
+	 color : #6082cc;
 }
 
 /*a.btn {

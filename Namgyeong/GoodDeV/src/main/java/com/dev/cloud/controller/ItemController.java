@@ -13,8 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dev.cloud.dao.HistoryRepository;
 import com.dev.cloud.dao.itemRepository;
 import com.dev.cloud.vo.Item;
+import com.dev.cloud.vo.Total;
 
 
 @Controller
@@ -23,6 +25,8 @@ public class ItemController {
 	
 	@Autowired
 	itemRepository repo;
+	@Autowired
+	HistoryRepository hipo;
 	
 	@RequestMapping(value = "/goItemDetail", method = RequestMethod.GET)
 	public String goItemDetail(Item item, Model model) {
@@ -32,6 +36,18 @@ public class ItemController {
 		 model.addAttribute("item",it);*/
 		 
 		return "/item/item_Detail" ;
+	}
+	
+	@RequestMapping(value = "/goItemHistory", method = RequestMethod.GET)
+	public String goItemHistory(HttpSession session,Total total,Model model) {
+		String memberId = (String) session.getAttribute("loginId");
+		total.setMemberId(memberId);
+
+		List<Total> hList = hipo.selectAllHistory(total);
+		System.out.println("47번==>"+hList);
+		model.addAttribute("hList", hList);	
+		 
+		return "/item/item_history" ;
 	}
 	
 	@RequestMapping(value = "/goItemUpdate", method = RequestMethod.GET)
@@ -58,7 +74,7 @@ public class ItemController {
 		return "redirect:/";
 	}
 	@RequestMapping(value = "/goItemWriteProcess", method = RequestMethod.POST)
-	public String goItemWriteProcess(Item item, HttpSession session) {
+	public String goItemWriteProcess(Total item, HttpSession session) {
 		
 		String memberId= (String) session.getAttribute("loginId");
 		item.setMemberId(memberId);

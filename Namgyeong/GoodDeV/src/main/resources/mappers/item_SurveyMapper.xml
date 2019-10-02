@@ -174,7 +174,7 @@
 
 <select id="selectBySearchItem" parameterType="Search"
 		resultType="QuestionTotal">
-		select i.itemtype, q.questiontitle, q.memberid, q.startdate, q.questionTimeNum
+		select i.itemtype, q.questiontitle, q.memberid, q.startdate, q.dueDate, q.questionTimeNum
 		from Question_Time q join item i using (itemNum)
 		<choose>
 		<when test="searchItem=='title'">

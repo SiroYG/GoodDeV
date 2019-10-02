@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Total {
+public class Total { 	// item , document, item-history
 	private int itemNum;
 	private String memberId;
 	private String itemType;

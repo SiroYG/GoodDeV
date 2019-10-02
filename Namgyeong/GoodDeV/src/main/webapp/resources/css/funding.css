@@ -8,6 +8,12 @@ body{
     font-family: 'Eoe_Zno_B';
 }
 
+p.non-data{
+	margin-top: 100px; 
+	text-align: center !important;
+	
+}
+
 hr.hr_purple {
     border-color: #1f124a;
     border-width: 7px;
@@ -68,87 +74,73 @@ div.page-center{
 }
 
 .btns {
-width:280px;
-height: 70px;
-  padding: 1%;
-  font-size: 16px;
-  font-weight: 700;
-  color: #fff;
-  background-color: #523e96;
-  border: 2px solid #523e96;
-  cursor: pointer;
-  width: max-content;
-  transition: 0.25s ease;
+	width:max-content;
+    height: 60px;
+    padding: 1.2%;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff !important;
+    background-color: #1f124a;
+    border: 2px solid #1f124a;
+    cursor: pointer;
+    transition: 0.25s ease;
 }
 
-a:not([href]):not([tabindex]) {
-  color: #fff;
-  text-decoration: none;
-  }
-  
-  a:not([href]):not([tabindex]):hover {
-  color: #1f124a;
-  text-decoration: none;
-  }
 
-.btnss {
-width:280px;
-height: 70px;
-  padding: 1%;
-  font-size: 16px;
-  font-weight: 700;
-  color : #fff;
-  background-color: #1f124a;
-  border: 2px solid #1f124a;
-  cursor: pointer;
-  width: max-content;
-  transition: 0.25s ease;
-}
 
 .btn-3-comments {
-width:280px;
-height: 70px;
-  padding: 1%;
-  font-size: 16px;
-  font-weight: 700;
-  color: #fff;
-  background-color: #28a146;
-  border: 2px solid #28a146;
-  cursor: pointer;
-  width: max-content;
-  transition: 0.25s ease;
+    width: 280px;
+    height: 70px;
+    padding: 1%;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff ;
+    background-color: #28a146;
+    border: 2px solid #28a146;
+    cursor: pointer;
+    width: max-content;
+    transition: 0.25s ease;
 }
 
 .btn-3:hover {
-  color: #523e96;
-  background-color: transparent;
-}
-
-.btn-3-navy:hover {
-  color: #1f124a;
-     border-color: #1f124a;
-  background-color: transparent;
+    color: #1f124a !important;
+    background-color: transparent;
 }
 
 .btn-3-red:hover {
-  color: #d41515;
+    color: #d41515 !important;
     border-color: #d41515;
-  background-color: transparent;
+    background-color: transparent;
 }
 
 .btn-3-green:hover {
-  color: #28a146;
+    color: #28a146 !important;
     border-color: #28a146;
-  background-color: transparent;
+    background-color: transparent;
 }
 
 .btn-3-comments:hover {
-  color: #28a146;
+    color: #28a146 !important;
     border-color: #28a146;
-  background-color: transparent;
+    background-color: transparent;
 }
 
 span.white{
-    padding: 2%;
-    font-size: 1.2em;
+    padding: 1%;
+    font-size: 1em;
+}
+
+.btnss {
+
+  width: max-content;
+    height: 70px;
+    padding-left: 1%;
+    padding-right: 1%;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff !important;
+    background-color: #1f124a;
+    border: 2px solid #1f124a;
+    cursor: pointer;
+    transition: 0.25s ease;
 }

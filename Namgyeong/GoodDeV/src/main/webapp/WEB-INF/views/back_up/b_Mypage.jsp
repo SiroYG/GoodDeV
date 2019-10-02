@@ -64,29 +64,6 @@
                 })
 
             })
-            
-             $('#shape-qna').on('click', function() {
-
-                $.ajax({
-                    url: '/cloud/board/',
-                    type: 'get',
-                    success: outputBoard
-
-                })
-
-            })
-            
-            $('#shape-funding').on('click', function() {
-
-                $.ajax({
-                    url: '/cloud/funding/',
-                    type: 'get',
-                    success: outputFunding
-
-                })
-
-            })
-
 
         });
        
@@ -212,40 +189,6 @@
             })
 
         }
-        
-        /* function outputBoard(res) {
-
-            var tag = '';
-            $.each(res, function(i, board) {
-                i += 1;
-                tag += '<tr>'
-                tag += '<th scope="row" >' + i + '</th>'
-                tag += '<td name="title"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.title + '</td>';
-                tag += '<td name="boardDate"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.boardDate + '</a></td>'
-                tag += '<td name="qType"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.qType + '</td>';
-                tag += '</tr>';
-
-                $('.boardTbody').append(tag);
-            })
-
-        }
-        
-        function outputFunding(res) {
-
-            var tag = '';
-            $.each(res, function(i, fund) {
-                i += 1;
-                tag += '<tr>'
-                tag += '<td scope="row" >' + i + '</th>'
-                tag += '<td name=""><a href="/cloud/funding/fundingDetail?crowdfundingNum=' + fund.questionTimeNum + '">' + fund.questionTitle + '</a></td>'
-                tag += '<td name="fundingStartDate"><a href="/cloud/funding/fundingDetail?crowdfundingNum=' + fund.questionTimeNum + '">' + fund.fundingStartDate + '</td>';
-                tag += '<td name="fundingDueDate"><a href="/cloud/funding/fundingDetail?crowdfundingNum=' + fund.questionTimeNum + '">' + fund.fundingDueDate + '</td>';
-                tag += '</tr>';
-
-                $('.FundingTbody').append(tag);
-            })
-
-        } */
     </script>
 </head>
 
@@ -311,9 +254,9 @@
                 </svg>
                 <nav>
                     <ul>
-                        <li><a href="#section-shape-qna" id="shape-qna"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
+                        <li><a href="#section-shape-all"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
-                                </svg> <span><b>내 게시글 목록</b></span>
+                                </svg> <span><b>My Page</b></span>
                             </a></li>
                         <li><a id="patentList" href="#section-shape-patent"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
@@ -333,27 +276,40 @@
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <span><b>블라인드 테스트 현황</b></span>
                             </a></li>
-                        <li><a href="#section-shape-funding" id="shape-funding"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
+                        <li><a href="#section-shape-funding"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <span><b>크라우드 펀딩 현황</b></span>
                             </a></li>
                     </ul>
                 </nav>
                 <div class="content-wrap">
-                    <section id="section-bar-qna">
-                        <table class="table">
-                            <thead class="navy">
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">제목</th>
-                                    <th scope="col">작성일</th>
-                                    <th scope="col">공개 여부</th>
-                                </tr>
-                            </thead>
-                            <tbody class="boardTbody">
+                    <section id="section-bar-all">
+                        <h2>
+                            <b>${sessionScope.loginName}님의 마이 페이지</b>
+                        </h2>
 
-                            </tbody>
-                        </table>
+                        <h3>회원 정보 수정</h3>
+                        <br>
+                        <a href="/cloud/member/goupdate" class="btn btn--radius btn--green">바로가기</a>
+
+                        <c:if test="${sessionScope.loginType eq 'inventor'}">
+                            <p>${sessionScope.loginName}님은 현재 '창업자/창업희망자'입니다. 
+                            <br>현재 <span><b>특허 및 제품 현황 조회, 
+                            <br>블라인드 테스트 결과 및 크라우드 펀딩 현황</b></span>을 조회할 수 있습니다.
+                        	</p>
+                        </c:if>
+                        
+                        <c:if test="${sessionScope.loginType eq 'enp'}">
+                            <p>${sessionScope.loginName}님은 현재 '특허 보유자(기업/개인)'입니다. 
+                            <br>현재 <span><b>특허 및 제품 현황 조회, 
+                            <br>블라인드 테스트 결과 및 크라우드 펀딩 현황</b></span>을 조회할 수 있습니다.
+                        	</p>
+                        </c:if>
+
+                        <c:if test="${sessionScope.loginType eq ''}">
+                            <p>${sessionScope.loginName}님은 현재 '일반회원'입니다. 
+                            <br>현재 <b>작성 게시글 확인 및 크라우드 펀딩 현황</b>을 조회할 수 있습니다. </p>
+                        </c:if>
                     </section>
 
                     <section id="section-bar-patent"> </section>
@@ -387,18 +343,76 @@
                             <thead class="navy">
                                 <tr>
                                     <th scope="col">No.</th>
+                                    <th scope="col">분류</th>
                                     <th scope="col">제목</th>
                                     <th scope="col">시작일</th>
                                     <th scope="col">마김일</th>
                                 </tr>
                             </thead>
-                            <tbody class="FundingTbody">
+                            <tbody>
                                 <tr>
                                     <th scope="row" name="boardNum">1</th>
                                     <td name="qCategory">[일반]</td>
                                     <td name="title">aaaaaaaaaaaaaaaaaaa</td>
                                     <td name="id">ididid</td>
                                     <td name="boardDate">2019-09-09</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" name="boardNum">2</th>
+                                    <td name="qCategory">[특허]</td>
+                                    <td name="title">bbbbbbbbbbb</td>
+                                    <td name="id">ottotto</td>
+                                    <td name="boardDate">2019-09-07</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" name="boardNum">3</th>
+                                    <td name="qCategory">Mark</td>
+                                    <td name="title">aaaa</td>
+                                    <td name="id">Otto</td>
+                                    <td name="boardDate">@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" name="boardNum">4</th>
+                                    <td name="qCategory">Mark</td>
+                                    <td name="title">aaaa</td>
+                                    <td name="id">Otto</td>
+                                    <td name="boardDate">@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" name="boardNum">5</th>
+                                    <td name="qCategory">Mark</td>
+                                    <td name="title">aaaa</td>
+                                    <td name="id">Otto</td>
+                                    <td name="boardDate">@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" name="boardNum">6</th>
+                                    <td name="qCategory">Mark</td>
+                                    <td name="title">aaaa</td>
+                                    <td name="id">Otto</td>
+                                    <td name="boardDate">@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" name="boardNum">7</th>
+                                    <td name="qCategory">Mark</td>
+                                    <td name="title">aaaa</td>
+                                    <td name="id">Otto</td>
+                                    <td name="boardDate">@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" name="boardNum">8</th>
+                                    <td name="qCategory">Mark</td>
+                                    <td name="title">aaaa</td>
+                                    <td name="id">Otto</td>
+                                    <td name="boardDate">@mdo</td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row" name="boardNum">9</th>
+                                    <td name="qCategory">Mark</td>
+                                    <td name="title">aaaa</td>
+                                    <td name="id">Otto</td>
+                                    <td name="boardDate">@mdo</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" name="boardNum">10</th>
@@ -419,6 +433,26 @@
     </div>
 
 </body>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="/cloud/resources/js/popper.min.js"></script>
