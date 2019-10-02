@@ -24,6 +24,63 @@
 <link rel="stylesheet" href="/cloud/resources/css/style.css">
 <link rel="stylesheet" href="/cloud/resources/Header.css">
 <link rel="stylesheet" href="/cloud/resources/Board.css">
+
+
+<script>
+
+function Regist() {
+	var id = document.getElementById("id");
+	var Reply = document.getElementById("Reply");
+	$.ajax({
+		"url" : "/cloud/board/insert_Reply",
+		"method" : "post",
+		"data" : {
+			"memberId" : id.value,
+			"reply" : Reply.value
+		},
+		"success" : function(result) {
+			var resulttable = document.getElementById("resulttable");
+			resulttable.innerHTML="";
+			$(result).each(function(index,item){
+				resulttable.innerHTML
+					+="<p name='id'>"+item.id+"</p>"
+					+"<input type='text' class='form-control' name='reply' value='"+item.reply+"' readonly='readonly'>"
+					+"<p name='repDate'>"+item.+replyDate+"</p>"
+					+"<a href='#' class='btns btn-3-green'><span class='white'>수정</span></a>&nbsp;&nbsp;"
+					+"<a href='#' class='btns btn-3-red'><span class='white'>삭제</span></a>"
+			});
+			console.log(result);
+			alert(result);
+		}
+	})
+}
+
+	
+window.onload = function (){
+	var userid = document.getElementById("userid");
+	$.ajax({
+		"url" :"/cloud/board/selectAll_Reply",
+		"method" : "get",
+		"data":{
+			"userid" : userid.value
+		},
+		"success":function(result){
+			var resulttable = document.getElementById("resulttable");
+			resulttable.innerHTML="<tr><th>메모</th><th>금액</th><th>삭제</th></tr>";
+			$(result).each(function(index,item){
+				resulttable.innerHTML
+				+="<p name='id'>"+item.id+"</p>"
+				+"<input type='text' class='form-control' name='reply' value='"+item.reply+"' readonly='readonly'>"
+				+"<p name='repDate'>"+item.+replyDate+"</p>"
+				+"<a href='#' class='btns btn-3-green'><span class='white'>수정</span></a>&nbsp;&nbsp;"
+				+"<a href='#' class='btns btn-3-red'><span class='white'>삭제</span></a>"
+			});
+		}
+	});
+}
+
+</script>
+
 </head>
 <header class="header"> 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -130,21 +187,17 @@
 		</div>
 		<div class="form-group row">
 			<label for="" class="col-sm-2 col-form-label"><span><b>Comments</b></span></label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" name="reply" id=""
-					placeholder="댓글" readonly="readonly">
-				<p name="repDate">2019-09-21 13:24</p>
-				<a href="#" class="btns btn-3-green"><span class="white">수정</span></a>&nbsp;&nbsp;<a
-					href="#" class="btns btn-3-red"><span class="white">삭제</span></a>
+			<div class="col-sm-10" id="resulttable">
+				
 			</div>
 		</div>
 		<hr class="hr_purple">
 		<div class="form-group row">
 			<label for="" class="col-sm-2 col-form-label"><span><b>댓글</b></span></label>
 			<div class="col-sm-10">
-				<textarea rows="5" cols="112" name="reply" class="form-control"></textarea>
-				<br> <input type="hidden" name="id"
-					value="${sessionScope.loginId}"> <a href="insert_reply"
+				<textarea rows="5" cols="112" name="Reply" id="Reply" class="form-control"></textarea>
+				<br> <input type="hidden" name="id" id="id"
+					value="${sessionScope.loginId}"> <a href="#" onclick="Regist()"
 					class="btns btn-3-comments"><span class="white">댓글 작성</span></a>
 			</div>
 		</div>

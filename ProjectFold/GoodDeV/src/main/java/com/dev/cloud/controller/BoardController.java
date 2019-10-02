@@ -178,13 +178,24 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping(value = "insert_Reply", method = RequestMethod.GET)
-	public String insert_Reply(Model model, Reply reply ) {
-		System.out.println("Reply => " + reply);
-		int result = Redao.insert_reply(reply);
-		model.addAttribute("reply", reply);
-		return "/board/Board_update";
+	@RequestMapping(value = "/insert_Reply", method = RequestMethod.POST)
+	@ResponseBody
+	public List<Reply> insert(int BoardNum , Reply reply) {
+		if (Redao.insert_reply(reply) == 1) {
+			return Redao.selectAll_reply(BoardNum);
+		} else {
+			return Redao.selectAll_reply(BoardNum);
+		}
+
 	}
 	
+	
+	@RequestMapping(value = "/selectAll_Reply", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Reply> selectAll_Reply(int BoardNum) {
+		System.out.println("reply=>"+BoardNum);
+	
+			return Redao.selectAll_reply(BoardNum);
+	}
 	
 }

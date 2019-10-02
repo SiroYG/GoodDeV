@@ -50,8 +50,7 @@
 		select
 		*
 		from Reply
-
-
+		where boardNum=#{boardNum}
 	</select>
 
 	<!-- 리플삭제 -->
