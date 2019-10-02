@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dev.cloud.dao.fundingOptionRepository;
 import com.dev.cloud.dao.fundingRepository;
 import com.dev.cloud.utill.FileService;
 import com.dev.cloud.utill.PageNavigator;
@@ -33,6 +34,8 @@ import com.dev.cloud.vo.Question_Time;
 @RequestMapping("/funding")
 public class FundingController {
 
+	@Autowired
+	fundingOptionRepository dao1;
 	@Autowired
 	fundingRepository dao;
 	
@@ -115,6 +118,7 @@ public class FundingController {
 
 		return "/funding/funding_list";
 	}
+
 	
 	@RequestMapping(value = "paymentform", method = {RequestMethod.POST,RequestMethod.GET})
 	public String paymentform(Payment payment, Model model) {

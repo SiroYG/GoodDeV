@@ -198,8 +198,8 @@
                     </div>
                     <br>
                 </fieldset>
-                <a onclick="Write()"  class="btnss btn-3"><span class="white">등록하기</span></a> 
-                &nbsp;&nbsp; <a href="/cloud/funding/fundingListForm" class="btnss btn-3-red"><span class="white">취소</span></a>
+                <a onclick="Write()"  class="btns btn-3">등록하기</a> 
+                &nbsp;&nbsp; <a href="/cloud/funding/fundingListForm" class="btns btn-3-red"><span class="white">취소</span></a>
 
             </div>
         </form>
@@ -260,7 +260,8 @@
     <script src="/cloud/resources/js/jquery.min.js"></script>
     <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="/cloud/resources/js/popper.min.js"></script>
-    <script src="/cloud/resources/js/bootstrap.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
     <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
     <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
     <script src="/cloud/resources/js/jquery.stellar.min.js"></script>

@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.dev.cloud.cloudfundingMapper">
+<mapper namespace="com.dev.cloud.fundingMapper">
 	
 	<insert id="makeCrowdFunding" parameterType="Crowdfunding">
 		insert into Crowdfunding (
@@ -13,6 +13,11 @@
 		,itemCurrecyPrice
 		,fundingDueDate
 		,fundingStartDate
+		,memberId
+		,fundingTitle
+		,fundingContents
+		,originalFileName
+		,savedFileName
 		)
 		VALUES (
 		crowdfunding_seq.NEXTVAL
@@ -20,9 +25,15 @@
 		,#{itemGoalPrice}
 		,#{itemCurrecyPrice}
 		,#{fundingDueDate}
-		,#{fundingStartDate}
+		,sysdate
+		,#{memberId}
+		,#{fundingTitle}
+		,#{fundingContents}
+		,#{originalFileName}
+		,#{savedFileName}
 		)
 	</insert>
+
 	
 	<update id="updateCrowdFunding" parameterType="Crowdfunding">
 	UPDATE Crowdfunding 

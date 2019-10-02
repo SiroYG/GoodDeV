@@ -10,12 +10,11 @@ import com.dev.cloud.vo.Crowdfunding;
 import com.dev.cloud.vo.FundingTable;
 
 @Repository
-public class crowdfundingRepository implements crowdfundingMapper {
+public class crowdfundingRepository {
 
 	@Autowired
 	SqlSession sqlSession;
 	
-	@Override
 	public int makeCrowdFunding(Crowdfunding crowdfunding) {
 		int result=0;
 		crowdfundingMapper mapper=sqlSession.getMapper(crowdfundingMapper.class);
@@ -28,7 +27,7 @@ public class crowdfundingRepository implements crowdfundingMapper {
 		return result;
 	}
 
-	@Override
+
 	public int updateCrowdFunding(Crowdfunding crowdfunding) {
 		int result=0;
 		crowdfundingMapper mapper=sqlSession.getMapper(crowdfundingMapper.class);
@@ -41,7 +40,6 @@ public class crowdfundingRepository implements crowdfundingMapper {
 		return result;
 	}
 
-	@Override
 	public Crowdfunding selectOneCrowdFunding(Crowdfunding crowdfunding) {
 		Crowdfunding result=null;
 		crowdfundingMapper mapper=sqlSession.getMapper(crowdfundingMapper.class);
@@ -54,7 +52,6 @@ public class crowdfundingRepository implements crowdfundingMapper {
 		return result;
 	}
 
-	@Override
 	public ArrayList<Crowdfunding> selectAllCrowdFunding() {
 		ArrayList<Crowdfunding> result=null;
 		crowdfundingMapper mapper=sqlSession.getMapper(crowdfundingMapper.class);
@@ -68,9 +65,6 @@ public class crowdfundingRepository implements crowdfundingMapper {
 	}
 
 
-
-
-	@Override
 	public int insertFundingTable(FundingTable fundingTable) {
 		int result=0;
 		crowdfundingMapper mapper=sqlSession.getMapper(crowdfundingMapper.class);
@@ -83,7 +77,6 @@ public class crowdfundingRepository implements crowdfundingMapper {
 		return result;
 	}
 
-	@Override
 	public int updateFundingTable(FundingTable fundingTable) {
 		int result=0;
 		crowdfundingMapper mapper=sqlSession.getMapper(crowdfundingMapper.class);
@@ -96,7 +89,7 @@ public class crowdfundingRepository implements crowdfundingMapper {
 		return result;
 	}
 
-	@Override
+
 	public ArrayList<FundingTable> selectFundingTableByMemberId(FundingTable fundingTable) {
 		ArrayList<FundingTable> result=null;
 		crowdfundingMapper mapper=sqlSession.getMapper(crowdfundingMapper.class);
