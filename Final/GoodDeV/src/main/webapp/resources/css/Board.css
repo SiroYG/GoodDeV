@@ -1,0 +1,143 @@
+@font-face { font-family: 'Eoe_Zno_B'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_B.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+* {
+    font-family: 'Eoe_Zno_B';
+}
+
+body{
+    font-family: 'Eoe_Zno_B';
+}
+
+div.write_table,
+div.main_table {
+    padding: 3% 10% 10%;
+}
+
+div.Detail_table {
+    padding: 5% 10% 5%;
+}
+
+div.cap-btn {
+    vertical-align: middle;
+    text-align: right;
+    margin: 0 auto;
+    justify-content: right;
+    
+}
+
+div.tri-btn {
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+
+
+.btn-primary{
+    margin-left :10px;
+    margin-right:10px;
+    }
+
+div.page-center {
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.navy {
+    background-color: #1f124a;
+    color: white;
+    text-align: center;
+}
+
+.search-form {
+	display : inline-flex;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 30px;
+    width : 100%;
+}
+
+hr.hr_purple {
+    border-color: #1f124a;
+    border-width: 7px;
+    padding: 0% 10%;
+}
+
+.btns {
+	width: max-content;
+    height: 70px;
+    padding-left: 1%;
+    padding-right: 1%;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff !important;
+    background-color: #1f124a;
+    border: 2px solid #1f124a;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+
+
+.btn-3-comments {
+    width: 280px;
+    height: 70px;
+    padding: 1%;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff ;
+    background-color: #28a146;
+    border: 2px solid #28a146;
+    cursor: pointer;
+    width: max-content;
+    transition: 0.25s ease;
+}
+
+.btn-3:hover {
+    color: #1f124a !important;
+    background-color: transparent;
+}
+
+.btn-3-red:hover {
+    color: #d41515 !important;
+    border-color: #d41515;
+    background-color: transparent;
+}
+
+.btn-3-green:hover {
+    color: #28a146 !important;
+    border-color: #28a146;
+    background-color: transparent;
+}
+
+.btn-3-comments:hover {
+    color: #28a146 !important;
+    border-color: #28a146;
+    background-color: transparent;
+}
+
+span.white{
+    padding: 1%;
+    font-size: 1em;
+}
+
+
+.searchWord {
+    width: 80%;
+}
+
+p.qna-id{
+    font-size: 1.2em;
+}
+
+.input-comment{
+    color: #999999;
+    border: none;
+    height: inherit !important;
+    overflow: auto;
+    resize: vertical;
+    width: 100%;
+}
