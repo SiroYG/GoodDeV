@@ -42,6 +42,13 @@
     <script>
         var pageSu;
         $(function() {
+        	
+        	$.ajax({
+                url: '/cloud/board/',
+                type: 'get',
+                success: outputBoard
+
+            })
 
             $('#patentList').on('click', function() {
                 alert("hi");
@@ -68,7 +75,7 @@
              $('#shape-qna').on('click', function() {
 
                 $.ajax({
-                    url: '/cloud/survey/',
+                    url: '/cloud/board/',
                     type: 'get',
                     success: outputBoard
 
@@ -213,24 +220,29 @@
 
         }
         
-        /* function outputBoard(res) {
+        function outputBoard(res) {
 
             var tag = '';
             $.each(res, function(i, board) {
+            	alert("board_upload");
                 i += 1;
-                tag += '<tr>'
-                tag += '<th scope="row" >' + i + '</th>'
-                tag += '<td name="questionTitle"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.boardNum + '</a></td>'
-                tag += '<td name="startDate"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.startDate + '</td>';
-                tag += '<td name="dueDate"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.dueDate + '</td>';
+                tag += '<tr>';
+                tag += '<th scope="row" name="boardNum">' + i + '</th>'
+                tag += '<td name="title"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.title + '</td>';
+                tag += '<td name="boardDate"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.boardDate + '</a></td>';
+                tag += '<td name="qType"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.qType + '</td>';
                 tag += '</tr>';
+                    tag += '<div class="tri-btn">';
+                    tag += '<button id="leftBtn" class="btn btn-primary">◀</button>';
+                    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>';
+                    tag += '</div>';
 
-                $('.surveyTbody').append(tag);
+                $('.boardTbody').append(tag);
             })
 
         }
         
-        function outputFunding(res) {
+        /* function outputFunding(res) {
 
             var tag = '';
             $.each(res, function(i, fund) {
@@ -341,7 +353,19 @@
                 </nav>
                 <div class="content-wrap">
                     <section id="section-bar-qna">
-                        
+                        <table class="table">
+                            <thead class="navy">
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">제목</th>
+                                    <th scope="col">작성일</th>
+                                    <th scope="col">공개 여부</th>
+                                </tr>
+                            </thead>
+                            <tbody class="boardTbody">
+
+                            </tbody>
+                        </table>
                     </section>
 
                     <section id="section-bar-patent"> </section>

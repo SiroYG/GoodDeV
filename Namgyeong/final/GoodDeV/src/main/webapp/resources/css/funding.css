@@ -8,6 +8,12 @@ body{
     font-family: 'Eoe_Zno_B';
 }
 
+p.non-data{
+	margin-top: 100px; 
+	text-align: center !important;
+	
+}
+
 hr.hr_purple {
     border-color: #1f124a;
     border-width: 7px;
@@ -68,12 +74,11 @@ div.page-center{
 }
 
 .btns {
-	width: max-content;
-    height: 50px;
-    padding-left: 1%;
-    padding-right: 1%;
+	width:max-content;
+    height: 60px;
+    padding: 1.2%;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
     color: #fff !important;
     background-color: #1f124a;
     border: 2px solid #1f124a;
@@ -125,20 +130,10 @@ span.white{
     font-size: 1em;
 }
 
-a:not([href]):not([tabindex]) {
-  color: #fff;
-  text-decoration: none;
-  }
-  
-  a:not([href]):not([tabindex]):hover {
-  color: #1f124a;
-  text-decoration: none;
-  }
-
 .btnss {
 
   width: max-content;
-    height: 50px;
+    height: 70px;
     padding-left: 1%;
     padding-right: 1%;
     font-size: 16px;

@@ -81,7 +81,7 @@
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  
-	    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -113,7 +113,7 @@
 				<c:if test="${sessionScope.loginId!=null}">
 				<li style="margin-left: 20px;" class="nav-item cta">
 				<div class="dropdown show">
-                        <a style="margin-left: 20px;" class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
                         </a>
 
@@ -129,7 +129,6 @@
 	      </div>
 	    </div>
 	  </nav>
-
 	  <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_10-1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
@@ -171,13 +170,13 @@
   </a>
   </div>
     <div class="boxes">
-                    <a class="box3" href="#" data-toggle="modal" data-target="#exampleModal">
+                    <a class="box3" href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal">
                         <h3>특허 출원 신청하기</h3>
                         <img src="/cloud/resources/images/resume.png" alt="" class="icons">
                         <p>출원 절차를 밟아 정식으로 특허를 등록할 수 있습니다.</p>
                     </a>
 
-                    <a class="box4" href="/cloud/patent/patentlist">
+                    <a class="box4" href="/cloud/patent/patentUseList">
                         <h3>특허 출원/사용 확인하기</h3>
                         <img src="/cloud/resources/images/menu.png" alt="" class="icons">
                         <p>출원 및 사용 허가 여부를 확인할 수 있습니다.</p>
@@ -480,7 +479,7 @@
   <!--<script src="/cloud/resources/js/bootstrap.min.js"></script> -->
   <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
-   <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="/cloud/resources/js/bootstrap.min.js"></script>
   <script src="/cloud/resources/js/popper.min.js"></script>
   <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
   <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>

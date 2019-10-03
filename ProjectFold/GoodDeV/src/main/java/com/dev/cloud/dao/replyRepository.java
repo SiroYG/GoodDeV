@@ -9,13 +9,10 @@ import org.springframework.stereotype.Repository;
 import com.dev.cloud.vo.Reply;
 
 @Repository
-public class replyRepository implements replyMapper {
+public class replyRepository  {
 
 	@Autowired
 	SqlSession sqlSession;
-	
-	
-	
 	public int insert_reply(Reply reply) {
 		replyMapper mapper=sqlSession.getMapper(replyMapper.class);
 		int result=0;
@@ -25,12 +22,10 @@ public class replyRepository implements replyMapper {
 			e.printStackTrace();
 		}
 		
-		
-		
 		return result;
 	}
 
-	@Override
+	
 	public int update_reply(Reply reply) {
 
 		replyMapper mapper=sqlSession.getMapper(replyMapper.class);
@@ -40,13 +35,10 @@ public class replyRepository implements replyMapper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
 		return result;
 	}
 
-	@Override
+
 	public Reply selectOne_reply(Reply reply) {
 
 		replyMapper mapper=sqlSession.getMapper(replyMapper.class);
@@ -56,11 +48,10 @@ public class replyRepository implements replyMapper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
 
-	@Override
+	
 	public ArrayList<Reply> selectAll_reply(int boardNum) {
 		replyMapper mapper=sqlSession.getMapper(replyMapper.class);
 		ArrayList<Reply> result=new ArrayList<>();
@@ -69,13 +60,9 @@ public class replyRepository implements replyMapper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-
 		return result;
 	}
 
-	
-	@Override
 	public int delete_reply(Reply reply) {
 		replyMapper mapper=sqlSession.getMapper(replyMapper.class);
 		int result=0;

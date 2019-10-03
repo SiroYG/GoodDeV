@@ -67,20 +67,18 @@ hr.hr_purple {
 }
 
 .btns {
-	width: max-content;
-    height: 50px;
-    padding-left: 1%;
-    padding-right: 1%;
+	text-decoration:none !important;
+	width:max-content;
+    height: 60px;
+    padding: 1.2%;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
     color: #fff !important;
     background-color: #1f124a;
     border: 2px solid #1f124a;
     cursor: pointer;
     transition: 0.25s ease;
 }
-
-
 
 .btn-3-comments {
     width: 280px;

@@ -39,3 +39,59 @@
 - Detail Delete / Update
 - Middle Side - Function
 - Survey Function
+
+--190917
+- Survey Function
+
+
+--190918
+- Survey Function
+- Patent Set
+
+--190919
+- Patent Listing
+- Patent Function
+
+--190920
+- Patent Paging
+
+--190921
+- Patent Listing
+
+--190923
+- Funding Front/Back
+
+--190924
+- Funding Listing
+
+--190925
+- Funding Paging
+- Python -> Java module Processing Builder
+
+--190926
+- Python Module Setting
+- Payment API Function Front / Back
+
+--190927
+- Payment API APPLY module
+- Payment Complete
+
+--190928
+- Chat model 1 Clear
+- Chat model 1 Complete
+- Chat Model 2 Setting
+
+--190929
+- Chat Stabilize
+- Web Crawler Print / Encoding
+
+--190930
+- Chat model 2 processing
+
+--191001
+- Chat model 3 Setting
+- Stabilize Work
+
+
+
+
