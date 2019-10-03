@@ -17,4 +17,5 @@ public interface fundingMapper {
 	
 	//펀딩등록
 	public int makeCrowdFunding(Crowdfunding crowdfunding);
+	
 }
