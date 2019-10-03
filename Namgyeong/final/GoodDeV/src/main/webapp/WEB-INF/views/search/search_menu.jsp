@@ -170,13 +170,13 @@
   </a>
   </div>
     <div class="boxes">
-                    <a class="box3" href="#" data-toggle="modal" data-target="#exampleModal">
+                    <a class="box3" href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal">
                         <h3>특허 출원 신청하기</h3>
                         <img src="/cloud/resources/images/resume.png" alt="" class="icons">
                         <p>출원 절차를 밟아 정식으로 특허를 등록할 수 있습니다.</p>
                     </a>
 
-                    <a class="box4" href="/cloud/patent/patentlist">
+                    <a class="box4" href="/cloud/patent/patentUseList">
                         <h3>특허 출원/사용 확인하기</h3>
                         <img src="/cloud/resources/images/menu.png" alt="" class="icons">
                         <p>출원 및 사용 허가 여부를 확인할 수 있습니다.</p>
@@ -479,7 +479,7 @@
   <!--<script src="/cloud/resources/js/bootstrap.min.js"></script> -->
   <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
-   <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="/cloud/resources/js/bootstrap.min.js"></script>
   <script src="/cloud/resources/js/popper.min.js"></script>
   <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
   <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>

@@ -7,6 +7,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    
+    <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
+    <script src="/cloud/resources/js/jquery-ui.min.js"></script>
+   
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
     
@@ -22,16 +25,52 @@
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/survey.css">
     
-    <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
-    <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     <script>
     $(function(){
-    	
+    	var searchItem= $("#searchItem").val();
+		var searchWord= $("#searchWord").val();
+		var str="";
+ 		$.ajax({
+			
+ 			  method: 'GET',
+ 			  url: 'searchSurvey',
+ 			  data: {
+ 				'searchItem' : searchItem,
+ 				'searchWord' : searchWord
+ 			  },
+ 			  success : function(res){
+ 
+ 				  $(".tbody").remove();
+ 				  $.each(res,function(i,item){  
+ 				
+ 					i+=1;       					  
+					  str+='<tr>';
+     				  str+='<th scope="row">';
+     				  str+='<a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
+     				  str+=' <span>'+i+' </span> </a></th>';
+     				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
+     				  str+='<span>'+item.itemType+'</span> </a></th>';
+     				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
+     				  str+='<span>'+item.questionTitle+'</span> </a></th>';
+     				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
+     				  str+='<span>'+item.memberId+'</span> </a></th>';
+     				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
+     				  str+='<span>'+item.startDate+'</span> </a></th>';
+     				 str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
+    				  str+='<span>'+item.dueDate+'</span> </a></th>';
+ 				  });
+				$('.tbodyAjax').html(str);
+ 				 
+				  
+ 			  }
+			  
+
+ 		});	
      	$(document).on('click', '#search', function(){
     		var searchItem= $("#searchItem").val();
     		var searchWord= $("#searchWord").val();
     		var str="";
-     		alert("come")
+ 
      		$.ajax({
     			
      			  method: 'GET',
@@ -41,24 +80,26 @@
      				'searchWord' : searchWord
      			  },
      			  success : function(res){
-     				  alert(res);
+     			
      				  $(".tbody").remove();
      				  $.each(res,function(i,item){  
+     					 
      					i+=1;       					  
-    					  str+='<tr>' 
-         				  str+='<th scope="row">'
-         				  str+='<a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
-         				  str+=' <span>'+i+' </span> </a></th>'
-         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
-         				  str+='<span>'+item.itemType+'</span> </a></th>'
-         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
-         				  str+='<span>'+item.questionTitle+'</span> </a></th>'
-         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
-         				  str+='<span>'+item.memberId+'</span> </a></th>'
-         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
-         				  str+='<span>'+item.startDate+'</span> </a></th>'
-         				  
-     				  })
+    					  str+='<tr>';
+         				  str+='<th scope="row">';
+         				  str+='<a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
+         				  str+=' <span>'+i+' </span> </a></th>';
+         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
+         				  str+='<span>'+item.itemType+'</span> </a></th>';
+         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
+         				  str+='<span>'+item.questionTitle+'</span> </a></th>';
+         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
+         				  str+='<span>'+item.memberId+'</span> </a></th>';
+         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
+         				  str+='<span>'+item.startDate+'</span> </a></th>';
+         				 str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
+       				  	str+='<span>'+item.dueDate+'</span> </a></th>';
+     				  });
     				$('.tbodyAjax').html(str);
      				 
     				  
@@ -76,7 +117,7 @@
     		var itemNum =$('#item-option option:selected').attr("data-value");
         	
         	if(itemNum=='none'){
-        		alert("아이템을 선택해주세요.")
+        		alert("아이템을 선택해주세요.");
         		return;
         	}
     		
@@ -203,7 +244,7 @@
     
 </table>
 
-<button type="button" class="btns btn-3" data-toggle="modal" data-target="#exampleModal"><span class="white">진행하기</button></a>
+<button type="button" class="btns btn-3" data-toggle="modal" data-target="#exampleModal">진행하기</button>
 
 
        <!--페이징 & 검색-->
@@ -233,8 +274,9 @@
       </div>
 <form action="" method="post" class="search-form" id="search-form">
 <!--Blue select-->
-<select name="searchItem" class="searchItem" id="searchItem">
- <option value="all" selected>없음</option>
+
+<select class="browser-default custom-select" name="searchItem">
+ <option value="all" selected>분류</option>
   <option value="title" >제목</option>
   <option value="content">내용</option>
   <option value="id">작성자</option>
@@ -311,17 +353,10 @@
                 </div>
                 <div class="modal-body">
                   <form action="goSurvey_form" method="get" id="goSurvey_form">
-                       <!-- <div class="form-group">
-                            <label for="appointment_name" class="text-black">신청인</label>
-                            <input type="text" class="form-control" id="appointment_name" placeholder="이름을 입력해주세요">
-                        </div>
-                        <div class="form-group">
-                            <label for="appointment_patentnum" class="text-black">특허번호</label>
-                            <input type="text" class="form-control" id="appointment_patentnum" placeholder="KR000000000" readonly="readonly">
-                        </div>-->
                         <label for="item-option" class="text-black">제품 선택</label><br>
                         <select id="item-option" name="searchItem">
                             <option data-value="none" selected>테스트 진행을 위한 제품을 선택해주세요</option>
+                            
                             <c:forEach var="item" items="${iList }" varStatus="status">
                             <option class="temp" data-value="${item.itemNum}">${status.count }. ${item.itemName }</option>
                             </c:forEach>
@@ -329,17 +364,8 @@
                         </select><br><br>
                         <div id="itemNum">
                         
-                    
                         </div>
-                        
-
-                        <!--<div class="form-group">
-                <label for="appointment_message" class="text-black">Message</label>
-                <textarea name="" id="appointment_message" class="form-control" cols="30" rows="10"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary">
-              </div>-->
+                       
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -353,7 +379,9 @@
   <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/cloud/resources/js/popper.min.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+ 
+  <script src="/cloud/resources/js/bootstrap.min.js"></script>
+  
   <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
   <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
   <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
