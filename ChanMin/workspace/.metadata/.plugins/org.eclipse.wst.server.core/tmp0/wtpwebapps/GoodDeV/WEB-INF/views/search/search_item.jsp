@@ -41,10 +41,9 @@
     				$.each(res,function(i,item){
     					if(item!='finish'){
     					tag += '<tr>'
-    				
-						//tag += '<td>'+'<img src ="'+item+' "> </td>'	 	
-    				
-						tag += '<td>'+'<img src ="'+ item + '"></td>'
+						tag += '<td>'+'<img src ="'+item.image+' "> </td>'
+						tag += '<th>' +'상품명 : '+ item.title + '</th>'
+						tag += '<th>'+'가격'+ item.price + '원'+'</th>'
     					tag += '</tr>'
     					}
     				})

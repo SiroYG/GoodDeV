@@ -31,9 +31,60 @@
 
 
     <script>
+    window.onload = function (){
+		init();
+	}
+    
+	function init(){
+		$.ajax({
+			"url" :"/cloud/chat/selectAll",
+			"method" : "get",
+			"data":{
 
-    </script>
-
+			},
+			"success":function(result){
+				var panelbody = document.getElementById("panelbody");
+				panelbody.innerHTML=" <header class='text-left'>"
+				$(result).each(function(index,item){
+					panelbody.innerHTML
+						+="<article class='row'><div class='col-md-10 col-sm-10'> <div class='panel panel-default arrow left'>"
+		           	 	+"<div class='panel-body' >"
+						+"<time class='comment-date' datetime=''><i class='fa fa-clock-o'></i> "+item.regdate+ "</time>"
+						+"</header>"
+						+"<div class='comment-post'> <p>"+item.memo+"</p>	</div>"
+				})		
+				panelbody.innerHTML+="<div class='search-form'>"
+					+"<input type='text' class='searchWord' id='memo' placeholder='메시지를 입력하세요'>"
+					+"<button onclick='Regist()'  type='button' style='margin-left:10px; font-size:12px;' class='btn btn-outline-primary btn-rounded waves-effect'>입력하기</button>"
+			   		+" </div>  </div> </div> </div> </article>"
+				console.log(result);
+			}
+		});
+	}
+	           	 	
+	          
+    
+   $(document).ready(function(){
+	   var panelbody = document.getElementById("panelbody");
+	   panelbody.scrollTop = panelbody.scrollHeight;
+	  $("#panelbody").scrollTop($("#panelbody")[0].scrollHeight) 
+   });
+    function Regist() {
+		var memo = document.getElementById("memo");
+		$.ajax({
+			"url" : "/cloud/chat/insert",
+			"method" : "post",
+			"data" : {
+				"memo" : memo.value
+			},
+			"success" : function(result) {
+				var panelbody = document.getElementById("panelbody");
+				init();
+				console.log(result);
+			}
+		});
+	}
+    </script>	              
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -50,7 +101,7 @@
                     <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
                     <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
                     <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
-                    <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
+                    <li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드 펀딩</span></a></li>
                     <c:if test="${sessionScope.loginId==null}">
                         <li style="margin-left: 20px;" class="nav-item cta">
                             <div class="dropdown show">
@@ -288,59 +339,16 @@
             <div class="row" style="vertical-align: middle; margin: 0 auto; justify-content: center;">
                 <div class="container" id="chat-container">
                     <!-- <h2 class="page-header">Comments</h2> -->
-                    <div class="comment-lists">
+                    <div class="comment-lists" id="panelbody">
                     
-                        <!-- other Comment -->
-                        <article class="row">
-                            <div class="col-md-10 col-sm-10">
-                                <div class="panel panel-default arrow left">
-                                    <div class="panel-body">
-                                        <header class="text-left">
-                                        
-                                       		<!-- Index는 익명 채팅이니까 memberId 나올 필요 없음 -->
-                                            <!-- <div class="comment-user"><i class="fa fa-user"></i> [memberId]</div> -->
-                                            <time class="comment-date" datetime=""><i class="fa fa-clock-o"></i> 2019-10-02 | 14:29</time>
-                                        
-                                        </header>
-                                        <div class="comment-post">
-                                            <p>
-                                                [다른 사람들이 입력한 내용은 여기서 나오게끔]
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- my Comment -->
-                        <article class="row">
-                            <div class="col-md-10 col-sm-10">
-                                <div class="panel panel-default arrow right">
-                                    <div class="panel-body">
-                                        <header class="text-right">
-                                            <div class="comment-user"><i class="fa fa-user"></i> [내 댓글]</div>
-                                            <time class="comment-date" datetime=""><i class="fa fa-clock-o"></i> 2019-10-02 | 14:29</time>
-                                        </header>
-                                        <div class="comment-post">
-                                            <p class="my-comment">
-                                                [내가 입력한건 이렇게 나오게끔]
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
+                      <div class='search-form'>
+						<input type='text' class='searchWord' id='memo' placeholder='메시지를 입력하세요'>
+						<button onclick='Regist()'  type='button' style='margin-left:10px; font-size:12px;' class='btn btn-outline-primary btn-rounded waves-effect'>입력하기</button>
+				   		 </div>
                     </div>
-                    
-                    <div class="search-form">
-                            <input type="text" class="searchWord" placeholder=" 메시지를 입력하세요">
-                            <button type="button" style="margin-left:10px; font-size:12px;" class="btn btn-outline-primary btn-rounded waves-effect">입력하기</button>
-                        </div>
-
                 </div>
+              </div>
             </div>
-        </div>
-
     </section>
 
     <section class="ftco-section" id="blog-section">

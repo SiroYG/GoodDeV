@@ -82,12 +82,8 @@
                     url: '/cloud/funding/',
                     type: 'get',
                     success: outputFunding
-
                 })
-
             })
-
-
         });
        
         jQuery(document).on('click', '#rightBtn', function() {
@@ -213,8 +209,7 @@
 
         }
         
-        /* function outputBoard(res) {
-
+      function outputBoard(res) {
             var tag = '';
             $.each(res, function(i, board) {
                 i += 1;
@@ -225,11 +220,10 @@
                 tag += '<td name="dueDate"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.dueDate + '</td>';
                 tag += '</tr>';
 
-                $('.surveyTbody').append(tag);
+                $('.qnaresult').append(tag);
             })
-
         }
-        
+      /* 
         function outputFunding(res) {
 
             var tag = '';
@@ -341,11 +335,26 @@
                 </nav>
                 <div class="content-wrap">
                     <section id="section-bar-qna">
+                        <table class="table">
+                            <caption class="table_title">
+                                <b>테스트 목록</b>
+                            </caption>
+                            <thead class="navy">
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">분류</th>
+                                    <th scope="col">제목</th>
+                                    <th scope="col">등록일</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <table id="resulttable"class="qnaresult">
                         
+                        </table>
                     </section>
 
                     <section id="section-bar-patent"> </section>
-
+						
                     <section id="section-bar-item">  </section>
 
                     <section id="section-bar-survey">

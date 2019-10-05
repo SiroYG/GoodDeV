@@ -42,7 +42,22 @@
 		From BOARD
 		where boardnum = #{boardNum}
 	</select>
-
+	
+	<select id="userboard" parameterType="String" resultType="Board" >
+	SELECT
+		boardNum,
+		MEMBERid,
+		TITLE,
+		CONTENT,
+		QTYPE,
+		QCATEGORY,
+		originalFilename,
+		saveFilename,
+		to_char(boardDate, 'YYYY-MM-DD') as boardDate
+		FROM BOARD
+		Where MEMBERid = #{id}
+		ORDER BY boardNum DESC
+	</select>
 
 
 	<update id="updateBoard" parameterType="Board">

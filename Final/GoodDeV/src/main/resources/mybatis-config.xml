@@ -27,6 +27,8 @@
 <typeAlias alias="Pat" type="com.dev.cloud.vo.Pat"/>
 <typeAlias alias="PatentTotal" type="com.dev.cloud.vo.PatentTotal"/>
 <typeAlias alias="PdpVo" type="com.dev.cloud.vo.PdpVo"/>
+<typeAlias alias="Chat" type="com.dev.cloud.vo.Chat"/>
+
 </typeAliases>
 
 <mappers>
@@ -43,8 +45,8 @@
 <mapper resource="mappers/replyMapper.xml"/>
 <mapper resource="mappers/historyMapper.xml"/>
 <mapper resource="mappers/fundingOption.xml"/>
+<mapper resource="mappers/chatMapper.xml"/>
 <mapper resource="mappers/officialFileMapper.xml"/>
-
 </mappers>
 
 </configuration>
