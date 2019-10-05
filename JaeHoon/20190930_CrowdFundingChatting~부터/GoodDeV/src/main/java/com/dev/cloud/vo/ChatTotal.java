@@ -7,9 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChatRoom {
+public class ChatTotal {
 
-	private int chatroom_seq;
 	private int  crowdfundingNum;
-	
+	private int chatmember_seq;
+	private int chatroom_seq;
+	private String memberId;
+	private String messageDate;
+	private String message;
 }

@@ -21,4 +21,6 @@ public interface chatRoomMapper {
 	public ArrayList<ChatMember> getAllchatMemberByCrowdfundingNumNotDesc(ChatRoom chatRoom);
 
 	public ArrayList<ChatMember> getAllchatByChatRM(ChatMember chatMember);
+	
+	public int getLastChatroom_seq();
 }

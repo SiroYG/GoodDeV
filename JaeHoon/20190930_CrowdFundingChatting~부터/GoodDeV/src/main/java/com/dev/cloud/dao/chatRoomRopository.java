@@ -94,4 +94,18 @@ public class chatRoomRopository implements chatRoomMapper {
 		return result;
 	}
 
+	@Override
+	public int getLastChatroom_seq() {
+		int result=0;
+		chatRoomMapper mapper=sqlSession.getMapper(chatRoomMapper.class);
+		try {
+			result=mapper.getLastChatroom_seq();
+
+		} catch (Exception e) {
+			e.printStackTrace();		}
+		
+		
+		return result;
+	}
+
 }
