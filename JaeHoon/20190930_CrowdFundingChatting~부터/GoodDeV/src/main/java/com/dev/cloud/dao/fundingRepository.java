@@ -58,4 +58,7 @@ public class fundingRepository {
 		int result = mapper.makeCrowdFunding(Crowdfunding);
 		return result;
 	}
+	
+	
+
 }

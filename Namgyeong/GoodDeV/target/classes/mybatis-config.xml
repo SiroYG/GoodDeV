@@ -22,6 +22,10 @@
 <typeAlias alias="officialFile" type="com.dev.cloud.vo.officialFile"/>
 <typeAlias alias="QuestionTotal" type="com.dev.cloud.vo.QuestionTotal"/>
 <typeAlias alias="Search" type="com.dev.cloud.vo.Search"/>
+<typeAlias alias="Total" type="com.dev.cloud.vo.Total"/>
+<typeAlias alias="Pat" type="com.dev.cloud.vo.Pat"/>
+<typeAlias alias="PatentTotal" type="com.dev.cloud.vo.PatentTotal"/>
+<typeAlias alias="PdpVo" type="com.dev.cloud.vo.PdpVo"/>
 </typeAliases>
 
 <mappers>

@@ -8,6 +8,10 @@ body{
     font-family: 'Eoe_Zno_B';
 }
 
+.h4{
+    cursor: pointer;
+}
+
 .container_chat{max-width:1170px; margin:auto;}
 img{ max-width:100%;}
 .inbox_people {

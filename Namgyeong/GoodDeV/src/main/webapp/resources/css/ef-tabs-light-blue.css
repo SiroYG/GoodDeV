@@ -9,14 +9,14 @@ body{
 }
 
 a{color:#1f124a;}
-.ef-tabs nav li a:hover,.ef-tabs nav li a:focus{color: #1f124a;}
+.ef-tabs nav li a:hover,.ef-tabs nav li a:focus{color: #FFF;}
 /* Bar */ 
 .ef-tabs-style-bar nav li.tab-current a{background: #1f124a;color: #FFF;}
 /* Circle #1f124a*/
 .ef-tabs-style-circle nav li.tab-current a{color: #1f124a;}
 .ef-tabs-style-circle nav li::before{border: 1px solid #1f124a;}
 /* Circle Fill */
-.ef-tabs-style-circlefill nav li a:hover,.ef-tabs-style-circlefill nav li a:focus{color: #FFF;}
+.ef-tabs-style-circlefill nav li a:hover,.ef-tabs-style-circlefill nav li a:focus{background: #1f124a;color: #c2d5ff; text-decoration: underline;}
 .ef-tabs-style-circlefill nav ul li {border-right: 1px solid #1f124a;}
 .ef-tabs-style-circlefill nav li::before{border: 1px solid #1f124a;background: #1f124a;}
 /* Fillup */

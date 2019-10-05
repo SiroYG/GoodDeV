@@ -157,23 +157,72 @@ public class FundingController {
 			}
 		}
 		ArrayList<ChatMember> cmforRightList=new ArrayList<>();
+		Crowdfunding Crowdfunding=new Crowdfunding();
+		Crowdfunding = dao.selectOne(chatRoom.getCrowdfundingNum());
 
 		if(AllcrList.size()!=0){
 			int chatRoomNum=AllcrList.get(0).getCHATROOM_seq();
-			for(ChatMember cMember : AllcmList){
+			ArrayList<ChatMember> ndList = crRepo.getAllchatMemberByCrowdfundingNumNotDesc(chatRoom);
+			for(ChatMember cMember : ndList){
 			if(cMember.getCHATROOM_seq()==chatRoomNum){
 				cmforRightList.add(cMember);
 			}
 			}
 		}
+		System.out.println("Crowdfunding : "+Crowdfunding);
 		System.out.println("cmforLeftList : "+cmforLeftList);
 		System.out.println("cmforRightList : "+cmforRightList);
 		model.addAttribute("cmforLeftList", cmforLeftList);
 		model.addAttribute("cmforRightList", cmforRightList);
+		model.addAttribute("Crowdfunding", Crowdfunding);
+
 
 		
 		return "/funding/chat_popup";
 	}
+
 	
+	@RequestMapping(value = "/getAllchat", method = RequestMethod.GET)
+	@ResponseBody
+	public List<ChatMember> getAllchat(ChatMember chatMember) {
+		List<ChatMember> cmList=new ArrayList<>();
+		System.out.println(chatMember);
+		cmList=crRepo.getAllchatByChatRM(chatMember);
+		
+		System.out.println(cmList);
+		return cmList;
+	}
+	@RequestMapping(value = "/writeChat", method = RequestMethod.POST)
+	@ResponseBody
+	public String writeChat(ChatMember chatMember) {
+		int result =crRepo.sendMessage(chatMember);
+		System.out.println("199line : "+chatMember);
+		
+		
+		return "success";
+	}
 	
+	@RequestMapping(value = "/getAllchatroom", method = RequestMethod.GET)
+	@ResponseBody
+	public ArrayList<ChatMember> getAllchatroom(ChatRoom chatRoom) {
+		ArrayList<ChatMember> AllcmList=new ArrayList<>();
+		AllcmList=crRepo.getAllchatMemberByCrowdfundingNum(chatRoom);
+		ArrayList<ChatRoom> AllcrList=new ArrayList<>();
+		AllcrList=crRepo.getAllchatRoomByCrowdfundingNum(chatRoom);
+		ArrayList<ChatMember> cmforLeftList=new ArrayList<>();
+		for (ChatRoom chatrm : AllcrList){
+			System.out.println("chatrm : "+ chatrm);
+			for(ChatMember cMember : AllcmList){
+				System.out.println("cMember : "+cMember);
+				if(chatrm.getCHATROOM_seq()==cMember.getCHATROOM_seq()){
+					
+					cmforLeftList.add(cMember);
+					break;
+				}
+			}
+		}
+		
+		
+		return cmforLeftList;
+	}
 }

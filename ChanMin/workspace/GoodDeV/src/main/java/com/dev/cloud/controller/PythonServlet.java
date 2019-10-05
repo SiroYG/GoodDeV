@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dev.cloud.vo.Crawling;
+
 
 
 
@@ -31,7 +33,7 @@ public class PythonServlet {
 	
 	@RequestMapping(value="/searchGoee",method = RequestMethod.GET, produces = "application/json")	
 	@ResponseBody
-	public java.util.List<String> service(HttpServletRequest request, HttpServletResponse response,String keyWord){
+	public java.util.List<Crawling> service(HttpServletRequest request, HttpServletResponse response,String keyWord){
 		try {
 			request.setCharacterEncoding("UTF-8");
 			response.setCharacterEncoding("UTF-8");
@@ -52,44 +54,44 @@ public class PythonServlet {
 		}
 		Scanner errorScanner = new Scanner(process.getErrorStream());
 		Scanner outputScanner = new Scanner(process.getInputStream());
-		
+		System.out.println("57번줄");
 		System.out.println(process.getInputStream().toString());
 		try {
+			System.out.println("60번줄");	
 		 		process.waitFor();
-		 		
+		 		System.out.println("62번줄");		
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("51번줄==>"+process.exitValue());
+		System.out.println("66번줄==>"+process.exitValue());
 		/*while(errorScanner.hasNext()) {
 			System.out.println(errorScanner.nextLine());
-		}*/
-		errorScanner.close();
-		System.out.println("56번줄==>"+process.exitValue());
-		
-		
-		while(outputScanner.hasNext()) {
-				//System.out.println(outputScanner.hasNext());
-			 	
-				a = outputScanner.nextLine();
-				String temp=null;
-				try {
-					 temp = new String(a.getBytes("UTF-8"),"ISO-8859-1");
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				}
-			// 	System.out.println("62번줄a==>"+temp);
-				list.add(a);
-				if(a.equals("finish")){
-					break;
-				}
-				
 		}
-		System.out.println("68번줄list=>"+list);
+		errorScanner.close();*/
+		System.out.println("56번줄==>"+process.exitValue());
+		String image = "";
+		String title = "";
+		String price = "";
+		java.util.List<Crawling> cList = new ArrayList<>();
+		while(outputScanner.hasNext()) {
+				a = outputScanner.nextLine();
+				if(a.equals("finish")) break;
+				System.out.println("80번줄 a==>"+a);
+				String [] array = a.split("@");
+				title = array[0];
+				price = array[1];
+				image = array[2];
+				System.out.println("86번줄 image ==>"+image+", price: "+price+"title: "+title);
+				Crawling crawl = new Crawling(image,title,price);
+				System.out.println("88번줄==>"+crawl);
+				cList.add(crawl);
+		}
+		System.out.println("95번줄cList==>"+cList);
+		
 		
 		outputScanner.close();
 		
-		return list;
+		return cList;
 		
 	}
 

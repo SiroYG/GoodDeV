@@ -67,6 +67,31 @@ public class chatRoomRopository implements chatRoomMapper {
 		return result;
 	}
 
+	@Override
+	public ArrayList<ChatMember> getAllchatMemberByCrowdfundingNumNotDesc(ChatRoom chatRoom) {
+		chatRoomMapper mapper=sqlSession.getMapper(chatRoomMapper.class);
+		ArrayList<ChatMember> result=new ArrayList<>();
+		try {
+			result=mapper.getAllchatMemberByCrowdfundingNumNotDesc(chatRoom);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
+	@Override
+	public ArrayList<ChatMember> getAllchatByChatRM(ChatMember chatMember) {
+		chatRoomMapper mapper=sqlSession.getMapper(chatRoomMapper.class);
+		ArrayList<ChatMember> result=new ArrayList<>();
+
+		try {
+			result=mapper.getAllchatByChatRM(chatMember);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 }

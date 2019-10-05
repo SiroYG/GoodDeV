@@ -31,13 +31,14 @@
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     
-    <!-- Tap + Personal CSS -->
+    <!-- Tap + Personal CSS/JS -->
+    <script src="/cloud/resources/js/list.js"></script>
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/Board.css">
     <link rel="stylesheet" href="/cloud/resources/css/demo.css">
     <link rel="stylesheet" href="/cloud/resources/css/ef-tabs.css">
     <link rel="stylesheet" href="/cloud/resources/css/ef-tabs-light-blue.css">
-
+	
     <script>
         var pageSu;
         $(function() {
@@ -47,7 +48,12 @@
                 pageSu = 9;
                 patentTable(pageSu)
             });
-
+			
+            $('#itemList').on('click',function(){
+       			item();
+       		})	
+       		
+            
             $('#shape-survey').on('click', function() {
 
                 $.ajax({
@@ -58,6 +64,29 @@
                 })
 
             })
+            
+             $('#shape-qna').on('click', function() {
+
+                $.ajax({
+                    url: '/cloud/board/',
+                    type: 'get',
+                    success: outputBoard
+
+                })
+
+            })
+            
+            $('#shape-funding').on('click', function() {
+
+                $.ajax({
+                    url: '/cloud/funding/',
+                    type: 'get',
+                    success: outputFunding
+
+                })
+
+            })
+
 
         });
        
@@ -129,7 +158,7 @@
 
         function output(res) {
             var tag = '';
-            tag += '<input id="seachWord" type="text" name="seachWord" /><button id="searchBtn" type="button">검색</button>'
+            
             tag += '<table class="pTable">'
             tag += '<caption class="table_title"><b>보유 및 사용 중인 특허 목록</b></caption>'
             tag += '<thead class="navy">'
@@ -183,39 +212,93 @@
             })
 
         }
+        
+        /* function outputBoard(res) {
+
+            var tag = '';
+            $.each(res, function(i, board) {
+                i += 1;
+                tag += '<tr>'
+                tag += '<th scope="row" >' + i + '</th>'
+                tag += '<td name="title"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.title + '</td>';
+                tag += '<td name="boardDate"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.boardDate + '</a></td>'
+                tag += '<td name="qType"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.qType + '</td>';
+                tag += '</tr>';
+
+                $('.boardTbody').append(tag);
+            })
+
+        }
+        
+        function outputFunding(res) {
+
+            var tag = '';
+            $.each(res, function(i, fund) {
+                i += 1;
+                tag += '<tr>'
+                tag += '<td scope="row" >' + i + '</th>'
+                tag += '<td name=""><a href="/cloud/funding/fundingDetail?crowdfundingNum=' + fund.questionTimeNum + '">' + fund.questionTitle + '</a></td>'
+                tag += '<td name="fundingStartDate"><a href="/cloud/funding/fundingDetail?crowdfundingNum=' + fund.questionTimeNum + '">' + fund.fundingStartDate + '</td>';
+                tag += '<td name="fundingDueDate"><a href="/cloud/funding/fundingDetail?crowdfundingNum=' + fund.questionTimeNum + '">' + fund.fundingDueDate + '</td>';
+                tag += '</tr>';
+
+                $('.FundingTbody').append(tag);
+            })
+
+        } */
     </script>
 </head>
 
 <body class="bg-black">
 
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="/cloud/home">SupporterS</a>
-            <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav nav ml-auto">
-                    <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
+     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
                     <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
                     <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
-                    <li class="nav-item"><a href="/cloud/survey/surveyListForm" class="nav-link"><span>블라인드 테스트</span></a></li>
+                    <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
                     <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
-                    <!-- <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li> -->
-                    <c:if test="${sessionScope.loginId==null}">
-                        <li style="margin-left: 20px;" class="nav-item cta"><a href="/cloud/member/gologin" class="nav-link">로그인</a></li>
-                        <li style="margin-left: 20px;" class="nav-item cta"><a href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
-                    </c:if>
-                    <c:if test="${sessionScope.loginId!=null}">
-                        <li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
-                        <li style="margin-left: 20px;" class="nav-item cta"><a class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님, 로그아웃 </a></li>
-                        <!-- <li style="margin-left: 20px;" class="nav-item cta"><a
-						href="/cloud/member/logout" class="nav-link">로그아웃</a></li> -->
-                    </c:if>
-                </ul>
-            </div>
-        </div>
-    </nav>
+	  			 <c:if test="${sessionScope.loginId==null}">
+	  			 <li style="margin-left: 20px;" class="nav-item cta">
+                    <div class="dropdown show">
+                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="member-btn">로그인/회원가입</span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="/cloud/member/gologin"><span class="member-btn">로그인</span></a>
+                            <a class="dropdown-item" href="/cloud/member/gosign"><span class="member-btn">회원가입</span></a>
+                            <a class="dropdown-item" href="/cloud/member/gofindid"><span class="member-btn">아이디/비밀번호 찾기</span></a>
+                        </div>
+                    </div>
+                    </li>
+				</c:if>
+				
+				<c:if test="${sessionScope.loginId!=null}">
+				<li style="margin-left: 20px;" class="nav-item cta">
+				<div class="dropdown show">
+                        <a style="margin-left: 20px;" class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="/cloud/member/goMypage">마이페이지</a>
+                            <a class="dropdown-item" href="/cloud/member/goupdate">회원 정보 수정</a>
+                            <a class="dropdown-item" href="/cloud/member/logout">로그아웃</a>
+                        </div>
+                    </div>
+				</li>
+				</c:if>
+				 </ul>
+	      </div>
+	    </div>
+	  </nav>
 
     <div class="body">
 
@@ -228,9 +311,9 @@
                 </svg>
                 <nav>
                     <ul>
-                        <li><a href="#section-shape-all"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
+                        <li><a href="#section-shape-qna" id="shape-qna"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
-                                </svg> <span><b>My Page</b></span>
+                                </svg> <span><b>내 게시글 목록</b></span>
                             </a></li>
                         <li><a id="patentList" href="#section-shape-patent"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
@@ -250,73 +333,32 @@
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <span><b>블라인드 테스트 현황</b></span>
                             </a></li>
-                        <li><a href="#section-shape-funding"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
+                        <li><a href="#section-shape-funding" id="shape-funding"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <span><b>크라우드 펀딩 현황</b></span>
                             </a></li>
                     </ul>
                 </nav>
                 <div class="content-wrap">
-                    <section id="section-bar-all">
-                        <h2>
-                            <b>${sessionScope.loginName}님의 마이 페이지</b>
-                        </h2>
-
-                        <h3>회원 정보 수정</h3>
-                        <br>
-                        <a href="/cloud/member/goupdate" class="btn btn--radius btn--green">바로가기</a>
-
-                        <c:if test="${sessionScope.loginType eq 'inventor'}">
-                            <p>${sessionScope.loginName}님은 현재 '창업자/창업희망자'입니다. 
-                            <br>현재 <span><b>특허 및 제품 현황 조회, 
-                            <br>블라인드 테스트 결과 및 크라우드 펀딩 현황</b></span>을 조회할 수 있습니다.
-                        	</p>
-                        </c:if>
-                        
-                        <c:if test="${sessionScope.loginType eq 'enp'}">
-                            <p>${sessionScope.loginName}님은 현재 '특허 보유자(기업/개인)'입니다. 
-                            <br>현재 <span><b>특허 및 제품 현황 조회, 
-                            <br>블라인드 테스트 결과 및 크라우드 펀딩 현황</b></span>을 조회할 수 있습니다.
-                        	</p>
-                        </c:if>
-
-                        <c:if test="${sessionScope.loginType eq ''}">
-                            <p>${sessionScope.loginName}님은 현재 '일반회원'입니다. 
-                            <br>현재 <b>작성 게시글 확인 및 크라우드 펀딩 현황</b>을 조회할 수 있습니다. </p>
-                        </c:if>
-                    </section>
-
-                    <section id="section-bar-patent"> </section>
-
-                    <section id="section-bar-item">
+                    <section id="section-bar-qna">
                         <table class="table">
-                            <caption class="table_title">
-                                <b>시제품 및 출시품 목록</b>
-                            </caption>
                             <thead class="navy">
                                 <tr>
-                                    <th scope="col">Item No.</th>
-                                    <th scope="col">분류</th>
-                                    <th scope="col">제품명</th>
-                                    <th scope="col">테스트 여부</th>
-                                    <th scope="col">펀딩 여부</th>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">제목</th>
+                                    <th scope="col">작성일</th>
+                                    <th scope="col">공개 여부</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <%-- <tr>
-							<th scope="row" name="boardNum">1</th>
-							<td name="qCategory">[시제품]</td>
-							<!-- myFunction(); -->
-							<td name="itemName">
-							<a href="#" class="mypage-link" onclick="" id="iteminfo" data-itemnum="${itemNum}">aaaaaaaaa</a></td>
-							<td name="boardDate">[진행중]</td>
-							<td name="boardDate">[미정]</td>
-						</tr> --%>
-
+                            <tbody class="boardTbody">
 
                             </tbody>
                         </table>
                     </section>
+
+                    <section id="section-bar-patent"> </section>
+
+                    <section id="section-bar-item">  </section>
 
                     <section id="section-bar-survey">
                         <table class="table">
@@ -345,76 +387,18 @@
                             <thead class="navy">
                                 <tr>
                                     <th scope="col">No.</th>
-                                    <th scope="col">분류</th>
                                     <th scope="col">제목</th>
                                     <th scope="col">시작일</th>
                                     <th scope="col">마김일</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="FundingTbody">
                                 <tr>
                                     <th scope="row" name="boardNum">1</th>
                                     <td name="qCategory">[일반]</td>
                                     <td name="title">aaaaaaaaaaaaaaaaaaa</td>
                                     <td name="id">ididid</td>
                                     <td name="boardDate">2019-09-09</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" name="boardNum">2</th>
-                                    <td name="qCategory">[특허]</td>
-                                    <td name="title">bbbbbbbbbbb</td>
-                                    <td name="id">ottotto</td>
-                                    <td name="boardDate">2019-09-07</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" name="boardNum">3</th>
-                                    <td name="qCategory">Mark</td>
-                                    <td name="title">aaaa</td>
-                                    <td name="id">Otto</td>
-                                    <td name="boardDate">@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" name="boardNum">4</th>
-                                    <td name="qCategory">Mark</td>
-                                    <td name="title">aaaa</td>
-                                    <td name="id">Otto</td>
-                                    <td name="boardDate">@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" name="boardNum">5</th>
-                                    <td name="qCategory">Mark</td>
-                                    <td name="title">aaaa</td>
-                                    <td name="id">Otto</td>
-                                    <td name="boardDate">@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" name="boardNum">6</th>
-                                    <td name="qCategory">Mark</td>
-                                    <td name="title">aaaa</td>
-                                    <td name="id">Otto</td>
-                                    <td name="boardDate">@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" name="boardNum">7</th>
-                                    <td name="qCategory">Mark</td>
-                                    <td name="title">aaaa</td>
-                                    <td name="id">Otto</td>
-                                    <td name="boardDate">@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" name="boardNum">8</th>
-                                    <td name="qCategory">Mark</td>
-                                    <td name="title">aaaa</td>
-                                    <td name="id">Otto</td>
-                                    <td name="boardDate">@mdo</td>
-
-                                </tr>
-                                <tr>
-                                    <th scope="row" name="boardNum">9</th>
-                                    <td name="qCategory">Mark</td>
-                                    <td name="title">aaaa</td>
-                                    <td name="id">Otto</td>
-                                    <td name="boardDate">@mdo</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" name="boardNum">10</th>
@@ -435,26 +419,6 @@
     </div>
 
 </body>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">...</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="/cloud/resources/js/popper.min.js"></script>

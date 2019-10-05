@@ -56,8 +56,8 @@
 		from ITEM
 
 	</select>
-	<select id="getItemByMemberId" parameterType="devMember"
-		resultType="Item">
+	<select id="getItemByMemberId" parameterType="Total"
+		resultType="Total">
 		select
 		*
 		from ITEM

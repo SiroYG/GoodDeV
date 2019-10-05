@@ -32,7 +32,7 @@
   </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	
-     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,23 +41,40 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
 	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
-	          <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
-	          <li class="nav-item"><a href="/cloud/survey/surveyListForm" class="nav-link"><span>블라인드 테스트</span></a></li>
-	          <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	          <!-- <li class="nav-item"><a href="/cloud/member/Mypage" class="nav-link"><span>마이페이지</span></a></li> -->
+                    <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
+                    <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
+                    <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
+                    <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	  			 <c:if test="${sessionScope.loginId==null}">
-					<li style="margin-left: 20px;" class="nav-item cta"><a
-						href="/cloud/member/gologin" class="nav-link">로그인</a></li>
-					<li style="margin-left: 20px;" class="nav-item cta"><a
-						href="/cloud/member/gosign" class="nav-link">회원가입</a></li>
+	  			 <li style="margin-left: 20px;" class="nav-item cta">
+                    <div class="dropdown show">
+                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="member-btn">로그인/회원가입</span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="/cloud/member/gologin"><span class="member-btn">로그인</span></a>
+                            <a class="dropdown-item" href="/cloud/member/gosign"><span class="member-btn">회원가입</span></a>
+                            <a class="dropdown-item" href="/cloud/member/gofindid"><span class="member-btn">아이디/비밀번호 찾기</span></a>
+                        </div>
+                    </div>
+                    </li>
 				</c:if>
+				
 				<c:if test="${sessionScope.loginId!=null}">
-				<li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
-					<li style="margin-left: 20px;" class="nav-item cta"><a
-							 class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님, 로그아웃 </a></li>
-					<!-- <li style="margin-left: 20px;" class="nav-item cta"><a
-						href="/cloud/member/logout" class="nav-link">로그아웃</a></li> -->
+				<li style="margin-left: 20px;" class="nav-item cta">
+				<div class="dropdown show">
+                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="/cloud/member/goMypage">마이페이지</a>
+                            <a class="dropdown-item" href="/cloud/member/goupdate">회원 정보 수정</a>
+                            <a class="dropdown-item" href="/cloud/member/logout">로그아웃</a>
+                        </div>
+                    </div>
+				</li>
 				</c:if>
 				 </ul>
 	      </div>
@@ -107,13 +124,13 @@
 				</tr>
 			</c:if>
 			<!-- 게시글이 있는 경우 -->
-			<c:if test="${not empty list }">
+			<c:if test="${not empty list}">
 				<c:forEach var="board" items="${list}" varStatus="stat">
 					<tr> 
 						<th scope="row" name="boardNum">${stat.count + navi.startRecord}</th>
 						<td>${board.qCategory}</td>
 						<td class="board_title"><a href="boardDetail?boardNum=${board.boardNum}">${board.title}</a></td>
-						<td>${board.MEMBERid}</td>
+						<td>${board.id}</td>
 						<td>${board.boardDate}</td>
 					</tr>
 				</c:forEach>
@@ -218,7 +235,7 @@
     <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/cloud/resources/js/popper.min.js"></script>
-  <script src="/cloud/resources/js/bootstrap.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
   <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
   <script src="/cloud/resources/js/jquery.stellar.min.js"></script>

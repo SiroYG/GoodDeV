@@ -54,3 +54,5 @@
 -- middleSide_ python Crawling(1) - search_item 연결하여 만들기
 -- 191001
 -- middleSide_ python Crawling(2) - search_item / 인코딩하기 및 연결하여 만들기
+-- 191003
+-- middleSide_ python Crawling(3) - search_item / 이미지 및 연결하여 만들기

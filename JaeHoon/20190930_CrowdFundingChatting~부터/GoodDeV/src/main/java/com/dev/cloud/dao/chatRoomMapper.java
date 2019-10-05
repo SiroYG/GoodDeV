@@ -18,5 +18,7 @@ public interface chatRoomMapper {
 	//fundingNum으로 roomNum의 주소값을 가져오기 위함.
 	public ArrayList<ChatRoom> getAllchatRoomByCrowdfundingNum(ChatRoom chatRoom);
 	
-	
+	public ArrayList<ChatMember> getAllchatMemberByCrowdfundingNumNotDesc(ChatRoom chatRoom);
+
+	public ArrayList<ChatMember> getAllchatByChatRM(ChatMember chatMember);
 }
