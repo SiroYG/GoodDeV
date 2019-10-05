@@ -168,4 +168,13 @@ public class BoardController {
 
 		return null;
 	}
+	
+
+	@RequestMapping(value = "userboard", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Board> userboard(String userid, HttpSession session) {
+		System.out.println("boardNum => " + userid);
+		return  dao.userboard(userid);
+	}
+	
 }
