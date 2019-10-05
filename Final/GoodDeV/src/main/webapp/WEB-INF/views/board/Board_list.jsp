@@ -166,7 +166,7 @@
 <!--Blue select-->
 
 <select class="browser-default custom-select" name="searchItem">
-  <option value="all" selected>전체</option>
+  <option value="All" selected>전체</option>
   <option value="title" ${searchItem =='title'?'selected' :''}>제목</option>
   <option value="content" ${searchItem =='content'? 'selected' :'' }>내용</option>
   <option value="id" ${searchItem =='userid'?'selected' :'' }>작성자</option>

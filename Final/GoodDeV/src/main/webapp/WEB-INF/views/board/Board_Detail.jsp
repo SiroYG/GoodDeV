@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
@@ -18,22 +17,71 @@
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/Board.css">
     <link rel="stylesheet" href="/cloud/resources/css/new-comment.css">
+   <script>
+    window.onload = function (){
+		init();
+	}
     
-    <script>
-    $(function(){
-    	
-    });
-    </script>
-    
+	function init(){
+		var boardNum = document.getElementById("boardNum");
+		var memberid = document.getElementById("memberid");
+		
+		$.ajax({
+			"url" :"/cloud/board/ReplyselectAll",
+			"method" : "get",
+			"data":{
+				"boardNum": boardNum.value
+			},
+			"success":function(result){
+				alert(result);
+				var replybody = document.getElementById("replybody");
+				replybody.innerHTML="<article class='row'>"
+				$(result).each(function(index,item){
+					replybody.innerHTML
+						+="<div class='col-md-10 col-sm-10'> <div class='panel panel-default'>"
+		           	 	+"<div class='panel-body'> <header class='text-left'>"
+						+"<div class='comment-user'> <i class='fa fa-user'></i> "+item.memberid+" </div>"
+						+"<time class='comment-date' datetime=''> <i class='fa fa-clock-o'></i> "+item.replyDate+" </time>"
+						+"</header>"
+						+"<div class='comment-post'> <p>"+item.reply+"</p></div>"
+						+"</div>  <hr> </div> </div> </article>"
+				})		
+					console.log(result);
+			}
+		});
+	}
+   $(document).ready(function(){
+	   var replybody = document.getElementById("replybody");
+	   replybody.scrollTop = replybody.scrollHeight;
+	  $("#replybody").scrollTop($("#replybody")[0].scrollHeight) 
+   });
+    function Regist() {
+		var replys = document.getElementById("replys");
+		var boardNum = document.getElementById("boardNum");
+		var memberid = document.getElementById("memberid");
+		$.ajax({
+			"url" : "/cloud/board/Replyinsert",
+			"method" : "post",
+			"data" : {
+				"boardNum": boardNum.value,
+				"reply" : replys.value,
+				"memberid": memberid.value
+			},
+			"success" : function(result) {
+		    	alert(result);
+				var replybody = document.getElementById("replybody");
+				init();
+				console.log(result);
+			}
+		});
+	}
+    </script>	              
 </head>
-
-
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -64,7 +112,6 @@
                             </div>
                         </li>
                     </c:if>
-
                     <c:if test="${sessionScope.loginId!=null}">
                         <li style="margin-left: 20px;" class="nav-item cta">
                             <div class="dropdown show">
@@ -84,7 +131,6 @@
             </div>
         </div>
     </nav>
-
     <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_6.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
@@ -145,6 +191,7 @@
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>첨부파일</b></span></label>
                         <div class="col-sm-10">
+                        	
                             <input type="file" class="form-control" name="saveFilename" id="saveFilename">
                         </div>
                     </div>
@@ -165,127 +212,24 @@
             </div>
                     
                     <hr class="hr_purple">
-
-                    <div class="container" id="chat-container">
-                        <!-- <h2 class="page-header">Comments</h2> -->
-                        <div class="comment-list">
-
-                            <!-- other Comment -->
-                            <article class="row">
-                                <div class="col-md-10 col-sm-10">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <header class="text-left">
-
-                                                <!-- 댓글은 memberId 필요  -->
-                                                <div class="comment-user"><i class="fa fa-user"></i> [memberId]</div>
-                                                <time class="comment-date" datetime=""><i class="fa fa-clock-o"></i> 2019-10-02 | 14:29</time>
-
-                                            </header>
-                                            <div class="comment-post">
-                                                <p>
-                                                    [다른 사람들이 입력한 내용은 여기서 나오게끔]
-                                                </p>
-                                            </div>
-                                            <p class="text-right">
-                                            <input type="text" class="searchWord" placeholder=" 답글을 입력하세요">
-                                            <a href="#" class="btn btn-outline-primary">
-                                            <i class="fa fa-reply"></i> 답글달기</a></p>
-                                        </div>
-                                        <hr>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <!-- 답글 쪽 article은 이렇게 -->
-                            <article class="row">
-                                <div class="col-md-2 col-sm-2">
-                                </div>
-                                <div class="col-md-9 col-sm-9">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <header class="text-left">
-                                                <div class="comment-user"><i class="fa fa-user"></i> [memberId]</div>
-                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> 2019-10-02 | 14:57</time>
-                                            </header>
-                                            <div class="comment-post">
-                                                <p>
-                                                    [...]
-                                                </p>
-                                            </div>
-                                            <p class="text-right">
-                                            <input type="text" class="searchWord" placeholder=" 답글을 입력하세요">
-                                            <a href="#" class="btn btn-outline-primary">
-                                            <i class="fa fa-reply"></i> 답글달기</a></p>
-                                        </div>
-                                        <hr>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <!-- my Comment -->
-                            <article class="row">
-                                <div class="col-md-10 col-sm-10">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <header class="text-right">
-                                                <div class="comment-user"><i class="fa fa-user"></i> [내 댓글]</div>
-                                                <time class="comment-date" datetime=""><i class="fa fa-clock-o"></i> 2019-10-02 | 14:29</time>
-                                            </header>
-                                            <div class="comment-post">
-                                                <p class="my-comment">
-                                                    [내가 입력한건 이렇게 나오게끔]
-                                                </p>
-                                            </div>
-                                            <p class="text-right">
-                                            <input type="text" class="searchWord" placeholder=" 답글을 입력하세요">
-                                            <a href="#" class="btn btn-outline-primary"><i class="fa fa-reply"></i> 답글달기</a></p>
-                                        </div>
-                                        <hr>
-                                    </div>
-                                </div>
-                            </article>
-                            
-                            <!--  내 댓글에 대한 답글 article -->
-                        
-                        <article class="row">
-            <div class="col-md-9 col-sm-9">
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <header class="text-right">
-                    <div class="comment-user"><i class="fa fa-user"></i> [memberId]</div>
-                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> 2019-10-02 | 15:01</time>
-                  </header>
-                  <div class="comment-post">
-                    <p class="my-comment">
-                      [...........]
-                    </p>
-                  </div>
-                  <p class="text-right">
-                  <input type="text" class="searchWord" placeholder=" 답글을 입력하세요">
-                  <a href="#" class="btn btn-outline-primary">
-                  <i class="fa fa-reply"></i> 답글달기</a></p>
-                </div>
-                <hr>
-              </div>
-            </div>
-            <div class="col-md-2 col-sm-2 col-md-pull-1 hidden-xs">
-   
-            </div>
-          </article>
-                            
-                        </div>
-
-                        <div class="search-form">
-                            <input type="text" class="searchWord" placeholder=" 댓글을 입력하세요">
-                            <button type="button" style="margin-left:10px; font-size:12px;" class="btn btn-outline-primary btn-rounded waves-effect">입력하기</button>
-                        </div>
-
-                    </div>
-
+					<form>
+					<input type="hidden" id="boardNum" value="${board.boardNum}">
+					<input type="hidden" id="memberid" value="${sessionScope.loginId}">
+	                    <div class="container" id="chat-container">
+	                        <!-- <h2 class="page-header">Comments</h2> -->
+	                        <div class="comment-list"  id="replybody">
+	 
+	                            <!-- other Comment -->
+	                            
+	                        </div>
+	                        <div class="search-form">
+	                            <input type="text" id="replys" class="searchWord" placeholder=" 댓글을 입력하세요">
+	                            <button type="button" onclick="Regist()" style="margin-left:10px; font-size:12px;" class="btn btn-outline-primary btn-rounded waves-effect">입력하기</button>
+	                        </div>
+	                    </div>
+                    </form>
             </div>
         </div>
-        
     </section>
 </body>
 <footer class="ftco-footer ftco-section">

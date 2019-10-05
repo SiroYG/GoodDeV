@@ -136,7 +136,7 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label"><span><b>세부내용</b></span></label>
                     <div class="col-sm-10">
-                        <textarea rows="8" cols="112" name="fundingContent" class="form-control"></textarea>
+                        <textarea rows="8" cols="112" name="fundingContents" class="form-control"></textarea>
                     </div>
                 </div>
 
@@ -200,7 +200,6 @@
                 </fieldset>
                 <a onclick="Write()"  class="btns btn-3">등록하기</a> 
                 &nbsp;&nbsp; <a href="/cloud/funding/fundingListForm" class="btns btn-3-red"><span class="white">취소</span></a>
-
             </div>
         </form>
     </section>

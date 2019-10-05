@@ -19,9 +19,6 @@
 		)
 	</insert>
 	
-	
-	
-	
 	<update id="updateFundingOption" parameterType="FundingOption">
 	UPDATE FundingOption 
 	SET 
@@ -37,8 +34,6 @@
 		where
 		crowdfundingNum = #{crowdfundingNum} 
 	</select>
-
-	
 
 	<delete id="deleteFundingOption" parameterType="FundingOption">
 	DELETE FROM FundingOption WHERE fundingOptionNum = #{fundingOptionNum};

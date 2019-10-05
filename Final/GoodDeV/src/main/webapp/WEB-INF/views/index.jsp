@@ -341,10 +341,6 @@
                     <!-- <h2 class="page-header">Comments</h2> -->
                     <div class="comment-lists" id="panelbody">
                     
-                      <div class='search-form'>
-						<input type='text' class='searchWord' id='memo' placeholder='메시지를 입력하세요'>
-						<button onclick='Regist()'  type='button' style='margin-left:10px; font-size:12px;' class='btn btn-outline-primary btn-rounded waves-effect'>입력하기</button>
-				   		 </div>
                     </div>
                 </div>
               </div>

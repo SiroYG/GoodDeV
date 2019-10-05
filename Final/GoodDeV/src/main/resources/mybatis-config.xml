@@ -47,6 +47,7 @@
 <mapper resource="mappers/fundingOption.xml"/>
 <mapper resource="mappers/chatMapper.xml"/>
 <mapper resource="mappers/officialFileMapper.xml"/>
+<mapper resource="mappers/replyMapper.xml"/>
 </mappers>
 
 </configuration>

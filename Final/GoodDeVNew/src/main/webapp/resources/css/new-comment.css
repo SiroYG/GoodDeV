@@ -1,0 +1,139 @@
+/*font Awesome http://fontawesome.io*/
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+/*Comment List styles*/
+
+#chat-container{
+	vertical-align: middle !important;
+    margin: 0 auto !important;
+    justify-content: center !important;
+}
+
+.search-form {
+	display : inline-flex;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 30px;
+    width : 100%;
+    vertical-align: middle !important;
+    margin: 0 auto !important;
+    justify-content: center !important;
+}
+
+.searchWord {
+    width: 80%;
+}
+
+.type_msg, .input_msg_write{
+	vertical-align: middle !important;
+    margin: 0 auto !important;
+    justify-content: center !important;
+}
+
+.main_icon{
+	 width: 100px !important;
+    height: 100px !important;
+}
+
+.my-comment{
+	text-align: right;
+	color : #737373;
+}
+
+.comment-list{
+	overflow:scroll;
+	width:100%;
+	height: 300px !important;
+}
+
+.comment-lists{
+	overflow:scroll;
+	width:100%;
+	height: 450px !important;
+}
+
+.comment-list .row, .comment-lists .row {
+  vertical-align: middle !important;
+  margin: 0 auto !important;
+  justify-content: center !important;
+}
+.comment-list .panel .panel-heading, .comment-lists .panel .panel-heading {
+  padding: 4px 15px;
+  position: absolute;
+  border:none;
+  /*Panel-heading border radius*/
+  border-top-right-radius:0px;
+  top: 1px;
+}
+.comment-list .panel .panel-heading.right, .comment-lists .panel .panel-heading.right {
+  border-right-width: 0px;
+  /*Panel-heading border radius*/
+  border-top-left-radius:0px;
+  right: 16px;
+}
+
+.panel-body{
+border-bottom : 1px solid #999999;
+  margin-bottom: 5px;
+  margin-top: 5px;	
+}
+
+.comment-list .panel .panel-heading .panel-body, .comment-lists .panel .panel-heading .panel-body {
+  vertical-align: middle !important;
+  margin: 0 auto !important;
+  justify-content: center !important;
+}
+.comment-list figcaption, .comment-lists figcaption {
+  /*For wrapping text in thumbnail*/
+  word-wrap: break-word;
+}
+/* Portrait tablets and medium desktops */
+@media (min-width: 768px) {
+  .comment-list .arrow:after, .comment-list .arrow:before, .comment-lists .arrow:after, .comment-lists .arrow:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+  }
+  .comment-list .panel.arrow.left:after, .comment-list .panel.arrow.left:before, .comment-lists .panel.arrow.left:after, .comment-lists .panel.arrow.left:before {
+    border-left: 0;
+  }
+  /*****Left Arrow*****/
+  /*Outline effect style*/
+  .comment-list .panel.arrow.left:before, .comment-lists .panel.arrow.left:before {
+    left: 0px;
+    top: 30px;
+    /*Use boarder color of panel*/
+    border-right-color: inherit;
+    border-width: 16px;
+  }
+  /*Background color effect*/
+  .comment-list .panel.arrow.left:after, .comment-lists .panel.arrow.left:after {
+    left: 1px;
+    top: 31px;
+    /*Change for different outline color*/
+    border-right-color: #FFFFFF;
+    border-width: 15px;
+  }
+  /*****Right Arrow*****/
+  /*Outline effect style*/
+  .comment-list .panel.arrow.right:before, .comment-lists .panel.arrow.right:before {
+    right: -16px;
+    top: 30px;
+    /*Use boarder color of panel*/
+    border-left-color: inherit;
+    border-width: 16px;
+  }
+  /*Background color effect*/
+  .comment-list .panel.arrow.right:after, .comment-lists .panel.arrow.right:after {
+    right: -14px;
+    top: 31px;
+    /*Change for different outline color*/
+    border-left-color: #FFFFFF;
+    border-width: 15px;
+  }
+}
+.comment-list .comment-post, .comment-lists .comment-post {
+  margin-top: 6px;
+}

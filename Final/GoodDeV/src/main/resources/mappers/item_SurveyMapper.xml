@@ -4,10 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dev.cloud.dao.item_SurveyMapper">
-
-
 		<insert id="insertQuestion_Time" parameterType="Question_Time">
-
 		insert into
 		Question_Time (
 		questionTimeNum
@@ -61,9 +58,6 @@
 		
 	</select>
 	
-	
-	
-
 	<select id="getQuestionByQuestionTimeNum" parameterType="Question"
 		resultType="Question">
 		select *
@@ -82,8 +76,6 @@
 		,dueDate = #{dueDate}
 		WHERE questionTimeNum=#{questionTimeNum}
 		
-		
-
 	</update>
 
 	<update id="updateQuestion" parameterType="Question">
