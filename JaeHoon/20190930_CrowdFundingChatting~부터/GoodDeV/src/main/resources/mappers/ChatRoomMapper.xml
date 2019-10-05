@@ -5,26 +5,39 @@
 
 <mapper namespace="com.dev.cloud.dao.chatRoomMapper">
 	
+	
 	<insert id="insertChatRoom" parameterType="ChatRoom">
+	
+		
 	insert into ChatRoom(
-	CHATROOM_seq, 
+	chatroom_seq, 
 	crowdfundingNum
 	)values(
-	CHATROOM_seq.nextval,
+	chatroom_seq.nextval,
 	#{crowdfundingNum}
 	)
+    
+        <selectKey resultType="Integer" keyProperty="chatroom_seq" order="AFTER">
+
+			SELECT chatroom_seq.currval FROM dual                                        
+
+		</selectKey>  
+	
+  
 	</insert>
+	 
+	
 	
 	<insert id="sendMessage" parameterType="ChatMember">
 	
 	insert into ChatMember(
-	CHATMEMBER_seq, 
-	CHATROOM_seq,
+	chatmember_seq, 
+	chatroom_seq,
 	memberId,
 	message
 	)values(
-	CHATMEMBER_seq.nextval,
-	#{CHATROOM_seq},
+	chatmember_seq.nextval,
+	#{chatroom_seq},
 	#{memberId},
 	#{message}
 	)
@@ -33,30 +46,33 @@
 	</insert>
 	<select id="getAllchatMemberByCrowdfundingNum" parameterType="ChatRoom" resultType="ChatMember">
 
-	select cr.CHATROOM_seq, cm.CHATMEMBER_seq, cm.memberId, TO_CHAR(cm.messageDate, 'MM-DD | HH24:mi') as messageDate, cm.message 
-	from ChatRoom cr inner join ChatMember cm on cr.CHATROOM_seq=cm.CHATROOM_seq 
+	select cr.chatroom_seq, cm.chatmember_seq, cm.memberId, TO_CHAR(cm.messageDate, 'MM-DD | HH24:mi') as messageDate, cm.message 
+	from ChatRoom cr inner join ChatMember cm on cr.chatroom_seq=cm.chatroom_seq 
 	where cr.crowdfundingNum=#{crowdfundingNum}
     order by cm.messagedate desc 
 	</select>
 	
 	<select id="getAllchatRoomByCrowdfundingNum" parameterType="ChatRoom" resultType="ChatRoom">
-   	  select chatroom_seq from ChatRoom where crowdfundingNum=#{crowdfundingNum} ORDER BY chatroom_seq desc
+   	  select chatroom_seq, crowdfundingNum from ChatRoom where crowdfundingNum=#{crowdfundingNum} ORDER BY chatroom_seq desc
 	
 	</select>
 	
 	<select id="getAllchatMemberByCrowdfundingNumNotDesc" parameterType="ChatRoom" resultType="ChatMember">
 
-	select cr.CHATROOM_seq, cm.CHATMEMBER_seq, cm.memberId, TO_CHAR(cm.messageDate, 'MM-DD | HH24:mi') as messageDate, cm.message 
-	from ChatRoom cr inner join ChatMember cm on cr.CHATROOM_seq=cm.CHATROOM_seq 
+	select cr.chatroom_seq, cm.chatmember_seq, cm.memberId, TO_CHAR(cm.messageDate, 'MM-DD | HH24:mi') as messageDate, cm.message 
+	from ChatRoom cr inner join ChatMember cm on cr.chatroom_seq=cm.chatroom_seq 
 	where cr.crowdfundingNum=#{crowdfundingNum}
     order by cm.messagedate asc
 	</select>
 	
 	<select id="getAllchatByChatRM" parameterType="ChatMember" resultType="ChatMember">
-	select CHATMEMBER_seq, CHATROOM_seq, memberId, TO_CHAR(messageDate, 'MM-DD | HH24:mi') as messageDate, message
-	 from ChatMember where CHATROOM_seq=#{CHATROOM_seq}
+	select chatmember_seq, chatroom_seq, memberId, TO_CHAR(messageDate, 'MM-DD | HH24:mi') as messageDate, message
+	 from ChatMember where chatroom_seq=#{chatroom_seq} order by messageDate asc
 	
 	</select>
+	<select id="getLastChatroom_seq" resultType="int">
+	select chatroom_seq.currval as chatroom_seq  from dual
 	
+	</select>
 	
 </mapper>

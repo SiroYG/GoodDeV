@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -40,36 +42,45 @@
 
 <script>
 var sessionId='';
-var CHATROOM_seq = '';
+var chatroom_seq = '';
+var canMakeNewRM='y';
 	$(function() {
 		
-		CHATROOM_seq = $('#CHATROOM_seq').val();
- 		sessionId = $('#sessionId').val();
+		
+ 		chatroom_seq = $('.chat_list').attr('data-value')  //'ggg'
+		sessionId = $('#sessionId').val();
  		var crowdfundingId = $('#CfmemberId').val();
  		var crowdfundingNum=$('#CfNum').val();
- 		alert(CHATROOM_seq)
+ 		alert(chatroom_seq)
  		alert(sessionId)
  		alert(crowdfundingId)
  		alert(crowdfundingNum)
+ 		alert(canMakeNewRM)
+ 		if(chatroom_seq!=null){
+ 			canMakeNewRM='n';
+ 		}else{
+ 			canMakeNewRM='y';
+ 		}
  		
-//  		$('.chat_list').on('click', function(){
-//  			CHATROOM_seq = $(this).attr('data-value')
-//  	 	  	alert(CHATROOM_seq);
-//  	 	})
-		 jQuery(document).ready(function($) {
-    		$('.chat_list').on('click', function(){
-     			CHATROOM_seq = $(this).attr('data-value')
-     	 	  	alert(CHATROOM_seq);
-     	 		})
+ 		alert(canMakeNewRM)
+ 		
 
-    		});
+		jQuery(document).on('click','.chat_list',function(){
+			chatroom_seq = $(this).attr('data-value');
+ 	 	  	alert(chatroom_seq);
+			
+			
+			
+		});	
+
+	
  	 	
  	 	
  	 	
 		
-        var intervalchatroom = setInterval(chatroom, 10000); 		  
+        var intervalchatroom = setInterval(chatroom, 90000); 		  
         function chatroom() { 
-        	
+        	alert("get one")
  			$.ajax({
  				url : 'getAllchatroom',
  				type : 'get',
@@ -91,7 +102,7 @@ var CHATROOM_seq = '';
 				url : 'getAllchat',
 				type : 'get',
 				data : {
-					CHATROOM_seq : CHATROOM_seq
+					chatroom_seq : chatroom_seq
 				},
 				success : output
 				
@@ -111,7 +122,7 @@ var CHATROOM_seq = '';
 				url : 'writeChat',
 				type : 'post',
 				data : {
-					CHATROOM_seq : CHATROOM_seq,
+					chatroom_seq : chatroom_seq,
 					memberId : sessionId,
 					message : message
 				},
@@ -123,7 +134,42 @@ var CHATROOM_seq = '';
 			
  		})
  		$('h4').on('click', function(){
+ 			
+ 			if(canMakeNewRM=='n'){
+ 				alert("채팅방이 이미 존재합니다.")
+ 				return;
+ 			}
  			alert()
+ 			$.ajax({
+				url : 'makeChatroom',
+				type : 'post',
+				data : {
+					chatroom_seq : chatroom_seq,
+					memberId : sessionId, 
+					crowdfundingNum : crowdfundingNum
+				},
+				success : function(res){
+					alert(res)
+					if(res==null){
+						alert("실패하였습니다.")
+					}
+					chatroom_seq=res.chatroom_seq
+					alert("생성되었습니다.")
+					
+						$.ajax({
+ 					url : 'getAllchatroom',
+ 					type : 'get',
+ 					data : {
+ 							crowdfundingNum : crowdfundingNum
+ 							},
+ 					success : outputCR
+ 					
+ 			})
+					
+					
+					
+				}
+			})
  			
  			
  		})
@@ -142,7 +188,7 @@ var CHATROOM_seq = '';
 				chatdiv+='<div class="received_msg">'
 				chatdiv+='<div class="received_withd_msg">'
 				chatdiv+='<p>'+item.message+'</p>'
-				chatdiv+='<input type="hidden" id="CHATROOM_seq" value="'+item.CHATROOM_seq+'">'
+				chatdiv+='<input type="hidden" id="chatroom_seq" value="'+item.chatroom_seq+'">'
 				chatdiv+='<span class="time_date">'+ item.messageDate+'</span>';
 				chatdiv+='</div>';
 				chatdiv+='</div>';
@@ -151,7 +197,7 @@ var CHATROOM_seq = '';
 				chatdiv+='<div class="outgoing_msg">'
 				chatdiv+='<div class="sent_msg">';
 				chatdiv+='<p>'+item.message+'</p>';
-				chatdiv+='<input type="hidden" id="CHATROOM_seq" value="'+item.CHATROOM_seq+'">';
+				chatdiv+='<input type="hidden" id="chatroom_seq" value="'+item.chatroom_seq+'">';
 				chatdiv+='<span class="time_date">'+ item.messageDate+'</span>';
 				chatdiv+='</div>';
 				chatdiv+='</div>';
@@ -172,22 +218,23 @@ var CHATROOM_seq = '';
 	}
 	
 	function outputCR(res){
-		alert("start it")
+		
 		var chatdiv='';
 		$.each(res,function(i,item){
-			chatdiv+='<div class="chat_list" data-value ="'+item.CHATROOM_seq+'" >'
-			//위의 아이템이 언디파인드로 뜸.
+			
+			chatdiv+='<div class="chat_list" data-value ="'+item.chatroom_seq+'" >'
 			chatdiv+='<div class="chat_people">'
 			chatdiv+='<div class="chat_ib">'
-			chatdiv+='<h5>ID : '+item.memberId+' <span class="chat_date">'+item.messageDate+'</span></h5>'
+			chatdiv+='<h5>ID : '+item.memberId+' <span class="chat_date">'+item.messageDate +'</span></h5>'
 			chatdiv+='<p>'+item.message+'</p>'
 			chatdiv+='</div>'
 			chatdiv+='</div>'
 			chatdiv+='</div>'
 		})
-		//$('.chat_list').remove();
+		$('.chat_list').remove();
 		$(chatdiv).appendTo('.inbox_chat');
 		chatdiv = '';
+		canMakeNewRM='n';
 	}
 	
 	
@@ -206,19 +253,24 @@ var CHATROOM_seq = '';
 			<div class="inbox_msg">
 				<div class="inbox_people" id="">
 				<c:if test="${sessionScope.loginId!=Crowdfunding.memberId}">
+ 				
 					<div class="headind_srch">
 						<div class="recent_heading">
 							<h4 class="h4" id="h4">참여자 목록 +</h4>
 						</div>
 					</div>
-					</c:if>
-					<input type="hidden" id="cmforLeftList" value="${cmforLeftList }">
+					
+				</c:if> 
+				
 					
 					
 					<div class="inbox_chat">
 		
-						<c:forEach var="lList" items="${cmforLeftList }">
-							<div class="chat_list" data-value ="${lList.CHATROOM_seq }" >
+						<c:forEach var="lList" items="${cmforLeftList }" varStatus="status">
+							<input type="hidden" id="count" value="${stauts.count}">
+						
+							<div class="chat_list" data-value ="${lList.chatroom_seq}" >
+							
 								<div class="chat_people">
 									<div class="chat_ib">
 										<h5>
@@ -298,15 +350,16 @@ var CHATROOM_seq = '';
 					<div class="msg_history" id="msg_history">
 						<input type="hidden" id="sessionId"
 							value="${sessionScope.loginId}">
-						<c:forEach var="rList" items="${cmforRightList }">
+						<c:forEach var="rList" items="${cmforRightList }" >
+
 							<c:if test="${rList.memberId!=sessionScope.loginId}">
 
 								<div class="incoming_msg">
 									<div class="received_msg">
 										<div class="received_withd_msg">
 											<p>${rList.message}</p>
-											<input type="hidden" id="CHATROOM_seq"
-												value="${rList.CHATROOM_seq}"> <span
+											<input type="hidden" id="chatroom_seq"
+												value="${rList.chatroom_seq}"> <span
 												class="time_date"> ${rList.messageDate}</span>
 										</div>
 									</div>
