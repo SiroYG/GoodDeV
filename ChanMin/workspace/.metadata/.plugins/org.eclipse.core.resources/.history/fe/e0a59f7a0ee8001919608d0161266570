@@ -1,0 +1,381 @@
+package com.dev.cloud.controller;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.dev.cloud.dao.chatRoomRopository;
+import com.dev.cloud.dao.fundingOptionRepository;
+import com.dev.cloud.dao.fundingRepository;
+import com.dev.cloud.utill.FileService;
+import com.dev.cloud.utill.PageNavigator;
+import com.dev.cloud.utill.Quick;
+import com.dev.cloud.vo.Board;
+import com.dev.cloud.vo.ChatMember;
+import com.dev.cloud.vo.ChatRoom;
+import com.dev.cloud.vo.ChatTotal;
+import com.dev.cloud.vo.Crowdfunding;
+import com.dev.cloud.vo.FundingTable;
+import com.dev.cloud.vo.Payment;
+import com.dev.cloud.vo.Question_Time;
+
+@Controller
+@RequestMapping("/funding")
+public class FundingController {
+
+	@Autowired
+	fundingOptionRepository dao1;
+	@Autowired
+	fundingRepository dao;
+	@Autowired
+	chatRoomRopository crRepo;
+	
+	@Autowired
+	Quick serviceQuick;
+	
+	final String uploadPath = "/uploadfile";
+
+	@RequestMapping(value = "/boardhome", method = RequestMethod.GET)
+	public String boardhome() { // 홈이동 (리다이렉트)
+		return "/board/Board_list";
+	}
+	@RequestMapping(value = "/gofunding", method = RequestMethod.GET)
+	public String gofunding() { // 홈이동 (리다이렉트)
+		return "/funding/funding_list";
+	}
+	@RequestMapping(value = "/gofundingform", method = RequestMethod.GET)
+	public String gofundingform() { // 홈이동 (리다이렉트)
+		return "/funding/funding_form";
+	}
+	@RequestMapping(value = "/gopayment", method = RequestMethod.GET)
+	public String gopayment(@RequestParam(value = "itemname", defaultValue = "paymentTest") String itemname ,Model model) { 
+		model.addAttribute("itemname",itemname);
+		return "/funding/payment";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="myfundList", method= RequestMethod.GET)
+	public List<Crowdfunding> myfundList(HttpSession session){
+		String memberId = (String) session.getAttribute("loginId");
+		
+		List<Crowdfunding> cList = dao.mypageFunding(memberId);
+		
+		return cList;
+	}
+	
+	
+	@RequestMapping(value = "fundingListForm", method = RequestMethod.GET)
+	public String fundingListForm(@RequestParam(value = "searchItem", defaultValue = "fundingTitle") String searchItem,
+			@RequestParam(value = "searchWord", defaultValue = "") String searchWord,
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, Model model) {
+
+		// 게시글 전체 개수 조회
+		int totalRecordCount = dao.getBoardCount(searchItem, searchWord);
+		System.out.println(totalRecordCount);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		System.out.println(navi.getStartRecord());
+		List<Crowdfunding> list = dao.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		System.out.println(list.size());
+		for (Crowdfunding vo : list) {
+			System.out.println(vo);
+		}
+
+		model.addAttribute("searchItem", searchItem);
+		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("navi", navi);
+		model.addAttribute("list", list);
+
+		return "/funding/funding_list";
+	}
+
+
+	@RequestMapping(value = "fundingDetail", method = RequestMethod.GET)
+	public String fundingDetail(int crowdfundingNum, Model model) {
+
+		System.out.println("funding => " + crowdfundingNum);
+		Crowdfunding Crowdfunding = dao.selectOneCrowdFunding(crowdfundingNum);
+		int percent =(Crowdfunding.getItemCurrecyPrice()*100 / Crowdfunding.getItemGoalPrice());
+		System.out.println("퍼센트 : "+percent);
+		model.addAttribute("fund", Crowdfunding);
+		model.addAttribute("percent",percent);
+		
+		System.out.println(Crowdfunding);
+		return "/funding/funding_Detail";
+	}
+	
+	@RequestMapping(value = "/fundingWrite", method = RequestMethod.POST)
+	public String fundingWrite(Crowdfunding Crowdfunding, MultipartFile upload, HttpSession session, RedirectAttributes rttr) {
+		System.out.println(upload.getOriginalFilename());
+		System.out.println("106번줄==>"+Crowdfunding);
+		String memberId = (String) session.getAttribute("loginId");
+		Crowdfunding.setMemberId(memberId);
+		// 2) FileService 를 사용한 코드
+		if (upload != null) {
+			String originalfile = upload.getOriginalFilename();
+			String savedfile = FileService.saveFile(upload, uploadPath);
+			System.out.println(savedfile);
+			Crowdfunding.setOriginalFileName(originalfile);
+			Crowdfunding.setSavedFileName(savedfile);
+		}
+		int result = dao.insertBoard(Crowdfunding);
+		System.out.println("게시물입력 : " + result);
+
+		return "/funding/funding_list";
+	}
+
+	
+	@RequestMapping(value = "paymentform", method = {RequestMethod.POST,RequestMethod.GET})
+	public String paymentform(Payment payment, Model model) {
+		System.out.println("payment => " + payment);
+		model.addAttribute("payment", payment);
+		return "/funding/payment";
+	}
+	
+	@RequestMapping(value = "fundingChat", method = RequestMethod.GET)
+	public String fundingChat(Payment payment, Model model, ChatRoom chatRoom, HttpSession session) {
+		System.out.println("chatRoom:"+chatRoom);
+		System.out.println("SessionId : "+session.getAttribute("loginId"));
+		String SessionTemp=(String) session.getAttribute("loginId");
+		ArrayList<ChatMember> AllcmList=new ArrayList<>();
+		AllcmList=crRepo.getAllchatMemberByCrowdfundingNum(chatRoom);
+		//member를 가져옴, 크라우드 펀딩에 해당하는 
+		
+		ArrayList<ChatRoom> AllcrList=new ArrayList<>();
+		AllcrList=crRepo.getAllchatRoomByCrowdfundingNum(chatRoom);
+		//chatroom을 가져옴, 크라우드 펀딩에 해당하는 
+
+		System.out.println("153line : "+AllcrList);
+		System.out.println("154line : "+AllcmList);
+		ArrayList<ChatMember> cmforLeftList=new ArrayList<>();
+		
+		ArrayList<Integer> checkAchatRoomSeq=new ArrayList<>();
+		
+		for (ChatRoom chatrm : AllcrList){
+//			System.out.println("chatrm : "+ chatrm);
+			for(ChatMember cMember : AllcmList){
+//				System.out.println("cMember : "+cMember);
+				int Chatroom_seq=0;
+				if(chatrm.getChatroom_seq()==cMember.getChatroom_seq()&&cMember.getMemberId().equals(SessionTemp)){
+					Chatroom_seq=chatrm.getChatroom_seq();
+							
+					checkAchatRoomSeq.add(Chatroom_seq);
+					break;
+					
+				}
+			}
+		}
+		int [] makeQuickArray = null;
+		System.out.println("171line : "+checkAchatRoomSeq);
+		for(int i : checkAchatRoomSeq){
+			int count=0;
+			for(ChatMember cMember : AllcmList){
+				
+				if(i==cMember.getChatroom_seq()){
+					//cmforLeftList.add(cMember);
+					makeQuickArray[count] = cMember.getChatmember_seq();
+					break;
+				}
+			}
+			count++;
+		} 
+		//퀴정렬 사용
+	        
+	        serviceQuick.sort(makeQuickArray, 0, makeQuickArray.length - 1);
+	        for(int i=0; i<makeQuickArray.length; i++){
+	            System.out.println("cmforLeftList["+i+"] : "+makeQuickArray[i]);
+	        }
+	       for(int i : makeQuickArray){
+	    	   for(ChatMember cMember : AllcmList){
+	    		   if(cMember.getChatmember_seq()==i){
+	    			   cmforLeftList.add(cMember);
+	    		   }
+	    	   }
+	       }
+	        
+		  
+//	         int data[] = {66, 10, 1, 34, 5, -10};
+//	        Quick quick = new Quick();
+//	        serviceQuick.sort(data, 0, data.length - 1);
+//	        for(int i=0; i<data.length; i++){
+//	            System.out.println("data["+i+"] : "+data[i]);
+//	        }
+		  
+		  
+		System.out.println("179line : "+cmforLeftList);
+		
+		
+		
+		ArrayList<ChatMember> cmforRightList=new ArrayList<>();
+		Crowdfunding Crowdfunding=new Crowdfunding();
+		Crowdfunding = dao.selectOneCrowdFunding(chatRoom.getCrowdfundingNum());
+		
+		
+		
+		if(cmforLeftList.size()!=0){
+			int chatRoomNum=cmforLeftList.get(0).getChatroom_seq();
+			
+			ArrayList<ChatMember> ndList = crRepo.getAllchatMemberByCrowdfundingNumNotDesc(chatRoom);
+			for(ChatMember cMember : ndList){
+			if(cMember.getChatroom_seq()==chatRoomNum){
+				cmforRightList.add(cMember);
+			}
+			}
+		}
+		System.out.println("Crowdfunding : "+Crowdfunding);
+		System.out.println("cmforLeftList : "+cmforLeftList);
+		System.out.println("cmforRightList : "+cmforRightList);
+		model.addAttribute("cmforLeftList", cmforLeftList);
+		model.addAttribute("cmforRightList", cmforRightList);
+		model.addAttribute("Crowdfunding", Crowdfunding);
+
+
+		
+		return "/funding/chat_popup";
+	}
+
+	
+	@RequestMapping(value = "/getAllchat", method = RequestMethod.GET)
+	@ResponseBody
+	public List<ChatMember> getAllchat(ChatMember chatMember, HttpSession session) {
+		List<ChatMember> cmList=new ArrayList<>();
+//		System.out.println(chatMember);
+		cmList=crRepo.getAllchatByChatRM(chatMember);
+		
+		String memberId=(String) session.getAttribute("loginId");
+		boolean flag=false;
+		for(ChatMember  member: cmList){
+			if(member.getMemberId().equals(memberId)){
+				flag=true;
+				break;
+			}
+		}
+		if(flag==false){
+			return null;
+		}
+//		System.out.println(cmList);
+		return cmList;
+	}
+	@RequestMapping(value = "/writeChat", method = RequestMethod.POST)
+	@ResponseBody
+	public String writeChat(ChatMember chatMember) {
+		int result =crRepo.sendMessage(chatMember);
+		System.out.println("199line : "+chatMember);
+		
+		
+		return "success";
+	}
+	
+	@RequestMapping(value = "/getAllchatroom", method = RequestMethod.GET)
+	@ResponseBody
+	public ArrayList<ChatMember> getAllchatroom(ChatRoom chatRoom, HttpSession session) {
+		ArrayList<ChatMember> AllcmList=new ArrayList<>();
+		AllcmList=crRepo.getAllchatMemberByCrowdfundingNum(chatRoom);
+		ArrayList<ChatRoom> AllcrList=new ArrayList<>();
+		AllcrList=crRepo.getAllchatRoomByCrowdfundingNum(chatRoom);
+		ArrayList<ChatMember> cmforLeftList=new ArrayList<>();
+		String memberId=(String) session.getAttribute("loginId");
+		
+		ArrayList<Integer> checkAchatRoomSeq=new ArrayList<>();
+		for (ChatRoom chatrm : AllcrList){
+//			System.out.println("chatrm : "+ chatrm);
+			for(ChatMember cMember : AllcmList){
+//				System.out.println("cMember : "+cMember);
+				if(chatrm.getChatroom_seq()==cMember.getChatroom_seq()&cMember.getMemberId().equals(memberId)){
+					
+					checkAchatRoomSeq.add(cMember.getChatroom_seq());
+					break;
+				}
+			}
+		}
+		
+		for(int num : checkAchatRoomSeq){
+			for(ChatMember cMember : AllcmList){
+				if(num==cMember.getChatroom_seq()){
+					cmforLeftList.add(cMember);
+					break;
+				}
+			}
+		}
+		
+		
+		
+		
+//		System.out.println("cmforLeftList ===>"+cmforLeftList);
+		
+		return cmforLeftList;
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/makeChatroom", method = RequestMethod.POST)
+	@ResponseBody
+	public ChatMember makeChatroom(ChatTotal chatTotal) {
+		System.out.println("236line============");
+		System.out.println(chatTotal);
+		int CrowdfundingNum=chatTotal.getCrowdfundingNum();
+		Crowdfunding crowdfunding=new Crowdfunding();
+		crowdfunding=dao.selectOneCrowdFunding(CrowdfundingNum);
+		
+		ChatRoom chatRoomTemp=new ChatRoom();
+		chatRoomTemp.setCrowdfundingNum(CrowdfundingNum);
+		crRepo.getAllchatMemberByCrowdfundingNum(chatRoomTemp);
+		ArrayList<ChatMember> cmList=new ArrayList<>();
+		for(ChatMember member: cmList){
+			if(member.getMemberId().equals(chatTotal.getMemberId())){
+				return null;
+			}
+		}
+
+		
+		
+		
+		
+		
+		ChatRoom chatRoom=new ChatRoom();
+		chatRoom.setCrowdfundingNum(CrowdfundingNum);
+		System.out.println(chatRoom);
+		int temp=crRepo.insertChatRoom(chatRoom);
+		
+		System.out.println("246>>>>>"+temp);
+		int chatroom_seq=chatRoom.getChatroom_seq();
+		
+		System.out.println(">>>>249 : "+chatroom_seq);
+		
+		
+		ChatMember chatMember=new ChatMember();
+		String message="님이 입장하셨습니다.";
+		chatMember.setChatroom_seq(chatroom_seq);
+		chatMember.setMemberId(chatTotal.getMemberId());
+		chatMember.setMessage(chatTotal.getMemberId()+message);
+		System.out.println(">>>>>>>>>>251"+chatMember);
+		crRepo.sendMessage(chatMember);
+
+		chatMember.setMemberId(crowdfunding.getMemberId());
+		chatMember.setMessage(crowdfunding.getMemberId()+message);
+		System.out.println(">>>>>>>>>>256"+chatMember);
+		crRepo.sendMessage(chatMember);
+		
+		
+		return chatMember;
+	}
+	
+}

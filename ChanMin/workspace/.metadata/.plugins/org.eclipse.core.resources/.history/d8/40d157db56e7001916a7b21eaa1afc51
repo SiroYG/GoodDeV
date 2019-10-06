@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.cloud.dao.item_SurveyMapper">
+
+
+		<insert id="insertQuestion_Time" parameterType="Question_Time">
+
+		insert into
+		Question_Time (
+		questionTimeNum
+		,itemNum
+		,questionTitle
+		,description
+		,startDate
+		,dueDate
+		,memberId
+		)
+		VALUES (
+		question_Time_seq.NEXTVAL
+		,#{itemNum}
+		,#{questionTitle}
+		,#{description}
+		,#{startDate}
+		,#{dueDate}
+		,#{memberId}
+		)
+	</insert>
+	
+	<insert id="insertQuestion" parameterType="Question">
+
+		insert into
+		Question (
+		questionNum
+		,questionTimeNum
+		,question
+		)
+		VALUES (
+		Question_seq.NEXTVAL
+		,#{questionTimeNum}
+		,#{question}
+		)
+	</insert>
+	
+
+
+	<select id="getQuestion_TimeByItemNum" parameterType="Question_Time"
+		resultType="Question_Time">
+		select *
+		from Question_Time
+		where itemNum=#{itemNum}
+		
+	</select>
+	<select id="getQuestion_TimeByQuestion_TimeNum" parameterType="Question_Time"
+		resultType="Question_Time">
+		select *
+		from Question_Time
+		where questionTimeNum=#{questionTimeNum}
+		
+	</select>
+	
+	
+	
+
+	<select id="getQuestionByQuestionTimeNum" parameterType="Question"
+		resultType="Question">
+		select *
+		from Question
+		where questionTimeNum=#{questionTimeNum}
+	</select>
+	
+	<update id="updateQuestion_Time" parameterType="Question_Time">
+
+		UPDATE Question_Time
+
+		SET
+		questionTitle = #{questionTitle}
+		,description = #{description}
+		,startDate = #{startDate}
+		,dueDate = #{dueDate}
+		WHERE questionTimeNum=#{questionTimeNum}
+		
+		
+
+	</update>
+
+	<update id="updateQuestion" parameterType="Question">
+
+		UPDATE Question
+
+		SET
+		question = #{question}
+
+		WHERE questionNum=#{questionNum}
+
+	</update>
+	
+	
+	
+	
+	
+	
+	<update id="writeEtc" parameterType="Question_Time">
+	
+		UPDATE Question_Time
+		SET
+		etc = #{etc}
+		WHERE questionTimeNum=#{questionTimeNum}
+	</update>
+	
+	<update id="deleteQuestion" parameterType="Question">
+
+		UPDATE Question
+
+		SET
+		question = 'none'
+
+		WHERE questionNum=#{questionNum}
+
+	</update>
+
+	<insert id="insertSurvey" parameterType="Survey">
+
+		insert into
+		Survey (
+		surveyNum
+		,questionNum
+		,qValuable
+		,writtenDate
+		)
+		VALUES (
+		Survey_seq.NEXTVAL
+		,#{questionNum}
+		,#{qValuable}
+		,SYSDATE
+		)
+	</insert>
+	
+	<select id="getqValueableByQuestionNum" parameterType="Survey" resultType="Survey">
+		
+		select *
+		from Survey
+		where questionNum=#{questionNum} 
+	
+	</select>
+
+	<update id="deleteQuestion_Time" parameterType="Question_Time">
+
+		UPDATE Question_Time
+
+		SET
+		questionTitle = 'none'
+
+		WHERE questionTimeNum=#{questionTimeNum}
+
+	</update>
+	
+	
+	<select id="selectAllQuestion_TimeById" parameterType="Question_Time" resultType="QuestionTotal">
+			select i.itemtype, q.questiontitle, q.memberid, q.startdate, q.questionTimeNum, q.dueDate
+		from Question_Time q join item i using (itemNum)
+		<choose>
+		<when test="memberId!=null">
+		where q.memberId=#{memberId}
+		</when>
+		<otherwise></otherwise>
+		</choose>
+		
+	</select>
+
+
+<select id="selectBySearchItem" parameterType="Search"
+		resultType="QuestionTotal">
+		select i.itemtype, q.questiontitle, q.memberid, q.startdate, q.dueDate, q.questionTimeNum
+		from Question_Time q join item i using (itemNum)
+		<choose>
+		<when test="searchItem=='title'">
+		where q.questionTitle LIKE '%'||#{searchWord}||'%' 
+		</when>
+		<when test="searchItem=='content'">
+		where q.description LIKE '%'||#{searchWord}||'%' 
+		</when>
+		<when test="searchItem=='id'">
+		where q.memberId LIKE '%'||#{searchWord}||'%' 
+		</when>
+		
+		<otherwise></otherwise>
+		</choose>
+		
+	</select>
+	
+	<select id="getQuestionByQuestionNum" parameterType="Question" resultType="Question">
+	select * from Question where questionNum=#{questionNum}
+	
+	 </select>
+	
+	
+	<select id="getQuestionTimeNumByItemNumandTitle" parameterType="Question_Time" resultType="Question_Time">
+	select QuestionTimeNum from Question_Time where itemNum=#{itemNum} and questionTitle=#{questionTitle}
+	</select>
+
+</mapper>
+
+

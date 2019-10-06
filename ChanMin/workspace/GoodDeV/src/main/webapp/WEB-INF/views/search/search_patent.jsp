@@ -214,35 +214,77 @@
     		   
     		   
 
-    	   $.each(res,function(i,item){
- 	   	   	tag += '<tr>'
- 	   	  	tag += '<th scope="row" name="특허번호">'+item.patentNum+'</th>'        
-    	   		tag += '<td name="분류">'+item.patenttype+'</td>'
-    	   		tag += '<td name="특허명">'+item.patentName+'</td>'
-    	   		tag += '<td name="특허설명">'+item.patentContent+'</td>'
-    	   		tag += '<td name="특허 보유자">'+item.patentHolderName+'</td>'	
- 
-    	   	if(item.patentRegDate != null){
-    	   		tag += '<td name="등록날짜">'+item.patentRegDate+'</td>'
-    	   	}else{
-    	   		tag += '<td>특허등록 진행중입니다.</td>'
-    	   	}
-    	   		
-    	   		tag += '<td name="서식파일보기"><button type="button" class="pri" data-value="'+item.patentNum+'" data-toggle="modal" data-target="#exampleModal">사용 허가 신청</button></td>'            
-    	   		//인터셉터 처리
-    	   		tag += '</tr>'        
-    	   	})
-    	   
-    	    tag += '</tbody>'
-    	    tag += '</table>' 
-    		tag += '<div class="tri-btn">'
-    		tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
-    	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
-    	    tag +=	'</div>'
-        $('#section-bar-patent').html(tag);	
-    	$('.pri').on('click',checking);    
-    	$('.pri').on('click',selectIt);
-    }
+    		   $.each(res, function(i, item) {
+                   tag += '<tr>'
+                   var patentNum = item.patentNum;
+                   var patenttype = item.patenttype;
+                   var patentName = item.patentName;
+                   var patentContent = item.patentContent;
+                   var patentHolderName = item.patentHolderName;
+
+                   if (patentNum.length >= 10) {
+                       //patentNum = patentNum.split("-",2)+"...";
+                       patentNum = patentNum.substr(0, 10) + "...";
+                       tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
+                   }  else {
+                       tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
+                   }
+                   
+                   if (patenttype == null) {
+                       //patenttype = patenttype.substr(0,7)+"...";
+                       tag += '<td name="분류" >' + '' + '</td>'
+                   } else if(patenttype.length >= 8 ){
+                      tag += '<td name="분류" >' + patenttype + '</td>'
+                   }
+                   
+                   if (patentName==null) {
+                      tag += '<td name="특허명"><b>' + '' + '</b></td>'
+                   } else if(patentName.length >= 15){
+                       patentName = patentName.substr(0, 24) + "...";
+                        tag += '<td name="특허명"><b>' + patentName.split("(", 1) + '</b></td>'
+                   }else{
+                      tag += '<td name="특허명"><b>' + patentName + '</b></td>'
+                   }
+                   /* if(patentContent.length >= 20){
+                      patentContent = patentContent.substr(0,40)+"...";
+                       tag += '<td name="특허설명" ><b>'+patentContent+'</b></td>'
+                   } */
+                   if (patentHolderName.length >= 5) {
+                       patentHolderName = patentHolderName.substr(0, 4) + "...";
+                       tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
+                   } else {
+                      tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
+                   }
+                  /*  else {
+                       tag += '<tr>'
+                       tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
+                       tag += '<td name="분류" >' + patenttype + '</td>'
+                       tag += '<td name="특허명" ><b>' + patentName + '</b></td>'
+                       /* tag += '<td name="특허설명" ><b>'+patentContent+'</b></td>' 
+                       tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
+                   } */
+
+                   if (item.patentRegDate != null) {
+                       tag += '<td name="등록날짜">' + item.patentRegDate + '</td>'
+                   } else {
+                       tag += '<td >[등록진행중]</td>'
+                   }
+
+                   tag += '<td name="서식파일보기" ><button type="button" class="pri" data-value="' + item.patentNum + '" data-toggle="modal" data-target="#exampleModal">신청하기</button></td>'
+                   //인터셉터 처리
+                   tag += '</tr>'
+               })
+    	    	   
+    	    	    tag += '</tbody>'
+    	    	    tag += '</table>' 
+    	    		tag += '<div class="tri-btn">'
+    	    		tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
+    	    	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
+    	    	    tag +=	'</div>'
+    	        $('#section-bar-patent').html(tag);	
+    	    	$('.pri').on('click',checking);    
+    	    	$('.pri').on('click',selectIt);
+    	    }
 
     
     function loginGo(){
@@ -259,37 +301,57 @@
     
     </script>
   </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-	  
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="home">Mainlogo</a>
+	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
-
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="home" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="/cloud/member/searchGo" class="nav-link"><span>검색</span></a></li>
-	          <li class="nav-item"><a href="goBoardlist" class="nav-link"><span>Q & A 게시판</span></a></li>
-	          <li class="nav-item"><a href="gosurveylist" class="nav-link"><span>블라인드 테스트</span></a></li>
-	          <li class="nav-item"><a href="gofundinglist" class="nav-link"><span>크라우드 펀딩</span></a></li>
+	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
+                    <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
+                    <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
+                    <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
+                    <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
+	  			 <c:if test="${sessionScope.loginId==null}">
+	  			 <li style="margin-left: 20px;" class="nav-item cta">
+                    <div class="dropdown show">
+                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="member-btn">로그인/회원가입</span>
+                        </a>
 
-	          <c:if test="${sessionScope.loginId==null}">
-	          <li style="margin-left: 20px; " class="nav-item cta"><a onclick="loginGo()" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">로그인</a></li>
-              <li style="margin-left: 20px;" class="nav-item cta"><a onclick="signGo()" class="nav-link" data-toggle="modal" data-target="#modalAppointment" style="text-decoration: none;">회원가입</a></li>
-	          </c:if>
-	          <c:if test="${sessionScope.loginId!=null}">
-	          <li class="nav-item"><a href="/cloud/member/goMypage" class="nav-link"><span>마이페이지</span></a></li>
-			  <li style="margin-left: 20px;" class="nav-item cta"><a class="nav-link">${sessionScope.loginName} ${sessionScope.loginType}님 </a></li>
-			  <li style="margin-left: 20px;" class="nav-item cta"><a href="/cloud/member/logout" class="nav-link">로그아웃</a></li>
-	          </c:if>
-	        </ul>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="/cloud/member/gologin"><span class="member-btn">로그인</span></a>
+                            <a class="dropdown-item" href="/cloud/member/gosign"><span class="member-btn">회원가입</span></a>
+                            <a class="dropdown-item" href="/cloud/member/gofindid"><span class="member-btn">아이디/비밀번호 찾기</span></a>
+                        </div>
+                    </div>
+                    </li>
+				</c:if>
+				
+				<c:if test="${sessionScope.loginId!=null}">
+				<li style="margin-left: 20px;" class="nav-item cta">
+				<div class="dropdown show">
+                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="/cloud/member/goMypage">마이페이지</a>
+                            <a class="dropdown-item" href="/cloud/member/goupdate">회원 정보 수정</a>
+                            <a class="dropdown-item" href="/cloud/member/logout">로그아웃</a>
+                        </div>
+                    </div>
+				</li>
+				</c:if>
+				 </ul>
 	      </div>
 	    </div>
 	  </nav>
+
 
 
 	  <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_10-1.jpg');" data-stellar-background-ratio="0.5">

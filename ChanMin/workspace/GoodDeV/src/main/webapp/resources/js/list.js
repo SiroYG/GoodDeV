@@ -1,3 +1,5 @@
+
+
 function patent(){   
 	var pageSu;
     $(function(){
@@ -65,33 +67,68 @@ function patent(){
         tag += '<th scope="col">특허 보유자</th>'    
    	    tag += '<th scope="col">등록날짜</th>'    
    	    tag += '</tr>'
-    	   tag += '</thead>' 
-    	   tag += '<tbody>'  
-    		   
-    		   
-    		   
-    	   $.each(res,function(i,item){
-    		   	tag += '<tr>'
- 	   	   		tag += '<th scope="row" name="특허번호">'+item.patentNum+'</th>'        
-    	   		tag += '<td name="분류">'+item.patentType+'</td>'
-    	   		tag += '<td name="특허명">'+item.patentName+'</td>'
-    	   		tag += '<td name="특허설명">'+item.patentContent+'</td>'
-    	   		tag += '<td name="특허 보유자">'+item.patentHolderName+'</td>'	
- 
-    	   	if(item.patentRegDate != null){
-    	   		tag += '<td name="등록날짜">'+item.patentRegDate+'</td>'
-    	   	}else{
-    	   		tag += '<td>특허등록 진행중입니다.</td>'
-    	   	}
-    	   		tag += '<td name="서식파일보기"></td>'            
-    	   		tag += '</tr>'        
-    	   	})
-    	   
-    	   tag += '</tbody>'	
-    	  /* tag += '<tr><td>'
-    	   tag += '<button id="leftBtn">◀</button>'	
-    	   tag += '<button id="rightBtn">▶</button>'	
-    	   tag += '</td></tr>'*/
+    	tag += '</thead>' 
+    	tag += '<tbody>'  
+	   $.each(res,function(i,item){
+		   		var patentNum = item.patentNum;
+		   		var patenttype = item.patenttype;
+		   		var patentName = item.patentName;
+		   		var patentContent = item.patentContent;
+		   		var patentHolderName = item.patentHolderName;
+		   		
+		   	  if (patentNum.length >= 10) {
+                  //patentNum = patentNum.split("-",2)+"...";
+                  patentNum = patentNum.substr(0, 10) + "...";
+                  tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
+              }  else {
+                  tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
+              }
+              
+              if (patenttype == null) {
+                  //patenttype = patenttype.substr(0,7)+"...";
+                  tag += '<td name="분류" >' + '' + '</td>'
+              } else if(patenttype.length >= 8 ){
+                 tag += '<td name="분류" >' + patenttype + '</td>'
+              }
+              
+              if (patentName==null) {
+                 tag += '<td name="특허명"><b>' + '' + '</b></td>'
+              } else if(patentName.length >= 15){
+                  patentName = patentName.substr(0, 24) + "...";
+                   tag += '<td name="특허명"><b>' + patentName.split("(", 1) + '</b></td>'
+              }else{
+                 tag += '<td name="특허명"><b>' + patentName + '</b></td>'
+              }
+              /* if(patentContent.length >= 20){
+                 patentContent = patentContent.substr(0,40)+"...";
+                  tag += '<td name="특허설명" ><b>'+patentContent+'</b></td>'
+              } */
+              if (patentHolderName.length >= 5) {
+                  patentHolderName = patentHolderName.substr(0, 4) + "...";
+                  tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
+              } else {
+                 tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
+              }
+             /*  else {
+                  tag += '<tr>'
+                  tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
+                  tag += '<td name="분류" >' + patenttype + '</td>'
+                  tag += '<td name="특허명" ><b>' + patentName + '</b></td>'
+                  /* tag += '<td name="특허설명" ><b>'+patentContent+'</b></td>' 
+                  tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
+              } */
+
+              if (item.patentRegDate != null) {
+                  tag += '<td name="등록날짜">' + item.patentRegDate + '</td>'
+              } else {
+                  tag += '<td >[등록진행중]</td>'
+              }
+
+              tag += '<td name="서식파일보기" ><button type="button" class="pri" data-value="' + item.patentNum + '" data-toggle="modal" data-target="#exampleModal">신청하기</button></td>'
+              //인터셉터 처리
+              tag += '</tr>'
+          })
+    	   	tag += '</tbody>'	
     	    tag += '</table>' 
     		tag += '<div class="tri-btn">'
     		tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
@@ -140,10 +177,9 @@ function item(){
  	 	  		}
  	 	  		
  });
+    
     jQuery("#section-bar-item").on('click', '#itemSign', function(){
-    		
-	  		window.location.href="/cloud/item/goItemWrite";
-			
+   	 		window.location.href="/cloud/item/goItemWrite";		
 });
     
     
@@ -286,5 +322,169 @@ function fund(){
     	   tag += '</table>' 
     
         $('#section-bar-funding').html(tag);	
-    }
+    	}
+	}
+
+function servey(){
+	var pageSu;        
+	$(function(){
+		   pageSu = 9;
+		   serveyTable(pageSu);   
+
+ });
+jQuery(document).on('click', '#rightBtn', function(){
+			pageSu += 10;
+			$.ajax({
+				url: '/cloud/servey/serveySu',
+				type : 'get',
+				success : function(res){
+					if(pageSu<res){
+						serveyTable(pageSu); 
+					}else {
+						pageSu = 9;
+						serveyTable(pageSu);
+					}
+				}
+			})
+}); 
+
+jQuery(document).on('click', '#leftBtn', function(){
+  		
+			pageSu -= 10;
+
+  		if(pageSu>0){
+  			serveyTable(pageSu); 
+  		}else{
+  			pageSu = 9;
+  			alert('응 첫페이지..');
+  			serveyTable(pageSu); 
+  		}
+  		
+});
+function serveyTable(pageSu){	
+		$.ajax({
+			url : '/cloud/survey/getSurveyListById',
+			type : 'get',
+			data : {
+				pageSu : pageSu
+			},
+			success : output
+	})
+}		
+
+function output(res){
+			var tag = '';
+			tag += '<table class="table">'
+	        tag += '<caption class="table_title"><b>테스트 목록</b></caption>'
+	        tag += '<thead class="navy">' 
+	        tag += '<tr>'   
+	        tag += '<th scope="col">No.</th>'        
+	        tag += '<th scope="col">제목</th>'       
+	        tag += '<th scope="col">시작일</th>'    
+	        tag += '<th scope="col">마감일</th>'    
+	   	    tag += '</tr>'
+	    	tag += '</thead>' 
+	    	tag += '<tbody>'  
+			$.each(res, function(i, item) {
+			i+=1;
+			tag += '<tr>'
+			tag += '<th scope="row" >'+i+'</th>'
+			tag += '<td name="questionTitle"><a href="/cloud/survey/gosurvey_result?questionTimeNum='+item.questionTimeNum+'">'+item.questionTitle+'</a></td>'
+			tag += '<td name="startDate"><a href="/cloud/survey/gosurvey_result?questionTimeNum='+item.questionTimeNum+'">'+item.startDate+'</td>';
+			tag += '<td name="dueDate"><a href="/cloud/survey/gosurvey_result?questionTimeNum='+item.questionTimeNum+'">'+item.dueDate+'</td>';
+			tag += '</tr>';
+				})
+			tag += '</tbody>'  
+			tag += '</table>'
+			tag += '<div class="tri-btn">'
+		    tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
+		   	tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
+		    tag += '</div>'
+			$('#section-bar-survey').html(tag);
+		}
+
 }
+
+function boardList(){
+	var pageSu;        
+	$(function(){
+		   pageSu = 9;
+		   boardTable(pageSu);   
+
+ });
+	
+	 jQuery(document).on('click', '#rightBtn', function(){
+ 			pageSu += 10;
+ 			$.ajax({
+ 				url: '/cloud/board/boardsu',
+ 				type : 'get',
+ 				success : function(res){
+ 					if(pageSu<res){
+ 						boardTable(pageSu); 
+ 					}else {
+ 						pageSu = 9;
+ 						boardTable(pageSu);
+ 					}
+ 				}
+ 			})
+ }); 
+
+jQuery(document).on('click', '#leftBtn', function(){
+	  		
+ 			pageSu -= 10;
+	
+	  		if(pageSu>0){
+	  			boardTable(pageSu); 
+	  		}else{
+	  			pageSu = 9;
+	  			alert('응 첫페이지..');
+	  			boardTable(pageSu); 
+	  		}
+	  		
+});
+function boardTable(pageSu){
+ 	
+	   $.ajax({
+	   		url : '/cloud/board/userboard',
+	   		type : 'get',
+	   		data : {
+	   			pageSu : pageSu
+	   		},
+	   		success : output	   		
+	   	})
+	   
+	   
+ }
+function output(res){
+			var tag = '';            
+        	tag += '<table class="table">'
+        	tag += '<caption class="table_title"><b>내가 작성한 게시글</b></caption>'
+	        tag += '<thead class="navy">' 
+	        tag += '<tr>'   
+	        tag += '<th scope="col">No.</th>'        
+	        tag += '<th scope="col">제목</th>'       
+	        tag += '<th scope="col">작성일</th>'    
+	        tag += '<th scope="col">공개 여부</th>'       
+	   	    tag += '</tr>'
+	    	tag += '</thead>' 
+	    	tag += '<tbody class="boardTbody" >'  
+	    	$.each(res, function(i, item){
+               i += 1;
+               tag += '<tr>';
+               tag += '<th scope="row" name="boardNum">' + i + '</th>'
+               tag += '<td name="title"><a href="/cloud/board/boardDetail?boardNum=' + item.boardNum + '">' + item.title + '</td>';
+               tag += '<td name="boardDate"><a href="/cloud/board/boardDetail?boardNum=' + item.boardNum + '">' + item.boardDate + '</a></td>';
+               tag += '<td name="qType"><a href="/cloud/board/boardDetail?boardNum=' + item.boardNum + '">' + item.qType + '</td>';
+               tag += '</tr>'
+    		})
+    		tag += '</tbody>'	
+    	    tag += '</table>' 
+    		tag += '<div class="tri-btn">'
+    		tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
+    	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
+    	    tag += '</div>'
+    	    $('#section-bar-qna').html(tag);
+		}
+}
+    	
+     

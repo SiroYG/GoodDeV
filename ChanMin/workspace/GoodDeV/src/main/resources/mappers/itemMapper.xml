@@ -79,6 +79,16 @@ where
 		memberId=#{memberId} 
 </select>
 
+<select parameterType="Total" id="getOneItemByItemNum" resultType="Total">
+select 
+			* 
+from 
+		Item 
+where 
+		itemNum=#{itemNum} 
+</select>
+
+
 <select id="gohisD" parameterType="Total" resultType="Total">
 select 
 	*
@@ -143,6 +153,15 @@ SET
 where
 	itemNum = #{itemNum}
 </update>
+
+<select id="selectItemName" parameterType="String" resultType="Item">
+select 
+	*
+from
+	Item
+where 
+	itemName = #{itemname}		
+</select>
 
 
 </mapper>

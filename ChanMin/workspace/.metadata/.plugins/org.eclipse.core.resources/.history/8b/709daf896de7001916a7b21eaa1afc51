@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.cloud.dao.fundingMapper">
+	
+	<insert id="makeCrowdFunding" parameterType="Crowdfunding">
+		insert into Crowdfunding (
+		crowdfundingNum
+		,itemNum
+		,itemGoalPrice
+		,itemCurrecyPrice
+		,fundingDueDate
+		,fundingStartDate
+		,memberId
+		,fundingTitle
+		,fundingContents
+		,originalFileName
+		,savedFileName
+		)
+		VALUES (
+		crowdfunding_seq.NEXTVAL
+		,#{itemNum}
+		,#{itemGoalPrice}
+		,#{itemCurrecyPrice}
+		,#{fundingDueDate}
+		,sysdate
+		,#{memberId}
+		,#{fundingTitle}
+		,#{fundingContents}
+		,#{originalFileName}
+		,#{savedFileName}
+		)
+	</insert>
+
+	
+	<update id="updateCrowdFunding" parameterType="Crowdfunding">
+	UPDATE Crowdfunding 
+	SET 
+	itemCurrecyPrice = itemCurrecyPrice+#{itemCurrecyPrice}
+	where 
+	crowdfundingNum=#{crowdfundingNum} 
+	
+	</update>
+	
+	<select id="selectOneCrowdFunding" parameterType="Crowdfunding" resultType="Crowdfunding">
+		select *
+		from Crowdfunding
+		where crowdfundingNum=#{crowdfundingNum}
+	</select>
+	
+	<select id="selectAllCrowdFunding" resultType="Crowdfunding">
+		select *
+		from Crowdfunding
+	</select>
+	
+	<insert id="insertFundingTable" parameterType="FundingTable" >
+		insert into FundingTable (
+		fundingReplyNum
+		,crowdfundingNum
+		,memberId
+		,investment
+		,fundingReply
+		,fundingReplydate
+		)
+		VALUES (
+		FundingTable_seq.NEXTVAL
+		,#{crowdfundingNum}
+		,#{memberId}
+		,#{investment}
+		,#{fundingReply}
+		,#{fundingReplydate}
+		)
+	</insert>
+	
+	<select id="mypageFunding" parameterType="String" resultType="Crowdfunding" >
+	select 
+		 crowdfundingNum 
+		 ,itemNum
+	 	 ,itemGoalPrice 
+		 ,itemCurrecyPrice 
+		 ,fundingDueDate(fundingDueDate,'YYYY-MM-DD') as fundingDueDate
+		 ,fundingStartDate(fundingStartDate,'YYYY-MM-DD') as fundingStartDate
+		 ,memberId
+	     ,fundingTitle
+		 ,fundingContents
+		 ,originalFileName
+	     ,savedFileName	
+	from
+		Crowdfunding
+	where
+		memberId = #{memberId}			
+	
+	</select>
+	
+	<update id="updateFundingTable" parameterType="FundingTable">
+	UPDATE FundingTable 
+	SET 
+	investment = investment+#{investment}
+	where 
+	fundingReplyNum=#{fundingReplyNum} 
+	</update>
+	
+	<select id="selectFundingTableByMemberId" parameterType="FundingTable" resultType="FundingTable">
+	select * 
+	from FundingTable
+	where memberId=#{memberId}
+	</select>
+	
+</mapper>
+	

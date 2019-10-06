@@ -9,16 +9,16 @@
     <title>My Page ::</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    
- 	<!-- jquery 우선 실행 -->
- 	<script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
+
+    <!-- jquery 우선 실행 -->
+    <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-    
+
     <!-- Tap 기능 jquery 실행 -->
     <script src="/cloud/resources/js/ef-tabs.js"></script>
     <script src="/cloud/resources/js/jquery.transit.js"></script>
-    
-	<!-- bootstrap 포함 css 순차 실행 -->
+
+    <!-- bootstrap 포함 css 순차 실행 -->
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
 
@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
-    
+
     <!-- Tap + Personal CSS/JS -->
     <script src="/cloud/resources/js/list.js"></script>
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
@@ -38,44 +38,47 @@
     <link rel="stylesheet" href="/cloud/resources/css/demo.css">
     <link rel="stylesheet" href="/cloud/resources/css/ef-tabs.css">
     <link rel="stylesheet" href="/cloud/resources/css/ef-tabs-light-blue.css">
-	
+
     <script>
         var pageSu;
         $(function() {
+
+            $.ajax({
+                url: '/cloud/board/',
+                type: 'get',
+                success: outputBoard
+
+            })
 
             $('#patentList').on('click', function() {
                 alert("hi");
                 pageSu = 9;
                 patentTable(pageSu)
             });
-			
-            $('#itemList').on('click',function(){
-       			item();
-       		})	
-       		
-            
+
+            $('#itemList').on('click', function() {
+                item();
+            })
+
+
             $('#shape-survey').on('click', function() {
 
                 $.ajax({
                     url: '/cloud/survey/getSurveyListById',
                     type: 'get',
                     success: outputServey
-
                 })
-
             })
-            
-             $('#shape-qna').on('click', function() {
+
+            $('#shape-qna').on('click', function() {
 
                 $.ajax({
-                    url: '/cloud/survey/',
+                    url: '/cloud/board/',
                     type: 'get',
                     success: outputBoard
-
                 })
-
             })
-            
+
             $('#shape-funding').on('click', function() {
 
                 $.ajax({
@@ -85,9 +88,9 @@
                 })
             })
         });
-       
+
         jQuery(document).on('click', '#rightBtn', function() {
-            pageSu += 10;
+            pageSu += 10;a
             $.ajax({
                 url: 'patentSu',
                 type: 'get',
@@ -128,9 +131,7 @@
         		data : {
         			
         		}
-        		
         	}) 
-        	
         });*/
 
         function patentTable(pageSu) {
@@ -149,12 +150,15 @@
                 },
                 success: output
             })
-
         }
 
         function output(res) {
             var tag = '';
-            
+            var patentNum = item.patentNum;
+            var patenttype = item.patenttype;
+            var patentName = item.patentName;
+            var patentContent = item.patentContent;
+
             tag += '<table class="pTable">'
             tag += '<caption class="table_title"><b>보유 및 사용 중인 특허 목록</b></caption>'
             tag += '<thead class="navy">'
@@ -170,9 +174,19 @@
             tag += '<tbody>'
             $.each(res, function(i, item) {
                 tag += '<tr>'
-                tag += '<th scope="row" name="특허번호">' + item.patentNum + '</th>'
-                tag += '<td name="분류">' + item.patenttype + '</td>'
-                tag += '<td name="특허명">' + item.patentName + '</td>'
+                if (patentNum.length >= 10) {
+                    //patentNum = patentNum.split("-",2)+"...";
+                    patentNum = patentNum.substr(0, 10) + "...";
+                    tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
+                }
+                if (patenttype.length >= 8) {
+                    //patenttype = patenttype.substr(0,7)+"...";
+                    tag += '<td name="분류" >' + patenttype + '</td>'
+                }
+                if (patentName.length >= 15) {
+                    patentName = patentName.substr(0, 24) + "...";
+                    tag += '<td name="특허명"><b>' + patentName.split("(", 1) + '</b></td>'
+                }
                 tag += '<td name="사용구분"></td>'
                 if (item.patentRegDate != null) {
                     tag += '<td name="등록날짜">' + item.patentRegDate + '</td>'
@@ -206,25 +220,31 @@
 
                 $('.surveyTbody').append(tag);
             })
-
         }
-        
-      function outputBoard(res) {
+
+        function outputBoard(res) {
+
             var tag = '';
             $.each(res, function(i, board) {
+                alert("board_upload");
                 i += 1;
-                tag += '<tr>'
-                tag += '<th scope="row" >' + i + '</th>'
-                tag += '<td name="questionTitle"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.boardNum + '</a></td>'
-                tag += '<td name="startDate"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.startDate + '</td>';
-                tag += '<td name="dueDate"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.dueDate + '</td>';
+                tag += '<tr>';
+                tag += '<th scope="row" name="boardNum">' + i + '</th>'
+                tag += '<td name="title"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.title + '</td>';
+                tag += '<td name="boardDate"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.boardDate + '</a></td>';
+                tag += '<td name="qType"><a href="/cloud/board/boardDetail?boardNum=' + board.boardNum + '">' + board.qType + '</td>';
                 tag += '</tr>';
+                tag += '<div class="tri-btn">';
+                tag += '<button id="leftBtn" class="btn btn-primary">◀</button>';
+                tag += '<button id="rightBtn" class="btn btn-primary">▶</button>';
+                tag += '</div>';
 
-                $('.qnaresult').append(tag);
+                $('.boardTbody').append(tag);
             })
+
         }
-      /* 
-        function outputFunding(res) {
+
+        /* function outputFunding(res) {
 
             var tag = '';
             $.each(res, function(i, fund) {
@@ -240,59 +260,60 @@
             })
 
         } */
+
     </script>
 </head>
 
 <body class="bg-black">
 
-     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
-	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/cloud/home">SupporterS</a>
+            <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav nav ml-auto">
+                    <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
                     <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
                     <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
                     <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
-                    <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	  			 <c:if test="${sessionScope.loginId==null}">
-	  			 <li style="margin-left: 20px;" class="nav-item cta">
-                    <div class="dropdown show">
-                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="member-btn">로그인/회원가입</span>
-                        </a>
+                    <li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드 펀딩</span></a></li>
+                    <c:if test="${sessionScope.loginId==null}">
+                        <li style="margin-left: 20px;" class="nav-item cta">
+                            <div class="dropdown show">
+                                <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="member-btn">로그인/회원가입</span>
+                                </a>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="/cloud/member/gologin"><span class="member-btn">로그인</span></a>
-                            <a class="dropdown-item" href="/cloud/member/gosign"><span class="member-btn">회원가입</span></a>
-                            <a class="dropdown-item" href="/cloud/member/gofindid"><span class="member-btn">아이디/비밀번호 찾기</span></a>
-                        </div>
-                    </div>
-                    </li>
-				</c:if>
-				
-				<c:if test="${sessionScope.loginId!=null}">
-				<li style="margin-left: 20px;" class="nav-item cta">
-				<div class="dropdown show">
-                        <a style="margin-left: 20px;" class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
-                        </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="/cloud/member/gologin"><span class="member-btn">로그인</span></a>
+                                    <a class="dropdown-item" href="/cloud/member/gosign"><span class="member-btn">회원가입</span></a>
+                                    <a class="dropdown-item" href="/cloud/member/gofindid"><span class="member-btn">아이디/비밀번호 찾기</span></a>
+                                </div>
+                            </div>
+                        </li>
+                    </c:if>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="/cloud/member/goMypage">마이페이지</a>
-                            <a class="dropdown-item" href="/cloud/member/goupdate">회원 정보 수정</a>
-                            <a class="dropdown-item" href="/cloud/member/logout">로그아웃</a>
-                        </div>
-                    </div>
-				</li>
-				</c:if>
-				 </ul>
-	      </div>
-	    </div>
-	  </nav>
+                    <c:if test="${sessionScope.loginId!=null}">
+                        <li style="margin-left: 20px;" class="nav-item cta">
+                            <div class="dropdown show">
+                                <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="/cloud/member/goMypage">마이페이지</a>
+                                    <a class="dropdown-item" href="/cloud/member/goupdate">회원 정보 수정</a>
+                                    <a class="dropdown-item" href="/cloud/member/logout">로그아웃</a>
+                                </div>
+                            </div>
+                        </li>
+                    </c:if>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <div class="body">
 
@@ -336,26 +357,23 @@
                 <div class="content-wrap">
                     <section id="section-bar-qna">
                         <table class="table">
-                            <caption class="table_title">
-                                <b>테스트 목록</b>
-                            </caption>
                             <thead class="navy">
                                 <tr>
                                     <th scope="col">No.</th>
-                                    <th scope="col">분류</th>
                                     <th scope="col">제목</th>
-                                    <th scope="col">등록일</th>
+                                    <th scope="col">작성일</th>
+                                    <th scope="col">공개 여부</th>
                                 </tr>
                             </thead>
-                        </table>
-                        <table id="resulttable"class="qnaresult">
-                        
+                            <tbody class="boardTbody">
+
+                            </tbody>
                         </table>
                     </section>
 
                     <section id="section-bar-patent"> </section>
-						
-                    <section id="section-bar-item">  </section>
+
+                    <section id="section-bar-item"> </section>
 
                     <section id="section-bar-survey">
                         <table class="table">
@@ -392,14 +410,12 @@
                             <tbody class="FundingTbody">
                                 <tr>
                                     <th scope="row" name="boardNum">1</th>
-                                    <td name="qCategory">[일반]</td>
                                     <td name="title">aaaaaaaaaaaaaaaaaaa</td>
                                     <td name="id">ididid</td>
                                     <td name="boardDate">2019-09-09</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" name="boardNum">10</th>
-                                    <td name="qCategory">Mark</td>
                                     <td name="title">aaaa</td>
                                     <td name="id">Otto</td>
                                     <td name="boardDate">@mdo</td>
@@ -415,21 +431,23 @@
         </section>
     </div>
 
+    <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/cloud/resources/js/popper.min.js"></script>
+    <script src="/cloud/resources/js/bootstrap.min.js"></script>
+    <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
+    <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
+    <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
+    <script src="/cloud/resources/js/owl.carousel.min.js"></script>
+    <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
+    <script src="/cloud/resources/js/aos.js"></script>
+    <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
+    <script src="/cloud/resources/js/scrollax.min.js"></script>
+
+    <script src="/cloud/resources/js/main.js"></script>
+
+    <!-- <script src="/cloud/resources/js/bootstrap.min.js"></script> -->
+    <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+
 </body>
-
-<script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="/cloud/resources/js/popper.min.js"></script>
-<script src="/cloud/resources/js/bootstrap.min.js"></script>
-<script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
-<script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
-<script src="/cloud/resources/js/jquery.stellar.min.js"></script>
-<script src="/cloud/resources/js/owl.carousel.min.js"></script>
-<script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
-<script src="/cloud/resources/js/aos.js"></script>
-<script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
-<script src="/cloud/resources/js/scrollax.min.js"></script>
-
-<script src="/cloud/resources/js/main.js"></script>
-
 
 </html>

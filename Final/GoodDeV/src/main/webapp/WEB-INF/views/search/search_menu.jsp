@@ -2,11 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
+
+<head>
     <title>SupporterS :: Search Menus</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
 
@@ -24,159 +25,164 @@
 
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-    
+
     <script>
-    $(function(){
-    	
-    	$('#request').on('click',function(){
-    		var check = $('#check').is(':checked');
-    		var memName = $('#memName').val();
-    		var formData = new FormData($('#patinsertForm')[0]);
-    		var upload =$('#upload').val();
-    		if(!check){
-        		alert('이용약관 반드시 체크하세요!');
-        		return false;
-        	}  
-    		if(memName==''||memName.length==0){
-    			alert('이름을 입력하세요!');
-        		return false;
-    		}
-        	if(upload==''||upload.length==0){
-	    			alert('파일을 반드시 첨부하세요!')
-	    			return false;
-	    		}
-    		$.ajax({
-    				url : 'patinsertForm',
-	    			type : 'post',
-	    			enctype : 'multipart/form-data',
-	    			processData : false,
-	    			contentType : false,
-	    			data : formData,
-    				success : function(res){
-    					if(res=='success'){
-    						alert('성공')
-    						$('#exampleModal').modal('hide');
-    					}else{
-    						alert('실패')
-    					}
-    				}
-    		})
-    		
-    	});
-    
-    	
-    });
-    
-    function loginGo(){
-    	window.location.href="/cloud/member/gologin";
-    }
-    function signGo(){
-    	window.location.href="/cloud/member/gosign";
-    }
-    function searchGO(){
-    	window.location.href="/cloud/member/searchGo";
-    }
+        $(function() {
+
+            $('#request').on('click', function() {
+                var check = $('#check').is(':checked');
+                var memName = $('#memName').val();
+                var formData = new FormData($('#patinsertForm')[0]);
+                var upload = $('#upload').val();
+                if (!check) {
+                    alert('이용약관 반드시 체크하세요!');
+                    return false;
+                }
+                if (memName == '' || memName.length == 0) {
+                    alert('이름을 입력하세요!');
+                    return false;
+                }
+                if (upload == '' || upload.length == 0) {
+                    alert('파일을 반드시 첨부하세요!')
+                    return false;
+                }
+                $.ajax({
+                    url: 'patinsertForm',
+                    type: 'post',
+                    enctype: 'multipart/form-data',
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    success: function(res) {
+                        if (res == 'success') {
+                            alert('성공')
+                            $('#exampleModal').modal('hide');
+                        } else {
+                            alert('실패')
+                        }
+                    }
+                })
+
+            });
+
+
+        });
+
+        function loginGo() {
+            window.location.href = "/cloud/member/gologin";
+        }
+
+        function signGo() {
+            window.location.href = "/cloud/member/gosign";
+        }
+
+        function searchGO() {
+            window.location.href = "/cloud/member/searchGo";
+        }
+
     </script>
-    
-  </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-	  
-	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
-	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
+
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/cloud/home">SupporterS</a>
+            <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav nav ml-auto">
+                    <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
                     <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
                     <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
                     <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
-                    <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	  			 <c:if test="${sessionScope.loginId==null}">
-	  			 <li style="margin-left: 20px;" class="nav-item cta">
-                    <div class="dropdown show">
-                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="member-btn">로그인/회원가입</span>
-                        </a>
+                    <li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드 펀딩</span></a></li>
+                    <c:if test="${sessionScope.loginId==null}">
+                        <li style="margin-left: 20px;" class="nav-item cta">
+                            <div class="dropdown show">
+                                <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="member-btn">로그인/회원가입</span>
+                                </a>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="/cloud/member/gologin"><span class="member-btn">로그인</span></a>
-                            <a class="dropdown-item" href="/cloud/member/gosign"><span class="member-btn">회원가입</span></a>
-                            <a class="dropdown-item" href="/cloud/member/gofindid"><span class="member-btn">아이디/비밀번호 찾기</span></a>
-                        </div>
-                    </div>
-                    </li>
-				</c:if>
-				
-				<c:if test="${sessionScope.loginId!=null}">
-				<li style="margin-left: 20px;" class="nav-item cta">
-				<div class="dropdown show">
-                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
-                        </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="/cloud/member/gologin"><span class="member-btn">로그인</span></a>
+                                    <a class="dropdown-item" href="/cloud/member/gosign"><span class="member-btn">회원가입</span></a>
+                                    <a class="dropdown-item" href="/cloud/member/gofindid"><span class="member-btn">아이디/비밀번호 찾기</span></a>
+                                </div>
+                            </div>
+                        </li>
+                    </c:if>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="/cloud/member/goMypage">마이페이지</a>
-                            <a class="dropdown-item" href="/cloud/member/goupdate">회원 정보 수정</a>
-                            <a class="dropdown-item" href="/cloud/member/logout">로그아웃</a>
-                        </div>
-                    </div>
-				</li>
-				</c:if>
-				 </ul>
-	      </div>
-	    </div>
-	  </nav>
-	  <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_10-1.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-end justify-content-center">
-          <div class="col-md-9 ftco-animate pb-5 text-center">
-            <h1 class="mb-3 bread">Search Menu</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="home">Home <i class="ion-ios-arrow-forward"></i></a></span> <!--<span class="mr-2"><a href="blog.html">Q & A 게시판 <i class="ion-ios-arrow-forward"></i></a></span>--> <span>검색 분류 <i class="ion-ios-arrow-forward"></i></span></p>
-          </div>
+                    <c:if test="${sessionScope.loginId!=null}">
+                        <li style="margin-left: 20px;" class="nav-item cta">
+                            <div class="dropdown show">
+                                <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="/cloud/member/goMypage">마이페이지</a>
+                                    <a class="dropdown-item" href="/cloud/member/goupdate">회원 정보 수정</a>
+                                    <a class="dropdown-item" href="/cloud/member/logout">로그아웃</a>
+                                </div>
+                            </div>
+                        </li>
+                    </c:if>
+                </ul>
+            </div>
         </div>
-      </div>
+    </nav>
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_10-1.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate pb-5 text-center">
+                    <h1 class="mb-3 bread">Search Menu</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="home">Home <i class="ion-ios-arrow-forward"></i></a></span>
+                        <!--<span class="mr-2"><a href="blog.html">Q & A 게시판 <i class="ion-ios-arrow-forward"></i></a></span>--> <span>검색 분류 <i class="ion-ios-arrow-forward"></i></span></p>
+                </div>
+            </div>
+        </div>
     </section>
-		
 
-<section class="ftco-section" id="blog-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-10 heading-section text-center ftco-animate">
-            <span class="subheading"></span>
-            <h2 class="mb-4">검색 메뉴</h2>
-            <p>산업분야 검색, 단어 검색 등을 지원하는 특허 검색,<br>
-            실제 출시 중인 상품들을 검색할 수 있는 제품 검색을 지원합니다.
-            </p>
-          </div>
-           <div class="alert alert-primary ftco-animate" role="alert">
+
+    <section class="ftco-section" id="blog-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-5">
+                <div class="col-md-10 heading-section text-center ftco-animate">
+                    <span class="subheading"></span>
+                    <h2 class="mb-4">검색 메뉴</h2>
+                    <p>산업분야 검색, 단어 검색 등을 지원하는 특허 검색,<br>
+                        실제 출시 중인 상품들을 검색할 수 있는 제품 검색을 지원합니다.
+                    </p>
+                </div>
+                <div class="alert alert-primary ftco-animate" role="alert">
                     특허 출원/사용 절차를 진행할 때는 지정된 서식을 사용해야 합니다. <a href="#" class="alert-link">서식 파일 다운로드</a>
                 </div>
-          
-         <div class="boxes">
-  <a class="box" onclick="searchGO()" >
-    <h3>특허 검색하기</h3>
-   <img src="/cloud/resources/images/search.png" alt="" class="icons">
-    <p>특정 단어, 산업분야 등 여러 검색 옵션이 있습니다.</p>
-  </a>
-<div class="hr_div"></div>
-  <a class="box2" href="#">
-    <h3>제품 검색하기</h3>
-    <img src="/cloud/resources/images/branding.png" alt="" class="icons">
-    <p>실제 판매중인 제품군들을 비교할 수 있습니다.</p>
-  </a>
-  </div>
-    <div class="boxes">
-                    <a class="box3" href="#" data-toggle="modal" data-target="#exampleModal">
+
+                <div class="boxes">
+                    <a class="box" href="javascript:searchGO();">
+                        <h3>특허 검색하기</h3>
+                        <img src="/cloud/resources/images/search.png" alt="" class="icons">
+                        <p>특정 단어, 산업분야 등 여러 검색 옵션이 있습니다.</p>
+                    </a>
+                    <div class="hr_div"></div>
+                    <a class="box2" href="/cloud/item/searchItem">
+                        <h3>제품 검색하기</h3>
+                        <img src="/cloud/resources/images/branding.png" alt="" class="icons">
+                        <p>실제 판매중인 제품군들을 비교할 수 있습니다.</p>
+                    </a>
+                </div>
+                <div class="boxes">
+                    <a class="box3" href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal">
                         <h3>특허 출원 신청하기</h3>
                         <img src="/cloud/resources/images/resume.png" alt="" class="icons">
                         <p>출원 절차를 밟아 정식으로 특허를 등록할 수 있습니다.</p>
                     </a>
 
-                    <a class="box4" href="/cloud/patent/patentlist">
+                    <a class="box4" href="/cloud/patent/patentUseList">
                         <h3>특허 출원/사용 확인하기</h3>
                         <img src="/cloud/resources/images/menu.png" alt="" class="icons">
                         <p>출원 및 사용 허가 여부를 확인할 수 있습니다.</p>
@@ -184,63 +190,63 @@
                 </div>
             </div>
         </div>
-        </div> 
-          </div>
+
     </section>
-		
+
 
     <footer class="ftco-footer ftco-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">About <span>SupporterS</span></h2>
-              <p>창업자가 궁금해하는 것, <br>필요로 하는 것, <br>필요로 할 것들을 최대한 지원하기 위해 만든 사이트입니다.</p>
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">About <span>SupporterS</span></h2>
+                        <p>창업자가 궁금해하는 것, <br>필요로 하는 것, <br>필요로 할 것들을 최대한 지원하기 위해 만든 사이트입니다.</p>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4 ml-md-4">
+                        <h2 class="ftco-heading-2">바로가기</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="/cloud/home"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
+                            <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"></span>검색 및 특허 관련</a></li>
+                            <li><a href="/cloud/board/boardListForm"><span class="icon-long-arrow-right mr-2"></span>Q & A 게시판</a></li>
+                            <li><a href="/cloud/survey/surveyListForm"><span class="icon-long-arrow-right mr-2"></span>블라인드 테스트</a></li>
+                            <li><a href="/cloud/funding/fundingListForm"><span class="icon-long-arrow-right mr-2"></span>크라우드 펀딩</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">검색 및 특허 관련</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="/cloud/member/searchGo"><span class="icon-long-arrow-right mr-2"> 특허 검색</span></a></li>
+                            <li><a href="/cloud/item/searchItem"><span class="icon-long-arrow-right mr-2"> 제품 검색</span></a></li>
+                            <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"> 특허 출원 신청</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">찾아오는 길</h2>
+                        <div class="block-23 mb-0">
+                            <ul>
+                                <li><span class="icon icon-map-marker"></span><span class="text">4th floor, 513, Yeongdong-daero, Gangnam-gu, Seoul, Republic of Korea</span></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+82 02 6000 0114</span></a></li>
+                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">바로가기</h2>
-              <ul class="list-unstyled">
-                <li><a href="/cloud/home"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
-                <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"></span>검색 및 특허 관련</a></li>
-                <li><a href="/cloud/board/boardListForm"><span class="icon-long-arrow-right mr-2"></span>Q & A 게시판</a></li>
-                <li><a href="/cloud/survey/surveyListForm"><span class="icon-long-arrow-right mr-2"></span>블라인드 테스트</a></li>
-                <li><a href="/cloud/funding/fundingListForm"><span class="icon-long-arrow-right mr-2"></span>크라우드 펀딩</a></li>
-                <li><a href="/cloud/home#contact-section"><span class="icon-long-arrow-right mr-2"></span>공식 연락처</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">검색 및 특허 관련</h2>
-              <ul class="list-unstyled">
-                <li><a href="/cloud/member/searchGo"><span class="icon-long-arrow-right mr-2"> 특허 검색</span></a></li>
-                <li><a href="/cloud/member/"><span class="icon-long-arrow-right mr-2"> 제품 검색</span></a></li>
-                 <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"> 특허 출원 신청</span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">찾아오는 길</h2>
-            	<div class="block-23 mb-0">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">4th floor, 513, Yeongdong-daero, Gangnam-gu, Seoul, Republic of Korea</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+82 02 6000 0114</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
         </div>
-      </div>
     </footer>
 
-   <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6082cc"/></svg></div>
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6082cc" /></svg></div>
 
-	  <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -450,7 +456,7 @@
                         </div>
                         <div class="form-group">
                             <label for="appointment_name" class="text-black">신청인</label>
-                            <input type="hidden" name="patentNum" value="${num}" >
+                            <input type="hidden" name="patentNum" value="${num}">
                             <input type="text" class="form-control" id="memName" name="patentHolderName" placeholder="이름을 입력해주세요">
                         </div>
                         <!--  <div class="form-group">
@@ -475,22 +481,23 @@
 
         </div>
     </div>
-    
-  <!--<script src="/cloud/resources/js/bootstrap.min.js"></script> -->
-  <script src="/cloud/resources/js/jquery.min.js"></script>
-  <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
-   <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <script src="/cloud/resources/js/popper.min.js"></script>
-  <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
-  <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
-  <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
-  <script src="/cloud/resources/js/owl.carousel.min.js"></script>
-  <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
-  <script src="/cloud/resources/js/aos.js"></script>
-  <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
-  <script src="/cloud/resources/js/scrollax.min.js"></script>
-  
-  <script src="/cloud/resources/js/main.js"></script> 
-    
-  </body>
+
+    <!--<script src="/cloud/resources/js/bootstrap.min.js"></script> -->
+    <script src="/cloud/resources/js/jquery.min.js"></script>
+    <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/cloud/resources/js/bootstrap.min.js"></script>
+    <script src="/cloud/resources/js/popper.min.js"></script>
+    <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
+    <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
+    <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
+    <script src="/cloud/resources/js/owl.carousel.min.js"></script>
+    <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
+    <script src="/cloud/resources/js/aos.js"></script>
+    <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
+    <script src="/cloud/resources/js/scrollax.min.js"></script>
+
+    <script src="/cloud/resources/js/main.js"></script>
+
+</body>
+
 </html>

@@ -55,7 +55,7 @@
 		saveFilename,
 		to_char(boardDate, 'YYYY-MM-DD') as boardDate
 		FROM BOARD
-		Where MEMBERid = #{id}
+		Where MEMBERid = #{memberId}
 		ORDER BY boardNum DESC
 	</select>
 
@@ -99,7 +99,7 @@
 		VALUES
 		(
 		BOARD_SEQ.nextval
-		, #{id}
+		, #{memberId}
 		, #{title}
 		, #{content}
 		, #{qType}

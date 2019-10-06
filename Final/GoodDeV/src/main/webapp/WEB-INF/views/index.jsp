@@ -12,7 +12,7 @@
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
 
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
 
@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <!-- <link rel="stylesheet" href="/cloud/resources/css/chat_index.css"> -->
     <link rel="stylesheet" href="/cloud/resources/css/new-comment.css">
-
 
     <script>
     window.onload = function (){
@@ -47,16 +46,16 @@
 				panelbody.innerHTML=" <header class='text-left'>"
 				$(result).each(function(index,item){
 					panelbody.innerHTML
-						+="<article class='row'><div class='col-md-10 col-sm-10'> <div class='panel panel-default arrow left'>"
+						+="<article class='row'><div class='col-md-10 col-sm-10'> <div class='panel panel-default'>"
 		           	 	+"<div class='panel-body' >"
 						+"<time class='comment-date' datetime=''><i class='fa fa-clock-o'></i> "+item.regdate+ "</time>"
 						+"</header>"
-						+"<div class='comment-post'> <p>"+item.memo+"</p>	</div>"
+						+"<div class='comment-post'> <p>"+item.memo+"</p>	</div></article></div>"
 				})		
 				panelbody.innerHTML+="<div class='search-form'>"
 					+"<input type='text' class='searchWord' id='memo' placeholder='메시지를 입력하세요'>"
 					+"<button onclick='Regist()'  type='button' style='margin-left:10px; font-size:12px;' class='btn btn-outline-primary btn-rounded waves-effect'>입력하기</button>"
-			   		+" </div>  </div> </div> </div> </article>"
+			   		+"   </div> </div> </div> "
 				console.log(result);
 			}
 		});
@@ -84,7 +83,9 @@
 			}
 		});
 	}
-    </script>	              
+
+    </script>
+
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -143,10 +144,9 @@
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
                 <div class="col-md-6 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-                    <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Of the CEO, By the CEO, For the CEO.</h1>
+                    <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Of the CEO, <br>By the CEO, <br>For the CEO.</h1>
                     <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">창업자들을 위한 모든 지원이 여기 있습니다.<br>지금 바로 검색해보세요!</p>
-                    <p><a href="/cloud/member/searchGo" class="btn btn-primary py-3 px-4" style="font-size: 1em;"><span class="hover">특허 / 제품 검색하기</span></a>
-                        <a href="#" class="btn btn-primary py-3 px-4" style="font-size: 1em;"><span class="hover">chat</span></a>
+                    <p><a href="/cloud/member/searchGo" class="btn btn-primary py-3 px-4" style="font-size: 1em;"><span class="span_hover">특허 / 제품 검색하기</span></a>
                     </p>
                 </div>
             </div>
@@ -208,7 +208,7 @@
             <div class="row justify-content-center pb-5">
                 <div class="col-md-10 heading-section text-center ftco-animate">
                     <span class="subheading">남녀노소 누구나</span>
-                    <h2 class="mb-4">특허에 대한 A to z</h2>
+                    <h2 class="mb-4">특허에 대한 A to Z</h2>
                     <p>초보자도 쉽게 이해할 수 있는 특허 관련 FAQ를 모았습니다.</p>
                 </div>
             </div>
@@ -217,15 +217,15 @@
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link px-4 py-1 active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true"><span class="mr-3 flaticon-ideas"></span> 특허 검색</a>
 
-                        <a class="nav-link px-4 py-1" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false"><span class="mr-3 flaticon-web-design"></span> 특허의 종류</a>
+                        <a class="nav-link px-4 py-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false"><span class="mr-3 flaticon-web-design"></span> 특허의 종류</a>
 
-                        <a class="nav-link px-4 py-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false"><span class="mr-3 flaticon-flasks"></span> 특허 등록</a>
+                        <a class="nav-link px-4 py-1" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false"><span class="mr-3 flaticon-flasks"></span> 특허 등록</a>
 
-                        <a class="nav-link px-4 py-1" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false"><span class="mr-3 flaticon-analysis"></span> 특허 사용 허가</a>
+                        <a class="nav-link px-4 py-1" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false"><span class="mr-3 flaticon-analysis"></span> 특허 사용 허가</a>
 
-                        <a class="nav-link px-4 py-1" id="v-pills-8-tab" data-toggle="pill" href="#v-pills-8" role="tab" aria-controls="v-pills-8" aria-selected="false"><span class="mr-3 flaticon-flasks"></span> 필요 서류 관련</a>
+                        <a class="nav-link px-4 py-1" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-5" aria-selected="false"><span class="mr-3 flaticon-flasks"></span> 필요 서류 관련</a>
 
-                        <a class="nav-link px-4 py-1" id="v-pills-10-tab" data-toggle="pill" href="#v-pills-10" role="tab" aria-controls="v-pills-10" aria-selected="false"><span class="mr-3 flaticon-ux-design"></span> 기타 FAQ</a>
+                        <a class="nav-link px-4 py-1" id="v-pills-6-tab" data-toggle="pill" href="#v-pills-6" role="tab" aria-controls="v-pills-6" aria-selected="false"><span class="mr-3 flaticon-ux-design"></span> 기타 FAQ</a>
                     </div>
                 </div>
                 <div class="col-md-7 col-lg-9 ftco-animate p-4 p-md-5 d-flex align-items-center">
@@ -235,30 +235,15 @@
                         <div class="tab-pane fade show active py-0 py-lg-5" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
                             <div class="d-lg-flex">
                                 <div class="icon-law mr-md-4 mr-lg-5">
-
+                                <span class="icon mb-3 d-block flaticon-search"></span>
                                 </div>
                                 <div class="text">
                                     <h2 class="mb-4">특허 검색은 어떻게 하나요?</h2>
                                     <p>처음 접하는 회원을 위한 초보자 검색, <br>상세한 정보를 찾을 수 있는 일반 검색 기능을 지원합니다.</p>
-                                    <p>초보자 검색은 특허 종류부터 분야, 특정 단어 포함 여부 등을 포함해 간단한 절차로 많은 결과를 포함합니다.<br>
-                                        일반 검색은 특허 설명에 포함되어 있는 문장을 포함해 검색할 수 있으며, 특정 전문 기술이 포함된 특허도 검색하실 수 있습니다.
+                                    <p>초보자 검색은 특허 종류부터 분야, 특정 단어 포함 여부 등을 포함해 간단한 절차로 많은 결과를 포함합니다.
+                                    <br>일반 검색은 특허 설명에 포함되어 있는 문장을 포함해 검색할 수 있으며, 특정 전문 기술이 포함된 특허도 검색하실 수 있습니다.
                                     </p>
-                                    <p><a href="search_patent.html" class="btn btn-primary px-4 py-3">검색하기&nbsp;<span class="ion-ios-arrow-round-forward"></span></a></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade py-0 py-lg-5" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
-                            <div class="d-lg-flex">
-                                <div class="icon-law mr-md-4 mr-lg-5">
-
-                                </div>
-                                <div class="text">
-                                    <h2 class="mb-4">특허 등록</h2>
-                                    <p>우선 '출원'신청을 합니다. 이에 대해 특허 등록을 하고자 하는 것에 대한 명세서, 선언서, 제품 설명서 등을 첨부하게 됩니다.</p>
-                                    <p><b>출원후 특허청에서 '등록' 승인이 된 시점부터 특허권은 효력을 발휘합니다.</b><br>
-                                        출원이 완료됐다 해서 정식으로 특허권을 가지게 된 것은 아닙니다.
-                                    </p>
+                                    <p><a href="/cloud/member/searchGo" class="btn btn-primary px-4 py-3" style="background-color: #6e5773 !important; border:none !important;">검색하기&nbsp;<span class="ion-ios-arrow-round-forward"></span></a></p>
                                 </div>
                             </div>
                         </div>
@@ -266,13 +251,14 @@
                         <div class="tab-pane fade py-0 py-lg-5" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
                             <div class="d-lg-flex">
                                 <div class="icon-law mr-md-4 mr-lg-5">
-
+                                <span class="icon mb-3 d-block flaticon-diploma"></span>
                                 </div>
                                 <div class="text">
-                                    <h2 class="mb-4">특허 사용 허가</h2>
-                                    <p><b>우선 운영측은 특허 사용허가 절차에 대해 어떤 관여도 할 수 없음을 밝힙니다.</b></p>
-                                    <p>우선 가계약 형식으로 신청을 진행합니다. 이후 특허 보유자가 긍정적 의사를 표했을 경우 사용허가서를 작성한 후, 사용 계약서와 사용 허가서를 양측에 1장씩 총 2장을 보유하게 되면 정식으로 특허권을 사용할 수 있습니다.</p>
-                                    <!--<p><a href="#" class="btn btn-primary px-4 py-3">더 보기</a></p>-->
+                                    <h2 class="mb-4">특허 등록</h2>
+                                    <p>우선 '출원'신청을 합니다. 이에 대해 특허 등록을 하고자 하는 것에 대한 명세서, 선언서, 제품 설명서 등을 첨부하게 됩니다.</p>
+                                    <p><b>출원후 특허청에서 '등록' 승인이 된 시점부터 특허권은 효력을 발휘합니다.</b>
+                                    <br>출원이 완료됐다 해서 정식으로 특허권을 가지게 된 것은 아닙니다.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -280,44 +266,55 @@
                         <div class="tab-pane fade py-0 py-lg-5" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
                             <div class="d-lg-flex">
                                 <div class="icon-law mr-md-4 mr-lg-5">
+                                <span class="icon mb-3 d-block flaticon-handshake"></span>
+                                </div>
+                                <div class="text">
+                                    <h2 class="mb-4">특허 사용 허가</h2>
+                                    <p><b>우선 운영진은 특허 사용허가 절차 과정에 대해 어떤 관여도 할 수 없음을 밝힙니다.</b></p>
+                                    <p>우선 가계약 형식으로 신청을 진행합니다. 이후 특허 보유자가 긍정적 의사를 표했을 경우 사용허가서를 작성한 후, 사용 계약서와 사용 허가서를 양측에 1장씩 총 2장을 보유하게 되면 정식으로 특허권을 사용할 수 있습니다.</p>
 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade py-0 py-lg-5" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
+                            <div class="d-lg-flex">
+                                <div class="icon-law mr-md-4 mr-lg-5">
+                                <span class="icon mb-3 d-block flaticon-data"></span>
                                 </div>
                                 <div class="text">
                                     <h2 class="mb-4">특허의 종류</h2>
                                     <p>특허는 크게 발명에 대한 특허, 실용신안권, 디자인권, 상표권 등으로 나뉩니다.</p>
-                                    <p>특허란 '어떠한 발명에 대하여 개인이나 단체가 독점적인 권리를 만드는 것'을 의미합니다. 특허의 범위는 물질적인 여부를 가리지 않고 '발명'에 대한 모든 것이 포함될 수 있습니다. <br>
-                                        제품에 대한 특허, 방법 및 기술에 대한 특허, 디자인 및 상표에 대한 특허 모두가 포함됩니다.
+                                    <p>특허란 '어떠한 발명에 대하여 개인이나 단체가 독점적인 권리를 만드는 것'을 의미합니다. 특허의 범위는 물질적인 여부를 가리지 않고 '발명'에 대한 모든 것이 포함될 수 있습니다. 
+                                    <br>제품에 대한 특허, 방법 및 기술에 대한 특허, 디자인 및 상표에 대한 특허 모두가 포함됩니다.
                                     </p>
-                                    <!--<p><a href="#" class="btn btn-primary px-4 py-3">더 보기</a></p>-->
                                 </div>
                             </div>
                         </div>
 
-                        <div class="tab-pane fade py-0 py-lg-5" id="v-pills-8" role="tabpanel" aria-labelledby="v-pills-8-tab">
+                        <div class="tab-pane fade py-0 py-lg-5" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
                             <div class="d-lg-flex">
                                 <div class="icon-law mr-md-4 mr-lg-5">
-
+                                <span class="icon mb-3 d-block flaticon-contract"></span>
                                 </div>
                                 <div class="text">
                                     <h2 class="mb-4">필요 서류 관련</h2>
-                                    <p>특허 출원 신청 및 등록 절차에 필요한 서류와,<br>
-                                        특허 사용허가에 대한 서류가 상이하오니 사전 확인은 필수입니다.
-                                    </p>
-                                    <p>특허 사용허가는 특허 보유자와 사용 신청인 간에 절차가 진행되므로, 서류를 다시 한번 꼼꼼히 확인할 필요도 있습니다.</p>
-                                    <p><a href="#" class="btn btn-primary px-4 py-3">서식 파일 다운로드&nbsp;<span class="ion-ios-arrow-round-forward"></span></a></p>
+                                    <p>특허 출원 신청 및 등록 절차에 필요한 서류와<br>특허 사용허가에 대한 서류가 상이하오니 사전 확인은 필수입니다.</p>
+                                    <p>특허 사용허가는 특허 보유자와 사용 신청인 간에 절차가 진행되므로, 관련 서류를 꼼꼼히 확인할 필요가 있습니다.</p>
+                                    <p><a href="#" class="btn btn-primary px-4 py-3" style="background-color: #6e5773 !important; border:none !important;">서식 파일 다운로드&nbsp;<span class="ion-ios-arrow-round-forward"></span></a></p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="tab-pane fade py-0 py-lg-5" id="v-pills-10" role="tabpanel" aria-labelledby="v-pills-10-tab">
+                        <div class="tab-pane fade py-0 py-lg-5" id="v-pills-6" role="tabpanel" aria-labelledby="v-pills-6-tab">
                             <div class="d-lg-flex">
                                 <div class="icon-law mr-md-4 mr-lg-5">
-
+                                <span class="icon mb-3 d-block flaticon-question"></span>
                                 </div>
                                 <div class="text">
                                     <h2 class="mb-4">기타 FAQ</h2>
-                                    <p>기타 질문 등은 Q & A 게시판에서 자유롭게 받고 있습니다.<br>운영측및 회원간의 자유로운 질답도 가능하오니 무엇이든 물어보세요.</p>
-                                    <p><a href="/cloud/board/boardListForm" class="btn btn-primary px-4 py-3">질문하러 가기&nbsp;<span class="ion-ios-arrow-round-forward"></span></a></p>
+                                    <p>기타 궁금한 사항이나 특정 분야에 대한 질문은 Q & A 게시판에서 자유롭게 받고 있습니다. <br>운영진 및 회원간의 자유로운 질답도 가능하오니 무엇이든 물어보세요.</p>
+                                    <p><a href="/cloud/board/boardListForm" class="btn btn-primary px-4 py-3" style="background-color: #6e5773 !important; border:none !important;">질문하러 가기&nbsp;<span class="ion-ios-arrow-round-forward"></span></a></p>
                                 </div>
                             </div>
                         </div>
@@ -326,7 +323,7 @@
             </div>
         </div>
     </section>
-
+    
     <section class="ftco-section" id="blog-section">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-5">
@@ -350,6 +347,72 @@
               </div>
             </div>
     </section>
+
+    <!-- <section class="ftco-section" id="chat-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-5">
+                <div class="col-md-10 heading-section text-center ftco-animate">
+                    <h2 class="mb-3">실시간 채팅</h2>
+                </div>
+            </div>
+
+            chat start
+            <div class="row" style="vertical-align: middle; margin: 0 auto; justify-content: center;">
+                <div class="container" id="chat-container">
+                    <h2 class="page-header">Comments</h2>
+                    <div class="comment-lists">
+
+                        other Comment
+                        <article class="row">
+                            <div class="col-md-10 col-sm-10">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <header class="text-left">
+                                            Index는 익명 채팅이니까 memberId 나올 필요 없음
+                                            <div class="comment-user"><i class="fa fa-user"></i> [memberId]</div>
+                                            <time class="comment-date" datetime=""><i class="fa fa-clock-o"></i> 2019-10-02 | 14:29</time>
+
+                                        </header>
+                                        <div class="comment-post">
+                                            <p>
+                                                [다른 사람들이 입력한 내용은 여기서 나오게끔]
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        my Comment
+                        <article class="row">
+                            <div class="col-md-10 col-sm-10">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <header class="text-right">
+                                            <div class="comment-user"><i class="fa fa-user"></i> [내 댓글]</div>
+                                            <time class="comment-date" datetime=""><i class="fa fa-clock-o"></i> 2019-10-02 | 14:29</time>
+                                        </header>
+                                        <div class="comment-post">
+                                            <p class="my-comment">
+                                                [내가 입력한건 이렇게 나오게끔]
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="search-form">
+                        <input type="text" class="searchWord" placeholder=" 메시지를 입력하세요">
+                        <button type="button" style="margin-left:10px; font-size:12px;" class="btn btn-outline-primary btn-rounded waves-effect">입력하기</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section> -->
 
     <section class="ftco-section" id="blog-section">
         <div class="container">
@@ -492,7 +555,6 @@
                             <li><a href="/cloud/board/boardListForm"><span class="icon-long-arrow-right mr-2"></span>Q & A 게시판</a></li>
                             <li><a href="/cloud/survey/surveyListForm"><span class="icon-long-arrow-right mr-2"></span>블라인드 테스트</a></li>
                             <li><a href="/cloud/funding/fundingListForm"><span class="icon-long-arrow-right mr-2"></span>크라우드 펀딩</a></li>
-                            <li><a href="/cloud/home#contact-section"><span class="icon-long-arrow-right mr-2"></span>공식 연락처</a></li>
                         </ul>
                     </div>
                 </div>
@@ -501,7 +563,7 @@
                         <h2 class="ftco-heading-2">검색 및 특허 관련</h2>
                         <ul class="list-unstyled">
                             <li><a href="/cloud/member/searchGo"><span class="icon-long-arrow-right mr-2"> 특허 검색</span></a></li>
-                            <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"> 제품 검색</span></a></li>
+                            <li><a href="/cloud/item/searchItem"><span class="icon-long-arrow-right mr-2"> 제품 검색</span></a></li>
                             <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"> 특허 출원 신청</span></a></li>
                         </ul>
                     </div>
@@ -529,13 +591,11 @@
 
     <script src="/cloud/resources/js/jquery.min.js"></script>
     <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/cloud/resources/js/popper.min.js"></script>
+    <script src="/cloud/resources/js/bootstrap.min.js"></script>
     <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
     <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
     <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
-
-    <!-- <script src="/cloud/resources/js/bootstrap.min.js"></script> -->
-    <script src="/cloud/resources/js/popper.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="/cloud/resources/js/owl.carousel.min.js"></script>
     <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
     <script src="/cloud/resources/js/aos.js"></script>
@@ -544,4 +604,9 @@
 
     <script src="/cloud/resources/js/main.js"></script>
 
-</body></html>
+    <!-- <script src="/cloud/resources/js/bootstrap.min.js"></script> -->
+    <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+
+</body>
+
+</html>
