@@ -1,9 +1,11 @@
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
-/* ==========================================================================
-   #FONT
-   ========================================================================== */
-.font-robo {
-  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
+@font-face { font-family: 'Eoe_Zno_B'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_B.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+* {
+    font-family: 'Eoe_Zno_B';
+}
+
+body{
+    font-family: 'Eoe_Zno_B';
 }
 
 /* ==========================================================================

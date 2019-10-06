@@ -41,4 +41,5 @@ public interface itemMapper {
 		
 		public int pdpUpdate(PdpVo pd);
 		
+		public Total getOneItemByItemNum(Total total);
 }

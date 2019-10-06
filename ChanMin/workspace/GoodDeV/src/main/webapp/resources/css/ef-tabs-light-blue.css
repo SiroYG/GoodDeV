@@ -1,52 +1,62 @@
-a{color:#870094;}
-.ef-tabs nav li a:hover,.ef-tabs nav li a:focus{color: #870094;}
+@font-face { font-family: 'Eoe_Zno_B'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_B.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+* {
+    font-family: 'Eoe_Zno_B';
+}
+
+body{
+    font-family: 'Eoe_Zno_B';
+}
+
+a{color:#1f124a;}
+.ef-tabs nav li a:hover,.ef-tabs nav li a:focus{color: #FFF;}
 /* Bar */ 
-.ef-tabs-style-bar nav li.tab-current a{background: #870094;color: #FFF;}
-/* Circle #870094*/
-.ef-tabs-style-circle nav li.tab-current a{color: #870094;}
-.ef-tabs-style-circle nav li::before{border: 1px solid #870094;}
+.ef-tabs-style-bar nav li.tab-current a{background: #1f124a;color: #FFF;}
+/* Circle #1f124a*/
+.ef-tabs-style-circle nav li.tab-current a{color: #1f124a;}
+.ef-tabs-style-circle nav li::before{border: 1px solid #1f124a;}
 /* Circle Fill */
-.ef-tabs-style-circlefill nav li a:hover,.ef-tabs-style-circlefill nav li a:focus{color: #FFF;}
-.ef-tabs-style-circlefill nav ul li {border-right: 1px solid #870094;}
-.ef-tabs-style-circlefill nav li::before{border: 1px solid #870094;background: #870094;}
+.ef-tabs-style-circlefill nav li a:hover,.ef-tabs-style-circlefill nav li a:focus{background: #1f124a;color: #c2d5ff; text-decoration: underline;}
+.ef-tabs-style-circlefill nav ul li {border-right: 1px solid #1f124a;}
+.ef-tabs-style-circlefill nav li::before{border: 1px solid #1f124a;background: #1f124a;}
 /* Fillup */
-.ef-tabs-style-fillup nav ul li a::after{border: 1px solid #870094;background: #870094;}
+.ef-tabs-style-fillup nav ul li a::after{border: 1px solid #1f124a;background: #1f124a;}
 /* Flip */
-.ef-tabs-style-flip nav li.tab-current a {color: #870094;}
+.ef-tabs-style-flip nav li.tab-current a {color: #1f124a;}
 /* iconbox */
-.ef-tabs-style-iconbox nav li.tab-current a {background:#870094; color:#FFF;}
-.ef-tabs-style-iconbox nav li.tab-current a::after{border-top-color: #870094;}
+.ef-tabs-style-iconbox nav li.tab-current a {background:#1f124a; color:#FFF;}
+.ef-tabs-style-iconbox nav li.tab-current a::after{border-top-color: #1f124a;}
 /*iconfall*/
-.ef-tabs-style-iconfall nav li.tab-current a{color: #870094;}
-.ef-tabs-style-iconfall nav li::before{background: #870094;}
+.ef-tabs-style-iconfall nav li.tab-current a{color: #1f124a;}
+.ef-tabs-style-iconfall nav li::before{background: #1f124a;}
 /*linebox*/
-.ef-tabs-style-linebox nav a:hover::after, .ef-tabs-style-linebox nav a:focus::after, .ef-tabs-style-linebox nav li.tab-current a::after{background: #870094;}
+.ef-tabs-style-linebox nav a:hover::after, .ef-tabs-style-linebox nav a:focus::after, .ef-tabs-style-linebox nav li.tab-current a::after{background: #1f124a;}
 .ef-tabs-style-linebox nav li.tab-current a{color: #FFF;}
 /*linemove*/
-.ef-tabs-style-linemove nav li.tab-current a{color: #870094;}
-.ef-tabs-style-linemove nav li:last-child::before{background: #870094;}
+.ef-tabs-style-linemove nav li.tab-current a{color: #1f124a;}
+.ef-tabs-style-linemove nav li:last-child::before{background: #1f124a;}
 /*linetriangle*/
-.ef-tabs-style-linetriangle nav li.tab-current a{color: #870094;}
+.ef-tabs-style-linetriangle nav li.tab-current a{color: #1f124a;}
 /*shape*/
 .ef-tabs-style-shape nav li a {color: #fff;}
 .ef-tabs-style-shape nav li a:hover,.ef-tabs-style-shape nav li a:focus{color:#FFF;}
-.ef-tabs-style-shape nav ul li.tab-current a:hover,.ef-tabs-style-shape nav ul li.tab-current a:focus{color:#870094;}
-.ef-tabs-style-shape nav li a:hover span {background-color: #870094;}
-.ef-tabs-style-shape nav li a:hover svg {fill: #870094;}
-.ef-tabs-style-shape nav li.tab-current a span {background: #fff;color: #870094;}
+.ef-tabs-style-shape nav ul li.tab-current a:hover,.ef-tabs-style-shape nav ul li.tab-current a:focus{color:#1f124a;}
+.ef-tabs-style-shape nav li a:hover span {background-color: #1f124a;}
+.ef-tabs-style-shape nav li a:hover svg {fill: #1f124a;}
+.ef-tabs-style-shape nav li.tab-current a span {background: #fff;color: #1f124a; font-size: 16px;}
 .ef-tabs-style-shape nav li.tab-current a:hover svg{ fill: #FFF;}
 /* topline*/
-.ef-tabs-style-topline nav li.tab-current {border-top-color: #870094;}
-.ef-tabs-style-topline nav li.tab-current a {box-shadow: inset 0 3px 0 #870094;color: #870094;}
+.ef-tabs-style-topline nav li.tab-current {border-top-color: #1f124a;}
+.ef-tabs-style-topline nav li.tab-current a {box-shadow: inset 0 3px 0 #1f124a;color: #1f124a;}
 /*tzoid*/
-.ef-tabs-style-tzoid nav ul li a:hover, .ef-tabs-style-tzoid nav ul li a:focus {color: #870094;}
+.ef-tabs-style-tzoid nav ul li a:hover, .ef-tabs-style-tzoid nav ul li a:focus {color: #1f124a;}
 .ef-tabs-style-tzoid nav ul li.tab-current a {color: #FFF;}
-.ef-tabs-style-tzoid nav ul li.tab-current a::after {background-color: #870094;}
+.ef-tabs-style-tzoid nav ul li.tab-current a::after {background-color: #1f124a;}
 /*underline*/
-.ef-tabs-style-underline nav li.tab-current a {color: #870094;}
-.ef-tabs-style-underline nav li a::after{background: #870094;}
+.ef-tabs-style-underline nav li.tab-current a {color: #1f124a;}
+.ef-tabs-style-underline nav li a::after{background: #1f124a;}
 /*Input Fields*/
-input.btn{background:#870094;}
+input.btn{background:#1f124a;}
 input.input:focus, input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:focus {
 	border-color: rgba(135, 0, 148,, 0.8); 
 	box-shadow: inset 0 1px rgba(34, 25, 25, 0.15),0 1px rgba(255, 255, 255, 0.8),0 0 14px rgba(135, 0, 148, 0.35);
@@ -56,24 +66,23 @@ input.input:focus, input:focus:invalid:focus, textarea:focus:invalid:focus, sele
 /* Social */
 .twitter,.facebook, .gplus, .linkedin{
 	background: rgba(135, 0, 148,, 0.7);
-	border: 1px solid #870094;
+	border: 1px solid #1f124a;
 	box-shadow: inset 0 1px rgba(34, 25, 25, 0.15),0 1px rgba(255, 255, 255, 0.8),0 0 14px rgba(135, 0, 148, 0.35);
 }
 blockquote{
-	border-left: 5px solid #870094;
+	border-left: 5px solid #1f124a;
 }
 .dropcap{
-	color: #870094; 
+	color: #1f124a; 
 }
 .highlight {
-    background-color: #870094; 
+    background-color: #1f124a; 
     color: #fff;
 }
 
-/*Tabel*/
+/*Table*/
 table th{
-	background-color: rgba(135, 0, 148, 0.9);
-    
+	background-color: rgba(31, 18, 74, 0.9);
     color: #fff;
 }
 th,td{

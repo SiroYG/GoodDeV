@@ -79,6 +79,16 @@ where
 		memberId=#{memberId} 
 </select>
 
+<select parameterType="Total" id="getOneItemByItemNum" resultType="Total">
+select 
+			* 
+from 
+		Item 
+where 
+		itemNum=#{itemNum} 
+</select>
+
+
 <select id="gohisD" parameterType="Total" resultType="Total">
 select 
 	*

@@ -1,5 +1,12 @@
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
+@font-face { font-family: 'Eoe_Zno_B'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_B.woff') format('woff'); font-weight: normal; font-style: normal; }
 
+* {
+    font-family: 'Eoe_Zno_B';
+}
+
+body{
+    font-family: 'Eoe_Zno_B';
+}
 div.write_table{
     padding: 5% 10% 10%;
 }
@@ -11,7 +18,6 @@ hr.hr_purple{
 }
 
 .btn {
-  font-family: 'Source Sans Pro', sans-serif;
   font-weight: 900;
   padding: 1rem 1rem;
   font-size: 1rem;
