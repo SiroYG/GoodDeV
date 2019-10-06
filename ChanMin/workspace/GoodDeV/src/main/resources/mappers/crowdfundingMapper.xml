@@ -20,10 +20,11 @@
 		</if> 
 	</select>
 
+	
+
 	<select id="selectAll" resultType="Crowdfunding" parameterType="map">
 		SELECT
 		crowdfundingNum,
-		itemNum,
 		itemGoalPrice,
 		itemCurrecyPrice,
 		to_char(fundingDueDate, 'YYYY-MM-DD') as fundingDueDate,
@@ -51,7 +52,6 @@
 		<insert id="makeCrowdFunding" parameterType="Crowdfunding">
 		insert into Crowdfunding (
 		crowdfundingNum
-		,itemNum
 		,itemGoalPrice
 		,itemCurrecyPrice
 		,fundingDueDate
@@ -62,7 +62,6 @@
 		)
 		VALUES (
 		crowdfunding_seq.NEXTVAL
-		,#{itemNum}
 		,#{itemGoalPrice}
 		,#{itemCurrecyPrice}
 		,#{fundingDueDate}
@@ -76,7 +75,6 @@
 	<select id="mypageFunding" parameterType="String" resultType="Crowdfunding">
 	select 
 		crowdfundingNum
-		,itemNum
 		,itemGoalPrice
 		,itemCurrecyPrice
 		,to_char(fundingDueDate,'YYYY-MM-DD') as fundingDueDate
@@ -89,11 +87,20 @@
 	where
 		memberId = #{memberId}
 	</select>
-
+	
+	<update id="updateCurrentPrice" parameterType="Crowdfunding">
+	update 
+		Crowdfunding
+	set
+		itemCurrecyPrice = #{itemCurrecyPrice}
+	where 
+		crowdfundingnum = #{crowdfundingNum}		
+	
+	</update>
+	
 	<select id="selectOneCrowdFunding" parameterType="int" resultType="Crowdfunding">
 		select 
-			crowdfundingNum
-		,itemNum
+		crowdfundingNum
 		,itemGoalPrice
 		,itemCurrecyPrice
 		,to_char(fundingDueDate,'YYYY-MM-DD') as fundingDueDate

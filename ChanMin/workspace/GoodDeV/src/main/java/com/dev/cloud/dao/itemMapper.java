@@ -42,4 +42,7 @@ public interface itemMapper {
 		public int pdpUpdate(PdpVo pd);
 		
 		public Total getOneItemByItemNum(Total total);
+		
+		
+		public Item selectItemName(String itemName);
 }

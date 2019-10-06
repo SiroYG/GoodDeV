@@ -1,11 +1,15 @@
-@font-face { font-family: 'Eoe_Zno_B'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_B.woff') format('woff'); font-weight: normal; font-style: normal; }
+/********
+ * font *
+ *******/
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 
+/*<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>*/
 * {
-    font-family: 'Eoe_Zno_B';
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
 }
 
-body{
-    font-family: 'Eoe_Zno_B';
+body {
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
 }
 
 a{
@@ -362,16 +366,15 @@ a{
 }*/
 
 .ef-tabs .content-wrap a:hover {
-	text-decoration: underline;
-	 color : #6082cc;
+	text-decoration: none;
+	 color : #fff;
 }
 
 .ef-tabs .content-wrap .mypage-link{
     color:black;
-    cursor: pointer;
 } 
 .ef-tabs .content-wrap a:hover {
-	text-decoration: underline;
+	text-decoration: none;
 }
 .ef-tabs .content-wrap .pic {
 	padding: 4px;

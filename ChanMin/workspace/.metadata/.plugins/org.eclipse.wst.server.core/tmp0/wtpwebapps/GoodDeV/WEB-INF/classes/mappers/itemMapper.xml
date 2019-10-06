@@ -154,6 +154,15 @@ where
 	itemNum = #{itemNum}
 </update>
 
+<select id="selectItemName" parameterType="String" resultType="Item">
+select 
+	*
+from
+	Item
+where 
+	itemName = #{itemname}		
+</select>
+
 
 </mapper>
 

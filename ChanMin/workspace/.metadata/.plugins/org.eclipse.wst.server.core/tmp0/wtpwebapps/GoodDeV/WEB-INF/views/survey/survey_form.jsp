@@ -59,57 +59,54 @@
     
     </script>
   </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-	  
-	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
-	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/cloud/home">SupporterS</a>
+            <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav nav ml-auto">
+                    <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
                     <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
                     <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
                     <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
                     <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	  			 <c:if test="${sessionScope.loginId==null}">
-	  			 <li style="margin-left: 20px;" class="nav-item cta">
-                    <div class="dropdown show">
-                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="member-btn">로그인/회원가입</span>
-                        </a>
+                    <c:if test="${sessionScope.loginId==null}">
+                        <li style="margin-left: 20px;" class="nav-item cta">
+                            <div class="dropdown show">
+                                <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="member-btn">로그인/회원가입</span>
+                                </a>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="/cloud/member/gologin"><span class="member-btn">로그인</span></a>
-                            <a class="dropdown-item" href="/cloud/member/gosign"><span class="member-btn">회원가입</span></a>
-                            <a class="dropdown-item" href="/cloud/member/gofindid"><span class="member-btn">아이디/비밀번호 찾기</span></a>
-                        </div>
-                    </div>
-                    </li>
-				</c:if>
-				
-				<c:if test="${sessionScope.loginId!=null}">
-				<li style="margin-left: 20px;" class="nav-item cta">
-				<div class="dropdown show">
-                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
-                        </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="/cloud/member/gologin"><span class="member-btn">로그인</span></a>
+                                    <a class="dropdown-item" href="/cloud/member/gosign"><span class="member-btn">회원가입</span></a>
+                                    <a class="dropdown-item" href="/cloud/member/gofindid"><span class="member-btn">아이디/비밀번호 찾기</span></a>
+                                </div>
+                            </div>
+                        </li>
+                    </c:if>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="/cloud/member/goMypage">마이페이지</a>
-                            <a class="dropdown-item" href="/cloud/member/goupdate">회원 정보 수정</a>
-                            <a class="dropdown-item" href="/cloud/member/logout">로그아웃</a>
-                        </div>
-                    </div>
-				</li>
-				</c:if>
-				 </ul>
-	      </div>
-	    </div>
-	  </nav>
+                    <c:if test="${sessionScope.loginId!=null}">
+                        <li style="margin-left: 20px;" class="nav-item cta">
+                            <div class="dropdown show">
+                                <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
+                                </a>
 
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="/cloud/member/goMypage">마이페이지</a>
+                                    <a class="dropdown-item" href="/cloud/member/goupdate">회원 정보 수정</a>
+                                    <a class="dropdown-item" href="/cloud/member/logout">로그아웃</a>
+                                </div>
+                            </div>
+                        </li>
+                    </c:if>
+                </ul>
+            </div>
+        </div>
+    </nav>
 	  <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_8.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">

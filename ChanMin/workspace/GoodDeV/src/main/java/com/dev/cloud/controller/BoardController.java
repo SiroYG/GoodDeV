@@ -23,9 +23,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dev.cloud.dao.boardRepository;
+import com.dev.cloud.dao.replyRepository;
 import com.dev.cloud.utill.FileService;
 import com.dev.cloud.utill.PageNavigator;
 import com.dev.cloud.vo.Board;
+import com.dev.cloud.vo.Reply;
 import com.dev.cloud.vo.Total;
 
 @Controller
@@ -34,8 +36,32 @@ public class BoardController {
 
 	@Autowired
 	boardRepository dao;
-
+	@Autowired
+	replyRepository rep;
+	
+	
 	final String uploadPath = "/uploadfile";
+	
+	
+	@RequestMapping(value = "/Replyinsert", method = RequestMethod.POST)
+	@ResponseBody
+	public List<Reply> insert(Reply reply) {
+		System.out.println(reply.toString());
+		if (rep.insertreply(reply) == 1) {
+			return rep.selectAll(reply.getBoardNum());
+		} else {
+			return rep.selectAll(reply.getBoardNum());
+		}
+
+	}
+	@RequestMapping(value = "/ReplyselectAll", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Reply> selectAll(Reply reply) {
+		System.out.println(reply.toString());
+		return rep.selectAll(reply.getBoardNum());
+	}
+	
+	
 	
 	@RequestMapping(value = "/userboard", method = RequestMethod.GET)
 	@ResponseBody
