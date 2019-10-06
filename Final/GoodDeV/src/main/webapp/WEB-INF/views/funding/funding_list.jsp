@@ -104,7 +104,7 @@
                     <div class="row justify-content-center mb-5 pb-5">
                         <div class="row justify-content-center mb-5 pb-5">
                             <div class="col-md-10 heading-section text-center">
-                               <!--  <p>데이터가 없습니다.</p> -->
+                                <!--  <p>데이터가 없습니다.</p> -->
                             </div>
                         </div>
                     </div>
@@ -157,7 +157,8 @@
 
                 <form action="/cloud/funding/fundingListForm" method="get" class="search-form" id="search-form">
                     <!--Blue select-->
-                    <select name="searchItem" class="searchItem">
+
+                    <select class="browser-default custom-select" name="searchItem">
                         <option value="all" selected>분류</option>
                         <option value="fundingTitle" ${searchItem=='fundingTitle' ?'selected' :''}>제목</option>
                         <option value="fundingContents" ${searchItem=='fundingContents' ? 'selected' :'' }>내용</option>

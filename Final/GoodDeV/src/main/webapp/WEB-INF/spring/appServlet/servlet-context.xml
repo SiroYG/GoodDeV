@@ -30,18 +30,5 @@
 		base-package="com.dev.cloud" />
 
 
-	<!-- interceptor -->
-	<beans:bean id="LoginInterceptor" class="com.dev.cloud.interceptor.LoginInterceptor" />
- 	<interceptors>
- 		<interceptor>
-			<mapping path="/funding/**" />
-			<mapping path="/item/**" />
- 			<mapping path="/patent/permitionForm"/>
-			<mapping path="/survey/**" />
- 			<mapping path="/board/**"/>
- 			<beans:ref bean="LoginInterceptor"/>
- 		</interceptor>
- 	</interceptors>
-
 
 </beans:beans>

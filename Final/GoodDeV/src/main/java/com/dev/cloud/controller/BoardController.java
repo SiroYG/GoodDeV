@@ -22,12 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dev.cloud.dao.boardRepository;
-import com.dev.cloud.dao.replyRepository;
 import com.dev.cloud.utill.FileService;
 import com.dev.cloud.utill.PageNavigator;
 import com.dev.cloud.vo.Board;
-import com.dev.cloud.vo.Chat;
-import com.dev.cloud.vo.Reply;
 
 @Controller
 @RequestMapping("/board")
@@ -35,8 +32,6 @@ public class BoardController {
 
 	@Autowired
 	boardRepository dao;
-	@Autowired
-	replyRepository rep;
 
 	final String uploadPath = "/uploadfile";
 	@RequestMapping(value = "/boardhome", method = RequestMethod.GET)
@@ -133,28 +128,6 @@ public class BoardController {
 		return "/board/Board_Detail";
 	}
 
-	
-	@RequestMapping(value = "/Replyinsert", method = RequestMethod.POST)
-	@ResponseBody
-	public List<Reply> insert(Reply reply) {
-		System.out.println(reply.toString());
-		if (rep.insertreply(reply) == 1) {
-			return rep.selectAll(reply.getBoardNum());
-		} else {
-			return rep.selectAll(reply.getBoardNum());
-		}
-
-	}
-	@RequestMapping(value = "/ReplyselectAll", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Reply> selectAll(Reply reply) {
-		System.out.println(reply.toString());
-		return rep.selectAll(reply.getBoardNum());
-	}
-	
-	
-	
-	
 	@RequestMapping(value = "godelete", method = RequestMethod.GET)
 	public String godelete(int boardNum, Model model) {
 		System.out.println("게시글 삭제 " + boardNum);
@@ -195,13 +168,4 @@ public class BoardController {
 
 		return null;
 	}
-	
-
-	@RequestMapping(value = "userboard", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Board> userboard(String userid, HttpSession session) {
-		System.out.println("boardNum => " + userid);
-		return  dao.userboard(userid);
-	}
-	
 }

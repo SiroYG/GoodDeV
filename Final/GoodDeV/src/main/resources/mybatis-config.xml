@@ -9,7 +9,6 @@
 <typeAlias alias="History" type="com.dev.cloud.vo.History"/>
 <typeAlias alias="Survey" type="com.dev.cloud.vo.Survey"/>
 <typeAlias alias="Item" type="com.dev.cloud.vo.Item"/>
-<typeAlias alias="ItemDo" type="com.dev.cloud.vo.ItemDo"/>
 <typeAlias alias="devMember" type="com.dev.cloud.vo.devMember"/>
 <typeAlias alias="Patent" type="com.dev.cloud.vo.Patent"/>
 <typeAlias alias="Patentsub" type="com.dev.cloud.vo.Patentsub"/>
@@ -27,8 +26,6 @@
 <typeAlias alias="Pat" type="com.dev.cloud.vo.Pat"/>
 <typeAlias alias="PatentTotal" type="com.dev.cloud.vo.PatentTotal"/>
 <typeAlias alias="PdpVo" type="com.dev.cloud.vo.PdpVo"/>
-<typeAlias alias="Chat" type="com.dev.cloud.vo.Chat"/>
-
 </typeAliases>
 
 <mappers>
@@ -36,6 +33,7 @@
 <mapper resource="mappers/boardMapper.xml"/>
 <mapper resource="mappers/MTIMapper.xml"/>
 <mapper resource="mappers/crowdfundingMapper.xml"/>
+<mapper resource="mappers/document.xml"/>
 <mapper resource="mappers/documentMapper.xml"/>
 <mapper resource="mappers/item_SurveyMapper.xml"/>
 <mapper resource="mappers/itemMapper.xml"/>
@@ -45,9 +43,9 @@
 <mapper resource="mappers/replyMapper.xml"/>
 <mapper resource="mappers/historyMapper.xml"/>
 <mapper resource="mappers/fundingOption.xml"/>
-<mapper resource="mappers/chatMapper.xml"/>
+<mapper resource="mappers/document.xml"/>
 <mapper resource="mappers/officialFileMapper.xml"/>
-<mapper resource="mappers/replyMapper.xml"/>
+
 </mappers>
 
 </configuration>

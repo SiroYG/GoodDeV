@@ -20,8 +20,9 @@ public interface boardMapper {
 	int deleteBoard(int boardNum);
 	//게시판 등록
 	int insertBoard(Board board);
+	
 	//게시판 업데이트
 	int updateBoard(Board Board);
-	//유저가 올린 게시판
-	List<Board> userboard(String id);
+
+	
 }
