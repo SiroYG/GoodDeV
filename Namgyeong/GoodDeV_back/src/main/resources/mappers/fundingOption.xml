@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.cloud.dao.fundingOptionMapper">
+	<insert id="insertFundingOption" parameterType="FundingOption">
+	insert into FundingOption (
+		fundingOptionNum
+		,crowdfundingNum
+		,optionType
+		,optionPrice
+		)
+		VALUES (
+		fundingOption_seq.NEXTVAL
+		,#{crowdfundingNum}
+		,#{optionType}
+		,#{optionPrice}
+		)
+	</insert>
+	
+	<update id="updateFundingOption" parameterType="FundingOption">
+	UPDATE FundingOption 
+	SET 
+	optionType = #{optionType}
+	,optionPrice = #{optionPrice}
+	where 
+	fundingOptionNum=#{fundingOptionNum} 
+	</update>
+
+	<select id="selectFundingOption" parameterType="FundingOption" resultType="FundingOption">
+		select *
+		from FundingOption
+		where
+		crowdfundingNum = #{crowdfundingNum} 
+	</select>
+
+	<delete id="deleteFundingOption" parameterType="FundingOption">
+	DELETE FROM FundingOption WHERE fundingOptionNum = #{fundingOptionNum};
+	</delete>
+
+</mapper>
