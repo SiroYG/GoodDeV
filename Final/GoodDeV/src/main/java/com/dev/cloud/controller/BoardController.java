@@ -152,9 +152,6 @@ public class BoardController {
 		return rep.selectAll(reply.getBoardNum());
 	}
 	
-	
-	
-	
 	@RequestMapping(value = "godelete", method = RequestMethod.GET)
 	public String godelete(int boardNum, Model model) {
 		System.out.println("게시글 삭제 " + boardNum);
