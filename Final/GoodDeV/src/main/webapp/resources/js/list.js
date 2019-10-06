@@ -71,6 +71,7 @@ function patent(){
     		   
     		   
     	   $.each(res,function(i,item){
+    		   
     		   	tag += '<tr>'
  	   	   		tag += '<th scope="row" name="특허번호">'+item.patentNum+'</th>'        
     	   		tag += '<td name="분류">'+item.patentType+'</td>'

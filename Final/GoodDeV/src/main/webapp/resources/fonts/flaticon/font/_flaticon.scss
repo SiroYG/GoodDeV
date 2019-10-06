@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 13/09/2019 08:11
+    Creation date: 05/10/2019 10:14
     */
 
     @font-face {
@@ -38,13 +38,15 @@
     }
 
     .flaticon-contract:before { content: "\f100"; }
-.flaticon-central:before { content: "\f101"; }
-.flaticon-gavel:before { content: "\f102"; }
+.flaticon-search:before { content: "\f101"; }
+.flaticon-data:before { content: "\f102"; }
 .flaticon-question:before { content: "\f103"; }
-.flaticon-conversation:before { content: "\f104"; }
+.flaticon-handshake:before { content: "\f104"; }
+.flaticon-diploma:before { content: "\f105"; }
     
     $font-Flaticon-contract: "\f100";
-    $font-Flaticon-central: "\f101";
-    $font-Flaticon-gavel: "\f102";
+    $font-Flaticon-search: "\f101";
+    $font-Flaticon-data: "\f102";
     $font-Flaticon-question: "\f103";
-    $font-Flaticon-conversation: "\f104";
+    $font-Flaticon-handshake: "\f104";
+    $font-Flaticon-diploma: "\f105";

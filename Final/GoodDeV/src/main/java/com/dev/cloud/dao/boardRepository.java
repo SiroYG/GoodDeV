@@ -8,6 +8,8 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.context.request.SessionScope;
+
 import com.dev.cloud.vo.Board;
 
 @Repository
@@ -74,5 +76,11 @@ public class boardRepository {
 		boardMapper mapper = sqlSession.getMapper(boardMapper.class);
 		int result = mapper.updateBoard(board);
 		return result;
+	}
+	
+	public List<Board> userboard(String id){
+		System.out.println("board id=>" + id);
+		boardMapper mapper = sqlSession.getMapper(boardMapper.class);
+		return mapper.userboard(id);
 	}
 }

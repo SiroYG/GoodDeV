@@ -45,14 +45,17 @@ public class FundingController {
 	public String boardhome() { // 홈이동 (리다이렉트)
 		return "/board/Board_list";
 	}
+	
 	@RequestMapping(value = "/gofunding", method = RequestMethod.GET)
 	public String gofunding() { // 홈이동 (리다이렉트)
 		return "/funding/funding_list";
 	}
+	
 	@RequestMapping(value = "/gofundingform", method = RequestMethod.GET)
 	public String gofundingform() { // 홈이동 (리다이렉트)
 		return "/funding/funding_form";
 	}
+	
 	@RequestMapping(value = "/gopayment", method = RequestMethod.GET)
 	public String gopayment(@RequestParam(value = "itemname", defaultValue = "paymentTest") String itemname ,Model model) { 
 		model.addAttribute("itemname",itemname);
@@ -64,7 +67,6 @@ public class FundingController {
 	public String boardListForm(@RequestParam(value = "searchItem", defaultValue = "fundingTitle") String searchItem,
 			@RequestParam(value = "searchWord", defaultValue = "") String searchWord,
 			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, Model model) {
-
 		// 게시글 전체 개수 조회
 		int totalRecordCount = dao.getBoardCount(searchItem, searchWord);
 		System.out.println(totalRecordCount);
@@ -118,7 +120,6 @@ public class FundingController {
 
 		return "/funding/funding_list";
 	}
-
 	
 	@RequestMapping(value = "paymentform", method = {RequestMethod.POST,RequestMethod.GET})
 	public String paymentform(Payment payment, Model model) {
@@ -126,5 +127,4 @@ public class FundingController {
 		model.addAttribute("payment", payment);
 		return "/funding/payment";
 	}
-
 }

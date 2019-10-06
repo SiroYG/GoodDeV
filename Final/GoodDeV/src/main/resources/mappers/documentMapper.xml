@@ -4,34 +4,35 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dev.cloud.dao.documentMapper">
-	
-<insert parameterType="ItemDo" id="insertDocument">
-insert into 
-		Document (
-					documentNum
-					,patentsubNum 
-<if test="documentFilename!=null">
-					,documentFilename
-					,saveDocumentFilename 
-</if>
-					)VALUES (
-					Document_seq.NEXTVAL
-					,#{patentsubNum} 
-<if test="documentFilename!=null">
-					,#{documentFilename}
-					,#{saveDocumentFilename}
-</if>
-) 
-</insert>
 
-<update parameterType="ItemDo" id="updateDocument">
-UPDATE Document
-	SET
-	documentFilename = #{documentFilename}
-	,saveDocumentFilename = #{saveDocumentFilename}
-where
-	DocumentNum=#{DocumentNum} 
-</update>
+	<insert parameterType="ItemDo" id="insertDocument">
+		insert into
+		Document (
+		documentNum
+		,patentsubNum
+		<if test="documentFilename!=null">
+			,documentFilename
+			,saveDocumentFilename
+		</if>
+		)VALUES (
+		Document_seq.NEXTVAL
+		,#{patentsubNum}
+		<if test="documentFilename!=null">
+			,#{documentFilename}
+			,#{saveDocumentFilename}
+		</if>
+		)
+	</insert>
+
+	<update parameterType="ItemDo" id="updateDocument">
+		UPDATE Document
+		SET
+		documentFilename = #{documentFilename}
+		,saveDocumentFilename =
+		#{saveDocumentFilename}
+		where
+		DocumentNum=#{DocumentNum}
+	</update>
 </mapper>
 
 
