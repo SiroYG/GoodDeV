@@ -70,20 +70,64 @@ function patent(){
     	tag += '</thead>' 
     	tag += '<tbody>'  
 	   $.each(res,function(i,item){
-    		   	tag += '<tr>'
- 	   	   		tag += '<th scope="row" name="특허번호">'+item.patentNum+'</th>'        
-    	   		tag += '<td name="분류">'+item.patentType+'</td>'
-    	   		tag += '<td name="특허명">'+item.patentName+'</td>'
-    	   		tag += '<td name="특허설명">'+item.patentContent+'</td>'
-    	   		tag += '<td name="특허 보유자">'+item.patentHolderName+'</td>'	
-    	   	if(item.patentRegDate != null){
-    	   		tag += '<td name="등록날짜">'+item.patentRegDate+'</td>'
-    	   	}else{
-    	   		tag += '<td>특허등록 진행중입니다.</td>'
-    	   	}
-    	   		tag += '<td name="서식파일보기"></td>'            
-    	   		tag += '</tr>'        
-    	   	})
+		   		var patentNum = item.patentNum;
+		   		var patenttype = item.patenttype;
+		   		var patentName = item.patentName;
+		   		var patentContent = item.patentContent;
+		   		var patentHolderName = item.patentHolderName;
+		   		
+		   	  if (patentNum.length >= 10) {
+                  //patentNum = patentNum.split("-",2)+"...";
+                  patentNum = patentNum.substr(0, 10) + "...";
+                  tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
+              }  else {
+                  tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
+              }
+              
+              if (patenttype == null) {
+                  //patenttype = patenttype.substr(0,7)+"...";
+                  tag += '<td name="분류" >' + '' + '</td>'
+              } else if(patenttype.length >= 8 ){
+                 tag += '<td name="분류" >' + patenttype + '</td>'
+              }
+              
+              if (patentName==null) {
+                 tag += '<td name="특허명"><b>' + '' + '</b></td>'
+              } else if(patentName.length >= 15){
+                  patentName = patentName.substr(0, 24) + "...";
+                   tag += '<td name="특허명"><b>' + patentName.split("(", 1) + '</b></td>'
+              }else{
+                 tag += '<td name="특허명"><b>' + patentName + '</b></td>'
+              }
+              /* if(patentContent.length >= 20){
+                 patentContent = patentContent.substr(0,40)+"...";
+                  tag += '<td name="특허설명" ><b>'+patentContent+'</b></td>'
+              } */
+              if (patentHolderName.length >= 5) {
+                  patentHolderName = patentHolderName.substr(0, 4) + "...";
+                  tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
+              } else {
+                 tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
+              }
+             /*  else {
+                  tag += '<tr>'
+                  tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
+                  tag += '<td name="분류" >' + patenttype + '</td>'
+                  tag += '<td name="특허명" ><b>' + patentName + '</b></td>'
+                  /* tag += '<td name="특허설명" ><b>'+patentContent+'</b></td>' 
+                  tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
+              } */
+
+              if (item.patentRegDate != null) {
+                  tag += '<td name="등록날짜">' + item.patentRegDate + '</td>'
+              } else {
+                  tag += '<td >[등록진행중]</td>'
+              }
+
+              tag += '<td name="서식파일보기" ><button type="button" class="pri" data-value="' + item.patentNum + '" data-toggle="modal" data-target="#exampleModal">신청하기</button></td>'
+              //인터셉터 처리
+              tag += '</tr>'
+          })
     	   	tag += '</tbody>'	
     	    tag += '</table>' 
     		tag += '<div class="tri-btn">'

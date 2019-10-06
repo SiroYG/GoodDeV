@@ -32,49 +32,51 @@
             name : '${payment.itemname}',
             amount : '${payment.amount}',
             buyer_email : '${payment.email}',
-            buyer_name : '${payment.memberid}',
+            buyer_name : '${payment.memberId}',
             buyer_tel : '${payment.tel}', //누락되면 이니시스 결제창에서 오류
             buyer_addr : '${payment.addr}'
         }, function(rsp) {
+        	alert(rsp.success);
             if ( rsp.success ) {
-            	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-            	jQuery.ajax({
-            		url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
-            		type: 'POST',
-            		dataType: 'json',
-            		data: {
-        	    		imp_uid : rsp.imp_uid
-        	    		//기타 필요한 데이터가 있으면 추가 전달
-            		}
-            	}).done(function(data) {
-            		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-            		if (amount == rsp.paid_amount) {
-            			var msg = '결제가 완료되었습니다.';
-            			msg += '\n고유ID : ' + rsp.imp_uid;
-            			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-            			msg += '\n결제 금액 : ' + rsp.paid_amount;
-            			msg += '카드 승인번호 : ' + rsp.apply_num;
-            			
+            		var msg = '결제가 완료되었습니다.';
+        				msg += '고유ID : ' + rsp.imp_uid;
+       					msg += '상점 거래ID : ' + rsp.merchant_uid;
+        				msg += '결제 금액 : ' + rsp.paid_amount;
+        				msg += '카드 승인번호 : ' + rsp.apply_num;
             			alert(msg);
+            			
+   						$.ajax({
+   							url : '/cloud/funding/devmemberPrice',
+   							type : 'get',
+   							data : {
+   								amount : rsp.paid_amount,
+   								memberId : '${payment.memberId}',
+   								crowdfundingNum : '${payment.crowdfundingNum}'
+   							},
+   							success : function(res){
+   								if(res=='success'){
+   								 	alert("price 성공");
+   								}else{
+   									alert("price 실패");
+   								}
+   								
+   							}
+   						})
+   						alert(rsp.paid_amount);
+            			
+            			
             			window.close();
-            		} else {
-            			//[3] 아직 제대로 결제가 되지 않았습니다.
-            			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+            			
+            		} else {       			
             			var msg = '결제에 실패하였습니다.';
                 		msg += '에러내용 : 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.' ;
-            			alert(msg);
+            			alert(msg);    
             			window.close();
             		}
-            	});
-            } else {
-                var msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
-                
-                alert(msg);
-                window.close();
-            }
+        })
+        
         });
-    });
+        
     </script>
 </body>
 </html>

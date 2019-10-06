@@ -23,11 +23,43 @@
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/funding.css">
+    
+    <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
+    <script src="/cloud/resources/js/jquery-ui.min.js"></script>
+    
      	<script>
-		function Write(){
-			var writeform =document.getElementById("writeform");
-			$('#writeform').submit();
-		}
+     	 $(function(){
+     		
+     		$('#fundBtn').on('click',function(){
+     			var fundingTitle = $('#fundingTitle').val();
+     			var fundingContents = $('#fundingContents').val();
+     			var upload = $('#upload').val();
+     			var itemGoalPrice = $('#itemGoalPrice').val();
+     			if(fundingTitle.length== 0||fundingTitle==''){
+     					alert('제목을 반드시 입력하시오!');
+     					return false;
+     			}
+     			if(fundingContents.length== 0||fundingContents==''){
+ 					alert('내용을 반드시  입력하시오!');
+ 					return false;
+ 				}	
+     			if(upload.length== 0||upload==''){
+ 					alert('파일을 반드시 첨부하시오!');
+ 					return false;
+ 				}	
+     			if(itemGoalPrice.length== 0||itemGoalPrice==''){
+ 					alert('목표금액을  반드시 입력하시오!');
+ 					return false;
+ 				}	
+     			if(isNaN(itemGoalPrice)){
+     				alert('반드시 숫자로 입력하시오!');
+ 					return false;
+     			}
+     			$('#writeform').submit();
+     		})
+     		
+     	});
+ 
 	</script>
 </head>
 
@@ -103,7 +135,7 @@
                 </div>
             </div>
         </div>
-        <form action="/cloud/funding/fundingWrite" method="post" id="writeform" enctype="multipart/form-data">
+        <form action="/cloud/funding/fundingWrite" method="post" id="writeform" enctype="multipart/form-data" >
             <div class="write_table">
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label"><span><b>작성자</b></span></label>
@@ -114,7 +146,7 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label"><span><b>진행 시작 날짜</b></span></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="fundingStartDate" id="" placeholder="<fmt:formatDate value="${toDay}" pattern="yyyy.MM.dd" />" readonly="readonly">
+                        <input type="text" class="form-control" name="fundingStartDate" id="startdate" value="<fmt:formatDate value="${toDay}" pattern="yyyy-MM-dd" />" readonly="readonly" onchange="call()">
                     </div>
 
                 </div>
@@ -122,10 +154,10 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label"><span><b>진행 마감 날짜</b></span></label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" name="fundingDueDate" id="" placeholder="<fmt:formatDate value="${toDay}" pattern="yyyy.MM.dd" />">
+                        <input type="date" class="form-control" name="fundingDueDate" id="enddate" value="<fmt:formatDate value="${toDay}" pattern="yyyy-MM-dd" />" oninput="call()" onchange="call()" >
                     </div>
                 </div>
-
+					<input type="hidden" id="days" size="6">
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label"><span><b>제목</b></span></label>
                     <div class="col-sm-10">
@@ -144,61 +176,17 @@
                     <label for="" class="col-sm-2 col-form-label"><span><b>파일 업로드</b></span></label>
                     <div class="col-sm-10">
                     
-                        <input type="file" class="form-control" name="upload" id="" placeholder="" multiple>
+                        <input type="file" class="form-control" name="upload" id="upload" placeholder="" multiple>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label"><span><b>펀딩 목표금액</b></span></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="itemGoalPrice" id="" placeholder="0,000,000">
+                        <input type="text" class="form-control" name="itemGoalPrice" id="itemGoalPrice" placeholder="0,000,000">
                     </div>
                 </div>
-                <fieldset class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="text-black"><b>구매 옵션명 입력</b></label>
-                                <input type="text" class="form-control" name="optionType" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="text-black">가격</label>
-                                <input type="text" class="form-control" name="optionPrice" id="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="text-black"><b>구매 옵션명 입력</b></label>
-                                <input type="text" class="form-control" name="optionType" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="text-black">가격</label>
-                                <input type="text" class="form-control" name="optionPrice" id="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="text-black"><b>구매 옵션명 입력</b></label>
-                                <input type="text" class="form-control" name="optionType" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="text-black">가격</label>
-                                <input type="text" class="form-control" name="optionPrice" id="">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                </fieldset>
-                <a onclick="Write()" class="btns btn-3"><span class="white">등록하기</span></a> 
+               
+                <a id="fundBtn" class="btns btn-3"><span class="white">등록하기</span></a> 
                 &nbsp;&nbsp; <a href="/cloud/funding/fundingListForm" class="btns btn-3-red"><span class="white">취소</span></a>
 
             </div>
@@ -253,7 +241,32 @@
         </div>
       </div>
     </footer>
+<script>
+function call(){
+	    var sdd = document.getElementById("startdate").value;
+	    var edd = document.getElementById("enddate").value;
+	    var ar1 = sdd.split('-');
+	    var ar2 = edd.split('-');
+	    var da1 = new Date(ar1[0], ar1[1], ar1[2]);
+	    var da2 = new Date(ar2[0], ar2[1], ar2[2]);
+	    var dif = da2 - da1;
+	    var cDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+	    var cMonth = cDay * 30;// 월 만듬
+	    var cYear = cMonth * 12; // 년 만듬
+	 if(sdd && edd){
 
+	    document.getElementById('days').value = parseInt(dif/cDay);
+	    var days =document.getElementById('days');
+	    var edd = document.getElementById("enddate").value;
+	    if(days.value<0){
+	  	  alert("종료일은 시작일보다 늦어야합니다.");
+	  	  $('#enddate').val('');
+	  	  return
+	    }
+	 }
+	}
+
+</script>
      <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6082cc"/></svg></div>
 

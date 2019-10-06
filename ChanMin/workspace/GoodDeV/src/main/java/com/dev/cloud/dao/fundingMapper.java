@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 
 import com.dev.cloud.vo.Crowdfunding;
+import com.dev.cloud.vo.Payment;
 
 public interface fundingMapper {
 	//게시판 카운트
@@ -20,4 +21,6 @@ public interface fundingMapper {
 	
 	public List<Crowdfunding> mypageFunding(String memberId);
 	
+	
+	public int updateCurrentPrice(Crowdfunding crowdfunding);
 }

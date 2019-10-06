@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.dev.cloud.vo.Board;
 import com.dev.cloud.vo.Crowdfunding;
 import com.dev.cloud.vo.FundingTable;
+import com.dev.cloud.vo.Payment;
 
 @Repository
 public class fundingRepository {
@@ -52,7 +53,7 @@ public class fundingRepository {
 	}
 
 
-	public int insertBoard(Crowdfunding Crowdfunding) {
+	public int makeCrowdFunding(Crowdfunding Crowdfunding) {
 		System.out.println("board repo=>" + Crowdfunding);
 		fundingMapper mapper = sqlSession.getMapper(fundingMapper.class);
 
@@ -67,4 +68,13 @@ public class fundingRepository {
 		
 		return result;
 	}
+	
+	public int updateCurrentPrice(Crowdfunding crowdfunding){
+		fundingMapper mapper = sqlSession.getMapper(fundingMapper.class);
+
+		int result = mapper.updateCurrentPrice(crowdfunding);
+		
+		return result;
+	}
+	
 }

@@ -29,9 +29,13 @@
 <typeAlias alias="Question" type="com.dev.cloud.vo.Question" />
 <typeAlias alias="FundingOption" type="com.dev.cloud.vo.FundingOption"/>
 <typeAlias alias="Survey" type="com.dev.cloud.vo.Survey" />
-
+<typeAlias type="com.dev.cloud.vo.Chat" alias="Chat"/>
+<typeAlias type="com.dev.cloud.vo.ChatRoom" alias="ChatRoom"/>
+<typeAlias type="com.dev.cloud.vo.ChatMember" alias="ChatMember"/>
+<typeAlias type="com.dev.cloud.vo.Payment" alias="Payment"/>
 </typeAliases>
 <mappers>
+<mapper resource="mappers/ChatRoomMapper.xml"/>
 <mapper resource="mappers/documentMapper.xml"/>
 <mapper resource="mappers/memberMapper.xml"/>
 <mapper resource="mappers/boardMapper.xml"/>
@@ -46,6 +50,7 @@
 <mapper resource="mappers/historyMapper.xml"/>
 <mapper resource="mappers/officialFileMapper.xml"/>
 <mapper resource="mappers/fundingOption.xml"/>
+<mapper resource="mappers/chatMapper.xml"/>
 
 </mappers>
 

@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 public class Payment {
 	private int amount;
 	private String itemname;
-	private String memberid;
+	private String memberId;
 	private String email;
 	private String tel;
 	private String addr;
-	
+	private int crowdfundingNum;
 }

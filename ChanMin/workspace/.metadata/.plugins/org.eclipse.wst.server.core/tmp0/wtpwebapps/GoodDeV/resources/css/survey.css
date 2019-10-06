@@ -1,147 +1,55 @@
-@font-face { font-family: 'Eoe_Zno_B'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_B.woff') format('woff'); font-weight: normal; font-style: normal; }
-
-* {
-    font-family: 'Eoe_Zno_B';
-}
-
-body{
-    font-family: 'Eoe_Zno_B';
-}
-
-.checked {
-  color: #ffe51f;
-}
-
-hr.hr_navy{
-  border-color: #1f124a;
-    border-width: 7px;
-    padding: 0% 10%;
-}
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
 
 div.write_table{
     padding: 5% 10% 10%;
 }
 
-hr.hr_purple{
-    border-color: #1f124a;
-    border-width: 7px;
-    padding: 0% 10%;
-}
+.form-group {
+  margin-bottom: 1rem; }
 
-.navy{
-    background-color: #1f124a;
-    color: white;
-    text-align: center;
-}
+.form-text {
+  display: block;
+  margin-top: 0.25rem; }
 
-div.second{
-    width:100%;
-    height: 550px;
-    display: inline-block;
-    margin: 0%; 
-    background: url("../images/board_cover_3.jpg") top left/cover no-repeat;
-}
+.form-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -5px;
+  margin-left: -5px; }
+  .form-row > .col,
+  .form-row > [class*="col-"] {
+    padding-right: 5px;
+    padding-left: 5px; }
 
-h1.main_title{
-     font-size: 3em;
-    padding-left: 10%;
-    color : black;
-    margin-top: 10%;
-    line-height: 1.5;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-    font-family: inherit;
-}
+.form-check {
+  position: relative;
+  display: block;
+  padding-left: 1.25rem; }
 
+.form-check-input {
+  position: absolute;
+  margin-top: 0.3rem;
+  margin-left: -1.25rem; }
+  .form-check-input:disabled ~ .form-check-label {
+    color: #6c757d; }
 
-.btns {
-	width:max-content;
-    height: 60px;
-    padding: 1.2%;
-    font-size: 16px;
-    font-weight: 500;
-    color: #fff !important;
-    background-color: #1f124a;
-    border: 2px solid #1f124a;
-    cursor: pointer;
-    transition: 0.25s ease;
-}
+.form-check-label {
+  margin-bottom: 0; }
 
-button.btns {
-	width:max-content;
-    height: 40px;
-    padding-top:0% !important;
-    padding-bottom:0% !important;
-    padding-left:1.5%;
-    padding-right:1.5%;
-    font-size: 16px;
-    font-weight: 500;
-    color: #fff !important;
-    background-color: #1f124a;
-    border: 2px solid #1f124a;
-    cursor: pointer;
-    transition: 0.25s ease;
-}
-
-
-
-.btn-3-comments {
-    width:max-content;
-    height: 70px;
-    padding: 1%;
-    font-size: 16px;
-    font-weight: 500;
-    color: #fff ;
-    background-color: #28a146;
-    border: 2px solid #28a146;
-    cursor: pointer;
-    width: max-content;
-    transition: 0.25s ease;
-}
-
-.btn-3:hover {
-    color: #1f124a !important;
-    background-color: transparent;
-}
-
-.btn-3-red:hover {
-    color: #d41515 !important;
-    border-color: #d41515;
-    background-color: transparent;
-}
-
-.btn-3-green:hover {
-    color: #28a146 !important;
-    border-color: #28a146;
-    background-color: transparent;
-}
-
-.btn-3-comments:hover {
-    color: #28a146 !important;
-    border-color: #28a146;
-    background-color: transparent;
-}
-
-span.white{
-    padding: 1%;
-    font-size: 1em;
-}
-
-
-.searchWord{
-    width: 80%;
-}
-
-.search-form{
-    text-align: center;
-    vertical-align: middle;
-    margin-bottom: 30px;
-}
-
-div.page-center{
-    vertical-align: middle;
-    text-align: center;
-    margin: 0 auto;
-    justify-content: center;
-}
-
+.form-check-inline {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 0;
+  margin-right: 0.75rem; }
+  .form-check-inline .form-check-input {
+    position: static;
+    margin-top: 0;
+    margin-right: 0.3125rem;
+    margin-left: 0; }

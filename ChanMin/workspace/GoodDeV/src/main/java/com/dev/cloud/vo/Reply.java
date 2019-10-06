@@ -14,4 +14,5 @@ private int replyNum;
 private int boardNum;
 private String reply ;
 private String replyDate;
+private String memberid;
 }

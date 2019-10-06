@@ -46,16 +46,17 @@
 <link rel="stylesheet" href="/cloud/resources/css/chat.css">
 
 
-<script> 
+<script>
 $(function() {
-
     /*채팅 div랑 채팅 내용 input값 초기화*/
     var chat = '';
     var msg = '';
     
     /*채팅창 팝업 띄우기*/
     $('#popup').on('click', function() {
-        window.open("/cloud/chat/Chatmain", "PopupWin", "width=800,height=700");
+    	var crowdfundingNum=$('#crowdfundingNum').val();
+    	alert(crowdfundingNum);
+        window.open("/cloud/funding/fundingChat?crowdfundingNum="+crowdfundingNum, "PopupWin", "width=800,height=700");
     });
     
     /*채팅방 선택 css 애니메이션(?)*/
@@ -88,6 +89,7 @@ $(function() {
 
  function btn(){
 	 var popup= document.getElementById("popup");
+	 
 	 window.location.href="/cloud/funding/fundingChat";
  }
 </script>
@@ -194,10 +196,12 @@ $(function() {
                                  <p class="alert alert-success">결제 완료</p>
                                  <p class="alert alert-danger">결제 정보를 다시 한번 확인해주세요.</p>     
                                  <form action="" method="post" name="pay" role="form" class="needs-validation">
+                                 	<input type="hidden" name="crowdfundingNum" value="${fund.crowdfundingNum}">
                                  	<input type="hidden" name="itemname" value="${fund.fundingTitle}">
-                                 	<input type="hidden" name="memberid" value="${sessionScope.loginId}">
+                                 	<input type="hidden" name="memberId" value="${fund.memberId}">
                                      <div class="form-group">
                                          <label for="username"> 투자금액 </label>
+                                        <!--  <input type="hidden" name="memId" value="" /> -->
                                          <input type="text" class="form-control" oninput="amountcheck()" name="amount" id="amount" placeholder="투자금액을 입력해주세요" required>
                                      </div> 
                                      
@@ -287,9 +291,9 @@ $(function() {
 							<div class="p-4">
 
 								<div class="mb-3">
-									<a href=""> <span class="badge purple mr-1">tag1</span>
-									</a> <a href=""> <span class="badge blue mr-1">tag2</span>
-									</a> <a href=""> <span class="badge red mr-1">tag3</span>
+									<a href=""> <span class="badge purple mr-1">finish</span>
+									</a> <a href=""> <span class="badge blue mr-1">best</span>
+									</a> <a href=""> <span class="badge red mr-1">hot</span>
 									</a>
 								</div>
 
@@ -302,6 +306,7 @@ $(function() {
 								<p class="lead font-weight-bold">
 									<span>펀딩 목표 금액 : ${fund.itemGoalPrice}</span>
 								</p>
+								<input type="hidden" id="crowdfundingNum" name="crowdfundingNum" value="${fund.crowdfundingNum}">
 								<br>
 								<div class="ftco-animate">
 									<p class="lead font-weight-bold">
@@ -317,23 +322,16 @@ $(function() {
 
 								<form class="d-block justify-content-left">
 									<!-- Default input -->
-									<select name="optionType" class="browser-default custom-select">
-										<option selected>옵션을 선택해주세요.</option>
-										<option value="optionOne">펀딩옵션1</option>
-										<option value="optionTwo">펀딩옵션2</option>
-										<option value="optionThree">펀딩옵션3</option>
-									</select> <br>
+									
 									<br>
-									<p class="lead font-weight-bold">
-										구매 가격 : <span name="price">(옵션 해당 가격)</span>
-									</p>
+									
 									<!--<label for="">구매 가격 : <span name="price">(옵션 해당 가격)</span></label>-->
 									<br>
 								</form>
 								<hr>
 								<button type="button" class="btns btn-3-green" data-toggle="modal" data-target="#exampleModal">결제하기</button>
 								&nbsp; &nbsp;
-								<button type="button" onclick="popup()" value="" class="btns btn-3-green" id="popup" >1 : 1 채팅</button>
+								<button type="button"  value="" class="btns btn-3-green" id="popup" >1 : 1 채팅</button>
 							</div>
 							<!--Content-->
 						</div>
@@ -380,150 +378,7 @@ $(function() {
 
 				<hr>
 
-				<div class="container_chat" id="container_chat">
-					<h3 class=" text-center">1 : 1 Chat</h3>
-					<div class="messaging">
-						<div class="inbox_msg">
-							<div class="inbox_people" id="">
-								<div class="headind_srch">
-									<!--<div class="recent_heading">-->
-									<h4>1 : 1 채팅 참여자 목록</h4>
-									<!--</div>-->
-									<!--<div class="srch_bar">
-              <div class="stylish-input-group">
-                <input type="text" class="search-bar"  placeholder="Search" >
-                <span class="input-group-addon">
-                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </span> </div>
-            </div>-->
-            
-								</div>
-								<div class="inbox_chat">
-									<div class="chat_list">
-										<div class="chat_people">
-											<div class="chat_ib">
-												<h5>
-													[memberName] <span class="chat_date">09 / 25</span>
-												</h5>
-												<p>[chat_Content]</p>
-											</div>
-										</div>
-									</div>
-									<div class="chat_list">
-										<div class="chat_people">
-											<div class="chat_ib">
-												<h5>
-													[memberId] <span class="chat_date">09 / 25</span>
-												</h5>
-												<p>[채팅 마지막 내용은 여기에]</p>
-											</div>
-										</div>
-									</div>
-									<div class="chat_list">
-										<div class="chat_people">
-											<div class="chat_ib">
-												<h5>
-													[memberId] <span class="chat_date">09 / 25</span>
-												</h5>
-												<p>[chat_Content]</p>
-											</div>
-										</div>
-									</div>
-									<div class="chat_list">
-										<div class="chat_people">
-											<div class="chat_ib">
-												<h5>
-													[memberId] <span class="chat_date">09 / 25</span>
-												</h5>
-												<p>[chat_Content]</p>
-											</div>
-										</div>
-									</div>
-									<div class="chat_list">
-										<div class="chat_people">
-											<div class="chat_ib">
-												<h5>
-													[memberId] <span class="chat_date">09 / 25</span>
-												</h5>
-												<p>[chat_Content]</p>
-											</div>
-										</div>
-									</div>
-									<div class="chat_list">
-										<div class="chat_people">
-											<div class="chat_ib">
-												<h5>
-													[memberId] <span class="chat_date">09 / 25</span>
-												</h5>
-												<p>[chat_Content]</p>
-											</div>
-										</div>
-									</div>
-									<div class="chat_list">
-										<div class="chat_people">
-											<div class="chat_ib">
-												<h5>
-													[memberId] <span class="chat_date">09 / 25</span>
-												</h5>
-												<p>[chat_Content]</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="mesgs" id="mesgs" disabled="disabled">
-								<div class="msg_history">
-									<div class="incoming_msg">
-										<div class="received_msg">
-											<div class="received_withd_msg">
-												<p>[chat_Content]</p>
-												<span class="time_date"> 18:47 | 09 / 26</span>
-											</div>
-										</div>
-									</div>
-									<div class="outgoing_msg">
-										<div class="sent_msg">
-											<p>장문 테스트 장문 테스트 장문 테스트 장문 테스트 장문 테스트 장문 테스트 장문 테스트 장문
-												테스트 장문 테스트 장문 테스트 장문 테스트 장문 테스트 장문 테스트 장문 테스트 장문 테스트 장문 테스트
-												장문 테스트 장문 테스트 장문 테스트</p>
-											<span class="time_date"> 18:47 | 09 / 26</span>
-										</div>
-									</div>
-									<div class="incoming_msg">
-										<div class="received_msg">
-											<div class="received_withd_msg">
-												<p>장문 테스트 장문 테스트 장문 테스트 장문 테스트 장문 테스트 장문 테스트 장문 테스트 장문
-													테스트 장문 테스트 장문 테스트 장문 테스트 장문 테스트 장문 테스트 장문 테스트</p>
-												<span class="time_date"> 18:47 | 09 / 26</span>
-											</div>
-										</div>
-									</div>
-									<div class="outgoing_msg">
-										<div class="sent_msg">
-											<p>...</p>
-											<span class="time_date"> 18:47 | 09 / 26</span>
-										</div>
-									</div>
-									<div class="incoming_msg">
-										<div class="received_msg">
-											<div class="received_withd_msg">
-												<p>[아이콘 CSS 에러 해결, JSP로 페이지 내 이동쪽 해결하기]</p>
-												<span class="time_date"> 18:47 | 09 / 26</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="type_msg">
-									<div class="input_msg_write">
-										<input type="text" class="write_msg" placeholder="메시지를 입력하세요." />
-										<button class="msg_send_btn" id="msg_send_btn" type="button"><img src="/cloud/resouces/images/paper-plane.png" alt="" class="plane">
-							</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				
 
 				</main>
 			</div>
@@ -665,6 +520,8 @@ $(function() {
      	pay.target='payment';
      	pay.method='GET';
      	pay.submit();
+     	
+     	
      }
       
      </script>

@@ -83,4 +83,22 @@
 	and memberPw=#{memberPw} 
 	</update>
 	
+	<update id="devmemberPrice" parameterType="Payment">
+	update 
+		devMember
+	set 
+		fundPrice = #{amount} 
+	where
+		memberId = #{memberId}		
+	</update>
+	
+	<select id="selectmemId" resultType="devMember" parameterType="String">
+	select 
+		*
+	from 	
+		devMember
+	where 
+		memberId = #{memberId}	
+	</select>
+	
 </mapper>
