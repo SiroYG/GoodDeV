@@ -166,7 +166,17 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/goPatent", method = RequestMethod.GET)
-	public String goPatent(Model model) {
+	public String goPatent() {
+		
+		return "search/search_menu";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/patinsertForm", method = RequestMethod.POST)
+	public String patinsertForm(MultipartFile upload, PatentTotal paten, HttpSession session) {
+		// patentNum 신청서(referenceFilename) 아이디(로그인) ,이름
+		
+		System.out.println("174번줄" + upload);
 		Random random = new Random();
 		int i = random.nextInt(9999) + 1000;
 		int j = random.nextInt(999999) + 1000;
@@ -175,18 +185,11 @@ public class MemberController {
 		String patentNum = "";
 		patentNum = total + i + dasi + j;
 		Patent patent = papo.patsearchNum(patentNum); // 예외처리.. 하긴했는데 몬가 허술함;;
-		if (patent != null) {
-			model.addAttribute("num", patentNum);
+		System.out.println("188번줄patent=>"+patent);
+		if (patent == null) {
+			paten.setPatentNum(patentNum);
 		}
-		return "search/search_menu";
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/patinsertForm", method = RequestMethod.POST)
-	public String patinsertForm(MultipartFile upload, PatentTotal paten, HttpSession session) {
-		// patentNum 신청서(referenceFilename) 아이디(로그인) ,이름
-		System.out.println("173번줄" + paten);
-		System.out.println("174번줄" + upload);
+		System.out.println("191번줄" + paten);
 		int result = 0;
 		int re = 0;
 		String memberId = (String) session.getAttribute("loginId");
