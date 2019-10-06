@@ -117,7 +117,7 @@
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>작성자</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="memberId" id="" placeholder="${board.id}" readonly="readonly">
+                            <input type="text" class="form-control" name="memberId" id="" placeholder="${board.memberId}" readonly="readonly">
                         </div>
                     </div>
 

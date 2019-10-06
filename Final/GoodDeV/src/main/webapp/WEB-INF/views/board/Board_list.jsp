@@ -130,7 +130,7 @@
 						<th scope="row" name="boardNum">${stat.count + navi.startRecord}</th>
 						<td>${board.qCategory}</td>
 						<td class="board_title"><a href="boardDetail?boardNum=${board.boardNum}">${board.title}</a></td>
-						<td>${board.id}</td>
+						<td>${board.memberId}</td>
 						<td>${board.boardDate}</td>
 					</tr>
 				</c:forEach>

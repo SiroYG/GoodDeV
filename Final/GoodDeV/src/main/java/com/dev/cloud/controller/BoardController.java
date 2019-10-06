@@ -105,7 +105,7 @@ public class BoardController {
 	public String boardWriteProcess(Board board, MultipartFile upload, HttpSession session, RedirectAttributes rttr) {
 
 		String userid = (String) session.getAttribute("loginId");
-		board.setId(userid);
+		board.setMemberId(userid);
 		System.out.println(upload.getOriginalFilename());
 		System.out.println(board);
 
