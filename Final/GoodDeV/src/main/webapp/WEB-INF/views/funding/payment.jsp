@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Sponsor Payment::</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
@@ -52,7 +52,6 @@
             			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
             			msg += '\n결제 금액 : ' + rsp.paid_amount;
             			msg += '카드 승인번호 : ' + rsp.apply_num;
-            			
             			alert(msg);
             			window.close();
             		} else {

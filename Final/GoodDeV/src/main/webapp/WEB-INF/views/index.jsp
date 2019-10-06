@@ -61,14 +61,7 @@
 			}
 		});
 	}
-	           	 	
-	          
-    
-   $(document).ready(function(){
-	   var panelbody = document.getElementById("panelbody");
-	   panelbody.scrollTop = panelbody.scrollHeight;
-	  $("#panelbody").scrollTop($("#panelbody")[0].scrollHeight) 
-   });
+	           	 
     function Regist() {
 		var memo = document.getElementById("memo");
 		$.ajax({
@@ -517,7 +510,13 @@
             </div>
         </div>
     </footer>
-
+	<script>
+	 $(document).ready(function(){
+		   var panelbody = document.getElementById("panelbody");
+		   panelbody.scrollTop = panelbody.scrollHeight;
+		  $("#panelbody").scrollTop($("#panelbody")[0].scrollHeight) 
+	   });
+	</script>
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />

@@ -263,31 +263,18 @@ $(function() {
 
 						<!--Grid column-->
 						<div class="col-md-6 mb-4">
-
-							<img
-								src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg"
-								class="img-fluid" alt="">
-
+							<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
 						</div>
 						<!--Grid column-->
-
 						<!--Grid column-->
 						<div class="col-md-6 mb-4">
-
 							<!--Content-->
 							<div class="p-4">
-
 								<div class="mb-3">
-									<a href=""> <span class="badge purple mr-1">tag1</span>
-									</a> <a href=""> <span class="badge blue mr-1">tag2</span>
-									</a> <a href=""> <span class="badge red mr-1">tag3</span>
-									</a>
+									<a href=""> <span class="badge purple mr-1">종료</span></a> 
+									<a href=""> <span class="badge blue mr-1">수익성</span></a> 
+									<a href=""> <span class="badge red mr-1">Hot</span></a>
 								</div>
-
-								<!--<p class="lead">
-                                           <span>가격 : (price)</span>
-                                        </p>-->
-
 								<p class="lead font-weight-bold">펀딩 진행 기간 :
 									${fund.fundingStartDate} ~ ${fund.fundingDueDate}</p>
 								<p class="lead font-weight-bold">
@@ -310,20 +297,19 @@ $(function() {
 									<!-- Default input -->
 									<select name="optionType" class="browser-default custom-select">
 										<option selected>옵션을 선택해주세요.</option>
-										<option value="optionOne">펀딩옵션1</option>
-										<option value="optionTwo">펀딩옵션2</option>
-										<option value="optionThree">펀딩옵션3</option>
+										<option value="optionOne">리워드펀딩</option>
+										<option value="optionTwo">수익성펀딩</option>
+										<option value="optionThree">기부성펀딩</option>
 									</select> <br>
 									<br>
 									<p class="lead font-weight-bold">
-										구매 가격 : <span name="price">(옵션 해당 가격)</span>
+										지금!! <span name="price">${fund.itemCurrecyPrice}</span>원 펀딩 진행중
 									</p>
 									<!--<label for="">구매 가격 : <span name="price">(옵션 해당 가격)</span></label>-->
 									<br>
 								</form>
 								<hr>
-								<button type="button" class="btns btn-3-green"
-									data-toggle="modal" data-target="#exampleModal" onclick="popup()">결제하기</button>
+								<button type="button" class="btns btn-3-green" data-toggle="modal" data-target="#exampleModal" onclick="popup()">펀딩하기</button>
 								&nbsp; &nbsp;
 								<button type="button" class="btns btn-3-green" id="popup">1 : 1 채팅</button>
 							</div>
