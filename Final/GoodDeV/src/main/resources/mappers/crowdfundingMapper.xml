@@ -15,7 +15,6 @@
 	<select id="selectAll" resultType="Crowdfunding" parameterType="map">
 		SELECT
 		crowdfundingNum,
-		itemNum,
 		itemGoalPrice,
 		itemCurrecyPrice,
 		to_char(fundingDueDate, 'YYYY-MM-DD') as fundingDueDate,
@@ -49,7 +48,6 @@
 		<insert id="makeCrowdFunding" parameterType="Crowdfunding">
 		insert into Crowdfunding (
 		crowdfundingNum
-		,itemNum
 		,itemGoalPrice
 		,itemCurrecyPrice
 		,fundingDueDate
@@ -60,7 +58,6 @@
 		)
 		VALUES (
 		crowdfunding_seq.NEXTVAL
-		,#{itemNum}
 		,#{itemGoalPrice}
 		,#{itemCurrecyPrice}
 		,#{fundingDueDate}

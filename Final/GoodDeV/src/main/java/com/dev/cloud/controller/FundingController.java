@@ -26,6 +26,7 @@ import com.dev.cloud.dao.fundingRepository;
 import com.dev.cloud.utill.FileService;
 import com.dev.cloud.utill.PageNavigator;
 import com.dev.cloud.vo.Board;
+import com.dev.cloud.vo.Crawling;
 import com.dev.cloud.vo.Crowdfunding;
 import com.dev.cloud.vo.Payment;
 import com.dev.cloud.vo.Question_Time;
@@ -100,6 +101,9 @@ public class FundingController {
 		System.out.println(Crowdfunding);
 		return "/funding/funding_Detail";
 	}
+	
+	
+	
 	
 	@RequestMapping(value = "/fundingWrite", method = RequestMethod.POST)
 	public String fundingWrite(Crowdfunding Crowdfunding, MultipartFile upload, HttpSession session, RedirectAttributes rttr) {

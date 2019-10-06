@@ -263,30 +263,28 @@
 
 
                 <!--페이징 & 검색-->
-                <div class="page-center">
-                    <br>
-                    <nav>
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item">
-                                <a class="page-link" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link">1</a></li>
-                            <li class="page-item"><a class="page-link">2</a></li>
-                            <li class="page-item"><a class="page-link">3</a></li>
-                            <li class="page-item"><a class="page-link">4</a></li>
-                            <li class="page-item"><a class="page-link">5</a></li>
-                            <li class="page-item">
-                                <a class="page-link" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+			 <div class="page-center">
+				  <br>
+				  <nav>
+					  <ul class="pagination justify-content-center">
+					    <li class="page-item">
+					      <a class="page-link" aria-label="Previous" href="goSurvey_list?currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">
+					        <span aria-hidden="true">&laquo;</span>
+					        <span class="sr-only">Previous</span>
+					      </a>
+					    </li>
+						  <c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup }">
+								    <li class="page-item"><a href="goSurvey_list?currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}"class="page-link">${page}</a>
+							</c:forEach>
+						    <li class="page-item">
+					      <a class="page-link" aria-label="Next" href="goSurvey_list?currentPage=${navi.currentPage-1}&searchItem=${searchItem}&searchWord=${searchWord}">
+					        <span aria-hidden="true">&raquo;</span>
+					        <span class="sr-only">Next</span>
+					      </a>
+					    </li>
+					  </ul>
+				</nav>
+			      </div>
                 <form action="" method="post" class="search-form" id="search-form">
                     <!--Blue select-->
 

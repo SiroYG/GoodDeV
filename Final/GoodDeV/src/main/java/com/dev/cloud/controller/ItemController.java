@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dev.cloud.dao.HistoryRepository;
 import com.dev.cloud.dao.itemRepository;
+import com.dev.cloud.utill.PageNavigator;
 import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.Total;
 
@@ -39,14 +41,19 @@ public class ItemController {
 	}
 	
 	@RequestMapping(value = "/goItemHistory", method = RequestMethod.GET)
-	public String goItemHistory(HttpSession session,Total total,Model model) {
+	public String goItemHistory(@RequestParam(value = "currentPage", defaultValue = "1") 
+	int currentPage,HttpSession session,Total total,Model model) {
+	
 		String memberId = (String) session.getAttribute("loginId");
 		total.setMemberId(memberId);
-
 		List<Total> hList = hipo.selectAllHistory(total);
 		System.out.println("47번==>"+hList);
+		// 추가
+		int totalRecordCount = hList.size();
+		System.out.println(totalRecordCount);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
 		model.addAttribute("hList", hList);	
-		 
+		model.addAttribute("navi", navi);
 		return "/item/item_history" ;
 	}
 	

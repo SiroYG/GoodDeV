@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.dev.cloud.dao.itemRepository;
 import com.dev.cloud.dao.item_SurveyRepository;
+import com.dev.cloud.utill.PageNavigator;
 import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.Question;
 import com.dev.cloud.vo.QuestionTotal;
@@ -40,7 +41,8 @@ public class SurveyController {
 	itemRepository Irepo ;
 
 	@RequestMapping(value = "/goSurvey_list", method = RequestMethod.GET)
-	public String goSurvey_list(HttpSession session, Model model) {
+	public String goSurvey_list(@RequestParam(value = "currentPage", defaultValue = "1") 
+	int currentPage, HttpSession session, Model model) {
 
 		Question_Time qTime = new Question_Time();
 		ArrayList<QuestionTotal> qTotalList = new ArrayList<>();
@@ -60,9 +62,9 @@ public class SurveyController {
 				compare=tempDueDate.compareTo(today);
 				System.out.println(qtemp.getQuestionTimeNum()+":"+compare);
 				if(compare==1){
-					
 					qTotalList.add(qtemp);
 				}
+				
 			//같은 날짜일 경우에도 가져오기 위함.
 				String tempStrToday = sdf.format(today);
 				String tempStrDuedate=sdf.format(tempDueDate);
@@ -80,7 +82,11 @@ public class SurveyController {
 		}
 		
 
-
+		// 추가
+		int totalRecordCount = IsRepo.selectAllQuestion_TimeById(qTime).size();
+				System.out.println(totalRecordCount);
+				PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		
 	
 		
 		model.addAttribute("qTotalList", qTotalList);
@@ -91,7 +97,8 @@ public class SurveyController {
 		item.setMemberId((String)session.getAttribute("loginId"));
 		List<Total> iList=Irepo.getItemByMemberId(item);
 		model.addAttribute("iList", iList);
-//		
+		//추가
+				model.addAttribute("navi", navi);
 //		System.out.println(qTotalList);
 //		if (qTotalList.size() != 0) {
 //			for (QuestionTotal q : qTotalList) {
