@@ -50,12 +50,12 @@
 		           	 	+"<div class='panel-body' >"
 						+"<time class='comment-date' datetime=''><i class='fa fa-clock-o'></i> "+item.regdate+ "</time>"
 						+"</header>"
-						+"<div class='comment-post'> <p>"+item.memo+"</p>	</div>"
+						+"<div class='comment-post'> <p>"+item.memo+"</p>	</div></article></div>"
 				})		
 				panelbody.innerHTML+="<div class='search-form'>"
 					+"<input type='text' class='searchWord' id='memo' placeholder='메시지를 입력하세요'>"
 					+"<button onclick='Regist()'  type='button' style='margin-left:10px; font-size:12px;' class='btn btn-outline-primary btn-rounded waves-effect'>입력하기</button>"
-			   		+" </div>  </div> </div> </div> </article>"
+			   		+"   </div> </div> </div> "
 				console.log(result);
 			}
 		});
