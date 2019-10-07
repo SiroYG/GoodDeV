@@ -27,7 +27,6 @@
 		MEMBERid,
 		TITLE,
 		CONTENT,
-		QTYPE,
 		QCATEGORY,
 		originalFilename,
 		saveFilename,
@@ -43,7 +42,6 @@
 		MEMBERid,
 		TITLE,
 		CONTENT,
-		QTYPE,
 		QCATEGORY,
 		originalFilename,
 		saveFilename,
@@ -69,7 +67,6 @@
 			MEMBERid,
 			TITLE,
 			CONTENT,
-			QTYPE,
 			QCATEGORY,
 			originalFilename,
 			saveFilename,
@@ -84,7 +81,6 @@
 		update BOARD set
 		TITLE = #{title},
 		CONTENT = #{content},
-		QTYPE = #{qType},
 		QCATEGORY = #{qCategory}
 		<if test="originalFilename!= null">
 			originalFilename = #{originalFilename},
@@ -108,7 +104,6 @@
 		MEMBERID,
 		TITLE,
 		CONTENT,
-		QTYPE,
 		QCATEGORY,
 		<if test="originalFilename!= null">
 			originalFilename,
@@ -121,8 +116,7 @@
 		BOARD_SEQ.nextval
 		, #{memberId}
 		, #{title}
-		, #{content}
-		, #{qType}
+		, #{content}	
 		, #{qCategory}
 		<if test="originalFilename!= null">
 			, #{originalFilename}

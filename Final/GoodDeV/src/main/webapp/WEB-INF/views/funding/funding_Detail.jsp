@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<jsp:useBean id="toDay" class="java.util.Date" />
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -179,11 +182,6 @@
                                             </a> <a href=""> <span class="badge red mr-1">tag3</span>
                                             </a>
                                         </div>
-
-                                        <!--<p class="lead">
-                                           <span>가격 : (price)</span>
-                                        </p>-->
-
                                         <p class="lead font-weight-bold">펀딩 진행 기간 :
                                             ${fund.fundingStartDate} ~ ${fund.fundingDueDate}</p>
                                         <p class="lead font-weight-bold">
@@ -212,8 +210,9 @@
                                             </select> <br>
                                             <br>
                                             <p class="lead font-weight-bold">
-                                                구매 가격 : <span name="price">(옵션 해당 가격)</span>
+                                               남은날짜 : <span name="Time" ><input type="text" id="time" value="0" style="width: 40px;" disabled="disabled"></span>
                                             </p>
+                                          
                                             <!--<label for="">구매 가격 : <span name="price">(옵션 해당 가격)</span></label>-->
                                             <br>
                                         </form>
@@ -457,7 +456,48 @@
         </div>
       </div>
     </footer>
-
+    
+ 	<script>
+	     var amount = document.getElementById("amount");
+	     var eamil = document.getElementById("email");
+	     var tel = document.getElementById("tel");
+	     var addr = document.getElementById("addr");
+	     
+	     function amountcheck(){
+	     	  if (!isNaN(amount.value)===false) {
+	     			alert("금액을 입력해주세요.");
+	     			amount.value="";
+	     			return;
+	     		}
+	     }
+	     function paycheck(){
+	     	 if (!isNaN(amount.value)===false) {
+	  			alert("금액에는 숫자만 입력해주세요.");
+	  			return ;
+	  		}
+	     	 if (amount.value.length==0	|| amount.value=="") {
+	 			alert("금액이 입력되지 않았습니다.");
+	 			return ;
+	 		}	 if (email.value.length==0	|| amount.value=="") {
+	 			alert("이메일이 입력되지 않았습니다.");
+	 			return ;
+	 		}	 if (tel.value.length==0	|| amount.value=="") {
+	 			alert("전화번호가 입력되지 않았습니다.");
+	 			return ;
+	 		}
+	 		 if (addr.value.length==0	|| addr.value=="") {
+	 				alert("전화번호가 입력되지 않았습니다.");
+	 				return ;
+	 			}
+	     	var paywin = window.open('about:blank', 'payment', 'location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no, scrollbars=no, width=800, height=600');
+	     	var pay =document.pay;
+	     	pay.action = '/cloud/funding/paymentform';
+	     	pay.target='payment';
+	     	pay.method='GET';
+	     	pay.submit();
+	     }
+     </script>
+     
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />

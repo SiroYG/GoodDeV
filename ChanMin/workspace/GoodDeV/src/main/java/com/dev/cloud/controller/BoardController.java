@@ -123,7 +123,7 @@ public class BoardController {
 			return "redirect:/board/boardListForm";
 		}
 		System.out.println("수정실패");
-		return "/board/Board_update";
+		return "redirect:/board/goupdate";
 	}
 	
 	
@@ -193,6 +193,9 @@ public class BoardController {
 	@RequestMapping(value = "godelete", method = RequestMethod.GET)
 	public String godelete(int boardNum, Model model) {
 		System.out.println("게시글 삭제 " + boardNum);
+		int re = rep.deleteReply(boardNum);
+		System.out.println("197번줄re==>"+re);
+				
 		int result = dao.deleteBoard(boardNum);
 		if (result > 0) {
 

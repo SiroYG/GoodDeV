@@ -62,16 +62,7 @@ public class ItemController {
 
 	@RequestMapping(value = "/searchItem", method = RequestMethod.GET)
 	public String searchItem() { 
-		/*try {
-			ArrayList<String> list =  Python_TEST.pytest();
-			for(int i=0;i<list.size();i++){
-				System.out.println("68번줄==>"+list.get(i));
-			}
-			
-		} catch (IOException e) {
 		
-			e.printStackTrace();
-		}*/
 		
 		return "/search/search_item";
 	}

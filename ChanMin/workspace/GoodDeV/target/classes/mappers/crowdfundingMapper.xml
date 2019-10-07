@@ -59,16 +59,20 @@
 		,memberId
 		,fundingTitle
 		,fundingContents
+		,originalFileName
+		,savedFileName
 		)
 		VALUES (
 		crowdfunding_seq.NEXTVAL
 		,#{itemGoalPrice}
 		,#{itemCurrecyPrice}
-		,#{fundingDueDate}
+		,to_date(#{fundingDueDate},'YYYY-MM-DD')
 		,sysdate
 		,#{memberId}
 		,#{fundingTitle}
 		,#{fundingContents}
+		,#{originalFileName}
+		,#{savedFileName}
 		)
 	</insert>
 	 
@@ -108,9 +112,22 @@
 		,memberId
 		,fundingTitle
 		,fundingContents
+		,originalFileName
+		,savedFileName
 		from Crowdfunding
 		where crowdfundingNum = #{crowdfundingNum}
 	</select>
+	
+	<select id="selectfundingTitle" parameterType="String" resultType="Crowdfunding" >
+	select 
+			*
+	from 
+			Crowdfunding
+	where 
+			fundingTitle =#{fundingTitle}		
+	</select>
+	
+	
 	
 </mapper>
 	

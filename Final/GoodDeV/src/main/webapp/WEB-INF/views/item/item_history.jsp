@@ -135,23 +135,21 @@
   
 </table>
        <!--페이징 -->
-  <div class="page-center">
-  
+ <div class="page-center">
+  <br>
   <nav>
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <a class="page-link" aria-label="Previous">
+      <a class="page-link" aria-label="Previous" href="goItemHistory?currentPage=${navi.currentPage-navi.pagePerGroup}">
         <span aria-hidden="true">&laquo;</span>
         <span class="sr-only">Previous</span>
       </a>
     </li>
-    <li class="page-item active"><a class="page-link">1</a></li>
-    <li class="page-item"><a class="page-link">2</a></li>
-    <li class="page-item"><a class="page-link">3</a></li>
-    <li class="page-item"><a class="page-link">4</a></li>
-    <li class="page-item"><a class="page-link">5</a></li>
+  <c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup }">
+		    <li class="page-item"><a href="goItemHistory?currentPage=${page}" class="page-link">${page}</a>
+	</c:forEach>
     <li class="page-item">
-      <a class="page-link" aria-label="Next">
+      <a class="page-link" aria-label="Next" href="goItemHistory?currentPage=${navi.currentPage-1}">
         <span aria-hidden="true">&raquo;</span>
         <span class="sr-only">Next</span>
       </a>

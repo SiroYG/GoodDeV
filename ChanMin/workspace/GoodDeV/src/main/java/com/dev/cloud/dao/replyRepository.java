@@ -33,5 +33,15 @@ public class replyRepository {
 		}
 		return mapper.selectAll(Boardnum);
 	}
+	
+	public int deleteReply(int Boardnum){
+		replyMapper mapper = session.getMapper(replyMapper.class);
+		try {
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mapper.deleteReply(Boardnum);
+	}
+	
 
 }

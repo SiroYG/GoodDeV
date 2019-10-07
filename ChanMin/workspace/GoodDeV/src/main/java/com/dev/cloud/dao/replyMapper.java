@@ -9,4 +9,6 @@ public interface replyMapper {
 	public int insertRep(Reply reply);
 	
 	public List<Reply> selectAll(int Boardnum);
+	
+	public int deleteReply(int Boardnum);
 }

@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <title>SupporterS :: Survey list</title>
+    <title>Survey :: All list</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
-    <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
-    <script src="/cloud/resources/js/jquery-ui.min.js"></script>
    
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
@@ -21,168 +18,145 @@
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
-    <!-- <link rel="stylesheet" href="/cloud/resources/css/icomoon.css"> -->
+    <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/survey.css">
     
+    <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
+    <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     <script>
     $(function(){
-    	var searchItem= $("#searchItem").val();
-		var searchWord= $("#searchWord").val();
-		var str="";
- 		$.ajax({
-			
- 			  method: 'GET',
- 			  url: 'searchSurvey',
- 			  data: {
- 				'searchItem' : searchItem,
- 				'searchWord' : searchWord
- 			  },
- 			  success : function(res){
- 
- 				  $(".tbody").remove();
- 				  $.each(res,function(i,item){  
- 				
- 					i+=1;       					  
-					  str+='<tr>';
-     				  str+='<th scope="row">';
-     				  str+='<a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
-     				  str+=' <span>'+i+' </span> </a></th>';
-     				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
-     				  str+='<span>'+item.itemType+'</span> </a></th>';
-     				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
-     				  str+='<span>'+item.questionTitle+'</span> </a></th>';
-     				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
-     				  str+='<span>'+item.memberId+'</span> </a></th>';
-     				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
-     				  str+='<span>'+item.startDate+'</span> </a></th>';
-     				 str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
-    				  str+='<span>'+item.dueDate+'</span> </a></th>';
- 				  });
-				$('.tbodyAjax').html(str);
- 				 
-				  
- 			  }
-			  
-
- 		});	
-     	$(document).on('click', '#search', function(){
-    		var searchItem= $("#searchItem").val();
-    		var searchWord= $("#searchWord").val();
-    		var str="";
- 
-     		$.ajax({
-    			
-     			  method: 'GET',
-     			  url: 'searchSurvey',
-     			  data: {
-     				'searchItem' : searchItem,
-     				'searchWord' : searchWord
-     			  },
-     			  success : function(res){
-     			
-     				  $(".tbody").remove();
-     				  $.each(res,function(i,item){  
-     					 
-     					i+=1;       					  
-    					  str+='<tr>';
-         				  str+='<th scope="row">';
-         				  str+='<a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
-         				  str+=' <span>'+i+' </span> </a></th>';
-         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
-         				  str+='<span>'+item.itemType+'</span> </a></th>';
-         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
-         				  str+='<span>'+item.questionTitle+'</span> </a></th>';
-         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
-         				  str+='<span>'+item.memberId+'</span> </a></th>';
-         				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
-         				  str+='<span>'+item.startDate+'</span> </a></th>';
-         				 str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
-       				  	str+='<span>'+item.dueDate+'</span> </a></th>';
-     				  });
-    				$('.tbodyAjax').html(str);
-     				 
-    				  
-     			  }
-    			  
-
-     		});
-     		
-     		
-     	});
-     	
-     	//var status = $('#listbox-taskStatus option').attr('status');
-     	
+    	
+    	$(document).on('click', '#search', search);
+    		
     	$(document).on('click','#goSurvey_form_button', function(){
+    		
     		var itemNum =$('#item-option option:selected').attr("data-value");
         	
         	if(itemNum=='none'){
-        		alert("아이템을 선택해주세요.");
+        		alert("아이템을 선택해주세요.")
         		return;
         	}
     		
     		
     		var itemNum =$('#item-option option:selected').attr("data-value");
+    		
     		alert(itemNum);
+    		
     		$('#itemNum').html('<input type="hidden" name="itemNum" value='+itemNum+'>');
+    		
     		$('#goSurvey_form').submit();
+    		
     	}); 
      	
      	
     });    
+    function enterkey(){
+		if (window.event.keyCode == 13) {
+ 		   search();
+ 	   }else{
+ 		   return;
+ 	   }
+    }
+    
+    
+    function search(){
+    var searchItem= $("#searchItem").val();
+	var searchWord= $("#searchWord").val();
+	var str="";
+		alert("come")
+		alert(searchItem)
+		alert(searchWord)
+		
+		$.ajax({
+		
+			  method: 'GET',
+			  url: 'searchSurvey',
+			  data: {
+				'searchItem' : searchItem,
+				'searchWord' : searchWord
+			  },
+			  success : function(res){
+				  alert(res);
+				  $(".tbody").remove();
+				  $.each(res,function(i,item){  
+					i+=1;       					  
+				  str+='<tr>' 
+ 				  str+='<th scope="row">'
+ 				  str+='<a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
+ 				  str+=' <span>'+i+' </span> </a></th>'
+ 				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
+ 				  str+='<span>'+item.itemType+'</span> </a></th>'
+ 				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
+ 				  str+='<span>'+item.questionTitle+'</span> </a></th>'
+ 				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
+ 				  str+='<span>'+item.memberId+'</span> </a></th>'
+ 				  str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
+ 				  str+='<span>'+item.startDate+'</span> </a></th>'
+ 				 str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">'
+				  str+='<span>'+item.dueDate+'</span> </a></th>'
+				  })
+			$('.tbodyAjax').html(str);
+				 
+			  
+			  }
+		  
+
+		});
+    }
     
     </script>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-	  
-	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
-	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/cloud/home">SupporterS</a>
+            <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav nav ml-auto">
+                    <li class="nav-item"><a href="/cloud/home" class="nav-link"><span>Home</span></a></li>
                     <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
                     <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
                     <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
                     <li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드 펀딩</span></a></li>
-	  			 <c:if test="${sessionScope.loginId==null}">
-	  			 <li style="margin-left: 20px;" class="nav-item cta">
-                    <div class="dropdown show">
-                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="member-btn">로그인/회원가입</span>
-                        </a>
+                    <c:if test="${sessionScope.loginId==null}">
+                        <li style="margin-left: 20px;" class="nav-item cta">
+                            <div class="dropdown show">
+                                <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="member-btn">로그인/회원가입</span>
+                                </a>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="/cloud/member/gologin"><span class="member-btn">로그인</span></a>
-                            <a class="dropdown-item" href="/cloud/member/gosign"><span class="member-btn">회원가입</span></a>
-                            <a class="dropdown-item" href="/cloud/member/gofindid"><span class="member-btn">아이디/비밀번호 찾기</span></a>
-                        </div>
-                    </div>
-                    </li>
-				</c:if>
-				
-				<c:if test="${sessionScope.loginId!=null}">
-				<li style="margin-left: 20px;" class="nav-item cta">
-				<div class="dropdown show">
-                        <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
-                        </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="/cloud/member/gologin"><span class="member-btn">로그인</span></a>
+                                    <a class="dropdown-item" href="/cloud/member/gosign"><span class="member-btn">회원가입</span></a>
+                                    <a class="dropdown-item" href="/cloud/member/gofindid"><span class="member-btn">아이디/비밀번호 찾기</span></a>
+                                </div>
+                            </div>
+                        </li>
+                    </c:if>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="/cloud/member/goMypage">마이페이지</a>
-                            <a class="dropdown-item" href="/cloud/member/goupdate">회원 정보 수정</a>
-                            <a class="dropdown-item" href="/cloud/member/logout">로그아웃</a>
-                        </div>
-                    </div>
-				</li>
-				</c:if>
-				 </ul>
-	      </div>
-	    </div>
-	  </nav>
+                    <c:if test="${sessionScope.loginId!=null}">
+                        <li style="margin-left: 20px;" class="nav-item cta">
+                            <div class="dropdown show">
+                                <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="/cloud/member/goMypage">마이페이지</a>
+                                    <a class="dropdown-item" href="/cloud/member/goupdate">회원 정보 수정</a>
+                                    <a class="dropdown-item" href="/cloud/member/logout">로그아웃</a>
+                                </div>
+                            </div>
+                        </li>
+                    </c:if>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 	  <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_8.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -229,8 +203,6 @@
 
    <tbody class="tbody">
   <c:forEach var="qTotal" items="${qTotalList}" varStatus="status">
-    
-    <c:if test="${sessionScope.loginId != qTotal.memberId}">
     <tr>
       <th scope="row"> <a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span>${status.count} </span> </a></th>
       <td ><a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span><c:out value="${qTotal.itemType}" /></span> </a></td>
@@ -239,8 +211,6 @@
       <td ><a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span><c:out value="${qTotal.startDate}" /></span> </a></td>
       <td ><a href="gosurvey_Detail?questionTimeNum=${qTotal.questionTimeNum }"> <span><c:out value="${qTotal.dueDate}" /></span> </a></td>
     </tr>
-    </c:if>
-    
   </c:forEach>
   
   </tbody> 
@@ -248,7 +218,7 @@
     
 </table>
 
-<button type="button" class="btns btn-3" data-toggle="modal" data-target="#exampleModal">진행하기</button>
+<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">진행하기</button>
 
 
        <!--페이징 & 검색-->
@@ -276,66 +246,74 @@
   </ul>
 </nav>
       </div>
-<form action="" method="post" class="search-form" id="search-form">
+<!-- <form action="" method="post" class="search-form" id="search-form"> -->
 <!--Blue select-->
-
-<select class="browser-default custom-select" name="searchItem">
- <option value="all" selected>분류</option>
+<select name="searchItem" class="searchItem" id="searchItem">
+ <option value="all" selected>없음</option>
   <option value="title" >제목</option>
   <option value="content">내용</option>
   <option value="id">작성자</option>
 </select>
 
-<input type="text" name="searchWord" class="searchWord" placeholder="  Search" id="searchWord">
+<input onkeyup="javascript : enterkey();" type="text" name="searchWord" class="searchWord" placeholder="  Search" id="searchWord">
 <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" id="search">검색하기</button>
-    </form>
+<!--     </form> -->
           </div>
           </div>
     </section>
 		
 
-   <footer class="ftco-footer ftco-section">
+    <footer class="ftco-footer ftco-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">About <span>SupporterS</span></h2>
-              <p>창업자가 궁금해하는 것, <br>필요로 하는 것, <br>필요로 할 것들을 최대한 지원하기 위해 만든 사이트입니다.</p>
+              <h2 class="ftco-heading-2">About <span>Neutral</span></h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
             </div>
           </div>
           <div class="col-md">
             <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">바로가기</h2>
+              <h2 class="ftco-heading-2">Links</h2>
               <ul class="list-unstyled">
-                <li><a href="/cloud/home"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
-                <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"></span>검색 및 특허 관련</a></li>
-                <li><a href="/cloud/board/boardListForm"><span class="icon-long-arrow-right mr-2"></span>Q & A 게시판</a></li>
-                <li><a href="/cloud/survey/surveyListForm"><span class="icon-long-arrow-right mr-2"></span>블라인드 테스트</a></li>
-                <li><a href="/cloud/funding/fundingListForm"><span class="icon-long-arrow-right mr-2"></span>크라우드 펀딩</a></li>
-                <li><a href="/cloud/home#contact-section"><span class="icon-long-arrow-right mr-2"></span>공식 연락처</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>About</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Practice Areas</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Attorneys</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Blog</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
               </ul>
             </div>
           </div>
           <div class="col-md">
              <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">검색 및 특허 관련</h2>
+              <h2 class="ftco-heading-2">Practice Areas</h2>
               <ul class="list-unstyled">
-                <li><a href="/cloud/member/searchGo"><span class="icon-long-arrow-right mr-2"> 특허 검색</span></a></li>
-                <li><a href="/cloud/member/"><span class="icon-long-arrow-right mr-2"> 제품 검색</span></a></li>
-                 <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"> 특허 출원 신청</span></a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Family Law</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Business Law</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Insurance Law</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Criminal Law</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Drug Offenses</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Property Law</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Employment Law</a></li>
               </ul>
             </div>
           </div>
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">찾아오는 길</h2>
+            	<h2 class="ftco-heading-2">Have a Questions?</h2>
             	<div class="block-23 mb-0">
 	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">4th floor, 513, Yeongdong-daero, Gangnam-gu, Seoul, Republic of Korea</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+82 02 6000 0114</span></a></li>
+	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
 	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
 	              </ul>
 	            </div>
+	            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-4">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -343,7 +321,7 @@
     </footer>
 
   <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6082cc"/></svg></div>
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
  <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -357,10 +335,17 @@
                 </div>
                 <div class="modal-body">
                   <form action="goSurvey_form" method="get" id="goSurvey_form">
+                       <!-- <div class="form-group">
+                            <label for="appointment_name" class="text-black">신청인</label>
+                            <input type="text" class="form-control" id="appointment_name" placeholder="이름을 입력해주세요">
+                        </div>
+                        <div class="form-group">
+                            <label for="appointment_patentnum" class="text-black">특허번호</label>
+                            <input type="text" class="form-control" id="appointment_patentnum" placeholder="KR000000000" readonly="readonly">
+                        </div>-->
                         <label for="item-option" class="text-black">제품 선택</label><br>
                         <select id="item-option" name="searchItem">
                             <option data-value="none" selected>테스트 진행을 위한 제품을 선택해주세요</option>
-                            
                             <c:forEach var="item" items="${iList }" varStatus="status">
                             <option class="temp" data-value="${item.itemNum}">${status.count }. ${item.itemName }</option>
                             </c:forEach>
@@ -368,8 +353,17 @@
                         </select><br><br>
                         <div id="itemNum">
                         
+                    
                         </div>
-                       
+                        
+
+                        <!--<div class="form-group">
+                <label for="appointment_message" class="text-black">Message</label>
+                <textarea name="" id="appointment_message" class="form-control" cols="30" rows="10"></textarea>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Send Message" class="btn btn-primary">
+              </div>-->
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -383,9 +377,7 @@
   <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/cloud/resources/js/popper.min.js"></script>
- 
   <script src="/cloud/resources/js/bootstrap.min.js"></script>
-  
   <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
   <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
   <script src="/cloud/resources/js/jquery.stellar.min.js"></script>

@@ -108,13 +108,13 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label"><span><b>작성자</b></span></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="" name="memberId" placeholder="${sessionScope.loginId}" readonly="readonly">
+                        <input type="text" class="form-control" id="" name="memberId" placeholder="${sessionScope.loginId}" readonly="readonly" >
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label"><span><b>진행 시작 날짜</b></span></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="fundingStartDate" id="" placeholder="<fmt:formatDate value="${toDay}" pattern="yyyy.MM.dd" />" readonly="readonly">
+                        <input type="text" class="form-control" name="fundingStartDate" id="startdate" value="<fmt:formatDate value="${toDay}" pattern="yyyy-MM-dd" />" readonly="readonly" onchange="call()">
                     </div>
 
                 </div>
@@ -122,10 +122,10 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label"><span><b>진행 마감 날짜</b></span></label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" name="fundingDueDate" id="" placeholder="<fmt:formatDate value="${toDay}" pattern="yyyy.MM.dd" />">
+                        <input type="date" class="form-control" name="fundingDueDate" id="enddate" value="<fmt:formatDate value="${toDay}" pattern="yyyy-MM-dd" />" oninput="call()" onchange="call()" >
                     </div>
                 </div>
-
+					<input type="hidden" id="days" size="6">
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label"><span><b>제목</b></span></label>
                     <div class="col-sm-10">
@@ -252,6 +252,32 @@
         </div>
       </div>
     </footer>
+<script>
+function call(){
+    var sdd = document.getElementById("startdate").value;
+    var edd = document.getElementById("enddate").value;
+    var ar1 = sdd.split('-');
+    var ar2 = edd.split('-');
+    var da1 = new Date(ar1[0], ar1[1], ar1[2]);
+    var da2 = new Date(ar2[0], ar2[1], ar2[2]);
+    var dif = da2 - da1;
+    var cDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+    var cMonth = cDay * 30;// 월 만듬
+    var cYear = cMonth * 12; // 년 만듬
+ if(sdd && edd){
+//     document.getElementById('years').value = parseInt(dif/cYear);
+//     document.getElementById('months').value = parseInt(dif/cMonth);
+    document.getElementById('days').value = parseInt(dif/cDay);
+    var days =document.getElementById('days');
+    var edd = document.getElementById("enddate").value;
+    if(days.value<0){
+  	  alert("종료일은 시작일보다 늦어야합니다.");
+  	  $('#enddate').val('');
+  	  return
+    }
+ }
+}
+</script>
 
      <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6082cc"/></svg></div>
@@ -272,4 +298,5 @@
 
     <script src="/cloud/resources/js/main.js"></script>
 
-</body></html>
+</body>
+</html>
