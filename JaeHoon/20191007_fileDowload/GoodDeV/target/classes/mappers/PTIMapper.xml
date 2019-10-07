@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.cloud.dao.PTIMapper">
+<insert parameterType="ItemDo" id="insertPTI">
+insert into PTI (
+				pti_seq
+				,itemNum
+				,patentNum
+				,contract
+				,contractDate
+				)VALUES (
+				PTI_seq.NEXTVAL
+				,#{itemNum}
+				,#{patentNum}
+				,'wait'
+				,SYSDATE
+				) 
+				</insert>
+
+<update parameterType="PdpVo" id="updatePTI">
+UPDATE PTI
+	SET
+	contract = #{contract}
+where
+	PTI_seq=#{PTI_seq} 
+</update>
+
+<select id="selectPti" parameterType="int" resultType="PTI">
+select 
+		PTI_seq
+		,itemNum
+		,patentNum
+		,contract
+		,to_char(contractDate,'YYYY-MM-DD') as contractDate
+from 
+		pti
+where 
+		PTI_seq = #{PTI_seq}
+</select>
+
+<select id="ptiNums" parameterType="PTI" resultType="PTI">
+select * from pti 
+where itemNum = #{itemNum} and patentNum = #{patentNum}
+</select>
+
+
+</mapper>
+
+
