@@ -25,7 +25,7 @@ public interface itemMapper {
 		public Total goItemDetail(Total total);
 		
 		//셀렉byId
-		public ArrayList<Total> getItemByMemberId(Total total);
+		public List<Total> getItemByMemberId(Total total);
 		
 		public List<Total> getIdDe(Total total);
 		//아이템등록시 (가계약에서)생성된 아이템 수정 또는 아이템수정
@@ -43,6 +43,7 @@ public interface itemMapper {
 		
 		public Total getOneItemByItemNum(Total total);
 		
+		public List<Item> selectItemMem(String memberId);
 		
 		public Item selectItemName(String itemName);
 }
