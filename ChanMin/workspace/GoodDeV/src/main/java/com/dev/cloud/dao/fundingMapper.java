@@ -21,6 +21,7 @@ public interface fundingMapper {
 	
 	public List<Crowdfunding> mypageFunding(String memberId);
 	
+	public Crowdfunding selectfundingTitle(String fundingTitle);
 	
 	public int updateCurrentPrice(Crowdfunding crowdfunding);
 }

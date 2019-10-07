@@ -26,10 +26,10 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -62,16 +62,7 @@ public class ItemController {
 
 	@RequestMapping(value = "/searchItem", method = RequestMethod.GET)
 	public String searchItem() { 
-		/*try {
-			ArrayList<String> list =  Python_TEST.pytest();
-			for(int i=0;i<list.size();i++){
-				System.out.println("68번줄==>"+list.get(i));
-			}
-			
-		} catch (IOException e) {
 		
-			e.printStackTrace();
-		}*/
 		
 		return "/search/search_item";
 	}
@@ -312,6 +303,45 @@ public class ItemController {
 			return "redirect:/goItemWrite";
 		}
 	}
+	
+	@RequestMapping(value = "/fileDownload")
+	public  void fileDownload(
+			  @RequestParam("document_nm") String document_nm, Total total
+			, HttpSession session
+			, HttpServletRequest req
+			, HttpServletResponse res
+			, ModelAndView mav) throws Throwable 
+	{
+		
+		
+		
+	
+		String documentName=document_nm;
+		System.out.println("document_nm"+document_nm);
+		System.out.println("total"+total);
+		
+		
+		Total totalItem= repo.getOneItemByItemNum(total);
+		System.out.println("totalItem"+totalItem);
+
+		String savedDocumentFileName=totalItem.getSaveDocumentFilename();
+		
+		System.out.println("savedDocumentFileName"+savedDocumentFileName);
+
+		try {
+//			DownloadView fileDown = new DownloadView(); //파일다운로드 객체생성
+			
+			FileService.filDown(req, res, "/PatentSub" + "/" , savedDocumentFileName, documentName); //파일다운로드 
+			//C:/PatentSub
+			//FileService.filDown(req, res, "/PatentSub" + "/" , "파일이름이력", "다운받았을때출력되는파일이름입력"); //파일다운로드 
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
+	
 	
 }
 

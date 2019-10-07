@@ -77,4 +77,14 @@ public class fundingRepository {
 		return result;
 	}
 	
+	public Crowdfunding selectfundingTitle(String fundingTitle){
+		fundingMapper mapper = sqlSession.getMapper(fundingMapper.class);
+		
+		Crowdfunding result = mapper.selectfundingTitle(fundingTitle);
+
+		return result;
+		
+	}
+	
+	
 }
