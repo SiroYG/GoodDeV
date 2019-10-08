@@ -337,14 +337,15 @@ public class SurveyController {
 	public List<QuestionTotal> searchSurvey(Model model, Search search, HttpSession session) {
 		System.out.println("line ++255");
 		List<QuestionTotal> qtLsist = new ArrayList<>();
-		qtLsist = IsRepo.selectBySearchItem(search);
+		System.out.println(search);
+		qtLsist = IsRepo.selectBySearchItem();
 		System.out.println("qtLsist : "+qtLsist);
 		String sessionId=(String) session.getAttribute("loginId");
 		ArrayList<QuestionTotal> qTotalList = new ArrayList<>();
 	
 		
-		if (qtLsist.size() == 0) {
-			return null;
+		if (qtLsist.size() == 0||qtLsist==null) {
+			return qtLsist;
 		}
 		
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");

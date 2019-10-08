@@ -65,6 +65,9 @@ $(function() {
         $('mesgs').attr('disabled', 'disabled');
         $('.chat_people').not(this).parent().css("background-color", "#f8f8f8");
     });
+  
+   
+     
     
     /*채팅(하는 것처럼 보이는) ajax*/
     $('#msg_send_btn').on('click', function() {
@@ -86,6 +89,41 @@ $(function() {
     });
 
 });
+
+
+function paycheck(){
+	var amount = document.getElementById("amount");
+	var eamil = document.getElementById("email");
+	var tel = document.getElementById("tel");
+	var addr = document.getElementById("addr");
+	 if (!isNaN(amount)) {
+			alert("금액에는 숫자만 입력해주세요.");
+			return false ;
+		}
+	 if (amount.value.length==0	|| amount.value=="") {
+		alert("금액이 입력되지 않았습니다.");
+		return false;
+	}	 if (email.value.length==0	|| amount.value=="") {
+		alert("이메일이 입력되지 않았습니다.");
+		return false;
+	}	 if (tel.value.length==0	|| amount.value=="") {
+		alert("전화번호가 입력되지 않았습니다.");
+		return false;
+	}
+	 if (addr.value.length==0	|| addr.value=="") {
+			alert("전화번호가 입력되지 않았습니다.");
+			return false;
+		}
+	var paywin = window.open('about:blank', 'payment', 'location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no, scrollbars=no, width=800, height=600');
+	var pay =document.pay;
+	pay.action = '/cloud/funding/paymentform';
+	pay.target='payment';
+	pay.method='GET';
+	pay.submit();
+	
+	
+}
+
 
  function btn(){
 	 var popup= document.getElementById("popup");
@@ -444,46 +482,7 @@ $(function() {
       </div>
     </footer>
   <script>
-     var amount = document.getElementById("amount");
-     var eamil = document.getElementById("email");
-     var tel = document.getElementById("tel");
-     var addr = document.getElementById("addr");
-     
-     function amountcheck(){
-     	  if (!isNaN(amount.value)===false) {
-     			alert("금액을 입력해주세요.");
-     			amount.value="";
-     			return;
-     		}
-     }
-     function paycheck(){
-     	 if (!isNaN(amount.value)===false) {
-  			alert("금액에는 숫자만 입력해주세요.");
-  			return ;
-  		}
-     	 if (amount.value.length==0	|| amount.value=="") {
- 			alert("금액이 입력되지 않았습니다.");
- 			return ;
- 		}	 if (email.value.length==0	|| amount.value=="") {
- 			alert("이메일이 입력되지 않았습니다.");
- 			return ;
- 		}	 if (tel.value.length==0	|| amount.value=="") {
- 			alert("전화번호가 입력되지 않았습니다.");
- 			return ;
- 		}
- 		 if (addr.value.length==0	|| addr.value=="") {
- 				alert("전화번호가 입력되지 않았습니다.");
- 				return ;
- 			}
-     	var paywin = window.open('about:blank', 'payment', 'location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no, scrollbars=no, width=800, height=600');
-     	var pay =document.pay;
-     	pay.action = '/cloud/funding/paymentform';
-     	pay.target='payment';
-     	pay.method='GET';
-     	pay.submit();
-     	
-     	
-     }
-      
+  
+ 
      </script>
 </html>

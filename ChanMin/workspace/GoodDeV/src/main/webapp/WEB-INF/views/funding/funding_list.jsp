@@ -113,7 +113,7 @@
                 <c:if test="${not empty list}">
                     <c:forEach var="board" items="${list}" varStatus="stat">
                         <div class="col-md-4 d-flex">
-                            <div class="blog-entry justify-content-end">
+                            <div class="blog-entry">
                                 <div class="text">
                                     <h3 class="heading"><a href="fundingDetail?crowdfundingNum=${board.crowdfundingNum}">${board.fundingTitle}</a></h3>
                                 </div>
@@ -130,9 +130,11 @@
                     </c:forEach>
                 </c:if>
             </div>
+            <c:if test="${sessionScope.loginType!='client'}">
             <div>
                 <a href="/cloud/funding/gofundingform" class="btns btn-3"><span class="white">펀딩 진행하기</span></a><br><br>
             </div>
+            </c:if>
             <!--페이징 & 검색-->
             <div class="page-center">
                 <nav>

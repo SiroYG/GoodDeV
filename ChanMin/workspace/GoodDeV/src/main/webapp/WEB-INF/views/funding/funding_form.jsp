@@ -40,8 +40,11 @@
      					var tag ="";
      				
      					$.each(res,function(i,item){
+     						var type = item.itemType;
+     						if(type!='none'){
      						tag +='<option value="'+item.itemName+'">'+item.itemName+'</option>'
-     					})  					
+     						}
+     						})  					
      					 $('#fundingTitle').html(tag);
      				}
      					

@@ -18,7 +18,7 @@
 				,#{comments}
 				,#{itemVersion}
 				,#{historyDate}
-				)
+   				)
 </insert>
 
 <select parameterType="Total" id="selectAllHistory" resultType="Total">

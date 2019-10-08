@@ -258,9 +258,9 @@
 
 
                 </table>
-
+				<c:if test="${sessionScope.loginType!='client'}">
                 <button type="button" class="btns btn-3" data-toggle="modal" data-target="#exampleModal">진행하기</button>
-
+				</c:if>
 
                 <!--페이징 & 검색-->
 			 <div class="page-center">

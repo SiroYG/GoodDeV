@@ -91,11 +91,11 @@ public class memberRepository implements memberMapper {
 	}
 
 	@Override
-	public int devmemberPrice(Payment payment) {
+	public int devmemberPrice(devMember member) {
 		memberMapper mapper=session.getMapper(memberMapper.class);
 		int result=0;
 		try {
-			result= mapper.devmemberPrice(payment);
+			result= mapper.devmemberPrice(member);
 
 		} catch (Exception e) {
 			e.printStackTrace();

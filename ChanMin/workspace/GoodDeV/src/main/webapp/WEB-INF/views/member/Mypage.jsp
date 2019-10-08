@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>My Page ::</title>
+    <title>SupporterS :: My Page</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     
@@ -142,13 +142,14 @@ function patent(){
 		   		var patentContent = item.patentContent;
 		   		var patentHolderName = item.patentHolderName;
 		   		
-		   	  if (patentNum.length >= 10) {
-                  //patentNum = patentNum.split("-",2)+"...";
-                  patentNum = patentNum.substr(0, 10) + "...";
-                  tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
-              }  else {
-                  tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
-              }
+
+		   		if (patentNum.length >= 10) {
+		   		                  //patentNum = patentNum.split("-",2)+"...";
+		   		                  patentNum = patentNum.substr(0, 10) + "...";
+		   		                  tag += '<th scope="row" name="특허번호"><a class="lcm" data-id="'+item.patentNum+'">' + patentNum + '</a></th>'
+		   		              }  else {
+		   		                  tag += '<th scope="row" name="특허번호"><a class="lcm" data-id="'+item.patentNum+'">' + patentNum + '</a></th>'
+		   		              }
               
               if (patenttype == null) {
                   //patenttype = patenttype.substr(0,7)+"...";
@@ -200,9 +201,17 @@ function patent(){
     		tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
     	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
     	    tag +=	'</div>'
-        $('#section-bar-patent').html(tag);	
+        $('#section-bar-patent').html(tag);
+    	$('.lcm').on('click',pop);    
     }
 }
+
+function pop(){
+	var patentNum = $(this).attr('data-id');
+	// window.open("/cloud/funding/fundingChat?crowdfundingNum="+crowdfundingNum, "PopupWin", "width=800,height=700");
+	window.open("/cloud/patent/patentDetail?patentNum="+patentNum,"PopupWin","width=800,height=700")
+}
+
 
 function item(){
 	var pageSu;
@@ -270,12 +279,12 @@ function item(){
         tag += '<table class="iTable">'
         tag += '<caption class="table_title"><b>시제품 및 출시품 목록</b></caption>'
         tag += '<div class="cap-btn">'
-        tag += '<a href="#" id="itemSign" class="btn btn-outlinr-info">제품 등록</a>'
-        tag += '<a href="/cloud/item/goItemHistory"  class="btn btn-outlinr-info">제품 수정 기록 보기</a>'
+        tag += '<a href="#" id="itemSign" class="btns btn3" style="margin-right : 30px;">제품 등록</a>'
+        tag += '<a href="/cloud/item/goItemHistory"  class="btns btn-3-comments">제품 수정 기록 보기</a>'
         tag += '</div>'
         tag += '<thead class="navy">' 
         tag += '<tr>'   
-        tag += '<th scope="col">Item No.</th>'        
+        tag += '<th scope="col" style="text-align:center;">Item No.</th>'        
         tag += '<th scope="col">분류</th>'       
         tag += '<th scope="col">제품명</th>'    
         tag += '<th scope="col">제품 설명</th>'     
@@ -525,7 +534,7 @@ function boardTable(pageSu){
 function output(res){
 			var tag = '';            
         	tag += '<table class="table">'
-        	tag += '<caption class="table_title"><b>내가 작성한 게시글</b></caption>'
+        	tag += '<caption class="table_title"><b>게시글 목록</b></caption>'
 	        tag += '<thead class="navy">' 
 	        tag += '<tr>'   
 	        tag += '<th scope="col">No.</th>'        
@@ -658,6 +667,8 @@ function fundList(){
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <span><b>내 게시글 목록</b></span>
                             </a></li>
+                        
+                        <c:if test="${sessionScope.loginType == 'inventor'||sessionScope.loginType == 'enp'}">
                         <li><a id="patentList" href="#section-shape-patent"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
@@ -670,6 +681,7 @@ function fundList(){
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <span><b>시제품, 출시품 등록 현황</b></span>
                             </a></li>
+                        </c:if>
                         <li><a href="#section-shape-survey" id="shape-survey"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
