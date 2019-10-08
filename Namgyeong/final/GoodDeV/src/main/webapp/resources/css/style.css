@@ -2721,8 +2721,8 @@ input[type="button"].btn-block {
     border-bottom-right-radius: calc(0.25rem - 1px);
     border-bottom-left-radius: calc(0.25rem - 1px); }
   .dropdown-item:hover, .dropdown-item:focus {
-    color: #16181b;
-    text-decoration: none;
+    color: #16181b; /* #16181b */
+    text-decoration: underline;
     background-color: #f8f9fa; }
   .dropdown-item.active, .dropdown-item:active {
     color: #fff;

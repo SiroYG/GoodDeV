@@ -44,6 +44,8 @@
 
                     $(".tbody").remove();
                     $.each(res, function(i, item) {
+                    	var memid = item.memberId;
+                    	
 
                         i += 1;
                         str += '<tr>';
@@ -57,6 +59,7 @@
      					 str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
         				 str+='<span>'+[출시품]+'</span> </a></th>';
      				  } */
+			 	
                         str += '<td ><a href="gosurvey_Detail?questionTimeNum=' + item.questionTimeNum + '">';
                         str += '<span>' + item.itemType + '</span> </a></th>';
                         str += '<td ><a href="gosurvey_Detail?questionTimeNum=' + item.questionTimeNum + '">';
@@ -67,6 +70,7 @@
                         str += '<span>' + item.startDate + '</span> </a></th>';
                         str += '<td ><a href="gosurvey_Detail?questionTimeNum=' + item.questionTimeNum + '">';
                         str += '<span>' + item.dueDate + '</span> </a></th>';
+       
                     });
                     $('.tbodyAjax').html(str);
 
