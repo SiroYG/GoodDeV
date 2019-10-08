@@ -34,8 +34,8 @@ public class PythonServlet {
 	public java.util.List<Crawling> service(HttpServletRequest request, HttpServletResponse response,String keyWord){
 	
 		
-		ProcessBuilder builder = new ProcessBuilder("C:/Users/창민/AppData/Local/Programs/Python/Python37/python","C:/Program Files/pythonTest.py",keyWord,"world","apple");
-		//ProcessBuilder builder = new ProcessBuilder("C:/Users/Administrator/AppData/Local/Programs/Python/Python37/python","C:/Program Files/pythonTest.py",keyWord,"world","apple");
+		//ProcessBuilder builder = new ProcessBuilder("C:/Users/창민/AppData/Local/Programs/Python/Python37/python","C:/Program Files/pythonTest.py",keyWord,"world","apple");
+		ProcessBuilder builder = new ProcessBuilder("C:/Users/Administrator/AppData/Local/Programs/Python/Python37/python","C:/Program Files/pythonTest.py",keyWord,"world","apple");
 		Process process=null;
 		String a ="";
 		try {

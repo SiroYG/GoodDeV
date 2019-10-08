@@ -179,7 +179,8 @@ public class FundingController {
 		//devmember 멤버  fundPrice update ,   여기 잘못처리!!!!!
 		System.out.println("150번줄payment==>"+payment);
 		System.out.println("154번줄amount==>"+amount);
-		devMember member = mempo.selectmemId(payment.getMemberId());
+		String memberId = (String) session.getAttribute("loginId");
+		devMember member = mempo.selectmemId(memberId);
 		System.out.println("153번줄member==>"+member);
 		payment.setAmount(payment.getAmount()+member.getFundPrice());
 		int result = mempo.devmemberPrice(payment);
