@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class officialFile {
-private String officalFile_seq;
-private String originalFileName;
-private String saveFileName;
+		private String officalFile_seq;
+		private String originalFileName;
+		private String saveFileName;
 
 }

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <title>SupporterS :: Search Patent</title>
+    <title>Search :: </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -15,12 +15,27 @@
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
+
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/search.css">
+    
+     <style>
+    div.tri-btn{
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 auto;
+    justify-content : center;
+    }
+    
+    .btn-primary{
+    margin-left :10px;
+    margin-right:10px;
+    }
+    </style>
     
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 	<script src="/cloud/resources/js/jquery-ui.min.js"></script>
@@ -77,7 +92,7 @@
  	    					alert('성공');
  	    					$('#exampleModal').modal('hide');
  	    				}else{
- 	    					alert('실패')
+ 	    					alert('이미 사용중인 특허번호입니다.');
  	    				}
  	    			}
  	    		})	 
@@ -96,8 +111,10 @@
     		success : function(res){
     			var tag ="";
     			$.each(res,function(i,item){
+    				
     				tag += '<option value="'+item.itemNum+'">'+item.itemName+'</option>'
-    			})
+    				
+    				})
     			$('#item-option').html(tag);
     		}
     	})
@@ -163,7 +180,7 @@
     function patentTable(pageSu){
  	    var searchWord =$('#searchWord').val()	
  	   	var searchItem =$('#searchItem').val()
- 	   	var patentType =$('#patentType').val()
+ 	   	var patentType  =$('#patentType').val()
  	   
  	   $.ajax({
  	   		url : 'patentTable',
@@ -181,9 +198,8 @@
     }
     function output(res){
  	   	var tag = '';
- 	   /* '<table class="pTable">' */
-        tag += '<table class="table">'
-        tag += '<caption class="table_title">검색 결과</caption>'
+        tag += '<table class="pTable">'
+        tag += '<caption class="table_title"><b>검색하신 특허결과입니다.</b></caption>'
         tag += '<thead class="navy">' 
         tag += '<tr>'   
         tag += '<th scope="col">No.</th>'        
@@ -198,67 +214,78 @@
     		   
     		   
 
-    	   $.each(res,function(i,item){
-    		   tag += '<tr>'
-        		   var patentNum = item.patentNum;
-        			var patenttype = item.patenttype;
-        			var patentName = item.patentName;
-        			var patentContent = item.patentContent;
-        			var patentHolderName = item.patentHolderName;
-        			
-        			if(patentNum.length >= 10){
-        				//patentNum = patentNum.split("-",2)+"...";
-        				//patentNum = patentNum.substr(0,8)+"...";
-        			 tag += '<th scope="row" name="특허번호">'+patentNum+'</th>'
-        			}
-        			if(patenttype.length >= 8){
-        				//patenttype = patenttype.substr(0,7)+"...";
-        				tag += '<td name="분류" >'+patenttype+'</td>'
-        			}
-        			if(patentName.length >= 15){
-        				patentName = patentName.substr(0,26)+"...";
-        			    tag += '<td name="특허명" ><b>'+patentName.split("(", 1)+'</b></td>'
-        			}
-        			/* if(patentContent.length >= 20){
-        				patentContent = patentContent.substr(0,40)+"...";
-        			    tag += '<td name="특허설명" ><b>'+patentContent+'</b></td>'
-        			} */
-        			if(patentHolderName.length >= 5){
-        				patentHolderName = patentHolderName.substr(0,4)+"...";
-        			    tag += '<td name="특허 보유자" >'+patentHolderName+'</td>'	
-        			}
+    		   $.each(res, function(i, item) {
+                   tag += '<tr>'
+                   var patentNum = item.patentNum;
+                   var patenttype = item.patenttype;
+                   var patentName = item.patentName;
+                   var patentContent = item.patentContent;
+                   var patentHolderName = item.patentHolderName;
 
-        			else{
-        				tag += '<tr>'
-        		 	   	  	tag += '<th scope="row" name="특허번호">'+patentNum+'</th>'        
-        		    	   		tag += '<td name="분류" >'+patenttype+'</td>'
-        		    	   		tag += '<td name="특허명" ><b>'+patentName+'</b></td>'
-        		    	   		/* tag += '<td name="특허설명" ><b>'+patentContent+'</b></td>' */
-        		    	   		tag += '<td name="특허 보유자" >'+patentHolderName+'</td>'	
-        			}
-     
-        	   	if(item.patentRegDate != null){
-        	   		tag += '<td name="등록날짜">'+item.patentRegDate+'</td>'
-        	   	}else{
-        	   		tag += '<td >[등록 진행중]</td>'
-        	   	}
-        	   		
-        	   		tag += '<td name="서식파일보기" ><button type="button" class="pri" data-value="'+item.patentNum+'" data-toggle="modal" data-target="#exampleModal">사용 허가 신청</button></td>'            
-        	   		//인터셉터 처리
-        	   		tag += '</tr>'        
-        	   	})
-        	   
-        	    tag += '</tbody>'
-        	    tag += '</table>' 
-        	    tag += '<br>'
-        		tag += '<div class="tri-btn">'
-        		tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
-        	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
-        	    tag +=	'</div>'
-        $('#section-bar-patent').html(tag);	
-    	$('.pri').on('click',checking);    
-    	$('.pri').on('click',selectIt);
-    }
+                   if (patentNum.length >= 10) {
+                       //patentNum = patentNum.split("-",2)+"...";
+                       patentNum = patentNum.substr(0, 10) + "...";
+                       tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
+                   }  else {
+                       tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
+                   }
+                   
+                   if (patenttype == null) {
+                       //patenttype = patenttype.substr(0,7)+"...";
+                       tag += '<td name="분류" >' + '' + '</td>'
+                   } else if(patenttype.length >= 8 ){
+                      tag += '<td name="분류" >' + patenttype + '</td>'
+                   }
+                   
+                   if (patentName==null) {
+                      tag += '<td name="특허명"><b>' + '' + '</b></td>'
+                   } else if(patentName.length >= 15){
+                       patentName = patentName.substr(0, 24) + "...";
+                        tag += '<td name="특허명"><b>' + patentName.split("(", 1) + '</b></td>'
+                   }else{
+                      tag += '<td name="특허명"><b>' + patentName + '</b></td>'
+                   }
+                   /* if(patentContent.length >= 20){
+                      patentContent = patentContent.substr(0,40)+"...";
+                       tag += '<td name="특허설명" ><b>'+patentContent+'</b></td>'
+                   } */
+                   if (patentHolderName.length >= 5) {
+                       patentHolderName = patentHolderName.substr(0, 4) + "...";
+                       tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
+                   } else {
+                      tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
+                   }
+                  /*  else {
+                       tag += '<tr>'
+                       tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
+                       tag += '<td name="분류" >' + patenttype + '</td>'
+                       tag += '<td name="특허명" ><b>' + patentName + '</b></td>'
+                       /* tag += '<td name="특허설명" ><b>'+patentContent+'</b></td>' 
+                       tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
+                   } */
+
+                   if (item.patentRegDate != null) {
+                       tag += '<td name="등록날짜">' + item.patentRegDate + '</td>'
+                   } else {
+                       tag += '<td >[등록진행중]</td>'
+                   }
+
+                   tag += '<td name="서식파일보기" ><button type="button" class="pri" data-value="' + item.patentNum + '" data-toggle="modal" data-target="#exampleModal">신청하기</button></td>'
+                   //인터셉터 처리
+                   tag += '</tr>'
+               })
+    	    	   
+    	    	    tag += '</tbody>'
+    	    	    tag += '</table>' 
+    	    	    tag += '<br><br>'
+    	    		tag += '<div class="tri-btn">'
+    	    		tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
+    	    	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
+    	    	    tag +=	'</div>'
+    	        $('#section-bar-patent').html(tag);	
+    	    	$('.pri').on('click',checking);    
+    	    	$('.pri').on('click',selectIt);
+    	    }
 
     
     function loginGo(){
@@ -275,7 +302,7 @@
     
     </script>
   </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	
    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
@@ -325,6 +352,7 @@
 	      </div>
 	    </div>
 	  </nav>
+
 
 
 	  <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_10-1.jpg');" data-stellar-background-ratio="0.5">
@@ -382,7 +410,7 @@
       	<option value="onlypatenttype" >특허 산업분야만 검색</option>
           <option value="patentName" >특허명</option>
           <option value="patentHolderName" >특허 보유자명(개인/기업)</option>
-          <!-- <option value="patentContent" >특허설명</option> -->
+          <option value="patentContent" >특허설명</option>
       </select><br><br>
       <label for="patent-word" class="col-sm-2 col-form-label">검색</label>
       <input type="text" class="patent-word" name="searchWord" id="searchWord">&nbsp;&nbsp;&nbsp;
@@ -390,6 +418,7 @@
   </form>
   <hr class="hr_navy">
    </div>
+    <!--검색 결과는 검색하기 버튼 누르고 난 후에 떠야 합니다,,,(with.Ajax) 이 테이블은 그저 예시일 뿐-->
         <div class="search-result" id="section-bar-patent">
  
               <!--페이징 & 검색-->
@@ -425,55 +454,56 @@
 		
 
     <footer class="ftco-footer ftco-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">About <span>SupporterS</span></h2>
-              <p>창업자가 궁금해하는 것, <br>필요로 하는 것, <br>필요로 할 것들을 최대한 지원하기 위해 만든 사이트입니다.</p>
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">About <span>SupporterS</span></h2>
+                        <p>창업자가 궁금해하는 것, <br>필요로 하는 것, <br>필요로 할 것들을 최대한 지원하기 위해 만든 사이트입니다.</p>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4 ml-md-4">
+                        <h2 class="ftco-heading-2">바로가기</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="/cloud/home"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
+                            <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"></span>검색 및 특허 관련</a></li>
+                            <li><a href="/cloud/board/boardListForm"><span class="icon-long-arrow-right mr-2"></span>Q & A 게시판</a></li>
+                            <li><a href="/cloud/survey/surveyListForm"><span class="icon-long-arrow-right mr-2"></span>블라인드 테스트</a></li>
+                            <li><a href="/cloud/funding/fundingListForm"><span class="icon-long-arrow-right mr-2"></span>크라우드 펀딩</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">검색 및 특허 관련</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="/cloud/member/searchGo"><span class="icon-long-arrow-right mr-2"> 특허 검색</span></a></li>
+                            <li><a href="/cloud/item/searchItem"><span class="icon-long-arrow-right mr-2"> 제품 검색</span></a></li>
+                            <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"> 특허 출원 신청</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">찾아오는 길</h2>
+                        <div class="block-23 mb-0">
+                            <ul>
+                                <li><span class="icon icon-map-marker"></span><span class="text">4th floor, 513, Yeongdong-daero, Gangnam-gu, Seoul, Republic of Korea</span></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+82 02 6000 0114</span></a></li>
+                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">바로가기</h2>
-              <ul class="list-unstyled">
-                <li><a href="/cloud/home"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
-                <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"></span>검색 및 특허 관련</a></li>
-                <li><a href="/cloud/board/boardListForm"><span class="icon-long-arrow-right mr-2"></span>Q & A 게시판</a></li>
-                <li><a href="/cloud/survey/surveyListForm"><span class="icon-long-arrow-right mr-2"></span>블라인드 테스트</a></li>
-                <li><a href="/cloud/funding/fundingListForm"><span class="icon-long-arrow-right mr-2"></span>크라우드 펀딩</a></li>
-                <li><a href="/cloud/home#contact-section"><span class="icon-long-arrow-right mr-2"></span>공식 연락처</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">검색 및 특허 관련</h2>
-              <ul class="list-unstyled">
-                <li><a href="/cloud/member/searchGo"><span class="icon-long-arrow-right mr-2"> 특허 검색</span></a></li>
-                <li><a href="/cloud/member/"><span class="icon-long-arrow-right mr-2"> 제품 검색</span></a></li>
-                 <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"> 특허 출원 신청</span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">찾아오는 길</h2>
-            	<div class="block-23 mb-0">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">4th floor, 513, Yeongdong-daero, Gangnam-gu, Seoul, Republic of Korea</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+82 02 6000 0114</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
         </div>
-      </div>
     </footer>
+    
+  
 
   <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6082cc"/></svg></div>
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 <!-- Modal -->
     <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -510,6 +540,16 @@
                     <label for="appointment_file2" class="text-black">특허 사용 허가서</label>
                     <input type="file" class="form-control" name="upload1" id="upload1" multiple />
                   </div>
+              
+              
+
+              <!--<div class="form-group">
+                <label for="appointment_message" class="text-black">Message</label>
+                <textarea name="" id="appointment_message" class="form-control" cols="30" rows="10"></textarea>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Send Message" class="btn btn-primary">
+              </div>-->
             </form>
             </div>
             <div class="modal-footer">
@@ -522,10 +562,10 @@
     </div>
 </div>
 
-<script src="/cloud/resources/js/jquery.min.js"></script>
+  <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/cloud/resources/js/popper.min.js"></script>
-  <script src="/cloud/resources/js/bootstrap.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
   <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
   <script src="/cloud/resources/js/jquery.stellar.min.js"></script>

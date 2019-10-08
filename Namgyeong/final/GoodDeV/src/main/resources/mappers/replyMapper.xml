@@ -5,7 +5,49 @@
 
 <mapper namespace="com.dev.cloud.dao.replyMapper">
 	<!-- 리플등록 -->
-	<insert id="insert_reply" parameterType="Reply">
+	
+<insert parameterType="Reply" id="insertRep">
+insert into Reply (
+	replyNum
+	,boardNum
+	,reply
+	,replyDate
+	,memberid
+	) VALUES (reply_seq.NEXTVAL
+	,#{boardNum}
+	,#{reply}
+	,SYSDATE
+	,#{memberid}
+	)
+</insert>
+
+<!-- 리플전체선택 -->
+
+
+<select parameterType="Reply" id="selectAll" resultType="Reply">
+select
+		replyNum
+	,boardNum
+	,reply
+	,to_char(replyDate,'YYYY-MM-DD') as replyDate
+	,memberid
+
+from 
+		Reply
+where 
+		boardNum = #{boardNum}
+order by 	
+	replyDate desc	
+</select>
+
+<delete id="deleteReply" parameterType="int" >
+delete 
+	Reply
+where 
+	boardNum = #{boardNum}
+	
+</delete>	
+	<!-- <insert id="insert_reply" parameterType="Reply">
 		insert into Reply (
 		replyNum
 		,boardNum
@@ -24,7 +66,7 @@
 
 	</insert>
 
-	<!-- 리플수정 -->
+	리플수정
 	<update id="update_reply" parameterType="Reply">
 
 		UPDATE Reply
@@ -35,7 +77,7 @@
 
 	</update>
 
-	<!-- 리플선택 -->
+	리플선택
 	<select id="selectOne_reply" parameterType="Reply" resultType="Reply">
 
 		select
@@ -45,7 +87,7 @@
 
 	</select>
 
-	<!-- 리플전체선택 -->
+	리플전체선택
 	<select id="selectAll_reply" parameterType="Reply" resultType="Reply">
 		select
 		*
@@ -54,7 +96,7 @@
 
 	</select>
 
-	<!-- 리플삭제 -->
+	리플삭제
 	<update id="delete_reply" parameterType="Reply">
 		UPDATE Reply
 		SET
@@ -63,7 +105,7 @@
 		replyNum=#{replyNum}
 
 	</update>
-
+ -->
 
 
 </mapper>

@@ -160,8 +160,8 @@
 	
 	<select id="selectAllQuestion_TimeById" parameterType="Question_Time"
 		resultType="QuestionTotal">
-			select i.itemtype, q.questiontitle, q.memberid, q.startdate, q.questionTimeNum, q.dueDate
-		from Question_Time q join item i using (itemNum)
+			select i.itemtype, q.questiontitle, q.memberid, q.startdate, q.questionTimeNum, q.dueDate,i.itemnum
+		from Question_Time q inner join item i on i.itemnum=q.itemnum
 		<choose>
 		<when test="memberId!=null">
 		where q.memberId=#{memberId}
@@ -174,7 +174,7 @@
 
 <select id="selectBySearchItem" parameterType="Search"
 		resultType="QuestionTotal">
-		select i.itemtype, q.questiontitle, q.memberid, q.startdate, q.questionTimeNum
+		select i.itemtype, q.questiontitle, q.memberid, q.startdate, q.duedate, q.questionTimeNum
 		from Question_Time q join item i using (itemNum)
 		<choose>
 		<when test="searchItem=='title'">
@@ -187,7 +187,11 @@
 		where q.memberId LIKE '%'||#{searchWord}||'%' 
 		</when>
 		
-		<otherwise></otherwise>
+		<otherwise>
+				where q.questionTitle LIKE '%'||#{searchWord}||'%' 
+				or q.description LIKE '%'||#{searchWord}||'%' 
+				or q.memberId LIKE '%'||#{searchWord}||'%' 
+		</otherwise>
 		</choose>
 		
 	</select>
@@ -201,6 +205,14 @@
 	<select id="getQuestionTimeNumByItemNumandTitle" parameterType="Question_Time" resultType="Question_Time">
 	select QuestionTimeNum from Question_Time where itemNum=#{itemNum} and questionTitle=#{questionTitle}
 	</select>
+	
+	
+	<select parameterType="Question_Time" id="getItembyqtNum" resultType="Item">
+	select i.itemnum, i.saveitemimage , i.itemImagename
+	from Item i inner join Question_Time qt on i.itemNum = qt.itemNum
+	where qt.questionTimeNum = #{questionTimeNum} 
+	</select>
+	
 
 </mapper>
 

@@ -3,6 +3,8 @@ package com.dev.cloud.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.dev.cloud.vo.Payment;
 import com.dev.cloud.vo.devMember;
 
 @Repository
@@ -75,12 +77,38 @@ public class memberRepository implements memberMapper {
 		}
 		return result;
 	}
-	@Override
+
 	public devMember overlap(String memberId) {
 		memberMapper mapper=session.getMapper(memberMapper.class);
 		devMember result=null;
 		try {
 			result= mapper.overlap(memberId);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int devmemberPrice(Payment payment) {
+		memberMapper mapper=session.getMapper(memberMapper.class);
+		int result=0;
+		try {
+			result= mapper.devmemberPrice(payment);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public devMember selectmemId(String memberId) {
+		memberMapper mapper=session.getMapper(memberMapper.class);
+		devMember result=null;
+		try {
+			result= mapper.selectmemId(memberId);
 
 		} catch (Exception e) {
 			e.printStackTrace();

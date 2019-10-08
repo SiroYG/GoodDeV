@@ -182,8 +182,48 @@ public class itemRepository implements itemMapper {
 		return result;
 	}
 
-	public Total getOneItemByItemNum(Total item) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public Total getOneItemByItemNum(Total total) {
+		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
+		Total result = null;
+		try {
+			result = mapper.getOneItemByItemNum(total);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				
+		
+		
+		return result;
+	}
+
+	@Override
+	public Item selectItemName(String itemName) {
+		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
+		Item result = null;
+		try {
+			result = mapper.selectItemName(itemName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				
+		
+		
+		return result;
+	}
+
+	@Override
+	public List<Item> selectItemMem(String memberId) {
+		itemMapper mapper=sqlSession.getMapper(itemMapper.class);
+		List<Item> result = null;
+		try {
+			result = mapper.selectItemMem(memberId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				
+		
+		
+		return result;
 	}
 }

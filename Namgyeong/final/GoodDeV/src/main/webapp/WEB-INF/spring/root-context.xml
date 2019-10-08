@@ -11,14 +11,6 @@
 			<value>classpath:db.properties</value>
 		</property>
 	</bean>
-	
-	<!-- <bean id="propertyConfigurerDB" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-   <property name="locations">
-       <list>
-           <value>classpath:db.properties</value>
-       </list>
-   </property>
-</bean> -->
 
 	<!-- db.properties의 설정 값을 읽어서 setting -->
 	<bean id="dataSource"
@@ -43,7 +35,7 @@
 		<constructor-arg index="0" name="sqlSessionFactory"
 			ref="sqlSessionFactory" />
 	</bean>
-
+	
 	<!-- file upload를 위한 bean 설정 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

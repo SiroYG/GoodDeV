@@ -5,6 +5,9 @@
 
 <mapper namespace="com.dev.cloud.dao.patentMapper">
 	
+
+
+	
 <!-- Patent 추가 -->	
 <insert parameterType="PatentTotal" id="insertPatent">
 insert into 
@@ -236,8 +239,12 @@ where patenttype='통신 및 방송 장비 제조업'
 </select>
 	
 </mapper>
+<!-- patentNum ;
+	private String patentName ;
+	private String patentHolderName ;
+	private String patentContent ;
+	private String patentAppDate;
+	private String patentRegDate ;
+	private String patenttype ;
+	 -->
 
-
-
-
-	

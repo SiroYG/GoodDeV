@@ -44,7 +44,7 @@
                     <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
                     <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
                     <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
-                    <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
+                    <li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	  			 <c:if test="${sessionScope.loginId==null}">
 	  			 <li style="margin-left: 20px;" class="nav-item cta">
                     <div class="dropdown show">
@@ -130,7 +130,7 @@
 						<th scope="row" name="boardNum">${stat.count + navi.startRecord}</th>
 						<td>${board.qCategory}</td>
 						<td class="board_title"><a href="boardDetail?boardNum=${board.boardNum}">${board.title}</a></td>
-						<td>${board.id}</td>
+						<td>${board.memberId}</td>
 						<td>${board.boardDate}</td>
 					</tr>
 				</c:forEach>
@@ -169,7 +169,7 @@
   <option value="all" selected>전체</option>
   <option value="title" ${searchItem =='title'?'selected' :''}>제목</option>
   <option value="content" ${searchItem =='content'? 'selected' :'' }>내용</option>
-  <option value="id" ${searchItem =='userid'?'selected' :'' }>작성자</option>
+  <option value="memberId" ${searchItem =='memberId'?'selected' :'' }>작성자</option>
 </select>
 
 <input type="text" name="searchWord" value="${searchWord}" class="searchWord" placeholder="Search">

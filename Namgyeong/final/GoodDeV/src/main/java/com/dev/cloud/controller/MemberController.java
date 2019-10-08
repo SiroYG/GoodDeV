@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.plaf.synth.SynthSpinnerUI;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.dev.cloud.dao.PatentRepository;
 import com.dev.cloud.dao.PatentSubRepository;
@@ -96,6 +99,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/goMypage", method = RequestMethod.GET)
 	public String goMypage() {
+		
 
 		return "/member/Mypage";
 	}
@@ -165,7 +169,17 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/goPatent", method = RequestMethod.GET)
-	public String goPatent(Model model) {
+	public String goPatent() {
+		
+		return "search/search_menu";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/patinsertForm", method = RequestMethod.POST)
+	public String patinsertForm(MultipartFile upload, PatentTotal paten, HttpSession session) {
+		// patentNum 신청서(referenceFilename) 아이디(로그인) ,이름
+		
+		System.out.println("174번줄" + upload);
 		Random random = new Random();
 		int i = random.nextInt(9999) + 1000;
 		int j = random.nextInt(999999) + 1000;
@@ -174,18 +188,11 @@ public class MemberController {
 		String patentNum = "";
 		patentNum = total + i + dasi + j;
 		Patent patent = papo.patsearchNum(patentNum); // 예외처리.. 하긴했는데 몬가 허술함;;
-		if (patent != null) {
-			model.addAttribute("num", patentNum);
+		System.out.println("188번줄patent=>"+patent);
+		if (patent == null) {
+			paten.setPatentNum(patentNum);
 		}
-		return "search/search_menu";
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/patinsertForm", method = RequestMethod.POST)
-	public String patinsertForm(MultipartFile upload, PatentTotal paten, HttpSession session) {
-		// patentNum 신청서(referenceFilename) 아이디(로그인) ,이름
-		System.out.println("173번줄" + paten);
-		System.out.println("174번줄" + upload);
+		System.out.println("191번줄" + paten);
 		int result = 0;
 		int re = 0;
 		String memberId = (String) session.getAttribute("loginId");
@@ -404,6 +411,14 @@ public class MemberController {
 
 		} else {
 			System.out.println("362번 여기요!!");
+			PTI pti = new PTI();
+			pti.setItemNum(itemdo.getItemNum());
+			pti.setPatentNum(itemdo.getPatentNum());
+			System.out.println("426번줄itemdo==>"+itemdo);
+			System.out.println("427번줄pti==>"+pti);
+			PTI p = ptipo.ptiNums(pti);
+			System.out.println("420번줄pti==>"+p);
+			if (p == null) {
 			String referenceFilename = upload.getOriginalFilename();
 
 			String saveReferenceFilename = FileService.saveFile(upload, uploadPath);
@@ -412,14 +427,9 @@ public class MemberController {
 			String saveDocumentFilename = FileService.saveFile(upload1, uploadPath);
 			itemdo.setDocumentFilename(referenceFilename + "@" + documentFilename);
 			itemdo.setSaveDocumentFilename(saveReferenceFilename + "@" + saveDocumentFilename);
-			PTI pti = new PTI();
-			pti.setItemNum(itemdo.getItemNum());
-			pti.setPatentNum(itemdo.getPatentNum());
-			PTI p = ptipo.ptiNums(pti);
-			if (p == null) {
-				ptiResult = ptipo.insertPTI(itemdo);
-				re = itpo.updateItemDo(itemdo); // documentFilename,	// saveDocumentFilename ==>item// Table 업데이트 clear					
-				result = dopo.insertDocument(itemdo); // documentFileName,
+			ptiResult = ptipo.insertPTI(itemdo);
+			re = itpo.updateItemDo(itemdo); // documentFilename,	// saveDocumentFilename ==>item// Table 업데이트 clear					
+			result = dopo.insertDocument(itemdo); // documentFileName,
 			} // saveDocument ==> document
 				// Table 추가 patentSubNum 필요
 
@@ -442,4 +452,40 @@ public class MemberController {
 		return result;
 	}
 
+
+	@RequestMapping(value = "/fileDownload")
+	public void fileDownload(
+			 HttpSession session
+			, HttpServletRequest req
+			, HttpServletResponse res
+			, ModelAndView mav) throws Throwable 
+	{
+		
+		System.out.println(464);
+		String document_nm="특허 서식 파일 모음.zip";
+	
+		String documentName=document_nm;
+		
+		System.out.println("document_nm"+document_nm);
+		
+
+		String savedDocumentFileName="patentFile.zip";
+		
+		System.out.println("savedDocumentFileName"+savedDocumentFileName);
+
+		try {
+
+			
+			FileService.filDown(req, res, "/PatentSub" + "/" , savedDocumentFileName, documentName); //파일다운로드 
+			//C:/PatentSub
+			//FileService.filDown(req, res, "/PatentSub" + "/" , "파일이름이력", "다운받았을때출력되는파일이름입력"); //파일다운로드 
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
+	
+	
 }

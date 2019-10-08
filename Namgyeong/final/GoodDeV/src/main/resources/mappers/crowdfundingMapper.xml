@@ -3,12 +3,55 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.dev.cloud.fundingMapper">
+<mapper namespace="com.dev.cloud.dao.fundingMapper">
+
+		<select id="getBoardCount" parameterType="map" resultType="int">
+		SELECT count(*)
+		FROM Crowdfunding
+		<if test="searchItem != null or searchItem != ''">
+			<if test="searchItem.equalsIgnoreCase('All')">
+				WHERE memberId LIKE '%'||#{searchWord}||'%'
+				OR fundingTitle LIKE '%'||#{searchWord}||'%'
+				OR fundingContents LIKE '%'||#{searchWord}||'%'
+			</if>
+			<if test="!searchItem.equalsIgnoreCase('All')">
+				WHERE ${searchItem}  LIKE '%'||#{searchWord}||'%'
+			</if>
+		</if> 
+	</select>
+
 	
-	<insert id="makeCrowdFunding" parameterType="Crowdfunding">
+
+	<select id="selectAll" resultType="Crowdfunding" parameterType="map">
+		SELECT
+		crowdfundingNum,
+		itemGoalPrice,
+		itemCurrecyPrice,
+		to_char(fundingDueDate, 'YYYY-MM-DD') as fundingDueDate,
+		to_char(fundingStartDate, 'YYYY-MM-DD') as fundingStartDate,
+		memberId,
+		fundingTitle,
+		fundingContents,
+		originalFileName,
+		savedFileName
+		FROM Crowdfunding
+		<if test="searchItem != null or searchItem != ''">
+			<if test="searchItem.equalsIgnoreCase('All')">
+				WHERE MEMBERid LIKE '%'||#{searchWord}||'%'
+				OR fundingTitle LIKE '%'||#{searchWord}||'%'
+				OR fundingContents LIKE '%'||#{searchWord}||'%'
+			</if>
+			<if test="!searchItem.equalsIgnoreCase('All')">
+				WHERE ${searchItem} LIKE '%'||#{searchWord}||'%'
+			</if>
+		</if>
+		ORDER BY crowdfundingNum DESC
+	</select>
+
+
+		<insert id="makeCrowdFunding" parameterType="Crowdfunding">
 		insert into Crowdfunding (
 		crowdfundingNum
-		,itemNum
 		,itemGoalPrice
 		,itemCurrecyPrice
 		,fundingDueDate
@@ -21,10 +64,9 @@
 		)
 		VALUES (
 		crowdfunding_seq.NEXTVAL
-		,#{itemNum}
 		,#{itemGoalPrice}
 		,#{itemCurrecyPrice}
-		,#{fundingDueDate}
+		,to_date(#{fundingDueDate},'YYYY-MM-DD')
 		,sysdate
 		,#{memberId}
 		,#{fundingTitle}
@@ -33,60 +75,59 @@
 		,#{savedFileName}
 		)
 	</insert>
-
-	
-	<update id="updateCrowdFunding" parameterType="Crowdfunding">
-	UPDATE Crowdfunding 
-	SET 
-	itemCurrecyPrice = itemCurrecyPrice+#{itemCurrecyPrice}
-	where 
-	crowdfundingNum=#{crowdfundingNum} 
-	
-	</update>
-	
-	<select id="selectOneCrowdFunding" parameterType="Crowdfunding" resultType="Crowdfunding">
-		select *
-		from Crowdfunding
-		where crowdfundingNum=#{crowdfundingNum}
-	</select>
-	
-	<select id="selectAllCrowdFunding" resultType="Crowdfunding">
-		select *
-		from Crowdfunding
-	</select>
-	
-	<insert id="insertFundingTable" parameterType="FundingTable" >
-		insert into FundingTable (
-		fundingReplyNum
-		,crowdfundingNum
+	 
+	<select id="mypageFunding" parameterType="String" resultType="Crowdfunding">
+	select 
+		crowdfundingNum
+		,itemGoalPrice
+		,itemCurrecyPrice
+		,to_char(fundingDueDate,'YYYY-MM-DD') as fundingDueDate
+		,to_char(fundingStartDate, 'YYYY-MM-DD') as fundingStartDate
 		,memberId
-		,investment
-		,fundingReply
-		,fundingReplydate
-		)
-		VALUES (
-		FundingTable_seq.NEXTVAL
-		,#{crowdfundingNum}
-		,#{memberId}
-		,#{investment}
-		,#{fundingReply}
-		,#{fundingReplydate}
-		)
-	</insert>
+		,fundingTitle
+		,fundingContents
+	from
+		Crowdfunding
+	where
+		memberId = #{memberId}
+	</select>
 	
-	<update id="updateFundingTable" parameterType="FundingTable">
-	UPDATE FundingTable 
-	SET 
-	investment = investment+#{investment}
+	<update id="updateCurrentPrice" parameterType="Crowdfunding">
+	update 
+		Crowdfunding
+	set
+		itemCurrecyPrice = #{itemCurrecyPrice}
 	where 
-	fundingReplyNum=#{fundingReplyNum} 
+		crowdfundingnum = #{crowdfundingNum}		
+	
 	</update>
 	
-	<select id="selectFundingTableByMemberId" parameterType="FundingTable" resultType="FundingTable">
-	select * 
-	from FundingTable
-	where memberId=#{memberId}
+	<select id="selectOneCrowdFunding" parameterType="int" resultType="Crowdfunding">
+		select 
+		crowdfundingNum
+		,itemGoalPrice
+		,itemCurrecyPrice
+		,to_char(fundingDueDate,'YYYY-MM-DD') as fundingDueDate
+		,to_char(fundingStartDate, 'YYYY-MM-DD') as fundingStartDate
+		,memberId
+		,fundingTitle
+		,fundingContents
+		,originalFileName
+		,savedFileName
+		from Crowdfunding
+		where crowdfundingNum = #{crowdfundingNum}
 	</select>
+	
+	<select id="selectfundingTitle" parameterType="String" resultType="Crowdfunding" >
+	select 
+			*
+	from 
+			Crowdfunding
+	where 
+			fundingTitle =#{fundingTitle}		
+	</select>
+	
+	
 	
 </mapper>
 	

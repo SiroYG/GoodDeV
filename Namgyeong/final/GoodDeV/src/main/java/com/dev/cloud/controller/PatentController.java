@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -26,8 +27,10 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.dev.cloud.dao.PatentRepository;
 import com.dev.cloud.dao.PatentSubRepository;
@@ -144,96 +147,15 @@ public class PatentController {
 		return result;
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/download" , method= RequestMethod.GET)
-	public Item download(int itemNum, HttpServletResponse response){
-		System.out.println("164번줄==>"+itemNum);
-		Item item = itpo.selectItemNum(itemNum);
-		System.out.println("166번줄patent==>"+item);
-		String documentFilename = "";
-		String saveDocumentFilename = "";
-		String sp = item.getDocumentFilename();
-		String sp1 = item.getSaveDocumentFilename();
-		String [] array = sp.split("@");
-		String [] ay = sp1.split("@");
-		for(int i = 0;i<array.length;i++){
-			documentFilename = array[0];
-		}
-		System.out.println("93번줄referenceFilename==>"+documentFilename);
-		response.setHeader("Content-Disposition","attachment;filename="+documentFilename);
-		for(int i = 0;i<array.length;i++){
-			saveDocumentFilename = ay[0];
-
-		}
-		System.out.println("130번줄saveReferenceFilename==>"+saveDocumentFilename);
-		String fullPath = uploadPath+"/"+ saveDocumentFilename;
-
-		FileInputStream fis =null;
-		ServletOutputStream sos = null;
-		
-		
-		try {
-			fis = new FileInputStream(fullPath);
-			sos = response.getOutputStream();
-			
-			FileCopyUtils.copy(fis, sos);
-			
-			fis.close();
-			sos.flush();
-			sos.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	/*@GetMapping(value="/download" , produces=MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	@ResponseBody
-	public ResponseEntity<Resource> download(int itemNum){
-	System.out.println("154번줄patentNum==>"+itemNum);
-		Item item = itpo.selectItemNum(itemNum);
-		System.out.println("154번줄patent==>"+item);
-		String documentFilename = "";
-		String saveDocumentFilename  = "";
-		String sp = item.getDocumentFilename();
-		String sp1 = item.getSaveDocumentFilename();
-		String [] array = sp.split("@");
-		String [] ay = sp1.split("@");
-		
-		for(int i = 0;i<array.length;i++){
-			documentFilename = array[0];
-		}
-		for(int i = 0;i<array.length;i++){
-			saveDocumentFilename = ay[0];
-		}
-		System.out.println("252번 documentFilename==>"+documentFilename);
-		System.out.println("253번 saveDocumentFilename==>"+saveDocumentFilename);
-		
-		
-		String fullPath = uploadPath+"/"+ saveDocumentFilename;
-		Resource resource = new FileSystemResource(fullPath);
-		
-		HttpHeaders headers = new HttpHeaders();
-		try{
-			String doc = new String(documentFilename.getBytes("ISO-8859-1"),"UTF-8");
-			headers.add("Content-Disposition", "attachment; filename=\""+documentFilename+"\"");
-			headers.add("Content-Transfer-Encoding", "binary;");
-			headers.add("Pragma", "no-cache;");
-
-			headers.add("Expires", "-1;");
-		}catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		
-		return new ResponseEntity<Resource>(resource,headers,HttpStatus.OK);
-	}*/
-	
-	
-	@GetMapping(value="/download1"  ,produces=MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	@ResponseBody
-	public ResponseEntity<Resource> download1(HttpServletResponse response ,int itemNum){
-	System.out.println("154번줄patentNum==>"+itemNum);
+	@RequestMapping(value = "/download1")
+	public  void download1(
+			  @RequestParam("itemNum") int itemNum
+			, HttpSession session
+			, HttpServletRequest req
+			, HttpServletResponse res
+			, ModelAndView mav) throws Throwable 
+	{
+		System.out.println("154번줄patentNum==>"+itemNum);
 		Item item = itpo.selectItemNum(itemNum);
 		System.out.println("154번줄patent==>"+item);
 		String documentFilename = "";
@@ -248,35 +170,31 @@ public class PatentController {
 		for(int i = 0;i<array.length;i++){
 			saveDocumentFilename = ay[1];
 		}
-		
-		System.out.println("252번 documentFilename==>"+documentFilename);
-		System.out.println("253번 saveDocumentFilename==>"+saveDocumentFilename);
-		
-		
-		String fullPath = uploadPath + "/" +saveDocumentFilename;
-		Resource resource = new FileSystemResource(fullPath);
-		
-		HttpHeaders headers = new HttpHeaders();
-		try{	
+		System.out.println("savedDocumentFileName"+saveDocumentFilename);
+
+		try {
+
+			FileService.filDown(req, res, "/PatentSub" + "/" , saveDocumentFilename, documentFilename); //파일다운로드 
+			//C:/PatentSub
+			//FileService.filDown(req, res, "/PatentSub" + "/" , "파일이름이력", "다운받았을때출력되는파일이름입력"); //파일다운로드 
+
 			
-			String doc = new String(documentFilename.getBytes("ISO-8859-1"),"UTF-8");
-			headers.add("Content-Disposition", "attachment; filename=\""+documentFilename+"\";");
-			//response.setContentType("application/download; UTF-8");
-			//headers.add("Content-Transfer-Encoding", "binary;");
-
-			//headers.add("Pragma", "no-cache;");
-
-			//headers.add("Expires", "-1;");
-		}catch (UnsupportedEncodingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
-		return new ResponseEntity<Resource>(resource,headers,HttpStatus.OK);
 	}
 	
-/*	@ResponseBody
-	@RequestMapping(value="/download1" , method= RequestMethod.GET)
-	public Item download1(int itemNum, HttpServletResponse response){
-	System.out.println("154번줄itemNum==>"+itemNum);
+	
+	@RequestMapping(value = "/download")
+	public  void download(
+			  @RequestParam("itemNum") int itemNum
+			, HttpSession session
+			, HttpServletRequest req
+			, HttpServletResponse res
+			, ModelAndView mav) throws Throwable 
+	{
+		System.out.println("154번줄patentNum==>"+itemNum);
 		Item item = itpo.selectItemNum(itemNum);
 		System.out.println("154번줄patent==>"+item);
 		String documentFilename = "";
@@ -286,57 +204,23 @@ public class PatentController {
 		String [] ay = sp1.split("@");
 		String [] array = sp.split("@");
 		for(int i = 0;i<array.length;i++){
-			documentFilename = array[1];
+			documentFilename = array[0];
 		}
-		try {
-			String doc = new String(documentFilename.getBytes("ISO-8859-1"),"UTF-8");
-			response.setHeader("Content-Disposition","attachment;filename="+ documentFilename);
-			//response.setContentType("application/download; UTF-8");
-			//response.setHeader("Content-Transfer-Encoding", "binary;");
-
-			//response.setHeader("Pragma", "no-cache;");
-
-			//response.setHeader("Expires", "-1;");
-		} catch (UnsupportedEncodingException e1) {
-		
-			e1.printStackTrace();
-		}
-		System.out.println("165번 referenceFilename1==>"+documentFilename);
-		
-
-
 		for(int i = 0;i<array.length;i++){
-			saveDocumentFilename = ay[1];
+			saveDocumentFilename = ay[0];
 		}
-		String fullPath = uploadPath+"/"+ saveDocumentFilename;
-		
-		
-		System.out.println("saveReferenceFilename1==>"+saveDocumentFilename);
-		
-		
-		
-		FileInputStream fis =null;
-		ServletOutputStream sos = null;
-		
-		try {	
-			System.out.println("197번줄!!");
-			fis = new FileInputStream(fullPath);
-			System.out.println("199번줄==>"+fullPath);
-			sos = response.getOutputStream();
-			System.out.println("201번줄==>"+sos);
-			
-			FileCopyUtils.copy(fis, sos);
-			System.out.println("204번");
-			fis.close();
-		
-			sos.flush();
-			sos.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}*/
 
-	
+		System.out.println("savedDocumentFileName"+saveDocumentFilename);
+
+		try {
+
+			FileService.filDown(req, res, "/PatentSub" + "/" , saveDocumentFilename, documentFilename); //파일다운로드 
+			//C:/PatentSub
+			//FileService.filDown(req, res, "/PatentSub" + "/" , "파일이름이력", "다운받았을때출력되는파일이름입력"); //파일다운로드 	
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
 	
 }

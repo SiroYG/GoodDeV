@@ -2,10 +2,12 @@ package com.dev.cloud.controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -19,12 +21,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dev.cloud.dao.boardRepository;
+import com.dev.cloud.dao.replyRepository;
 import com.dev.cloud.utill.FileService;
 import com.dev.cloud.utill.PageNavigator;
 import com.dev.cloud.vo.Board;
+import com.dev.cloud.vo.Reply;
+import com.dev.cloud.vo.Total;
 
 @Controller
 @RequestMapping("/board")
@@ -32,8 +38,61 @@ public class BoardController {
 
 	@Autowired
 	boardRepository dao;
-
+	@Autowired
+	replyRepository rep;
+	
+	
 	final String uploadPath = "/uploadfile";
+	
+	
+	@RequestMapping(value = "/Replyinsert", method = RequestMethod.POST)
+	@ResponseBody
+	public List<Reply> insert(Reply reply) {
+		System.out.println(reply.toString());
+		if (rep.insertreply(reply) == 1) {
+			return rep.selectAll(reply.getBoardNum());
+		} else {
+			return rep.selectAll(reply.getBoardNum());
+		}
+
+	}
+	@RequestMapping(value = "/ReplyselectAll", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Reply> selectAll(Reply reply) {
+		System.out.println(reply.toString());
+		return rep.selectAll(reply.getBoardNum());
+	}
+	
+	
+	
+	@RequestMapping(value = "/userboard", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Board> userboard(int pageSu,HttpSession session) {
+		String memberId = (String) session.getAttribute("loginId");
+		System.out.println("44번줄 => " + memberId);
+		List<Board> bList = dao.userboard(memberId);
+		List<Board> result = new ArrayList<>();
+		
+		for (int i = 0; i < bList.size(); i++) {
+			if (i > pageSu - 10) {
+				if (i <= pageSu) {
+					result.add(bList.get(i));
+				}
+			}
+		}
+		System.out.println("board==>" + result.size());
+		return  result;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/boardsu", method = RequestMethod.GET)
+	public int boardsu(HttpSession session) {
+		String memberId = (String) session.getAttribute("loginId");
+		List<Board> bList = dao.userboard(memberId);
+		System.out.println("130번줄 board양==>" + bList.size());
+		return bList.size();
+	}
+	
 	@RequestMapping(value = "/boardhome", method = RequestMethod.GET)
 	public String boardhome() { // 홈이동 (리다이렉트)
 		return "/board/Board_list";
@@ -47,9 +106,13 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "goupdate", method = RequestMethod.GET)
-	public String goupdate(Model model, int boardNum) {
+	public String goupdate(HttpSession session,Model model, int boardNum) {
 		System.out.println("boardNum => " + boardNum);
-		Board board = dao.selectOne(boardNum);
+		String memberId = (String) session.getAttribute("loginId");
+		Board bo = new Board();
+		bo.setBoardNum(boardNum);
+		bo.setMemberId(memberId);
+		Board board = dao.selectOne(bo);
 		model.addAttribute("board", board);
 		return "/board/Board_update";
 	}
@@ -62,7 +125,7 @@ public class BoardController {
 			return "redirect:/board/boardListForm";
 		}
 		System.out.println("수정실패");
-		return "/board/Board_update";
+		return "redirect:/board/goupdate";
 	}
 	
 	
@@ -87,7 +150,7 @@ public class BoardController {
 		for (Board vo : list) {
 			System.out.println(vo);
 		}
-
+		
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("navi", navi);
@@ -100,7 +163,7 @@ public class BoardController {
 	public String boardWriteProcess(Board board, MultipartFile upload, HttpSession session, RedirectAttributes rttr) {
 
 		String userid = (String) session.getAttribute("loginId");
-		board.setId(userid);
+		board.setMemberId(userid);
 		System.out.println(upload.getOriginalFilename());
 		System.out.println(board);
 
@@ -119,10 +182,11 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "boardDetail", method = RequestMethod.GET)
-	public String boardDetail(int boardNum, Model model) {
-
+	public String boardDetail(HttpSession session,int boardNum, Model model) {
 		System.out.println("boardNum => " + boardNum);
-		Board board = dao.selectOne(boardNum);
+		Board bo = new Board();
+		bo.setBoardNum(boardNum);
+		Board board = dao.selectOne(bo);
 		model.addAttribute("board", board);
 		System.out.println(board);
 		return "/board/Board_Detail";
@@ -131,6 +195,9 @@ public class BoardController {
 	@RequestMapping(value = "godelete", method = RequestMethod.GET)
 	public String godelete(int boardNum, Model model) {
 		System.out.println("게시글 삭제 " + boardNum);
+		int re = rep.deleteReply(boardNum);
+		System.out.println("197번줄re==>"+re);
+				
 		int result = dao.deleteBoard(boardNum);
 		if (result > 0) {
 
@@ -139,33 +206,34 @@ public class BoardController {
 			return "redirect:/";
 		}
 	}
-
-	// 파일 다운로드
-	@RequestMapping(value = "/download", method = RequestMethod.GET)
-	public String download(int boardno, HttpServletResponse response) {
-		Board board = dao.selectOne(boardno);
-		String savedfile = board.getSaveFilename();
-		String originalfile = board.getOriginalFilename();
-		System.out.println(savedfile);
-		response.setHeader("Content-Disposition", "attachment;filename=" + originalfile);
-
-		String fullPath = uploadPath + "/" + savedfile;
-		System.out.println(fullPath);
-		FileInputStream filein = null;
-		ServletOutputStream fileout = null;
+	
+	@RequestMapping(value = "/download")
+	public  void download(
+		
+			  @RequestParam("boardNum") int boardNum  
+			 
+			, HttpSession session
+			, HttpServletRequest req
+			, HttpServletResponse res
+			, ModelAndView mav) throws Throwable 
+	{
+		Board board=new Board();
+		board.setBoardNum(boardNum);
+		board=dao.selectOne(board);
+		String documentFilename = board.getOriginalFilename();
+		String saveDocumentFilename  = board.getSaveFilename();
+		System.out.println("savedDocumentFileName"+saveDocumentFilename);
 
 		try {
-			filein = new FileInputStream(fullPath);
-			fileout = response.getOutputStream();
-			FileCopyUtils.copy(filein, fileout);
-			filein.close();
-			fileout.close();
+			FileService.filDown(req, res, "/uploadfile" + "/" , saveDocumentFilename, documentFilename); //파일다운로드 
+			//C:/PatentSub
+			//FileService.filDown(req, res, "/PatentSub" + "/" , "파일이름이력", "다운받았을때출력되는파일이름입력"); //파일다운로드 
 
-		} catch (IOException e) {
-
+			
+		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
-
-		return null;
 	}
+	
 }

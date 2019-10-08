@@ -13,4 +13,6 @@ public interface patentsubMapper {
 		public int updatePatentsub(Patentsub patentsub);
 	
 		public ItemDo selectPatSub(ItemDo itemdo);
+		
+		public Patentsub selectSub(String patentNum);
 }

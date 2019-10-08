@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.dev.cloud.vo.Board;
 import com.dev.cloud.vo.Crowdfunding;
+import com.dev.cloud.vo.FundingTable;
+import com.dev.cloud.vo.Payment;
 
 @Repository
 public class fundingRepository {
@@ -43,19 +45,46 @@ public class fundingRepository {
 		return list;
 	}
 
-	public Crowdfunding selectOne(int boardNum) {
+	public Crowdfunding selectOneCrowdFunding(int boardNum) {
 		fundingMapper mapper = sqlSession.getMapper(fundingMapper.class);
-		Crowdfunding Crowdfunding = mapper.selectOne(boardNum);
+		Crowdfunding Crowdfunding = mapper.selectOneCrowdFunding(boardNum);
 
 		return Crowdfunding;
 	}
 
 
-	public int insertBoard(Crowdfunding Crowdfunding) {
+	public int makeCrowdFunding(Crowdfunding Crowdfunding) {
 		System.out.println("board repo=>" + Crowdfunding);
 		fundingMapper mapper = sqlSession.getMapper(fundingMapper.class);
 
 		int result = mapper.makeCrowdFunding(Crowdfunding);
 		return result;
 	}
+
+	public List<Crowdfunding> mypageFunding(String memberId){
+		fundingMapper mapper = sqlSession.getMapper(fundingMapper.class);
+		
+		List<Crowdfunding> result = mapper.mypageFunding(memberId);
+		
+		return result;
+	}
+	
+	public int updateCurrentPrice(Crowdfunding crowdfunding){
+		fundingMapper mapper = sqlSession.getMapper(fundingMapper.class);
+
+		int result = mapper.updateCurrentPrice(crowdfunding);
+		
+		return result;
+	}
+	
+	public Crowdfunding selectfundingTitle(String fundingTitle){
+		fundingMapper mapper = sqlSession.getMapper(fundingMapper.class);
+		
+		Crowdfunding result = mapper.selectfundingTitle(fundingTitle);
+
+		return result;
+		
+	}
+	
+	
 }

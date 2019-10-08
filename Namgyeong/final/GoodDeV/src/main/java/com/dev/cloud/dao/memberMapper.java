@@ -1,5 +1,6 @@
 package com.dev.cloud.dao;
 
+import com.dev.cloud.vo.Payment;
 import com.dev.cloud.vo.devMember;
 
 public interface memberMapper {
@@ -22,4 +23,7 @@ public interface memberMapper {
 	//중복확인
 	public devMember overlap(String memberId);
 	
+	public int devmemberPrice(Payment payment);
+	
+	public devMember selectmemId(String memberId);
 }

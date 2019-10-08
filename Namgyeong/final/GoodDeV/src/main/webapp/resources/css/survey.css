@@ -8,10 +8,6 @@ body{
     font-family: 'Eoe_Zno_B';
 }
 
-.checked {
-  color: #ffe51f;
-}
-
 hr.hr_navy{
   border-color: #1f124a;
     border-width: 7px;
@@ -82,8 +78,6 @@ button.btns {
     cursor: pointer;
     transition: 0.25s ease;
 }
-
-
 
 .btn-3-comments {
     width:max-content;

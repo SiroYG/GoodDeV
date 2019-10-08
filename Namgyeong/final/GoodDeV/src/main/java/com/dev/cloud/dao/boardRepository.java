@@ -17,7 +17,7 @@ public class boardRepository {
 	private SqlSession sqlSession;
 
 	public int getBoardCount(String searchItem, String searchWord) {
-		// TOD O Auto-generated method stub
+
 		boardMapper mapper = sqlSession.getMapper(boardMapper.class);
 		Map<String, Object> map = new HashMap<>();
 		map.put("searchItem", searchItem);
@@ -27,8 +27,15 @@ public class boardRepository {
 		return total;
 	}
 
+	public List<Board> userboard(String memberId){
+		System.out.println("board id=>" + memberId);
+		boardMapper mapper = sqlSession.getMapper(boardMapper.class);
+		return mapper.userboard(memberId);
+	}
+
+	
 	public List<Board> selectAll(String searchItem, String searchWord, int startRecord, int countPerPage) {
-		// TODO Auto-generated method stub
+		
 		List<Board> list;
 		
 		RowBounds rb = new RowBounds(startRecord, countPerPage);
@@ -44,11 +51,13 @@ public class boardRepository {
 		return list;
 	}
 
-	public Board selectOne(int boardNum) {
+	public Board selectOne(Board board) {
 		boardMapper mapper = sqlSession.getMapper(boardMapper.class);
-		Board board = mapper.selectOne(boardNum);
+		Board result = null;
+		
+		result = mapper.selectOne(board);
 
-		return board;
+		return result;
 	}
 
 	public int deleteBoard(int boardNum) {
