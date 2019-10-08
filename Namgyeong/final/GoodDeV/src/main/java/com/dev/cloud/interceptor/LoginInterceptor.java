@@ -15,7 +15,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			String loginId =  (String)session.getAttribute("loginId");
 			if (loginId==null) {
 				System.out.println("INTERCEPTOR 동작");
-				response.sendRedirect("/cloud/home");
+				response.sendRedirect("/cloud//member/login");
 				return false;
 			}
 		return true;

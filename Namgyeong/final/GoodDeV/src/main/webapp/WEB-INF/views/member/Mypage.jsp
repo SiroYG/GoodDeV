@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>My Page ::</title>
+    <title>SupporterS :: My Page</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     
