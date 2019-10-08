@@ -32,7 +32,17 @@
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     
     <script>
+    var itemNum='';
     $(function(){
+    	
+    	$(document).on('click', '#str1', function(){
+    		fn_downfile1();
+    		
+    	})
+    	$(document).on('click', '#str2', function(){
+    		fn_downfile2();
+    		
+    	})
     	
     	
     	$(document).on('click', '#insertSurveyButton', function(){
@@ -72,7 +82,15 @@
     	
     	
     });
-    
+    function fn_downfile1(){
+    	itemNum=$('#itemNum').val();
+        location.href="/cloud/survey/download1?itemNum=" + itemNum;
+    }
+    function fn_downfile2(){
+    	itemNum=$('#itemNum').val();
+        location.href="/cloud/survey/download2?itemNum=" + itemNum;
+    }
+
 
     </script>
   </head>
@@ -199,7 +217,8 @@
   <div class="form-group row"> 
                 <label for="" class="col-sm-2 col-form-label"><span><b>첨부파일</b></span></label>
                 <div class="col-sm-10">
-                    <a href="#" class="form-control" >다운로드</a>
+                    <span  class="form-control"><a id="str1">${str1}</a><a id="str2">${str2}</a></span>
+               		 <input type="hidden"  id="itemNum" value="${item.itemNum }">
                 </div>
             </div>
 <!--              <div class="form-group row"> -->

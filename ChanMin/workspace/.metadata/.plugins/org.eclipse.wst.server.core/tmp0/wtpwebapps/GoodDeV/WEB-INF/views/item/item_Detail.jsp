@@ -27,13 +27,36 @@
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 	<script src="/cloud/resources/js/jquery-ui.min.js"></script>
     <script>
+    var document_nm='';
+    var itemNum='';
+    $(function(){
+    	
+    	
+    	$('#saveDocumentFilename').on('click',function(){
+    		 document_nm=$('#saveDocumentFilename').val();
+    		 itemNum=$('#getItemNum').val();
+    		alert(document_nm);
+    		alert(itemNum);
+
+    		fn_downfile(document_nm);
+    		
+    	})
+    
+    })
+    
+    
+    
+    function fn_downfile(document_nm){ 
+        location.href="/cloud/item/fileDownload?document_nm=" + document_nm+"&itemNum="+itemNum;
+      }
+    
     
     </script>
    
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
+<input type="hidden" id="getItemNum" value="${ it.itemNum }">
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">

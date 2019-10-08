@@ -41,6 +41,7 @@ import com.dev.cloud.dao.HistoryRepository;
 import com.dev.cloud.dao.historyMapper;
 import com.dev.cloud.dao.itemRepository;
 import com.dev.cloud.utill.FileService;
+import com.dev.cloud.utill.PageNavigator;
 import com.dev.cloud.vo.History;
 import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.MTI;
@@ -175,7 +176,7 @@ public class ItemController {
 		
 	}
 	
-	@RequestMapping(value = "/goItemHistory", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/goItemHistory", method = RequestMethod.GET)
 	public String goItemHistory(HttpSession session,Total total,Model model) {
 		String memberId = (String) session.getAttribute("loginId");
 		total.setMemberId(memberId);
@@ -185,6 +186,23 @@ public class ItemController {
 		model.addAttribute("hList", hList);	
 		
 		return "item/item_history";
+	}*/
+	
+	@RequestMapping(value = "/goItemHistory", method = RequestMethod.GET)
+	public String goItemHistory(@RequestParam(value = "currentPage", defaultValue = "1") 
+	int currentPage,HttpSession session,Total total,Model model) {
+	
+		String memberId = (String) session.getAttribute("loginId");
+		total.setMemberId(memberId);
+		List<Total> hList = hipo.selectAllHistory(total);
+		System.out.println("47번==>"+hList);
+		// 추가
+		int totalRecordCount = hList.size();
+		System.out.println(totalRecordCount);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		model.addAttribute("hList", hList);	
+		model.addAttribute("navi", navi);
+		return "/item/item_history" ;
 	}
 	
 	
@@ -312,10 +330,7 @@ public class ItemController {
 			, HttpServletResponse res
 			, ModelAndView mav) throws Throwable 
 	{
-		
-		
-		
-	
+
 		String documentName=document_nm;
 		System.out.println("document_nm"+document_nm);
 		System.out.println("total"+total);
@@ -329,13 +344,9 @@ public class ItemController {
 		System.out.println("savedDocumentFileName"+savedDocumentFileName);
 
 		try {
-//			DownloadView fileDown = new DownloadView(); //파일다운로드 객체생성
-			
 			FileService.filDown(req, res, "/PatentSub" + "/" , savedDocumentFileName, documentName); //파일다운로드 
 			//C:/PatentSub
 			//FileService.filDown(req, res, "/PatentSub" + "/" , "파일이름이력", "다운받았을때출력되는파일이름입력"); //파일다운로드 
-
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			

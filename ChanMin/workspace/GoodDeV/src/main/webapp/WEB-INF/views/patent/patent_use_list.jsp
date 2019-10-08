@@ -87,30 +87,35 @@ $(function(){
 	
 	$('#down').on('click',function(){
 		var itemNum =$('#itNum').val();
-		$.ajax({
-			url : 'download',
-			type : 'get',
-			data : {
-				"itemNum" : itemNum
-			},
-			success : function(resp) {alert('성공')},
-			error : function(a, b, c) {alert('실패'+ a+", " + b + "," + c)}
-		})
+        location.href="/cloud/patent/download?itemNum=" + itemNum;
+
+		
+		
+// 		$.ajax({
+// 			url : 'download',
+// 			type : 'get',
+// 			data : {
+// 				"itemNum" : itemNum
+// 			},
+// 			success : function(resp) {alert('성공')},
+// 			error : function(a, b, c) {alert('실패'+ a+", " + b + "," + c)}
+// 		})
 	
 	})
 	
 	$('#down1').on('click',function(){
 		var itemNum =$('#itNum').val();
-		
-		$.ajax({
-			url : 'download1',
-			type : 'get',
-			data : {
-				"itemNum" : itemNum
-			},
-			success : function(resp) {alert('성공')},
-			error : function(a, b, c) {alert('실패'+ a+", " + b + "," + c)}
-		})
+        location.href="/cloud/patent/download1?itemNum=" + itemNum;
+
+// 		$.ajax({
+// 			url : 'download1',
+// 			type : 'get',
+// 			data : {
+// 				"itemNum" : itemNum
+// 			},
+// 			success : function(resp) {alert('성공')},
+// 			error : function(a, b, c) {alert('실패'+ a+", " + b + "," + c)}
+// 		})
 	
 	})
 	

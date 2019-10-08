@@ -531,7 +531,7 @@ function output(res){
 	        tag += '<th scope="col">No.</th>'        
 	        tag += '<th scope="col">제목</th>'       
 	        tag += '<th scope="col">작성일</th>'    
-	        tag += '<th scope="col">공개 여부</th>'       
+	        tag += '<th scope="col">카테고리</th>'       
 	   	    tag += '</tr>'
 	    	tag += '</thead>' 
 	    	tag += '<tbody class="boardTbody" >'  
@@ -541,7 +541,7 @@ function output(res){
                tag += '<th scope="row" name="boardNum">' + i + '</th>'
                tag += '<td name="title"><a class="mypage-link" href="/cloud/board/boardDetail?boardNum=' + item.boardNum + '">' + item.title + '</td>';
                tag += '<td name="boardDate"><a class="mypage-link" href="/cloud/board/boardDetail?boardNum=' + item.boardNum + '">' + item.boardDate + '</a></td>';
-               tag += '<td name="qType"><a class="mypage-link" href="/cloud/board/boardDetail?boardNum=' + item.boardNum + '">' + item.qType + '</td>';
+               tag += '<td name="qType"><a class="mypage-link" href="/cloud/board/boardDetail?boardNum=' + item.boardNum + '">' + item.qCategory + '</td>';
                tag += '</tr>'
     		})
     		tag += '</tbody>'	

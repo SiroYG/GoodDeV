@@ -176,7 +176,7 @@ public class FundingController {
 	@ResponseBody
 	@RequestMapping(value = "devmemberPrice", method = RequestMethod.GET)
 	public String devmemberPrice(HttpSession session,Payment payment,int amount) {
-		//devmember 멤버  fundPrice update , 
+		//devmember 멤버  fundPrice update ,   여기 잘못처리!!!!!
 		System.out.println("150번줄payment==>"+payment);
 		System.out.println("154번줄amount==>"+amount);
 		devMember member = mempo.selectmemId(payment.getMemberId());

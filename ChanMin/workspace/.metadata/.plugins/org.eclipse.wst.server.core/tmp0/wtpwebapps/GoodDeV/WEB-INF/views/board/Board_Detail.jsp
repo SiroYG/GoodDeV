@@ -143,7 +143,7 @@
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>첨부파일</b></span></label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="saveFilename" id="saveFilename">
+                            <a href="javascript:fn_downfile();" class="alert-link" id="originalFilename" >${board.originalFilename} </a>
                         </div>
                     </div>
                     </form>
@@ -293,6 +293,12 @@
 			}
 		});
 	}
+    function fn_downfile(){
+    	boardNum=$('#boardNum').val();
+        location.href="/cloud/board/download?boardNum=" + boardNum;
+
+    }
+    
     </script>	           
 
 <script src="/cloud/resources/js/jquery.min.js"></script>

@@ -3,6 +3,7 @@ package com.dev.cloud.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.Question;
 import com.dev.cloud.vo.QuestionTotal;
 import com.dev.cloud.vo.Survey;
@@ -58,6 +59,6 @@ public interface item_SurveyMapper {
 	
 	public Question_Time getQuestionTimeNumByItemNumandTitle(Question_Time question_Time);
 	
-	
+	public Item getItembyqtNum(Question_Time question_Time);
 	 
 }

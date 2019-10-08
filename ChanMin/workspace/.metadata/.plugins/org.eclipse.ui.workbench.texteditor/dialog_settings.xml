@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="selectAllQuestion_TimeById" key="selection"/>
+		<item value="boardNum" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="true" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="boardNum"/>
+			<item value="enddate"/>
+			<item value="days"/>
+			<item value="times"/>
+			<item value="startdate"/>
+			<item value="date"/>
+			<item value="down1"/>
 			<item value="selectAllQuestion_TimeById"/>
-			<item value="getQTList"/>
-			<item value="175"/>
-			<item value="getOneItemByItemNum"/>
-			<item value="selectOne"/>
-			<item value="deleteReply"/>
-			<item value="paycheck()"/>
-			<item value="modal"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

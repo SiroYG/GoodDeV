@@ -1,16 +1,14 @@
 package com.dev.cloud.controller;
 
 
-import java.awt.List;
+
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Logger;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -37,6 +35,7 @@ public class PythonServlet {
 	
 		
 		ProcessBuilder builder = new ProcessBuilder("C:/Users/창민/AppData/Local/Programs/Python/Python37/python","C:/Program Files/pythonTest.py",keyWord,"world","apple");
+		//ProcessBuilder builder = new ProcessBuilder("C:/Users/Administrator/AppData/Local/Programs/Python/Python37/python","C:/Program Files/pythonTest.py",keyWord,"world","apple");
 		Process process=null;
 		String a ="";
 		try {

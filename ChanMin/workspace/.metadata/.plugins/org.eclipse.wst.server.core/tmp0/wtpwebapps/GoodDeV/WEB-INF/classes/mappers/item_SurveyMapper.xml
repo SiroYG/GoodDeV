@@ -205,6 +205,14 @@
 	<select id="getQuestionTimeNumByItemNumandTitle" parameterType="Question_Time" resultType="Question_Time">
 	select QuestionTimeNum from Question_Time where itemNum=#{itemNum} and questionTitle=#{questionTitle}
 	</select>
+	
+	
+	<select parameterType="Question_Time" id="getItembyqtNum" resultType="Item">
+	select i.itemnum, i.saveitemimage , i.itemImagename
+	from Item i inner join Question_Time qt on i.itemNum = qt.itemNum
+	where qt.questionTimeNum = #{questionTimeNum} 
+	</select>
+	
 
 </mapper>
 

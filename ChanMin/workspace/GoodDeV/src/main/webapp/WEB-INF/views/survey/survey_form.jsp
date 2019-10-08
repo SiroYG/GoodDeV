@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
   <head>
@@ -201,16 +202,15 @@
         <input type="hidden" name="itemNum" value="${getOneItem.itemNum}">
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>시작일</b></span></label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="startDate" id="" value="${times}" readonly="readonly">
-
+                <div class="col-sm-10">																				
+                    <input type="text" class="form-control" name="startDate" id="startdate" onchange="call()" value="${times}"  readonly="readonly" onchange="call()">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>마감일</b></span></label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control" name="dueDate" id="dueDate" >
-
+                    <input type="date" class="form-control" name="dueDate" id="enddate" value="${times}" oninput="call()" onchange="call()" >
+                	<input type="hidden" id="days" size="6">
                 </div>
             </div>
             <div class="form-group row">
@@ -336,7 +336,32 @@
 
     </div>
     </div></section>
-    
+    <script>
+function call(){
+	    var sdd = document.getElementById("startdate").value;
+	    var edd = document.getElementById("enddate").value;
+	    var ar1 = sdd.split('-');
+	    var ar2 = edd.split('-');
+	    var da1 = new Date(ar1[0], ar1[1], ar1[2]);
+	    var da2 = new Date(ar2[0], ar2[1], ar2[2]);
+	    var dif = da2 - da1;
+	    var cDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+	    var cMonth = cDay * 30;// 월 만듬
+	    var cYear = cMonth * 12; // 년 만듬
+	 if(sdd && edd){
+
+	    document.getElementById('days').value = parseInt(dif/cDay);
+	    var days =document.getElementById('days');
+	    var edd = document.getElementById("enddate").value;
+	    if(days.value<0){
+	  	  alert("종료일은 시작일보다 늦어야합니다.");
+	  	  $('#enddate').val('');
+	  	  return
+	    }
+	 }
+	}
+
+</script>
     <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/cloud/resources/js/popper.min.js"></script>
