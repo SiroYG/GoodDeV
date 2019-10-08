@@ -270,12 +270,12 @@ function item(){
         tag += '<table class="iTable">'
         tag += '<caption class="table_title"><b>시제품 및 출시품 목록</b></caption>'
         tag += '<div class="cap-btn">'
-        tag += '<a href="#" id="itemSign" class="btn btn-outlinr-info">제품 등록</a>'
-        tag += '<a href="/cloud/item/goItemHistory"  class="btn btn-outlinr-info">제품 수정 기록 보기</a>'
+        tag += '<a href="#" id="itemSign" class="btns btn3" style="margin-right : 30px;">제품 등록</a>'
+        tag += '<a href="/cloud/item/goItemHistory"  class="btns btn-3-comments">제품 수정 기록 보기</a>'
         tag += '</div>'
         tag += '<thead class="navy">' 
         tag += '<tr>'   
-        tag += '<th scope="col">Item No.</th>'        
+        tag += '<th scope="col" style="text-align:center;">Item No.</th>'        
         tag += '<th scope="col">분류</th>'       
         tag += '<th scope="col">제품명</th>'    
         tag += '<th scope="col">제품 설명</th>'     
@@ -525,7 +525,7 @@ function boardTable(pageSu){
 function output(res){
 			var tag = '';            
         	tag += '<table class="table">'
-        	tag += '<caption class="table_title"><b>내가 작성한 게시글</b></caption>'
+        	tag += '<caption class="table_title"><b>게시글 목록</b></caption>'
 	        tag += '<thead class="navy">' 
 	        tag += '<tr>'   
 	        tag += '<th scope="col">No.</th>'        
@@ -658,6 +658,8 @@ function fundList(){
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <span><b>내 게시글 목록</b></span>
                             </a></li>
+                        
+                        <c:if test="${sessionScope.loginType == 'inventor'}">
                         <li><a id="patentList" href="#section-shape-patent"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
@@ -670,6 +672,7 @@ function fundList(){
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <span><b>시제품, 출시품 등록 현황</b></span>
                             </a></li>
+                        </c:if>
                         <li><a href="#section-shape-survey" id="shape-survey"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
