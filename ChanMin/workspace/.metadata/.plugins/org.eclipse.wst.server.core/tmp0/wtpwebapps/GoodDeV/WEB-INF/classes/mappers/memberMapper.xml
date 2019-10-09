@@ -83,11 +83,11 @@
 	and memberPw=#{memberPw} 
 	</update>
 	
-	<update id="devmemberPrice" parameterType="Payment">
+	<update id="devmemberPrice" parameterType="devMember">
 	update 
 		devMember
 	set 
-		fundPrice = #{amount} 
+		fundPrice = #{fundPrice} 
 	where
 		memberId = #{memberId}		
 	</update>

@@ -104,6 +104,7 @@ div.page-center{
 
 .btn-3:hover {
     color: #1f124a !important;
+    border-color: #1f124a;
     background-color: transparent;
 }
 

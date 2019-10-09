@@ -162,7 +162,14 @@ from
 where 
 	itemName = #{itemname}		
 </select>
-
+<select id="selectItemMem" parameterType="String" resultType="Item" >
+select 
+	*
+from 
+	Item
+where
+	memberId = #{memberId} 
+	</select>
 
 </mapper>
 

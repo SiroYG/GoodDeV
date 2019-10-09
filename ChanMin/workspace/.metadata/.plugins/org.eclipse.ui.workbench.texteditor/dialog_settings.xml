@@ -2,19 +2,19 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="paymentform" key="selection"/>
+		<item value="boardNum" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="true" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="paymentform"/>
-			<item value="everythings_fine"/>
-			<item value="searchSurvey"/>
-			<item value="qTotalList"/>
-			<item value="goSurvey_listProcess"/>
-			<item value="goSurvey_list"/>
-			<item value="executeForm"/>
+			<item value="boardNum"/>
+			<item value="enddate"/>
+			<item value="days"/>
+			<item value="times"/>
+			<item value="startdate"/>
+			<item value="date"/>
+			<item value="down1"/>
 			<item value="selectAllQuestion_TimeById"/>
 		</list>
 		<list key="replacehistory">
@@ -25,7 +25,7 @@
 		<item value="417" key="DIALOG_WIDTH"/>
 		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
 		<item value="483" key="DIALOG_HEIGHT"/>
-		<item value="1244" key="DIALOG_X_ORIGIN"/>
-		<item value="415" key="DIALOG_Y_ORIGIN"/>
+		<item value="551" key="DIALOG_X_ORIGIN"/>
+		<item value="529" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +19,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.dev.cloud.dao.itemRepository;
 import com.dev.cloud.dao.item_SurveyRepository;
-import com.dev.cloud.vo.Board;
+import com.dev.cloud.utill.FileService;
+import com.dev.cloud.utill.PageNavigator;
+import com.dev.cloud.vo.Crowdfunding;
 import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.Question;
 import com.dev.cloud.vo.QuestionTotal;
@@ -41,7 +46,71 @@ public class SurveyController {
 	itemRepository Irepo ;
 
 	@RequestMapping(value = "/goSurvey_list", method = RequestMethod.GET)
-	public String goSurvey_list(HttpSession session, Model model) {
+	public String goSurvey_list(@RequestParam(value = "currentPage", defaultValue = "1") 
+	int currentPage, HttpSession session, Model model) {
+		String sessionId=(String) session.getAttribute("loginId");
+		Question_Time qTime = new Question_Time();
+		ArrayList<QuestionTotal> qTotalList = new ArrayList<>();
+		ArrayList<QuestionTotal> getQTList = new ArrayList<>();
+		getQTList = IsRepo.selectAllQuestion_TimeById(qTime);
+		System.out.println("getQTList : "+getQTList);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		Date today=new Date();
+		System.out.println("today : "+today);
+		//가져온due데이트가 오늘 날짜를 지나지 않았을 경우 어레이에 추가 해준다.
+		if(getQTList.size()!=0){
+		for(QuestionTotal qtemp:getQTList){
+				String dueDate=qtemp.getDueDate();
+			try {
+				Date tempDueDate=sdf.parse(dueDate);
+				int compare=0;
+				compare=tempDueDate.compareTo(today);
+				System.out.println(qtemp.getQuestionTimeNum()+":"+compare);
+				if(compare==1&&!qtemp.getMemberId().equals(sessionId)){
+					
+					qTotalList.add(qtemp);
+				}
+			//같은 날짜일 경우에도 가져오기 위함.
+				String tempStrToday = sdf.format(today);
+				String tempStrDuedate=sdf.format(tempDueDate);
+				if(tempStrToday.equals(tempStrDuedate)&&!qtemp.getMemberId().equals(sessionId)){
+				
+					qTotalList.add(qtemp);
+				}
+				
+				
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		}
+		
+		int totalRecordCount = IsRepo.selectAllQuestion_TimeById(qTime).size();
+		System.out.println(totalRecordCount);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+
+		
+
+
+	
+		
+		model.addAttribute("qTotalList", qTotalList);
+		
+		
+		//아이템보유자가 테스트진행하려고 할때  item을선택하도록 해주기 위함.
+		Total total=new Total();
+		total.setMemberId(sessionId);
+		List<Total> iList=Irepo.getItemByMemberId(total);
+		model.addAttribute("iList", iList);
+		model.addAttribute("navi", navi);
+
+
+		return "/survey/survey_list";
+	}
+/*	@RequestMapping(value = "/goSurvey_list", method = RequestMethod.GET)
+	public String goSurvey_list(@RequestParam(value = "currentPage", defaultValue = "1") 
+	int currentPage, HttpSession session, Model model) {
 
 		Question_Time qTime = new Question_Time();
 		ArrayList<QuestionTotal> qTotalList = new ArrayList<>();
@@ -52,8 +121,6 @@ public class SurveyController {
 		Date today=new Date();
 		System.out.println("today : "+today);
 		//가져온due데이트가 오늘 날짜를 지나지 않았을 경우 어레이에 추가 해준다.
-		
-		String memberId=(String) session.getAttribute("loginId");
 		if(getQTList.size()!=0){
 		for(QuestionTotal qtemp:getQTList){
 				String dueDate=qtemp.getDueDate();
@@ -62,39 +129,53 @@ public class SurveyController {
 				int compare=0;
 				compare=tempDueDate.compareTo(today);
 				System.out.println(qtemp.getQuestionTimeNum()+":"+compare);
-				if(compare==1&&!qtemp.getMemberId().equals(memberId)){
-					
+				if(compare==1){
 					qTotalList.add(qtemp);
 				}
+				
 			//같은 날짜일 경우에도 가져오기 위함.
 				String tempStrToday = sdf.format(today);
 				String tempStrDuedate=sdf.format(tempDueDate);
-				
-				
-				if(tempStrToday.equals(tempStrDuedate)&&!qtemp.getMemberId().equals(memberId)){
+				if(tempStrToday.equals(tempStrDuedate)){
 				
 					qTotalList.add(qtemp);
 				}
 				
 				
 			} catch (ParseException e) {
+				
 				e.printStackTrace();
 			}
 		}
-		}		
+		}
+		
+
+		// 추가
+		int totalRecordCount = IsRepo.selectAllQuestion_TimeById(qTime).size();
+				System.out.println(totalRecordCount);
+				PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		
+	
+		
 		model.addAttribute("qTotalList", qTotalList);
-		System.out.println("86번==>"+qTotalList);
+		
 		
 		//아이템보유자가 테스트진행하려고 할때  item을선택하도록 해주기 위함.
 		Total item=new Total();
 		item.setMemberId((String)session.getAttribute("loginId"));
 		List<Total> iList=Irepo.getItemByMemberId(item);
 		model.addAttribute("iList", iList);
+		
+				model.addAttribute("navi", navi);
 
 
 		return "/survey/survey_list";
 	}
-	@RequestMapping(value = "/goSurvey_listProcess", method = RequestMethod.POST)
+	
+	*/
+	
+	
+	@RequestMapping(value = "/goSurvey_list", method = RequestMethod.POST)
 	public String goSurvey_list( HttpSession session, Model model, Question_Time question_Time , Question question) {
 		System.out.println("line64 : "+question_Time);
 		
@@ -111,7 +192,34 @@ public class SurveyController {
 			System.out.println("line77 : "+que);
 			IsRepo.insertQuestion(que);
 		}
-		return "redirect:/survey/goSurvey_list";
+		
+//		
+//		Question_Time qTime = new Question_Time();
+//		ArrayList<QuestionTotal> qTotalList = new ArrayList<>();
+//		qTotalList = IsRepo.selectAllQuestion_TimeById(qTime);
+//		model.addAttribute("qTotalList", qTotalList);
+//
+//		for(QuestionTotal temp : qTotalList){
+//			System.out.println("check"+temp);
+//		}
+//		
+//		
+//		Item item=new Item();
+//		item.setMemberId((String)session.getAttribute("loginId"));
+//		ArrayList<Item> iList=Irepo.getItemByMemberId(item);
+//		model.addAttribute("iList", iList);
+//		if (qTotalList.size() != 0) {
+//			for (QuestionTotal q : qTotalList) {
+//				System.out.println(q.toString());
+//			}
+//		}
+		
+		
+		
+		
+		 
+		
+		return "redirect:goSurvey_list";
 	}
 	
 	
@@ -129,7 +237,7 @@ public class SurveyController {
 		Question Qtemp=new Question();
 		System.out.println("124line : "+question_Time.getQuestionTimeNum());
 		Qtemp.setQuestionTimeNum(question_Time.getQuestionTimeNum());
-		
+		Item item=IsRepo.getItembyqtNum(question_Time);
 		qList = IsRepo.getQuestionByQuestionTimeNum(Qtemp);
 		System.out.println("127line : "+qList);
 		
@@ -138,6 +246,20 @@ public class SurveyController {
 	      String times = format.format(time.getTime());
 	      
 	      
+	      
+	      String splitStr=item.getItemImagename();
+	      String [] temp=splitStr.split("@");
+	      String str1= temp[0]; 
+	      if(temp.length==2){
+		      String str2= temp[1]; 
+				model.addAttribute("str2", ", "+str2);
+
+	      }
+	     
+	      
+			model.addAttribute("str1", str1);
+
+		model.addAttribute("item", item);
 		model.addAttribute("qTime", qTime);
 		model.addAttribute("qList", qList);
 		model.addAttribute("qtnum", question_Time.getQuestionTimeNum());
@@ -151,7 +273,19 @@ public class SurveyController {
 
 		return "/survey/survey_Detail";
 	}
+	@RequestMapping(value = "/insertSurveyDatas", method = RequestMethod.POST)
+//	public String insertSurveyDatas(Model model, @RequestParam HashMap<String, String> hashMap) {
+	public String insertSurveyDatas(Model model) {	
+		
+		
+		
+		return "redirect:goSurvey_list";
+		}
 
+		
+	
+	
+	//
 	@RequestMapping(value = "/getSurvey_Detail", method = RequestMethod.POST)
 	@ResponseBody
 	public String getSurvey_Detail(Model model, @RequestBody HashMap<String, Object> params) {
@@ -176,7 +310,7 @@ public class SurveyController {
 		q.setQuestionNum(s.getQuestionNum());
 		ArrayList<Question> qtemp= IsRepo.getQuestionByQuestionNum(q);
 		int QTNUM=qtemp.get(0).getQuestionTimeNum();
-		
+		////////
 		
 		Question_Time qtime=new Question_Time();
 		qtime.setQuestionTimeNum(QTNUM);
@@ -200,17 +334,58 @@ public class SurveyController {
 	
 	@RequestMapping(value = "/searchSurvey", method = RequestMethod.GET)
 	@ResponseBody
-	public List<QuestionTotal> searchSurvey(Model model, Search search) {
-		System.out.println("line ++66");
+	public List<QuestionTotal> searchSurvey(Model model, Search search, HttpSession session) {
+		System.out.println("line ++255");
 		List<QuestionTotal> qtLsist = new ArrayList<>();
-		qtLsist = IsRepo.selectBySearchItem(search);
-		if (qtLsist.size() == 0) {
+		System.out.println(search);
+		qtLsist = IsRepo.selectBySearchItem();
+		System.out.println("qtLsist : "+qtLsist);
+		String sessionId=(String) session.getAttribute("loginId");
+		ArrayList<QuestionTotal> qTotalList = new ArrayList<>();
+	
+		
+		if (qtLsist.size() == 0||qtLsist==null) {
 			return qtLsist;
 		}
-		return qtLsist;
+		
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		Date today=new Date();
+		for(QuestionTotal qtemp:qtLsist){
+			String dueDate=qtemp.getDueDate();
+		try {
+			Date tempDueDate=sdf.parse(dueDate);
+			int compare=0;
+			compare=tempDueDate.compareTo(today);
+			System.out.println(qtemp.getQuestionTimeNum()+":"+compare);
+			if(compare==1&&!qtemp.getMemberId().equals(sessionId)){
+				
+				qTotalList.add(qtemp);
+			}
+		//같은 날짜일 경우에도 가져오기 위함.
+			String tempStrToday = sdf.format(today);
+			String tempStrDuedate=sdf.format(tempDueDate);
+			if(tempStrToday.equals(tempStrDuedate)&&!qtemp.getMemberId().equals(sessionId)){
+			
+				qTotalList.add(qtemp);
+			}
+			
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+		
+		
+		
+		System.out.println("291line ===>"+qTotalList);
+		
+		
+		
+		return qTotalList;
 	}
 	@RequestMapping(value = "/goSurvey_form", method = RequestMethod.GET)
-	public String goSurvey_form(Model model, Total item) {
+	public String goSurvey_form(Model model, Item item) {
 		System.out.println(item);
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd");
 	      Calendar time = Calendar.getInstance();
@@ -218,7 +393,7 @@ public class SurveyController {
 	     
 	      model.addAttribute("times", times);
 	      
-	      Total getOneItem=Irepo.getOneItemByItemNum(item);
+	      Item getOneItem=Irepo.selectItemNum(item.getItemNum());
 	      model.addAttribute("getOneItem", getOneItem);
 	      System.out.println(getOneItem);
 	      
@@ -234,26 +409,16 @@ public class SurveyController {
 		String memberId=(String) session.getAttribute("loginId");
 		
 		qtime.setMemberId(memberId);
-		
+		System.out.println("235line"+qtList);
 		qtList=IsRepo.selectAllQuestion_TimeById(qtime);
-		System.out.println("249line"+qtList);
-		System.out.println(qtList.size()+"<-----size");
+		System.out.println(qtList+"<-----size");
 		return qtList;
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/serveySu", method = RequestMethod.GET)
-	public int serveySu(HttpSession session) {
-		String memberId = (String) session.getAttribute("loginId");
-		Question_Time qtime=new Question_Time();
-		qtime.setMemberId(memberId);
-		List<QuestionTotal> qList = IsRepo.selectAllQuestion_TimeById(qtime);
-		System.out.println("260번줄 servey양==>" + qList.size());
-		return qList.size();
-	}
 	
+	
+	
+	}
 	@RequestMapping(value = "/gosurvey_result", method = RequestMethod.GET)
-	public String gosurvey_result(Model model, Question_Time qTime) {
+	public String gosurvey_result(Model model, Item item, Question_Time qTime) {
 		
 	      System.out.println("288line");
 	      System.out.println(qTime);
@@ -278,12 +443,18 @@ public class SurveyController {
 	     ArrayList<Survey> surList=new ArrayList<>();
 	     Survey surveyTemp=new Survey();
 	     //퀘스쳔리스트에 퀘스쳔 한개당 에버리지밸류값을 넣어주기 위함
+	     model.addAttribute("questionList", questionList);
+
 	     for(Question question : questionList){
 	    	int questionNum= question.getQuestionNum();
 	    	surveyTemp.setQuestionNum(questionNum);
 	    	surList=IsRepo.getqValueableByQuestionNum(surveyTemp);
 	    	int getAvgSurvey=0;
 	    	//한 퀘스쳔에 해당되는 여러개의 서베이 밸류의 에버리지를 구해서 넣어준다.
+	    	if(surList.size()==0){
+	    		return "/survey/survey_result";
+	    	}
+	    	
 	    	for(Survey survey :  surList){
 	    		
 	    		getAvgSurvey+=survey.getQValuable();	
@@ -291,7 +462,6 @@ public class SurveyController {
 	    	getAvgSurvey=getAvgSurvey/surList.size();
 	    	question.setAvgSurvey(getAvgSurvey);
 	     }
-	     model.addAttribute("questionList", questionList);
 	     System.out.println("questionList : "+questionList);
 	     
 	     
@@ -300,6 +470,91 @@ public class SurveyController {
 
 		return "/survey/survey_result";
 	}
+	
+	
+	@RequestMapping(value = "/download1")
+	public  void download1(
+			  @RequestParam("itemNum") int itemNum
+			, HttpSession session
+			, HttpServletRequest req
+			, HttpServletResponse res
+			, ModelAndView mav) throws Throwable 
+	{
+		System.out.println("154번줄patentNum==>"+itemNum);
+		Item item = Irepo.selectItemNum(itemNum);
+		System.out.println("154번줄patent==>"+item);
+		String documentFilename = item.getItemImagename();
+		String saveDocumentFilename  = item.getSaveItemImage();
+		String[] allSplitForDoc=documentFilename.split("@");
+		String [] allSplitForSaveDoc=saveDocumentFilename.split("@");
+		System.out.println("allSplitForDoc.length"+allSplitForDoc.length);
+		String imagename = allSplitForDoc[0];
+		String documentName = allSplitForSaveDoc[0];
+		System.out.println(imagename);
+		System.out.println(documentName);
+
+				try {
+//					DownloadView fileDown = new DownloadView(); //파일다운로드 객체생성
+					
+					FileService.filDown(req, res, "/FileTest" + "/" , documentName, imagename); //파일다운로드 
+					//C:/PatentSub
+					//FileService.filDown(req, res, "/PatentSub" + "/" , "파일이름이력", "다운받았을때출력되는파일이름입력"); //파일다운로드 
+
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					
+				}
+			
+			
+			
+		}
+	@RequestMapping(value = "/download2")
+	public  void download2(
+			  @RequestParam("itemNum") int itemNum
+			, HttpSession session
+			, HttpServletRequest req
+			, HttpServletResponse res
+			, ModelAndView mav) throws Throwable 
+	{
+		System.out.println("154번줄patentNum==>"+itemNum);
+		Item item = Irepo.selectItemNum(itemNum);
+		System.out.println("154번줄patent==>"+item);
+		String documentFilename = item.getItemImagename();
+		String saveDocumentFilename  = item.getSaveItemImage();
+		String[] allSplitForDoc=documentFilename.split("@");
+		String [] allSplitForSaveDoc=saveDocumentFilename.split("@");
+		System.out.println("allSplitForDoc.length"+allSplitForDoc.length);
+		String imagename = allSplitForDoc[1];
+		String documentName = allSplitForSaveDoc[1];
+		System.out.println(imagename);
+		System.out.println(documentName);
+
+				try {
+//					DownloadView fileDown = new DownloadView(); //파일다운로드 객체생성
+					
+					FileService.filDown(req, res, "/FileTest" + "/" , documentName, imagename); //파일다운로드 
+					//C:/PatentSub
+					//FileService.filDown(req, res, "/PatentSub" + "/" , "파일이름이력", "다운받았을때출력되는파일이름입력"); //파일다운로드 
+
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					
+				}
+			
+			
+			
+		}
+		
+		
+		
+		
+	
+	
+	
+	
+	
 	
 	
 }

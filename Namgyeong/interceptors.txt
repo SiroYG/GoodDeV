@@ -1,0 +1,24 @@
+<!-- interceptor -->
+	<beans:bean id="LoginInterceptor" class="com.dev.cloud.interceptor.LoginInterceptor" />
+ 	<interceptors>
+ 		<interceptor>
+ 			<mapping path="/item/**" />
+			
+			<!-- <mapping path="/funding/**" /> -->
+			<mapping path="/funding/fundingDetail" />
+			<mapping path="/funding/fundingListForm" />
+		
+ 			<mapping path="/patent/permitionForm"/>
+ 			<mapping path="/patent/patentUseList"/>
+ 			
+			<!-- <mapping path="/survey/**" /> -->
+			<mapping path="/survey/gosurvey_Detail" />
+			<mapping path="/survey/goSurvey_form" />
+			
+ 			<!-- <mapping path="/board/**"/> -->
+ 			<mapping path="/board/gowrite"/>
+ 			<mapping path="/board/boardDetail"/>
+ 			
+ 			<beans:ref bean="LoginInterceptor"/>
+ 		</interceptor>
+ 	</interceptors>

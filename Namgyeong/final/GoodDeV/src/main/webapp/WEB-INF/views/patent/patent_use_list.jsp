@@ -29,7 +29,130 @@
 
 <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 <script src="/cloud/resources/js/jquery-ui.min.js"></script>
+<script>
 
+$(function(){
+	
+	$(".pri").on('click', function(){
+		var tempContractDate=$(this).attr("data-contractDate");
+		$('#contractDate').val(tempContractDate);
+		var patentNum = $(this).attr("data-value");
+		$('#patentNum').val(patentNum);
+		var pti_seq = $(this).val();
+		$('#Pti_seq').val(pti_seq);
+		var itemNum = $(this).attr("data-id");
+		$('#itNum').val(itemNum);
+		var documentNum = $(this).attr("data-name");
+		$('#DocumentNum').val(documentNum);
+		var memId = $(this).attr("data-member");
+		$('#memberId').val(memId);
+	});	
+	
+	
+	 $('.pri').on('click',function(){
+		var itemNum = $(this).attr("data-id");
+		
+		$.ajax({
+			url : 'down',
+			type : 'get',
+			data : {
+				"itemNum" : itemNum
+			},
+			success : function(res){
+				$('#down').html(res);
+			}
+			
+		})
+	
+	})  
+	 $('.pri').on('click',function(){
+		var itemNum = $(this).attr("data-id");
+		$.ajax({
+			url : 'down1',
+			type : 'get',
+			data : {
+				"itemNum" : itemNum
+			},
+			success : function(res){
+				$('#down1').html(res);
+				
+			}
+			
+		})
+	
+	})  
+	
+	
+
+	
+	$('#down').on('click',function(){
+		var itemNum =$('#itNum').val();
+        location.href="/cloud/patent/download?itemNum=" + itemNum;
+
+		
+		
+// 		$.ajax({
+// 			url : 'download',
+// 			type : 'get',
+// 			data : {
+// 				"itemNum" : itemNum
+// 			},
+// 			success : function(resp) {alert('성공')},
+// 			error : function(a, b, c) {alert('실패'+ a+", " + b + "," + c)}
+// 		})
+	
+	})
+	
+	$('#down1').on('click',function(){
+		var itemNum =$('#itNum').val();
+        location.href="/cloud/patent/download1?itemNum=" + itemNum;
+
+// 		$.ajax({
+// 			url : 'download1',
+// 			type : 'get',
+// 			data : {
+// 				"itemNum" : itemNum
+// 			},
+// 			success : function(resp) {alert('성공')},
+// 			error : function(a, b, c) {alert('실패'+ a+", " + b + "," + c)}
+// 		})
+	
+	})
+	
+	 $('#permitBtn').on('click',function(){
+		var formData = new FormData($('#permitionForm')[0]);
+		var upload = $('#upload').val();
+		if(upload.length==0||upload==""){
+			alert('파일을 반드시 첨부하세요!');
+			return false;	
+		}
+		var itemNum =$('#item-option option:selected').attr("data-value");
+		var del = $('.pri').parent().parent();
+		
+		$.ajax({
+			url : 'permitionForm',
+			type : 'post',
+			enctype : 'multipart/form-data',
+ 			processData : false,
+ 			contentType : false,
+ 			data : formData,
+			success : function(res){
+				if(res=='success'){
+					alert("성공");
+					$('#exampleModal').modal('hide');
+					del.remove();
+				}else{
+					alert("실패");
+				}
+			}
+			
+		})
+			
+	})
+	
+	
+});
+</script>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
@@ -83,6 +206,7 @@
 	    </div>
 	  </nav>
 
+
 	<section class="hero-wrap hero-wrap-2"
 		style="background-image: url('/cloud/resources/images/about_10-1.jpg');"
 		data-stellar-background-ratio="0.5">
@@ -93,7 +217,7 @@
 			<div class="col-md-9 ftco-animate pb-5 text-center">
 				<h1 class="mb-3 bread">Check Patent</h1>
 				<p class="breadcrumbs">
-					<span class="mr-2"><a href="/cloud/home">Home <i
+					<span class="mr-2"><a href="index">Home <i
 							class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a
 						href="blog.html">특허 <i class="ion-ios-arrow-forward"></i></a></span> <span>특허
 						사용 신청 확인<i class="ion-ios-arrow-forward"></i>
@@ -122,7 +246,9 @@
 
 		<div class="search-result" id="search-result">
 			<table class="table">
-				<thead class="navy">
+			
+			
+			 <thead class="navy">
 					<tr>
 						<th scope="col">No.</th>
 						<th scope="col">분류</th>
@@ -133,115 +259,54 @@
 						<th colspan="2" scope="col"></th>
 					</tr>
 				</thead>
+					
 				<tbody>
-					<!-- 게시글이 없는 경우 -->
-					<c:if test="${empty list}">
-						<tr>
-							<td colspan="5" align="center">데이터가 없습니다.</td>
-						</tr>
-					</c:if>
-					<!-- 게시글이 있는 경우 -->
-					<c:if test="${not empty list }">
-						<c:forEach var="Patent" items="${list}" varStatus="stat">
-							<tr> 
-								<th scope="row" name=patentNum>${stat.count + navi.startRecord}</th>
-								<td>${Patent.patenttype}</td>
-								<td class="patentName">${Patent.patentName}</td>
-								<td>${Patent.patentHolderName}</td>
-								<td>${Patent.patentAppDate}</td><td name="">
-								<button type="button" class="btn btn-primary" data-id="${sessionScope.loginId}" 
-								data-toggle="modal" data-target="#exampleModal"> 상세보기</button></td>
-							</tr>
-					</c:forEach>
-					</c:if>
-				</tbody>
-
+				<c:forEach varStatus="status" var="pat" items="${pList}" >
+				<tr class= "del" >
+				<th scope="row" name="" >${status.count}</th>
+				<td>${pat.patenttype}</td>
+				<td>${pat.patentName}</td>
+				<td>${pat.memberGo}</td>
+				<td>${pat.contractDate}</td>
+				<td><button type="button" class="pri" data-member="${pat.memberGo}" data-value="${pat.patentNum}" data-id="${pat.itemNum}" data-name="${pat.documentNum}"  value="${pat.PTI_seq}"  data-toggle="modal" data-target="#exampleModal" data-contractDate=${pat.contractDate }>상세보기	
+				</button></td>
+				</tr>								<!-- data-id= "${memberId}" -->
+				</c:forEach>
+				</tbody> 
 			</table>
 			<!--페이징 & 검색-->
 			<div class="page-center">
 
 				<nav>
 				<ul class="pagination justify-content-center">
-				    <li class="page-item">
-				      <a class="page-link" aria-label="Previous" href="patentlistForm?currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">
-				        <span aria-hidden="true">&laquo;</span>
-				        <span class="sr-only">Previous</span>
-				      </a>
-				   </li>
-					<c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup }">
-						    <li class="page-item"><a href="patentlistForm?currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}"class="page-link">${page}</a>
-					</c:forEach>
-				<li class="page-item">
-				     <a class="page-link" aria-label="Next" href="patentlistForm?currentPage=${navi.currentPage+navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">
-				        <span aria-hidden="true">&raquo;</span>
-				        <span class="sr-only">Next</span>
-				    </a>
-			    </li>
-			</ul>
-			</nav>
+					<li class="page-item"><a class="page-link"
+						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							<span class="sr-only">Previous</span>
+					</a></li>
+					<li class="page-item active"><a class="page-link">1</a></li>
+					<li class="page-item"><a class="page-link">2</a></li>
+					<li class="page-item"><a class="page-link">3</a></li>
+					<li class="page-item"><a class="page-link">4</a></li>
+					<li class="page-item"><a class="page-link">5</a></li>
+					<li class="page-item"><a class="page-link" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+					</a></li>
+				</ul>
+				</nav>
 			</div>
 		</div>
 		<hr class="hr_navy">
 	</div>
 	</section>
-<form action="/cloud/board/boardListForm" method="get" class="search-form" id="searchForm">
-	<select style="visibility: hidden;" name="searchItem" class="searchItem">
-		 <option value="all">전체</option>
-	</select>
-	<input type="hidden" name="searchWord" value="${searchWord}" class="searchWord" placeholder="Search">
-</form>
- <footer class="ftco-footer ftco-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">About <span>SupporterS</span></h2>
-              <p>창업자가 궁금해하는 것, <br>필요로 하는 것, <br>필요로 할 것들을 최대한 지원하기 위해 만든 사이트입니다.</p>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">바로가기</h2>
-              <ul class="list-unstyled">
-                <li><a href="/cloud/home"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
-                <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"></span>검색 및 특허 관련</a></li>
-                <li><a href="/cloud/board/boardListForm"><span class="icon-long-arrow-right mr-2"></span>Q & A 게시판</a></li>
-                <li><a href="/cloud/survey/surveyListForm"><span class="icon-long-arrow-right mr-2"></span>블라인드 테스트</a></li>
-                <li><a href="/cloud/funding/fundingListForm"><span class="icon-long-arrow-right mr-2"></span>크라우드 펀딩</a></li>
-                <li><a href="/cloud/home#contact-section"><span class="icon-long-arrow-right mr-2"></span>공식 연락처</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">검색 및 특허 관련</h2>
-              <ul class="list-unstyled">
-                <li><a href="/cloud/member/searchGo"><span class="icon-long-arrow-right mr-2"> 특허 검색</span></a></li>
-                <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"> 제품 검색</span></a></li>
-                 <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"> 특허 출원 신청</span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">찾아오는 길</h2>
-            	<div class="block-23 mb-0">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">4th floor, 513, Yeongdong-daero, Gangnam-gu, Seoul, Republic of Korea</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+82 02 6000 0114</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    
-    
-    <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6082cc"/></svg></div>
 
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px">
+		<circle class="path-bg" cx="24" cy="24" r="22" fill="none"
+			stroke-width="4" stroke="#eeeeee" />
+		<circle class="path" cx="24" cy="24" r="22" fill="none"
+			stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
+	</div>
 
   <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -254,49 +319,101 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post" id="">
+                    <form  id="permitionForm" >
                         <div class="form-group">
                             <label for="appointment_date" class="text-black"><b>신청일</b></label>
-                            <input type="text" class="form-control" name="contractDate" id="appointment_date" placeholder="2019-09-19 (목)" readonly="readonly">
+                            <input type="text" class="form-control" name="contractDate" id="contractDate" value="" placeholder="" readonly="readonly">
+                            <input type="hidden" name="itemNum" id="itNum" value=""  /> 
+                             <input type="hidden" name="DocumentNum" id="DocumentNum" value=""  /> 
+                              
                         </div>
                         <div class="form-group">
+                        <input type="hidden" name="PTI_seq" id="Pti_seq" value=""  /> 
                             <label for="appointment_name" class="text-black"><b>신청인</b></label>
-                            <input type="text" class="form-control" name="memberId" id="appointment_name" placeholder="(select 된)memberId" readonly="readonly">
+                            <input type="text" class="form-control" name="memberId" id="memberId" value="" placeholder="" readonly="readonly">
                         </div>
                         <div class="form-group">
                             <label for="appointment_patentnum" class="text-black"><b>특허번호</b></label>
-                            <input type="text" class="form-control" name="patentName" id="appointment_patentnum" placeholder="(select 된)KR000000000" readonly="readonly">
+                            <input type="text" class="form-control" name="patentNum" id="patentNum" value="" placeholder="" readonly="readonly">
+                       		
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <a href="#" class="a_document"> ▶ [신청자] 특허 사용 신청서</a>
+                                    <a href="#" class="a_document" id="down"></a>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <a href="#" class="a_document"> ▶ [신청자] 특허 사용 허가서</a>
+                                    <a href="#" class="a_document" id="down1"></a>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="appointment_file" class="text-black"><b>[보유자]특허 사용 신청서 / 허가서</b></label>
-                            <input type="file" class="form-control" name="documentFilename" id="appointment_file" multiple>
+                            <input type="file" class="form-control" name="upload" id="upload" multiple>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-info">승인하기</button>
+                    <button type="button" id="permitBtn" class="btn btn-outline-info">승인하기</button>
                     <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>
                 </div>
             </div>
         </div>
     </div>
+    
+    <footer class="ftco-footer ftco-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">About <span>SupporterS</span></h2>
+                        <p>창업자가 궁금해하는 것, <br>필요로 하는 것, <br>필요로 할 것들을 최대한 지원하기 위해 만든 사이트입니다.</p>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4 ml-md-4">
+                        <h2 class="ftco-heading-2">바로가기</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="/cloud/home"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
+                            <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"></span>검색 및 특허 관련</a></li>
+                            <li><a href="/cloud/board/boardListForm"><span class="icon-long-arrow-right mr-2"></span>Q & A 게시판</a></li>
+                            <li><a href="/cloud/survey/surveyListForm"><span class="icon-long-arrow-right mr-2"></span>블라인드 테스트</a></li>
+                            <li><a href="/cloud/funding/fundingListForm"><span class="icon-long-arrow-right mr-2"></span>크라우드 펀딩</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">검색 및 특허 관련</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="/cloud/member/searchGo"><span class="icon-long-arrow-right mr-2"> 특허 검색</span></a></li>
+                            <li><a href="/cloud/item/searchItem"><span class="icon-long-arrow-right mr-2"> 제품 검색</span></a></li>
+                            <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"> 특허 출원 신청</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">찾아오는 길</h2>
+                        <div class="block-23 mb-0">
+                            <ul>
+                                <li><span class="icon icon-map-marker"></span><span class="text">4th floor, 513, Yeongdong-daero, Gangnam-gu, Seoul, Republic of Korea</span></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+82 02 6000 0114</span></a></li>
+                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 	<script src="/cloud/resources/js/jquery.min.js"></script>
 	<script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="/cloud/resources/js/popper.min.js"></script>
-	<script src="/cloud/resources/js/bootstrap.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
 	<script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
 	<script src="/cloud/resources/js/jquery.stellar.min.js"></script>
@@ -307,6 +424,7 @@
 	<script src="/cloud/resources/js/scrollax.min.js"></script>
 
 	<script src="/cloud/resources/js/main.js"></script>
-	
-	</body>
+
+</body>
+
 </html>

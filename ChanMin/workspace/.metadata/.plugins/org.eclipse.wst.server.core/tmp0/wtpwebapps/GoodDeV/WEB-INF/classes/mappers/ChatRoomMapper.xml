@@ -45,7 +45,7 @@
 	select cr.chatroom_seq, cm.chatmember_seq, cm.memberId, TO_CHAR(cm.messageDate, 'MM-DD | HH24:mi') as messageDate, cm.message 
 	from ChatRoom cr inner join ChatMember cm on cr.chatroom_seq=cm.chatroom_seq 
 	where cr.crowdfundingNum=#{crowdfundingNum}
-    order by cm.messagedate desc 
+    order by cm.chatmember_seq desc 
 	</select>
 	
 	<select id="getAllchatRoomByCrowdfundingNum" parameterType="ChatRoom" resultType="ChatRoom">
@@ -58,12 +58,12 @@
 	select cr.chatroom_seq, cm.chatmember_seq, cm.memberId, TO_CHAR(cm.messageDate, 'MM-DD | HH24:mi') as messageDate, cm.message 
 	from ChatRoom cr inner join ChatMember cm on cr.chatroom_seq=cm.chatroom_seq 
 	where cr.crowdfundingNum=#{crowdfundingNum}
-    order by cm.messagedate asc
+    order by cm.chatmember_seq asc
 	</select>
 	
 	<select id="getAllchatByChatRM" parameterType="ChatMember" resultType="ChatMember">
 	select chatmember_seq, chatroom_seq, memberId, TO_CHAR(messageDate, 'MM-DD | HH24:mi') as messageDate, message
-	 from ChatMember where chatroom_seq=#{chatroom_seq} order by messageDate asc
+	 from ChatMember where chatroom_seq=#{chatroom_seq} order by chatmember_seq asc
 	
 	</select>
 	<select id="getLastChatroom_seq" resultType="int">

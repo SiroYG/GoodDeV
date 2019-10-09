@@ -26,10 +26,10 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,6 +41,7 @@ import com.dev.cloud.dao.HistoryRepository;
 import com.dev.cloud.dao.historyMapper;
 import com.dev.cloud.dao.itemRepository;
 import com.dev.cloud.utill.FileService;
+import com.dev.cloud.utill.PageNavigator;
 import com.dev.cloud.vo.History;
 import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.MTI;
@@ -62,16 +63,7 @@ public class ItemController {
 
 	@RequestMapping(value = "/searchItem", method = RequestMethod.GET)
 	public String searchItem() { 
-		/*try {
-			ArrayList<String> list =  Python_TEST.pytest();
-			for(int i=0;i<list.size();i++){
-				System.out.println("68번줄==>"+list.get(i));
-			}
-			
-		} catch (IOException e) {
 		
-			e.printStackTrace();
-		}*/
 		
 		return "/search/search_item";
 	}
@@ -163,6 +155,21 @@ public class ItemController {
 		return "/item/item_write";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/selectItemNameGo", method = RequestMethod.GET)
+	public String selectItemNameGo(String itemName) {
+		
+		Item item = repo.selectItemName(itemName);
+		
+		if(item==null){
+			return "success";
+		}else{
+			return "false";
+		}
+		
+		
+	}
+	
 	@RequestMapping(value = "/goItemDelete", method = RequestMethod.GET)
 	public String goItemDelete(HttpSession session,Total total,Model model) {
 		String memberId = (String) session.getAttribute("loginId");
@@ -184,7 +191,7 @@ public class ItemController {
 		
 	}
 	
-	@RequestMapping(value = "/goItemHistory", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/goItemHistory", method = RequestMethod.GET)
 	public String goItemHistory(HttpSession session,Total total,Model model) {
 		String memberId = (String) session.getAttribute("loginId");
 		total.setMemberId(memberId);
@@ -194,6 +201,23 @@ public class ItemController {
 		model.addAttribute("hList", hList);	
 		
 		return "item/item_history";
+	}*/
+	
+	@RequestMapping(value = "/goItemHistory", method = RequestMethod.GET)
+	public String goItemHistory(@RequestParam(value = "currentPage", defaultValue = "1") 
+	int currentPage,HttpSession session,Total total,Model model) {
+	
+		String memberId = (String) session.getAttribute("loginId");
+		total.setMemberId(memberId);
+		List<Total> hList = hipo.selectAllHistory(total);
+		System.out.println("47번==>"+hList);
+		// 추가
+		int totalRecordCount = hList.size();
+		System.out.println(totalRecordCount);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		model.addAttribute("hList", hList);	
+		model.addAttribute("navi", navi);
+		return "/item/item_history" ;
 	}
 	
 	
@@ -265,7 +289,7 @@ public class ItemController {
 	public String goItemWriteProcess(MultipartFile upload,MultipartFile upload1,Total total, HttpSession session) {
 		int re =0;
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd (E) ");
-		
+		int result =0;
 		Calendar time = Calendar.getInstance();
 		
 		String times = format.format(time.getTime());
@@ -282,25 +306,33 @@ public class ItemController {
 			
 			String documentFilename = upload1.getOriginalFilename();
 			String saveDocumentFilename = FileService.saveFile(upload1, uploadPath);
+			System.out.println("309번줄"+saveitemImage+", "+saveDocumentFilename);
+			if(saveitemImage!=""&&saveitemImage!=null||saveDocumentFilename!=null&&saveDocumentFilename!=""){
 			total.setItemImagename(itemImage+"@"+documentFilename);
 			total.setSaveItemImage(saveitemImage+"@"+saveDocumentFilename);	
-		
+			System.out.println("312번");
+			}
+			System.out.println("314번");
 		} catch (IllegalStateException e) {
 			
 			e.printStackTrace();
 		}
-		
-		int result = repo.insertItem(total); 
-		System.out.println("203==>"+total);
-		List<Total> hist = repo.getIdDe(total);
-		for(Total to : hist){
-			if(to.getItemName().equals(total.getItemName())){
-				total.setItemNum(to.getItemNum());
-				System.out.println("208번줄his==>"+total);
-			 
-				 re = hipo.insertHistory(total);
+		Item item = repo.selectItemName(total.getItemName());
+		System.out.println("317번줄item==>"+item);
+		if(item==null){
+			result = repo.insertItem(total); 
+			System.out.println("203==>"+total);
+			List<Total> hist = repo.getIdDe(total);
+			for(Total to : hist){
+				if(to.getItemName().equals(total.getItemName())){
+					total.setItemNum(to.getItemNum());
+					System.out.println("208번줄his==>"+total);
+				 
+					 re = hipo.insertHistory(total);
+				}
 			}
 		}
+		System.out.println("315번줄result==>"+result+",  re==>"+re);
 		try{
 		if(result==1&&re==1){
 			return "redirect:/member/goMypage";
@@ -312,6 +344,38 @@ public class ItemController {
 			return "redirect:/goItemWrite";
 		}
 	}
+	
+	@RequestMapping(value = "/fileDownload")
+	public  void fileDownload(
+			  @RequestParam("document_nm") String document_nm, Total total
+			, HttpSession session
+			, HttpServletRequest req
+			, HttpServletResponse res
+			, ModelAndView mav) throws Throwable 
+	{
+
+		String documentName=document_nm;
+		System.out.println("document_nm"+document_nm);
+		System.out.println("total"+total);
+		
+		
+		Total totalItem= repo.getOneItemByItemNum(total);
+		System.out.println("totalItem"+totalItem);
+
+		String savedDocumentFileName=totalItem.getSaveDocumentFilename();
+		
+		System.out.println("savedDocumentFileName"+savedDocumentFileName);
+
+		try {
+			FileService.filDown(req, res, "/PatentSub" + "/" , savedDocumentFileName, documentName); //파일다운로드 
+			//C:/PatentSub
+			//FileService.filDown(req, res, "/PatentSub" + "/" , "파일이름이력", "다운받았을때출력되는파일이름입력"); //파일다운로드 
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
+	
 	
 }
 

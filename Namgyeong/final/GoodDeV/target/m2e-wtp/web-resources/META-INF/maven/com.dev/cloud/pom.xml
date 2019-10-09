@@ -172,6 +172,8 @@
 			<version>2.9.9.2</version>
 		</dependency>
 		
+		
+		
 		<!--  lombok  -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -181,14 +183,6 @@
 	</dependencies>
 	
     <build>
-    <resources>
-   <resource>
-      <directory>src/main/java</directory>
-      <includes>
-         <include>**/*.xml</include>
-      </includes>
-   </resource>
-</resources>
         <plugins>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>

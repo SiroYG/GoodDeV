@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dev.cloud.dao.boardRepository;
@@ -123,7 +125,7 @@ public class BoardController {
 			return "redirect:/board/boardListForm";
 		}
 		System.out.println("수정실패");
-		return "/board/Board_update";
+		return "redirect:/board/goupdate";
 	}
 	
 	
@@ -193,6 +195,9 @@ public class BoardController {
 	@RequestMapping(value = "godelete", method = RequestMethod.GET)
 	public String godelete(int boardNum, Model model) {
 		System.out.println("게시글 삭제 " + boardNum);
+		int re = rep.deleteReply(boardNum);
+		System.out.println("197번줄re==>"+re);
+				
 		int result = dao.deleteBoard(boardNum);
 		if (result > 0) {
 
@@ -201,37 +206,34 @@ public class BoardController {
 			return "redirect:/";
 		}
 	}
-
-	// 파일 다운로드
-	@RequestMapping(value = "/download", method = RequestMethod.GET)
-	public String download(HttpSession session,int boardno, HttpServletResponse response) {
-		String memberId = (String) session.getAttribute("loginId");
-		Board bo = new Board();
-		bo.setMemberId(memberId);
-		bo.setBoardNum(boardno);
-		Board board = dao.selectOne(bo);
-		String savedfile = board.getSaveFilename();
-		String originalfile = board.getOriginalFilename();
-		System.out.println(savedfile);
-		response.setHeader("Content-Disposition", "attachment;filename=" + originalfile);
-
-		String fullPath = uploadPath + "/" + savedfile;
-		System.out.println(fullPath);
-		FileInputStream filein = null;
-		ServletOutputStream fileout = null;
+	
+	@RequestMapping(value = "/download")
+	public  void download(
+		
+			  @RequestParam("boardNum") int boardNum  
+			 
+			, HttpSession session
+			, HttpServletRequest req
+			, HttpServletResponse res
+			, ModelAndView mav) throws Throwable 
+	{
+		Board board=new Board();
+		board.setBoardNum(boardNum);
+		board=dao.selectOne(board);
+		String documentFilename = board.getOriginalFilename();
+		String saveDocumentFilename  = board.getSaveFilename();
+		System.out.println("savedDocumentFileName"+saveDocumentFilename);
 
 		try {
-			filein = new FileInputStream(fullPath);
-			fileout = response.getOutputStream();
-			FileCopyUtils.copy(filein, fileout);
-			filein.close();
-			fileout.close();
+			FileService.filDown(req, res, "/uploadfile" + "/" , saveDocumentFilename, documentFilename); //파일다운로드 
+			//C:/PatentSub
+			//FileService.filDown(req, res, "/PatentSub" + "/" , "파일이름이력", "다운받았을때출력되는파일이름입력"); //파일다운로드 
 
-		} catch (IOException e) {
-
+			
+		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
-
-		return null;
 	}
+	
 }

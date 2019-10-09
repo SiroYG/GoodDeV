@@ -29,16 +29,38 @@
     
      	<script>
      	 $(function(){
+     		var memberId = $('#memberId').val();
+     		 $.ajax({
+     				url : '/cloud/funding/fundTitle',
+     				type : 'get',
+     				data : {
+     					memberId : memberId
+     				} ,
+     				success : function(res){
+     					var tag ="";
+     				
+     					$.each(res,function(i,item){
+     						var type = item.itemType;
+     						if(type!='none'){
+     						tag +='<option value="'+item.itemName+'">'+item.itemName+'</option>'
+     						}
+     						})  					
+     					 $('#fundingTitle').html(tag);
+     				}
+     					
+     			 
+     			 
+     		 })
+     		 
+     		 
+     		 
      		
      		$('#fundBtn').on('click',function(){
      			var fundingTitle = $('#fundingTitle').val();
      			var fundingContents = $('#fundingContents').val();
      			var upload = $('#upload').val();
      			var itemGoalPrice = $('#itemGoalPrice').val();
-     			if(fundingTitle.length== 0||fundingTitle==''){
-     					alert('제목을 반드시 입력하시오!');
-     					return false;
-     			}
+     			
      			if(fundingContents.length== 0||fundingContents==''){
  					alert('내용을 반드시  입력하시오!');
  					return false;
@@ -55,7 +77,24 @@
      				alert('반드시 숫자로 입력하시오!');
  					return false;
      			}
-     			$('#writeform').submit();
+     			$.ajax({
+     				url : '/cloud/funding/selectFundingTitle',
+     				type : 'get',
+     				data :  {
+     					fundingTitle : fundingTitle
+     				},
+     				success : function(res){
+     					if(res=='success'){
+     						$('#writeform').submit();
+     					}else{
+     						alert('이미 존재하는 펀딩이름입니다.');
+     						return ;
+     					}
+     				}
+     				
+     				
+     			})
+     			
      		})
      		
      	});
@@ -140,7 +179,7 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label"><span><b>작성자</b></span></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="" value="${sessionScope.loginId}" name="memberId" placeholder="${sessionScope.loginId}" readonly="readonly">
+                        <input type="text" class="form-control" id="memberId"  value="${sessionScope.loginId}" name="memberId" placeholder="${sessionScope.loginId}" readonly="readonly">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -161,7 +200,9 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label"><span><b>제목</b></span></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="fundingTitle" id="fundingTitle" placeholder="펀딩 타이틀">
+                    	<select id="fundingTitle" name="fundingTitle" >
+                    	
+                    	</select>
                     </div>
                 </div>
 

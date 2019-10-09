@@ -26,13 +26,27 @@ insert into Reply (
 
 <select parameterType="Reply" id="selectAll" resultType="Reply">
 select
-		*
+	replyNum
+	,boardNum
+	,reply
+	,to_char(replyDate,'YYYY-MM-DD') as replyDate
+	,memberid
+
 from 
 		Reply
 where 
 		boardNum = #{boardNum}
+order by 	
+	replyNum desc	
 </select>
+
+<delete id="deleteReply" parameterType="int" >
+delete 
+	Reply
+where 
+	boardNum = #{boardNum}
 	
+</delete>	
 	<!-- <insert id="insert_reply" parameterType="Reply">
 		insert into Reply (
 		replyNum

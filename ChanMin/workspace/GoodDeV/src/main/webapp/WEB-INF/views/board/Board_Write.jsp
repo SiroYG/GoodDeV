@@ -123,12 +123,7 @@
 				  <div class="form-group row">
 				    <label for="" class="col-sm-2 col-form-label"><span><b>작성자</b></span></label>
 				    <div class="col-sm-10">
-				    	<c:if test="${sessionScope.loginId!=null}">
 				    	<input type="text" class="form-control" name="id" value="${sessionScope.loginId}" readonly="readonly">
-				    	</c:if>
-				    <c:if test="${sessionScope.loginId==null}">	
-				      <input type="text" class="form-control" name="id" value="">
-				     </c:if>
 				    </div>
 				  </div>
 				  
@@ -144,26 +139,7 @@
 				     <!-- <input type="email" class="form-control" id="inputEmail3" placeholder="Email">-->
 				    </div>
 				  </div>
-				  <fieldset class="form-group">
-				    <div class="row">
-				      <legend class="col-form-label col-sm-2 pt-0"><span><b>공개여부</b></span></legend>
-				      <div class="col-sm-10">
-				        <div class="form-check">
-				          <input class="form-check-input" type="radio" name="qType" id="gridRadios1" value="public" checked>
-				          <label class="form-check-label" for="gridRadios1"> 공개  </label>
-				        </div>
-				        <div class="form-check">
-				          <input class="form-check-input" type="radio" name="qType" id="gridRadios2" value="private">
-				          <label class="form-check-label" for="gridRadios2">
-				            비공개
-				          </label><br>
-				          <label class="form-check-label" for="gridRadios2">
-				            * 비공개로 설정 시 해당 게시글은 운영자만 확인할 수 있습니다.
-				          </label>
-				        </div>
-				      </div>
-				    </div>
-				  </fieldset>
+				 
 				  <div class="form-group row">
 				    <label for="" class="col-sm-2 col-form-label"><span><b>제목</b></span></label>
 				    <div class="col-sm-10">
@@ -247,7 +223,7 @@
        <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/cloud/resources/js/popper.min.js"></script>
-  <script src="/cloud/resources/js/bootstrap.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
   <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
   <script src="/cloud/resources/js/jquery.stellar.min.js"></script>

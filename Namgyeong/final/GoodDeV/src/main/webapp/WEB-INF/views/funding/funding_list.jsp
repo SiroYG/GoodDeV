@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="ko">
 
 <head>
@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
@@ -39,7 +38,7 @@
                     <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
                     <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
                     <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
-                    <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
+                    <li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드 펀딩</span></a></li>
                     <c:if test="${sessionScope.loginId==null}">
                         <li style="margin-left: 20px;" class="nav-item cta">
                             <div class="dropdown show">
@@ -110,10 +109,10 @@
                     </div>
                 </c:if>
 
-                <c:if test="${not empty list }">
+                <c:if test="${not empty list}">
                     <c:forEach var="board" items="${list}" varStatus="stat">
                         <div class="col-md-4 d-flex">
-                            <div class="blog-entry justify-content-end">
+                            <div class="blog-entry" style="width:100%;">
                                 <div class="text">
                                     <h3 class="heading"><a href="fundingDetail?crowdfundingNum=${board.crowdfundingNum}">${board.fundingTitle}</a></h3>
                                 </div>
@@ -121,9 +120,9 @@
                                 </a>
                                 <div class="text mt-3 float-right d-block">
                                     <p>${board.fundingContents}</p>
-                                    <div class="d-flex align-items-center mt-4 meta">
+                                    <!--   <div class="d-flex align-items-center mt-4 meta">
                                         <p class="mb-0"><a href="#" class="btn btn-primary">더 보기 <span class="ion-ios-arrow-round-forward"></span></a></p>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -159,13 +158,13 @@
                     <!--Blue select-->
 
                     <select class="browser-default custom-select" name="searchItem">
-                        <option value="all" selected>분류</option>
+                        <option value="all" selected>전체</option>
                         <option value="fundingTitle" ${searchItem=='fundingTitle' ?'selected' :''}>제목</option>
                         <option value="fundingContents" ${searchItem=='fundingContents' ? 'selected' :'' }>내용</option>
                         <option value="memberId" ${searchItem=='memberId' ?'selected' :'' }>작성자</option>
                     </select>
 
-                    <input type="text" name="searchWord" class="searchWord" placeholder="  Search">
+                    <input type="text" name="searchWord" class="searchWord" value="${searchWord}" placeholder="Search">
                     <button type="submit" class="btn btn-outline-primary btn-rounded waves-effect">검색하기</button>
                 </form>
             </div>
@@ -196,7 +195,6 @@
                             <li><a href="/cloud/board/boardListForm"><span class="icon-long-arrow-right mr-2"></span>Q & A 게시판</a></li>
                             <li><a href="/cloud/survey/surveyListForm"><span class="icon-long-arrow-right mr-2"></span>블라인드 테스트</a></li>
                             <li><a href="/cloud/funding/fundingListForm"><span class="icon-long-arrow-right mr-2"></span>크라우드 펀딩</a></li>
-                            <li><a href="/cloud/home#contact-section"><span class="icon-long-arrow-right mr-2"></span>공식 연락처</a></li>
                         </ul>
                     </div>
                 </div>
@@ -205,7 +203,7 @@
                         <h2 class="ftco-heading-2">검색 및 특허 관련</h2>
                         <ul class="list-unstyled">
                             <li><a href="/cloud/member/searchGo"><span class="icon-long-arrow-right mr-2"> 특허 검색</span></a></li>
-                            <li><a href="/cloud/member/"><span class="icon-long-arrow-right mr-2"> 제품 검색</span></a></li>
+                            <li><a href="/cloud/item/searchItem"><span class="icon-long-arrow-right mr-2"> 제품 검색</span></a></li>
                             <li><a href="/cloud/member/goPatent"><span class="icon-long-arrow-right mr-2"> 특허 출원 신청</span></a></li>
                         </ul>
                     </div>
@@ -229,7 +227,7 @@
     <script src="/cloud/resources/js/jquery.min.js"></script>
     <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="/cloud/resources/js/popper.min.js"></script>
-    <script src="/cloud/resources/js/bootstrap.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
     <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
     <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
@@ -237,8 +235,7 @@
     <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
     <script src="/cloud/resources/js/aos.js"></script>
     <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
-    <script src="/cloud/resources/js/bootstrap-datepicker.js"></script>
-    <script src="/cloud/resources/js/jquery.timepicker.min.js"></script>
+
     <script src="/cloud/resources/js/scrollax.min.js"></script>
 
     <script src="/cloud/resources/js/main.js"></script>

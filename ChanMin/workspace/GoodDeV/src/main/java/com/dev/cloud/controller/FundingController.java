@@ -55,8 +55,9 @@ public class FundingController {
 	@Autowired
 	itemRepository itpo;
 	
-	final String uploadPath = "/uploadfile";
-
+	//final String uploadPath = "/uploadfile";
+	final String uploadPath ="C:/Users/Administrator/Desktop/apache-tomcat-9.0.22/webapps/cloud/resources/img";
+	//final String uploadPath="C:/Users/창민/Documents/GitHub/GoodDeV/ChanMin/workspace/GoodDeV/src/main/webapp/resources/images";
 	@RequestMapping(value = "/boardhome", method = RequestMethod.GET)
 	public String boardhome() { // 홈이동 (리다이렉트)
 		return "/board/Board_list";
@@ -116,46 +117,75 @@ public class FundingController {
 		
 		System.out.println("funding => " + crowdfundingNum);
 		Crowdfunding Crowdfunding = dao.selectOneCrowdFunding(crowdfundingNum);
+		System.out.println("120번줄Crowdfunding==>"+Crowdfunding);
 		int percent =(Crowdfunding.getItemCurrecyPrice()*100 / Crowdfunding.getItemGoalPrice());
 		
 		System.out.println("퍼센트 : "+percent);
 		model.addAttribute("fund", Crowdfunding);
 		model.addAttribute("percent",percent);
-		
+		model.addAttribute("save",Crowdfunding.getSavedFileName());
 		System.out.println(Crowdfunding);
 		return "/funding/funding_Detail";
 	}
+	@ResponseBody
+	@RequestMapping(value = "/fundTitle", method = RequestMethod.GET)
+	public List<Item> fundTitle(String memberId) {
+		System.out.println("131번줄memberId==>"+memberId);
+		
+		List<Item> iList = itpo.selectItemMem(memberId);
+		
+		return iList;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/selectFundingTitle", method = RequestMethod.GET)
+	public String selectFundingTitle(String fundingTitle) {
+		System.out.println("131번줄memberId==>"+fundingTitle);
+		
+		Crowdfunding crowd = dao.selectfundingTitle(fundingTitle);
+		if(crowd==null){
+			return "success";
+		}else{
+			return "false";
+		}
+		
+	}
+	
 	
 	@RequestMapping(value = "/fundingWrite", method = RequestMethod.POST)
-	public String fundingWrite(Crowdfunding Crowdfunding, MultipartFile upload, HttpSession session, RedirectAttributes rttr) {
-		System.out.println(upload.getOriginalFilename());
-		System.out.println("106번줄==>"+Crowdfunding);
-		String memberId = (String) session.getAttribute("loginId");
-		Crowdfunding.setMemberId(memberId);
-		// 2) FileService 를 사용한 코드
-		if (upload != null) {
-			String originalfile = upload.getOriginalFilename();
-			String savedfile = FileService.saveFile(upload, uploadPath);
-			System.out.println(savedfile);
-			Crowdfunding.setOriginalFileName(originalfile);
-			Crowdfunding.setSavedFileName(savedfile);
+	public String fundingWrite(Crowdfunding Crowdfunding, MultipartFile upload) {
+		System.out.println("131번줄upload==>"+upload);
+		System.out.println("132번줄==>"+Crowdfunding);
+		try {
+			String originalFileName = upload.getOriginalFilename();
+			String savedFileName = FileService.saveFile(upload, uploadPath);
+			Crowdfunding.setOriginalFileName(originalFileName);
+			Crowdfunding.setSavedFileName(savedFileName);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
 		}
+		System.out.println("141번줄Crowdfunding==>"+Crowdfunding);
+		
+		
 		int result = dao.makeCrowdFunding(Crowdfunding);
+		
 		System.out.println("게시물입력 : " + result);
 
-		return "redirect:/funding/funding_list";
+		return "redirect:/funding/fundingListForm";
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "devmemberPrice", method = RequestMethod.GET)
 	public String devmemberPrice(HttpSession session,Payment payment,int amount) {
-		//devmember 멤버  fundPrice update , 
+		//devmember 멤버  fundPrice update ,   여기 잘못처리!!!!!
 		System.out.println("150번줄payment==>"+payment);
 		System.out.println("154번줄amount==>"+amount);
-		devMember member = mempo.selectmemId(payment.getMemberId());
+		String memberId = (String) session.getAttribute("loginId");
+		devMember member = mempo.selectmemId(memberId);
 		System.out.println("153번줄member==>"+member);
+		member.setFundPrice(member.getFundPrice()+amount);
 		payment.setAmount(payment.getAmount()+member.getFundPrice());
-		int result = mempo.devmemberPrice(payment);
+		int result = mempo.devmemberPrice(member);
 		Crowdfunding crowd = dao.selectOneCrowdFunding(payment.getCrowdfundingNum());
 		crowd.setItemCurrecyPrice(crowd.getItemCurrecyPrice()+amount);
 		int crowResult = dao.updateCurrentPrice(crowd); 
@@ -201,9 +231,9 @@ public class FundingController {
 		ArrayList<Integer> checkAchatRoomSeq=new ArrayList<>();
 		
 		for (ChatRoom chatrm : AllcrList){
-//			System.out.println("chatrm : "+ chatrm);
+
 			for(ChatMember cMember : AllcmList){
-//				System.out.println("cMember : "+cMember);
+
 				int Chatroom_seq=0;
 				if(chatrm.getChatroom_seq()==cMember.getChatroom_seq()&&cMember.getMemberId().equals(SessionTemp)){
 					Chatroom_seq=chatrm.getChatroom_seq();
@@ -268,6 +298,7 @@ public class FundingController {
 		
 		String memberId=(String) session.getAttribute("loginId");
 		boolean flag=false;
+		System.out.println("cmList+"+cmList);
 		for(ChatMember  member: cmList){
 			if(member.getMemberId().equals(memberId)){
 				flag=true;
@@ -321,7 +352,7 @@ public class FundingController {
 				}
 			}
 		}
-		
+		System.out.println("cmforLeftList:"+cmforLeftList);
 		
 		
 		
@@ -351,11 +382,6 @@ public class FundingController {
 				return null;
 			}
 		}
-
-		
-		
-		
-		
 		
 		ChatRoom chatRoom=new ChatRoom();
 		chatRoom.setCrowdfundingNum(CrowdfundingNum);

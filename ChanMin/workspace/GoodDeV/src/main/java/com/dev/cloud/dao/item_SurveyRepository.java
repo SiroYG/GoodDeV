@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dev.cloud.vo.Item;
 import com.dev.cloud.vo.Question;
 import com.dev.cloud.vo.QuestionTotal;
 import com.dev.cloud.vo.Survey;
@@ -185,11 +186,11 @@ public class item_SurveyRepository implements item_SurveyMapper{
 	}
 
 	@Override
-	public List<QuestionTotal> selectBySearchItem(Search search) {
+	public List<QuestionTotal> selectBySearchItem() {
 		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
 		List<QuestionTotal> result=null;
 		try {
-			result=mapper.selectBySearchItem(search);
+			result=mapper.selectBySearchItem();
 			System.out.println("175 : "+result);
 
 		} catch (Exception e) {
@@ -239,6 +240,19 @@ public class item_SurveyRepository implements item_SurveyMapper{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
+	}
+
+	@Override
+	public Item getItembyqtNum(Question_Time question_Time) {
+		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
+		Item result=null;
+		try {
+			 result=mapper.getItembyqtNum(question_Time);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 

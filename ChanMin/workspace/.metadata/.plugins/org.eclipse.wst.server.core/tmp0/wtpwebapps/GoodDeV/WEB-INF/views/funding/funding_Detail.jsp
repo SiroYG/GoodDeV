@@ -65,6 +65,9 @@ $(function() {
         $('mesgs').attr('disabled', 'disabled');
         $('.chat_people').not(this).parent().css("background-color", "#f8f8f8");
     });
+  
+   
+     
     
     /*채팅(하는 것처럼 보이는) ajax*/
     $('#msg_send_btn').on('click', function() {
@@ -86,6 +89,41 @@ $(function() {
     });
 
 });
+
+
+function paycheck(){
+	var amount = document.getElementById("amount");
+	var eamil = document.getElementById("email");
+	var tel = document.getElementById("tel");
+	var addr = document.getElementById("addr");
+	 if (!isNaN(amount)) {
+			alert("금액에는 숫자만 입력해주세요.");
+			return false ;
+		}
+	 if (amount.value.length==0	|| amount.value=="") {
+		alert("금액이 입력되지 않았습니다.");
+		return false;
+	}	 if (email.value.length==0	|| amount.value=="") {
+		alert("이메일이 입력되지 않았습니다.");
+		return false;
+	}	 if (tel.value.length==0	|| amount.value=="") {
+		alert("전화번호가 입력되지 않았습니다.");
+		return false;
+	}
+	 if (addr.value.length==0	|| addr.value=="") {
+			alert("전화번호가 입력되지 않았습니다.");
+			return false;
+		}
+	var paywin = window.open('about:blank', 'payment', 'location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no, scrollbars=no, width=800, height=600');
+	var pay =document.pay;
+	pay.action = '/cloud/funding/paymentform';
+	pay.target='payment';
+	pay.method='GET';
+	pay.submit();
+	
+	
+}
+
 
  function btn(){
 	 var popup= document.getElementById("popup");
@@ -193,8 +231,8 @@ $(function() {
 
                          <div class="tab-content">
                              <div class="tab-pane fade show active" id="nav-tab-card">
-                                 <p class="alert alert-success">결제 완료</p>
-                                 <p class="alert alert-danger">결제 정보를 다시 한번 확인해주세요.</p>     
+                               <!--   <p class="alert alert-success">결제 완료</p>
+                                 <p class="alert alert-danger">결제 정보를 다시 한번 확인해주세요.</p>     --> 
                                  <form action="" method="post" name="pay" role="form" class="needs-validation">
                                  	<input type="hidden" name="crowdfundingNum" value="${fund.crowdfundingNum}">
                                  	<input type="hidden" name="itemname" value="${fund.fundingTitle}">
@@ -233,7 +271,7 @@ $(function() {
                                              </div> 
                                          </div>
                                      </div>
-                                     <button onClick="paycheck()" type="submit" class="subscribe btn btn-submit btn-block"> 결제하기 </button>
+                                    <!--  <button onClick="paycheck()" type="submit" class="subscribe btn btn-submit btn-block"> 결제하기 </button> -->
                                  </form>
                              </div> 
                              <div class="tab-pane fade" id="nav-tab-bank">
@@ -253,7 +291,7 @@ $(function() {
                      </div>  
                  </div>
                  <div class="modal-footer">
-                     <button type="button" onclick="" class="btn btn-outline-info">결제하기</button>
+                     <button type="submit" onclick="paycheck()" class="btn btn-outline-info">결제하기</button>
                      <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>
                  </div>
              </div>
@@ -276,10 +314,9 @@ $(function() {
 
 						<!--Grid column-->
 						<div class="col-md-6 mb-4">
+<!-- 							<img src="C:/uploadfile\v_08db8b11-4040-480c-a7e3-c19e94fdbc2e.png" class="img-fluid" alt=""> -->
 
-							<img
-								src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg"
-								class="img-fluid" alt="">
+							<img src="/cloud/resources/img/${save}"  alt="aaa" >
 
 						</div>
 						<!--Grid column-->
@@ -291,8 +328,8 @@ $(function() {
 							<div class="p-4">
 
 								<div class="mb-3">
-									<a href=""> <span class="badge purple mr-1">finish</span>
-									</a> <a href=""> <span class="badge blue mr-1">best</span>
+								<!-- 	<a href=""> <span class="badge purple mr-1">finish</span>
+									</a> --> <a href=""> <span class="badge blue mr-1">best</span>
 									</a> <a href=""> <span class="badge red mr-1">hot</span>
 									</a>
 								</div>
@@ -338,45 +375,7 @@ $(function() {
 						<!--Grid column-->
 					</div>
 					<!--Grid row-->
-					<hr>
-					<!--Grid row-->
-					<div class="row d-flex justify-content-center wow fadeIn">
-						<!--Grid column-->
-						<div class="col-md-6 text-center">
-							<h4 class="my-4 h4">${fund.fundingTitle}</h4>
-							<p>${fund.fundingContents}</p>
-						</div>
-						<!--Grid column-->
-					</div>
-					<!--Grid row-->
-					<!--Grid row-->
-					<div class="row wow fadeIn">
-						<!--Grid column-->
-						<div class="col-lg-4 col-md-12 mb-4">
-							<img
-								src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg"
-								class="img-fluid" alt="">
-						</div>
-						<!--Grid column-->
-						<!--Grid column-->
-						<div class="col-lg-4 col-md-6 mb-4">
-							<img
-								src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg"
-								class="img-fluid" alt="">
-						</div>
-						<!--Grid column-->
-						<!--Grid column-->
-						<div class="col-lg-4 col-md-6 mb-4">
-							<img
-								src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg"
-								class="img-fluid" alt="">
-						</div>
-						<!--Grid column-->
-					</div>
-					<!--Grid row-->
-				</div>
-
-				<hr>
+					
 
 				
 
@@ -483,46 +482,7 @@ $(function() {
       </div>
     </footer>
   <script>
-     var amount = document.getElementById("amount");
-     var eamil = document.getElementById("email");
-     var tel = document.getElementById("tel");
-     var addr = document.getElementById("addr");
-     
-     function amountcheck(){
-     	  if (!isNaN(amount.value)===false) {
-     			alert("금액을 입력해주세요.");
-     			amount.value="";
-     			return;
-     		}
-     }
-     function paycheck(){
-     	 if (!isNaN(amount.value)===false) {
-  			alert("금액에는 숫자만 입력해주세요.");
-  			return ;
-  		}
-     	 if (amount.value.length==0	|| amount.value=="") {
- 			alert("금액이 입력되지 않았습니다.");
- 			return ;
- 		}	 if (email.value.length==0	|| amount.value=="") {
- 			alert("이메일이 입력되지 않았습니다.");
- 			return ;
- 		}	 if (tel.value.length==0	|| amount.value=="") {
- 			alert("전화번호가 입력되지 않았습니다.");
- 			return ;
- 		}
- 		 if (addr.value.length==0	|| addr.value=="") {
- 				alert("전화번호가 입력되지 않았습니다.");
- 				return ;
- 			}
-     	var paywin = window.open('about:blank', 'payment', 'location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no, scrollbars=no, width=800, height=600');
-     	var pay =document.pay;
-     	pay.action = '/cloud/funding/paymentform';
-     	pay.target='payment';
-     	pay.method='GET';
-     	pay.submit();
-     	
-     	
-     }
-      
+  
+ 
      </script>
 </html>

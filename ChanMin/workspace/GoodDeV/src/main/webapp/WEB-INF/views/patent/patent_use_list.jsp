@@ -87,30 +87,35 @@ $(function(){
 	
 	$('#down').on('click',function(){
 		var itemNum =$('#itNum').val();
-		$.ajax({
-			url : 'download',
-			type : 'get',
-			data : {
-				"itemNum" : itemNum
-			},
-			success : function(resp) {alert('성공')},
-			error : function(a, b, c) {alert('실패'+ a+", " + b + "," + c)}
-		})
+        location.href="/cloud/patent/download?itemNum=" + itemNum;
+
+		
+		
+// 		$.ajax({
+// 			url : 'download',
+// 			type : 'get',
+// 			data : {
+// 				"itemNum" : itemNum
+// 			},
+// 			success : function(resp) {alert('성공')},
+// 			error : function(a, b, c) {alert('실패'+ a+", " + b + "," + c)}
+// 		})
 	
 	})
 	
 	$('#down1').on('click',function(){
 		var itemNum =$('#itNum').val();
-		
-		$.ajax({
-			url : 'download1',
-			type : 'get',
-			data : {
-				"itemNum" : itemNum
-			},
-			success : function(resp) {alert('성공')},
-			error : function(a, b, c) {alert('실패'+ a+", " + b + "," + c)}
-		})
+        location.href="/cloud/patent/download1?itemNum=" + itemNum;
+
+// 		$.ajax({
+// 			url : 'download1',
+// 			type : 'get',
+// 			data : {
+// 				"itemNum" : itemNum
+// 			},
+// 			success : function(resp) {alert('성공')},
+// 			error : function(a, b, c) {alert('실패'+ a+", " + b + "," + c)}
+// 		})
 	
 	})
 	
@@ -164,7 +169,7 @@ $(function(){
                     <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
                     <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
                     <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
-                    <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
+                    <li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	  			 <c:if test="${sessionScope.loginId==null}">
 	  			 <li style="margin-left: 20px;" class="nav-item cta">
                     <div class="dropdown show">
@@ -279,10 +284,10 @@ $(function(){
 							<span class="sr-only">Previous</span>
 					</a></li>
 					<li class="page-item active"><a class="page-link">1</a></li>
-					<li class="page-item"><a class="page-link">2</a></li>
+					<!-- <li class="page-item"><a class="page-link">2</a></li>
 					<li class="page-item"><a class="page-link">3</a></li>
 					<li class="page-item"><a class="page-link">4</a></li>
-					<li class="page-item"><a class="page-link">5</a></li>
+					<li class="page-item"><a class="page-link">5</a></li> -->
 					<li class="page-item"><a class="page-link" aria-label="Next">
 							<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
 					</a></li>

@@ -72,7 +72,7 @@ hr.hr_purple {
     height: 60px;
     padding: 1.2%;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
     color: #fff !important;
     background-color: #1f124a;
     border: 2px solid #1f124a;
@@ -92,6 +92,12 @@ hr.hr_purple {
     cursor: pointer;
     width: max-content;
     transition: 0.25s ease;
+}
+
+.btns:hover{
+	color: #1f124a !important;
+    border-color: #1f124a;
+    background-color: transparent;
 }
 
 .btn-3:hover {
