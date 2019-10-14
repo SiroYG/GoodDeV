@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
-<entry loc="C:\Program Files\Java\jdk1.8.0_221" stamp="1566393279761"/>
+    <entry loc="C:\Program Files\Java\jdk1.8.0_221" stamp="1566393279761"/>
+    <entry loc="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home" stamp="1532843237726"/>
+    <entry loc="/Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home" stamp="1530147828000"/>
 </dirs>

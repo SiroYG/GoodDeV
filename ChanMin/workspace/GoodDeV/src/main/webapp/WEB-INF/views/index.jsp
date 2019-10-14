@@ -3,32 +3,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <title>SupporterS :: Main</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-
-    <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
-    <!-- <link rel="stylesheet" href="/cloud/resources/css/chat_index.css"> -->
     <link rel="stylesheet" href="/cloud/resources/css/new-comment.css">
-
     <script>
     window.onload = function (){
 		init();
@@ -39,7 +30,6 @@
 			"url" :"/cloud/chat/selectAll",
 			"method" : "get",
 			"data":{
-
 			},
 			"success":function(result){
 				var panelbody = document.getElementById("panelbody");
@@ -60,9 +50,6 @@
 			}
 		});
 	}
-	           	 	
-	          
-    
    $(document).ready(function(){
 	   var panelbody = document.getElementById("panelbody");
 	   panelbody.scrollTop = panelbody.scrollHeight;
@@ -83,13 +70,9 @@
 			}
 		});
 	}
-
     </script>
-
 </head>
-
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="/cloud/home">SupporterS</a>
@@ -347,73 +330,6 @@
               </div>
             </div>
     </section>
-
-    <!-- <section class="ftco-section" id="chat-section">
-        <div class="container">
-            <div class="row justify-content-center mb-5 pb-5">
-                <div class="col-md-10 heading-section text-center ftco-animate">
-                    <h2 class="mb-3">실시간 채팅</h2>
-                </div>
-            </div>
-
-            chat start
-            <div class="row" style="vertical-align: middle; margin: 0 auto; justify-content: center;">
-                <div class="container" id="chat-container">
-                    <h2 class="page-header">Comments</h2>
-                    <div class="comment-lists">
-
-                        other Comment
-                        <article class="row">
-                            <div class="col-md-10 col-sm-10">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <header class="text-left">
-                                            Index는 익명 채팅이니까 memberId 나올 필요 없음
-                                            <div class="comment-user"><i class="fa fa-user"></i> [memberId]</div>
-                                            <time class="comment-date" datetime=""><i class="fa fa-clock-o"></i> 2019-10-02 | 14:29</time>
-
-                                        </header>
-                                        <div class="comment-post">
-                                            <p>
-                                                [다른 사람들이 입력한 내용은 여기서 나오게끔]
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        my Comment
-                        <article class="row">
-                            <div class="col-md-10 col-sm-10">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <header class="text-right">
-                                            <div class="comment-user"><i class="fa fa-user"></i> [내 댓글]</div>
-                                            <time class="comment-date" datetime=""><i class="fa fa-clock-o"></i> 2019-10-02 | 14:29</time>
-                                        </header>
-                                        <div class="comment-post">
-                                            <p class="my-comment">
-                                                [내가 입력한건 이렇게 나오게끔]
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="search-form">
-                        <input type="text" class="searchWord" placeholder=" 메시지를 입력하세요">
-                        <button type="button" style="margin-left:10px; font-size:12px;" class="btn btn-outline-primary btn-rounded waves-effect">입력하기</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </section> -->
-
     <section class="ftco-section contact-section ftco-no-pb bg-light" id="contact-section">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-3">
@@ -464,8 +380,6 @@
 
         </div>
     </section>
-
-
     <footer class="ftco-footer ftco-section">
         <div class="container">
             <div class="row mb-5">
@@ -512,30 +426,22 @@
             </div>
         </div>
     </footer>
-
-    <!-- loader -->
-    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6082cc" /></svg></div>
-
-    <script src="/cloud/resources/js/jquery.min.js"></script>
-    <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="/cloud/resources/js/popper.min.js"></script>
-    <script src="/cloud/resources/js/bootstrap.min.js"></script>
-    <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
-    <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
-    <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
-    <script src="/cloud/resources/js/owl.carousel.min.js"></script>
-    <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
-    <script src="/cloud/resources/js/aos.js"></script>
-    <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
-    <script src="/cloud/resources/js/scrollax.min.js"></script>
-
-    <script src="/cloud/resources/js/main.js"></script>
-
-    <!-- <script src="/cloud/resources/js/bootstrap.min.js"></script> -->
-    <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
-
-</body>
-
+	    <!-- loader -->
+	    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+	            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+	            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6082cc" /></svg></div>
+	    <script src="/cloud/resources/js/jquery.min.js"></script>
+	    <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
+	    <script src="/cloud/resources/js/popper.min.js"></script>
+	    <script src="/cloud/resources/js/bootstrap.min.js"></script>
+	    <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
+	    <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
+	    <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
+	    <script src="/cloud/resources/js/owl.carousel.min.js"></script>
+	    <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
+	    <script src="/cloud/resources/js/aos.js"></script>
+	    <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
+	    <script src="/cloud/resources/js/scrollax.min.js"></script>
+	    <script src="/cloud/resources/js/main.js"></script>
+	</body>
 </html>

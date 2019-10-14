@@ -6,23 +6,17 @@
     <title>SupporterS :: Search Patent</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/search.css">
-    
      <style>
     div.tri-btn{
     vertical-align: middle;
@@ -30,26 +24,18 @@
     margin: 0 auto;
     justify-content : center;
     }
-    
     .btn-primary{
     margin-left :10px;
     margin-right:10px;
     }
     </style>
-    
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 	<script src="/cloud/resources/js/jquery-ui.min.js"></script>
-   
     <script>
 	var pageSu;
-	
     $(function(){
  		   pageSu = 9;
  		   patentTable(pageSu);   
- 			
- 		    
- 		
- 		   
  	    	$('#patentBtn').on('click',function(){
  	    		var type = $('#patentType').val();
  	    		if(type =='none'){
@@ -59,8 +45,6 @@
  	    			patentTable(pageSu); 
  	    		}
  	    	})
- 	    	
- 	    	
  	    	$('#permitBtn').on('click',function(){
  	    		var memberId = $('#memId').val();
  	    		var patentNum =$('#patentNum').val();
@@ -97,9 +81,7 @@
  	    			}
  	    		})	 
  	    	})
- 		   
     });
-    
     function selectIt(){
     	var memberId = $('#memId').val();
     	$.ajax({
@@ -119,12 +101,9 @@
     			$('#item-option').html(tag);
     		}
     	})
-    	
     }
-    
     function checking(){	
     	var patentNum = $(this).attr('data-value');
-    	
     	$.ajax({
 	 			url  : 'selectPatent',
 	 			type : 'get',
@@ -137,15 +116,9 @@
 	 				}else{
 	 					alert('에러!!');
 	 				}
-	 				
 	 			}
 	   	})  
-		
-    
     }   
-    
-    
-    
     jQuery(document).on('click', '#rightBtn', function(){
  	   			pageSu += 10;
  	   			$.ajax({
@@ -174,15 +147,11 @@
  	 	  			alert('응 첫페이지..');
  	 	  			patentTable(pageSu); 
  	 	  		}
- 	 	  		
  });
-    
-   
     function patentTable(pageSu){
  	    var searchWord =$('#searchWord').val()	
  	   	var searchItem =$('#searchItem').val()
  	   	var patentType  =$('#patentType').val()
- 	   
  	   $.ajax({
  	   		url : 'patentTable',
  	   		type : 'get',
@@ -194,8 +163,6 @@
  	   		},
  	   		success : output	   		
  	   	})
- 	   
- 	   
     }
     function output(res){
  	   	var tag = '';
@@ -212,9 +179,6 @@
    	    tag += '</tr>'
     	   tag += '</thead>' 
     	   tag += '<tbody>'  
-    		   
-    		   
-
     		   $.each(res, function(i, item) {
                    tag += '<tr>'
                    var patentNum = item.patentNum;
@@ -246,37 +210,20 @@
                    }else{
                       tag += '<td name="특허명"><b>' + patentName + '</b></td>'
                    }
-                   /* if(patentContent.length >= 20){
-                      patentContent = patentContent.substr(0,40)+"...";
-                       tag += '<td name="특허설명" ><b>'+patentContent+'</b></td>'
-                   } */
                    if (patentHolderName.length >= 5) {
                        patentHolderName = patentHolderName.substr(0, 4) + "...";
                        tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
                    } else {
                       tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
-                   }
-                  /*  else {
-                       tag += '<tr>'
-                       tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
-                       tag += '<td name="분류" >' + patenttype + '</td>'
-                       tag += '<td name="특허명" ><b>' + patentName + '</b></td>'
-                       /* tag += '<td name="특허설명" ><b>'+patentContent+'</b></td>' 
-                       tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
-                   } */
-
-                   if (item.patentRegDate != null) {
+                   } if (item.patentRegDate != null) {
                        tag += '<td name="등록날짜">' + item.patentRegDate + '</td>'
                    } else {
                        tag += '<td >[등록진행중]</td>'
                    }
-				   
                    tag += '<td name="서식파일보기" ><button type="button" class="pri" data-value="' + item.patentNum + '" data-toggle="modal" data-target="#exampleModal">신청하기</button></td>'
-                   
                    //인터셉터 처리
                    tag += '</tr>'
                })
-    	    	   
     	    	    tag += '</tbody>'
     	    	    tag += '</table>' 
     	    	    tag += '<br><br>'
@@ -288,24 +235,18 @@
     	    	$('.pri').on('click',checking);    
     	    	$('.pri').on('click',selectIt);
     	    }
-
-    
     function loginGo(){
     	window.location.href="/cloud/member/gologin";
     }
-    
     function signGo(){
     	window.location.href="/cloud/member/gosign";
     }
-    
     function searchGO(){
     	window.location.href="/cloud/search/searchGo";
     }
-    
     </script>
   </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-	
    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
@@ -354,9 +295,6 @@
 	      </div>
 	    </div>
 	  </nav>
-
-
-
 	  <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_10-1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
@@ -368,8 +306,6 @@
         </div>
       </div>
     </section>
-		
-
 <section class="ftco-section" id="blog-section">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
@@ -422,10 +358,8 @@
    </div>
     <!--검색 결과는 검색하기 버튼 누르고 난 후에 떠야 합니다,,,(with.Ajax) 이 테이블은 그저 예시일 뿐-->
         <div class="search-result" id="section-bar-patent">
- 
               <!--페이징 & 검색-->
   <div class="page-center">
-  
   <nav>
   <ul class="pagination justify-content-center">
     <li class="page-item">
@@ -453,8 +387,6 @@
           </div>
           </div>
     </section>
-		
-
     <footer class="ftco-footer ftco-section">
         <div class="container">
             <div class="row mb-5">
@@ -501,9 +433,6 @@
             </div>
         </div>
     </footer>
-    
-  
-
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
@@ -531,7 +460,6 @@
               <label for="item-option" class="text-black">특허 검색옵션<label>
               <select id="item-option" name="itemNum">
               <option value="none" selected>특허에 사용할 제품/서비스를 선택해주세요</option>
-              <!--  <option value="">itemName_1</option>-->
               </select><br><br>
               
                <div class="form-group">
@@ -542,16 +470,6 @@
                     <label for="appointment_file2" class="text-black">특허 사용 허가서</label>
                     <input type="file" class="form-control" name="upload1" id="upload1" multiple />
                   </div>
-              
-              
-
-              <!--<div class="form-group">
-                <label for="appointment_message" class="text-black">Message</label>
-                <textarea name="" id="appointment_message" class="form-control" cols="30" rows="10"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary">
-              </div>-->
             </form>
             </div>
             <div class="modal-footer">
@@ -561,11 +479,8 @@
                 <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>
             </div>
         </div>
-        
-        
     </div>
 </div>
-
   <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/cloud/resources/js/popper.min.js"></script>
@@ -578,8 +493,6 @@
   <script src="/cloud/resources/js/aos.js"></script>
   <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
   <script src="/cloud/resources/js/scrollax.min.js"></script>
-  
   <script src="/cloud/resources/js/main.js"></script>
-    
   </body>
 </html>

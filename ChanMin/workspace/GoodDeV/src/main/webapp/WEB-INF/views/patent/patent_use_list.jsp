@@ -8,31 +8,21 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link rel="stylesheet"
-	href="/cloud/resources/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-
 <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="/cloud/resources/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
 <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
 <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
 <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
 <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
 <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
 <link rel="stylesheet" href="/cloud/resources/css/style.css">
 <link rel="stylesheet" href="/cloud/resources/css/search.css">
-
 <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 <script src="/cloud/resources/js/jquery-ui.min.js"></script>
 <script>
-
 $(function(){
-	
 	$(".pri").on('click', function(){
 		var tempContractDate=$(this).attr("data-contractDate");
 		$('#contractDate').val(tempContractDate);
@@ -47,11 +37,8 @@ $(function(){
 		var memId = $(this).attr("data-member");
 		$('#memberId').val(memId);
 	});	
-	
-	
 	 $('.pri').on('click',function(){
 		var itemNum = $(this).attr("data-id");
-		
 		$.ajax({
 			url : 'down',
 			type : 'get',
@@ -61,9 +48,7 @@ $(function(){
 			success : function(res){
 				$('#down').html(res);
 			}
-			
 		})
-	
 	})  
 	 $('.pri').on('click',function(){
 		var itemNum = $(this).attr("data-id");
@@ -75,32 +60,17 @@ $(function(){
 			},
 			success : function(res){
 				$('#down1').html(res);
-				
 			}
-			
 		})
-	
 	})  
-	
-	
-
-	
 	$('#down').on('click',function(){
 		var itemNum =$('#itNum').val();
         location.href="/cloud/patent/download?itemNum=" + itemNum;
-
-		
-		
-
-	
 	})
 	
 	$('#down1').on('click',function(){
 		var itemNum =$('#itNum').val();
         location.href="/cloud/patent/download1?itemNum=" + itemNum;
-
-
-	
 	})
 	
 	 $('#permitBtn').on('click',function(){
@@ -112,7 +82,6 @@ $(function(){
 		}
 		var itemNum =$('#item-option option:selected').attr("data-value");
 		var del = $('.pri').parent().parent();
-		
 		$.ajax({
 			url : 'permitionForm',
 			type : 'post',
@@ -129,18 +98,12 @@ $(function(){
 					alert("실패");
 				}
 			}
-			
 		})
-			
 	})
-	
-	
 });
 </script>
 </head>
-<body data-spy="scroll" data-target=".site-navbar-target"
-	data-offset="300">
-
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
@@ -189,8 +152,6 @@ $(function(){
 	      </div>
 	    </div>
 	  </nav>
-
-
 	<section class="hero-wrap hero-wrap-2"
 		style="background-image: url('/cloud/resources/images/about_10-1.jpg');"
 		data-stellar-background-ratio="0.5">
@@ -211,8 +172,6 @@ $(function(){
 		</div>
 	</div>
 	</section>
-
-
 	<section class="ftco-section" id="blog-section">
 	<div class="container">
 		<div class="row justify-content-center mb-5 pb-5">
@@ -225,13 +184,9 @@ $(function(){
 				</p>
 			</div>
 		</div>
-
 		<hr class="hr_navy">
-
 		<div class="search-result" id="search-result">
 			<table class="table">
-			
-			
 			 <thead class="navy">
 					<tr>
 						<th scope="col">No.</th>
@@ -243,7 +198,6 @@ $(function(){
 						<th colspan="2" scope="col"></th>
 					</tr>
 				</thead>
-					
 				<tbody>
 				<c:forEach varStatus="status" var="pat" items="${pList}" >
 				<tr class= "del" >
@@ -260,11 +214,9 @@ $(function(){
 			</table>
 			<!--페이징 & 검색-->
 			<div class="page-center">
-
 				<nav>
 				<ul class="pagination justify-content-center">
-					<li class="page-item"><a class="page-link"
-						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+					<li class="page-item"><a class="page-link" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 							<span class="sr-only">Previous</span>
 					</a></li>
 					<li class="page-item active"><a class="page-link">1</a></li>
@@ -346,7 +298,6 @@ $(function(){
             </div>
         </div>
     </div>
-
 	<script src="/cloud/resources/js/jquery.min.js"></script>
 	<script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="/cloud/resources/js/popper.min.js"></script>
@@ -359,9 +310,7 @@ $(function(){
 	<script src="/cloud/resources/js/aos.js"></script>
 	<script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
 	<script src="/cloud/resources/js/scrollax.min.js"></script>
-
 	<script src="/cloud/resources/js/main.js"></script>
-
 </body>
 <footer class="ftco-footer ftco-section">
 <div class="container">

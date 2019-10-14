@@ -7,25 +7,18 @@
     <title>SupporterS :: Survey list</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
-    <!-- <link rel="stylesheet" href="/cloud/resources/css/icomoon.css"> -->
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/survey.css">
-
     <script>
         $(function() {
             var searchItem = $("#searchItem").val();
@@ -33,7 +26,6 @@
             var type = '';
             var str = "";
             $.ajax({
-
                 method: 'GET',
                 url: 'searchSurvey',
                 data: {
@@ -41,22 +33,13 @@
                     'searchWord': searchWord
                 },
                 success: function(res) {
-
                     $(".tbody").remove();
                     $.each(res, function(i, item) {
-
                         i += 1;
                         str += '<tr>';
                         str += '<th scope="row">';
                         str += '<a href="gosurvey_Detail?questionTimeNum=' + item.questionTimeNum + '">';
                         str += ' <span>' + i + ' </span> </a></th>';
-                        /* if(item.itemType == 'prototype'){
-     					 str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
-        				 str+='<span>'+[시제품]+'</span> </a></th>';
-     				  } else {
-     					 str+='<td ><a href="gosurvey_Detail?questionTimeNum='+item.questionTimeNum+'">';
-        				 str+='<span>'+[출시품]+'</span> </a></th>';
-     				  } */
                         str += '<td ><a href="gosurvey_Detail?questionTimeNum=' + item.questionTimeNum + '">';
                         str += '<span>' + item.itemType + '</span> </a></th>';
                         str += '<td ><a href="gosurvey_Detail?questionTimeNum=' + item.questionTimeNum + '">';
@@ -69,19 +52,13 @@
                         str += '<span>' + item.dueDate + '</span> </a></th>';
                     });
                     $('.tbodyAjax').html(str);
-
-
                 }
-
-
             });
             $(document).on('click', '#search', function() {
                 var searchItem = $("#searchItem").val();
                 var searchWord = $("#searchWord").val();
                 var str = "";
-
                 $.ajax({
-
                     method: 'GET',
                     url: 'searchSurvey',
                     data: {
@@ -89,10 +66,8 @@
                         'searchWord': searchWord
                     },
                     success: function(res) {
-
                         $(".tbody").remove();
                         $.each(res, function(i, item) {
-
                             i += 1;
                             str += '<tr>';
                             str += '<th scope="row">';
@@ -110,41 +85,23 @@
                             str += '<span>' + item.dueDate + '</span> </a></th>';
                         });
                         $('.tbodyAjax').html(str);
-
-
                     }
-
-
                 });
-
-
             });
-
-            //var status = $('#listbox-taskStatus option').attr('status');
-
             $(document).on('click', '#goSurvey_form_button', function() {
                 var itemNum = $('#item-option option:selected').attr("data-value");
-
                 if (itemNum == 'none') {
                     alert("아이템을 선택해주세요.");
                     return;
                 }
-
-
                 var itemNum = $('#item-option option:selected').attr("data-value");
-               
                 $('#itemNum').html('<input type="hidden" name="itemNum" value=' + itemNum + '>');
                 $('#goSurvey_form').submit();
             });
-
-
         });
-
     </script>
 </head>
-
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="/cloud/home">SupporterS</a>
@@ -164,7 +121,6 @@
                                 <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="member-btn">로그인/회원가입</span>
                                 </a>
-
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="/cloud/member/gologin"><span class="member-btn">로그인</span></a>
                                     <a class="dropdown-item" href="/cloud/member/gosign"><span class="member-btn">회원가입</span></a>
@@ -173,14 +129,12 @@
                             </div>
                         </li>
                     </c:if>
-
                     <c:if test="${sessionScope.loginId!=null}">
                         <li style="margin-left: 20px;" class="nav-item cta">
                             <div class="dropdown show">
                                 <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
                                 </a>
-
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="/cloud/member/goMypage">마이페이지</a>
                                     <a class="dropdown-item" href="/cloud/member/goupdate">회원 정보 수정</a>
@@ -232,11 +186,10 @@
                             <th scope="col">마감날짜</th>
                         </tr>
                     </thead>
-
+                    
                     <tbody class="tbodyAjax">
-
                     </tbody>
-
+                    
                     <tbody class="tbody">
                         <c:forEach var="qTotal" items="${qTotalList}" varStatus="status">
                             <tr>
@@ -253,15 +206,11 @@
                                             <c:out value="${qTotal.dueDate}" /></span> </a></td>
                             </tr>
                         </c:forEach>
-
                     </tbody>
-
-
                 </table>
 				<c:if test="${sessionScope.loginType!='client'&&sessionScope.loginId!=null}">
                 <button type="button" class="btns btn-3" data-toggle="modal" data-target="#exampleModal">진행하기</button>
 				</c:if>
-
                 <!--페이징 & 검색-->
 			 <div class="page-center">
 				  <br>
@@ -285,11 +234,9 @@
 					  </ul>
 				</nav>
 			      </div>
-                
             </div>
         </div>
     </section>
-
 
     <footer class="ftco-footer ftco-section">
         <div class="container">
@@ -350,7 +297,6 @@ function call(){
 	    var cMonth = cDay * 30;// 월 만듬
 	    var cYear = cMonth * 12; // 년 만듬
 	 if(sdd && edd){
-
 	    document.getElementById('days').value = parseInt(dif/cDay);
 	    var days =document.getElementById('days');
 	    var edd = document.getElementById("enddate").value;
@@ -361,13 +307,11 @@ function call(){
 	    }
 	 }
 	}
-
 </script>
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6082cc" /></svg></div>
-
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -389,12 +333,9 @@ function call(){
                                 <option class="temp" data-value="${item.itemNum}">${item.itemName }</option>
                             	</c:if>
                             </c:forEach>
-
                         </select><br><br>
                         <div id="itemNum">
-
                         </div>
-
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -404,13 +345,10 @@ function call(){
             </div>
         </div>
     </div>
-
     <script src="/cloud/resources/js/jquery.min.js"></script>
     <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="/cloud/resources/js/popper.min.js"></script>
-
     <script src="/cloud/resources/js/bootstrap.min.js"></script>
-
     <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
     <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
     <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
@@ -419,9 +357,6 @@ function call(){
     <script src="/cloud/resources/js/aos.js"></script>
     <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
     <script src="/cloud/resources/js/scrollax.min.js"></script>
-
     <script src="/cloud/resources/js/main.js"></script>
-
 </body>
-
 </html>

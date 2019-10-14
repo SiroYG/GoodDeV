@@ -6,29 +6,21 @@
   <title>SupporterS :: Search Menus</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/search.css">
-    
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-    
     <script>
     $(function(){
-       
        $('#request').on('click',function(){
           var check = $('#check').is(':checked');
           var memName = $('#memName').val();
@@ -75,14 +67,11 @@
        window.location.href="/cloud/member/searchGo";
     }
     function fn_downfile(){ 
-  		
         location.href="/cloud/member/fileDownload";
     }
     </script>
-    
   </head>
  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-     
    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="/cloud/home">SupporterS</a>
@@ -111,14 +100,12 @@
                             </div>
                         </li>
                     </c:if>
-
                     <c:if test="${sessionScope.loginId!=null}">
                         <li style="margin-left: 20px;" class="nav-item cta">
                             <div class="dropdown show">
                                 <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
                                 </a>
-
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="/cloud/member/goMypage">마이페이지</a>
                                     <a class="dropdown-item" href="/cloud/member/goupdate">회원 정보 수정</a>
@@ -131,7 +118,6 @@
             </div>
         </div>
     </nav>
-    
       <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_10-1.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
@@ -144,8 +130,6 @@
             </div>
         </div>
     </section>
-      
-
 <section class="ftco-section" id="blog-section">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
@@ -178,7 +162,6 @@
                         <img src="/cloud/resources/images/resume.png" alt="" class="icons">
                         <p>출원 절차를 밟아 정식으로 특허를 등록할 수 있습니다.</p>
                     </a>
-
                     <a class="box" href="/cloud/patent/patentUseList">
                         <h3>특허 출원/사용 확인하기</h3>
                         <img src="/cloud/resources/images/menu.png" alt="" class="icons">
@@ -190,8 +173,6 @@
         </div> 
           </div>
     </section>
-      
-
     <footer class="ftco-footer ftco-section">
         <div class="container">
             <div class="row mb-5">
@@ -238,9 +219,6 @@
             </div>
         </div>
     </footer>
-    
-  
-
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
      <!-- Modal -->
@@ -446,7 +424,6 @@
 ②제공하는 서비스에 대해 이용자와 진흥회 간 발생한 문제에 대해서는 이 약관과 서비스 운영정책을 따른다.
 ③ 서비스 이용으로 발생한 분쟁에 대해 소송이 제기되는 경우 진흥회의 소재지를 관할하는 법원을 관할 법원으로 한다.
 
-
 시행일 : 본 약관은 2013년 4월 1일부터 시행된다.
                             </textarea>
                             <p><input id="check" type="checkbox">이용 약관에 동의합니다.</p>
@@ -476,12 +453,8 @@
                     <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>
                 </div>
             </div>
-
-
         </div>
     </div>
-   
-
   <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/cloud/resources/js/popper.min.js"></script>
@@ -494,8 +467,6 @@
   <script src="/cloud/resources/js/aos.js"></script>
   <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
   <script src="/cloud/resources/js/scrollax.min.js"></script>
-  
   <script src="/cloud/resources/js/main.js"></script> 
-    
   </body>
 </html>

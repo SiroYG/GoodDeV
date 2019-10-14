@@ -6,57 +6,39 @@
     <title>Item :: </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
-
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/item.css">
-    
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 	<script src="/cloud/resources/js/jquery-ui.min.js"></script>
     <script>
     var document_nm='';
     var itemNum='';
     $(function(){
-    	
-    	
     	$('#saveDocumentFilename').on('click',function(){
     		 document_nm=$('#saveDocumentFilename').val();
     		 itemNum=$('#getItemNum').val();
-    		
     		 fn_downfile(document_nm);
-    		
     	})
-    
     })
-    
-    
-    
     function fn_downfile(document_nm){ 
-    
         location.href="/cloud/item/fileDownload?document_nm=" + encodeURI(document_nm)+"&itemNum="+itemNum;
       }
-    
-    
     </script>
    
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 <input type="hidden" id="getItemNum" value="${ it.itemNum }">
-
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
@@ -85,14 +67,12 @@
                     </div>
                     </li>
 				</c:if>
-				
 				<c:if test="${sessionScope.loginId!=null}">
 				<li style="margin-left: 20px;" class="nav-item cta">
 				<div class="dropdown show">
                         <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="member-btn">${sessionScope.loginName} ${sessionScope.loginType}님</span>
                         </a>
-
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="/cloud/member/goMypage">마이페이지</a>
                             <a class="dropdown-item" href="/cloud/member/goupdate">회원 정보 수정</a>
@@ -105,7 +85,6 @@
 	      </div>
 	    </div>
 	  </nav>
-
     <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_5-1.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
@@ -117,8 +96,6 @@
             </div>
         </div>
     </section>
-
-
     <section class="ftco-section" id="blog-section">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-5">
@@ -183,11 +160,8 @@
                      <a href="/cloud/item/goItemDelete?itemNum=${ it.itemNum }" class="btns btn-3-red"><span class="white">삭제</span></a> 
                 </form>
             </div>
-
         </div>
     </section>
-
-
     <footer class="ftco-footer ftco-section">
         <div class="container">
             <div class="row mb-5">
@@ -244,15 +218,10 @@
             </div>
         </div>
     </footer>
-
-
-
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
-
-
     <script src="/cloud/resources/js/jquery.min.js"></script>
     <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="/cloud/resources/js/popper.min.js"></script>
@@ -265,7 +234,5 @@
     <script src="/cloud/resources/js/aos.js"></script>
     <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
     <script src="/cloud/resources/js/scrollax.min.js"></script>
-
     <script src="/cloud/resources/js/main.js"></script>
-
 </body></html>

@@ -6,29 +6,22 @@
     <title>Item :: </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/item.css">
-    
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 	<script src="/cloud/resources/js/jquery-ui.min.js"></script>
     <script>
     $(function(){
-    	
     	$('#updating').on('click',function(){
-    		
     		var itemName =$('#itemName').val();
     		var price =$('#price').val();
     		var comments =$('#comments').val();
@@ -49,8 +42,6 @@
     			return false;
     		}
     		$('#updateForm').submit();
-    		
-    		
     		$('#itemName').on('change',function(){
     			 $.ajax({
     	    			url : 'selectItemNameGo',
@@ -70,18 +61,11 @@
     	    			}
     	    		})
     		})
-    		
-    	 
-    		
     	})
-    	
     });
     </script>
 </head>
-
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
-
    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="/cloud/home">SupporterS</a>
@@ -110,7 +94,6 @@
                     </div>
                     </li>
 				</c:if>
-				
 				<c:if test="${sessionScope.loginId!=null}">
 				<li style="margin-left: 20px;" class="nav-item cta">
 				<div class="dropdown show">
@@ -141,8 +124,6 @@
             </div>
         </div>
     </section>
-
-
     <section class="ftco-section" id="blog-section">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-5">
@@ -225,11 +206,8 @@
                     <a href="/cloud/item/goItemDetail?itemNum=${it.itemNum}" class="btns btn-3"><span class="white">돌아가기</span></a> &nbsp;&nbsp;
                 </form>
             </div>
-
         </div>
     </section>
-
-
     <footer class="ftco-footer ftco-section">
         <div class="container">
             <div class="row mb-5">
@@ -286,15 +264,10 @@
             </div>
         </div>
     </footer>
-
-
-
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
-
-
     <script src="/cloud/resources/js/jquery.min.js"></script>
     <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="/cloud/resources/js/popper.min.js"></script>
@@ -307,7 +280,5 @@
     <script src="/cloud/resources/js/aos.js"></script>
     <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
     <script src="/cloud/resources/js/scrollax.min.js"></script>
-
     <script src="/cloud/resources/js/main.js"></script>
-
 </body></html>

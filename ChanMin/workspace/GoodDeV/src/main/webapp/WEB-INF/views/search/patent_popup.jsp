@@ -5,10 +5,8 @@
 <head lang="ko">
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <link rel="stylesheet" href="/cloud/resources/css/style.css">
 <link rel="stylesheet" href="/cloud/resources/css/Board.css">
-
 <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
 <script src="/cloud/resources/js/jquery-ui.min.js"></script>
 <script>
@@ -18,7 +16,6 @@ $(function(){
     });
 });
 </script>
-
 </head>
 <body>
 <div class="Detail_table">
@@ -38,7 +35,6 @@ $(function(){
            </tr>
        </table>
        <button type="button" class="btns btn-3" style="align-items: center;" id="closebtn">닫기</button>
-       
    </div>
 </body>
 </html>
