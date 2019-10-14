@@ -35,10 +35,8 @@
     	$('#saveDocumentFilename').on('click',function(){
     		 document_nm=$('#saveDocumentFilename').val();
     		 itemNum=$('#getItemNum').val();
-    		alert(document_nm);
-    		alert(itemNum);
-
-    		fn_downfile(document_nm);
+    		
+    		 fn_downfile(document_nm);
     		
     	})
     
@@ -47,7 +45,8 @@
     
     
     function fn_downfile(document_nm){ 
-        location.href="/cloud/item/fileDownload?document_nm=" + document_nm+"&itemNum="+itemNum;
+    
+        location.href="/cloud/item/fileDownload?document_nm=" + encodeURI(document_nm)+"&itemNum="+itemNum;
       }
     
     
@@ -174,7 +173,7 @@
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>관련 특허 서식 파일</b></span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="documentFilename" value="${yy}" readonly="readonly" id="saveDocumentFilename">
+                            <input type="text" style="cursor : pointer;" class="form-control" name="documentFilename" value="${yy}" readonly="readonly" id="saveDocumentFilename">
                         </div>
                     </div><br>
                     </c:if>

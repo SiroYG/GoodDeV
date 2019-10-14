@@ -132,7 +132,7 @@
 
 
                 var itemNum = $('#item-option option:selected').attr("data-value");
-                alert(itemNum);
+               
                 $('#itemNum').html('<input type="hidden" name="itemNum" value=' + itemNum + '>');
                 $('#goSurvey_form').submit();
             });
@@ -258,7 +258,7 @@
 
 
                 </table>
-				<c:if test="${sessionScope.loginType!='client'}">
+				<c:if test="${sessionScope.loginType!='client'&&sessionScope.loginId!=null}">
                 <button type="button" class="btns btn-3" data-toggle="modal" data-target="#exampleModal">진행하기</button>
 				</c:if>
 
@@ -385,7 +385,9 @@ function call(){
                             <option data-value="none" selected>테스트 진행을 위한 제품을 선택해주세요</option>
 
                             <c:forEach var="item" items="${iList }" varStatus="status">
-                                <option class="temp" data-value="${item.itemNum}">${status.count }. ${item.itemName }</option>
+                                <c:if test="${item.itemType != 'none' }">
+                                <option class="temp" data-value="${item.itemNum}">${item.itemName }</option>
+                            	</c:if>
                             </c:forEach>
 
                         </select><br><br>

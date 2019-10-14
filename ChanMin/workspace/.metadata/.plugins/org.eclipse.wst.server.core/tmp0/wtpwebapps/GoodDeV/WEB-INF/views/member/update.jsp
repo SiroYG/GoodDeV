@@ -80,7 +80,7 @@
                         
                         <div class="p-t-30">
                             <button class="btn btn--radius btn--green" onclick="update()" type="submit">수정</button> &nbsp;
-                            <a class="btn btn--radius btn--green" href="index">취소</a><br><br>
+                            <a class="btn btn--radius btn--green" href="/cloud/home">취소</a><br><br>
                              <a href="/cloud/member/godropout" class="grey">회원탈퇴</a>
                         </div>
                     </form>

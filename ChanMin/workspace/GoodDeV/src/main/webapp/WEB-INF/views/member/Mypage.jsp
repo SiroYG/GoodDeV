@@ -223,7 +223,7 @@ function item(){
     
     jQuery(document).on('click', '#riBtn', function(){
  	   			pageSu += 10;
- 	   			alert(pageSu);
+ 	   			
  	   			$.ajax({
  	   				url: 'itemSu',
  	   				type : 'get',

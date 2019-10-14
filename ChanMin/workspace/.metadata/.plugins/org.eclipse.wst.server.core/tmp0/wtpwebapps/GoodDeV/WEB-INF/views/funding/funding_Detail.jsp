@@ -55,7 +55,7 @@ $(function() {
     /*채팅창 팝업 띄우기*/
     $('#popup').on('click', function() {
     	var crowdfundingNum=$('#crowdfundingNum').val();
-    	alert(crowdfundingNum);
+    	
         window.open("/cloud/funding/fundingChat?crowdfundingNum="+crowdfundingNum, "PopupWin", "width=800,height=700");
     });
     

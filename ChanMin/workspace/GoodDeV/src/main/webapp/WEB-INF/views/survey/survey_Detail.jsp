@@ -46,7 +46,7 @@
     	
     	
     	$(document).on('click', '#insertSurveyButton', function(){
-    		alert("aa");
+    	
     		$("#insertSurveyData").submit();
     	
     		var radioNumbers = [];
@@ -213,14 +213,15 @@
 <!--                     <input type="file" class="form-control" name="upload" id="" placeholder=""> -->
 <!--                 </div> -->
 <!--             </div> -->
-
+	<c:if test="${str1!=null&&str2!=null}">	
   <div class="form-group row"> 
                 <label for="" class="col-sm-2 col-form-label"><span><b>첨부파일</b></span></label>
                 <div class="col-sm-10">
-                    <span  class="form-control"><a id="str1">${str1}</a><a id="str2">${str2}</a></span>
+                    <span  class="form-control" style="cursor : pointer;"><a id="str1">${str1}</a><a id="str2">${str2}</a></span>
                		 <input type="hidden"  id="itemNum" value="${item.itemNum }">
                 </div>
             </div>
+    </c:if>        
 <!--              <div class="form-group row"> -->
 <!--                            <div class="form-group"> -->
 <!--                                     <a href="#" class="a_document"> 다운로드</a> -->

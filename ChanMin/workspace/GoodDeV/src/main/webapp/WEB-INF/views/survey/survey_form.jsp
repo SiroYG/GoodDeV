@@ -31,48 +31,6 @@
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     
     <script>
-    $(function(){
-    	
-    	
-//     	$('#executeForm').on('click', function(){
-    		
-// //     		var today = new Date(YYYY-MM-DD);
-        	
-// //         	var result = format(today,'YYYY-MM-DD')
-//     		alert("ok")
-//     		var a = $('#dueDate').val();
-//     		alert(a)
-//     		alert("result="+result)
-    		
-//     		if(result>=a){
-//     			alert("마감일은 시작일로부터 하루 뒤이어야 합니다.")
-//     		}
-    		
-//     		if($('#dueDate').val()==''){
-//     			alert("마감일을 입력해주세요.")
-//     			return;
-//     		}
-    		
-//     		if($('#questionTitle').val().length==0||$('#questionTitle').val()==""){
-//     			alert("제목을 입력해주세요.")
-//     			return;
-//     		}
-    		
-//     		if($('#question').val().length==0||$('#question').val()==""){
-//     			alert("질문을 입력해주세요.")
-//     			return;
-//     		}
-    		
-//     			$('#goSurvey_list').submit();
-    		
-    		
-    		
-    		
-    	
-//     	});
-    });
-    
-    
     function executeForm(){
     	
     	if($('#dueDate').val()==''){

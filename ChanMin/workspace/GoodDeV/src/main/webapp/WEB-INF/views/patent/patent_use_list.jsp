@@ -91,15 +91,7 @@ $(function(){
 
 		
 		
-// 		$.ajax({
-// 			url : 'download',
-// 			type : 'get',
-// 			data : {
-// 				"itemNum" : itemNum
-// 			},
-// 			success : function(resp) {alert('성공')},
-// 			error : function(a, b, c) {alert('실패'+ a+", " + b + "," + c)}
-// 		})
+
 	
 	})
 	
@@ -107,15 +99,7 @@ $(function(){
 		var itemNum =$('#itNum').val();
         location.href="/cloud/patent/download1?itemNum=" + itemNum;
 
-// 		$.ajax({
-// 			url : 'download1',
-// 			type : 'get',
-// 			data : {
-// 				"itemNum" : itemNum
-// 			},
-// 			success : function(resp) {alert('성공')},
-// 			error : function(a, b, c) {alert('실패'+ a+", " + b + "," + c)}
-// 		})
+
 	
 	})
 	

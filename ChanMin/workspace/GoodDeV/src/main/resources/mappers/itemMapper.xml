@@ -160,7 +160,7 @@ select
 from
 	Item
 where 
-	itemName = #{itemname}		
+	itemName = #{itemName}		
 </select>
 <select id="selectItemMem" parameterType="String" resultType="Item" >
 select 

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartFile"/>
 <fullyQualifiedTypeName name="com.dev.cloud.dao.documentRepository"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.Document"/>
-<fullyQualifiedTypeName name="org.springframework.ui.Model"/>
 <fullyQualifiedTypeName name="oracle.net.aso.p"/>
 <fullyQualifiedTypeName name="com.dev.cloud.dao.PatentSubRepository"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.PdpVo"/>
@@ -39,9 +37,7 @@
 <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 <fullyQualifiedTypeName name="com.dev.cloud.dao.memberRepository"/>
-<fullyQualifiedTypeName name="com.dev.cloud.vo.devMember"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.Payment"/>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
 <fullyQualifiedTypeName name="java.awt.List"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.Crowdfunding"/>
 <fullyQualifiedTypeName name="com.dev.cloud.dao.itemRepository"/>
@@ -59,5 +55,9 @@
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
 <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
+<fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+<fullyQualifiedTypeName name="com.dev.cloud.vo.Patent"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
 <fullyQualifiedTypeName name="com.dev.cloud.vo.Item"/>
+<fullyQualifiedTypeName name="com.dev.cloud.vo.devMember"/>
 </qualifiedTypeNameHistroy>

@@ -308,3 +308,6 @@
 
 10월 08, 2019 19:47:52.90 NEW SESSION
 10월 08, 2019 19:47:52.90 [14608:14324:1008/194752.903:ERROR:database.cc(1598)] Passwords sqlite error 2067, errno 0: UNIQUE constraint failed: logins.origin_url, logins.username_element, logins.username_value, logins.password_element, logins.signon_realm, sql: INSERT INTO logins (origin_url, action_url, username_element, username_value, password_element, password_value, submit_element, signon_realm, preferred, date_created, blacklisted_by_user, scheme, password_type, times_used, form_data, date_synced, display_name, icon_url, federation_url, skip_zero_click, generation_upload_status, possible_username_pairs, id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+10월 10, 2019 02:06:19.39 NEW SESSION
+10월 10, 2019 02:06:19.39 [28952:27888:1010/020619.129:ERROR:socket_stream.cc(219)] Closing stream with result -2

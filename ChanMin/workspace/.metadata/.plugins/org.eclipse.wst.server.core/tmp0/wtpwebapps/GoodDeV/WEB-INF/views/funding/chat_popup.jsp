@@ -51,23 +51,19 @@ var canMakeNewRM='y';
 		sessionId = $('#sessionId').val();
  		var crowdfundingId = $('#CfmemberId').val();
  		var crowdfundingNum=$('#CfNum').val();
- 		alert(chatroom_seq)
- 		alert(sessionId)
- 		alert(crowdfundingId)
- 		alert(crowdfundingNum)
- 		alert(canMakeNewRM)
+ 		
  		if(chatroom_seq!=null){
  			canMakeNewRM='n';
  		}else{
  			canMakeNewRM='y';
  		}
  		
- 		alert(canMakeNewRM)
+ 		
  		
 
 		jQuery(document).on('click','.chat_list',function(){
 			chatroom_seq = $(this).attr('data-value');
- 	 	  	alert(chatroom_seq);
+ 	 	  
 			
 			
 			
@@ -80,7 +76,7 @@ var canMakeNewRM='y';
 		
         var intervalchatroom = setInterval(chatroom, 90000); 		  
         function chatroom() { 
-        	alert("get one")
+        	
  			$.ajax({
  				url : 'getAllchatroom',
  				type : 'get',
@@ -112,7 +108,7 @@ var canMakeNewRM='y';
         
 		$('.msg_send_btn').on('click',function() {
 		
-			alert("comecome")
+			
 			var message = $('.write_msg').val();
 			if(message==''){
 				alert('메시지를 입력해주세요')
@@ -128,7 +124,7 @@ var canMakeNewRM='y';
 				},
 				success : input
 			})
-			alert(message);
+			
 			$('.write_msg').val('');
 			$('.write_msg').placeholder('');
 			
@@ -139,7 +135,7 @@ var canMakeNewRM='y';
  				alert("채팅방이 이미 존재합니다.")
  				return;
  			}
- 			alert()
+ 			
  			$.ajax({
 				url : 'makeChatroom',
 				type : 'post',
@@ -149,7 +145,7 @@ var canMakeNewRM='y';
 					crowdfundingNum : crowdfundingNum
 				},
 				success : function(res){
-					alert(res)
+					
 					if(res==null){
 						alert("실패하였습니다.")
 					}
@@ -214,7 +210,7 @@ var canMakeNewRM='y';
 	}
 		
 	function input(res){
-		alert(res);
+		
 	}
 	
 	function outputCR(res){

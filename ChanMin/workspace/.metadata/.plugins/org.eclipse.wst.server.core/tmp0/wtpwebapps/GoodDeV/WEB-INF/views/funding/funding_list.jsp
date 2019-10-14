@@ -117,7 +117,7 @@
                                 <div class="text">
                                     <h3 class="heading"><a href="fundingDetail?crowdfundingNum=${board.crowdfundingNum}">${board.fundingTitle}</a></h3>
                                 </div>
-                                <a href="fundingDetail?crowdfundingNum=${board.crowdfundingNum}" class="block-20" style="background-image: url('/cloud/resources/images/image_1.jpg');">
+                                <a href="fundingDetail?crowdfundingNum=${board.crowdfundingNum}" class="block-20" style="background-image: url('/cloud/resources/img/${board.savedFileName}');">
                                 </a>
                                 <div class="text mt-3 float-right d-block">
                                     <p>${board.fundingContents}</p>
@@ -231,7 +231,7 @@
     <script src="/cloud/resources/js/jquery.min.js"></script>
     <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="/cloud/resources/js/popper.min.js"></script>
-    <script src="/cloud/resources/js/bootstrap.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
     <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
     <script src="/cloud/resources/js/jquery.stellar.min.js"></script>

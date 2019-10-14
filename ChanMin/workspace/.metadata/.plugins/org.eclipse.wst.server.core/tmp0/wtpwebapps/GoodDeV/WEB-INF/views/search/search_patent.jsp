@@ -199,16 +199,16 @@
     }
     function output(res){
  	   	var tag = '';
-        tag += '<table class="pTable">'
+        tag += '<table class="pTable" style="width:100%;">'
         tag += '<caption class="table_title"><b>검색하신 특허결과입니다.</b></caption>'
         tag += '<thead class="navy">' 
         tag += '<tr>'   
         tag += '<th scope="col">No.</th>'        
         tag += '<th scope="col">분류</th>'       
-        tag += '<th scope="col">특허명</th>'    
-        tag += '<th scope="col">특허설명</th>'    
-        tag += '<th scope="col">특허 보유자</th>'    
-   	    tag += '<th scope="col">등록날짜</th>'    
+        tag += '<th scope="col">특허명</th>'        
+        tag += '<th scope="col">특허<br>보유자</th>'    
+   	    tag += '<th scope="col">등록날짜</th>'
+   	    tag += '<th scope="col">특허 <br>사용 신청</th>'
    	    tag += '</tr>'
     	   tag += '</thead>' 
     	   tag += '<tbody>'  
@@ -318,7 +318,7 @@
                     <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
                     <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
                     <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
-                    <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
+                    <li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	  			 <c:if test="${sessionScope.loginId==null}">
 	  			 <li style="margin-left: 20px;" class="nav-item cta">
                     <div class="dropdown show">
@@ -555,7 +555,9 @@
             </form>
             </div>
             <div class="modal-footer">
+            <c:if test="${sessionScope.loginType == 'inventor' || sessionScope.loginType == 'enp'}">
                 <button type="button" id="permitBtn" class="btn btn-outline-info">신청하기</button>
+                </c:if>
                 <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>
             </div>
         </div>

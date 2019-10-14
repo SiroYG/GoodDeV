@@ -118,21 +118,32 @@ public class ItemController {
 		Total it = repo.goItemDetail(total);
 		
 		String lcm = it.getItemImagename();
+		System.out.println("121번줄==>"+lcm);
 		if(lcm!=null){
 			String [] array = lcm.split("@");	
 		for(int i=0;i<array.length;i++){
+			try{
+			if(array[0]!=null){
 			a = array[0];
-			b = array[1];		
+			System.out.println("127번줄==>"+a);
+			}
+			
+			if(array[1]!=""||array[1]==null){
+			b = array[1];	
+			}
+			}catch (Exception e) {
+				
 			}
 			tt = a+",  "+b;
 		}
-		
+		}
 		c= it.getDocumentFilename();
 		if(c==null){
 			String yy= "";
 			model.addAttribute("yy",yy);
 		}else{
 			String yy = c;
+			System.out.println("146번줄c==>"+c);
 			model.addAttribute("yy",yy);
 		}	
 		model.addAttribute("tt",tt);

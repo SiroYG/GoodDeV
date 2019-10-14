@@ -137,8 +137,9 @@
 			</c:if>
   </tbody>
 </table>
-<a href="/cloud/board/gowrite" class="btns btn-3">글쓰기</a>
-
+	<c:if test="${sessionScope.loginId != null}">
+	<a href="/cloud/board/gowrite" class="btns btn-3">글쓰기</a>
+	</c:if>
   <!--페이징 & 검색-->
   <div class="page-center">
   <nav class="paging">

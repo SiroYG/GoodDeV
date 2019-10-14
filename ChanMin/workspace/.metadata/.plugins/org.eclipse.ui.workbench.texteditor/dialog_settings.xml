@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="boardNum" key="selection"/>
+		<item value="down" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="true" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="boardNum"/>
-			<item value="enddate"/>
-			<item value="days"/>
-			<item value="times"/>
-			<item value="startdate"/>
-			<item value="date"/>
-			<item value="down1"/>
-			<item value="selectAllQuestion_TimeById"/>
+			<item value="down"/>
+			<item value="downl"/>
+			<item value="questionList"/>
+			<item value="document_nm"/>
+			<item value="yy"/>
+			<item value="try"/>
+			<item value="selectItemName"/>
+			<item value="selectItemNameGo"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="417" key="DIALOG_WIDTH"/>
+		<item value="762" key="DIALOG_WIDTH"/>
 		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
-		<item value="483" key="DIALOG_HEIGHT"/>
-		<item value="551" key="DIALOG_X_ORIGIN"/>
-		<item value="529" key="DIALOG_Y_ORIGIN"/>
+		<item value="500" key="DIALOG_HEIGHT"/>
+		<item value="694" key="DIALOG_X_ORIGIN"/>
+		<item value="412" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

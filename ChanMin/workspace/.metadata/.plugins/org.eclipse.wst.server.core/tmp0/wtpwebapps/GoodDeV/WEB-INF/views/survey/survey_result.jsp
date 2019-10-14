@@ -22,6 +22,19 @@
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/survey.css">
+    <style >
+    .starR{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+.starR.on{background-position:0 0;}
+    </style>
+    
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -146,16 +159,23 @@
 
                             </div>
                         </div>
-                        <c:forEach var="question" items="${questionList}" varStatus="status">
+                      <c:forEach var="question" items="${questionList}" varStatus="status">
                         <div class="form-group row">
                             <label for="" class="col-sm-2 col-form-label"><span><b>질문  ${status.count}) </b></span></label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="question" id="" placeholder="${question.question}" readonly="readonly"><br>
-                                <p name="qValuable">${question.avgSurvey}</p> &nbsp; &nbsp;
-                                &nbsp; &nbsp; 
+                               <c:forEach var="i" begin="1" end="${question.avgSurvey}">
+                             <span class="starR on">별1</span>
+                          </c:forEach>
+                          <c:forEach var="i" begin="${question.avgSurvey}" end="4">
+                             <span class="starR">별1</span>
+                          </c:forEach>
                             </div>
                         </div>
                         </c:forEach>
+                           <br/>
+                           
+
                        
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>기타의견</b></span></label>

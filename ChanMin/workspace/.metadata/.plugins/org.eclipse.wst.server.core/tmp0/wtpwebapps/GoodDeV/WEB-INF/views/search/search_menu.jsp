@@ -75,7 +75,7 @@
        window.location.href="/cloud/member/searchGo";
     }
     function fn_downfile(){ 
-  		alert("83")
+  		
         location.href="/cloud/member/fileDownload";
     }
     </script>
@@ -470,7 +470,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                <c:if test="${sessionScope.loginId != null}">
+                	<c:if test="${sessionScope.loginId != null&&sessionScope.loginType!='client'}">
                     <button type="button" id="request" class="btn btn-outline-info">신청하기</button>
                     </c:if>
                     <button type="button" class="btn btn-outline-success" data-dismiss="modal">닫기</button>

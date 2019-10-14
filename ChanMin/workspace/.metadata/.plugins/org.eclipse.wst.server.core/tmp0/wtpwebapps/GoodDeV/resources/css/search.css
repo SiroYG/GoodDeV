@@ -24,6 +24,11 @@ caption.search-result {
     font-size: 1em;
 }
 
+.pTable{
+width:100%;
+margin : 0 auto;	
+}
+
 div.search-container {
     height: 150px;
 }

@@ -48,24 +48,30 @@
     			alert('아이템명을 입력하세요')
     			return false;
     		}
-    		$.ajax({
-    			url : 'selectItemNameGo',
-    			type : 'get',
-    			data : {
-    				itemName : itemName
-    			},
-    			success : function(res){
-    				if(res=='success'){
-    					$('#updateForm').submit();
+    		$('#updateForm').submit();
+    		
+    		
+    		$('#itemName').on('change',function(){
+    			 $.ajax({
+    	    			url : 'selectItemNameGo',
+    	    			type : 'get',
+    	    			data : {
+    	    				itemName : itemName
+    	    			},
+    	    			success : function(res){
+    	    				if(res=='success'){
+    	    					$('#updateForm').submit();
 
-    				}else{
-    					alert('중복되는 아이템 이름입니다. 다시 작성해주세요!');
-    					$('#itemName').val("");
-    					return;
-    				}
-    			}
+    	    				}else{
+    	    					alert('중복되는 아이템 이름입니다. 다시 작성해주세요!');
+    	    					$('#itemName').val("");
+    	    					return;
+    	    				}
+    	    			}
+    	    		})
     		})
-    	
+    		
+    	 
     		
     	})
     	

@@ -201,7 +201,7 @@
                     </div><br>
                     <hr class="hr_navy"><br><br>
                     <a href="#" id="itemInsert" class="btns btn-3"><span class="white">작성하기</span></a> &nbsp;&nbsp; 
-                    <a href="gomyPage#item-section" class="btns btn-3-red"><span class="white">취소</span></a> 
+                    <a href="/cloud/member/goMypage" class="btns btn-3-red"><span class="white">취소</span></a> 
                 </form>
             </div>
 
