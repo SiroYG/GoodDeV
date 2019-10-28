@@ -3,78 +3,58 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="utf-8">
-    <title>My Page ::</title>
-
+    <title>SupporterS :: My Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    
  	<!-- jquery 우선 실행 -->
- 	
 	<script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
 	<!-- <script src="/cloud/resources/js/list.js"></script> -->
-    
     <!-- Tap 기능 jquery 실행 -->
     <script src="/cloud/resources/js/ef-tabs.js"></script>
     <script src="/cloud/resources/js/jquery.transit.js"></script>
-    
 	<!-- bootstrap 포함 css 순차 실행 -->
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
-    
     <!-- Tap + Personal CSS/JS -->
-   
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/Board.css">
     <link rel="stylesheet" href="/cloud/resources/css/demo.css">
     <link rel="stylesheet" href="/cloud/resources/css/ef-tabs.css">
     <link rel="stylesheet" href="/cloud/resources/css/ef-tabs-light-blue.css">
-
     <script>  
 $(function(){
 			boardList();
-
         	$('#patentList').on('click', function() {	
             		patent();
        		})
-			
             $('#itemList').on('click',function(){
             	item();
        		})	
-       		
-            
             $('#shape-survey').on('click', function() {
             	servey();
             })
-    
              $('#shape-qna').on('click', function() {
             	 boardList();
             })
-            
              $('#shape-funding').on('click', function() {
 				 fundList();
             })
-            
 });
 function patent(){   
 	var pageSu;
     $(function(){
  		   pageSu = 9;
  		   patentTable(pageSu);   
-
     });
-    
     jQuery(document).on('click', '#rightBtn', function(){
  	   			pageSu += 10;
  	   			$.ajax({
@@ -91,11 +71,8 @@ function patent(){
  	   				}
  	   			})
  	   }); 
-    
     jQuery(document).on('click', '#leftBtn', function(){
- 	 	  		
  	   			pageSu -= 10;
- 	 	
  	 	  		if(pageSu>0){
  	 	  			patentTable(pageSu); 
  	 	  		}else{
@@ -103,13 +80,8 @@ function patent(){
  	 	  			alert('응 첫페이지..');
  	 	  			patentTable(pageSu); 
  	 	  		}
- 	 	  		
  });
-    
-  
-   
     function patentTable(pageSu){
- 	
  	   $.ajax({
  	   		url : 'patentTable',
  	   		type : 'get',
@@ -118,8 +90,6 @@ function patent(){
  	   		},
  	   		success : output	   		
  	   	})
- 	   
- 	   
     }
     function output(res){
  	   	var tag = '';
@@ -141,17 +111,14 @@ function patent(){
 		   		var patentName = item.patentName;
 		   		var patentContent = item.patentContent;
 		   		var patentHolderName = item.patentHolderName;
-		   		
-		   	  if (patentNum.length >= 10) {
-                  //patentNum = patentNum.split("-",2)+"...";
-                  patentNum = patentNum.substr(0, 10) + "...";
-                  tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
-              }  else {
-                  tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
-              }
-              
+		   		if (patentNum.length >= 10) {
+		   		                  //patentNum = patentNum.split("-",2)+"...";
+		   		                  patentNum = patentNum.substr(0, 10) + "...";
+		   		                  tag += '<th scope="row" name="특허번호"><a class="lcm" data-id="'+item.patentNum+'">' + patentNum + '</a></th>'
+		   		              }  else {
+		   		                  tag += '<th scope="row" name="특허번호"><a class="lcm" data-id="'+item.patentNum+'">' + patentNum + '</a></th>'
+		   		              }
               if (patenttype == null) {
-                  //patenttype = patenttype.substr(0,7)+"...";
                   tag += '<td name="분류" >' + '' + '</td>'
               } else if(patenttype.length >= 8 ){
                  tag += '<td name="분류" >' + patenttype + '</td>'
@@ -165,32 +132,17 @@ function patent(){
               }else{
                  tag += '<td name="특허명"><b>' + patentName + '</b></td>'
               }
-              /* if(patentContent.length >= 20){
-                 patentContent = patentContent.substr(0,40)+"...";
-                  tag += '<td name="특허설명" ><b>'+patentContent+'</b></td>'
-              } */
               if (patentHolderName.length >= 5) {
                   patentHolderName = patentHolderName.substr(0, 4) + "...";
                   tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
               } else {
                  tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
               }
-             /*  else {
-                  tag += '<tr>'
-                  tag += '<th scope="row" name="특허번호">' + patentNum + '</th>'
-                  tag += '<td name="분류" >' + patenttype + '</td>'
-                  tag += '<td name="특허명" ><b>' + patentName + '</b></td>'
-                  /* tag += '<td name="특허설명" ><b>'+patentContent+'</b></td>' 
-                  tag += '<td name="특허 보유자" >' + patentHolderName + '</td>'
-              } */
-
               if (item.patentRegDate != null) {
                   tag += '<td name="등록날짜">' + item.patentRegDate + '</td>'
               } else {
                   tag += '<td >[등록진행중]</td>'
               }
-
-          
               //인터셉터 처리
               tag += '</tr>'
           })
@@ -200,21 +152,23 @@ function patent(){
     		tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
     	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
     	    tag +=	'</div>'
-        $('#section-bar-patent').html(tag);	
+        $('#section-bar-patent').html(tag);
+    	$('.lcm').on('click',pop);    
     }
 }
-
+function pop(){
+	var patentNum = $(this).attr('data-id');
+	// window.open("/cloud/funding/fundingChat?crowdfundingNum="+crowdfundingNum, "PopupWin", "width=800,height=700");
+	window.open("/cloud/patent/patentDetail?patentNum="+patentNum,"PopupWin","width=800,height=700")
+}
 function item(){
 	var pageSu;
     $(function(){
  		   pageSu = 9;
  		   itemTable(pageSu);   
-
     });
-    
     jQuery(document).on('click', '#riBtn', function(){
  	   			pageSu += 10;
- 	   			alert(pageSu);
  	   			$.ajax({
  	   				url: 'itemSu',
  	   				type : 'get',
@@ -229,11 +183,8 @@ function item(){
  	   				}
  	   			})
  	   }); 
-    
     jQuery(document).on('click', '#leBtn', function(){
- 	 	  		
  	   			pageSu -= 10;
- 	 	
  	 	  		if(pageSu>0){
  	 	  		itemTable(pageSu); 
  	 	  		}else{
@@ -241,17 +192,11 @@ function item(){
  	 	  			alert('응 첫페이지..');
  	 	  		itemTable(pageSu); 
  	 	  		}
- 	 	  		
  });
-    
     jQuery("#section-bar-item").on('click', '#itemSign', function(){
    	 		window.location.href="/cloud/item/goItemWrite";		
 });
-    
-    
-   
     function itemTable(pageSu){
- 	 
  	   $.ajax({
  	   		url : 'itemTable',
  	   		type : 'get',
@@ -260,22 +205,18 @@ function item(){
  	   		},
  	   		success : output	   		
  	   	})
- 	   
- 	   
     }
-    
-  
     function output(res){
  	   var tag = '';
         tag += '<table class="iTable">'
         tag += '<caption class="table_title"><b>시제품 및 출시품 목록</b></caption>'
         tag += '<div class="cap-btn">'
-        tag += '<a href="#" id="itemSign" class="btn btn-outlinr-info">제품 등록</a>'
-        tag += '<a href="/cloud/item/goItemHistory"  class="btn btn-outlinr-info">제품 수정 기록 보기</a>'
+        tag += '<a href="#" id="itemSign" class="btns btn3" style="margin-right : 30px;">제품 등록</a>'
+        tag += '<a href="/cloud/item/goItemHistory"  class="btns btn-3-comments">제품 수정 기록 보기</a>'
         tag += '</div>'
         tag += '<thead class="navy">' 
         tag += '<tr>'   
-        tag += '<th scope="col">Item No.</th>'        
+        tag += '<th scope="col" style="text-align:center;">Item No.</th>'        
         tag += '<th scope="col">분류</th>'       
         tag += '<th scope="col">제품명</th>'    
         tag += '<th scope="col">제품 설명</th>'     
@@ -292,7 +233,6 @@ function item(){
     	   		tag += '</tr>'
     		}
     	   	})
-    	   
     	   	tag += '</tbody>'	
     		tag += '</table>' 
     		tag += '<div class="tri-btn">'
@@ -302,15 +242,12 @@ function item(){
         $('#section-bar-item').html(tag);	
     }
 }
-
 function fund(){
 	var pageSu;
     $(function(){
  		   pageSu = 9;
  		   patentTable(pageSu);   
-
     });
-    
     jQuery(document).on('click', '#', function(){
  	   			pageSu += 10;
  	   			$.ajax({
@@ -327,11 +264,8 @@ function fund(){
  	   				}
  	   			})
  	   }); 
-    
     jQuery(document).on('click', '#', function(){
- 	 	  		
  	   			pageSu -= 10;
- 	 	
  	 	  		if(pageSu>0){
  	 	  			patentTable(pageSu); 
  	 	  		}else{
@@ -339,12 +273,8 @@ function fund(){
  	 	  			alert('응 첫페이지..');
  	 	  			patentTable(pageSu); 
  	 	  		}
- 	 	  		
  });
-    
-   
     function patentTable(pageSu){
- 	 
  	   $.ajax({
  	   		url : 'patentTable',
  	   		type : 'get',
@@ -353,8 +283,6 @@ function fund(){
  	   		},
  	   		success : output	   		
  	   	})
- 	   
- 	   
     }
     function output(res){
  	   var tag = '';
@@ -379,25 +307,20 @@ function fund(){
     	   		tag += '<td name="마감일">'+item.c+'</td>'
     	   		tag += '</tr>'
     	   	})
-    	   
     	   tag += '</tbody>'	
     	   tag += '<tr><td>'
     	   tag += '<button id="leftBtn">◀</button>'	
     	   tag += '<button id="rightBtn">▶</button>'	
     	   tag += '</td></tr>'
     	   tag += '</table>' 
-    
         $('#section-bar-funding').html(tag);	
     	}
 	}
-     
-
 function servey(){
 	var pageSu;        
 	$(function(){
 		   pageSu = 9;
 		   serveyTable(pageSu);   
-
  });
 jQuery(document).on('click', '#rightBtn', function(){
 			pageSu += 10;
@@ -416,9 +339,7 @@ jQuery(document).on('click', '#rightBtn', function(){
 }); 
 
 jQuery(document).on('click', '#leftBtn', function(){
-  		
 			pageSu -= 10;
-
   		if(pageSu>0){
   			serveyTable(pageSu); 
   		}else{
@@ -426,7 +347,6 @@ jQuery(document).on('click', '#leftBtn', function(){
   			alert('응 첫페이지..');
   			serveyTable(pageSu); 
   		}
-  		
 });
 function serveyTable(pageSu){	
 		$.ajax({
@@ -438,7 +358,6 @@ function serveyTable(pageSu){
 			success : output
 	})
 }		
-
 function output(res){
 			var tag = '';
 			tag += '<table class="table">'
@@ -469,7 +388,6 @@ function output(res){
 		    tag += '</div>'
 			$('#section-bar-survey').html(tag);
 		}
-
 }
 
 function boardList(){
@@ -477,7 +395,6 @@ function boardList(){
 	$(function(){
 		   pageSu = 9;
 		   boardTable(pageSu);   
-
  });
 	
 	 jQuery(document).on('click', '#rightBtn', function(){
@@ -497,9 +414,7 @@ function boardList(){
  }); 
 
 jQuery(document).on('click', '#leftBtn', function(){
-	  		
  			pageSu -= 10;
-	
 	  		if(pageSu>0){
 	  			boardTable(pageSu); 
 	  		}else{
@@ -507,10 +422,8 @@ jQuery(document).on('click', '#leftBtn', function(){
 	  			alert('응 첫페이지..');
 	  			boardTable(pageSu); 
 	  		}
-	  		
 });
 function boardTable(pageSu){
- 	
 	   $.ajax({
 	   		url : '/cloud/board/userboard',
 	   		type : 'get',
@@ -519,13 +432,11 @@ function boardTable(pageSu){
 	   		},
 	   		success : output	   		
 	   	})
-	   
-	   
  }
 function output(res){
 			var tag = '';            
         	tag += '<table class="table">'
-        	tag += '<caption class="table_title"><b>내가 작성한 게시글</b></caption>'
+        	tag += '<caption class="table_title"><b>게시글 목록</b></caption>'
 	        tag += '<thead class="navy">' 
 	        tag += '<tr>'   
 	        tag += '<th scope="col">No.</th>'        
@@ -553,8 +464,6 @@ function output(res){
     	    $('#section-bar-qna').html(tag);
 		}
 }
-
-
 function fundList(){
 		$.ajax({
 			url : '/cloud/funding/myfundList',
@@ -562,8 +471,6 @@ function fundList(){
 			success : outputFunding
 		})
 }
-	
-	
    	function outputFunding(res) {
             var tag = '';
             tag += '<table class="table">'    
@@ -588,12 +495,9 @@ function fundList(){
             })
             $('#section-bar-funding').html(tag);
         } 
- 	
     </script>
 </head>
-
 <body class="bg-black">
-
      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="/cloud/home">SupporterS</a>
@@ -658,6 +562,8 @@ function fundList(){
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <span><b>내 게시글 목록</b></span>
                             </a></li>
+                        
+                        <c:if test="${sessionScope.loginType == 'inventor'||sessionScope.loginType == 'enp'}">
                         <li><a id="patentList" href="#section-shape-patent"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
@@ -670,6 +576,7 @@ function fundList(){
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <span><b>시제품, 출시품 등록 현황</b></span>
                             </a></li>
+                        </c:if>
                         <li><a href="#section-shape-survey" id="shape-survey"> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
                                     <use xlink:href="#tabshape"></use>
                                 </svg> <svg viewBox="0 0 80 60" preserveAspectRatio="none">
@@ -684,24 +591,14 @@ function fundList(){
                 </nav>
                 <div class="content-wrap">
                     <section id="section-bar-qna">
-                        
                     </section>
-
                     <section id="section-bar-patent"> 
-                    
                     </section>
-
                     <section id="section-bar-item"> 
-                    
                     </section>
-
                     <section id="section-bar-survey">
-                      
                     </section>
-
                     <section id="section-bar-funding">
-                        
-                     
                     </section>
                 </div>
                 <!-- /content -->
@@ -709,9 +606,7 @@ function fundList(){
             <!-- /tabs -->
         </section>
     </div>
-
 </body>
-
 <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="/cloud/resources/js/popper.min.js"></script>
 <script src="/cloud/resources/js/bootstrap.min.js"></script>
@@ -723,8 +618,5 @@ function fundList(){
 <script src="/cloud/resources/js/aos.js"></script>
 <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
 <script src="/cloud/resources/js/scrollax.min.js"></script>
-
 <script src="/cloud/resources/js/main.js"></script>
-
-
 </html>

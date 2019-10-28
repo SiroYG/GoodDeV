@@ -26,7 +26,7 @@ insert into Reply (
 
 <select parameterType="Reply" id="selectAll" resultType="Reply">
 select
-		replyNum
+	replyNum
 	,boardNum
 	,reply
 	,to_char(replyDate,'YYYY-MM-DD') as replyDate
@@ -37,7 +37,7 @@ from
 where 
 		boardNum = #{boardNum}
 order by 	
-	replyDate desc	
+	replyNum desc	
 </select>
 
 <delete id="deleteReply" parameterType="int" >

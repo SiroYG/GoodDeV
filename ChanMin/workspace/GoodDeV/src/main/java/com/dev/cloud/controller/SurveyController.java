@@ -229,7 +229,7 @@ public class SurveyController {
 		Question_Time question_time = new Question_Time();
 		question_time.setQuestionTimeNum(question_Time.getQuestionTimeNum());
 		ArrayList<Question> qList = new ArrayList<>();
-
+		String str1 ="";
 		Question_Time qTime = new Question_Time();
 		System.out.println("61 line : " + question_time);
 		qTime = IsRepo.getQuestion_TimeByQuestion_TimeNum(question_time);
@@ -248,14 +248,15 @@ public class SurveyController {
 	      
 	      
 	      String splitStr=item.getItemImagename();
+	      if(splitStr!=null){
 	      String [] temp=splitStr.split("@");
-	      String str1= temp[0]; 
+	      str1= temp[0]; 
 	      if(temp.length==2){
 		      String str2= temp[1]; 
 				model.addAttribute("str2", ", "+str2);
 
 	      }
-	     
+	      }
 	      
 			model.addAttribute("str1", str1);
 
@@ -337,14 +338,15 @@ public class SurveyController {
 	public List<QuestionTotal> searchSurvey(Model model, Search search, HttpSession session) {
 		System.out.println("line ++255");
 		List<QuestionTotal> qtLsist = new ArrayList<>();
-		qtLsist = IsRepo.selectBySearchItem(search);
+		System.out.println(search);
+		qtLsist = IsRepo.selectBySearchItem();
 		System.out.println("qtLsist : "+qtLsist);
 		String sessionId=(String) session.getAttribute("loginId");
 		ArrayList<QuestionTotal> qTotalList = new ArrayList<>();
 	
 		
-		if (qtLsist.size() == 0) {
-			return null;
+		if (qtLsist.size() == 0||qtLsist==null) {
+			return qtLsist;
 		}
 		
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");

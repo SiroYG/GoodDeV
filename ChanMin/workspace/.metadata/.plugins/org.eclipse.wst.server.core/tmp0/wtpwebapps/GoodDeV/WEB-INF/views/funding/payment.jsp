@@ -36,7 +36,7 @@
             buyer_tel : '${payment.tel}', //누락되면 이니시스 결제창에서 오류
             buyer_addr : '${payment.addr}'
         }, function(rsp) {
-        	alert(rsp.success);
+        	
             if ( rsp.success ) {
             		var msg = '결제가 완료되었습니다.';
         				msg += '고유ID : ' + rsp.imp_uid;
@@ -62,7 +62,7 @@
    								
    							}
    						})
-   						alert(rsp.paid_amount);
+   						
             			
             			
             			window.close();

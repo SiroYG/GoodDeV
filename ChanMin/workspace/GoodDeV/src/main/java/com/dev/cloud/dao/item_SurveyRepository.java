@@ -186,11 +186,11 @@ public class item_SurveyRepository implements item_SurveyMapper{
 	}
 
 	@Override
-	public List<QuestionTotal> selectBySearchItem(Search search) {
+	public List<QuestionTotal> selectBySearchItem() {
 		item_SurveyMapper mapper=sqlsession.getMapper(item_SurveyMapper.class);
 		List<QuestionTotal> result=null;
 		try {
-			result=mapper.selectBySearchItem(search);
+			result=mapper.selectBySearchItem();
 			System.out.println("175 : "+result);
 
 		} catch (Exception e) {

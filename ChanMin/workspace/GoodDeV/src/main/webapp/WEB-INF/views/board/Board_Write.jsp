@@ -49,7 +49,7 @@
                     <li class="nav-item"><a href="/cloud/member/goPatent" class="nav-link"><span>특허 / 검색</span></a></li>
                     <li class="nav-item"><a href="/cloud/board/boardListForm" class="nav-link"><span>Q & A 게시판</span></a></li>
                     <li class="nav-item"><a href="/cloud/survey/goSurvey_list" class="nav-link"><span>블라인드 테스트</span></a></li>
-                    <li class="nav-item"><a href="/cloud/funding/gofunding" class="nav-link"><span>크라우드 펀딩</span></a></li>
+                    <li class="nav-item"><a href="/cloud/funding/fundingListForm" class="nav-link"><span>크라우드 펀딩</span></a></li>
 	  			 <c:if test="${sessionScope.loginId==null}">
 	  			 <li style="margin-left: 20px;" class="nav-item cta">
                     <div class="dropdown show">
@@ -223,7 +223,7 @@
        <script src="/cloud/resources/js/jquery.min.js"></script>
   <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="/cloud/resources/js/popper.min.js"></script>
-  <script src="/cloud/resources/js/bootstrap.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
   <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
   <script src="/cloud/resources/js/jquery.stellar.min.js"></script>

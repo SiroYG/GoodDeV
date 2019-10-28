@@ -103,6 +103,13 @@ public class MemberController {
 
 		return "/member/Mypage";
 	}
+	
+	@RequestMapping(value = "/error", method = RequestMethod.GET)
+	public String error() {
+		
+
+		return "/member/error";
+	}
 
 	@RequestMapping(value = "/searchGo", method = RequestMethod.GET)
 	public String searhGo() {
@@ -191,6 +198,8 @@ public class MemberController {
 		System.out.println("188번줄patent=>"+patent);
 		if (patent == null) {
 			paten.setPatentNum(patentNum);
+		}else{
+			paten.setPatentNum(patentNum+"1");
 		}
 		System.out.println("191번줄" + paten);
 		int result = 0;
@@ -201,9 +210,12 @@ public class MemberController {
 		String saveReferenceFilename = FileService.saveFile(upload, uploadPath);
 		paten.setReferenceFilename(referenceFilename);
 		paten.setSaveReferenceFilename(saveReferenceFilename);
-
+		devMember mem = dao.selectmemId(memberId);
+		System.out.println("214번줄mem==>"+mem);
+		if(!mem.getMemberType().equals("client")){
 		result = papo.insertPatent(paten); // Patent insert 하는 부분
 		re = pspo.insertPatentsub(paten); // PatentSun insert
+		}
 		System.out.println("198번줄 result==>" + result + ",  re==>" + re);
 		if (result == 1 && re == 1) {
 			return "success";
@@ -451,7 +463,9 @@ public class MemberController {
 		
 		return result;
 	}
-
+	
+	
+	
 
 	@RequestMapping(value = "/fileDownload")
 	public void fileDownload(

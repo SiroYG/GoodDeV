@@ -118,21 +118,32 @@ public class ItemController {
 		Total it = repo.goItemDetail(total);
 		
 		String lcm = it.getItemImagename();
+		System.out.println("121번줄==>"+lcm);
 		if(lcm!=null){
 			String [] array = lcm.split("@");	
 		for(int i=0;i<array.length;i++){
+			try{
+			if(array[0]!=null){
 			a = array[0];
-			b = array[1];		
+			System.out.println("127번줄==>"+a);
+			}
+			
+			if(array[1]!=""||array[1]==null){
+			b = array[1];	
+			}
+			}catch (Exception e) {
+				
 			}
 			tt = a+",  "+b;
 		}
-		
+		}
 		c= it.getDocumentFilename();
 		if(c==null){
 			String yy= "";
 			model.addAttribute("yy",yy);
 		}else{
 			String yy = c;
+			System.out.println("146번줄c==>"+c);
 			model.addAttribute("yy",yy);
 		}	
 		model.addAttribute("tt",tt);
@@ -153,6 +164,21 @@ public class ItemController {
 		
 		model.addAttribute("time", times);
 		return "/item/item_write";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/selectItemNameGo", method = RequestMethod.GET)
+	public String selectItemNameGo(String itemName) {
+		
+		Item item = repo.selectItemName(itemName);
+		
+		if(item==null){
+			return "success";
+		}else{
+			return "false";
+		}
+		
+		
 	}
 	
 	@RequestMapping(value = "/goItemDelete", method = RequestMethod.GET)
@@ -274,7 +300,7 @@ public class ItemController {
 	public String goItemWriteProcess(MultipartFile upload,MultipartFile upload1,Total total, HttpSession session) {
 		int re =0;
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd (E) ");
-		
+		int result =0;
 		Calendar time = Calendar.getInstance();
 		
 		String times = format.format(time.getTime());
@@ -291,25 +317,33 @@ public class ItemController {
 			
 			String documentFilename = upload1.getOriginalFilename();
 			String saveDocumentFilename = FileService.saveFile(upload1, uploadPath);
+			System.out.println("309번줄"+saveitemImage+", "+saveDocumentFilename);
+			if(saveitemImage!=""&&saveitemImage!=null||saveDocumentFilename!=null&&saveDocumentFilename!=""){
 			total.setItemImagename(itemImage+"@"+documentFilename);
 			total.setSaveItemImage(saveitemImage+"@"+saveDocumentFilename);	
-		
+			System.out.println("312번");
+			}
+			System.out.println("314번");
 		} catch (IllegalStateException e) {
 			
 			e.printStackTrace();
 		}
-		
-		int result = repo.insertItem(total); 
-		System.out.println("203==>"+total);
-		List<Total> hist = repo.getIdDe(total);
-		for(Total to : hist){
-			if(to.getItemName().equals(total.getItemName())){
-				total.setItemNum(to.getItemNum());
-				System.out.println("208번줄his==>"+total);
-			 
-				 re = hipo.insertHistory(total);
+		Item item = repo.selectItemName(total.getItemName());
+		System.out.println("317번줄item==>"+item);
+		if(item==null){
+			result = repo.insertItem(total); 
+			System.out.println("203==>"+total);
+			List<Total> hist = repo.getIdDe(total);
+			for(Total to : hist){
+				if(to.getItemName().equals(total.getItemName())){
+					total.setItemNum(to.getItemNum());
+					System.out.println("208번줄his==>"+total);
+				 
+					 re = hipo.insertHistory(total);
+				}
 			}
 		}
+		System.out.println("315번줄result==>"+result+",  re==>"+re);
 		try{
 		if(result==1&&re==1){
 			return "redirect:/member/goMypage";

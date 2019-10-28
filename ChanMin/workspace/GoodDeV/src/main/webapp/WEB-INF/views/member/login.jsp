@@ -10,23 +10,18 @@
     <meta name="description" content="Colorlib Templates">
     <meta name="author" content="Colorlib">
     <meta name="keywords" content="Colorlib Templates">
-
     <!-- Title Page-->
-    <title>Login :: </title>
-
+    <title>SupporterS :: Login</title>
     <!-- Icons font CSS-->
     <link href="/cloud/resources/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="/cloud/resources/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-
     <!-- Vendor CSS-->
     <link href="/cloud/resources/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="/cloud/resources/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-
     <!-- Main CSS-->
     <link href="/cloud/resources/css/Member.css" rel="stylesheet" media="all">
-    
     <!-- script -->
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
@@ -62,7 +57,6 @@
                         <div class="input-group">
                             <input class="input--style-2" type="password" placeholder="비밀번호" name="memberPw" id="pw">
                         </div>
-                        
                         <div class="p-t-30">
                             <a class="btn btn--radius btn--green" onclick="login()">로그인</a> &nbsp;
                             <!-- <button class="btn btn--radius btn--green" type="submit">로그인</button> &nbsp; -->
@@ -70,25 +64,20 @@
                             <a href="/cloud/member/gosign" class="grey">회원가입</a>
                             <br><br>
                             <a href="/cloud/member/gofindid" class="grey">아이디 / </a> <a href="/cloud/member/gofindpw" class="grey">비밀번호 찾기</a>
-                            
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Jquery JS-->
     <script src="/cloud/resources/vendor/jquery/jquery.min.js"></script>
     <!-- Vendor JS-->
     <script src="/cloud/resources/vendor/select2/select2.min.js"></script>
     <script src="/cloud/resources/vendor/datepicker/moment.min.js"></script>
     <script src="/cloud/resources/vendor/datepicker/daterangepicker.js"></script>
-
     <!-- Main JS-->
     <script src="/cloud/resources/js/global.js"></script>
-
 </body>
-
 </html>
 <!-- end document-->

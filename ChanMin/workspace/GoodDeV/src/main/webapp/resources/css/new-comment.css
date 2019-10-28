@@ -52,10 +52,9 @@
 }
 
 .comment-list .row, .comment-lists .row {
-  margin-bottom: 0px;
   vertical-align: middle !important;
-    margin: 0 auto !important;
-    justify-content: center !important;
+  margin: 0 auto !important;
+  justify-content: center !important;
 }
 .comment-list .panel .panel-heading, .comment-lists .panel .panel-heading {
   padding: 4px 15px;
@@ -71,11 +70,17 @@
   border-top-left-radius:0px;
   right: 16px;
 }
+
+.panel-body{
+border-bottom : 1px solid #999999;
+  margin-bottom: 5px;
+  margin-top: 5px;	
+}
+
 .comment-list .panel .panel-heading .panel-body, .comment-lists .panel .panel-heading .panel-body {
-  padding-top: 6px;
   vertical-align: middle !important;
-    margin: 0 auto !important;
-    justify-content: center !important;
+  margin: 0 auto !important;
+  justify-content: center !important;
 }
 .comment-list figcaption, .comment-lists figcaption {
   /*For wrapping text in thumbnail*/

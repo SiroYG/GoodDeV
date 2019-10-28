@@ -184,7 +184,17 @@ public class PatentController {
 			
 		}
 	}
-	
+	@RequestMapping(value = "/patentDetail", method = RequestMethod.GET)
+	public String patentDetail(String patentNum, Model model) {
+		System.out.println("189번줄patentNum==>"+patentNum);
+		Patent p = new Patent();
+		p.setPatentNum(patentNum);
+		Patent patent = papo.selectPatent(p);
+		
+		model.addAttribute("pat",patent);
+		
+		return "search/patent_popup";
+	}
 	
 	@RequestMapping(value = "/download")
 	public  void download(

@@ -8,52 +8,35 @@
     <title>Survey :: Survey Form</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/survey.css">
-    
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-    
     <script>
     var itemNum='';
     $(function(){
-    	
     	$(document).on('click', '#str1', function(){
     		fn_downfile1();
-    		
     	})
     	$(document).on('click', '#str2', function(){
     		fn_downfile2();
-    		
     	})
-    	
-    	
     	$(document).on('click', '#insertSurveyButton', function(){
-    		alert("aa");
     		$("#insertSurveyData").submit();
-    	
     		var radioNumbers = [];
-    		
     		$(".queRadio").each(function(index,item){
     			if($(this).prop("checked")){
-    				
     				var SurveyTotal = {
    						qValuable : parseInt($(this).val()),
    						questionNum : parseInt($(this).attr("questionNum"))
@@ -61,8 +44,6 @@
     			}
     			radioNumbers.push(SurveyTotal);
     		});
-    		
-    		
     		var etc = $("#etc").val();
     		$.ajax({
     				contentType : "application/json; charset=utf8",
@@ -75,12 +56,8 @@
     				success : function(res){
     					alert("check");
     				}
-    				
     		})
-    		
     	});
-    	
-    	
     });
     function fn_downfile1(){
     	itemNum=$('#itemNum').val();
@@ -90,8 +67,6 @@
     	itemNum=$('#itemNum').val();
         location.href="/cloud/survey/download2?itemNum=" + itemNum;
     }
-
-
     </script>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -173,7 +148,6 @@
         </div>
 
     <hr class="hr_purple">
-
 <!-- <form action="/cloud/survey/insertSurveyDatas" method="POST"> -->
 <!--                   <input type = "text" name = "aaa"> -->
 <!--                   <input type = "submit" value = "zz"> -->
@@ -207,26 +181,15 @@
                      <textarea rows="8" cols="112" class="form-control" readonly="readonly">${qTime.description} </textarea>
                 </div>
             </div>
-<!--             <div class="form-group row"> -->
-<!--                 <label for="" class="col-sm-2 col-form-label"><span><b>첨부파일</b></span></label> -->
-<!--                 <div class="col-sm-10"> -->
-<!--                     <input type="file" class="form-control" name="upload" id="" placeholder=""> -->
-<!--                 </div> -->
-<!--             </div> -->
-
+	<c:if test="${str1!=null&&str2!=null}">	
   <div class="form-group row"> 
                 <label for="" class="col-sm-2 col-form-label"><span><b>첨부파일</b></span></label>
                 <div class="col-sm-10">
-                    <span  class="form-control"><a id="str1">${str1}</a><a id="str2">${str2}</a></span>
+                    <span  class="form-control" style="cursor : pointer;"><a id="str1">${str1}</a><a id="str2">${str2}</a></span>
                		 <input type="hidden"  id="itemNum" value="${item.itemNum }">
                 </div>
             </div>
-<!--              <div class="form-group row"> -->
-<!--                            <div class="form-group"> -->
-<!--                                     <a href="#" class="a_document"> 다운로드</a> -->
-<!--                            </div> -->
-<!--                    </div> -->
-<!--              </div> -->
+    </c:if>        
             <hr class="hr_navy">
             
             <div class="survey_form">
@@ -246,21 +209,6 @@
 
                 </div>
             </div> 
-                
-<%--             <c:forEach var="name" items="${nameList}" varStatus="status"> --%>
-
-<%--     <p>${status.count} : <c:out value="${name}" /></p> --%>
-
-<%-- </c:forEach> --%>
-
-
-
-<!-- 출처: https://offbyone.tistory.com/368 [쉬고 싶은 개발자] -->
-<%--            // <c:forEach var="que" items="${qList}" varStatus="status" > --%>
-<%--                     <label for="" class="col-sm-2 col-form-label"><span><b>질문 ${status.count}) </b></span></label> --%>
-<!--                     <div class="col-sm-10"> -->
-<%--                         <input type="text" class="form-control" name="question" id="question" value="${que.question}"> --%>
-                  
                   <c:forEach var="que" items="${qList}" varStatus="status" >
                   <div class="form-group row">
                   <input type="hidden" name="questionNum" value="${que.questionNum}" id="questionNum">
@@ -277,29 +225,10 @@
                         <input type="radio" class="queRadio" name="${que.questionNum}" questionNum="${que.questionNum}" value="4" > &nbsp; &nbsp;
                         <label for="">5점 </label>
                         <input type="radio" class="queRadio" name="${que.questionNum}" questionNum="${que.questionNum}" value="5"  checked> &nbsp; &nbsp;
-                        
                     </div> 
                 </div>
-               			 
-               			
                   </c:forEach>
-                    
-              
-                
-     	 
-     	 
-                  
-                  
-                  
-             
-                
-                
-                
-                
-                
             </div>
-            
-            
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"><span><b>기타의견</b></span></label>
                 <div class="col-sm-10">
@@ -313,32 +242,27 @@
                     &nbsp;&nbsp; 
                     <a href="/cloud/survey/goSurvey_list" class="btns btn-3-red" style="margin-top: 0;"><span class="white">&nbsp;&nbsp;취소&nbsp;&nbsp;</span></a>
                 </div>
-
             </div>
         </form>
           </div>
     </div>
-    
       </section>
- <script src="/cloud/resources/js/jquery.min.js"></script>
-  <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="/cloud/resources/js/popper.min.js"></script>
-  <script src="/cloud/resources/js/bootstrap.min.js"></script>
-  <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
-  <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
-  <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
-  <script src="/cloud/resources/js/owl.carousel.min.js"></script>
-  <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
-  <script src="/cloud/resources/js/aos.js"></script>
-  <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
-  <script src="/cloud/resources/js/bootstrap-datepicker.js"></script>
-  <script src="/cloud/resources/js/jquery.timepicker.min.js"></script>
-  <script src="/cloud/resources/js/scrollax.min.js"></script>
-  
-  <script src="/cloud/resources/js/main.js"></script>
+			 <script src="/cloud/resources/js/jquery.min.js"></script>
+			  <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
+			  <script src="/cloud/resources/js/popper.min.js"></script>
+			  <script src="/cloud/resources/js/bootstrap.min.js"></script>
+			  <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
+			  <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
+			  <script src="/cloud/resources/js/jquery.stellar.min.js"></script>
+			  <script src="/cloud/resources/js/owl.carousel.min.js"></script>
+			  <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
+			  <script src="/cloud/resources/js/aos.js"></script>
+			  <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
+			  <script src="/cloud/resources/js/bootstrap-datepicker.js"></script>
+			  <script src="/cloud/resources/js/jquery.timepicker.min.js"></script>
+			  <script src="/cloud/resources/js/scrollax.min.js"></script>
+			  <script src="/cloud/resources/js/main.js"></script>
 </body>
-   
-    
    <footer class="ftco-footer ftco-section">
     <div class="container">
         <div class="row mb-5">

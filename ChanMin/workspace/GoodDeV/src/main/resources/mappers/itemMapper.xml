@@ -160,7 +160,7 @@ select
 from
 	Item
 where 
-	itemName = #{itemname}		
+	itemName = #{itemName}		
 </select>
 <select id="selectItemMem" parameterType="String" resultType="Item" >
 select 
@@ -168,8 +168,8 @@ select
 from 
 	Item
 where
-	memberId = #{memberId}
-</select>
+	memberId = #{memberId} 
+	</select>
 
 </mapper>
 

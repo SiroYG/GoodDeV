@@ -198,7 +198,7 @@
     }
     function output(res){
  	   	var tag = '';
-        tag += '<table class="pTable">'
+        tag += '<table class="pTable" style="width:100%;">'
         tag += '<caption class="table_title"><b>검색하신 특허결과입니다.</b></caption>'
         tag += '<thead class="navy">' 
         tag += '<tr>'   
@@ -279,14 +279,14 @@
     	    	    tag += '</table>' 
     	    	    tag += '<br><br>'
     	    		tag += '<div class="tri-btn">'
-    	    		tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'	
+    	    		tag += '<button id="leftBtn" class="btn btn-primary">◀</button>'
     	    	    tag += '<button id="rightBtn" class="btn btn-primary">▶</button>'	
     	    	    tag +=	'</div>'
     	        $('#section-bar-patent').html(tag);	
     	    	$('.pri').on('click',checking);    
     	    	$('.pri').on('click',selectIt);
     	    }
-
+	
     
     function loginGo(){
     	window.location.href="/cloud/member/gologin";

@@ -10,31 +10,25 @@
     <meta name="description" content="Colorlib Templates">
     <meta name="author" content="Colorlib">
     <meta name="keywords" content="Colorlib Templates">
-
     <!-- Title Page-->
-    <title>Find ID :: </title>
-
+    <title>SupporterS :: Find ID</title>
     <!-- Icons font CSS-->
     <link href="/cloud/resources/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="/cloud/resources/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-
     <!-- Vendor CSS-->
     <link href="/cloud/resources/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="/cloud/resources/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-
     <!-- Main CSS-->
     <link href="/cloud/resources/css/Member.css" rel="stylesheet" media="all">
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script>
     $(function(){
-    	
     	$('#searchPw').on('click',function(){
     		var memberId = $('#id').val();
     		var memberName = $('#memberName').val();
   			var email = $('#email').val();
-  			
   			if (memberId.length==0 || memberId =="") {
   				alert("아아디을 입력해주세요.");
   				return false;
@@ -62,28 +56,18 @@
   						$('#id').val("");
   						$('#memberName').val("");
   						$('#email').val("");
-  						
   					}else{
   						alert(res);
   						$('#id').val("");
   						$('#memberName').val("");
   						$('#email').val("");
-  						
   					}
   				}
-  				
   			})
-    		
-    		
-    		
-    		
     	})
-    	
-    	
     });
     </script>
 </head>
-
 <body>
     <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
         <div class="wrapper wrapper--w960">
@@ -101,7 +85,6 @@
                         <div class="input-group">
                             <input class="input--style-2" type="text" placeholder="이메일(abc123@def.com)" name="email" id="email">
                         </div>
-                        
                         <div class="p-t-30">
                             <button class="btn btn--radius btn--green" type="button" id="searchPw">비밀번호 찾기</button> &nbsp;
                             <a class="btn btn--radius btn--green" href="/cloud/member/home">취소</a><br><br>
@@ -112,18 +95,14 @@
             </div>
         </div>
     </div>
-
     <!-- Jquery JS-->
     <script src="/cloud/resources/vendor/jquery/jquery.min.js"></script>
     <!-- Vendor JS-->
     <script src="/cloud/resources/vendor/select2/select2.min.js"></script>
     <script src="/cloud/resources/vendor/datepicker/moment.min.js"></script>
     <script src="/cloud/resources/vendor/datepicker/daterangepicker.js"></script>
-
     <!-- Main JS-->
     <script src="/cloud/resources/js/global.js"></script>
-
 </body>
-
 </html>
 <!-- end document-->

@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
 
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
@@ -113,7 +112,7 @@
                 <c:if test="${not empty list}">
                     <c:forEach var="board" items="${list}" varStatus="stat">
                         <div class="col-md-4 d-flex">
-                            <div class="blog-entry justify-content-end">
+                            <div class="blog-entry" style="width:100%;">
                                 <div class="text">
                                     <h3 class="heading"><a href="fundingDetail?crowdfundingNum=${board.crowdfundingNum}">${board.fundingTitle}</a></h3>
                                 </div>
@@ -121,7 +120,7 @@
                                 </a>
                                 <div class="text mt-3 float-right d-block">
                                     <p>${board.fundingContents}</p>
-                                  <!--   <div class="d-flex align-items-center mt-4 meta">
+                                    <!--   <div class="d-flex align-items-center mt-4 meta">
                                         <p class="mb-0"><a href="#" class="btn btn-primary">더 보기 <span class="ion-ios-arrow-round-forward"></span></a></p>
                                     </div> -->
                                 </div>
@@ -236,7 +235,7 @@
     <script src="/cloud/resources/js/jquery.magnific-popup.min.js"></script>
     <script src="/cloud/resources/js/aos.js"></script>
     <script src="/cloud/resources/js/jquery.animateNumber.min.js"></script>
-    
+
     <script src="/cloud/resources/js/scrollax.min.js"></script>
 
     <script src="/cloud/resources/js/main.js"></script>

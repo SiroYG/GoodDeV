@@ -56,8 +56,8 @@ public class FundingController {
 	itemRepository itpo;
 	
 	//final String uploadPath = "/uploadfile";
-	final String uploadPath ="C:/Users/Administrator/Desktop/apache-tomcat-9.0.22/webapps/cloud/resources/img";
-	//final String uploadPath="C:/Users/창민/Documents/GitHub/GoodDeV/ChanMin/workspace/GoodDeV/src/main/webapp/resources/images";
+	//final String uploadPath ="C:/Users/Administrator/Desktop/apache-tomcat-9.0.22/webapps/cloud/resources/img";
+	final String uploadPath="C:/Users/창민/Documents/GitHub/GoodDeV/ChanMin/workspace/GoodDeV/src/main/webapp/resources/img";
 	@RequestMapping(value = "/boardhome", method = RequestMethod.GET)
 	public String boardhome() { // 홈이동 (리다이렉트)
 		return "/board/Board_list";
@@ -117,6 +117,7 @@ public class FundingController {
 		
 		System.out.println("funding => " + crowdfundingNum);
 		Crowdfunding Crowdfunding = dao.selectOneCrowdFunding(crowdfundingNum);
+		System.out.println("120번줄Crowdfunding==>"+Crowdfunding);
 		int percent =(Crowdfunding.getItemCurrecyPrice()*100 / Crowdfunding.getItemGoalPrice());
 		
 		System.out.println("퍼센트 : "+percent);
@@ -182,8 +183,9 @@ public class FundingController {
 		String memberId = (String) session.getAttribute("loginId");
 		devMember member = mempo.selectmemId(memberId);
 		System.out.println("153번줄member==>"+member);
+		member.setFundPrice(member.getFundPrice()+amount);
 		payment.setAmount(payment.getAmount()+member.getFundPrice());
-		int result = mempo.devmemberPrice(payment);
+		int result = mempo.devmemberPrice(member);
 		Crowdfunding crowd = dao.selectOneCrowdFunding(payment.getCrowdfundingNum());
 		crowd.setItemCurrecyPrice(crowd.getItemCurrecyPrice()+amount);
 		int crowResult = dao.updateCurrentPrice(crowd); 
@@ -296,6 +298,7 @@ public class FundingController {
 		
 		String memberId=(String) session.getAttribute("loginId");
 		boolean flag=false;
+		System.out.println("cmList+"+cmList);
 		for(ChatMember  member: cmList){
 			if(member.getMemberId().equals(memberId)){
 				flag=true;
@@ -349,7 +352,7 @@ public class FundingController {
 				}
 			}
 		}
-		
+		System.out.println("cmforLeftList:"+cmforLeftList);
 		
 		
 		
@@ -379,11 +382,6 @@ public class FundingController {
 				return null;
 			}
 		}
-
-		
-		
-		
-		
 		
 		ChatRoom chatRoom=new ChatRoom();
 		chatRoom.setCrowdfundingNum(CrowdfundingNum);

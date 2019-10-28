@@ -23,7 +23,7 @@ public interface memberMapper {
 	//중복확인
 	public devMember overlap(String memberId);
 	
-	public int devmemberPrice(Payment payment);
+	public int devmemberPrice(devMember devmember);
 	
 	public devMember selectmemId(String memberId);
 }

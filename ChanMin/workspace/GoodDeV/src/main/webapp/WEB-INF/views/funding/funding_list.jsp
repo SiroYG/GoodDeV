@@ -113,11 +113,11 @@
                 <c:if test="${not empty list}">
                     <c:forEach var="board" items="${list}" varStatus="stat">
                         <div class="col-md-4 d-flex">
-                            <div class="blog-entry justify-content-end">
+                            <div class="blog-entry">
                                 <div class="text">
                                     <h3 class="heading"><a href="fundingDetail?crowdfundingNum=${board.crowdfundingNum}">${board.fundingTitle}</a></h3>
                                 </div>
-                                <a href="fundingDetail?crowdfundingNum=${board.crowdfundingNum}" class="block-20" style="background-image: url('/cloud/resources/images/image_1.jpg');">
+                                <a href="fundingDetail?crowdfundingNum=${board.crowdfundingNum}" class="block-20" style="background-image: url('/cloud/resources/img/${board.savedFileName}');">
                                 </a>
                                 <div class="text mt-3 float-right d-block">
                                     <p>${board.fundingContents}</p>
@@ -130,9 +130,11 @@
                     </c:forEach>
                 </c:if>
             </div>
+            <c:if test="${sessionScope.loginType!='client'}">
             <div>
                 <a href="/cloud/funding/gofundingform" class="btns btn-3"><span class="white">펀딩 진행하기</span></a><br><br>
             </div>
+            </c:if>
             <!--페이징 & 검색-->
             <div class="page-center">
                 <nav>
@@ -229,7 +231,7 @@
     <script src="/cloud/resources/js/jquery.min.js"></script>
     <script src="/cloud/resources/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="/cloud/resources/js/popper.min.js"></script>
-    <script src="/cloud/resources/js/bootstrap.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/cloud/resources/js/jquery.easing.1.3.js"></script>
     <script src="/cloud/resources/js/jquery.waypoints.min.js"></script>
     <script src="/cloud/resources/js/jquery.stellar.min.js"></script>

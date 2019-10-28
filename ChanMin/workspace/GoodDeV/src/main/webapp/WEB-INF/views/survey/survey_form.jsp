@@ -7,115 +7,47 @@
     <title>Survey :: Write Form</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-
-<!--     <link rel="stylesheet" href="/cloud/resources/css/bootstrap-datepicker.css"> -->
-<!--     <link rel="stylesheet" href="/cloud/resources/css/jquery.timepicker.css"> -->
-    
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/survey.css">
-    
     <script src="/cloud/resources/js/jquery-3.4.1.min.js"></script>
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
-    
     <script>
-    $(function(){
-    	
-    	
-//     	$('#executeForm').on('click', function(){
-    		
-// //     		var today = new Date(YYYY-MM-DD);
-        	
-// //         	var result = format(today,'YYYY-MM-DD')
-//     		alert("ok")
-//     		var a = $('#dueDate').val();
-//     		alert(a)
-//     		alert("result="+result)
-    		
-//     		if(result>=a){
-//     			alert("마감일은 시작일로부터 하루 뒤이어야 합니다.")
-//     		}
-    		
-//     		if($('#dueDate').val()==''){
-//     			alert("마감일을 입력해주세요.")
-//     			return;
-//     		}
-    		
-//     		if($('#questionTitle').val().length==0||$('#questionTitle').val()==""){
-//     			alert("제목을 입력해주세요.")
-//     			return;
-//     		}
-    		
-//     		if($('#question').val().length==0||$('#question').val()==""){
-//     			alert("질문을 입력해주세요.")
-//     			return;
-//     		}
-    		
-//     			$('#goSurvey_list').submit();
-    		
-    		
-    		
-    		
-    	
-//     	});
-    });
-    
-    
     function executeForm(){
-    	
     	if($('#dueDate').val()==''){
 			alert("마감일을 입력해주세요.")
 			return;
 		}
-    	
-    	
      	var today = new Date();
     	var dueDate = $('#dueDate').val();
     	var tempDuedate=new Date(dueDate);
     	tempDuedate.setHours(tempDuedate.getHours()-9);
- 	
-
-		
  		if(today.getTime()>tempDuedate.getTime()){
  			alert("마감일은 시작일로부터 하루 뒤이어야 합니다.")
 			return;
-
  		}
-		
 		if($('#dueDate').val()==''){
 			alert("마감일을 입력해주세요.")
 			return;
 		}
-		
 		if($('#questionTitle').val().length==0||$('#questionTitle').val()==""){
 			alert("제목을 입력해주세요.")
 			return;
 		}
-		
 		if($('#question').val().length==0||$('#question').val()==""){
 			alert("질문을 입력해주세요.")
 			return;
 		}
-		
 			$('#goSurvey_list').submit();
-		
-		
-		
     }
-    
-    
     </script>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -237,8 +169,6 @@
                     <textarea rows="8" cols="112" class="form-control" name="description" id="description" placeholder="부가설명을 입력해주세요"></textarea>
                 </div>
             </div>
-            
-            
             <hr class="hr_navy">
             
             <div class="survey_form">
@@ -321,9 +251,6 @@
                     </div>
                 </div>
             </div>
-            
-            
-           	
 <br><br>
             <div class="form-group row">
                 <div class="col-sm-10">
@@ -332,8 +259,6 @@
 
             </div>
         </form>
-
-
     </div>
     </div></section>
     <script>
@@ -349,7 +274,6 @@ function call(){
 	    var cMonth = cDay * 30;// 월 만듬
 	    var cYear = cMonth * 12; // 년 만듬
 	 if(sdd && edd){
-
 	    document.getElementById('days').value = parseInt(dif/cDay);
 	    var days =document.getElementById('days');
 	    var edd = document.getElementById("enddate").value;
@@ -376,7 +300,6 @@ function call(){
   <script src="/cloud/resources/js/bootstrap-datepicker.js"></script>
   <script src="/cloud/resources/js/jquery.timepicker.min.js"></script>
   <script src="/cloud/resources/js/scrollax.min.js"></script>
-  
   <script src="/cloud/resources/js/main.js"></script>
     
 </body>
@@ -435,5 +358,4 @@ function call(){
         </div>
     </div>
 </footer>
-
 </html>

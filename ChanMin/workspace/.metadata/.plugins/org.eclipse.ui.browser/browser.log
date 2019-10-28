@@ -305,3 +305,9 @@
 10월 07, 2019 17:26:23.52 [26480:18460:1007/172623.521:ERROR:socket_stream.cc(219)] Closing stream with result -2
 10월 07, 2019 18:49:29.33 [26480:23592:1007/184929.337:ERROR:CONSOLE(1)] "Refused to execute inline event handler because it violates the following Content Security Policy directive: "script-src 'strict-dynamic' 'sha256-1+GSDjMMklBjZY0QiWq+tGupCvajw4Xbn46ect2mZgM=' 'sha256-tCDoudW5/J/Alj3FMpQD7Hhf4u9RrSmCJLKqQnUos6g=' 'sha256-HqdPsO6hNmT/mfSeGdcX3eEGrZVva7AKD2Z2+1ujCZ8=' 'sha256-BcnvQDggot04zBRxv6gAGtlSZSQqR8mWXAE88yjPUkY=' 'sha256-IEF9PjeyU0vsr61C8cm3JQOerOYWdBsaGddCSPp6tZs=' 'sha256-RIDhH5uF+ciLoS6AP6ZkoxuwQyczkrTetThxXwVwFJI=' 'sha256-p07Ei562/+SaPLsvQViUdyTPe7g9IVno/tdWPTL3jA4='". Either the 'unsafe-inline' keyword, a hash ('sha256-...'), or a nonce ('nonce-...') is required to enable inline execution.
 10월 07, 2019 18:49:29.33 ", source: chrome-search://local-ntp/local-ntp.html (1)
+
+10월 08, 2019 19:47:52.90 NEW SESSION
+10월 08, 2019 19:47:52.90 [14608:14324:1008/194752.903:ERROR:database.cc(1598)] Passwords sqlite error 2067, errno 0: UNIQUE constraint failed: logins.origin_url, logins.username_element, logins.username_value, logins.password_element, logins.signon_realm, sql: INSERT INTO logins (origin_url, action_url, username_element, username_value, password_element, password_value, submit_element, signon_realm, preferred, date_created, blacklisted_by_user, scheme, password_type, times_used, form_data, date_synced, display_name, icon_url, federation_url, skip_zero_click, generation_upload_status, possible_username_pairs, id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+10월 10, 2019 02:06:19.39 NEW SESSION
+10월 10, 2019 02:06:19.39 [28952:27888:1010/020619.129:ERROR:socket_stream.cc(219)] Closing stream with result -2

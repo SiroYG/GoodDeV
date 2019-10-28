@@ -49,7 +49,7 @@ public interface item_SurveyMapper {
 	
 	public ArrayList<QuestionTotal> selectAllQuestion_TimeById(Question_Time Question_Time);
 	
-	public List<QuestionTotal> selectBySearchItem(Search search);
+	public List<QuestionTotal> selectBySearchItem();
 
 	
 	public Question_Time getQuestion_TimeByQuestion_TimeNum(Question_Time question_Time);

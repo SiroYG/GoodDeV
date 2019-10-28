@@ -11,7 +11,7 @@
     <meta name="author" content="Colorlib">
     <meta name="keywords" content="Colorlib Templates">
     <!-- Title Page-->
-    <title>Sign In :: </title>
+    <title>SupporterS :: Sign In</title>
     <!-- Icons font CSS-->
     <link href="/cloud/resources/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="/cloud/resources/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -27,9 +27,7 @@
     <script src="/cloud/resources/js/jquery-ui.min.js"></script>
     <script>
     $(function(){
-    	
     		$('#memberId').on('keyup',function(){
-    			
     				var memberId = $('#memberId').val();
     				$.ajax({
   						url : 'overlap',
@@ -40,14 +38,10 @@
 								$('#overlap').html('해당아이디는 사용가능합니다.');
 							}else{
 								$('#overlap').html('해당아이디는 존재합니다.');
-							}  						
-  							
+							}  			
   						}
-    					
     				})
-  
     		})
-    	
     });
 	function signupbtn(){
 			var id =document.getElementById("memberId");
@@ -56,12 +50,10 @@
 			var email =document.getElementById("email");
 			var phoneNum =document.getElementById("phoneNum");
 			var memberType =document.getElementById("memberType");
-			
 			if (id.value.length==0 || id.value =="") {
 				alert("ID를 입력해주세요.");
 				return false;
 			}
-			
 			if (pw.value.length==0 || pw.value =="") {
 					alert("PW를 입력해주세요.");
 					return false;
@@ -79,15 +71,10 @@
 				alert("핸드폰 번호를 입력해주세요.");
 				return false;
 				}
-			
 			$("#signin-form").submit();
 			}
-
-			
-	
     </script>
 </head>
-
 <body>
     <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
         <div class="wrapper wrapper--w960">

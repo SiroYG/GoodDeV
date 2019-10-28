@@ -7,25 +7,31 @@
     <title>Survey :: Survey Result</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" href="/cloud/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/animate.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/cloud/resources/css/magnific-popup.css">
-
     <link rel="stylesheet" href="/cloud/resources/css/aos.css">
     <link rel="stylesheet" href="/cloud/resources/css/ionicons.min.css">
-    
     <link rel="stylesheet" href="/cloud/resources/css/flaticon.css">
     <link rel="stylesheet" href="/cloud/resources/css/icomoon.css">
     <link rel="stylesheet" href="/cloud/resources/css/style.css">
     <link rel="stylesheet" href="/cloud/resources/css/survey.css">
+    <style >
+    .starR{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+.starR.on{background-position:0 0;}
+    </style>
 </head>
-
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="/cloud/home">SupporterS</a>
@@ -45,7 +51,6 @@
                                 <a class="btn btn-primary py-3 px-4" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="member-btn">로그인/회원가입</span>
                                 </a>
-
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="/cloud/member/gologin"><span class="member-btn">로그인</span></a>
                                     <a class="dropdown-item" href="/cloud/member/gosign"><span class="member-btn">회원가입</span></a>
@@ -54,7 +59,6 @@
                             </div>
                         </li>
                     </c:if>
-
                     <c:if test="${sessionScope.loginId!=null}">
                         <li style="margin-left: 20px;" class="nav-item cta">
                             <div class="dropdown show">
@@ -74,8 +78,6 @@
             </div>
         </div>
     </nav>
-
-
     <section class="hero-wrap hero-wrap-2" style="background-image: url('/cloud/resources/images/about_8.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
@@ -87,8 +89,6 @@
             </div>
         </div>
     </section>
-
-
     <section class="ftco-section" id="blog-section">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-5">
@@ -100,12 +100,8 @@
                     </p>
                 </div>
             </div>
-
             <hr class="hr_purple">
-
             <div class="write_table">
-           
-                   
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>제목</b></span></label>
                         <div class="col-sm-10">
@@ -123,53 +119,47 @@
                         <label for="" class="col-sm-2 col-form-label"><span><b>시작일</b></span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="startDate"  placeholder="${getQTime.startDate }" readonly="readonly">
-
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label"><span><b>마감일</b></span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="dueDate" id="" placeholder="${getQTime.dueDate }" readonly="readonly">
-
                         </div>
                     </div>
-            	
-                    
-
                     <hr class="hr_navy">
-
                     <div class="survey_form">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label"><span><b>설문목록</b></span></label>
                             <div class="col-sm-10">
                                 <p class="form-control-readonly">질문과 각 질문에 대한 평균 점수입니다.</p>
-
                             </div>
                         </div>
-                        <c:forEach var="question" items="${questionList}" varStatus="status">
+                      <c:forEach var="question" items="${questionList}" varStatus="status">
                         <div class="form-group row">
                             <label for="" class="col-sm-2 col-form-label"><span><b>질문  ${status.count}) </b></span></label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="question" id="" placeholder="${question.question}" readonly="readonly"><br>
-                                <p name="qValuable">${question.avgSurvey}</p> &nbsp; &nbsp;
-                                &nbsp; &nbsp; 
+                               <c:forEach var="i" begin="1" end="${question.avgSurvey}">
+                             <span class="starR on">별1</span>
+                          </c:forEach>
+                          <c:forEach var="i" begin="${question.avgSurvey}" end="4">
+                             <span class="starR">별1</span>
+                          </c:forEach>
                             </div>
                         </div>
                         </c:forEach>
-                       
+                           <br/>
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label"><span><b>기타의견</b></span></label>
                         <div class="col-sm-10">
-                        
                             <textarea rows="4" cols="112" class="form-control" name="etc" placeholder="${getQTime.etc}" readonly="readonly"></textarea>
-                       
                         </div>
                     </div>
                     <br><br>
                     <div class="form-group row">
                         <div class="col-sm-10">
                             <a href="/cloud/member/goMypage" class="btns btn-3"><span class="white">&nbsp;&nbsp;돌아가기&nbsp;&nbsp;</span></a> &nbsp;&nbsp;
-
                     </div>
             </div>
         </div>
@@ -189,11 +179,8 @@
     <script src="/cloud/resources/js/bootstrap-datepicker.js"></script>
     <script src="/cloud/resources/js/jquery.timepicker.min.js"></script>
     <script src="/cloud/resources/js/scrollax.min.js"></script>
-
     <script src="/cloud/resources/js/main.js"></script>
 </body>
-
-
 <footer class="ftco-footer ftco-section">
       <div class="container">
         <div class="row mb-5">
@@ -249,5 +236,4 @@
         </div>
       </div>
     </footer>
-    
     </html>

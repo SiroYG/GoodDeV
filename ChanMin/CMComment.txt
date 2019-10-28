@@ -57,4 +57,10 @@
 -- 191003
 -- middleSide_ python Crawling(3) - search_item / 이미지 및 연결하여 만들기
 -- 191005
--- middleSide_ servey, board Link
+-- middleSide_ servey, board Link(1)
+-- 191006
+-- middleSide_ 이미지 첨부(1), chat, crowd Link(2), 
+-- 191007
+-- middleSide_ 이미지 첨부(2), server에 파이썬 연동 및 question Link(3)
+-- 191008
+-- middleSide_ server에서 Project debugging 작업하기

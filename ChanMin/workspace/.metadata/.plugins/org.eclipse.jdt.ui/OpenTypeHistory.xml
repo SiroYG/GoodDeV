@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-<typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{patentMapper.java[patentMapper" modifiers="513" timestamp="1569397265238"/>
-<typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{itemMapper.java[itemMapper" modifiers="513" timestamp="1570437062653"/>
-<typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{item_SurveyMapper.java[item_SurveyMapper" modifiers="513" timestamp="1570469332458"/>
-<typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{historyMapper.java[historyMapper" modifiers="513" timestamp="1569141501348"/>
-<typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{patentsubMapper.java[patentsubMapper" modifiers="513" timestamp="1569404813561"/>
-<typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{documentMapper.java[documentMapper" modifiers="513" timestamp="1569569625837"/>
-<typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{PTIMapper.java[PTIMapper" modifiers="513" timestamp="1569735822111"/>
+    <typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{patentMapper.java[patentMapper" modifiers="513" timestamp="1569480774000"/>
+    <typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{itemMapper.java[itemMapper" modifiers="513" timestamp="1570643216000"/>
+    <typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{item_SurveyMapper.java[item_SurveyMapper" modifiers="513" timestamp="1570643216000"/>
+    <typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{historyMapper.java[historyMapper" modifiers="513" timestamp="1569177345000"/>
+    <typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{patentsubMapper.java[patentsubMapper" modifiers="513" timestamp="1569480774000"/>
+    <typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{documentMapper.java[documentMapper" modifiers="513" timestamp="1569765227000"/>
+    <typeInfo handle="=GoodDeV/src\/main\/java&lt;com.dev.cloud.dao{PTIMapper.java[PTIMapper" modifiers="513" timestamp="1569765227000"/>
 </typeInfoHistroy>
